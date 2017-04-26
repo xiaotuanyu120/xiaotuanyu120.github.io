@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="为何要做redis持久化redis和memcached等都是内存数据库，掉电之后，内存清空，数据也会丢失，所谓的持久化，就是将内存中的数据转存到硬盘上。
+redis persistence参考文档redis的持久化有两种方法RDB和AOF，下面分别来了解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis持久化、备份及恢复">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/09/28/072-redis_persistent_backup/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="为何要做redis持久化redis和memcached等都是内存数据库，掉电之后，内存清空，数据也会丢失，所谓的持久化，就是将内存中的数据转存到硬盘上。
+redis persistence参考文档redis的持久化有两种方法RDB和AOF，下面分别来了解">
+<meta property="og:updated_time" content="2016-09-28T08:46:17.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis持久化、备份及恢复">
+<meta name="twitter:description" content="为何要做redis持久化redis和memcached等都是内存数据库，掉电之后，内存清空，数据也会丢失，所谓的持久化，就是将内存中的数据转存到硬盘上。
+redis persistence参考文档redis的持久化有两种方法RDB和AOF，下面分别来了解">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/09/28/072-redis_persistent_backup/"/>
+
+  <title> redis持久化、备份及恢复 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redis持久化、备份及恢复
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T13:22:00+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/072-redis_persistent_backup/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/072-redis_persistent_backup/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="为何要做redis持久化"><a href="#为何要做redis持久化" class="headerlink" title="为何要做redis持久化"></a>为何要做redis持久化</h3><p>redis和memcached等都是内存数据库，掉电之后，内存清空，数据也会丢失，所谓的持久化，就是将内存中的数据转存到硬盘上。</p>
+<p><a href="http://redis.io/topics/persistence" target="_blank" rel="external">redis persistence参考文档</a><br>redis的持久化有两种方法RDB和AOF，下面分别来了解</p>
+<a id="more"></a>
+<h3 id="方法1、rdb快照模式"><a href="#方法1、rdb快照模式" class="headerlink" title="方法1、rdb快照模式"></a>方法1、rdb快照模式</h3><p><strong>RDB优点</strong></p>
+<ul>
+<li>RDB是一种非常紧凑的确切时间点的单文件数据备份。</li>
+<li>RDB特别适合紧急及计划性备份，并在其他主机进行恢复</li>
+<li>RDB可以最大化redis的性能，因为RDB模式下，redis需要做的只是去fork一个子进程，由子进程来进行余下的所有工作，这样父进程就不会承担资源压力或其他。</li>
+<li>RDB相对于AOF来讲，在大数据量时会有更快的重启恢复速度</li>
+</ul>
+<p><strong>RDB缺点</strong></p>
+<ul>
+<li>RDB无法满足在redis崩溃或停止时最小化数据丢失的需求，即使是我们规定5分钟内100个写请求后备份一次，但是也会在崩溃或者停止时丢失最新几分钟的数据。</li>
+<li>RDB需要fork子进程来完成持久化。fork过程在数据量很大的时候需要消耗时间，此时就会影响到正常请求的处理，一般是微秒级甚至是秒级影响，另外CPU的性能可能会被影响到。AOF虽然也需要fork，但你可以调整重写logs的时间间隔来避免对访问的影响。</li>
+</ul>
+<p><strong>配置</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">vim /etc/redis/6379.conf</div><div class="line">**********************************</div><div class="line"><span class="comment"># rdb配置</span></div><div class="line">save 900 1</div><div class="line">save 300 10</div><div class="line">save 60 10000</div><div class="line"><span class="comment"># 含义是，若在900s内超过1个key修改，则快照保存</span></div><div class="line"><span class="comment"># 若在300s内超过10个key被修改，则快照保存</span></div><div class="line"><span class="comment"># 若在60s内超过10000个key被修改，则快照保存</span></div><div class="line"><span class="comment"># 若三项配置都被注视，则禁用快照</span></div><div class="line"></div><div class="line"><span class="comment"># 默认情况下，后台备份出错时，主进程停止写入</span></div><div class="line">stop-writes-on-bgsave-error yes</div><div class="line"></div><div class="line"><span class="comment"># 备份文件是否压缩</span></div><div class="line">rdbcompression yes</div><div class="line"></div><div class="line"><span class="comment"># 导入恢复数据时，是否验证rdb的完整性</span></div><div class="line">rdbchecksum yes</div><div class="line"></div><div class="line"><span class="comment"># 备份文件名称</span></div><div class="line">dbfilename dump.rdb</div><div class="line"></div><div class="line"><span class="comment"># 备份文件路径</span></div><div class="line">dir ./</div><div class="line">**********************************</div></pre></td></tr></table></figure></p>
+<ul>
+<li>RDB模式适用与丢失最近的部分数据也无大碍的状况，否则请用AOF</li>
+<li>客户端连接服务器，可使用save和bgsave命令来创建RDB备份，但此时就不是fork子进程，而是使用主进程来备份，这样会阻塞所有client请求，不推荐使用</li>
+</ul>
+<h3 id="方法2、AOF日志模式"><a href="#方法2、AOF日志模式" class="headerlink" title="方法2、AOF日志模式"></a>方法2、AOF日志模式</h3><p><strong>AOF优点</strong></p>
+<ul>
+<li>AOF模式更耐用：可以使用不同的fsync策略：no fsync，每秒fsync，每个请求fsync。在默认的每秒fsync情况下，redis的写性能依然表现良好(fsync使用了一个后台线程，主线程尽量去在无fsync的时候去处理写请求)</li>
+<li>AOF只是增加log，所以恢复过程中没有搜寻方面的问题，甚至如果log文件的ends拥有一个不完整的命令，redis也可以很容易的恢复它。</li>
+<li>redis可以在AOF备份过大时在后台rewrite它。此rewrite是完全安全的，完美从老的log文件上延续，当这个文件足够大时，redis会rewrite一个新的。</li>
+<li>AOF的log文件包含了所有的操作，此类文件一个接一个，语法十分简单并易于理解。你可以简单的导出AOF文件。举例说明，如果你错误的使用了flushall命令清空了所有数据，如果在此期间没有log的rewrite，你可以迅速的停止服务，然后删除掉这个最新的flushall命令，重启redis即可。</li>
+</ul>
+<p><strong>AOF缺点</strong></p>
+<ul>
+<li>AOF文件通常要比等量dataset的RDB文件大一些</li>
+<li>AOF有时要比RDB慢，程度要看实际的fsync策略。</li>
+</ul>
+<p><strong>AOF配置</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">vim /etc/redis/6379.conf</div><div class="line">**********************************</div><div class="line"><span class="comment"># 是否开启AOF</span></div><div class="line">appendonly no</div><div class="line"></div><div class="line"><span class="comment"># AOF文件名称</span></div><div class="line">appendfilename <span class="string">"appendonly.aof"</span></div><div class="line"></div><div class="line"><span class="comment"># AOF策略</span></div><div class="line"><span class="comment"># appendfsync always</span></div><div class="line">appendfsync everysec</div><div class="line"><span class="comment"># appendfsync no</span></div><div class="line"></div><div class="line"><span class="comment"># 在rdb快照保存时，是否关闭AOF备份</span></div><div class="line">no-appendfsync-on-rewrite no</div><div class="line"></div><div class="line"><span class="comment"># rewrite条件</span></div><div class="line"><span class="comment"># aof文件增长百分比为100%时</span></div><div class="line">auto-aof-rewrite-percentage 100</div><div class="line"></div><div class="line"><span class="comment"># aof文件至少超过64mb时</span></div><div class="line">auto-aof-rewrite-min-size 64mb</div><div class="line">**********************************</div></pre></td></tr></table></figure></p>
+<ul>
+<li>AOF rewrite是重新把旧的文件重写一个，是一个完整的备份</li>
+<li>AOF和RDB文件会在重启redis服务器时自动载入</li>
+</ul>
+<p><strong>演示AOF备份恢复</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 备份原有的aof文件</span></div><div class="line">redis-check-aof --fix</div><div class="line"><span class="comment"># 使用diff -u去检查备份文件和修复后文件的不同</span></div><div class="line"><span class="comment"># 重启redis服务器</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/28/071-redis_downgrade_error/" rel="next" title="redis降级后启动报错">
+                <i class="fa fa-chevron-left"></i> redis降级后启动报错
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/29/073-redis_cluster/" rel="prev" title="redis集群+tomcat+nginx实现session共享">
+                redis集群+tomcat+nginx实现session共享 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/28/072-redis_persistent_backup/"
+           data-title="redis持久化、备份及恢复" data-url="http://linux.xiao5tech.com/2016/09/28/072-redis_persistent_backup/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为何要做redis持久化"><span class="nav-number">1.</span> <span class="nav-text">为何要做redis持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1、rdb快照模式"><span class="nav-number">2.</span> <span class="nav-text">方法1、rdb快照模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2、AOF日志模式"><span class="nav-number">3.</span> <span class="nav-text">方法2、AOF日志模式</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

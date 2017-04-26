@@ -1,0 +1,684 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,replication,redis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="redis主从理论知识
+redis采用异步复制，从2.8版本开始，slave会周期性的去在replication流中获取数据
+master可以有多个slave
+slave可以接受其他slave的连接，也就是说可以使用master-slave-slave的架构
+在master端，redis的主从复制是非阻塞的，也就是说，在一或多个slave在同步的同时，master还可以处理正常的queries。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis主从配置">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/09/28/070-redis_replication/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="redis主从理论知识
+redis采用异步复制，从2.8版本开始，slave会周期性的去在replication流中获取数据
+master可以有多个slave
+slave可以接受其他slave的连接，也就是说可以使用master-slave-slave的架构
+在master端，redis的主从复制是非阻塞的，也就是说，在一或多个slave在同步的同时，master还可以处理正常的queries。">
+<meta property="og:updated_time" content="2016-09-29T02:11:47.597Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis主从配置">
+<meta name="twitter:description" content="redis主从理论知识
+redis采用异步复制，从2.8版本开始，slave会周期性的去在replication流中获取数据
+master可以有多个slave
+slave可以接受其他slave的连接，也就是说可以使用master-slave-slave的架构
+在master端，redis的主从复制是非阻塞的，也就是说，在一或多个slave在同步的同时，master还可以处理正常的queries。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/09/28/070-redis_replication/"/>
+
+  <title> redis主从配置 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redis主从配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T09:14:00+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/070-redis_replication/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/070-redis_replication/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="redis主从理论知识"><a href="#redis主从理论知识" class="headerlink" title="redis主从理论知识"></a>redis主从理论知识</h3><ul>
+<li>redis采用异步复制，从2.8版本开始，slave会周期性的去在replication流中获取数据</li>
+<li>master可以有多个slave</li>
+<li>slave可以接受其他slave的连接，也就是说可以使用master-slave-slave的架构</li>
+<li>在master端，redis的主从复制是非阻塞的，也就是说，在一或多个slave在同步的同时，master还可以处理正常的queries。</li>
+<li>在slave端，redis的是也是非阻塞的，也就是说，在slave同步数据时，也可以用旧有的数据来响应queries，但这必须在redis的配置文件中进行配置。否则，你可以配置redis如果同步数据流down时返回一个error给queries。然而，当redis同步完成后，会删除旧有的dataset，并加载新的dataset，此时slave会阻塞不去接受新的连接直至数据替换完成。</li>
+<li>主从同时也是可扩展的，可用于创建多个slave，或者简单的用来做数据冗余。</li>
+<li>主从也可以避免master持久化完成的dataset所造成的硬盘消耗，一个典型的技术方案是，完全关闭master端的数据持久化，而在slave上实时写入所有的数据。但这样处理时一定要小心，当master重启后，它会是一个空的dataset，若此时slave去同步，则slave也会清空自己的dataset。<br><a href="http://redis.io/topics/replication" target="_blank" rel="external">redis 主从参考链接</a></li>
+</ul>
+<a id="more"></a>
+<h3 id="redis软件准备"><a href="#redis软件准备" class="headerlink" title="redis软件准备"></a>redis软件准备</h3><p>需要同时在master和slave上执行下面所有操作<br><strong>安装redis</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget http://download.redis.io/releases/redis-2.8.24.tar.gz</div><div class="line">tar zxf redis-2.8.24.tar.gz </div><div class="line"><span class="built_in">cd</span> redis-2.8.24</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p><strong>拷贝redis启动脚本</strong><br>slave上操作时需要把6379端口换成6380<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">cp utils/redis_init_script /etc/init.d/redis</div><div class="line">chmod 755 /etc/init.d/redis</div><div class="line">vi /etc/init.d/redis</div><div class="line">******************************</div><div class="line"><span class="comment"># 在第2行添加</span></div><div class="line"><span class="comment">#chkconfig: 2345 80 90 </span></div><div class="line"></div><div class="line"><span class="comment"># 修改配置文件位置</span></div><div class="line">REDISPORT=6379</div><div class="line">EXEC=/usr/<span class="built_in">local</span>/bin/redis-server</div><div class="line">CLIEXEC=/usr/<span class="built_in">local</span>/bin/redis-cli</div><div class="line"></div><div class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid</div><div class="line">CONF=<span class="string">"/etc/redis/<span class="variable">$&#123;REDISPORT&#125;</span>.conf"</span></div><div class="line"></div><div class="line"><span class="comment"># 如果设置了auth的话，需要在关闭时提供密码字符串</span></div><div class="line"><span class="comment"># 配置一个自定义变量</span></div><div class="line">AUTH_PASSWORD=<span class="string">"customized_pass"</span></div><div class="line"><span class="comment"># 在关闭stop case中增加"-a $AUTH_PASSWORD"</span></div><div class="line"><span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> <span class="_">-a</span> <span class="variable">$AUTH_PASSWORD</span> shutdown</div><div class="line">******************************</div><div class="line">chkconfig redis on</div></pre></td></tr></table></figure></p>
+<p><strong>配置redis</strong><br>master上使用6379端口，”bind ip”未配置时默认是监听所有的连接<br>slave上使用6380端口，下面的6379在slave是统统换成6380<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir /etc/redis</div><div class="line">cp redis.conf /etc/redis/6379.conf</div><div class="line">vi /etc/redis/6379.conf</div><div class="line">******************************</div><div class="line">daemonize yes</div><div class="line">pidfile /var/run/redis_6379.pid</div><div class="line">port 6379</div><div class="line">******************************</div></pre></td></tr></table></figure></p>
+<h3 id="配置主从"><a href="#配置主从" class="headerlink" title="配置主从"></a>配置主从</h3><p><strong>主上配置</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">vim /etc/redis/6379.conf</div><div class="line">******************************</div><div class="line"><span class="comment"># 此配置需要去tomcat配置中增加password配置，否则会报错</span></div><div class="line">requirepass customized_pass</div><div class="line">******************************</div></pre></td></tr></table></figure></p>
+<p><strong>从上配置</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vim /etc/redis/6380.conf</div><div class="line">******************************</div><div class="line">slaveof 192.168.110.4 6379</div><div class="line"></div><div class="line"><span class="comment"># 此配置需要去tomcat配置中增加password配置，否则会报错</span></div><div class="line">masterauth customized_pass</div><div class="line">******************************</div></pre></td></tr></table></figure></p>
+<p><strong>启动主和从上的redis服务</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service redis start</div></pre></td></tr></table></figure></p>
+<p><strong>效果查看</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># master上</span></div><div class="line">redis-cli </div><div class="line"><span class="comment"># 此语句</span></div><div class="line">127.0.0.1:6379&gt; auth customized_pass</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> good bad</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> fork first</div><div class="line">OK</div><div class="line"></div><div class="line"><span class="comment"># slave上</span></div><div class="line">redis-cli -p 6380</div><div class="line">127.0.0.1:6380&gt; get fork</div><div class="line"><span class="string">"first"</span></div><div class="line">127.0.0.1:6380&gt; KEYS *</div><div class="line">1) <span class="string">"fork"</span></div><div class="line">2) <span class="string">"good"</span></div><div class="line"></div><div class="line"><span class="comment"># master上检查主从状态</span></div><div class="line">127.0.0.1:6379&gt; info replication</div><div class="line"><span class="comment"># Replication</span></div><div class="line">role:master</div><div class="line">connected_slaves:1</div><div class="line">slave0:ip=192.168.110.5,port=6380,state=online,offset=125900,lag=0</div><div class="line">master_repl_offset:125900</div><div class="line">repl_backlog_active:1</div><div class="line">repl_backlog_size:1048576</div><div class="line">repl_backlog_first_byte_offset:2</div><div class="line">repl_backlog_histlen:125899</div></pre></td></tr></table></figure></p>
+<p><strong>从转主的命令</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6380&gt; slaveof no one</div><div class="line">OK</div><div class="line">127.0.0.1:6380&gt; info replication</div><div class="line"><span class="comment"># Replication</span></div><div class="line">role:master</div><div class="line">connected_slaves:0</div><div class="line">master_repl_offset:127944</div><div class="line">repl_backlog_active:0</div><div class="line">repl_backlog_size:1048576</div><div class="line">repl_backlog_first_byte_offset:0</div><div class="line">repl_backlog_histlen:0</div><div class="line"><span class="comment"># 当然，前提是我们开启了从的写功能</span></div></pre></td></tr></table></figure></p>
+<h3 id="redis常用配置"><a href="#redis常用配置" class="headerlink" title="redis常用配置"></a>redis常用配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 只读配置，不可以在此节点写入key-value</span></div><div class="line">slave-read-only yes</div><div class="line"></div><div class="line"><span class="comment"># 日志配置</span></div><div class="line">loglevel notice</div><div class="line">logfile <span class="string">"/var/log/redis.log"</span></div><div class="line"><span class="comment"># loglevel可以是以下几种</span></div><div class="line"><span class="comment"># debug (a lot of information, useful for development/testing)</span></div><div class="line"><span class="comment"># verbose (many rarely useful info, but not a mess like the debug level)</span></div><div class="line"><span class="comment"># notice (moderately verbose, what you want in production probably)</span></div><div class="line"><span class="comment"># warning (only very important / critical messages are logged)</span></div><div class="line"></div><div class="line"><span class="comment"># 当slave失去与master的连接，或者正在同步过程中时，以下配置设定了不同的行为</span></div><div class="line">slave-serve-stale-data yes</div><div class="line"><span class="comment"># 当为yes时，返回旧有数据或者空值</span></div><div class="line"><span class="comment"># 当为no时，返回error"SYNC with master in progress"</span></div><div class="line"></div><div class="line"><span class="comment"># 主从条件配置</span></div><div class="line">min-slaves-to-write 3</div><div class="line">min-slaves-max-lag 10</div><div class="line"><span class="comment"># 含义为，最少3个ping间隔在10s以内的slave同时在线时，master才会接受写入的操作，否则则停止接受写入操作。</span></div><div class="line"><span class="comment"># 默认情况下，min-slaves-to-write为0，min-slaves-max-lag默认是10，含义是disable此功能</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/replication/" rel="tag">#replication</a>
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/069-redis_session_keepalive/" rel="next" title="redis+tomcat+nginx实现session共享">
+                <i class="fa fa-chevron-left"></i> redis+tomcat+nginx实现session共享
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/28/071-redis_downgrade_error/" rel="prev" title="redis降级后启动报错">
+                redis降级后启动报错 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/28/070-redis_replication/"
+           data-title="redis主从配置" data-url="http://linux.xiao5tech.com/2016/09/28/070-redis_replication/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#redis主从理论知识"><span class="nav-number">1.</span> <span class="nav-text">redis主从理论知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis软件准备"><span class="nav-number">2.</span> <span class="nav-text">redis软件准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置主从"><span class="nav-number">3.</span> <span class="nav-text">配置主从</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis常用配置"><span class="nav-number">4.</span> <span class="nav-text">redis常用配置</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

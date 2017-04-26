@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="interview," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="问题1问题列表：
+
+线上MYSQL数据库，几千万条记录的大表，如果执行DDL操作会出现什么问题？
+DDL的执行过程？
+大表如何加索引，加字段？
+
+什么是SQL？&amp;emsp;&amp;emsp;SQL是structured querry language的缩写，代表结构化查询语言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题汇总-02">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/07/19/024-interview_question/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="问题1问题列表：
+
+线上MYSQL数据库，几千万条记录的大表，如果执行DDL操作会出现什么问题？
+DDL的执行过程？
+大表如何加索引，加字段？
+
+什么是SQL？&amp;emsp;&amp;emsp;SQL是structured querry language的缩写，代表结构化查询语言。">
+<meta property="og:updated_time" content="2016-07-27T01:55:06.660Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试题汇总-02">
+<meta name="twitter:description" content="问题1问题列表：
+
+线上MYSQL数据库，几千万条记录的大表，如果执行DDL操作会出现什么问题？
+DDL的执行过程？
+大表如何加索引，加字段？
+
+什么是SQL？&amp;emsp;&amp;emsp;SQL是structured querry language的缩写，代表结构化查询语言。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/07/19/024-interview_question/"/>
+
+  <title> 面试题汇总-02 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                面试题汇总-02
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-19T10:45:00+08:00" content="2016-07-19">
+              2016-07-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/interview/" itemprop="url" rel="index">
+                    <span itemprop="name">interview</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/19/024-interview_question/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/19/024-interview_question/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p><strong>问题列表：</strong></p>
+<ol>
+<li>线上MYSQL数据库，几千万条记录的大表，如果执行DDL操作会出现什么问题？</li>
+<li>DDL的执行过程？</li>
+<li>大表如何加索引，加字段？</li>
+</ol>
+<h3 id="什么是SQL？"><a href="#什么是SQL？" class="headerlink" title="什么是SQL？"></a>什么是SQL？</h3><p>&emsp;&emsp;SQL是structured querry language的缩写，代表结构化查询语言。</p>
+<a id="more"></a>
+<h3 id="SQL的组成？"><a href="#SQL的组成？" class="headerlink" title="SQL的组成？"></a>SQL的组成？</h3><p><strong>SQL分为四种主要的语句</strong></p>
+<ul>
+<li>DML (Data Manipulation Language) - 数据操作语句<br>包括SELECT,INSERT,UPDATE,DELETE</li>
+<li>DDL (Data Definition Language) - 数据定义语句<br>包括CREATE,ALTER,DROP</li>
+<li>DCL (Data Control Language) - 数据控制语句<br>包括GRANT,REVOKE</li>
+<li>TCL (Transaction Control Language) - 交互控制语句<br>包括BEGIN Transaction,COMMIT Transaction,ROLLBACK Transaction</li>
+</ul>
+<p><strong>DDL语句的执行过程？</strong></p>
+<p><strong>执行过程</strong><br>DDL执行时，它会先commit和结束目前所有的数据库操作，它们的改变将变成永久的<br>然后执行DDL语句，若成功，则commit，若失败则rollback</p>
+<p><strong>DDL执行过程的伪代码(帮助理解)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BEGIN</div><div class="line">    commit;</div><div class="line">    DDL语句的解析，包括语法解析和语义解析;</div><div class="line">    BEGIN</div><div class="line">        执行DDL语句;</div><div class="line">        commit;</div><div class="line">    exception</div><div class="line">        when others then</div><div class="line">        rollback;</div><div class="line">    END;</div><div class="line">END;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>扩展链接：</strong><a href="http://dba.fyicenter.com/faq/mysql/Transaction-Committed-when-DDL-Statement-Executed.html" target="_blank" rel="external">What Happens to the Current Transaction If a DDL Statement Is Executed?</a></p>
+</blockquote>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p><strong>问题列表：</strong></p>
+<ol>
+<li>Redis的安全策略一般会考虑哪些？</li>
+<li>IDC节点公网出口通过NAT访问公网一般需要做哪些配置？</li>
+</ol>
+<h3 id="什么是redis？"><a href="#什么是redis？" class="headerlink" title="什么是redis？"></a>什么是redis？</h3><p>REmote DIctionary Server(Redis) 是一个由Salvatore Sanfilippo写的key-value存储系统。<br>Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br>它通常被称为数据结构服务器，因为值（value）可以是 字符串(String), 哈希(Map), 列表(list), 集合(sets) 和 有序集合(sorted sets)等类型。</p>
+<h3 id="redis安全"><a href="#redis安全" class="headerlink" title="redis安全"></a>redis安全</h3><p>扩展阅读：<a href="http://redis.io/topics/security" target="_blank" rel="external">官方安全文档</a></p>
+<ul>
+<li>不要直接暴露给internet，最好部署在安全的内网；</li>
+<li>在web的应用中，对不信任的client，必须要有web程序的中介；</li>
+<li>在一般的程序应用中，对不信任的client，必须要有ACL,用户输入等相关信息的验证</li>
+<li>若是单点实例，可以直接部署在client上，在redis.conf中配置”bind 127.0.0.1”；</li>
+<li>在3.2.0以后，若redis实例绑定了公网ip，使用的是默认的配置，另外没有密码安全限制的情况下，redis会进入protected mode。此模式下，只响应lo网卡的请求，其他请求会返回错误，说明原因和配置提示</li>
+<li>redis.conf可配置认证</li>
+<li>通过internet或不信任网络访问的情况下，可采用ssl代理加密，官方推荐<a href="http://www.tarsnap.com/spiped.html" target="_blank" rel="external">spiped</a></li>
+<li>可禁用某些指定的命令</li>
+<li>小心对待用户的输入，正确的配置用户输入的集合，使用qsort算法来防御用户输入数据从内部攻破redis</li>
+</ul>
+<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><p><strong>问题列表：</strong></p>
+<ol>
+<li>概述下PYTHON装饰器？<br>扩展链接：<a href="http://stackoverflow.com/questions/739654/how-can-i-make-a-chain-of-function-decorators-in-python" target="_blank" rel="external">装饰器最好的解读</a></li>
+</ol>
+<h3 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h3><p>装饰器可用于在不改变当前函数的情况下，实现扩展该函数的目地，采用的方法是创建一个拥有内置函数的函数。</p>
+<h2 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h2><p><strong>问题列表：</strong></p>
+<ol>
+<li>saltstack的架构设计有几种？</li>
+<li>puppet条件语句有几种？</li>
+</ol>
+<p><strong>未研究</strong>，<strong>待研究</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/interview/" rel="tag">#interview</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/18/023-interview_question/" rel="next" title="面试题汇总-01">
+                <i class="fa fa-chevron-left"></i> 面试题汇总-01
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/20/025-python_getattr/" rel="prev" title="python自省：让与字符串同名的函数执行">
+                python自省：让与字符串同名的函数执行 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/19/024-interview_question/"
+           data-title="面试题汇总-02" data-url="http://linux.xiao5tech.com/2016/07/19/024-interview_question/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题1"><span class="nav-number">1.</span> <span class="nav-text">问题1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是SQL？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是SQL？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL的组成？"><span class="nav-number">1.2.</span> <span class="nav-text">SQL的组成？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题2"><span class="nav-number">2.</span> <span class="nav-text">问题2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是redis？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是redis？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redis安全"><span class="nav-number">2.2.</span> <span class="nav-text">redis安全</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题3"><span class="nav-number">3.</span> <span class="nav-text">问题3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人总结"><span class="nav-number">3.1.</span> <span class="nav-text">个人总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题4"><span class="nav-number">4.</span> <span class="nav-text">问题4</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

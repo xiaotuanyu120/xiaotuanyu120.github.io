@@ -1,0 +1,664 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="devops,ansible," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="why should use becomeWe don’t use root directly in ansible in most cases. Instead, we prefer a commonuser to execute some tasks in sudo mode. By doing so, we can keep the security.
+how we use becomeLe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sudoer configure to support become function in ansible">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/10/21/086-ansible_become_sudo/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="why should use becomeWe don’t use root directly in ansible in most cases. Instead, we prefer a commonuser to execute some tasks in sudo mode. By doing so, we can keep the security.
+how we use becomeLe">
+<meta property="og:updated_time" content="2016-10-21T14:47:39.604Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sudoer configure to support become function in ansible">
+<meta name="twitter:description" content="why should use becomeWe don’t use root directly in ansible in most cases. Instead, we prefer a commonuser to execute some tasks in sudo mode. By doing so, we can keep the security.
+how we use becomeLe">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/10/21/086-ansible_become_sudo/"/>
+
+  <title> sudoer configure to support become function in ansible | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                sudoer configure to support become function in ansible
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-21T21:00:00+08:00" content="2016-10-21">
+              2016-10-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/devops/" itemprop="url" rel="index">
+                    <span itemprop="name">devops</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/21/086-ansible_become_sudo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/21/086-ansible_become_sudo/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="why-should-use-become"><a href="#why-should-use-become" class="headerlink" title="why should use become"></a>why should use become</h3><p>We don’t use root directly in ansible in most cases. Instead, we prefer a common<br>user to execute some tasks in sudo mode. By doing so, we can keep the security.</p>
+<h3 id="how-we-use-become"><a href="#how-we-use-become" class="headerlink" title="how we use become"></a>how we use become</h3><p>Let’s make an example, we try to manage tomcat init script by using ansible become</p>
+<a id="more"></a>
+<p><strong>first create a common user and switch to it</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># on ansible control node</span></div><div class="line">[root@ansible-control ~]</div><div class="line">useradd classmate</div><div class="line">su - classmate</div><div class="line"><span class="comment"># on controled node</span></div><div class="line">[root@<span class="built_in">test</span>-host ~]</div><div class="line">useradd classmate</div></pre></td></tr></table></figure></p>
+<p><strong>yaml file content</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">***************************</div><div class="line">---</div><div class="line">- hosts: <span class="built_in">test</span>-host</div><div class="line">  remote_user: classmate</div><div class="line">  become: <span class="literal">true</span></div><div class="line">  become_user: root</div><div class="line">  become_method: sudo</div><div class="line"></div><div class="line">  tasks:</div><div class="line">   - name: start tomcat1</div><div class="line">     service: name=tomcat1 state=started</div><div class="line">***************************</div></pre></td></tr></table></figure></p>
+<p><strong>ERROR</strong><br>but we met an error when run it directly(run below command by classmate user)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">ansible-playbook -i hosts main.yml</div><div class="line"></div><div class="line">PLAY [long8_web] ***************************************************************</div><div class="line"></div><div class="line">TASK [setup] *******************************************************************</div><div class="line">fatal: [192.168.100.22]: FAILED! =&gt; &#123;<span class="string">"changed"</span>: <span class="literal">false</span>, <span class="string">"failed"</span>: <span class="literal">true</span>, <span class="string">"module_stderr"</span>: <span class="string">""</span>, <span class="string">"module_stdout"</span>: <span class="string">"sudo: a password is required\r\n"</span>, <span class="string">"msg"</span>: <span class="string">"MODULE FAILURE"</span>&#125;</div><div class="line"></div><div class="line">NO MORE HOSTS LEFT *************************************************************</div><div class="line">	to retry, use: --limit @/home/classmate/ansible-test/main.retry</div><div class="line"></div><div class="line">PLAY RECAP *********************************************************************</div><div class="line">192.168.100.22            : ok=0    changed=0    unreachable=0    failed=1</div></pre></td></tr></table></figure></p>
+<p><strong>DEBUG</strong><br>we try it one more time in debug mode to check detail<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">ansible-playbook -i hosts main.yml -vvvv</div><div class="line">No config file found; using defaults</div><div class="line">Loaded callback default of <span class="built_in">type</span> stdout, v2.0</div><div class="line"></div><div class="line">PLAYBOOK: main.yml *************************************************************</div><div class="line">1 plays <span class="keyword">in</span> main.yml</div><div class="line"></div><div class="line">PLAY [long8_web] ***************************************************************</div><div class="line"></div><div class="line">TASK [setup] *******************************************************************</div><div class="line">&lt;192.168.100.22&gt; ESTABLISH SSH CONNECTION FOR USER: classmate</div><div class="line">&lt;192.168.100.22&gt; SSH: EXEC ssh -C -vvv -o ControlMaster=auto -o ControlPersist=60s -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=classmate -o ConnectTimeout=10 -o ControlPath=/home/classmate/.ansible/cp/ansible-ssh-%h-%p-%r 192.168.100.22 <span class="string">'/bin/sh -c '</span><span class="string">"'"</span><span class="string">'( umask 77 &amp;&amp; mkdir -p "` echo $HOME/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511 `" &amp;&amp; echo ansible-tmp-1477056354.81-98638790861511="` echo $HOME/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511 `" ) &amp;&amp; sleep 0'</span><span class="string">"'"</span><span class="string">''</span></div><div class="line">&lt;192.168.100.22&gt; PUT /tmp/tmpeK7ikg TO /home/classmate/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511/setup</div><div class="line">&lt;192.168.100.22&gt; SSH: EXEC sftp -b - -C -vvv -o ControlMaster=auto -o ControlPersist=60s -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=classmate -o ConnectTimeout=10 -o ControlPath=/home/classmate/.ansible/cp/ansible-ssh-%h-%p-%r <span class="string">'[103.236.220.177]'</span></div><div class="line">&lt;192.168.100.22&gt; ESTABLISH SSH CONNECTION FOR USER: classmate</div><div class="line">&lt;192.168.100.22&gt; SSH: EXEC ssh -C -vvv -o ControlMaster=auto -o ControlPersist=60s -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=classmate -o ConnectTimeout=10 -o ControlPath=/home/classmate/.ansible/cp/ansible-ssh-%h-%p-%r 103.236.220.177 <span class="string">'/bin/sh -c '</span><span class="string">"'"</span><span class="string">'chmod u+x /home/classmate/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511/ /home/classmate/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511/setup &amp;&amp; sleep 0'</span><span class="string">"'"</span><span class="string">''</span></div><div class="line">&lt;192.168.100.22&gt; ESTABLISH SSH CONNECTION FOR USER: classmate</div><div class="line">&lt;192.168.100.22&gt; SSH: EXEC ssh -C -vvv -o ControlMaster=auto -o ControlPersist=60s -o KbdInteractiveAuthentication=no -o PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey -o PasswordAuthentication=no -o User=classmate -o ConnectTimeout=10 -o ControlPath=/home/classmate/.ansible/cp/ansible-ssh-%h-%p-%r -tt 192.168.100.22 <span class="string">'/bin/sh -c '</span><span class="string">"'"</span><span class="string">'sudo -H -S -n -u root /bin/sh -c '</span><span class="string">"'"</span><span class="string">'"'</span><span class="string">"'"</span><span class="string">'"'</span><span class="string">"'"</span><span class="string">'echo BECOME-SUCCESS-kzyiyadwuhlluevxdczpkcspfgwzyuhz; LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LC_MESSAGES=en_US.UTF-8 /usr/bin/python /home/classmate/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511/setup; rm -rf "/home/classmate/.ansible/tmp/ansible-tmp-1477056354.81-98638790861511/" &gt; /dev/null 2&gt;&amp;1'</span><span class="string">"'"</span><span class="string">'"'</span><span class="string">"'"</span><span class="string">'"'</span><span class="string">"'"</span><span class="string">' &amp;&amp; sleep 0'</span><span class="string">"'"</span><span class="string">''</span></div><div class="line">fatal: [192.168.100.22]: FAILED! =&gt; &#123;<span class="string">"changed"</span>: <span class="literal">false</span>, <span class="string">"failed"</span>: <span class="literal">true</span>, <span class="string">"invocation"</span>: &#123;<span class="string">"module_name"</span>: <span class="string">"setup"</span>&#125;, <span class="string">"module_stderr"</span>: <span class="string">"OpenSSH_5.3p1, OpenSSL 1.0.1e-fips 11 Feb 2013\ndebug1: Reading configuration data /etc/ssh/ssh_config\r\ndebug1: Applying options for *\r\ndebug1: auto-mux: Trying existing master\r\ndebug2: fd 3 setting O_NONBLOCK\r\ndebug2: mux_client_hello_exchange: master version 4\r\ndebug3: mux_client_request_forwards: requesting forwardings: 0 local, 0 remote\r\ndebug3: mux_client_request_session: entering\r\ndebug3: mux_client_request_alive: entering\r\ndebug3: mux_client_request_alive: done pid = 16619\r\ndebug3: mux_client_request_session: session request sent\r\ndebug1: mux_client_request_session: master session id: 2\r\ndebug1: mux_client_request_session: master session id: 2\r\ndebug3: mux_client_read_packet: read header failed: Broken pipe\r\ndebug2: Received exit status from master 1\r\nShared connection to 192.168.100.22 closed.\r\n"</span>, <span class="string">"module_stdout"</span>: <span class="string">"sudo: a password is required\r\n"</span>, <span class="string">"msg"</span>: <span class="string">"MODULE FAILURE"</span>&#125;</div><div class="line"></div><div class="line">NO MORE HOSTS LEFT *************************************************************</div><div class="line">	to retry, use: --limit @/home/classmate/ansible-test/main.retry</div><div class="line"></div><div class="line">PLAY RECAP *********************************************************************</div><div class="line">192.168.100.22            : ok=0    changed=0    unreachable=0    failed=1   </div><div class="line"><span class="comment"># we can see it that ansible have tried to run "service, sh, python" command</span></div><div class="line"><span class="comment"># so we can fix it by grant permission of these command to classmate</span></div></pre></td></tr></table></figure></p>
+<p><strong>SOLVE METHOD</strong><br>configure sudoer on test-host to solve it<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># on test-host node</span></div><div class="line">[root@<span class="built_in">test</span>-host ~]</div><div class="line">visudo</div><div class="line">***************************</div><div class="line"><span class="comment"># add the content below to grant service command permission to classmate</span></div><div class="line"><span class="comment"># and we don't want to input password when running ansible tasks, so we set "NOPASSWD"</span></div><div class="line">classmate ALL=(root) NOPASSWD: /sbin/service,/bin/sh,/usr/bin/python</div><div class="line">***************************</div><div class="line"></div><div class="line"><span class="comment"># try run ansible again</span></div><div class="line">ansible-playbook -i hosts main.yml</div><div class="line"></div><div class="line">PLAY [long8_web] ***************************************************************</div><div class="line"></div><div class="line">TASK [setup] *******************************************************************</div><div class="line">ok: [192.168.100.22]</div><div class="line"></div><div class="line">TASK [restart tomcat] **********************************************************</div><div class="line">changed: [192.168.100.22]</div><div class="line"></div><div class="line">PLAY RECAP *********************************************************************</div><div class="line">192.168.100.22            : ok=2    changed=1    unreachable=0    failed=0</div><div class="line"></div><div class="line"><span class="comment"># check tomcat status on test-host</span></div><div class="line">[root@<span class="built_in">test</span>-host ~]</div><div class="line">ps aux |grep java |grep tomcat1</div><div class="line">root      9650  0.2  0.6 6386456 102912 ?      Sl   20:59   0:04 /usr/<span class="built_in">local</span>/jdk/bin/java -Djava.util.logging.config.file=/home/tomcat1/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -XX:PermSize=128m -XX:MaxPermSize=512m -Djava.endorsed.dirs=/home/tomcat1/endorsed -classpath /home/tomcat1/bin/bootstrap.jar -Dcatalina.base=/home/tomcat1 -Dcatalina.home=/home/tomcat1 -Djava.io.tmpdir=/home/tomcat1/temp org.apache.catalina.startup.Bootstrap start</div></pre></td></tr></table></figure></p>
+<p><a href="http://docs.ansible.com/ansible/become.html" target="_blank" rel="external">become detail link</a><br><a href="https://wiki.archlinux.org/index.php/sudo" target="_blank" rel="external">sudoer configure detail link</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/devops/" rel="tag">#devops</a>
+          
+            <a href="/tags/ansible/" rel="tag">#ansible</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/20/085-cronolog_tomcat/" rel="next" title="how to rotate tomcat logs with cronolog">
+                <i class="fa fa-chevron-left"></i> how to rotate tomcat logs with cronolog
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/23/escape_from_onenote/" rel="prev" title="为何我要逃离onenote">
+                为何我要逃离onenote <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/21/086-ansible_become_sudo/"
+           data-title="sudoer configure to support become function in ansible" data-url="http://linux.xiao5tech.com/2016/10/21/086-ansible_become_sudo/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-should-use-become"><span class="nav-number">1.</span> <span class="nav-text">why should use become</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#how-we-use-become"><span class="nav-number">2.</span> <span class="nav-text">how we use become</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

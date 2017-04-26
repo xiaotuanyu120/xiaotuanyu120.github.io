@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="tomcat,nginx,session,redis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="环境介绍软件版本
+
+nginx: 1.10.1
+tomcat: 6.0.45
+redis: 2.8.24
+
+软件架构
+
+
+
+软件名称
+HOST
+
+
+
+
+nginx
+192.168.110.4
+
+
+tomcat01
+192.168.110.5
+
+
+tomcat02
+192.168.110.6
+
+
+redis01
+192.168.110.5
+
+
+redis02
+192.168.110.6
+
+
+redi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis集群+tomcat+nginx实现session共享">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/09/29/073-redis_cluster/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="环境介绍软件版本
+
+nginx: 1.10.1
+tomcat: 6.0.45
+redis: 2.8.24
+
+软件架构
+
+
+
+软件名称
+HOST
+
+
+
+
+nginx
+192.168.110.4
+
+
+tomcat01
+192.168.110.5
+
+
+tomcat02
+192.168.110.6
+
+
+redis01
+192.168.110.5
+
+
+redis02
+192.168.110.6
+
+
+redi">
+<meta property="og:updated_time" content="2016-09-29T09:57:55.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis集群+tomcat+nginx实现session共享">
+<meta name="twitter:description" content="环境介绍软件版本
+
+nginx: 1.10.1
+tomcat: 6.0.45
+redis: 2.8.24
+
+软件架构
+
+
+
+软件名称
+HOST
+
+
+
+
+nginx
+192.168.110.4
+
+
+tomcat01
+192.168.110.5
+
+
+tomcat02
+192.168.110.6
+
+
+redis01
+192.168.110.5
+
+
+redis02
+192.168.110.6
+
+
+redi">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/09/29/073-redis_cluster/"/>
+
+  <title> redis集群+tomcat+nginx实现session共享 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redis集群+tomcat+nginx实现session共享
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-29T10:42:00+08:00" content="2016-09-29">
+              2016-09-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/29/073-redis_cluster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/29/073-redis_cluster/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h3><p><strong>软件版本</strong></p>
+<ul>
+<li>nginx: 1.10.1</li>
+<li>tomcat: 6.0.45</li>
+<li>redis: 2.8.24</li>
+</ul>
+<p><strong>软件架构</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">软件名称</th>
+<th style="text-align:center">HOST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">nginx</td>
+<td style="text-align:center">192.168.110.4</td>
+</tr>
+<tr>
+<td style="text-align:center">tomcat01</td>
+<td style="text-align:center">192.168.110.5</td>
+</tr>
+<tr>
+<td style="text-align:center">tomcat02</td>
+<td style="text-align:center">192.168.110.6</td>
+</tr>
+<tr>
+<td style="text-align:center">redis01</td>
+<td style="text-align:center">192.168.110.5</td>
+</tr>
+<tr>
+<td style="text-align:center">redis02</td>
+<td style="text-align:center">192.168.110.6</td>
+</tr>
+<tr>
+<td style="text-align:center">redis03</td>
+<td style="text-align:center">192.168.110.5</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="安装并配置nginx"><a href="#安装并配置nginx" class="headerlink" title="安装并配置nginx"></a>安装并配置nginx</h3><p>在nginx节点执行以下命令<br><strong>安装nginx</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum install epel-release -y</div><div class="line">yum install nginx -y</div><div class="line">chkconfig nginx on</div></pre></td></tr></table></figure></p>
+<p><strong>配置nginx</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建nginx虚拟机配置文件</span></div><div class="line">vim /etc/nginx/conf.d/sstest.conf</div><div class="line">******************************</div><div class="line">upstream ss &#123;</div><div class="line">    server 192.168.110.5:8080;</div><div class="line">    server 192.168.110.6:8080;</div><div class="line">&#125;</div><div class="line"></div><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    server_name 192.168.110.4 default_server;</div><div class="line">    location / &#123;</div><div class="line">        proxy_pass http://ss;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">******************************</div><div class="line">service nginx restart</div></pre></td></tr></table></figure></p>
+<h3 id="安装并配置tomcat"><a href="#安装并配置tomcat" class="headerlink" title="安装并配置tomcat"></a>安装并配置tomcat</h3><p>在两台tomcat节点执行以下命令</p>
+<p><strong>安装tomcat</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 下载并安装jdk1.6</span></div><div class="line"><span class="comment"># 需要注册oracle帐号才能在下面下载</span></div><div class="line">http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html</div><div class="line">chmod u+x jre-6u45-linux-x64.bin</div><div class="line">mv jre1.6.0_45 /usr/<span class="built_in">local</span>/</div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/jre1.6.0_45/ /usr/<span class="built_in">local</span>/jdk</div><div class="line">vi /etc/profile.d/java-env.sh</div><div class="line">*******************************</div><div class="line">JAVA_HOME=/usr/<span class="built_in">local</span>/jdk</div><div class="line">JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</div><div class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$&#123;JRE_HOME&#125;</span>/bin</div><div class="line">CLASSPATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</div><div class="line">*******************************</div><div class="line"><span class="built_in">source</span> /etc/profile.d/java-env.sh</div><div class="line"></div><div class="line"><span class="comment"># 安装tomcat</span></div><div class="line">wget http://mirror.rise.ph/apache/tomcat/tomcat-6/v6.0.45/bin/apache-tomcat-6.0.45.tar.gz</div><div class="line">tar zxf apache-tomcat-6.0.45.tar.gz</div><div class="line">mv apache-tomcat-6.0.45 /usr/<span class="built_in">local</span>/tomcat</div></pre></td></tr></table></figure></p>
+<p><strong>配置tomcat</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置tomcat虚拟主机</span></div><div class="line">vim /usr/<span class="built_in">local</span>/tomcat/conf/server.xml</div><div class="line">************************</div><div class="line">&lt;Host name=<span class="string">"localhost"</span>  appBase=<span class="string">""</span></div><div class="line">      unpackWARs=<span class="string">"true"</span> autoDeploy=<span class="string">"true"</span>&gt;</div><div class="line">  &lt;Context path=<span class="string">""</span> docBase=<span class="string">"/data/webapps"</span> reloadable=<span class="string">"true"</span> /&gt;</div><div class="line">  ......</div><div class="line">&lt;/Host&gt;</div><div class="line">************************</div><div class="line"></div><div class="line">vim /usr/<span class="built_in">local</span>/tomcat/conf/context.xml</div><div class="line">******************************</div><div class="line">    &lt;Valve className=<span class="string">"com.radiadesign.catalina.session.RedisSessionHandlerValve"</span>/&gt;</div><div class="line">    &lt;Manager className=<span class="string">"com.radiadesign.catalina.session.RedisSessionManager"</span> </div><div class="line">     host=<span class="string">"192.168.110.5"</span></div><div class="line">     port=<span class="string">"6379"</span></div><div class="line">     password=<span class="string">"123456"</span></div><div class="line">     database=<span class="string">"0"</span></div><div class="line">     maxInactiveInterval=<span class="string">"60"</span></div><div class="line">     sentinelMaster=<span class="string">"mymaster"</span></div><div class="line">     sentinels=<span class="string">"192.168.110.5:6379,192.168.110.5:6381,192.168.110.6:6380"</span></div><div class="line">     /&gt;</div><div class="line">******************************</div></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/jcoleman/tomcat-redis-session-manager" target="_blank" rel="external">配置详细说明见此链接</a><br>Valve要配置在Manager之前<br>注意className，网上的都不一样，需要按照自己下载jar包的版本进行调整<br><strong>password</strong>对应redis master配置文件中的requirepass配置项配置的密码<br><strong>mymaster</strong>对应sentinel配置文件中的”sentinel monitor <master-group-name> <ip> <port> <quorum>“<strong><master-group-name></master-group-name></strong></quorum></port></ip></master-group-name></p>
+<p><strong>编写测试程序</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建web程序目录</span></div><div class="line">mkdir -p /data/webapps/&#123;WEB-INF,META-INF,classes,lib&#125;</div><div class="line"><span class="built_in">cd</span> /data/webapps</div><div class="line"></div><div class="line"><span class="comment"># 编写首页程序</span></div><div class="line"><span class="comment"># ss02上把Tomcat01更换成Tomcat02</span></div><div class="line">vim index.jsp</div><div class="line">***********************</div><div class="line">&lt;%@ page language=<span class="string">"java"</span> %&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;&lt;title&gt;Tomcat01&lt;/title&gt;&lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h1&gt;&lt;font color=<span class="string">"red"</span>&gt;Tomcat01.magedu.com&lt;/font&gt;&lt;/h1&gt;</div><div class="line">    &lt;table align=<span class="string">"centre"</span> border=<span class="string">"1"</span>&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Session ID&lt;/td&gt;</div><div class="line">    &lt;% session.setAttribute(<span class="string">"magedu.com"</span>,<span class="string">"magedu.com"</span>); %&gt;</div><div class="line">        &lt;td&gt;&lt;%= session.getId() %&gt;&lt;/td&gt;</div><div class="line">      &lt;/tr&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;Created on&lt;/td&gt;</div><div class="line">        &lt;td&gt;&lt;%= session.getCreationTime() %&gt;&lt;/td&gt;</div><div class="line">     &lt;/tr&gt;</div><div class="line">    &lt;/table&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">***********************</div></pre></td></tr></table></figure></p>
+<h3 id="安装并配置redis"><a href="#安装并配置redis" class="headerlink" title="安装并配置redis"></a>安装并配置redis</h3><p>在三台redis节点执行以下命令<br><strong>安装redis</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget http://download.redis.io/releases/redis-2.8.24.tar.gz</div><div class="line">tar zxf redis-2.8.24.tar.gz </div><div class="line"><span class="built_in">cd</span> redis-2.8.24</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p><strong>拷贝redis启动脚本</strong><br>redis02和redis03上需要把下面的所有的6379修改为6380和6381<br>另外由于6379和6381在同一台主机上，需要把6381端口的”chkconfig 2345 80 90”中的80和90改为其他不同数值，可以写为81和91<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">cp utils/redis_init_script /etc/init.d/redis-6379</div><div class="line">chmod 755 /etc/init.d/redis</div><div class="line">vi /etc/init.d/redis</div><div class="line">******************************</div><div class="line"><span class="comment"># 在第2行添加</span></div><div class="line"><span class="comment">#chkconfig: 2345 80 90 </span></div><div class="line"></div><div class="line"><span class="comment"># 修改配置文件位置</span></div><div class="line">EDISPORT=6379</div><div class="line">CONF=<span class="string">"/etc/redis/<span class="variable">$&#123;REDISPORT&#125;</span>.conf"</span></div><div class="line"></div><div class="line"><span class="comment"># 如果设置了auth的话，需要在关闭时提供密码字符串</span></div><div class="line"><span class="comment"># 配置一个自定义变量</span></div><div class="line">AUTH_PASSWORD=<span class="string">"123456"</span></div><div class="line"><span class="comment"># 在关闭stop case中增加"-a $AUTH_PASSWORD"</span></div><div class="line"><span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> <span class="_">-a</span> <span class="variable">$AUTH_PASSWORD</span> shutdown</div><div class="line">******************************</div><div class="line">chmod a+x /etc/init.d/redis-6379</div><div class="line">chkconfig redis-6379 on</div></pre></td></tr></table></figure></p>
+<p><strong>配置redis</strong><br>注意不同redis节点配置不同<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">mkdir /etc/redis</div><div class="line"></div><div class="line"><span class="comment"># redis01作为主节点，端口为6379</span></div><div class="line">cp redis.conf /etc/redis/6379.conf</div><div class="line">vi /etc/redis/6379.conf</div><div class="line">******************************</div><div class="line"><span class="built_in">bind</span> 0.0.0.0</div><div class="line">daemonize yes</div><div class="line">pidfile /var/run/redis_6379.pid</div><div class="line">port 6379</div><div class="line">loglevel notice</div><div class="line">logfile <span class="string">"/var/log/redis_6379.log"</span></div><div class="line">masterauth 123456</div><div class="line">requirepass 123456</div><div class="line">******************************</div><div class="line"></div><div class="line"><span class="comment"># redis02作为从节点，端口为6380</span></div><div class="line">cp redis.conf /etc/redis/6380.conf</div><div class="line">vi /etc/redis/6380.conf</div><div class="line">******************************</div><div class="line"><span class="built_in">bind</span> 0.0.0.0</div><div class="line">daemonize yes</div><div class="line">pidfile /var/run/redis_6380.pid</div><div class="line">port 6380</div><div class="line">loglevel notice</div><div class="line">logfile <span class="string">"/var/log/redis_6380.log"</span></div><div class="line">slaveof 192.168.110.5 6380</div><div class="line">masterauth 123456</div><div class="line">requirepass 123456</div><div class="line">******************************</div><div class="line"><span class="comment"># 从节点之所以也配置requirepass，是为了等下redis集群failover功能，密码推荐和主上的密码一致</span></div><div class="line"></div><div class="line"><span class="comment"># redis03作为从节点，端口为6381</span></div><div class="line">cp redis.conf /etc/redis/6381.conf</div><div class="line">vi /etc/redis/6381.conf</div><div class="line">******************************</div><div class="line"><span class="built_in">bind</span> 0.0.0.0</div><div class="line">daemonize yes</div><div class="line">pidfile /var/run/redis_6381.pid</div><div class="line">port 6381</div><div class="line">slaveof 192.168.110.5 6381</div><div class="line">masterauth 123456</div><div class="line">requirepass 123456</div><div class="line">******************************</div><div class="line"><span class="comment"># 从节点之所以也配置requirepass，是为了等下redis集群failover功能，密码推荐和主上的密码一致</span></div></pre></td></tr></table></figure></p>
+<p><strong>拷贝jar包到tomcat</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat6_redis2.8/master/tomcat-redis-session-manager-1.2.jar</div><div class="line">wget https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat6_redis2.8/master/jedis-2.1.0.jar</div><div class="line">wget https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat6_redis2.8/master/commons-pool-1.6.jar</div><div class="line"></div><div class="line">mv tomcat-redis-session-manager-1.2.jar jedis-2.1.0.jar commons-pool-1.6.jar /usr/<span class="built_in">local</span>/tomcat/lib/</div></pre></td></tr></table></figure></p>
+<p>根据jdk和tomcat版本,需要的jar包完全不一样,不同的jar包版本对应的tomcat Context配置亦不同<br><strong>错误经历</strong></p>
+<blockquote>
+<p>按照官方的提示，使用的tomcat-redis-session-manager-1.2-tomcat-6.jar这个发行的包，但是实际使用时，发现主页登录的验证码无法刷出，tomcat报错以下信息：RedisSession.setAttribute(RedisSession.java:56，按照作者的解释，是因为原key和新key皆为空，产生了空指针错误。<br>解决办法：jcoleman给发现这个问题的一个哥们单独修改和编译了一个包，因为tomcat6版本太过老旧，作者没有去更新官方的包，<a href="https://github.com/jcoleman/tomcat-redis-session-manager/issues/13，换成这个页面上下载的包后，问题得到了完整的解决" target="_blank" rel="external">https://github.com/jcoleman/tomcat-redis-session-manager/issues/13，换成这个页面上下载的包后，问题得到了完整的解决</a></p>
+</blockquote>
+<p><strong>启动服务</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在三个redis节点上重启redis</span></div><div class="line">service redis-6379 stop</div><div class="line">service redis-6379 start</div><div class="line">service redis-6380 stop</div><div class="line">service redis-6380 start</div><div class="line">service redis-6381 stop</div><div class="line">service redis-6381 start</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 在两个tomcat节点上重启tomcat</span></div><div class="line">/usr/<span class="built_in">local</span>/tomcat/bin/catalina.sh stop</div><div class="line">/usr/<span class="built_in">local</span>/tomcat/bin/catalina.sh start</div></pre></td></tr></table></figure></p>
+<h3 id="使用sentinel来实现主从切换功能"><a href="#使用sentinel来实现主从切换功能" class="headerlink" title="使用sentinel来实现主从切换功能"></a>使用sentinel来实现主从切换功能</h3><p>每个redis节点，配备一个sentinel，192.168.110.5上有两个节点，即在该主机上布置两个节点</p>
+<p><strong>强烈推荐查看</strong><a href="http://redis.io/topics/sentinel" target="_blank" rel="external">sentinel官方文档</a></p>
+<p><strong>创建sentinel配置文件</strong><br>每个节点用不同的端口<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vi /etc/redis/sentinel01.conf</div><div class="line">******************************</div><div class="line">port 26379</div><div class="line">sentinel monitor mymaster 192.168.110.5 6379 2</div><div class="line">sentinel auth-pass mymaster 123456</div><div class="line">sentinel down-after-milliseconds mymaster 60000</div><div class="line">sentinel failover-timeout mymaster 180000</div><div class="line">sentinel parallel-syncs mymaster 1</div><div class="line">******************************</div></pre></td></tr></table></figure></p>
+<p>sentinel monitor <master-group-name> <ip> <port> <quorum></quorum></port></ip></master-group-name></p>
+<blockquote>
+<p>master-group-name 是自定义名称<br>quorum 此数字代表分布式的sentinel中，最少几个节点侦测到master失败才切换</p>
+</blockquote>
+<p>sentinel <option_name> <master_name> <option_value></option_value></master_name></option_name></p>
+<blockquote>
+<p>sentinel 选项名称 自定义名称 选项值<br>down-after-milliseconds 指定了多少ms连接不到该sentinel即认定其失效<br>其他配置查看官方文档链接</p>
+</blockquote>
+<p><strong>启动sentinel服务</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在192.168.110.5上启动1和3</span></div><div class="line">redis-sentinel /etc/redis/sentinel01.conf &amp;</div><div class="line">redis-sentinel /etc/redis/sentinel03.conf &amp;</div><div class="line"></div><div class="line"><span class="comment"># 在192.168.110.6上启动2</span></div><div class="line">redis-sentinel /etc/redis/sentinel02.conf &amp;</div></pre></td></tr></table></figure></p>
+<h3 id="效果测试"><a href="#效果测试" class="headerlink" title="效果测试"></a>效果测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 分别访问tomca01和tomcat02</span></div><div class="line">curl -I http://47.90.80.156:8080/</div><div class="line">HTTP/1.1 200 OK</div><div class="line">Server: Apache-Coyote/1.1</div><div class="line">Set-Cookie: JSESSIONID=7E548773A2181763F25C709490677B41; Path=/</div><div class="line">Content-Type: text/html</div><div class="line">Content-Length: 370</div><div class="line">Date: Tue, 27 Sep 2016 08:32:06 GMT</div><div class="line"></div><div class="line">curl -I http://47.90.80.167:8080/</div><div class="line">HTTP/1.1 200 OK</div><div class="line">Server: Apache-Coyote/1.1</div><div class="line">Set-Cookie: JSESSIONID=2E10147173A1565E1BAA79D766A29410; Path=/</div><div class="line">Content-Type: text/html</div><div class="line">Content-Length: 370</div><div class="line">Date: Tue, 27 Sep 2016 08:32:29 GMT</div><div class="line"></div><div class="line"><span class="comment"># 负载均衡端访问</span></div><div class="line">web端访问，session值统一</div><div class="line"></div><div class="line"><span class="comment"># 查看redis集群</span></div><div class="line">redis-cli</div><div class="line">127.0.0.1:6379&gt; auth 123456</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; info replication</div><div class="line"><span class="comment"># Replication</span></div><div class="line">role:master</div><div class="line">connected_slaves:2</div><div class="line">slave0:ip=192.168.110.5,port=6381,state=online,offset=30273,lag=1</div><div class="line">slave1:ip=192.168.110.6,port=6380,state=online,offset=30273,lag=1</div><div class="line">master_repl_offset:30273</div><div class="line">repl_backlog_active:1</div><div class="line">repl_backlog_size:1048576</div><div class="line">repl_backlog_first_byte_offset:2</div><div class="line">repl_backlog_histlen:30272</div><div class="line"></div><div class="line"><span class="comment"># 模拟master失败</span></div><div class="line"><span class="built_in">kill</span> -9 23861</div><div class="line"></div><div class="line"><span class="comment"># 6379日志</span></div><div class="line">[24074] 29 Sep 14:02:01.167 <span class="comment"># +switch-master mymaster 192.168.110.5 6379 192.168.110.6 6380</span></div><div class="line">[24074] 29 Sep 14:02:01.167 * +slave slave 192.168.110.5:6381 192.168.110.5 6381 @ mymaster 192.168.110.6 6380</div><div class="line">[24074] 29 Sep 14:02:01.167 * +slave slave 192.168.110.5:6379 192.168.110.5 6379 @ mymaster 192.168.110.6 6380</div><div class="line">[23594] 29 Sep 14:02:02.136 * +slave-reconf-inprog slave 192.168.110.5:6381 192.168.110.5 6381 @ mymaster 192.168.110.5 6379</div><div class="line">[23594] 29 Sep 14:02:02.136 * +slave-reconf-done slave 192.168.110.5:6381 192.168.110.5 6381 @ mymaster 192.168.110.5 6379</div><div class="line">[23594] 29 Sep 14:02:02.226 <span class="comment"># +failover-end master mymaster 192.168.110.5 6379</span></div><div class="line"></div><div class="line"><span class="comment"># 6380日志</span></div><div class="line">[7893] 29 Sep 14:02:00.106 <span class="comment"># +vote-for-leader bbacd3808d4ebb2a68c7f4a2912dd1ab749edd1c 1</span></div><div class="line">[7893] 29 Sep 14:02:00.107 <span class="comment"># +odown master mymaster 192.168.110.5 6379 #quorum 3/2</span></div><div class="line">[7893] 29 Sep 14:02:00.107 <span class="comment"># Next failover delay: I will not start a failover before Thu Sep 29 14:08:00 2016</span></div><div class="line">[8085] 29 Sep 14:02:00.336 * Discarding previously cached master state.</div><div class="line">[8085] 29 Sep 14:02:00.336 * MASTER MODE enabled (user request from <span class="string">'id=2 addr=192.168.110.5:30379 fd=7 name=sentinel-bbacd380-cmd age=297 idle=0 flags=x db=0 sub=0 psub=0 multi=3 qbuf=0 qbuf-free=32768 obl=36 oll=0 omem=0 events=rw cmd=exec'</span>)</div><div class="line">[8085] 29 Sep 14:02:00.338 <span class="comment"># CONFIG REWRITE executed with success.</span></div><div class="line">[7893] 29 Sep 14:02:01.166 <span class="comment"># +config-update-from sentinel 192.168.110.5:26381 192.168.110.5 26381 @ mymaster 192.168.110.5 6379</span></div><div class="line">[7893] 29 Sep 14:02:01.166 <span class="comment"># +switch-master mymaster 192.168.110.5 6379 192.168.110.6 6380</span></div><div class="line">[7893] 29 Sep 14:02:01.166 * +slave slave 192.168.110.5:6381 192.168.110.5 6381 @ mymaster 192.168.110.6 6380</div><div class="line">[7893] 29 Sep 14:02:01.166 * +slave slave 192.168.110.5:6379 192.168.110.5 6379 @ mymaster 192.168.110.6 6380</div><div class="line">[8085] 29 Sep 14:02:01.986 * Slave 192.168.110.5:6381 asks <span class="keyword">for</span> synchronization</div><div class="line"></div><div class="line"><span class="comment"># 6381日志</span></div><div class="line">[23880] 29 Sep 14:02:01.167 * SLAVE OF 192.168.110.6:6380 enabled (user request from <span class="string">'id=3 addr=47.90.80.156:11171 fd=6 name=sentinel-bbacd380-cmd age=351 idle=0 flags=x db=0 sub=0 psub=0 multi=3 qbuf=139 qbuf-free=32629 obl=36 oll=0 omem=0 events=rw cmd=exec'</span>)</div><div class="line">[23880] 29 Sep 14:02:01.168 <span class="comment"># CONFIG REWRITE executed with success.</span></div><div class="line">[23880] 29 Sep 14:02:01.985 * Connecting to MASTER 192.168.110.6:6380</div><div class="line">[23880] 29 Sep 14:02:01.985 * MASTER &lt;-&gt; SLAVE sync started</div><div class="line">[23880] 29 Sep 14:02:01.986 * Non blocking connect <span class="keyword">for</span> SYNC fired the event.</div><div class="line">[23880] 29 Sep 14:02:01.986 * Master replied to PING, replication can continue...</div><div class="line">[23880] 29 Sep 14:02:01.987 * Partial resynchronization not possible (no cached master)</div><div class="line">[23880] 29 Sep 14:02:02.007 * Full resync from master: 204067d8253c0ab852414f3f6bef1d708f768485:1</div><div class="line"></div><div class="line"><span class="comment"># 当重启6379后，6379作为6380的slave存在</span></div><div class="line">redis-cli -p 6380</div><div class="line">127.0.0.1:6380&gt; auth 123456</div><div class="line">OK</div><div class="line">127.0.0.1:6380&gt; info replication</div><div class="line"><span class="comment"># Replication</span></div><div class="line">role:master</div><div class="line">connected_slaves:2</div><div class="line">slave0:ip=192.168.110.5,port=6379,state=online,offset=20736,lag=0</div><div class="line">slave1:ip=192.168.110.5,port=6381,state=online,offset=20597,lag=1</div><div class="line">master_repl_offset:20875</div><div class="line">repl_backlog_active:1</div><div class="line">repl_backlog_size:1048576</div><div class="line">repl_backlog_first_byte_offset:2</div><div class="line">repl_backlog_histlen:20874</div></pre></td></tr></table></figure>
+<p>值得一提的是，当6380自动接管master身份时，也继承了master的可写配置，也就是说6380由原来的从身份只读状态，转变为了主身份可写状态。而6379在重新启动加入集群时，会默认接管6380原有的身份，也就是从身份只读状态，而这些功能的实现全部是由于sentinel节点提供的。</p>
+<h3 id="sentinel管理"><a href="#sentinel管理" class="headerlink" title="sentinel管理"></a>sentinel管理</h3><p><strong>查看master信息</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 用redis-cli连接sentinel的端口</span></div><div class="line">redis-cli -p 26379</div><div class="line">127.0.0.1:26379&gt; sentinel master mymaster</div><div class="line"> 1) <span class="string">"name"</span></div><div class="line"> 2) <span class="string">"mymaster"</span></div><div class="line"> 3) <span class="string">"ip"</span></div><div class="line"> 4) <span class="string">"192.168.110.5"</span></div><div class="line"> 5) <span class="string">"port"</span></div><div class="line"> 6) <span class="string">"6381"</span></div><div class="line"> 7) <span class="string">"runid"</span></div><div class="line"> 8) <span class="string">"88460abc58aa7d2e159a29a7fe29f2d64aa72033"</span></div><div class="line"> 9) <span class="string">"flags"</span></div><div class="line">10) <span class="string">"master"</span></div><div class="line">11) <span class="string">"pending-commands"</span></div><div class="line">12) <span class="string">"0"</span></div><div class="line">13) <span class="string">"last-ping-sent"</span></div><div class="line">14) <span class="string">"0"</span></div><div class="line">15) <span class="string">"last-ok-ping-reply"</span></div><div class="line">16) <span class="string">"404"</span></div><div class="line">17) <span class="string">"last-ping-reply"</span></div><div class="line">18) <span class="string">"404"</span></div><div class="line">19) <span class="string">"down-after-milliseconds"</span></div><div class="line">20) <span class="string">"60000"</span></div><div class="line">21) <span class="string">"info-refresh"</span></div><div class="line">22) <span class="string">"3270"</span></div><div class="line">23) <span class="string">"role-reported"</span></div><div class="line">24) <span class="string">"master"</span></div><div class="line">25) <span class="string">"role-reported-time"</span></div><div class="line">26) <span class="string">"8577307"</span></div><div class="line">27) <span class="string">"config-epoch"</span></div><div class="line">28) <span class="string">"2"</span></div><div class="line">29) <span class="string">"num-slaves"</span></div><div class="line">30) <span class="string">"2"</span></div><div class="line">31) <span class="string">"num-other-sentinels"</span></div><div class="line">32) <span class="string">"2"</span></div><div class="line">33) <span class="string">"quorum"</span></div><div class="line">34) <span class="string">"2"</span></div><div class="line">35) <span class="string">"failover-timeout"</span></div><div class="line">36) <span class="string">"180000"</span></div><div class="line">37) <span class="string">"parallel-syncs"</span></div><div class="line">38) <span class="string">"1"</span></div></pre></td></tr></table></figure></p>
+<p>其中”num-other-sentinels”代表了其他的sentinel节点个数<br>“num-slaves”代表了slave节点个数</p>
+<p>使用以下两个命令可以看到slaves和sentinels的信息<br>SENTINEL slaves mymaster<br>SENTINEL sentinels mymaster</p>
+<p><strong>获取当前master信息</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:26379&gt; SENTINEL get-master-addr-by-name mymaster</div><div class="line">1) <span class="string">"192.168.110.5"</span></div><div class="line">2) <span class="string">"6381"</span></div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag">#tomcat</a>
+          
+            <a href="/tags/nginx/" rel="tag">#nginx</a>
+          
+            <a href="/tags/session/" rel="tag">#session</a>
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/28/072-redis_persistent_backup/" rel="next" title="redis持久化、备份及恢复">
+                <i class="fa fa-chevron-left"></i> redis持久化、备份及恢复
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/30/074-vagrant_installation/" rel="prev" title="vagrant多平台安装">
+                vagrant多平台安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/29/073-redis_cluster/"
+           data-title="redis集群+tomcat+nginx实现session共享" data-url="http://linux.xiao5tech.com/2016/09/29/073-redis_cluster/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境介绍"><span class="nav-number">1.</span> <span class="nav-text">环境介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并配置nginx"><span class="nav-number">2.</span> <span class="nav-text">安装并配置nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并配置tomcat"><span class="nav-number">3.</span> <span class="nav-text">安装并配置tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并配置redis"><span class="nav-number">4.</span> <span class="nav-text">安装并配置redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用sentinel来实现主从切换功能"><span class="nav-number">5.</span> <span class="nav-text">使用sentinel来实现主从切换功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果测试"><span class="nav-number">6.</span> <span class="nav-text">效果测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sentinel管理"><span class="nav-number">7.</span> <span class="nav-text">sentinel管理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

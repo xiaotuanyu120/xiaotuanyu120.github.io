@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python,devops,json,flask," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="客户端程序12345678910111213141516171819202122232425262728293031323334353637383940#!/root/env26/bin/python# -*- coding: utf-8 -*-&quot;for monitor host&apos;s information&quot;import sysimport psutilimport jsonimport urll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flask服务端与客户端传递json数据">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/07/13/016-devops_python_mon_server/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="客户端程序12345678910111213141516171819202122232425262728293031323334353637383940#!/root/env26/bin/python# -*- coding: utf-8 -*-&quot;for monitor host&apos;s information&quot;import sysimport psutilimport jsonimport urll">
+<meta property="og:updated_time" content="2016-07-13T06:40:21.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="flask服务端与客户端传递json数据">
+<meta name="twitter:description" content="客户端程序12345678910111213141516171819202122232425262728293031323334353637383940#!/root/env26/bin/python# -*- coding: utf-8 -*-&quot;for monitor host&apos;s information&quot;import sysimport psutilimport jsonimport urll">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/07/13/016-devops_python_mon_server/"/>
+
+  <title> flask服务端与客户端传递json数据 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                flask服务端与客户端传递json数据
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-13T09:22:00+08:00" content="2016-07-13">
+              2016-07-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/devops/" itemprop="url" rel="index">
+                    <span itemprop="name">devops</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/13/016-devops_python_mon_server/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/13/016-devops_python_mon_server/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="客户端程序"><a href="#客户端程序" class="headerlink" title="客户端程序"></a>客户端程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/root/env26/bin/python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="string">"for monitor host's information"</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> psutil</div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_cpu</span><span class="params">(args, args_num)</span>:</span></div><div class="line">    result = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(args_num):</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            getattr(psutil, args[i])</div><div class="line">        <span class="keyword">except</span> AttributeError <span class="keyword">as</span> e:</div><div class="line">            <span class="keyword">print</span> e</div><div class="line">            <span class="keyword">continue</span></div><div class="line">        result.append(getattr(psutil, args[i])())</div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">json_post</span><span class="params">(url, sysinfo_list)</span>:</span></div><div class="line">    jdata = json.dumps(sysinfo_list)</div><div class="line">    req = urllib2.Request(url, jdata)</div><div class="line">    response = urllib2.urlopen(req)</div><div class="line">    <span class="keyword">return</span> response.read()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    args_len = len(sys.argv)</div><div class="line">    <span class="keyword">if</span> args_len &gt; <span class="number">2</span>:</div><div class="line">        args_num = args_len - <span class="number">2</span></div><div class="line">        args = [sys.argv[x] <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>, args_len)]</div><div class="line">        result = _cpu(args, args_num)</div><div class="line">        url = <span class="string">"http://127.0.0.1:5000/"</span></div><div class="line">        json_post(url, result)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"ERROR: too less arguments!"</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="服务端程序"><a href="#服务端程序" class="headerlink" title="服务端程序"></a>服务端程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/root/env26/bin/python</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line"><span class="meta">@app.route('/', methods=['POST'])</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_data</span><span class="params">()</span>:</span></div><div class="line">    data = request.get_data()</div><div class="line">    <span class="comment"># data = request.data</span></div><div class="line">    <span class="keyword">print</span> data</div><div class="line">    <span class="keyword">return</span> <span class="string">"request: "</span> + str(data)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app.run()</div></pre></td></tr></table></figure>
+<h2 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h2><p>&emsp;&emsp;客户端使用urllib2.urlopen()发送urllib2.Request(url, jdata)到服务端</p>
+<p>&emsp;&emsp;处理请求的函数，return的值不可以是None，若是None，会报错”ValueError: View function did not return a response”</p>
+<p>&emsp;&emsp;服务端接受json字符串有几种方法：</p>
+<ul>
+<li><p>request.data，但此种方法有限制，按照官方说法(Contains the incoming request data as string in case it came with a mimetype Flask does not handle.)，按照字面意思，只有特定的mimetype下，request.data才能拿到请求的值，一般情况下都是none;</p>
+<blockquote>
+<p>一般需要对代码进行如下处理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 客户端</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">json_post</span><span class="params">(url, sysinfo_list, header)</span>:</span></div><div class="line">    jdata = json.dumps(sysinfo_list)</div><div class="line">    req = urllib2.Request(url, jdata, headers=header)</div><div class="line">    response = urllib2.urlopen(req)</div><div class="line">    <span class="keyword">return</span> response.read()</div><div class="line"></div><div class="line"><span class="comment"># if块中，自定义header并传入到urllib2.Request()的headers参数中</span></div><div class="line">        headers = &#123;</div><div class="line">    <span class="string">'Content-type'</span>: <span class="string">'binary/octet-stream'</span>,</div><div class="line">&#125;</div><div class="line">        json_post(url, result, header=headers)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 服务端</span></div><div class="line">data = request.data</div><div class="line"><span class="keyword">return</span> <span class="string">"request: "</span> + str(data)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>get_json()，在”mimetype”是”application/json”或force参数是True时，才会拿到请求字符串的值</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 客户端</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">json_post</span><span class="params">(url, sysinfo_list, header)</span>:</span></div><div class="line">    jdata = json.dumps(sysinfo_list)</div><div class="line">    req = urllib2.Request(url, jdata, headers=header)</div><div class="line">    response = urllib2.urlopen(req)</div><div class="line">    <span class="keyword">return</span> response.read()</div><div class="line"></div><div class="line"><span class="comment"># if块中，自定义header传入到urllib2.Request()的headers参数中</span></div><div class="line">        headers = &#123;</div><div class="line">    <span class="string">'Content-type'</span>: <span class="string">'application/json'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">        json_post(url, result, header=headers)</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 服务端</span></div><div class="line">    data = request.get_json()</div><div class="line">    <span class="keyword">return</span> <span class="string">"request: "</span> + str(data)</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>get_data()，此方法可以完全的拿到请求，但需要注意的是，调用此请求的时候要检查请求内容的长度，不然有一定风险引起内存问题</p>
+</li>
+<li><p>详细可参见官网文档：<a href="http://flask.pocoo.org/docs/0.11/api/#flask.request" target="_blank" rel="external">http://flask.pocoo.org/docs/0.11/api/#flask.request</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+            <a href="/tags/devops/" rel="tag">#devops</a>
+          
+            <a href="/tags/json/" rel="tag">#json</a>
+          
+            <a href="/tags/flask/" rel="tag">#flask</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/11/015-devops_python_mon_client/" rel="next" title="监控cpu状态并输出json数据的python实例">
+                <i class="fa fa-chevron-left"></i> 监控cpu状态并输出json数据的python实例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/13/017-python_get_ip/" rel="prev" title="python获取本机的ip地址">
+                python获取本机的ip地址 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/13/016-devops_python_mon_server/"
+           data-title="flask服务端与客户端传递json数据" data-url="http://linux.xiao5tech.com/2016/07/13/016-devops_python_mon_server/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端程序"><span class="nav-number">1.</span> <span class="nav-text">客户端程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端程序"><span class="nav-number">2.</span> <span class="nav-text">服务端程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码解析"><span class="nav-number">3.</span> <span class="nav-text">代码解析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

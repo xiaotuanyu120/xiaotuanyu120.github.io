@@ -1,0 +1,668 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,shell," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xiao5tech" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="需求来由&amp;emsp;&amp;emsp;跟运维朋友聊天，聊到一个问题，我们经常会使用”cmd | xargs -i mv {} {}.xxx”来批量修改文件名称，有时候会不小心加多一次，本来想要”test.txt.bak”的效果，结果却成了”test.txt.bak.bak…”，所以才有了下面这个脚本。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell脚本：去除指定的后缀名称">
+<meta property="og:url" content="http://linux.xiao5tech.com/2016/07/05/004-shell_remove_ext/index.html">
+<meta property="og:site_name" content="xiao5tech">
+<meta property="og:description" content="需求来由&amp;emsp;&amp;emsp;跟运维朋友聊天，聊到一个问题，我们经常会使用”cmd | xargs -i mv {} {}.xxx”来批量修改文件名称，有时候会不小心加多一次，本来想要”test.txt.bak”的效果，结果却成了”test.txt.bak.bak…”，所以才有了下面这个脚本。">
+<meta property="og:updated_time" content="2016-07-06T07:30:26.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shell脚本：去除指定的后缀名称">
+<meta name="twitter:description" content="需求来由&amp;emsp;&amp;emsp;跟运维朋友聊天，聊到一个问题，我们经常会使用”cmd | xargs -i mv {} {}.xxx”来批量修改文件名称，有时候会不小心加多一次，本来想要”test.txt.bak”的效果，结果却成了”test.txt.bak.bak…”，所以才有了下面这个脚本。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://linux.xiao5tech.com/2016/07/05/004-shell_remove_ext/"/>
+
+  <title> shell脚本：去除指定的后缀名称 | xiao5tech </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">xiao5tech</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                shell脚本：去除指定的后缀名称
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-05T16:00:00+08:00" content="2016-07-05">
+              2016-07-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/05/004-shell_remove_ext/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/004-shell_remove_ext/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="需求来由"><a href="#需求来由" class="headerlink" title="需求来由"></a>需求来由</h2><p>&emsp;&emsp;跟运维朋友聊天，聊到一个问题，我们经常会使用”cmd | xargs -i mv {} {}.xxx”来批量修改文件名称，有时候会不小心加多一次，本来想要”test.txt.bak”的效果，结果却成了”test.txt.bak.bak…”，所以才有了下面这个脚本。<br><a id="more"></a></p>
+<h3 id="用法与功能："><a href="#用法与功能：" class="headerlink" title="用法与功能："></a>用法与功能：</h3><ul>
+<li>用法 - “脚本 目录/文件 要去除的后缀名称(例如bak)”</li>
+<li>对象可以是目录也可以是文件</li>
+<li>文件拥有多个连续后缀名时，所有和指定后缀名匹配的后缀都会被清除</li>
+</ul>
+<h2 id="脚本内容"><a href="#脚本内容" class="headerlink" title="脚本内容"></a>脚本内容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">## remove the designated extension from file's name</span></div><div class="line"></div><div class="line">[ <span class="variable">$#</span> <span class="_">-eq</span> 2 ] || &#123;</div><div class="line">    <span class="built_in">echo</span> <span class="string">""</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"Usage: <span class="variable">$0</span> path/filename ext_need_drop(like 'bak')"</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">""</span></div><div class="line">    <span class="built_in">exit</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">input=<span class="variable">$1</span></div><div class="line">drop_ext=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">newname</span></span> () &#123;</div><div class="line">    ext_num=$(grep -o <span class="string">"\."</span> &lt;&lt;&lt; <span class="variable">$1</span> | wc <span class="_">-l</span>)</div><div class="line">    newname=$(cut <span class="_">-d</span> <span class="string">"."</span> <span class="_">-f</span> 1 &lt;&lt;&lt; <span class="variable">$1</span>)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> `seq <span class="variable">$ext_num</span>`</div><div class="line">    <span class="keyword">do</span></div><div class="line">        ext=$(cut <span class="_">-d</span> <span class="string">"."</span> <span class="_">-f</span> $[(<span class="variable">$i</span>+1)] &lt;&lt;&lt; <span class="variable">$1</span>)</div><div class="line">        [ <span class="variable">$ext</span> != <span class="variable">$2</span> ] &amp;&amp; newname=<span class="variable">$newname</span><span class="string">'.'</span><span class="variable">$ext</span></div><div class="line">    <span class="keyword">done</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="_">-d</span> <span class="variable">$input</span> ];<span class="keyword">then</span></div><div class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> `ls <span class="variable">$input</span>`</div><div class="line">    <span class="keyword">do</span></div><div class="line">        newname <span class="variable">$file</span> <span class="variable">$drop_ext</span></div><div class="line">        <span class="built_in">echo</span> <span class="variable">$newname</span></div><div class="line">    <span class="keyword">done</span></div><div class="line"><span class="keyword">elif</span> [ <span class="_">-e</span> <span class="variable">$input</span> ];<span class="keyword">then</span></div><div class="line">    newname <span class="variable">$input</span> <span class="variable">$drop_ext</span></div><div class="line">    <span class="built_in">echo</span> <span class="variable">$newname</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"its not a folder"</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
+<h2 id="脚本讲解"><a href="#脚本讲解" class="headerlink" title="脚本讲解"></a>脚本讲解</h2><ul>
+<li><p>“grep -o”，-o参数会将匹配到的字符串单独按照行输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># grep -o "o" &lt;&lt;&lt; "school"</span></div><div class="line">o</div><div class="line">o</div></pre></td></tr></table></figure>
+</li>
+<li><p>“grep -o ‘o’ &lt;&lt;&lt; ‘school’” 相当于 “echo ‘school’ | grep -o ‘o’”</p>
+</li>
+<li>原理就是通过newname函数去把文件名称拆开，筛选掉指定后缀，然后重新组合</li>
+</ul>
+<p>PS：上面脚本为了测试方便，没有执行最后的mv命令，实际应用时，只需要把第1个”echo $newname”修改成”mv \$file \$newname”，第2个”echo \$newname”修改成”mv \$input \$newname”即可</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/shell/" rel="tag">#shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/05/003-interview_sum/" rel="next" title="Garena面试经历">
+                <i class="fa fa-chevron-left"></i> Garena面试经历
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/06/005-hexo_tag_category/" rel="prev" title="Hexo的分类和标签设置">
+                Hexo的分类和标签设置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/05/004-shell_remove_ext/"
+           data-title="shell脚本：去除指定的后缀名称" data-url="http://linux.xiao5tech.com/2016/07/05/004-shell_remove_ext/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Peiwu Zhao" />
+          <p class="site-author-name" itemprop="name">Peiwu Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">87</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">82</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Friend Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://ipchy.net" title="yuhui" target="_blank">yuhui</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求来由"><span class="nav-number">1.</span> <span class="nav-text">需求来由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法与功能："><span class="nav-number">1.1.</span> <span class="nav-text">用法与功能：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本内容"><span class="nav-number">2.</span> <span class="nav-text">脚本内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本讲解"><span class="nav-number">3.</span> <span class="nav-text">脚本讲解</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Peiwu Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xiao5tech"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
