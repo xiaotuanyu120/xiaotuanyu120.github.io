@@ -1,0 +1,165 @@
+  <div class="top-docs-wrapper">
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-8 col-md-8 col-sm-8">
+      <h1>
+       欢迎来到 Xiao5tech 文档库
+      </h1>
+      <p>
+       <strong>
+        什么是 Xiao5tech?
+       </strong>
+       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
+      </p>
+      <hr/>
+      <h3>
+       接下来可以干点什么?
+      </h3>
+      <a class="overview-btn docs-btn" href="#docs-main-body">
+       查看文档动态
+       <i class="fa fa-arrow-circle-o-down">
+       </i>
+      </a>
+      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
+       访问网站代码github
+       <i class="fa fa-arrow-circle-o-right">
+       </i>
+      </a>
+      <a class="overview-btn docs-btn" href="">
+       联系作者
+       <i class="fa fa-arrow-circle-o-right">
+       </i>
+      </a>
+      <form class="docs-main-search-form">
+         <script type="text/javascript">
+          (function() {
+            var cx = '012343983721360531439:ff68trchadg';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+          })();
+          </script>
+        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
+        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
+        </gcse:search>
+      </form>
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
+      <div id="superuser-img">
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="mid-docs-wrapper" id="docs-main-body">
+    <div class="container">
+     <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-9">
+       <h2>
+        文档动态 (2017 - 功能开发中)
+       </h2>
+       <p>
+        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
+       </p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+       <div class="dropdown docs-dropdown">
+        <a data-toggle="dropdown" href="">
+         完整文档分类
+         <i class="fa fa-caret-down fa-3">
+         </i>
+        </a>
+        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
+         <li class="dropdown-header" role="presentation">
+          文档分类
+         </li>
+         {% for l in TOPIC_DICT.keys() %}
+         <li role="presentation">
+          <a href="{{ l }}" role="menuitem" tabindex="-1">
+           {{ l }}
+          </a>
+         </li>
+         {% endfor %}
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="container">
+    <div class="row">
+     <div class="col-lg-12">
+     </div>
+    </div>
+    <div class="row docs-toc">
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="docs-link-sections">
+       <h3 id="release-notes">
+        <i class="fa fa-refresh">
+        </i>
+        最近发表
+       </h3>
+       <p>
+        最新发布的文档
+       </p>
+       {% for page, page_url in LATEST_PAGE.items() %}
+       <a href="{{ page_url }}">
+        {{ page }}
+      </a><br>
+       {% endfor %}
+      </div>
+      <div class="docs-link-sections">
+       <h3 id="install-guides">
+        <i class="fa fa-cogs">
+        </i>
+        最热文档
+       </h3>
+       <p>
+        点击量最高的文档
+       </p>
+       <a href="">
+        这是一篇点击量最高的文档
+       </a>
+      </div>
+     </div>
+     <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="docs-link-sections">
+       <h3 id="user-guides">
+        <i class="fa fa-cloud">
+        </i>
+        最新留言
+       </h3>
+       <a href="">
+        这是一个被留言的文档
+       </a>
+       <!-- <a href="/user-guide/UserGuide.pdf">
+        [PDF]
+       </a> -->
+       <p>
+        留言内容
+       </p>
+       <a href="">
+        另一篇被留言的文档
+       </a>
+       <p>
+        留言内容
+       </p>
+      </div>
+     </div>
+    </div>
+    <div class="row docs-contribute-wrapper">
+     <div class="col-lg-12">
+      <p>
+       文档内容托管在github上 - 感兴趣?
+      </p>
+      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
+       前往文档内容github
+       <i class="fa fa-chevron-right">
+       </i>
+      </a>
+     </div>
+    </div>
+   </div>
+  </div>

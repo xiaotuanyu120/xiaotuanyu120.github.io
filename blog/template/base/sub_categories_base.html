@@ -1,0 +1,115 @@
+{% extends "base/home.html" %}
+
+{% block doc_body %}
+<div class="container docs-book-wrapper">
+  <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+      <div class="row">
+  			<div class="col-lg-8">
+      		<h2>{{ cat }}'s docs</h2>
+  			</div>
+			</div>
+      <div class="row docs-byline">
+        <div class="docs-updated">
+					updated: 2017-04-20 10:25
+				</div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="docs-top-contents">
+						<h5>
+							<a href="#">
+								Contents
+							</a>
+						</h5>
+						<ul>
+							<li>
+								<a class="reference internal" href="#">
+									Kolla-Ansible Deployment Guide
+								</a>
+							</li>
+						</ul>
+          </div>
+          {% block md %}
+          <div class="docs-body">
+						<div class="section" id="kolla-ansible-deployment-guide">
+							<!-- <h1>Kolla-Ansible Deployment Guide<a class="headerlink" href="#kolla-ansible-deployment-guide" title="Permalink to this headline">¶</a></h1> -->
+							<p>文档中若无特殊说明，均使用的是centos发行版。</p>
+							<p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
+							<div class="toctree-wrapper compound">
+								<ul>
+                  {% for sub_cat in sub_cats %}
+                  {% if sub_cat == uri_subcat %}
+									<li class="toctree-l1">
+										<a class="reference internal" href="/{{ cat }}/{{ sub_cat }}">{{ sub_cat }}</a>
+                    {% if cat in TOPIC_DICT.keys() %}
+                			{% set topics = TOPIC_DICT[cat].get(sub_cat, []) %}
+                		{% else %}
+                			{% set topics = [] %}
+                		{% endif %}
+
+										<ul>
+                      {% for t in topics %}
+											<li class="toctree-l2">
+												<a class="reference internal" href="{{ t[1] }}">
+													{{ t[0] }}
+												</a>
+											</li>
+                      {% endfor %}
+										</ul>
+									</li>
+                  {% endif %}
+                  {% endfor %}
+								</ul>
+							</div>
+						</div>
+        	</div>
+          {% endblock %}
+      	</div>
+      </div>
+      <div class="row docs-byline bottom">
+        <div class="docs-updated">
+					updated: 2017-04-20 10:25
+				</div>
+      </div>
+    </div>
+		<div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+  		<div class="btn-group docs-sidebar-releases">
+    		<button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home"><i class="fa fa-arrow-circle-o-left"></i></button>
+				<button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">Xiao5tech Docs<i class="fa fa-caret-down"></i></button>
+		    <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+		      <li role="presentation" class="dropdown-header">完整文档分类</li>
+          {% for l in TOPIC_DICT.keys() %}
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="/{{ l }}">{{ l }}</a></li>
+          {% endfor %}
+		    </ul>
+  		</div>
+  		<div class="docs-sidebar-toc">
+    		<div class="docs-sidebar-section" id="table-of-contents">
+      		<a href="#" class="docs-sidebar-section-title"><h4>Contents</h4></a>
+		      <ul>
+            {% for sub_cat in sub_cats %}
+            <li class="toctree-l1">
+              <a class="reference internal" href="/{{ cat }}/{{ sub_cat }}">{{ sub_cat }}</a>
+              {% if sub_cat == uri_subcat %}
+              {% if cat in TOPIC_DICT.keys() %}
+                {% set topics = TOPIC_DICT[cat].get(sub_cat, []) %}
+              {% else %}
+                {% set topics = [] %}
+              {% endif %}
+
+              <ul>
+                {% for t in topics %}
+                  <li class="toctree-l1"><a class="reference internal" href="{{ t[1] }}">{{ t[0] }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+					</ul>
+    		</div>
+  		</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
