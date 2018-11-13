@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>3.1.2: awx 使用问题 - systemctl Interactive authentication required</h3>
+<hr>
+<h3>0. 问题背景</h3>
+<p>在awx中执行systemctl，报错信息如下：</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;_ansible_parsed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;invocation&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;module_args&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;no_block&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;force&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;enabled&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;daemon_reload&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;restarted&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;user&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;masked&quot;</span><span class="p">:</span> <span class="kc">null</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;changed&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;_ansible_no_log&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Unable to restart service test: Failed to restart test.service: Interactive authentication required.\nSee system logs and &#39;systemctl status test.service&#39; for details.\n&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<p>其实这个报错信息是一个systemctl的报错。 尝试了如下办法：</p>
+<ol>
+<li>去目标主机上增加systemctl的sudo命令的nopasswd授权，没有解决</li>
+<li>在systemctl这个ansible task上显式的增加<code>become: yes</code>，问题竟然解决了  </li>
+</ol>
+<p>思考了一下，明明在awx的credential中已经增加了sudo的配置，为何还需要增加这个呢？经过对awx credential中的选项进行了初步了解，结论竟然是，我们需要显式的在playbook的yml文件中增加<code>become: yes</code>，只要在全局的yml文件中增加这个，以后就不用在其他task中增加了。</p>
+<p>无语，可能awx的逻辑是，credential中只是给你配置上sudo的信息，而是否启用sudo，是需要在playbook中手动指定的。这个逻辑感觉有点怪怪的，但是总体也可以接受。</p>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.0.0_ansible_intro.html">
+                1.0.0: ansible简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.0.1_ansible_intro_connection.html">
+                1.0.1: ansible-连接上的理论知识
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.0_ansible_install.html">
+                1.1.0: ansible安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.1_ansible_error_install_paramiko_cryptography.html">
+                1.1.1: 安装paramiko时报crytography安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.2_ansible_become_sudo.html">
+                1.1.2: ansible-become(sudo)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.0_inventory_basic.html">
+                1.2.0: INVENTORY基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.1_inventory_folder.html">
+                1.2.1: INVENTORY 目录
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.2_inventory_variable.html">
+                1.2.2: inventory variable
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.0_playbook_basic.html">
+                1.3.0: PLAYBOOK基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.1_playbook_yum.html">
+                1.3.1: PLAYBOOK-模块yum
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.2_playbook_get_url.html">
+                1.3.2: PLAYBOOK-模块get_url
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.3.1_playbook_copy_error.html">
+                1.3.3.1: PLAYBOOK-copy error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.3_playbook_copy_fetch.html">
+                1.3.3: PLAYBOOK-模块copy,fetch
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.4_playbook_unarchive.html">
+                1.3.4: PLAYBOOK-模块unarchive
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.5_playbook_register_when_include.html">
+                1.3.5: playbook-register+when+include
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.6_playbook_dynamic_loop_include.html">
+                1.3.6: playbook-动态、循环include(yaml)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.7_playbook_handler_multitasks.html">
+                1.3.7: playbook-handlers(多个actions)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.8_playbook_loop_include.html">
+                1.3.8: playbook-include&loop error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.9_playbook_check_file_state.html">
+                1.3.9: playbook-stat
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.10_playbook_debug_register_with_items.html">
+                1.3.10: playbook-debug_register&with_items
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.11_playbook_distribution_when.html">
+                1.3.11: playbook-when distribution version/release
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
+                1.3.12: playbook with_items and register
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
+                1.3.12: playbook with_items and register
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.14_playbook_determine_the_length_of_list.html">
+                1.3.14: determine the length of list
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.4.1_ansible_options_exatra-vars.html">
+                1.4.1: options --extra-vars
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.4.2_ansible_options_C.html">
+                1.4.2: options -C
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.1_var_ssh_keyphrase.html">
+                1.5.1: vars ssh连接变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.2_var_host_group_basic.html">
+                1.5.2: vars host&group变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.3_var_rootgroup_subgroup.html">
+                1.5.3: vars 组变量之父组和子组的变量是否可储存在同一个目录中？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.4_var_same_host_different_group.html">
+                1.5.4: vars host在不同group中，变量覆盖问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.1.0_example_ansible_tomcat_standalone.html">
+                2.1.0: example tomcat启动脚本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.2.0_example_lookup_environment_javahome.html">
+                2.2.0: example 使用ansible环境变量获取主机JAVA_HOME
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.3.0_example_yaml_file_parse.html">
+                2.3.0: example python解析yaml文件(ansible)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.0_awx_installation.html">
+                3.1.0: awx 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.1_awx_usage_problem_01.html">
+                3.1.1: awx 使用问题 - ssh连接错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.2_awx_usage_problem_02.html">
+                3.1.2: awx 使用问题 - systemctl Interactive authentication required
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.2.0_awx_setup_tutorial.html">
+                3.2.0: awx 使用简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/ANSIBLE_pythonapi研究.html">
+                ANSIBLE: python api研究
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/ansible_handler.html">
+                ansible: handler
+              </a>
+             </li>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

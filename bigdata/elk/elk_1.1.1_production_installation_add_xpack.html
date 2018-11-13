@@ -1,0 +1,802 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>elk 1.1.1: production installation add xpack</h3>
+<h3>0. 什么是X-pack？</h3>
+<p>xpack是一个集成了security, alerting, monitoring, reporting, 和 graph capabilities于一身的一个elastic stack的扩展包。虽然X-Pack组件可以无缝协同工作，但可以轻松启用或禁用要使用的功能。在elasticsearch 5.0.0之前，还需要分开装很多单独的组件，但现在全部整合在X-pack中了。</p>
+<h3>1. 安装X-pack</h3>
+<p>安装X-pack之前，必须要先安装好elastic和kibana，如果要在logstash里面也安装X-pack，同时也要提前先安装好logstash。</p>
+<blockquote><p>需要注意的是，从elastic stack6.3版本开始，X-pack会包含在elk中，无需手动安装。</p>
+<p>安装X-pack参考这篇<a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html">官方文档</a></p>
+<p><strong>重点注意</strong></p>
+<ul>
+<li>先关闭logstash,kibana,elasticsearch</li>
+<li>按照下面步骤安装和配置x-pack</li>
+<li>启动elasticsearch，然后再启动kibana,logstash<div class="highlight"><pre><span></span>systemctl stop elasticsearch
+systemctl stop kibana
+systemctl stop logstash
+</pre></div>
+</li>
+</ul>
+</blockquote>
+<h4>1) 在elasticsearch中安装X-pack</h4>
+<blockquote><p><strong>重要：</strong><br>
+如果是在现存的es cluster中第一次安装X-pack，必须要整个es cluster来一次完整的重启。</p>
+</blockquote>
+<p><strong>step 1 在elasticsearch中安装x-pack插件</strong></p>
+<div class="highlight"><pre><span></span>/usr/local/elasticsearch/bin/elasticsearch-plugin install x-pack
+-&gt; Downloading x-pack from elastic
+<span class="o">[=================================================]</span> <span class="m">100</span>%  
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@     WARNING: plugin requires additional permissions     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+* java.io.FilePermission <span class="se">\\</span>.<span class="se">\p</span>ipe<span class="se">\*</span> read,write
+* java.lang.RuntimePermission accessClassInPackage.com.sun.activation.registries
+* java.lang.RuntimePermission getClassLoader
+* java.lang.RuntimePermission setContextClassLoader
+* java.lang.RuntimePermission setFactory
+* java.net.SocketPermission * connect,accept,resolve
+* java.security.SecurityPermission createPolicy.JavaPolicy
+* java.security.SecurityPermission getPolicy
+* java.security.SecurityPermission putProviderProperty.BC
+* java.security.SecurityPermission setPolicy
+* java.util.PropertyPermission * read,write
+See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
+<span class="k">for</span> descriptions of what these permissions allow and the associated risks.
+
+Continue with installation? <span class="o">[</span>y/N<span class="o">]</span>y
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@        WARNING: plugin forks a native controller        @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+This plugin launches a native controller that is not subject to the Java
+security manager nor to system call filters.
+
+Continue with installation? <span class="o">[</span>y/N<span class="o">]</span>y
+Elasticsearch keystore is required by plugin <span class="o">[</span>x-pack-security<span class="o">]</span>, creating...
+-&gt; Installed x-pack with: x-pack-core,x-pack-deprecation,x-pack-graph,x-pack-logstash,x-pack-ml,x-pack-monitoring,x-pack-security,x-pack-upgrade,x-pack-watcher
+</pre></div>
+<blockquote><p>elasticsearch安装插件需要网络连接，如果没有网络连接，可以使用以下语法来安装本地X-pack包</p>
+<div class="highlight"><pre><span></span>bin/elasticsearch-plugin install file:///path/to/file/x-pack-6.2.4.zip
+</pre></div>
+<p>X-pack会尝试在elasticsearch中自动创建多个indices，默认情况下elasticsearch是允许自动创建index的。然而如果你配置了禁止这个动作，必须在elasticsearch.yml中配置<code>action.auto_create_index</code>来允许X-pack来创建以下indices:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">action.auto_create_index</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.security,.monitoring*,.watches,.triggered_watches,.watcher-history*,.ml*</span>
+</pre></div>
+<p>如果使用了logstash和beats，X-Pack需要创建更多的indices，具体名称需要参考本地环境配置，如果不确定其名称，可以修改<code>action.auto_create_index</code>的值为<code>*</code>，这样elasticsearch就允许自动创建任意名称的index了。</p>
+</blockquote>
+<p><strong>step 2 配置TLS/SSL</strong></p>
+<blockquote><p>security部分是X-Pack的收费部分，免费试用30天，超过天数之后收费</p>
+<p>ssl针对的是多节点集群，如果只是通过本机lo网卡的单点服务就不需要这个了</p>
+</blockquote>
+<p>a. Elasticsearch nodes 之间的TLS.
+elasticsearch在X-Pack中提供了一个简易的认证工具<code>certutil</code>，它可以生成CA、CSR和签名。</p>
+<div class="highlight"><pre><span></span>mkdir /usr/local/elasticsearch/certs-gen-folder
+<span class="nb">cd</span> /usr/local/elasticsearch/certs-gen-folder
+
+<span class="c1"># step 1. 生成ca</span>
+/usr/local/elasticsearch/bin/x-pack/certutil ca --pem
+<span class="c1"># 默认在当前目录生成pem ca文件</span>
+unzip elastic-stack-ca.zip
+Archive:  elastic-stack-ca.zip
+   creating: ca/
+  inflating: ca/ca.crt               
+  inflating: ca/ca.key
+<span class="c1"># 默认生成了一个ca/ca.key ca/ca.crt，用这个ca可以给集群节点的key签名</span>
+<span class="c1"># 这两个文件是根证书和私钥，一定要保存好，后面增加节点的时候需要用这个来给证书签名用。</span>
+
+<span class="c1"># step 2. 给所有节点生成证书</span>
+/usr/local/elasticsearch/bin/x-pack/certutil cert --pem --ca-cert ca/ca.crt --ca-key ca/ca.key --ip <span class="m">127</span>.0.0.1,192.168.100.68
+unzip certificate-bundle.zip
+Archive:  certificate-bundle.zip
+   creating: instance/
+  inflating: instance/instance.crt   
+  inflating: instance/instance.key
+<span class="c1"># 默认生成了instance/instance.crt  instance/instance.key</span>
+
+<span class="c1"># 将目录重命名为nodes，标识这是elasticsearch nodes间的证书</span>
+mv instance nodes
+
+<span class="c1"># step 3. 拷贝证书到相应的节点</span>
+<span class="c1"># 此处我只有一个节点，就拷贝证书文件到任意一个指定目录就可以了</span>
+mkdir /usr/local/elasticsearch/config/certs
+cp ca/ca.crt /usr/local/elasticsearch/config/certs/
+cp nodes/instance.crt /usr/local/elasticsearch/config/certs/nodes.crt
+cp nodes/instance.key /usr/local/elasticsearch/config/certs/nodes.key
+chown -R elasticsearch.elasticsearch /usr/local/elasticsearch/
+<span class="c1"># ca.key需要保存好，如果你生成的时候给它配置了密码，也请记录好，以后增加es节点就靠这个文件来生成证书</span>
+</pre></div>
+<blockquote><p>certutil生成key时指定了ip列表，请确认elasticsearch配置的<code>network.host</code>监听的是这个ip，否则会报错<code>io.netty.handler.codec.DecoderException: javax.net.ssl.SSLHandshakeException: General SSLEngine problem ... Caused by: java.security.cert.CertificateException: No subject alternative names matching IP address 0:0:0:0:0:0:0:1 found</code>， 我遇到这个错误是因为我把<code>network.host</code>设定为了<code>0.0.0.0</code></p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># step 4. 配置证书到elasticsearch.yml中，增加以下配置</span>
+<span class="c1"># 多节点时，需要在各个节点上都增加此配置</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.transport.ssl.enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.transport.ssl.verification_mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">full</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.transport.ssl.key</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/elasticsearch/config/certs/nodes.key</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.transport.ssl.certificate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/elasticsearch/config/certs/nodes.crt</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.transport.ssl.certificate_authorities</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;/usr/local/elasticsearch/config/certs/ca.crt&quot;</span> <span class="p p-Indicator">]</span>
+</pre></div>
+<blockquote><p>配置说明：</p>
+<ul>
+<li>xpack.security.transport.ssl.verification_mode<ul>
+<li>full, (default), 验证是否由指定的CA签名，另外验证hostname(或IP)是否匹配证书里面指定的hostname(或IP)。</li>
+<li>certificate, 仅验证是否由指定的CA签名，不验证其他。</li>
+<li>none, 什么都不验证，仅用于调试阶段，不要在生产环境上使用。</li>
+</ul>
+</li>
+<li>xpack.security.transport.ssl.key，节点key的绝对路径，位置必须是elasticsearch配置目录的子级目录。</li>
+<li>xpack.security.transport.ssl.certificate，节点证书的绝对路径，位置必须是elasticsearch配置目录的子级目录。</li>
+<li>xpack.security.transport.ssl.certificate_authorities，受信任的CA文件的数组，位置必须是elasticsearch配置目录的子级目录。</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># step 5. 如果给PEM文件加了密语，需要将此密语增加到elasticsearch的keystore里面</span>
+/usr/local/elasticsearch/bin/elasticsearch-keystore add xpack.security.transport.ssl.secure_key_passphrase
+
+<span class="c1"># step 6. 重启elasticsearch(!!!暂时先不需要执行，后面完成之后一起重启!!!)</span>
+<span class="c1"># systemctl restart elasticsearch</span>
+</pre></div>
+<p>b. client 与 elasticsearch 之间http的TLS</p>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. 生成http对端的证书和key</span>
+/usr/local/elasticsearch/bin/x-pack/certutil cert --pem --ca-cert ca/ca.crt --ca-key ca/ca.key --ip <span class="m">127</span>.0.0.1,192.168.100.68,192.168.86.130
+
+unzip certificate-bundle.zip
+Archive:  certificate-bundle.zip
+   creating: instance/
+  inflating: instance/instance.crt   
+  inflating: instance/instance.key  
+<span class="c1"># 默认生成了instance/instance.crt  instance/instance.key</span>
+
+<span class="c1"># 将目录重命名为http-client，标识这是elasticsearch nodes间的证书</span>
+mv instance http-client
+
+<span class="c1"># step 2. 拷贝http对端证书和key到elasticsearch配置目录下</span>
+cp http-client/instance.crt /usr/local/elasticsearch/config/certs/http-client.crt
+cp http-client/instance.key /usr/local/elasticsearch/config/certs/http-client.key
+chown -R elasticsearch.elasticsearch /usr/local/elasticsearch/
+</pre></div>
+<div class="highlight"><pre><span></span><span class="c1"># step 3. 修改配置文件，增加以下配置内容</span>
+<span class="c1"># 多节点时，需要在各个节点上都增加此配置</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.http.ssl.enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.http.ssl.client_authentication</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.http.ssl.key</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">/usr/local/elasticsearch/config/certs/http-client.key</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.http.ssl.certificate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/elasticsearch/config/certs/http-client.crt</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.security.http.ssl.certificate_authorities</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;/usr/local/elasticsearch/config/certs/ca.crt&quot;</span> <span class="p p-Indicator">]</span>
+</pre></div>
+<blockquote><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html#transport-tls-ssl-settings">xpack.security.http.ssl.client_authentication</a>必须要配置，不然会报错<code>did not find a SSLContext for [SSLConfiguration ...</code>。</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="c1"># step 4. 如果给PEM文件加了密语，需要将此密语增加到elasticsearch的keystore里面</span>
+/usr/local/elasticsearch/bin/elasticsearch-keystore add xpack.security.transport.ssl.secure_key_passphrase
+
+<span class="c1"># step 5. 重启elasticsearch</span>
+systemctl restart elasticsearch
+</pre></div>
+<p>c. 给内置用户增加密码</p>
+<div class="highlight"><pre><span></span>/usr/local/elasticsearch/bin/x-pack/setup-passwords interactive
+Initiating the setup of passwords <span class="k">for</span> reserved users elastic,kibana,logstash_system.
+You will be prompted to enter passwords as the process progresses.
+Please confirm that you would like to <span class="k">continue</span> <span class="o">[</span>y/N<span class="o">]</span>y
+
+
+Enter password <span class="k">for</span> <span class="o">[</span>elastic<span class="o">]</span>: 
+Reenter password <span class="k">for</span> <span class="o">[</span>elastic<span class="o">]</span>: 
+Enter password <span class="k">for</span> <span class="o">[</span>kibana<span class="o">]</span>: 
+Reenter password <span class="k">for</span> <span class="o">[</span>kibana<span class="o">]</span>: 
+Enter password <span class="k">for</span> <span class="o">[</span>logstash_system<span class="o">]</span>: 
+Reenter password <span class="k">for</span> <span class="o">[</span>logstash_system<span class="o">]</span>: 
+Changed password <span class="k">for</span> user <span class="o">[</span>kibana<span class="o">]</span>
+Changed password <span class="k">for</span> user <span class="o">[</span>logstash_system<span class="o">]</span>
+Changed password <span class="k">for</span> user <span class="o">[</span>elastic<span class="o">]</span>
+</pre></div>
+<blockquote><p>会依次让你设定内置的三个用户的密码(elastic,kibana,logstash_system), 密码可以随便设定，例如elastic123</p>
+</blockquote>
+<h4>2) 在kibana中安装X-Pack</h4>
+<p><strong>step 1. 在kibana中安装X-Pack</strong></p>
+<div class="highlight"><pre><span></span>/usr/local/kibana/bin/kibana-plugin install x-pack
+Attempting to transfer from x-pack
+Attempting to transfer from https://artifacts.elastic.co/downloads/kibana-plugins/x-pack/x-pack-6.2.4.zip
+Transferring <span class="m">264988487</span> bytes....................
+Transfer <span class="nb">complete</span>
+Retrieving metadata from plugin archive
+Extracting plugin archive
+Extraction <span class="nb">complete</span>
+Optimizing and caching browser bundles...
+Plugin installation <span class="nb">complete</span>
+</pre></div>
+<blockquote><p>内存要大点，不然安装进程会被kill掉，我分配虚拟机2G时就面临了这个情况，调整成3G解决。</p>
+</blockquote>
+<p><strong>step 2. kibana配置修改</strong>
+kibana.yml</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">elasticsearch.url</span><span class="p p-Indicator">:</span> <span class="s">&quot;https://192.168.100.68:9200&quot;</span>
+
+<span class="c1"># If your Elasticsearch is protected with basic authentication, these settings provide</span>
+<span class="c1"># the username and password that the Kibana server uses to perform maintenance on the Kibana</span>
+<span class="c1"># index at startup. Your Kibana users still need to authenticate with Elasticsearch, which</span>
+<span class="c1"># is proxied through the Kibana server.</span>
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.username</span><span class="p p-Indicator">:</span> <span class="s">&quot;kibana&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.password</span><span class="p p-Indicator">:</span> <span class="s">&quot;kibanapass&quot;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.ssl.certificate</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/kibana/config/certs/http-client.crt</span>
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.ssl.key</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/kibana/config/certs/http-client.key</span>
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.ssl.certificateAuthorities</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span> <span class="s">&quot;/usr/local/kibana/config/certs/ca.crt&quot;</span> <span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">elasticsearch.ssl.verificationMode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">full</span>
+</pre></div>
+<blockquote><p>配置文件中需要的证书文件可以从生成证书的节点上拷贝过来</p>
+</blockquote>
+<p><strong>step 3. 检验效果</strong></p>
+<ul>
+<li>重启kibana服务</li>
+<li>通过浏览器访问kibana(<code>http://localhost:5601/</code>)，此时会需要验证登陆</li>
+</ul>
+<h4>3) 在logstash中安装X-Pack</h4>
+<p><strong>step 1. 在logstash中安装X-Pack</strong></p>
+<div class="highlight"><pre><span></span>/usr/local/logstash/bin/logstash-plugin install x-pack
+Downloading file: https://artifacts.elastic.co/downloads/logstash-plugins/x-pack/x-pack-6.2.4.zip
+Downloading <span class="o">[=============================================================]</span> <span class="m">100</span>%
+Installing file: /tmp/studtmp-3194fb67c182e5c40490c6236b617a1b83f68ef2ddb9ed2874585ef0ccc0/x-pack-6.2.4.zip
+Install successful
+</pre></div>
+<p><strong>step 2. logstash配置修改</strong>
+拷贝ca.crt签名证书到logstash机器，等待配置</p>
+<p>logstash.yml</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">xpack.monitoring.enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.monitoring.elasticsearch.url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://192.168.100.68:9200</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.monitoring.elasticsearch.username</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">logstash_system</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.monitoring.elasticsearch.password</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">logstashpassword</span>
+<span class="l l-Scalar l-Scalar-Plain">xpack.monitoring.elasticsearch.ssl.ca</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/logstash/config/certs/ca.crt</span>
+</pre></div>
+<blockquote><p>xpack monitoring的配置参考：<a href="https://www.elastic.co/guide/en/logstash/6.2/configuring-logstash.html">es 6.2官方文档</a></p>
+<p>配置文件中需要的证书文件可以从生成证书的节点上拷贝过来</p>
+</blockquote>
+
+<pre><code>input {
+  redis {
+    data_type =&gt; "list"
+    key =&gt; "filebeat-midd"
+    host =&gt; "127.0.0.1"
+    port =&gt; 6379
+    threads =&gt; 5
+    password =&gt; "my_password"
+  }
+}
+filter {
+
+}
+output {
+  elasticsearch {
+    ssl =&gt; true
+    hosts =&gt; ["192.168.100.68:9200"]
+    index =&gt; "%{[fields][service]}"
+    user =&gt; logstash_system
+    password =&gt; changeme
+    cacert =&gt; "/usr/local/logstash/config/certs/ca.crt"
+  }
+}</code></pre>
+<blockquote><ul>
+<li><a href="https://www.elastic.co/guide/en/logstash/6.2/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-cacert">cacert 配置说明</a></li>
+<li><a href="https://www.elastic.co/guide/en/logstash/6.2/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-ssl">ssl 配置说明</a></li>
+</ul>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/elk">
+              elk
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elasticsearch_1.1.0_docker_installation.html">
+                elasticsearch 1.1.0: docker installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.0_elasticsearch_concept.html">
+                elk 1.0.0: elasticsearch concept
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.1_elasticsearch_removal_of_mapping_types.html">
+                elk 1.0.1: elasticsearch removal of mapping types
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.3_after_installation_modify_your_data.html">
+                elk 1.0.3: modify your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.4_after_installation_explore_your_data.html">
+                elk 1.0.4: explore your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.5_elasticsearch_index_templates.html">
+                elk 1.0.5: elasticsearch index templates
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.6_elasticsearch_mapping.html">
+                elk 1.0.6: elasticsearch mapping
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.7.a_elasticsearch_cluster_api_cluster_setting.html">
+                elk 1.0.7.a: elasticsearch cluster api - cluster setting
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.8.a_elasticsearch_modules_snapshot_and_restore.html">
+                elk 1.0.8.a: elasticsearch modules - snapshot and restore
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.0_production_installation.html">
+                elk 1.1.0: production installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.1_production_installation_add_xpack.html">
+                elk 1.1.1: production installation add xpack
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.2.0_elasticsearch_upgrade_from_6.2.4_to_6.4.2.html">
+                elk 1.2.0: elasticsearch upgrade from 6.2.4 to 6.4.2
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.2_after_installation_explore_your_cluster.html">
+                elk 1.10.2: explore you cluster
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.1.0_conf_logstash_index_name_date.html">
+                elk 2.1.0 logstash config index name with current date
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.0_conf_filebeat_logstash_kafka.html">
+                elk 2.2.0 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.1_error_filebeat_kafka_waiting_for_space.html">
+                elk 2.2.1 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.1.0_logstash_plugin_grok.html">
+                elk 3.1.0 logstash plugin grok
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.2.0_logstash_plugin_geoip_and_kibana_visualize.html">
+                elk 3.2.0 logstash plugin geoip and kibana visualize
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/cloudera">
+              cloudera
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

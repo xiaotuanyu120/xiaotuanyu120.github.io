@@ -1,0 +1,985 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12">       <div class="docs-body">
+        <div class="section" id="kolla-ansible-deployment-guide">
+         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
+         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
+         <div class="toctree-wrapper compound">
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/codefights">
+              codefights
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_01_array_01_fistDuplicate.html">
+                array 01: fist duplicate
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_01_array_02_firstNotRepeatingCharacter.html">
+                array 02: fist not repeating character
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_01_array_03_rotateImage.html">
+                array 03: rotate image(翻转列表，解压参数)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_01_array_04_sudoku2.html">
+                array 04: sudoku(yield,"%","/")
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_01_array_05_isCryptSolution.html">
+                array 05: is crypt solution(reduce,map,any,all)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/codefights/data_structure_02_linked_list_01_removeFromList.html">
+                linked list 01: remove from list
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/advance">
+              advance
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.1.0_filter_list_dict_set.html">
+                1.1.0 筛选数据(列表、字典、集合)高级用法
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.2.0_namedtuple_make_tuple_easy_read.html">
+                1.2.0 使tuple易读的几种方法
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.3.0_statistics_frequency.html">
+                1.3.0 统计列表中元素的频度
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.4.0_sorted_dict_by_value.html">
+                1.4.0 根据字典的值进行排序
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.4.1_operator_itemgetter.html">
+                1.4.1 字典排序-operator.itemgetter
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.5.0_get_public_keys_between_dict.html">
+                1.5.0 寻找dict公共key
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.6.0_ordered_dict.html">
+                1.6.0 如何让字典保持有序
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.7.0_collections_deque.html">
+                1.7.0 创建固定长度的队列
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/1.7.1_pickle_dump_load_data.html">
+                1.7.1 创建队列-记录持久化pickle
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.1.0_iterable_object.html">
+                2.1.0 可迭代对象与迭代器
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.2.0_custom_iterable_object.html">
+                2.2.0 如何创建一个可迭代对象
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.3.0_generator.html">
+                2.3.0 构造一个生成器
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.3.1_generator_recursive.html">
+                2.3.1 构造一个递归的生成器
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.4.0_reverse_iterate.html">
+                2.4.0 如何进行逆序迭代
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.5.0_iterator_slice.html">
+                2.5.0 如何对迭代器进行切片操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/2.6.0_iterator_multiple_for.html">
+                2.6.0 如何对多个迭代器同时进行操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/3.1.0_read_file.html">
+                3.1.0 如何读取文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/3.2.0_process_bin_file.html">
+                3.2.0 如何处理二进制文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/class_new_class_vs_old_class.html">
+                CLASS: new style class vs old style class (inspect)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/jumpserver_0.3.2_install.html">
+                jumpserver 0.3.2 install
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/module_1.1.0_XlsxWriter.html">
+                module: 1.1.0 XlsxWriter 初识
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/str_rsplit.html">
+                str: rsplit的用法
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/virtualenv_protocol_error.html">
+                virtualenv: protocol error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/function_isinstance.html">
+                函数: isinstance
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/function_raw_input_vs_input.html">
+                函数: raw_input() vs input()
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/function_os.walk.html">
+                函数: 使用os的walk方法遍历目录下的文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/python_run_cd.html">
+                如何在python程序中执行"cd"命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/envtool_1.0_pip.html">
+                工具: 1.0 pip-包管理工具
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/envtool_1.1_pip_advance.html">
+                工具: 1.1 pip-查看包可选版本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/envtool_2.0_virtualenv.html">
+                工具: 2.0 virtualenv-python虚拟环境
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/sort_1.0_sort_list_by_num.html">
+                排序: 1.0 list按数字排序
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/version_1.0_python2.7.html">
+                版本: 1.0 python2.7:安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/version_2.0_python3.5.2.html">
+                版本: 2.0 python3.5.2:安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/script_replace_str_in_file.html">
+                脚本: 替换字符串
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/syntax_advance_if_statement.html">
+                语法: 简易if语句
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/error_1.0_ipython_tab_fail.html">
+                错误: 1.0 ipython无法tab补全
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/error_2.0_virtualenv_create_fail.html">
+                错误: 2.0 virtualenv在多py版本环境下报错
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advance/error_3.0_CTR_mode_needs_counter_parameter_not_IV.html">
+                错误: 3.0 CTR mode needs counter parameter, not IV
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/fluent_py">
+              fluent_py
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/fluent_py/1.1__getitem__len__.html">
+                1.1 magic method: __getitem__ __len__
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/fluent_py/1.2.2__repr__str__.html">
+                1.2.2 magic method: __repr__
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/fluent_py/1.2.3__add__mul__sub__div__.html">
+                1.2.3 magic method: 运算
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/fluent_py/3.3_dict_setdefault_defaultdict__missing__.html">
+                3.3 检查dict中key是否存在
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/flask">
+              flask
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/1.0.0_get_request_path.html">
+                1.0.0 get request path
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/2.0.0_set_variable.html">
+                2.0.0 set variables
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/2.1.0_variable_in_dict.html">
+                2.1.0 use variable in dict
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/3.0.0_route_variable.html">
+                3.0.0 use variable in route
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/4.0.0_variable_filter.html">
+                4.0.0 variable filter
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/error_1.1.0_favicon.html">
+                error: 1.1.0 KeyError: u'favicon.ico'
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/flask_example_1.1.0_create_flask_dev_env.html">
+                flask实战: 1.1.0 如何创建一个flask开发环境
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/flask_example_1.2.0_inital_app_nginx_uwsgi.html">
+                flask实战: 1.2.0 初始化flask-app_initial,nginx,uwsgi
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/flask/doc_good_tutorial.html">
+                文档: 优秀的文档汇总
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/django">
+              django
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/csrf_1.0_exempt.html">
+                csrf: 1.0 为views去除csrf认证
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_error_1.1.0_sqlite3_import_error.html">
+                django error: 1.1.0 "No module named _sqlite3"
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_error_1.2.0_bad_request_400.html">
+                django error: 1.2.0 "bad request 400"
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_setting_1.1.0_centralize_settings_in_setting_conf.html">
+                django settings: 1.1.0 集中所有项目配置到settings中
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_tutorial_1.1.0_project_create.html">
+                django tutorial: 1.1.0 项目环境及创建项目
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_tutorial_1.2.0_create_app_and_views_basic.html">
+                django tutorial: 1.2.0 创建APP及views基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_tutorial_1.2.1_app_models_and_admin_basic.html">
+                django tutorial: 1.2.1 APP之models基础和admin基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_extension_knowledge.html">
+                django 扩展: 扩展知识点
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/DJANGO_jquery+ajax实现级联动态式for.html">
+                django+jquery+ajax实现级联动态式form
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_splitlines_to_list.html">
+                django中如何将多行string转换成list
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/django_autoreload_oserror.html">
+                django中执行os.chdir()引起的"devserver autoreload: OSError"
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_1.0_query.html">
+                models: 1.0 查询字段-基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_1.1_query01.html">
+                models: 1.1 查询字段-实践
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_1.2_query02_verbose_name.html">
+                models: 1.2 查询verbose_name
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_2.0_dumpdata_loaddata.html">
+                models: 2.0 数据导入及导出
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_3.0_prevent_duplicate_data.html">
+                models: 3.0 字段不可重复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/models_4.0_func01_save.html">
+                models: 4.0 重写save方法
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/nginx_uwsgi_django.html">
+                nginx+uwsgi+django
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/settings_1.1.0_template.html">
+                settings 1.1.0 template配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/template_01_dict.html">
+                template: 1.0 使用dict
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/urllib2_1.0_csrf_login.html">
+                urllib: 1.0 登陆django的python客户端
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/uwsgi_nginx_timeout.html">
+                uwsgi: nginx超时设定
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_1.0_login_logout.html">
+                views: 1.0 login and logout
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_1.1_login_login_required.html">
+                views: 1.1 装饰器login_required
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_2.0_get_client_ip.html">
+                views: 2.0 获取用户ip
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_3.0_ajax.html">
+                views: 3.0 ajax + views
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_4.0_func_auth.html">
+                views: 4.0 控制function访问权限
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/django/views_5.0_models_save.html">
+                views: 5.0 调用models，保存数据
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/py_tour">
+              py_tour
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/py_tour/01.html">
+                py_tour 01-WSGI
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/basic">
+              basic
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/basic/13、网络编程.html">
+                13-网络编程
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/advanced">
+              advanced
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/python/advanced/unicode_error_open_codecs.html">
+                codecs解决open()向文件写入Unicode时出现的Error
+              </a>
+             </li>
+            </ul>
+           </li>          </ul>
+         </div>
+        </div>
+       </div>      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/codefights">
+              codefights
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/fluent_py">
+              fluent_py
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/flask">
+              flask
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/django">
+              django
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/py_tour">
+              py_tour
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/python/advanced">
+              advanced
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

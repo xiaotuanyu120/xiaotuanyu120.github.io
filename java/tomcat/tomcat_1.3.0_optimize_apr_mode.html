@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>tomcat 1.3.0 优化-apr模式</h3>
+<hr>
+<h3>0. tomcat的三种connector模式</h3>
+<p><a href="https://tomcat.apache.org/tomcat-6.0-doc/config/http.html">官方对这三种connector的解析和对比</a></p>
+<ul>
+<li>BIO, 阻塞io</li>
+<li>NIO, 非阻塞io</li>
+<li>APR, 原生改善tomcat的io</li>
+</ul>
+<hr>
+<h3>0. apr环境需求</h3>
+<p><a href="https://tomcat.apache.org/tomcat-6.0-doc/apr.html#Introduction">官方文档</a></p>
+<ul>
+<li>APR library -APR 1.2+ development headers (libapr1-dev package)</li>
+<li>JNI wrappers for APR used by Tomcat (libtcnative) - JNI headers from Java compatible JDK 1.4+</li>
+<li>OpenSSL libraries - OpenSSL 0.9.7+ development headers (libssl-dev package)</li>
+<li>GNU development environment (gcc, make)</li>
+</ul>
+<hr>
+<h3>1. 编译安装apr(centos6)</h3>
+<h4>1) 检查环境</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 检查openssl-devel版本,官网提示大于0.9.7，但是实际运行需要1.0.2以上</span>
+rpm -qa <span class="p">|</span>grep openssl-devel
+openssl-devel-1.0.1e-48.el6_8.3.x86_64
+wget https://www.openssl.org/source/openssl-1.0.2k.tar.gz
+tar zxf openssl-1.0.2k.tar.gz
+<span class="nb">cd</span> openssl-1.0.2k
+<span class="c1"># 编译参数要增加shared或者-fPIC(两种说法)，不然会报错</span>
+./config -fPIC shared
+make
+make <span class="nb">test</span>
+make install
+<span class="c1"># 备份老版本</span>
+mv /usr/bin/openssl /root
+ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+<span class="c1"># 检查版本</span>
+openssl version
+OpenSSL <span class="m">1</span>.0.2k  <span class="m">26</span> Jan <span class="m">2017</span>
+
+<span class="c1"># 确保你可以执行configure和make</span>
+yum groupinstall <span class="s2">&quot;Development tools&quot;</span>
+</pre></div>
+<h4>2) 安装APR library</h4>
+<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-1.5.2.tar.gz
+tar zxvf apr-1.5.2.tar.gz
+<span class="nb">cd</span> apr-1.5.2
+./configure
+make
+make install
+<span class="c1"># 默认安装在/usr/local/apr</span>
+</pre></div>
+<h4>3) 安装APR util(选做-推荐安装)</h4>
+<p><a href="https://apr.apache.org/">apr-util简介</a></p>
+<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-util-1.5.4.tar.gz
+tar -xjf apr-util-1.5.4.tar.bz2
+<span class="nb">cd</span> apr-util-1.5.4
+./configure --with-apr<span class="o">=</span>/usr/local/apr
+make
+make install
+</pre></div>
+<h4>4) 为APR安装JNI Wrapper，以供tomcat使用</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 进入tomcat的bin目录</span>
+<span class="nb">cd</span> /usr/local/tomcat6/bin
+tar zxf tomcat-native.tar.gz
+<span class="nb">cd</span> tomcat-native-1.2.10-src/native
+./configure --with-apr<span class="o">=</span>/usr/local/apr --with-java-home<span class="o">=</span>/usr/local/jdk1.6.0_45 --with-ssl<span class="o">=</span>/usr/local/ssl
+make
+make install
+</pre></div>
+<h4>5) 为tomcat配置apr</h4>
+<div class="highlight"><pre><span></span>vim /usr/local/tomcat6/bin/catalina.sh
+*******************************************************
+<span class="nv">CATALINA_OPTS</span><span class="o">=</span><span class="s2">&quot;-Djava.library.path=/usr/local/apr/lib&quot;</span>
+*******************************************************
+
+vim /etc/profile
+*******************************************************
+<span class="c1"># 在最后添加</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/usr/local/apr/lib
+*******************************************************
+<span class="nb">source</span> /etc/profile
+</pre></div>
+<h4>6) 重启tomcat</h4>
+<div class="highlight"><pre><span></span>/usr/local/tomcat6/bin/catalina.sh start
+
+<span class="c1"># 查看catalina.out日志，发现以下几条即为成功</span>
+<span class="m">03</span>-Feb-2017 <span class="m">08</span>:43:05 org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library <span class="m">1</span>.2.10 using APR version <span class="m">1</span>.5.2.
+<span class="m">03</span>-Feb-2017 <span class="m">08</span>:43:05 org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 <span class="o">[</span>true<span class="o">]</span>, sendfile <span class="o">[</span>true<span class="o">]</span>, accept filters <span class="o">[</span>false<span class="o">]</span>, random <span class="o">[</span>true<span class="o">]</span>.
+<span class="m">03</span>-Feb-2017 <span class="m">08</span>:43:06 org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized with version OpenSSL <span class="m">1</span>.0.2k  <span class="m">26</span> Jan <span class="m">2017</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/jvm">
+              jvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/tomcat">
+              tomcat
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">
+                tomcat 1.1.0 配置-sessionCookieName
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.1_config_ssl_tomcat7.html">
+                tomcat 1.1.1 配置-SSL
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.2_config_server_xml.html">
+                tomcat 1.1.2 server.xml 配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.3_config_context.html">
+                tomcat 1.1.3 配置-context
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">
+                tomcat 1.2.0 日志-cronolog日志切割
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.1_log_log4j.html">
+                tomcat 1.2.1 日志-log4j配置相对路径
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.2_log_juli_loglevel.html">
+                tomcat 1.2.2 日志-JULI日志级别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.0_optimize_apr_mode.html">
+                tomcat 1.3.0 优化-apr模式
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.1_optimize_server_xml.html">
+                tomcat 1.3.1 优化-server.xml
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.2_optimize_test_concurrent_more_than_10000.html">
+                tomcat 1.3.2 优化-如何承载上万并发
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.0_problem_startup_slow_tomcat7.html">
+                tomcat 2.1.0 问题-tomcat7启动速度慢
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.1_entropy_source.html">
+                tomcat 2.1.1 问题-tomcat7启动安全-熵池
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.2_error_shutdown_connection_refuse.html">
+                tomcat 2.1.2 问题-tomcat7 shutdown 提示 connection refused
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.2.0_java.lang.ClassCastException.html">
+                tomcat 2.2.0 问题-java.lang.ClassCastException
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.2.1_tomcat7_classloader_howto_translate.html">
+                tomcat 2.2.1 tomcat7类加载器HOWTO-中文翻译
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_3.1.0_manage_check_version.html">
+                tomcat 3.1.0 管理-查看tomcat版本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_3.2.0_tomcat_manager.html">
+                tomcat 3.2.0 tomcat manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_4.1.0_application_session_keep_with_memcached.html">
+                tomcat 4.1.0 应用-memcached会话保持
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.0_redis_session_gradle_compile_jar.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.1_redis_session_gradle_compile_jar_tomcat8.5_and_jdk8.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager - tomcat8.5
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_6.1.0_tomcat6_vs_tomcat7.html">
+                tomcat 6.1.0 tomcat6 和 tomcat7的简要区别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_7.1.0_running_as_daemon_by_nonroot.html">
+                tomcat 7.1.0 使用非root用户用daemon运行tomcat
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/TOMCAT9_安装配置.html">
+                tomcat: 1.1.0 tomcat9安装配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.2_session_sharing_by_using_redis.html">
+                tomcat: 5.1.2 tomcat-session sharing
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

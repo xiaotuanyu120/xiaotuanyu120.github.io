@@ -1,0 +1,816 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>redis: 1.1.1 redis replication(sentinel集群)</h3>
+<hr>
+<h3>1. 环境介绍</h3>
+<table>
+<thead><tr>
+<th style="text-align:center">hostname</th>
+<th style="text-align:center">ip</th>
+<th style="text-align:center">version</th>
+<th style="text-align:center">OS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sentinel01</td>
+<td style="text-align:center">192.168.33.41</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+<tr>
+<td style="text-align:center">sentinel02</td>
+<td style="text-align:center">192.168.33.42</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+<tr>
+<td style="text-align:center">sentinel03</td>
+<td style="text-align:center">192.168.33.43</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+<tr>
+<td style="text-align:center">redis01</td>
+<td style="text-align:center">192.168.33.51</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+<tr>
+<td style="text-align:center">redis02</td>
+<td style="text-align:center">192.168.33.52</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+<tr>
+<td style="text-align:center">redis03</td>
+<td style="text-align:center">192.168.33.53</td>
+<td style="text-align:center">4.0.1</td>
+<td style="text-align:center">centos 6.8 x86_64</td>
+</tr>
+</tbody>
+</table>
+<blockquote><p>sentinel集群必须为奇数，redis replication可以为2个节点或者多个节点</p>
+</blockquote>
+<hr>
+<h3>2. 安装并配置redis</h3>
+<p>所有节点包括sentinel节点都需要安装redis</p>
+<h4>1) 安装redis</h4>
+<div class="highlight"><pre><span></span>wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+tar xzf redis-4.0.1.tar.gz
+<span class="nb">cd</span> redis-4.0.1
+make
+make install
+</pre></div>
+<h3>3. redis三节点配置</h3>
+<h4>1) 修改redis启动脚本</h4>
+<div class="highlight"><pre><span></span>cp utils/redis_init_script /etc/init.d/redis
+chmod <span class="m">755</span> /etc/init.d/redis
+vi /etc/init.d/redis
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 因为我们配置了auth，需要在关闭时提供密码字符串</span>
+<span class="c1"># 配置一个自定义变量</span>
+<span class="nv">AUTH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;123456&quot;</span>
+<span class="c1"># 在关闭stop case中增加&quot;-a $AUTH_PASSWORD&quot;</span>
+<span class="nv">$CLIEXEC</span> -p <span class="nv">$REDISPORT</span> -a <span class="nv">$AUTH_PASSWORD</span> shutdown
+******************************
+chkconfig redis on
+</pre></div>
+<blockquote><p>脚本里面有默认的端口和pid文件配置，如果配置文件中的相应配置改动了，需要在启动脚本相应改动选项</p>
+</blockquote>
+<h4>2) 修改redis配置文件</h4>
+<p>redis节点上全部创建配置目录</p>
+<div class="highlight"><pre><span></span>mkdir /etc/redis
+</pre></div>
+<p>redis01主节点修改以下配置</p>
+<div class="highlight"><pre><span></span>cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+<span class="nb">bind</span> <span class="m">0</span>.0.0.0
+daemonize yes
+protected-mode no
+pidfile /var/run/redis_6379.pid
+port <span class="m">6379</span>
+loglevel notice
+logfile <span class="s2">&quot;/var/log/redis_6379.log&quot;</span>
+masterauth <span class="m">123456</span>
+requirepass <span class="m">123456</span>
+******************************
+</pre></div>
+<blockquote><p>redis01主节点也配置masterauth是因为处理master角色转移后，本节点重新接入集群的情况</p>
+</blockquote>
+<p>redis02和redis03上修改以下配置</p>
+<div class="highlight"><pre><span></span>cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+<span class="nb">bind</span> <span class="m">0</span>.0.0.0
+daemonize yes
+protected-mode no
+pidfile /var/run/redis_6379.pid
+port <span class="m">6379</span>
+loglevel notice
+logfile <span class="s2">&quot;/var/log/redis_6379.log&quot;</span>
+slaveof <span class="m">192</span>.168.33.51 <span class="m">6379</span>
+masterauth <span class="m">123456</span>
+requirepass <span class="m">123456</span>
+******************************
+</pre></div>
+<blockquote><p>redis02和redis03从节点之所以也配置requirepass，是为了等下redis集群failover功能，密码推荐和主上的密码一致</p>
+</blockquote>
+<h4>3) 启动redis-server服务</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 在三个redis节点上重启redis</span>
+service redis stop
+service redis start
+</pre></div>
+<hr>
+<h3>3. sentinel节点配置</h3>
+<p><a href="http://redis.io/topics/sentinel">sentinel官方文档</a></p>
+<h4>1) 修改sentinel启动脚本</h4>
+<div class="highlight"><pre><span></span>cp utils/redis_init_script /etc/init.d/sentinel
+chmod <span class="m">755</span> /etc/init.d/sentinel
+vi /etc/init.d/sentinel
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 修改以下内容</span>
+<span class="nv">EXEC</span><span class="o">=</span>/usr/local/bin/redis-sentinel
+<span class="nv">REDISPORT</span><span class="o">=</span><span class="m">26379</span>
+<span class="nv">PIDFILE</span><span class="o">=</span>/var/run/sentinel.pid
+<span class="nv">CONF</span><span class="o">=</span><span class="s2">&quot;/etc/redis/sentinel.conf&quot;</span>
+
+<span class="c1"># 修改启动命令为后台启动</span>
+<span class="nv">$EXEC</span> <span class="nv">$CONF</span> <span class="p">&amp;</span>
+sleep <span class="m">1</span>
+<span class="nb">echo</span> <span class="sb">`</span>ps aux <span class="p">|</span>grep redis-sentinel<span class="p">|</span>grep -v grep<span class="p">|</span>grep <span class="si">${</span><span class="nv">REDISPORT</span><span class="si">}</span><span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span> &gt; <span class="nv">$PIDFILE</span>
+
+<span class="c1"># 在停止命令后面加上删除pidfile的动作</span>
+<span class="nb">echo</span> <span class="s2">&quot;Redis stopped&quot;</span>
+rm -rf <span class="nv">$PIDFILE</span>
+******************************
+chkconfig sentinel on
+</pre></div>
+<h4>2) 创建sentinel配置文件</h4>
+<div class="highlight"><pre><span></span>vi /etc/redis/sentinel.conf
+******************************
+<span class="nb">bind</span> <span class="m">0</span>.0.0.0
+protected-mode no
+daemonize yes
+port <span class="m">26379</span>
+loglevel notice
+logfile <span class="s2">&quot;/var/log/sentinel.log&quot;</span>
+sentinel monitor mymaster <span class="m">192</span>.168.33.51 <span class="m">6379</span> <span class="m">2</span>
+sentinel auth-pass mymaster <span class="m">123456</span>
+sentinel down-after-milliseconds mymaster <span class="m">5000</span>
+sentinel failover-timeout mymaster <span class="m">8000</span>
+sentinel parallel-syncs mymaster <span class="m">1</span>
+******************************
+</pre></div>
+<blockquote><p><code>sentinel monitor &lt;master-group-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</code><br>
+master-group-name 是自定义名称<br>
+quorum 此数字代表分布式的sentinel中，最少几个节点侦测到master失败才切换</p>
+<p><code>sentinel &lt;option_name&gt; &lt;master_name&gt; &lt;option_value&gt;</code><br>
+sentinel 选项名称 自定义名称 选项值<br>
+down-after-milliseconds 指定了多少ms连接不到该sentinel即认定其失效
+其他配置查看官方文档链接</p>
+<p>protected-mode 一定要设置为no，不然的话，仅能localhost访问</p>
+</blockquote>
+<h4>2) 启动sentinel服务</h4>
+<p>所有sentinel节点启动sentinel服务</p>
+<div class="highlight"><pre><span></span>service sentinel start
+</pre></div>
+<hr>
+<h3>4. 效果测试</h3>
+<h4>1) 查看redis replication信息</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 主节点上执行</span>
+redis-cli
+<span class="m">127</span>.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+<span class="m">127</span>.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:2
+slave0:ip<span class="o">=</span><span class="m">192</span>.168.33.52,port<span class="o">=</span><span class="m">6379</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">173294</span>,lag<span class="o">=</span><span class="m">1</span>
+slave1:ip<span class="o">=</span><span class="m">192</span>.168.33.53,port<span class="o">=</span><span class="m">6379</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">173435</span>,lag<span class="o">=</span><span class="m">1</span>
+master_replid:4d3fa0623c322feebecb70f7ad5f8525e63c0332
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:173576
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:173576
+</pre></div>
+<h4>2) 模拟redis01主节点失败</h4>
+<p><strong>sentinel日志</strong></p>
+<div class="highlight"><pre><span></span>redis-cli -a <span class="m">123456</span> shutdown
+
+<span class="c1"># sentinel01日志</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:24.679 <span class="c1"># +sdown master mymaster 192.168.33.51 6379</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:24.809 <span class="c1"># +new-epoch 1</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:24.815 <span class="c1"># +vote-for-leader 627b4ec63708908fe747117c83a4a87bc30cadad 1</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.778 <span class="c1"># +odown master mymaster 192.168.33.51 6379 #quorum 3/2</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.778 <span class="c1"># Next failover delay: I will not start a failover before Wed Aug  9 03:34:41 2017</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.929 <span class="c1"># +config-update-from sentinel 627b4ec63708908fe747117c83a4a87bc30cadad 192.168.33.43 26379 @ mymaster 192.168.33.51 6379</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.929 <span class="c1"># +switch-master mymaster 192.168.33.51 6379 192.168.33.52 6379</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.930 * +slave slave <span class="m">192</span>.168.33.53:6379 <span class="m">192</span>.168.33.53 <span class="m">6379</span> @ mymaster <span class="m">192</span>.168.33.52 <span class="m">6379</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:25.930 * +slave slave <span class="m">192</span>.168.33.51:6379 <span class="m">192</span>.168.33.51 <span class="m">6379</span> @ mymaster <span class="m">192</span>.168.33.52 <span class="m">6379</span>
+<span class="m">7937</span>:X <span class="m">09</span> Aug <span class="m">03</span>:34:30.996 <span class="c1"># +sdown slave 192.168.33.51:6379 192.168.33.51 6379 @ mymaster 192.168.33.52 6379</span>
+</pre></div>
+<blockquote><p>sentinel三个节点日志差不多，大概就是以下步骤:</p>
+<ul>
+<li>测试到redis01挂掉，发出sdown事件</li>
+<li>接收到其它节点的redis01挂掉信息，会将sdown升级为odown事件</li>
+<li>投票新的master，然后执行failover操作(sentinel会重写redis的配置文件)</li>
+</ul>
+</blockquote>
+<p><strong>此时重新查看redis集群信息，redis02选为新的master，redis03为slave</strong></p>
+<div class="highlight"><pre><span></span>redis-cli
+<span class="m">127</span>.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+<span class="m">127</span>.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:1
+slave0:ip<span class="o">=</span><span class="m">192</span>.168.33.53,port<span class="o">=</span><span class="m">6379</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">206712</span>,lag<span class="o">=</span><span class="m">0</span>
+master_replid:c9a68d6274d26542eb7bef75a0df10f6ce594152
+master_replid2:2897700df07f0a75839738cd872ac8fc60a77b83
+master_repl_offset:206712
+second_repl_offset:27248
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:206712
+</pre></div>
+<p><strong>重新启动redis01，将会以slave身份加入到集群中</strong></p>
+<div class="highlight"><pre><span></span>redis-cli
+<span class="m">127</span>.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+<span class="m">127</span>.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:2
+slave0:ip<span class="o">=</span><span class="m">192</span>.168.33.53,port<span class="o">=</span><span class="m">6379</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">250152</span>,lag<span class="o">=</span><span class="m">1</span>
+slave1:ip<span class="o">=</span><span class="m">192</span>.168.33.51,port<span class="o">=</span><span class="m">6379</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">250152</span>,lag<span class="o">=</span><span class="m">0</span>
+master_replid:c9a68d6274d26542eb7bef75a0df10f6ce594152
+master_replid2:2897700df07f0a75839738cd872ac8fc60a77b83
+master_repl_offset:250152
+second_repl_offset:27248
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:250152
+</pre></div>
+<hr>
+<h3>7. sentinel管理</h3>
+<h4>1) 查看master信息</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 用redis-cli连接sentinel的端口</span>
+redis-cli -p <span class="m">26379</span>
+<span class="m">127</span>.0.0.1:26379&gt; sentinel master mymaster
+ <span class="m">1</span><span class="o">)</span> <span class="s2">&quot;name&quot;</span>
+ <span class="m">2</span><span class="o">)</span> <span class="s2">&quot;mymaster&quot;</span>
+ <span class="m">3</span><span class="o">)</span> <span class="s2">&quot;ip&quot;</span>
+ <span class="m">4</span><span class="o">)</span> <span class="s2">&quot;192.168.110.5&quot;</span>
+ <span class="m">5</span><span class="o">)</span> <span class="s2">&quot;port&quot;</span>
+ <span class="m">6</span><span class="o">)</span> <span class="s2">&quot;6381&quot;</span>
+ <span class="m">7</span><span class="o">)</span> <span class="s2">&quot;runid&quot;</span>
+ <span class="m">8</span><span class="o">)</span> <span class="s2">&quot;88460abc58aa7d2e159a29a7fe29f2d64aa72033&quot;</span>
+ <span class="m">9</span><span class="o">)</span> <span class="s2">&quot;flags&quot;</span>
+<span class="m">10</span><span class="o">)</span> <span class="s2">&quot;master&quot;</span>
+<span class="m">11</span><span class="o">)</span> <span class="s2">&quot;pending-commands&quot;</span>
+<span class="m">12</span><span class="o">)</span> <span class="s2">&quot;0&quot;</span>
+<span class="m">13</span><span class="o">)</span> <span class="s2">&quot;last-ping-sent&quot;</span>
+<span class="m">14</span><span class="o">)</span> <span class="s2">&quot;0&quot;</span>
+<span class="m">15</span><span class="o">)</span> <span class="s2">&quot;last-ok-ping-reply&quot;</span>
+<span class="m">16</span><span class="o">)</span> <span class="s2">&quot;404&quot;</span>
+<span class="m">17</span><span class="o">)</span> <span class="s2">&quot;last-ping-reply&quot;</span>
+<span class="m">18</span><span class="o">)</span> <span class="s2">&quot;404&quot;</span>
+<span class="m">19</span><span class="o">)</span> <span class="s2">&quot;down-after-milliseconds&quot;</span>
+<span class="m">20</span><span class="o">)</span> <span class="s2">&quot;60000&quot;</span>
+<span class="m">21</span><span class="o">)</span> <span class="s2">&quot;info-refresh&quot;</span>
+<span class="m">22</span><span class="o">)</span> <span class="s2">&quot;3270&quot;</span>
+<span class="m">23</span><span class="o">)</span> <span class="s2">&quot;role-reported&quot;</span>
+<span class="m">24</span><span class="o">)</span> <span class="s2">&quot;master&quot;</span>
+<span class="m">25</span><span class="o">)</span> <span class="s2">&quot;role-reported-time&quot;</span>
+<span class="m">26</span><span class="o">)</span> <span class="s2">&quot;8577307&quot;</span>
+<span class="m">27</span><span class="o">)</span> <span class="s2">&quot;config-epoch&quot;</span>
+<span class="m">28</span><span class="o">)</span> <span class="s2">&quot;2&quot;</span>
+<span class="m">29</span><span class="o">)</span> <span class="s2">&quot;num-slaves&quot;</span>
+<span class="m">30</span><span class="o">)</span> <span class="s2">&quot;2&quot;</span>
+<span class="m">31</span><span class="o">)</span> <span class="s2">&quot;num-other-sentinels&quot;</span>
+<span class="m">32</span><span class="o">)</span> <span class="s2">&quot;2&quot;</span>
+<span class="m">33</span><span class="o">)</span> <span class="s2">&quot;quorum&quot;</span>
+<span class="m">34</span><span class="o">)</span> <span class="s2">&quot;2&quot;</span>
+<span class="m">35</span><span class="o">)</span> <span class="s2">&quot;failover-timeout&quot;</span>
+<span class="m">36</span><span class="o">)</span> <span class="s2">&quot;180000&quot;</span>
+<span class="m">37</span><span class="o">)</span> <span class="s2">&quot;parallel-syncs&quot;</span>
+<span class="m">38</span><span class="o">)</span> <span class="s2">&quot;1&quot;</span>
+</pre></div>
+<p>其中"num-other-sentinels"代表了其他的sentinel节点个数<br>
+"num-slaves"代表了slave节点个数</p>
+<p>使用以下两个命令可以看到slaves和sentinels的信息</p>
+
+<pre><code>SENTINEL slaves mymaster
+SENTINEL sentinels mymaster</code></pre>
+<h4>2) 获取当前master信息</h4>
+<div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1:26379&gt; SENTINEL get-master-addr-by-name mymaster
+<span class="m">1</span><span class="o">)</span> <span class="s2">&quot;192.168.110.5&quot;</span>
+<span class="m">2</span><span class="o">)</span> <span class="s2">&quot;6381&quot;</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.0_install.html">
+                redis: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">
+                redis: 1.1.1 redis replication(sentinel集群)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">
+                redis: 1.1.2 redis-py(sentinel)获取master信息
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.0_basic_cmd.html">
+                redis: 1.2.0 基本管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">
+                redis: 1.2.1 将redis执行结果输出到文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.2_security_disable_command.html">
+                redis: 1.2.2 安全性(CONFIG重命名)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_3.1.0_consistent.html">
+                redis: 3.1.0 持久化、备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.1.0_replication.html">
+                redis: 4.1.0 主从配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">
+                redis: 4.2.0 主从遇到的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">
+                redis: 5.1.0 错误-降级后启动报错
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

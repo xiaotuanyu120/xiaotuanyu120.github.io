@@ -1,0 +1,935 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>elk 1.0.4: explore your data</h3>
+<h2>Exploring Your Data</h2>
+<h3>1. prepare data</h3>
+<h4>Sample Dataset</h4>
+<p>我们已经对基础有了一定的了解，现在我们尝试在更加真实的场景下来研究。这里我会准备一组虚拟的银行账户信息。每一条都类似于这样：</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;account_number&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="mi">16623</span><span class="p">,</span>
+    <span class="nt">&quot;firstname&quot;</span><span class="p">:</span> <span class="s2">&quot;Bradshaw&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;lastname&quot;</span><span class="p">:</span> <span class="s2">&quot;Mckenzie&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;age&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
+    <span class="nt">&quot;gender&quot;</span><span class="p">:</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="s2">&quot;244 Columbus Place&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;employer&quot;</span><span class="p">:</span> <span class="s2">&quot;Euron&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;bradshawmckenzie@euron.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;city&quot;</span><span class="p">:</span> <span class="s2">&quot;Hobucken&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;CO&quot;</span>
+<span class="p">}</span>
+</pre></div>
+<p>这些数据都是从 www.json-generator.com 生成的，所以请忽略其实际值。</p>
+<h4>Loading the Sample Dataset</h4>
+<p>你可以从<a href="https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json?raw=true">这里</a>下载到测试用的数据集。把文件放在当前目录，然后用下面的命令来导入它到elasticsearch集群中：</p>
+<div class="highlight"><pre><span></span>curl -H <span class="s2">&quot;Content-Type: application/json&quot;</span> -XPOST <span class="s2">&quot;localhost:9200/bank/_doc/_bulk?pretty&amp;refresh&quot;</span> --data-binary <span class="s2">&quot;@accounts.json&quot;</span>
+curl <span class="s2">&quot;localhost:9200/_cat/indices?v&quot;</span>
+</pre></div>
+<p>返回结果是</p>
+
+<pre><code>health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   bank  l7sSYV2cQXmu6_4rJWVIww   5   1       1000            0    128.6kb        128.6kb</code></pre>
+<p>这意味着我们只是成功地将1000个文档批量索引到银行索引（在_doc类型下）。</p>
+<h3>2. The Search API</h3>
+<p>现在让我们从一些简单的搜索开始吧。运行搜索有两种基本方法：一种是通过<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/search-uri-request.html">REST请求URI</a>发送搜索参数，另一种是通过<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/search-request-body.html">REST请求体</a>发送搜索参数。请求体方法允许您更具表现力，并以更易读的JSON格式定义搜索。我们将尝试一个请求URI方法的示例，但是对于本教程的其余部分，我们将专门使用请求体方法。</p>
+<p>可以从_search端点访问用于搜索的REST API。此示例返回银行索引中的所有文档：</p>
+
+<pre><code>GET /bank/_search?q=*&amp;sort=account_number:asc&amp;pretty</code></pre>
+<ul>
+<li><code>/bank/_search</code>，在bank索引上执行搜索API</li>
+<li><code>q=*</code>，匹配所有的在bank索引中的文档</li>
+<li><code>sort=account_number:asc</code>，使用account_number排序，采用升序排序。</li>
+<li><code>pretty</code>，只是告诉Elasticsearch返回漂亮的JSON结果。</li>
+</ul>
+<p>部分返回结果为：</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;took&quot;</span> <span class="p">:</span> <span class="mi">63</span><span class="p">,</span>
+  <span class="nt">&quot;timed_out&quot;</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;_shards&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;total&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;successful&quot;</span> <span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;skipped&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;failed&quot;</span> <span class="p">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;hits&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;total&quot;</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="nt">&quot;max_score&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&quot;hits&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+      <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bank&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+      <span class="nt">&quot;_score&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;_source&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;account_number&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;balance&quot;</span><span class="p">:</span><span class="mi">16623</span><span class="p">,</span><span class="nt">&quot;firstname&quot;</span><span class="p">:</span><span class="s2">&quot;Bradshaw&quot;</span><span class="p">,</span><span class="nt">&quot;lastname&quot;</span><span class="p">:</span><span class="s2">&quot;Mckenzie&quot;</span><span class="p">,</span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="mi">29</span><span class="p">,</span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;244 Columbus Place&quot;</span><span class="p">,</span><span class="nt">&quot;employer&quot;</span><span class="p">:</span><span class="s2">&quot;Euron&quot;</span><span class="p">,</span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;bradshawmckenzie@euron.com&quot;</span><span class="p">,</span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="s2">&quot;Hobucken&quot;</span><span class="p">,</span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;CO&quot;</span><span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+      <span class="nt">&quot;_index&quot;</span> <span class="p">:</span> <span class="s2">&quot;bank&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_type&quot;</span> <span class="p">:</span> <span class="s2">&quot;_doc&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;sort&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+      <span class="nt">&quot;_score&quot;</span> <span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;_source&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="nt">&quot;account_number&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="nt">&quot;balance&quot;</span><span class="p">:</span><span class="mi">39225</span><span class="p">,</span><span class="nt">&quot;firstname&quot;</span><span class="p">:</span><span class="s2">&quot;Amber&quot;</span><span class="p">,</span><span class="nt">&quot;lastname&quot;</span><span class="p">:</span><span class="s2">&quot;Duke&quot;</span><span class="p">,</span><span class="nt">&quot;age&quot;</span><span class="p">:</span><span class="mi">32</span><span class="p">,</span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="s2">&quot;880 Holmes Lane&quot;</span><span class="p">,</span><span class="nt">&quot;employer&quot;</span><span class="p">:</span><span class="s2">&quot;Pyrami&quot;</span><span class="p">,</span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;amberduke@pyrami.com&quot;</span><span class="p">,</span><span class="nt">&quot;city&quot;</span><span class="p">:</span><span class="s2">&quot;Brogan&quot;</span><span class="p">,</span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;IL&quot;</span><span class="p">}</span>
+    <span class="p">},</span> <span class="err">...</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>返回结果中，我们看到了如下部分：</p>
+<ul>
+<li><code>took</code> - Elasticsearch执行搜索的时间（以毫秒为单位）</li>
+<li><code>timed_out</code> - 告诉我们搜索是否超时</li>
+<li><code>_shards</code> - 告诉我们搜索了多少个分片，以及搜索成功/失败分片的计数</li>
+<li><code>hits</code> - 搜索结果</li>
+<li><code>hits.total</code> - 符合我们搜索条件的文档总数</li>
+<li><code>hits.hits</code> - 实际的搜索结果数组（默认为前10个文档）</li>
+<li><code>hits.sort</code> - 搜索结果排序的key（如果是按照score排序，则missing）</li>
+<li><code>hits._score and max_score</code> - 目前不需要关注字段含义</li>
+</ul>
+<p>下面的操作效果和上面一样，只不过使用的是请求体方式：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "sort": [
+    { "account_number": "asc" }
+  ]
+}</code></pre>
+<p>重要的是要理解，一旦您获得了搜索结果，Elasticsearch就完全完成了请求，并且不会在结果中维护任何类型的服务器端资源或打开游标。这与SQL等许多其他平台形成鲜明对比，在其中您可能最初预先获得查询结果的部分子集，然后如果要获取（或翻页）其余的结果则必须连续返回到服务器端，这是使用某种有状态服务器端游标的结果。</p>
+<h3>3. Introducing the Query Language</h3>
+<p>Elasticsearch提供了一种JSON样式的特定于域的语言，可用于执行查询。这被称为<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl.html">查询DSL</a>。</p>
+<p>查询bank索引所有的文档</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} }
+}</code></pre>
+<p>query告诉我们这里是匹配结果的定义语句，match_all是告诉我们实际查询的语句。</p>
+<p>除了query之外，我们还可以增加其他的参数来影响搜索的结果。之前我们使用了sort参数，这里我们尝试使用size参数：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "size": 1
+}</code></pre>
+<p>size影响的是查询结果中返回的数组结果，如果不指定size的值，默认是10。</p>
+<p>下面的例子返回查询结果中序号10-19</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "from": 10,
+  "size": 10
+}</code></pre>
+<p>from的作用很明显，是指定结果数组中起始的index值，如果没有指定from，默认是0。</p>
+<p>下面的例子是使用balance来降序排序：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "sort": { "balance": { "order": "desc" } }
+}</code></pre>
+<h3>4. Executing Searches</h3>
+<p>现在我们已经了解了一些基本的搜索参数，让我们继续了解查询DSL的更多吧。首先，让我们看一下返回结果中的字段。默认情况下，会在查询结果中返回完整的json格式的文档。这被称之为源（命中结果中的<code>_source</code>字段）。如果我们不希望返回整个源文档，我们可以选择只返回源的部分字段。</p>
+<p>下面的例子展示了如何在搜索结果中只返回两个字段，account_number和balance:</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_all": {} },
+  "_source": ["account_number", "balance"]
+}</code></pre>
+<p>在上面的例子中，我们只是简单的减少了_source参数的内容。它依然会返回_source，只是其中的内容仅包含account_number和balance。</p>
+<p>如果你是从SQL世界中来，那么上面的请求类似于<code>select from</code>语句。</p>
+<p>okay，现在让我们来看看查询部分。之前，我们已经看过了如何是用match_all来匹配索引中所有的文档了。现在让我们看一个新的参数<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl-match-query.html">match</a>，这个参数可以认为可以进行一个基本的字段查询（根据一个或者一组字段来查询）。</p>
+<p>下面这个例子返回account number为20的账户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match": { "account_number": 20 } }
+}</code></pre>
+<p>下面这个例子返回地址中包含mill的账户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match": { "address": "mill" } }
+}</code></pre>
+<p>下面这个例子返回地址中包含mill或者lane的账户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match": { "address": "mill lane" } }
+}</code></pre>
+<p>下面这个例子使用了match的一个变种match_phrase，它会返回所有地址匹配“mill lane”的账户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": { "match_phrase": { "address": "mill lane" } }
+}</code></pre>
+<p>现在我们来聊聊<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl-bool-query.html">bool查询</a>。bool查询允许我们使用布尔逻辑将较小的查询组成更大的查询。</p>
+<p>下面这个例子中，组合了两个小查询成为一个大查询，查询结果中地址必须同时包含mill和lane：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}</code></pre>
+<p>在上面的示例中，bool must子句指定所有必须为true的查询才能将文档视为匹配项。</p>
+<p>作为对比，下面这个例子中，查询结果中地址只要包含mill或lane其中一个即可：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}</code></pre>
+<p>在上面的示例中，bool should字句指定查询中至少有一个为true才能将文档视为匹配项。</p>
+<p>下面这个例子中，查询结果中地址既不可能包含mill也不能包含lane：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        { "match": { "address": "mill" } },
+        { "match": { "address": "lane" } }
+      ]
+    }
+  }
+}</code></pre>
+<p>在上面的示例中，bool should字句指定查询中至少有一个为true才能将文档视为匹配项。</p>
+<p>我们可以在bool查询中同时组合must，should和must_not子句。此外，我们可以在任何这些bool子句中组合bool查询来模仿任何复杂的多级布尔逻辑。</p>
+<p>下面这个例子中，返回任何40岁但不住在ID（aho）的人的所有帐户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "age": "40" } }
+      ],
+      "must_not": [
+        { "match": { "state": "ID" } }
+      ]
+    }
+  }
+}</code></pre>
+<h3>5. Executing Filters</h3>
+<p>在前面，我们跳过了一个小细节，叫做文档score(搜索结果中的<code>_score</code>字段)。socre是一个数值，它是文档与我们指定的搜索查询条件匹配程度的相对值。分值越高，说明和搜索条件契合度越高，反之就是契合度越低。</p>
+<p>但是查询并不总是需要产生分数，特别是当它们仅用于“过滤”文档集时。Elasticsearch会检测这些情况并自动优化查询执行，以便不计算无用的分数。</p>
+<p>我们在前面中介绍的bool查询还支持过滤子句，这些子句可以来限制其他子句搜索匹配的文档，而不会更改计算得分的方式。举例子之前，让我们介绍<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/query-dsl-range-query.html">range查询</a>，它允许我们按一系列值过滤文档。这通常用于数字或日期过滤。</p>
+<p>下面这个例子，我们使用bool查询到所有balance在20000-30000之间的账户：</p>
+
+<pre><code>GET /bank/_search
+{
+  "query": {
+    "bool": {
+      "must": { "match_all": {} },
+      "filter": {
+        "range": {
+          "balance": {
+            "gte": 20000,
+            "lte": 30000
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>上面的查询中，match_all是查询部分，range是filter部分。我们可以使用其他任何查询API来替换上面的查询部分和过滤部分。</p>
+<p>除了match_all，match，bool和range查询之外，还有很多其他可用的查询类型，我们不会在这里讨论它们。由于我们已经基本了解它们的工作原理，因此将这些知识应用于学习和试验其他查询类型应该不会太困难。</p>
+<h3>6. Executing Aggregations</h3>
+<p>聚合提供了从数据中分组和提取统计信息的功能。理解聚合的最简单方法是将其大致等同于SQL GROUP BY和SQL聚合函数。在elasticsearch中，你可以执行返回命中结果的搜索，同时在同一个响应中返回单独的聚合信息。这是非常强大和高效的，通过使用简洁的API，你可以同时执行一个查询和多个聚合操作，然后一次性得到所有(或任一)结果，而避免了更多的网络开销。</p>
+<p>首先，下面这个例子，使用state来分组所有账户，然后按照count的减序（默认减序）返回前十个（默认10个）state:</p>
+
+<pre><code>GET /bank/_search
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword"
+      }
+    }
+  }
+}</code></pre>
+<p>在SQL中，上述聚合在概念上类似于：</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">state</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">bank</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">state</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">DESC</span> <span class="k">LIMIT</span> <span class="mi">10</span><span class="p">;</span>
+</pre></div>
+<p>返回结果是</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;took&quot;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
+  <span class="nt">&quot;timed_out&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="nt">&quot;_shards&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;successful&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;skipped&quot;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;failed&quot;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;hits&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;total&quot;</span> <span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="nt">&quot;max_score&quot;</span> <span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="nt">&quot;hits&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;aggregations&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;group_by_state&quot;</span> <span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;doc_count_error_upper_bound&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+      <span class="nt">&quot;sum_other_doc_count&quot;</span><span class="p">:</span> <span class="mi">770</span><span class="p">,</span>
+      <span class="nt">&quot;buckets&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;ID&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">27</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;TX&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">27</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;AL&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">25</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;MD&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">25</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;TN&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">23</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;MA&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">21</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;NC&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">21</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;ND&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">21</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;ME&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">20</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;MO&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;doc_count&quot;</span> <span class="p">:</span> <span class="mi">20</span>
+      <span class="p">}</span> <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>我们可以看到，在ID生活的account有27个，TX的有27个...依次往下类推。</p>
+<p>值得注意的是我们设定了size为0，是因为我们仅仅希望在响应中看到聚合的结果。</p>
+<p>在前面聚合的基础上，这个例子根据state分组来计算了账户的balance平均值（同样仅针对按count降序排序的前10个state）:</p>
+
+<pre><code>GET /bank/_search
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword"
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>请注意我们如何嵌套group_by_state聚合到average_balance聚合中的。这是聚合的常见模式。你可以在任意聚合中嵌套聚合，来从数据中提取你所需要的统计概要。</p>
+<p>在前面聚合的基础上，下面的例子中，我们改用average_balance来降序排序：</p>
+
+<pre><code>GET /bank/_search
+{
+  "size": 0,
+  "aggs": {
+    "group_by_state": {
+      "terms": {
+        "field": "state.keyword",
+        "order": {
+          "average_balance": "desc"
+        }
+      },
+      "aggs": {
+        "average_balance": {
+          "avg": {
+            "field": "balance"
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>下面这个例子演示了如何使用年龄段分组，然后是用性别分组，最后得到一个每个性别中每个年龄段账户余额的平均值：</p>
+
+<pre><code>GET /bank/_search
+{
+  "size": 0,
+  "aggs": {
+    "group_by_age": {
+      "range": {
+        "field": "age",
+        "ranges": [
+          {
+            "from": 20,
+            "to": 30
+          },
+          {
+            "from": 30,
+            "to": 40
+          },
+          {
+            "from": 40,
+            "to": 50
+          }
+        ]
+      },
+      "aggs": {
+        "group_by_gender": {
+          "terms": {
+            "field": "gender.keyword"
+          },
+          "aggs": {
+            "average_balance": {
+              "avg": {
+                "field": "balance"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+<p>还有许多其他聚合功能，我们在此不再详述。如果您想进行进一步的实验，<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/search-aggregations.html">聚合参考指南</a>是一个很好的起点。</p>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/elk">
+              elk
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elasticsearch_1.1.0_docker_installation.html">
+                elasticsearch 1.1.0: docker installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.0_elasticsearch_concept.html">
+                elk 1.0.0: elasticsearch concept
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.1_elasticsearch_removal_of_mapping_types.html">
+                elk 1.0.1: elasticsearch removal of mapping types
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.3_after_installation_modify_your_data.html">
+                elk 1.0.3: modify your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.4_after_installation_explore_your_data.html">
+                elk 1.0.4: explore your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.5_elasticsearch_index_templates.html">
+                elk 1.0.5: elasticsearch index templates
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.6_elasticsearch_mapping.html">
+                elk 1.0.6: elasticsearch mapping
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.7.a_elasticsearch_cluster_api_cluster_setting.html">
+                elk 1.0.7.a: elasticsearch cluster api - cluster setting
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.8.a_elasticsearch_modules_snapshot_and_restore.html">
+                elk 1.0.8.a: elasticsearch modules - snapshot and restore
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.0_production_installation.html">
+                elk 1.1.0: production installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.1_production_installation_add_xpack.html">
+                elk 1.1.1: production installation add xpack
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.2.0_elasticsearch_upgrade_from_6.2.4_to_6.4.2.html">
+                elk 1.2.0: elasticsearch upgrade from 6.2.4 to 6.4.2
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.2_after_installation_explore_your_cluster.html">
+                elk 1.10.2: explore you cluster
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.1.0_conf_logstash_index_name_date.html">
+                elk 2.1.0 logstash config index name with current date
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.0_conf_filebeat_logstash_kafka.html">
+                elk 2.2.0 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.1_error_filebeat_kafka_waiting_for_space.html">
+                elk 2.2.1 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.1.0_logstash_plugin_grok.html">
+                elk 3.1.0 logstash plugin grok
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.2.0_logstash_plugin_geoip_and_kibana_visualize.html">
+                elk 3.2.0 logstash plugin geoip and kibana visualize
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/cloudera">
+              cloudera
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

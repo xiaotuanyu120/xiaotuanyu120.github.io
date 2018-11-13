@@ -1,0 +1,622 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>inotify: 3.1.0 inotify实现代码回滚(设想)</h3>
+<hr>
+<h3>1. 需求背景</h3>
+<p>目前公司实际情况：</p>
+<ol>
+<li>开发团队更新时段09:00 - 18:00</li>
+<li>更新流程为：
+svn提交 -&gt; svn仓库中基于rsync的shell同步脚本 -&gt; 线上机器(重启tomcat)</li>
+</ol>
+<p>目前面临的问题：
+开发负责更新流程的svn提交和shell同步脚本的执行，运维只负责重启，所以无法控制备份时间，增加了实现按更新备份策略的难度</p>
+<p>因为代码回滚的核心就在于是否可以按照更新的频率去提前备份代码，所以基于上面的困难，就产生了此文的需求，如何实现按更新频率备份代码</p>
+<hr>
+<h3>2. 设想解决方案</h3>
+<h4>1) 前提</h4>
+<p>公司不想使用svn、git等版本控制来控制代码回滚，而我们通常用inotify+rsync来实现实时同步，但那并不能实现按照版本备份代码。</p>
+<h4>2) 方案</h4>
+<p>但是我们可以转变一下思路：</p>
+<ol>
+<li>在每天09:00之前备份一次，作为每日的固定备份</li>
+<li>使用inotify+rsync，在inotify检测到文件系统最后一次更新行为后的一段时间内，若没有更新则代表此次更新结束，做一次更新</li>
+</ol>
+<p>这样就可以实现，每日早上一次原始备份，在每次开发的更新行为之后进行一次实时备份，若开发更新频繁，则可控制保留最近的n次更新</p>
+<hr>
+<h3>3. 备份脚本</h3>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">src</span><span class="o">=</span><span class="s1">&#39;/tmp/src1/&#39;</span>
+<span class="nv">dest</span><span class="o">=</span><span class="s1">&#39;/tmp/dest1&#39;</span>
+<span class="nv">start_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+
+<span class="k">while</span> <span class="nb">true</span>
+<span class="k">do</span>
+  <span class="nv">changed</span><span class="o">=</span><span class="sb">`</span>inotifywait -rqt <span class="m">10</span> -e modify,attrib,moved_to,moved_from,move,move_self,create,delete,delete_self <span class="nv">$src</span><span class="sb">`</span>
+  <span class="nv">node_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+  <span class="nv">process_time</span><span class="o">=</span><span class="k">$((</span><span class="nv">$node_time</span><span class="o">-</span><span class="nv">$start_time</span><span class="k">))</span>
+  <span class="o">[</span> -z <span class="s2">&quot;</span><span class="nv">$changed</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+    <span class="o">[</span> <span class="nv">$process_time</span> -gt <span class="m">20</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+      <span class="nv">backdir</span><span class="o">=</span><span class="nv">$dest</span>/<span class="sb">`</span>date +%m%d-%H%M<span class="sb">`</span>
+      mkdir -p <span class="nv">$backdir</span>
+      rsync -av --delete <span class="nv">$src</span> <span class="nv">$backdir</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="k">done</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
+                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
+                WIKI: 1.2.0 moinmoin基本设置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
+                ffmpeg 1.1.0 compile install(centos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
+                fluentd 1.0.0 读“fluentd官方文档”笔记
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
+                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
+                inotify: 1.1.0 初识inotify
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
+                inotify: 2.1.0 inotify+rsync实现实时文件同步
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
+                inotify: 3.1.0 inotify实现代码回滚(设想)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
+                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
+                kafka 1.1.0 quick start
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
+                keepalive 1.1.0 nginx高可用
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
+                ldap 1.0.0: installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
+                vnc: 1.1.0 centos 7 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
+                zookeeper 1.1.0 standalone 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
+                zookeeper 1.2.0 replicated 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
+                zookeeper 1.3.0 zookeeper 数据清理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
+                zookeeper 1.4.0 管理（启动脚本）
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

@@ -1,0 +1,913 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>3.7.0 RAC-安装oracle grid infrastructure</h3>
+<hr>
+<h3>1. oracle grid infrastructure</h3>
+<h4>1) 准备</h4>
+<p>如果要使用oracle ASM，需要安装oracle grid infrastructure.安装oracle grid infrastructure之前，需要满足之前对于系统环境的所有要求。</p>
+<h4>2) 创建grid base目录，并分配适当权限</h4>
+<p>使用root身份，在各节点执行以下步骤</p>
+<div class="highlight"><pre><span></span><span class="c1"># 产垫grid base目录</span>
+mkdir -p /u01/app/grid
+
+<span class="c1"># 属主属组是grid和oinstall</span>
+chown -R grid.oinstall /u01/
+</pre></div>
+<hr>
+<p><strong>接下来的操作只在oracle rac集群的节点1上执行</strong></p>
+<h4>3) 下载oracle grid infrastructure 11g rlease 2.0.3</h4>
+<p>11.2.0.3版本需要在oracle 支持网站中的最新补丁集中才能找到，需要oracle的客户支持账号，文件名称是</p>
+<ul>
+<li>p10404530_112030_Linux-x86-64_1of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_2of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_3of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_4of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_5of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_6of7.zip</li>
+<li>p10404530_112030_Linux-x86-64_7of7.zip</li>
+</ul>
+<h4>4) 解压oracle grid infrastructure软件</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 以grid身份执行</span>
+sudo su grid
+mkdir /u01/app/grid/grid-software
+mv p10404530_112030_Linux-x86-64_3of7.zip /u01/app/grid/grid-software/
+
+<span class="c1"># 以root身份执行</span>
+sudo su root
+chown grid.oinstall /u01/app/grid/grid-software/p10404530_112030_Linux-x86-64_3of7.zip
+
+<span class="c1"># 以grid身份执行</span>
+sudo su grid
+<span class="nb">cd</span> /u01/app/grid/grid-software
+unzip p10404530_112030_Linux-x86-64_3of7.zip
+</pre></div>
+<h4>5) 确保grid安装文件中的系统版本为oel6</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 以grid身份执行</span>
+vim /u01/app/grid/grid-software/grid/stage/cvu/cv/admin/cvu_config
+***************************************
+<span class="nv">CV_ASSUME_DISTID</span><span class="o">=</span>OEL6
+***************************************
+</pre></div>
+<h4>6) 配置reponse file</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 以grid身份执行</span>
+<span class="nb">cd</span> /u01/app/grid/grid-software/grid/response/
+cp grid_install.rsp grid_install.rsp.bak
+vim grid_install.rsp
+***************************************
+<span class="c1"># 指定hostname而不是使用系统配置的hostname，适用于多个网卡和多个hostnames的情况</span>
+<span class="nv">ORACLE_HOSTNAME</span><span class="o">=</span>db-oracle-node1
+
+<span class="c1"># 配置inventory路径</span>
+<span class="nv">INVENTORY_LOCATION</span><span class="o">=</span>/u01/app/oraInventory
+
+<span class="c1"># 设定安装语言</span>
+<span class="nv">SELECTED_LANGUAGES</span><span class="o">=</span>en
+
+<span class="c1"># 设定安装cluster集群</span>
+oracle.install.option<span class="o">=</span>CRS_CONFIG
+
+<span class="c1"># 指定安装base</span>
+<span class="nv">ORACLE_BASE</span><span class="o">=</span>/u01/app/grid
+
+<span class="c1"># 制定oracle home</span>
+<span class="nv">ORACLE_HOME</span><span class="o">=</span>/u01/app/11.2.0/grid
+
+<span class="c1"># 指定三个组</span>
+oracle.install.asm.OSDBA<span class="o">=</span>asmdba
+oracle.install.asm.OSOPER<span class="o">=</span>asmoper
+oracle.install.asm.OSASM<span class="o">=</span>asmadmin
+
+<span class="c1"># 指定scan名称，和dns中配置的需要一致</span>
+oracle.install.crs.config.gpnp.scanName<span class="o">=</span>db-oracle-scan.localdomain
+
+<span class="c1"># 指定监听端口</span>
+oracle.install.crs.config.gpnp.scanPort<span class="o">=</span><span class="m">1521</span>
+
+<span class="c1"># 指定集群名称，名称不可以太长</span>
+oracle.install.crs.config.clusterName<span class="o">=</span>db-ora-cluster
+
+<span class="c1"># 指定集群节点</span>
+oracle.install.crs.config.clusterNodes<span class="o">=</span>db-oracle-node1:db-oracle-node1-vip,db-oracle-node2:db-oracle-node2-vip
+
+<span class="c1"># 指定public和private网址</span>
+oracle.install.crs.config.networkInterfaceList<span class="o">=</span>bond0:192.168.33.0:1,eth3:172.16.44.0:2,eth4:172.16.48.0:2
+
+<span class="c1"># 指定使用asm</span>
+oracle.install.crs.config.storageOption<span class="o">=</span>ASM_STORAGE
+
+<span class="c1"># 设置一个密码，密码规则是大写小写字母和数字最少都有一个</span>
+oracle.install.asm.SYSASMPassword<span class="o">=</span>oracle_ASM66
+
+<span class="c1"># 指定asm硬盘组名称</span>
+oracle.install.asm.diskGroup.name<span class="o">=</span>OCRVOTE
+
+<span class="c1"># 设定AU size为1</span>
+oracle.install.asm.diskGroup.AUSize<span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># 指定asm硬盘组的磁盘</span>
+oracle.install.asm.diskGroup.disks<span class="o">=</span>/dev/mapper/ocrvote1p1,/dev/mapper/ocrvote2p1,/dev/mapper/ocrvote3p1
+
+<span class="c1"># 指定磁盘发现字符串</span>
+oracle.install.asm.diskGroup.diskDiscoveryString<span class="o">=</span>/dev/mapper/*
+
+<span class="c1"># 设定一个密码</span>
+oracle.install.asm.monitorPassword<span class="o">=</span>oracle_ASM66
+
+<span class="c1"># 跳过更新</span>
+oracle.installer.autoupdates.option<span class="o">=</span>SKIP_UPDATES
+***************************************
+</pre></div>
+<h4>7) 检查环境</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 关闭防火墙</span>
+service iptables stop
+
+<span class="c1"># 在oracle rac cluster各节点之间执行以下命令做ssh互信</span>
+sudo su - grid
+ssh-keygen
+<span class="c1"># 值得注意的是每个节点自身需要和自身做ssh互信，也就是说在节点1上要做到节点1的ssh互信</span>
+ssh-copy-id db-oracle-node1
+ssh-copy-id db-oracle-node2
+
+<span class="c1">## 安装cvuqdisk</span>
+<span class="c1"># 以root身份执行</span>
+rpm -ivh /u01/app/grid/grid-software/grid/rpm/cvuqdisk-1.0.9-1.rpm
+<span class="c1"># 拷贝此文件去其他节点，并在其他节点安装</span>
+</pre></div>
+<h4>8) silent模式安装oracle grid infrastructure</h4>
+<div class="highlight"><pre><span></span>sudo su grid
+<span class="nb">cd</span> /u01/app/grid/grid-software/grid
+<span class="c1"># 可以关注-ignorePrereq，但此处不需要添加，因为我们确实需要检查环境是否满足</span>
+./runInstaller -responseFile /u01/app/grid/grid-software/grid/response/grid_install.rsp -silent
+Starting Oracle Universal Installer...
+
+Checking Temp space: must be greater than <span class="m">120</span> MB.   Actual <span class="m">33743</span> MB    Passed
+Checking swap space: must be greater than <span class="m">150</span> MB.   Actual <span class="m">991</span> MB    Passed
+Preparing to launch Oracle Universal Installer from /tmp/OraInstall2016-12-28_06-16-56AM. Please <span class="nb">wait</span> ...<span class="o">[</span>grid@db-oracle-node1 grid<span class="o">]</span>$ You can find the log of this install session at:
+ /u01/app/oraInventory/logs/installActions2016-12-28_06-16-56AM.log
+The installation of Oracle Grid Infrastructure was successful.
+Please check <span class="s1">&#39;/u01/app/oraInventory/logs/silentInstall2016-12-28_06-16-56AM.log&#39;</span> <span class="k">for</span> more details.
+
+As a root user, execute the following script<span class="o">(</span>s<span class="o">)</span>:
+        <span class="m">1</span>. /u01/app/oraInventory/orainstRoot.sh
+        <span class="m">2</span>. /u01/app/11.2.0/grid/root.sh
+
+Execute /u01/app/oraInventory/orainstRoot.sh on the following nodes:
+<span class="o">[</span>db-oracle-node1, db-oracle-node2<span class="o">]</span>
+Execute /u01/app/11.2.0/grid/root.sh on the following nodes:
+<span class="o">[</span>db-oracle-node1, db-oracle-node2<span class="o">]</span>
+
+As install user, execute the following script to <span class="nb">complete</span> the configuration.
+        <span class="m">1</span>. /u01/app/11.2.0/grid/cfgtoollogs/configToolAllCommands
+
+        Note:
+        <span class="m">1</span>. This script must be run on the same system from where installer was run.
+        <span class="m">2</span>. This script needs a small password properties file <span class="k">for</span> configuration assistants that require passwords <span class="o">(</span>refer to install guide documentation<span class="o">)</span>.
+
+
+Successfully Setup Software.
+
+
+<span class="c1">## 此时按照提示，保持目前的terminal不动，打开一个新的ssh连接，使用root登陆，然后执行提示中的脚本</span>
+<span class="c1">## db-oracle-node1上,使用root执行</span>
+sh /u01/app/oraInventory/orainstRoot.sh
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions <span class="k">for</span> group.
+Removing read,write,execute permissions <span class="k">for</span> world.
+
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+
+sh /u01/app/11.2.0/grid/root.sh
+Check /u01/app/11.2.0/grid/install/root_db-oracle-node1_2016-12-27_08-42-35.log <span class="k">for</span> the output of root script
+<span class="c1"># 检查log，看是否成功执行</span>
+<span class="c1"># 最后一句是</span>
+<span class="c1"># &quot;Configure Oracle Grid Infrastructure for a Cluster ... succeeded&quot;</span>
+
+<span class="c1">## db-oracle-node2上,使用root执行</span>
+sh /u01/app/oraInventory/orainstRoot.sh
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions <span class="k">for</span> group.
+Removing read,write,execute permissions <span class="k">for</span> world.
+
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+
+Configure Oracle Grid Infrastructure <span class="k">for</span> a Cluster ... succeeded
+
+sh /u01/app/11.2.0/grid/root.sh
+Check /u01/app/11.2.0/grid/install/root_db-oracle-node2_2016-12-28_06-36-36.log <span class="k">for</span> the output of root script
+<span class="c1"># 检查log，看是否成功执行</span>
+<span class="c1"># 最后一句是</span>
+<span class="c1"># &quot;Configure Oracle Grid Infrastructure for a Cluster ... succeeded&quot;</span>
+
+<span class="c1">## db-oracle-node1上，使用grid执行</span>
+sh /u01/app/11.2.0/grid/cfgtoollogs/configToolAllCommands
+Setting the invPtrLoc to /u01/app/11.2.0/grid/oraInst.loc
+
+perform - mode is starting <span class="k">for</span> action: configure
+
+
+perform - mode finished <span class="k">for</span> action: configure
+
+You can see the log file: /u01/app/11.2.0/grid/cfgtoollogs/oui/configActions2016-12-28_06-43-23-AM.log
+
+
+<span class="c1">## 执行完毕后回来按下enter键</span>
+</pre></div>
+<blockquote><p>执行完毕后，会发现在db-oracle-node2节点上也在同路径下安装了grid</p>
+</blockquote>
+<p>错误及解决方法</p>
+<div class="highlight"><pre><span></span><span class="c1">## 错误1</span>
+<span class="c1"># SEVERE: [FATAL] [INS-40904] ORACLE_HOSTNAME does not resolve to a valid host name.</span>
+<span class="c1">#    CAUSE: The value provided for ORACLE_HOSTNAME does not resolve to a valid host name.</span>
+<span class="c1">#    ACTION: Provide a valid host name for ORACLE_HOSTNAME, and restart the installer.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 检查ORACLE_HOSTNAME设定是否正确</span>
+<span class="c1"># 2. 在/etc/hosts中增加&quot;publicip ORACLE_HOSTNAME&quot;</span>
+
+
+<span class="c1">## 错误2</span>
+<span class="c1"># SEVERE: [FATAL] [INS-06006] Passwordless SSH connectivity not set up between the following node(s): [db-oracle-node2].</span>
+<span class="c1">#    CAUSE: Either passwordless SSH connectivity is not setup between specified node(s) or they are not reachable. Refer to the logs for more details.</span>
+<span class="c1">#    ACTION: Refer to the logs for more details or contact Oracle Support Services.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 使用grid身份登陆各node</span>
+<span class="c1"># 2. 生成ssh key</span>
+<span class="c1"># 3. 各node之间互相做信任</span>
+
+
+<span class="c1">## 错误3</span>
+<span class="c1"># SEVERE: [FATAL] [INS-40925] One or more nodes have interfaces not configured with a subnet that is common across all cluster nodes.</span>
+<span class="c1">#   CAUSE: Not all nodes have network interfaces that are configured on subnets that are common to all nodes in the cluster.</span>
+<span class="c1">#   ACTION: Ensure all cluster nodes have a public interface defined with the same subnet accessible by all nodes in the cluster.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 将oracle.install.crs.config.privateInterconnects=bond0:192.168.33.103:2,eth3:172.16.44.103:1,eth4:172.16.48.103:1</span>
+<span class="c1"># 修改为oracle.install.crs.config.privateInterconnects=bond0:192.168.33.0:1,eth3:172.16.44.0:2,eth4:172.16.48.0:2</span>
+
+<span class="c1"># 原因：</span>
+<span class="c1"># 1. 不能使用ip，需要使用网段，既把最后一段ip改为0</span>
+<span class="c1"># 2. 文档中说1代表private，2代表public，其实是错的，应该要反过来</span>
+
+
+<span class="c1">## 警告4</span>
+<span class="c1"># WARNING: [WARNING] [INS-30011] The password entered does not conform to the Oracle recommended standards.</span>
+<span class="c1">#    CAUSE: Oracle recommends that the SYS password entered should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9].</span>
+<span class="c1">#    ACTION: Provide a password that conforms to the Oracle recommended standards.</span>
+<span class="c1"># SEVERE: [FATAL] [INS-30001] The ASMSNMP password is empty.</span>
+<span class="c1">#    CAUSE: The ASMSNMP password should not be empty.</span>
+<span class="c1">#    ACTION: Provide a non-empty password.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 修改SYSASM的password，使其符合规则(最少1个大写字母，1个小写字母，1个数字)</span>
+<span class="c1"># 2. 增加ASMSNMP的password，密码规则(最少1个大写字母，1个小写字母，1个数字)</span>
+
+<span class="c1">## 错误5</span>
+<span class="c1"># 因为同时在node1和node2上执行root.sh，造成root.sh执行失败</span>
+<span class="c1"># 官方文档解决办法</span>
+<span class="c1"># C. GI Cluster Deconfigure and Reconfigure</span>
+<span class="c1">#</span>
+<span class="c1"># Identify cause of root.sh failure by reviewing logs in $GRID_HOME/cfgtoollogs/crsconfig and $GRID_HOME/log, once cause is identified and problem is fixed, deconfigure and reconfigure with steps below - keep in mind that you will need wait till each step finishes successfully before move to next one:</span>
+<span class="c1">#</span>
+<span class="c1"># Step 0: For 11.2.0.2 and above, root.sh is restartable.</span>
+<span class="c1">#</span>
+<span class="c1"># Once cause is identified and the problem is fixed, root.sh can be executed again on the failed node. If it succeeds, continue with your planned installation procedure; otherwise as root sequentially execute &quot;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force&quot; and $GRID_HOME/root.sh on local node, if it succeeds, continue with your planned installation procedure, otherwise proceed to next step (Step 1) of the note.</span>
+<span class="c1">#</span>
+<span class="c1"># Step 1: As root, run &quot;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force&quot; on all nodes, except the last one.</span>
+<span class="c1">#</span>
+<span class="c1"># Step 2: As root, run &quot;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force -lastnode&quot; on last node. This command will zero out OCR, Voting Disk and the ASM diskgroup for OCR and Voting Disk</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1">#     Note:</span>
+<span class="c1">#</span>
+<span class="c1">#     a. Step1 and 2 can be skipped on node(s) where root.sh haven&#39;t been executed this time.</span>
+<span class="c1">#</span>
+<span class="c1">#     b. Step1 and 2 should remove checkpoint file. To verify:</span>
+<span class="c1">#</span>
+<span class="c1">#           ls -l $ORACLE_BASE/Clusterware/ckptGridHA_.xml</span>
+<span class="c1">#</span>
+<span class="c1">#     If it&#39;s still there, please remove it manually with &quot;rm&quot; command on all nodes</span>
+<span class="c1">#</span>
+<span class="c1">#     c. If GPNP profile is different between nodes/setup, clean it up on all nodes as grid user</span>
+<span class="c1">#</span>
+<span class="c1">#           $ find &lt;GRID_HOME&gt;/gpnp/* -type f -exec rm -rf {} \;          </span>
+<span class="c1">#</span>
+<span class="c1">#     The profile needs to be cleaned up:</span>
+<span class="c1">#</span>
+<span class="c1">#         c1. If root.sh is executed concurrently - one should not execute root.sh on any other nodes before it finishes on first node.</span>
+<span class="c1">#</span>
+<span class="c1">#         c2. If network info, location of OCR or Voting Disk etc changed after Grid is installed - rare</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Step 3: As root, run $GRID_HOME/root.sh on first node</span>
+<span class="c1">#</span>
+<span class="c1"># Step 4: As root, run $GRID_HOME/root.sh on all other node(s), except last one.</span>
+<span class="c1">#</span>
+<span class="c1"># Step 5: As root, run $GRID_HOME/root.sh on last node.</span>
+</pre></div>
+<h4>9) 检查结果</h4>
+<div class="highlight"><pre><span></span>/u01/app/11.2.0/grid/bin/crs_stat -t
+Name           Type           Target    State     Host
+------------------------------------------------------------
+ora....ER.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N1.lsnr ora....er.type ONLINE    ONLINE    db-o...ode2
+ora....N2.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N3.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora.OCRVOTE.dg ora....up.type ONLINE    ONLINE    db-o...ode1
+ora.asm        ora.asm.type   ONLINE    ONLINE    db-o...ode1
+ora.cvu        ora.cvu.type   ONLINE    ONLINE    db-o...ode1
+ora....SM1.asm application    ONLINE    ONLINE    db-o...ode1
+ora....E1.lsnr application    ONLINE    ONLINE    db-o...ode1
+ora....de1.gsd application    OFFLINE   OFFLINE
+ora....de1.ons application    ONLINE    ONLINE    db-o...ode1
+ora....de1.vip ora....t1.type ONLINE    ONLINE    db-o...ode1
+ora....SM2.asm application    ONLINE    ONLINE    db-o...ode2
+ora....E2.lsnr application    ONLINE    ONLINE    db-o...ode2
+ora....de2.gsd application    OFFLINE   OFFLINE
+ora....de2.ons application    ONLINE    ONLINE    db-o...ode2
+ora....de2.vip ora....t1.type ONLINE    ONLINE    db-o...ode2
+ora.gsd        ora.gsd.type   OFFLINE   OFFLINE
+ora....network ora....rk.type ONLINE    ONLINE    db-o...ode1
+ora.oc4j       ora.oc4j.type  ONLINE    ONLINE    db-o...ode1
+ora.ons        ora.ons.type   ONLINE    ONLINE    db-o...ode1
+ora.scan1.vip  ora....ip.type ONLINE    ONLINE    db-o...ode2
+ora.scan2.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+ora.scan3.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+<span class="c1"># 所有的name对应一个target，并且state应该是online，除了以&quot;.gsd&quot;结尾的。</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.0.0_silent_installation_env.html">
+                1.0.0 silent模式安装oracle 11G R2 之 环境准备
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.1.0_silent_installation_oracle_install.html">
+                1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.2.0_silent_installation_netca_listen.html">
+                1.2.0 silent模式安装oracle 11G R2 之 netca监听
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">
+                1.3.0 silent模式安装oracle 11G R2 之 安装database实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.4.0_silent_installation_error.html">
+                1.4.0 silent模式安装oracle 11G R2 之 安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">
+                1.5.0 silent安装之cvuqdisk
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.6.0_OUI_installation_error.html">
+                1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.1.0_oracle_sql_statement.html">
+                2.1.0 oracle sql语句之表备份实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.2.0_oracle_sql_drop_database.html">
+                2.2.0 oracle sql语句之删除数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">
+                3.1.0 RAC-架构预览
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">
+                3.2.0 RAC-配置主机名和网络
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">
+                3.3.0 RAC-配置ntp服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">
+                3.4.0 RAC-系统配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user&group.html">
+                3.5.0 RAC-配置用户和组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">
+                3.6.0 RAC-存储配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">
+                3.7.0 RAC-安装oracle grid infrastructure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">
+                3.8.0 RAC-安装oracle 11g r2软件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">
+                3.9.0 RAC-通过ASMCA创建ASM硬盘组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.10.0_rac_dbca_create_database.html">
+                3.10.0 RAC-通过DBCA创建数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.11.0_rac_management.html">
+                3.11.0 RAC-管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">
+                4.1.0 oracle error之ORA-01034
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.2.0_oracle_error_display.html">
+                4.2.0 oracle error之图形安装DISPLAY错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">
+                5.1.0 oracle dataguard 11g r2 搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">
+                5.1.1 oracle dataguard 11g r2 rman恢复错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">
+                5.2.0 oracle dataguard 11g r2 一主多备搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">
+                6.2.0 ora-28001 the password has expired
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

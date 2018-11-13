@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>linux: ulimit优化</h3>
+<hr>
+<h3>0. ulimit简介</h3>
+<p>linux系统有文件句柄限制的概念，其配置就是ulimit来管理的。<br>
+这个限制的含义就是，linux使用其来对shell进程及其子进程使用资源进行的一种限制。</p>
+<hr>
+<h3>1. ulimit信息查看</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 查看所有信息</span>
+<span class="nb">ulimit</span> -a
+core file size          <span class="o">(</span>blocks, -c<span class="o">)</span> <span class="m">0</span>
+data seg size           <span class="o">(</span>kbytes, -d<span class="o">)</span> unlimited
+scheduling priority             <span class="o">(</span>-e<span class="o">)</span> <span class="m">0</span>
+file size               <span class="o">(</span>blocks, -f<span class="o">)</span> unlimited
+pending signals                 <span class="o">(</span>-i<span class="o">)</span> <span class="m">3876</span>
+max locked memory       <span class="o">(</span>kbytes, -l<span class="o">)</span> <span class="m">64</span>
+max memory size         <span class="o">(</span>kbytes, -m<span class="o">)</span> unlimited
+open files                      <span class="o">(</span>-n<span class="o">)</span> <span class="m">1024</span>
+pipe size            <span class="o">(</span><span class="m">512</span> bytes, -p<span class="o">)</span> <span class="m">8</span>
+POSIX message queues     <span class="o">(</span>bytes, -q<span class="o">)</span> <span class="m">819200</span>
+real-time priority              <span class="o">(</span>-r<span class="o">)</span> <span class="m">0</span>
+stack size              <span class="o">(</span>kbytes, -s<span class="o">)</span> <span class="m">10240</span>
+cpu <span class="nb">time</span>               <span class="o">(</span>seconds, -t<span class="o">)</span> unlimited
+max user processes              <span class="o">(</span>-u<span class="o">)</span> <span class="m">3876</span>
+virtual memory          <span class="o">(</span>kbytes, -v<span class="o">)</span> unlimited
+file locks                      <span class="o">(</span>-x<span class="o">)</span> unlimited
+
+<span class="c1"># 查看针对当前用户的软限制</span>
+<span class="nb">ulimit</span> -Sn
+<span class="m">1024</span>
+
+<span class="c1"># 查看针对当前用户的硬限制</span>
+<span class="nb">ulimit</span> -Hn
+<span class="m">1024</span>
+</pre></div>
+<p>其中open files对应的配置数目是最大打开文件数目，默认是1024，生产环境下，这个参数会影响到某些程序的并发数量，例如mysql。</p>
+<hr>
+<h3>2. 系统总文件句柄查看</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 查看系统总的文件句柄限制</span>
+cat /proc/sys/fs/file-max
+<span class="m">97984</span>
+
+<span class="c1"># 查看目前系统使用的文件句柄数量</span>
+cat /proc/sys/fs/file-nr
+<span class="m">512</span> <span class="m">0</span> <span class="m">97984</span>
+<span class="c1"># 512   -&gt; 分配并使用的文件句柄数</span>
+<span class="c1"># 0     -&gt; 分配却未使用的文件句柄数</span>
+<span class="c1"># 97984 -&gt; 内核级别的最大文件句柄数</span>
+</pre></div>
+<blockquote><p><strong>file-max vs ulimit</strong><br>
+<code>file-max</code>是linux内核级别的设定，影响的是linux内核最高可以打开的文件数限制；<br>
+<code>ulimit</code>是进程级别的设定，影响的是指定用户启动进程最高可以打开的文件数限制；</p>
+<p>参考文档:<br>
+<a href="https://unix.stackexchange.com/questions/55319/are-limits-conf-values-applied-on-a-per-process-basis">ulimit设定的是每个进程的属性，而不是该用户所有进程的总限制</a><br>
+<a href="https://unix.stackexchange.com/questions/447583/ulimit-vs-file-max">ulimit vs file-max</a><br>
+<a href="https://stackoverflow.com/questions/6180569/need-to-calculate-optimum-ulimit-and-fs-file-max-values-according-to-my-own-se">如何计算最大文件打开数应该设定多少</a></p>
+</blockquote>
+<hr>
+<h3>3. ulimit配置</h3>
+<h4>1) 通过配置文件来修改</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 修改/etc/security/limits.conf</span>
+********************
+* soft nofile <span class="m">32768</span>
+* hard nofile <span class="m">65535</span>
+********************
+<span class="c1">## 重点需要注意 ##</span>
+<span class="c1"># 后来发现编辑此文件并没有改变ulimit -a 中的open files值，原来是因为，当我们用&#39;*&#39;入口来配置时，会被/etc/security/limits.d/90-nproc.conf中的配置所覆盖，此时只需要去更改此默认值就可以了</span>
+
+
+<span class="c1"># limits.conf实际是linux pam中的pam_limits.so的配置文件，针对于单个会话</span>
+<span class="c1"># 编辑/etc/pam.d/login</span>
+********************
+session    required     /lib64/security/pam_limits.so
+********************
+</pre></div>
+<h4>2) limits.conf的详细说明</h4>
+<div class="highlight"><pre><span></span><span class="c1"># /etc/security/limits.conf</span>
+<span class="c1">#</span>
+<span class="c1">#Each line describes a limit for a user in the form:</span>
+<span class="c1">#</span>
+<span class="c1">#&lt;domain&gt;        &lt;type&gt;  &lt;item&gt;  &lt;value&gt;</span>
+<span class="c1">#</span>
+<span class="c1">#Where:</span>
+<span class="c1">#&lt;domain&gt; can be:</span>
+<span class="c1">#        - a user name</span>
+<span class="c1">#        - a group name, with @group syntax</span>
+<span class="c1">#        - the wildcard *, for default entry</span>
+<span class="c1">#        - the wildcard %, can be also used with %group syntax,</span>
+<span class="c1">#                 for maxlogin limit</span>
+<span class="c1">#</span>
+<span class="c1">#&lt;type&gt; can have the two values:</span>
+<span class="c1">#        - &quot;soft&quot; for enforcing the soft limits</span>
+<span class="c1">#        - &quot;hard&quot; for enforcing hard limits</span>
+<span class="c1">#        - &quot;-&quot; for both enforcing hard and soft limits</span>
+<span class="c1">#</span>
+<span class="c1">#&lt;item&gt; can be one of the following:</span>
+<span class="c1">#        - core - limits the core file size (KB)</span>
+<span class="c1">#        - data - max data size (KB)</span>
+<span class="c1">#        - fsize - maximum filesize (KB)</span>
+<span class="c1">#        - memlock - max locked-in-memory address space (KB)</span>
+<span class="c1">#        - nofile - max number of open file descriptors</span>
+<span class="c1">#        - rss - max resident set size (KB)</span>
+<span class="c1">#        - stack - max stack size (KB)</span>
+<span class="c1">#        - cpu - max CPU time (MIN)</span>
+<span class="c1">#        - nproc - max number of processes</span>
+<span class="c1">#        - as - address space limit (KB)</span>
+<span class="c1">#        - maxlogins - max number of logins for this user</span>
+<span class="c1">#        - maxsyslogins - max number of logins on the system</span>
+<span class="c1">#        - priority - the priority to run user process with</span>
+<span class="c1">#        - locks - max number of file locks the user can hold</span>
+<span class="c1">#        - sigpending - max number of pending signals</span>
+<span class="c1">#        - msgqueue - max memory used by POSIX message queues (bytes)</span>
+<span class="c1">#        - nice - max nice priority allowed to raise to values: [-20, 19]</span>
+<span class="c1">#        - rtprio - max realtime priority</span>
+<span class="c1">#</span>
+<span class="c1">#&lt;domain&gt;      &lt;type&gt;  &lt;item&gt;         &lt;value&gt;</span>
+<span class="c1">#</span>
+
+<span class="c1">#*               soft    core            0</span>
+<span class="c1">#*               hard    rss             10000</span>
+<span class="c1">#@student        hard    nproc           20</span>
+<span class="c1">#@faculty        soft    nproc           20</span>
+<span class="c1">#@faculty        hard    nproc           50</span>
+<span class="c1">#ftp             hard    nproc           0</span>
+<span class="c1">#@student        -       maxlogins       4</span>
+
+<span class="c1"># End of file</span>
+</pre></div>
+<h4>3) 通过ulimit命令来修改</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 将ulimit命令添加到rc.local中</span>
+<span class="nb">echo</span> <span class="s2">&quot;ulimit -SHn 65535&quot;</span> &gt;&gt; /etc/rc.local
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/centos6_booted_services_optimize.html">
+                centos6 开机服务优化
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/firewall_ipset_bitmap_ip_mac.html">
+                firewall: ipset-bitmap:ip,mac
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/firewall_ipset_basic.html">
+                firewall: ipset使用教程
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/glibc_1.1.0_centos6.5_upgrade_2.14.html">
+                glibc 1.1.0 centos6升级到2.14
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/linux_optimize_ulimit.html">
+                linux: ulimit优化
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/linux_optimize_ulimit_error.html">
+                linux: 普通用户无法修改ulimit
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_Centos7_no_nic_device.html">
+                network: Centos7 没有可用的网络设备
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_centos7-network_error.html">
+                network: Centos7-网络服务错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_keepalive.html">
+                network: tcp keepalive (include versus with http keepalive)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_vmware_clone_Centos6.html">
+                network: vmware克隆Centos6后的网络设置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_handshake.html">
+                network: 理解TCP三次握手和四次挥手
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/nginx_log_combined.html">
+                nginx: log_format combined?
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/openssl_1.1.0_ssl_tls.html">
+                openssl 1.1.0 证书相关名词含义
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/openssl_1.2.0_pem.html">
+                openssl 1.2.0 pem基本操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/rsync_1.1.0_max_connections.html">
+                rsync 1.1.0 error: max connections reached
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/rsync_1.2.0_chmod_chown.html">
+                rsync 1.2.0 chown chmod
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/selinux_1.0.0_basic.html">
+                selinux 1.0.0 basic
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/ssl_generate_key_cfssl.html">
+                ssl: generate key by cfssl
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/sudo_1.1.0_SETENV_NOPASSWD.html">
+                sudo 1.1.0 执行sudo时保持env变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/systemd_1.0.0_hook_start_and_stop.html">
+                systemd 1.0.0 同时启动关停多个服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/systemd_1.1.0_debug_cmd.html">
+                systemd 1.1.0 排查错误使用的命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/systemd_1.2.0_unit_file_load_sequence_and_manual.html">
+                systemd 1.2.0 unit file load sequence and manual
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/tools_1.1.0_z_cd.html">
+                工具: 1.1.0 切换目录-z武器
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/oper_1.0_file_and_user_process.html">
+                日常管理: 1.0 查看文件与用户和进程的关联
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/systeminfo_1.1.0_cpuinfo.html">
+                系统信息：1.1.0 cpuinfo 超线程引起的争吵
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
+                调优: 1.1.0 TCP中的TIME_WAIT
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/optimize_1.2.0_web.html">
+                调优: 1.2.0 web服务器优化
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>
