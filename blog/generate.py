@@ -86,6 +86,8 @@ class Md2Html(object):
         # collect topic data base on md_info and html_info
         self.topic_data = self._topic_data()
         # initial page_info get all variables
+        self.index_json()
+        self.topic_json()
         p_info = PageInfo()
         self.TOPIC_DICT = p_info.get_topic()
         self.CAT_DICT = p_info.get_cat()
@@ -588,8 +590,6 @@ def _sort_key(in_list):
 
 def main(md_dir=None, html_dir=None):
     M2H = Md2Html(md_dir=md_dir, html_dir=html_dir)
-    M2H.index_json()
-    M2H.topic_json()
     M2H.html_gen()
     M2H.html_gen_index()
     M2H.html_gen_category_index()
