@@ -11,6 +11,7 @@ from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
 from config import Config
+from page_info import PageInfo
 
 
 CONF_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,13 +51,19 @@ class Md2Html(object):
         self.template_dir = template_dir or default_template_dir
         self.template_0_html_start = "/".join((self.template_dir, "template-0-html-start.html"))
         self.template_1_header = "/".join((self.template_dir, "template-1-header.html"))
-        self.template_2_body_nav = "/".join((self.template_dir, "template-2-body-nav.html"))
-        self.template_3_body_sidebar_start = "/".join((self.template_dir, "template-3-body-sidebar-start.html"))
+        self.template_2_body_nav_begin = "/".join((self.template_dir, "template-2-body-nav-begin.html"))
+        self.template_2_body_nav_end = "/".join((self.template_dir, "template-2-body-nav-end.html"))
+        self.template_3_body_sidebar_begin = "/".join((self.template_dir, "template-3-body-sidebar-begin.html"))
+        self.template_5_body_sidebar_midd01 = "/".join((self.template_dir, "template-5-body-sidebar-midd01.html"))
+        self.template_5_body_sidebar_midd02 = "/".join((self.template_dir, "template-5-body-sidebar-midd02.html"))
         self.template_5_body_sidebar_end = "/".join((self.template_dir, "template-5-body-sidebar-end.html"))
         self.template_6_body_footer = "/".join((self.template_dir, "template-6-body-footer.html"))
         self.template_7_body_script = "/".join((self.template_dir, "template-7-body-script.html"))
         self.template_8_html_end = "/".join((self.template_dir, "template-8-html-end.html"))
-        self.template_index = "/".join((self.template_dir, "template-index.html"))
+        self.template_index_begin = "/".join((self.template_dir, "template-index-begin.html"))
+        self.template_index_end = "/".join((self.template_dir, "template-index-end.html"))
+        self.template_category_index_begin = "/".join((self.template_dir, "template-category-index-begin.html"))
+        self.template_category_index_end = "/".join((self.template_dir, "template-category-index-end.html"))
 
         # make sure html_dir,md_dir is absolute path to an existing dir
         if not _dir_check(self.html_dir):
@@ -70,9 +77,22 @@ class Md2Html(object):
         self.topics_json = BLOG["topics_json"]
         self.index_json_file = BLOG["index_json_file"]
 
+        ####################################
+        # 初始化文章信息，顺序不要换
+        ####################################
         # collect md info and html info first
         self.md_info_coll()
         self.html_info_coll()
+        # collect topic data base on md_info and html_info
+        self.topic_data = self._topic_data()
+        # initial page_info get all variables
+        p_info = PageInfo()
+        self.TOPIC_DICT = p_info.get_topic()
+        self.CAT_DICT = p_info.get_cat()
+        self.LATEST_PAGE = p_info.get_latest_page()
+        # get template content
+        self.template_content = self._get_template_content()
+        self.template_content_topic_for_all = self._get_template_content("ALL")
 
     def md_info_coll(self):
         '''
@@ -146,91 +166,249 @@ class Md2Html(object):
             md_content = _get_md_content(md_cname)
             renderer = HighlightRenderer()
             content = _generate_html(md_cname, md_content, renderer)
+
+            # prepare template_5_body_sidebar_end identified by cat and sub_cat
+            cat = self.md_info[md_cname]["base_cat"]
+            sub_cat = self.md_info[md_cname]["sub_cat"]
+            template_content_topic_for_sub_cat = self._get_template_content(topic_for=sub_cat)
+            template_5_body_sidebar_end = "".join((
+                template_content_topic_for_sub_cat["template_5_body_sidebar_end"][0],
+                template_content_topic_for_sub_cat["template_5_body_sidebar_end"][1],
+                template_content_topic_for_sub_cat["template_5_body_sidebar_end"][2],
+                "".join((template_content_topic_for_sub_cat["template_5_body_sidebar_end"][3][cat])),
+                template_content_topic_for_sub_cat["template_5_body_sidebar_end"][4]))
             if content:
-                '''
-                使用HTML模板及动态内容生成HTML文件
-                '''
-                with codecs.open(self.template_0_html_start, 'r', encoding='utf8') as f:
-                    template_0_html_start = f.read()
-
-                with codecs.open(self.template_1_header, 'r', encoding='utf8') as f:
-                    template_1_header = f.read()
-
-                with codecs.open(self.template_2_body_nav, 'r', encoding='utf8') as f:
-                    template_2_body_nav = f.read()
-
-                with codecs.open(self.template_3_body_sidebar_start, 'r', encoding='utf8') as f:
-                    template_3_body_sidebar_start = f.read()
-
-                with codecs.open(self.template_5_body_sidebar_end, 'r', encoding='utf8') as f:
-                    template_5_body_sidebar_end = f.read()
-
-                with codecs.open(self.template_6_body_footer, 'r', encoding='utf8') as f:
-                    template_6_body_footer = f.read()
-
-                with codecs.open(self.template_7_body_script, 'r', encoding='utf8') as f:
-                    template_7_body_script = f.read()
-
-                with codecs.open(self.template_8_html_end, 'r', encoding='utf8') as f:
-                    template_8_html_end = f.read()
-
                 with codecs.open(html_cname, 'w', encoding='utf8') as f:
-                    f.write(template_0_html_start)
-                    f.write(template_1_header)
-                    f.write(template_2_body_nav)
-                    f.write(template_3_body_sidebar_start)
+                    f.write(self.template_content["template_0_html_start"])
+                    f.write(self.template_content["template_1_header"])
+                    f.write(self.template_content["template_2_body_nav"])
+                    f.write(self.template_content["template_3_body_sidebar_begin"])
                     f.write(content)
                     f.write(template_5_body_sidebar_end)
-                    f.write(template_6_body_footer)
-                    f.write(template_7_body_script)
-                    f.write(template_8_html_end)
+                    f.write(self.template_content["template_6_body_footer"])
+                    f.write(self.template_content["template_7_body_script"])
+                    f.write(self.template_content["template_8_html_end"])
                 print "INFO: [%s] convert success." % md_cname
             else:
                 del self.md_info[md_cname]
                 continue
 
     def html_gen_index(self):
+        """generate index.html of homepage"""
+        with codecs.open(self.html_index, 'w', encoding='utf8') as f:
+            f.write(self.template_content["template_0_html_start"])
+            f.write(self.template_content["template_1_header"])
+            f.write(self.template_content["template_2_body_nav"])
+            f.write(self.template_content["template_index"])
+            f.write(self.template_content["template_6_body_footer"])
+            f.write(self.template_content["template_7_body_script"])
+            f.write(self.template_content["template_8_html_end"])
+        print "INFO: site index.html generate success."
+
+    def html_gen_category_index(self):
+        """generate index.html of categories"""
+        cats = self.TOPIC_DICT.keys()
+        for cat in cats:
+            cat_index_file = "/".join((self.html_dir, cat, "index.html"))
+            template_category_index = "".join((
+                self.template_content_topic_for_all["template_category_index"][0],
+                self.template_content_topic_for_all["template_category_index"][1][cat],
+                self.template_content_topic_for_all["template_category_index"][2]))
+            template_5_body_sidebar_end = "".join((
+                self.template_content["template_5_body_sidebar_end"][0],
+                self.template_content["template_5_body_sidebar_end"][1],
+                self.template_content["template_5_body_sidebar_end"][2],
+                self.template_content["template_5_body_sidebar_end"][3][cat],
+                self.template_content["template_5_body_sidebar_end"][4]))
+            with codecs.open(cat_index_file, 'w', encoding='utf8') as f:
+                f.write(self.template_content["template_0_html_start"])
+                f.write(self.template_content["template_1_header"])
+                f.write(self.template_content["template_2_body_nav"])
+                f.write(self.template_content["template_3_body_sidebar_begin"])
+                f.write(template_category_index)
+                f.write(template_5_body_sidebar_end)
+                f.write(self.template_content["template_6_body_footer"])
+                f.write(self.template_content["template_7_body_script"])
+                f.write(self.template_content["template_8_html_end"])
+            print("INFO: category %s index.html generate success." % cat)
+
+    def html_gen_sub_category_index(self):
+        """generate index.html of sub categories"""
+        cats = self.TOPIC_DICT.keys()
+        for cat in cats:
+            sub_cats = self.TOPIC_DICT[cat].keys()
+            for sub_cat in sub_cats:
+                cat_index_file = "/".join((self.html_dir, cat, sub_cat, "index.html"))
+                template_content_topic_for_sub_cat = self._get_template_content(topic_for=sub_cat)
+                template_category_index = "".join((
+                    template_content_topic_for_sub_cat["template_category_index"][0],
+                    template_content_topic_for_sub_cat["template_category_index"][1][cat],
+                    template_content_topic_for_sub_cat["template_category_index"][2]))
+                template_5_body_sidebar_end = "".join((
+                    template_content_topic_for_sub_cat["template_5_body_sidebar_end"][0],
+                    template_content_topic_for_sub_cat["template_5_body_sidebar_end"][1],
+                    template_content_topic_for_sub_cat["template_5_body_sidebar_end"][2],
+                    template_content_topic_for_sub_cat["template_5_body_sidebar_end"][3][cat],
+                    template_content_topic_for_sub_cat["template_5_body_sidebar_end"][4]))
+                with codecs.open(cat_index_file, 'w', encoding='utf8') as f:
+                    f.write(self.template_content["template_0_html_start"])
+                    f.write(self.template_content["template_1_header"])
+                    f.write(self.template_content["template_2_body_nav"])
+                    f.write(self.template_content["template_3_body_sidebar_begin"])
+                    f.write(template_category_index)
+                    f.write(template_5_body_sidebar_end)
+                    f.write(self.template_content["template_6_body_footer"])
+                    f.write(self.template_content["template_7_body_script"])
+                    f.write(self.template_content["template_8_html_end"])
+                print("INFO: sub category %s index.html generate success." % sub_cat)
+
+    def _get_template_content(self, topic_for=None):
+        """generate a dict which contains all template strings
+        no_topic and raw_sub_cat will finally pass to _get_content_list"""
+        template_content = {}
+
         with codecs.open(self.template_0_html_start, 'r', encoding='utf8') as f:
             template_0_html_start = f.read()
+            template_content["template_0_html_start"] = template_0_html_start
 
         with codecs.open(self.template_1_header, 'r', encoding='utf8') as f:
             template_1_header = f.read()
+            template_content["template_1_header"] = template_1_header
 
-        with codecs.open(self.template_2_body_nav, 'r', encoding='utf8') as f:
-            template_2_body_nav = f.read()
+        template_content["template_2_body_nav"] = self._get_template_2_body_nav()
 
-        with codecs.open(self.template_3_body_sidebar_start, 'r', encoding='utf8') as f:
-            template_3_body_sidebar_start = f.read()
+        with codecs.open(self.template_3_body_sidebar_begin, 'r', encoding='utf8') as f:
+            template_3_body_sidebar_begin = f.read()
+            template_content["template_3_body_sidebar_begin"] = template_3_body_sidebar_begin
+
+        template_content["template_5_body_sidebar_end"] = self._get_template_5_body_sidebar_end(topic_for=topic_for)
+
+        with codecs.open(self.template_6_body_footer, 'r', encoding='utf8') as f:
+            template_6_body_footer = f.read()
+            template_content["template_6_body_footer"] = template_6_body_footer
+
+        with codecs.open(self.template_7_body_script, 'r', encoding='utf8') as f:
+            template_7_body_script = f.read()
+            template_content["template_7_body_script"] = template_7_body_script
+
+        with codecs.open(self.template_8_html_end, 'r', encoding='utf8') as f:
+            template_8_html_end = f.read()
+            template_content["template_8_html_end"] = template_8_html_end
+
+        template_content["template_index"] = self._get_template_index()
+
+        template_content["template_category_index"] = self._get_template_category_index(topic_for=topic_for)
+
+        return template_content
+
+    def _get_cat_list_html(self):
+        """return a string of all topic html items"""
+        topic_list = []
+        for topic in self._get_topics():
+            nav_html = '\n\
+            <li role="presentation">\n\
+             <a href="/%s" role="menuitem" tabindex="-1">\n\
+              %s\n\
+             </a>\n\
+            </li>' % (topic, topic)
+            topic_list.append(nav_html)
+        topic_list_html = "".join(topic_list)
+        return topic_list_html
+
+    def _get_template_2_body_nav(self):
+        # 为nav template中的文档类别列表准备数据
+        with codecs.open(self.template_2_body_nav_begin, 'r', encoding='utf8') as f:
+            template_2_body_nav_begin = f.read()
+
+        nav_list_html = self._get_cat_list_html()
+
+        with codecs.open(self.template_2_body_nav_end, 'r', encoding='utf8') as f:
+            template_2_body_nav_end = f.read()
+
+        return "".join((template_2_body_nav_begin, nav_list_html, template_2_body_nav_end))
+
+    def _get_template_index(self):
+        with codecs.open(self.template_index_begin, 'r', encoding='utf8') as f:
+            template_index_begin = f.read()
+
+        index_list_html = self._get_cat_list_html()
+
+        with codecs.open(self.template_index_end, 'r', encoding='utf8') as f:
+            template_index_end = f.read()
+
+        return "".join((template_index_begin, index_list_html, template_index_end))
+
+    def _get_content_list(self, topic_for=None):
+        """ return a dict of {cat:sub-cat-html-content}
+        topic_for - means will return dict which only contain topics for it.
+                    if None, no topics inside
+                    if All, all sub_cat contains topics
+        """
+        content_list_result = {}
+        sub_cat_html_end = '\n\
+            </ul>\n\
+           </li>'
+        cats = self.TOPIC_DICT.keys()
+        for cat in cats:
+            sub_cat_list = []
+            sub_cats = self.TOPIC_DICT[cat].keys()
+            for sub_cat in sub_cats:
+                sub_cat_html_begin = '\n\
+           <li class="toctree-l1">\n\
+            <a class="reference internal" href="/%s/%s">\n\
+              %s\n\
+            </a>\n\
+            <ul>' % (cat, sub_cat, sub_cat)
+                if topic_for == "ALL" or topic_for == sub_cat:
+                    topics = self.TOPIC_DICT[cat].get(sub_cat, [])
+                    topics_list = []
+                    for t in topics:
+                        topic_html = '\n\
+             <li class="toctree-l2">\n\
+              <a class="reference internal" href="%s">\n\
+                %s\n\
+              </a>\n\
+             </li>' % (t[1], t[0])
+                        topics_list.append(topic_html)
+                    topics_list_html = "".join(topics_list)
+                else:
+                    topics_list_html = ""
+                sub_cat_list.append("".join((sub_cat_html_begin, topics_list_html, sub_cat_html_end)))
+            content_list_result[cat] = "".join(sub_cat_list)
+        return content_list_result
+
+    def _get_template_category_index(self, topic_for):
+        """create html content of template_category_index
+        topic_for will pass to _get_content_list
+        """
+        with codecs.open(self.template_category_index_begin, 'r', encoding='utf8') as f:
+            template_category_index_begin = f.read()
+
+        content_index_dict = self._get_content_list(topic_for=topic_for)
+
+        with codecs.open(self.template_category_index_end, 'r', encoding='utf8') as f:
+            template_category_index_end = f.read()
+
+        return (template_category_index_begin, content_index_dict, template_category_index_end)
+
+    def _get_template_5_body_sidebar_end(self, topic_for):
+        """create html content of template_5_body_sidebar_end
+        topic_for will pass to _get_content_list
+        """
+        with codecs.open(self.template_5_body_sidebar_midd01, 'r', encoding='utf8') as f:
+            template_5_body_sidebar_midd01 = f.read()
+
+        index_list_html = self._get_cat_list_html()
+
+        with codecs.open(self.template_5_body_sidebar_midd02, 'r', encoding='utf8') as f:
+            template_5_body_sidebar_midd02 = f.read()
+
+        content_index_dict = self._get_content_list(topic_for=topic_for)
 
         with codecs.open(self.template_5_body_sidebar_end, 'r', encoding='utf8') as f:
             template_5_body_sidebar_end = f.read()
 
-        with codecs.open(self.template_6_body_footer, 'r', encoding='utf8') as f:
-            template_6_body_footer = f.read()
-
-        with codecs.open(self.template_7_body_script, 'r', encoding='utf8') as f:
-            template_7_body_script = f.read()
-
-        with codecs.open(self.template_8_html_end, 'r', encoding='utf8') as f:
-            template_8_html_end = f.read()
-
-        with codecs.open(self.template_index, 'r', encoding='utf8') as f:
-            template_index = f.read()
-
-        with codecs.open(self.html_index, 'w', encoding='utf8') as f:
-            f.write(template_0_html_start)
-            f.write(template_1_header)
-            f.write(template_2_body_nav)
-            f.write(template_index)
-            f.write(template_6_body_footer)
-            f.write(template_7_body_script)
-            f.write(template_8_html_end)
-        print "INFO: site index.html generate success."
-
-
-class IndexJsonGen(Md2Html):
-    def __init__(self):
-        super(IndexJsonGen, self).__init__()
+        return (template_5_body_sidebar_midd01, index_list_html, template_5_body_sidebar_midd02, content_index_dict, template_5_body_sidebar_end)
 
     def topic_index(self):
         '''
@@ -249,6 +427,16 @@ class IndexJsonGen(Md2Html):
             f.write(index_data)
 
     def topic_json(self):
+        topic_json_data = json.dumps(self.topic_data, indent=4)
+        with open(self.topics_json, 'w') as f:
+            f.write(topic_json_data)
+
+    def _get_topics(self):
+        "return ['cat1', 'cat2', 'cat2', ...]"
+        return self.topic_data.keys()
+
+    def _topic_data(self):
+        "prepare data for topics.json, data like {cat1:{subcat1:[key1, key2, ...], ...}}"
         topic_data = {}
         for md_cname in self.md_info.keys():
             base_cat = self.md_info[md_cname]['base_cat']
@@ -257,25 +445,12 @@ class IndexJsonGen(Md2Html):
             html_cname = self.md_info[md_cname]['html_cname']
             html_link = html_cname.split(self.html_dir)[1]
 
-            # initial base_cat to a dict
-            # if not base_cat in topic_data.keys():
-            #     topic_data[base_cat] = {}
-
-            # initial sub_cat to a list
-            # if not sub_cat in topic_data[base_cat].keys():
-            #     topic_data[base_cat][sub_cat] = []
-
-            # save title, html_link and sort it
-            # topic_data[base_cat][sub_cat].append([title, html_link])
-
             # initial base_cat to a dict and initial sub_cat to a list
             # save title, html_link and sort it
             topic_data.setdefault(base_cat, {}).setdefault(sub_cat, []).append(
                 [title, html_link])
             topic_data[base_cat][sub_cat].sort(key=_sort_key)
-        topic_data = json.dumps(topic_data, indent=4)
-        with open(self.topics_json, 'w') as f:
-            f.write(topic_data)
+        return topic_data
 
 
 def _dir_check(dir):
@@ -412,12 +587,13 @@ def _sort_key(in_list):
 
 
 def main(md_dir=None, html_dir=None):
-    IJG = IndexJsonGen()
-    IJG.index_json()
-    IJG.topic_json()
     M2H = Md2Html(md_dir=md_dir, html_dir=html_dir)
-    M2H.html_gen_index()
+    M2H.index_json()
+    M2H.topic_json()
     M2H.html_gen()
+    M2H.html_gen_index()
+    M2H.html_gen_category_index()
+    M2H.html_gen_sub_category_index()
 
 
 if __name__ == "__main__":
