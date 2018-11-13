@@ -1,0 +1,790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>3.4.0 RAC-系统配置</h3>
+<hr>
+<h3>1. 系统配置</h3>
+<h4>1) oracle rac database 11g r2 需要的环境包</h4>
+<div class="highlight"><pre><span></span>yum groupinstall base core -y
+yum install -y cloog-ppl libXxf86misc compat-libcap1 libXxf86vm compat-libstdc++-33 libaio-devel cpp libdmx gcc libstdc++-devel gcc-c++ mpfr glibc-devel make glibc-headers ppl kernel-headers xorg-x11-utils libXmu xorg-x11-xauth libXt libXv ksh libXxf86dga
+</pre></div>
+<h4>2) 关闭selinux</h4>
+<div class="highlight"><pre><span></span>setenforce <span class="m">0</span>
+vim /etc/selinux/config
+******************************************************
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+******************************************************
+</pre></div>
+<h4>3) 防火墙配置</h4>
+<div class="highlight"><pre><span></span>vim /etc/sysconfig/iptables
+******************************************************
+<span class="c1"># Generated by iptables-save v1.4.7 on Fri Dec 23 09:17:06 2016</span>
+*filter
+:INPUT ACCEPT <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:FORWARD ACCEPT <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:OUTPUT ACCEPT <span class="o">[</span><span class="m">25</span>:2660<span class="o">]</span>
+<span class="c1"># 允许public网络每个节点的ip通过bond0连接</span>
+-A INPUT -s <span class="m">172</span>.168.33.103/32 -i bond0 -j ACCEPT
+-A INPUT -s <span class="m">172</span>.168.33.104/32 -i bond0 -j ACCEPT
+<span class="c1"># 允许private网络每个节点的网卡设备的所有连接</span>
+-A INPUT -i eth3 -j ACCEPT
+-A INPUT -i eth4 -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+<span class="c1"># 允许private网段到Oracle&#39;s Multicast address IPs: 230.0.1.0 and 224.0.0.251的连接</span>
+-A INPUT -s <span class="m">172</span>.16.44.0/24 -d <span class="m">230</span>.0.1.0 -j ACCEPT
+-A INPUT -s <span class="m">172</span>.16.48.0/24 -d <span class="m">224</span>.0.0.251 -j ACCEPT
+-A INPUT -s <span class="m">172</span>.16.44.0/24 -d <span class="m">230</span>.0.1.0 -j ACCEPT
+-A INPUT -s <span class="m">172</span>.16.48.0/24 -d <span class="m">224</span>.0.0.251 -j ACCEPT
+<span class="c1"># 允许bond0到Oracle&#39;s Multicast address IPs: 230.0.1.0 and 224.0.0.251的连接</span>
+-A INPUT -i bond0 -d <span class="m">230</span>.0.1.0 -j ACCEPT
+-A INPUT -i bond0 -d <span class="m">224</span>.0.0.251 -j ACCEPT
+<span class="c1"># 允许ssh/https端口</span>
+-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">22</span> -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">443</span> -j ACCEPT
+<span class="c1"># Enable Oracle SCAN Listener Port 1521 for Oracle DB client access</span>
+-A INPUT -m state --state NEW -m tcp -p tcp -s <span class="m">192</span>.168.33.121 --dport <span class="m">1521</span> -j ACCEPT
+<span class="c1"># Enable Oracle Enterprise Manager 11g Port 1158 for Oracle DB client access</span>
+-A INPUT -m state --state NEW -m tcp -p tcp -s <span class="m">192</span>.168.33.121 --dport <span class="m">1158</span> -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT
+******************************************************
+</pre></div>
+<p><a href="https://docs.oracle.com/cd/E13222_01/wls/docs81/ConsoleHelp/domain_cluster_config_multicast.html">ORACLE MULTICAST ADDRESS DOC</a></p>
+<h4>4) 设置虚拟内存</h4>
+<p>需要调节内核的5个参数来调优虚拟内存，虚拟内存被用于oracle rac集群内部。特别需要注意的是，以下推荐的值只是调优的一个起点。</p>
+<p>以下是虚拟内存调优参数的简单介绍和建议值：</p>
+<ul>
+<li>SWAPPINESS，值范围在0-100，代表了系统的swaps级别，高值，倾向于系统性能，会在内存不活动时主动的将其传输出物理内存暂存起来。低值，倾向于交互性，会尽可能的延长数据在内存中的时间，来降低访问的延时。默认值是60，oracle推荐设置为0</li>
+<li>DIRTY DATA，代表了已经被修改，为了性能保存在页缓存中的数据，一旦此数据被写入硬盘中，转换为clean data。</li>
+<li>DIRTY_RATIO，包含占系统总内存的百分比，即生成磁盘写入的进程它会开始写出脏数据的页面数。 默认值为20，推荐值为80。</li>
+<li>DIRTY_BACKGROUND_RATIO，包含占系统总内存的百分比，即后台写回服务它会开始写出脏数据的页面数。 推荐值为3。</li>
+<li>DIRTY_EXPIRE_CENTISECS，定义脏数据在内存中保持多久后有资格被写出的时间，默认是3000，单位是百分之一秒。oracle推荐为500.</li>
+<li>DIRTY_WRITEBACK_CENTISECS，定义脏数据被写出内存到磁盘间的间隔时间，默认是500，单位是百分之一秒。oracle推荐为100.</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c1">## 集群中各节点上执行</span>
+<span class="c1"># 备份原配置文件</span>
+cp /etc/sysctl.conf /etc/sysctl.conf.bak
+
+<span class="c1"># 修改配置优化虚拟内存设置</span>
+vim /etc/sysctl.conf
+******************************************************
+vm.swappiness <span class="o">=</span> <span class="m">0</span>
+vm.dirty_background_ratio <span class="o">=</span> <span class="m">3</span>
+vm.dirty_ratio <span class="o">=</span> <span class="m">80</span>
+vm.dirty_expire_centisecs <span class="o">=</span> <span class="m">500</span>
+vm.dirty_writeback_centisecs <span class="o">=</span> <span class="m">100</span>
+******************************************************
+
+<span class="c1"># 使配置立即生效</span>
+sysctl -p
+</pre></div>
+<h4>5) 设置共享内存</h4>
+<p>共享内存允许进程间通过将内存区域放置到内存段中来彼此通信。在oracle这里，共享内存被System Global Area (SGA)拿来存储输入数据和控制信息。Oracle SGA的大小影响要在系统中设置的共享内存页和共享内存段的数量。默认情况下，RHEL6会提供一个很大的共享内存页数和共享内存段数，然而，一个系统在此方面合适的分配数量还是取决于RAM的大小。为了在oracle集群节点上分配合适的共享内存，我们需要优化以下三个参数。</p>
+<ul>
+<li>SHMALL，全部共享内存页的页数最大值</li>
+<li>SHMMAX，一个单独共享内存段容量的最大值，单位是bytes</li>
+<li>SHMMNI，全部共享内存段的段数最大值</li>
+</ul>
+<p>在oracle集群的节点中，为了在每个系统的内存页容量(bytes)中决定共享内页的数量，以下这个命令会帮助我们获得系统的内存页数量。</p>
+<div class="highlight"><pre><span></span>getconf PAGE_SIZE
+<span class="m">4096</span>
+</pre></div>
+<p>接下来我们计算三个参数的值</p>
+<div class="highlight"><pre><span></span><span class="c1"># 计算SHMALL公式：TOTAL RAM IN BYTES / PAGE_SIZE</span>
+<span class="nb">echo</span> <span class="s2">&quot;`cat /proc/meminfo |awk &#39;/MemTotal/{print </span><span class="nv">$2</span><span class="s2">}&#39;` * 1024 / `getconf PAGE_SIZE`&quot;</span> <span class="p">|</span> bc
+<span class="m">125486</span>
+
+<span class="c1"># 计算SHMMAX公式：HALF OF TOTAL RAM IN BYTES</span>
+<span class="nb">echo</span> <span class="s2">&quot;`cat /proc/meminfo |awk &#39;/MemTotal/{print </span><span class="nv">$2</span><span class="s2">}&#39;` * 1024 / 2&quot;</span> <span class="p">|</span> bc
+<span class="m">256995328</span>
+
+<span class="c1"># 至于SHMMNI, Oracle 推荐设置 SHMMNI 为 4096.</span>
+</pre></div>
+<blockquote><p>特别需要注意的是，如果你发现<code>/etc/sysctl.conf</code>中的值大于自己计算的值，请不要改动此项参数。</p>
+</blockquote>
+<p>最终，发现系统配置的<code>shmall</code>和<code>shmmax</code>都要比自己计算的大，于是不改动这两个参数，只需要添加<code>shmmni</code>即可</p>
+<div class="highlight"><pre><span></span><span class="c1"># 最终编辑参数为</span>
+vim /etc/sysctl.conf
+******************************************************
+kernel.shmmax <span class="o">=</span> <span class="m">68719476736</span>
+kernel.shmall <span class="o">=</span> <span class="m">4294967296</span>
+kernel.shmmni <span class="o">=</span> <span class="m">4096</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<h4>6) 设置信号量</h4>
+<p>RHEL6 提供了semaphores(信号量)用于在进程间同步信息。内核参数<code>sem</code>由以下4个部分组成</p>
+<ul>
+<li>SEMMSL，每个信号量集合的最大信号量数</li>
+<li>SEMMNI，系统的信号量集合的最大数目</li>
+<li>SEMMNS，系统的最大信号量数，等于SHMMNI * SHMMSL</li>
+<li>SEMOPM，每个semop系统调用执行的信号量操作的总数</li>
+</ul>
+<p>设置以下的参数来确保oracle集群节点拥有足够的信号量</p>
+<div class="highlight"><pre><span></span><span class="c1"># 在/etc/sysctl.conf中配置</span>
+vim /etc/sysctl.conf
+******************************************************
+kernel.sem <span class="o">=</span> <span class="m">250</span> <span class="m">32000</span> <span class="m">100</span> <span class="m">128</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<h4>7) 设置短期端口使用范围</h4>
+<p>oracle推荐设置此项来确保oracle和其他应用默认的端口被避开，推荐设置为</p>
+<div class="highlight"><pre><span></span><span class="c1"># 在 /etc/sysctl.conf 中增加</span>
+vim /etc/sysctl.conf
+******************************************************
+net.ipv4.ip_local_port_range <span class="o">=</span> <span class="m">9000</span> <span class="m">65500</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<h4>8) 优化网络设置</h4>
+<p>oracle通过设定<code>RMEM</code>和<code>WMEM</code>，来优化应用程序sockets的缓存默认值和缓存最大值。</p>
+<ul>
+<li>RMEM，receive buffer size</li>
+<li>WMEM，send buffer size</li>
+</ul>
+<p>oracle做如下推荐</p>
+<div class="highlight"><pre><span></span><span class="c1"># /etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+net.core.rmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.rmem_max <span class="o">=</span> <span class="m">4194304</span>
+net.core.wmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.wmem_max <span class="o">=</span> <span class="m">1048576</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<h4>9) 提升异步I/O请求</h4>
+<p>内核参数<code>FS.AIO-MAX-NR</code>设定当前异步I/O请求的最大数量。<br>
+oracle推荐如下设置</p>
+<div class="highlight"><pre><span></span><span class="c1"># /etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+fs.aio-max-nr <span class="o">=</span> <span class="m">1048576</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<h4>10) 提升文件句柄</h4>
+<p>内核参数FS.FILE-MAX设置分配给Red Hat Enterprise Linux 6操作系统的打开文件句柄的最大数目，oracle推荐在RHEL6操作系统已分配的数目之外，额外增加<code>512 * PROCESSES</code>，数据库实例中的PROCESSES指的是Oracle用户可以并发连接到Oracle RAC数据库的最大进程数。PROCESSES默认值是150.</p>
+<div class="highlight"><pre><span></span><span class="c1"># 如何获取当前的最大文件打开数</span>
+cat /proc/sys/fs/file-max
+<span class="m">46892</span>
+
+<span class="c1"># 参考每个服务器拥有一个oracle database instance，两个服务器就是150 * 2</span>
+<span class="c1"># 计算FS.FILE-MAX</span>
+<span class="nb">echo</span> <span class="s2">&quot;`cat /proc/sys/fs/file-max` + </span>$<span class="s2">[512*300]&quot;</span> <span class="p">|</span> bc
+<span class="m">200492</span>
+</pre></div>
+<blockquote><p>需要注意的是，因为目前还没有创建oracle rac database cluster，可以暂时使用150 PROCESSES，可以在增加oracle database instance之后再行调整。</p>
+</blockquote>
+<p>然而，FS.FILE-MAX的值，oracle推荐不低于6815744，因为我们计算的值小于此值，所以最终，我们将其设置为6815744</p>
+<div class="highlight"><pre><span></span><span class="c1"># 修改内核配置文件/etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+fs.file-max <span class="o">=</span> <span class="m">6815744</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+<blockquote><p>需要注意的是，oracle ASMLib不是根据每个设备来打开文件描述符，而是为每个oracle进程来打开文件描述符。在oracle rac database cluster安装期间，FS.FILE-MAX内核参数最小设置为6815744</p>
+<p>当我们因为oracle RAC database instances增加而增加PROCESSES的值时，需要重新调整FS.FILE-MAX的值</p>
+</blockquote>
+<h4>11) 设置反向路径过滤</h4>
+<p>RHEL6默认使用严格的反向路径过滤。之所以默认使用严格模式是因为预防DDOS的ip欺骗攻击。然而，开启此模式有时会引起互联通信的中断。所以推荐设置RP_FILTER将严格模式切换到松散模式。不需要太多的关注切换到松散模式所带来的安全问题，因为独立的private网络只能在oralce cluster节点之间通信。</p>
+<div class="highlight"><pre><span></span><span class="c1"># 编辑/etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+net.ipv4.conf.eth3.rp_filter <span class="o">=</span> <span class="m">2</span>
+net.ipv4.conf.eth4.rp_filter <span class="o">=</span> <span class="m">2</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.0.0_silent_installation_env.html">
+                1.0.0 silent模式安装oracle 11G R2 之 环境准备
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.1.0_silent_installation_oracle_install.html">
+                1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.2.0_silent_installation_netca_listen.html">
+                1.2.0 silent模式安装oracle 11G R2 之 netca监听
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">
+                1.3.0 silent模式安装oracle 11G R2 之 安装database实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.4.0_silent_installation_error.html">
+                1.4.0 silent模式安装oracle 11G R2 之 安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">
+                1.5.0 silent安装之cvuqdisk
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.6.0_OUI_installation_error.html">
+                1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.1.0_oracle_sql_statement.html">
+                2.1.0 oracle sql语句之表备份实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.2.0_oracle_sql_drop_database.html">
+                2.2.0 oracle sql语句之删除数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">
+                3.1.0 RAC-架构预览
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">
+                3.2.0 RAC-配置主机名和网络
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">
+                3.3.0 RAC-配置ntp服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">
+                3.4.0 RAC-系统配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user&group.html">
+                3.5.0 RAC-配置用户和组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">
+                3.6.0 RAC-存储配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">
+                3.7.0 RAC-安装oracle grid infrastructure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">
+                3.8.0 RAC-安装oracle 11g r2软件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">
+                3.9.0 RAC-通过ASMCA创建ASM硬盘组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.10.0_rac_dbca_create_database.html">
+                3.10.0 RAC-通过DBCA创建数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.11.0_rac_management.html">
+                3.11.0 RAC-管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">
+                4.1.0 oracle error之ORA-01034
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.2.0_oracle_error_display.html">
+                4.2.0 oracle error之图形安装DISPLAY错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">
+                5.1.0 oracle dataguard 11g r2 搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">
+                5.1.1 oracle dataguard 11g r2 rman恢复错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">
+                5.2.0 oracle dataguard 11g r2 一主多备搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">
+                6.2.0 ora-28001 the password has expired
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

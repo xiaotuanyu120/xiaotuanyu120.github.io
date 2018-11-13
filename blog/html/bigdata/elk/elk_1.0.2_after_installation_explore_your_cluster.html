@@ -1,0 +1,647 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>elk 1.0.2: explore you cluster</h3>
+<h3>REST API</h3>
+<p>现在我们已经将我们的节点或者集群运行起来了，接下来是要理解和熟悉如何与其交互了。庆幸的是，elasticsearch提供了一个非常完备和强大的REST API，使其易于交互。使用API可以完成以下事项：</p>
+<ul>
+<li>检查群集，节点和索引运行状况，状态和统计信息</li>
+<li>管理您的群集，节点和索引数据和元数据</li>
+<li>对索引执行CRUD（创建，读取，更新和删除）和搜索操作</li>
+<li>执行高级搜索操作，例如分页，排序，过滤，脚本编写，聚合等等</li>
+</ul>
+<blockquote><p>调用REST API有几种方式，可以直接通过浏览器、curl工具、开发语言等，elk中的kibana提供了一个console，可以直接提供给我们很方便的和elasticsearch的API进行交互，以下的示例中，我们无特别说明时默认使用这种方式。</p>
+</blockquote>
+<h4>CLUSTER HEALTH</h4>
+<p>要检查群集运行状况，我们将使用_cat API。</p>
+
+<pre><code>GET /_cat/health?v</code></pre>
+<p>返回结果是</p>
+
+<pre><code>epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1475247709 17:01:49  elasticsearch green           1         1      0   0    0    0        0             0                  -                100.0%</code></pre>
+<p>我们可以看到名为“elasticsearch”的群集处于绿色状态。</p>
+<p>每当我们发出集群健康请求时，我们会获得绿色，黄色或红色中的一种。</p>
+<ul>
+<li>绿色 - 集群完全健康（集群功能全部正常）</li>
+<li>黄色 - 所有数据都可用，但一些副本尚未分配（集群功能全部正常）</li>
+<li>红色 - 部分数据因为任意原因不可用（集群功能部分正常）</li>
+</ul>
+<blockquote><p>当群集为红色时，它将继续提供来自可用分片的搜索请求，但您可能需要尽快修复它，因为存在未分配的分片。</p>
+</blockquote>
+<p>同样从上面的响应中，我们可以看到总共1个节点，并且我们有0个分片，因为我们还没有数据。请注意，由于我们使用的是默认群集名称（elasticsearch），并且由于Elasticsearch默认使用单播网络发现来查找同一台计算机上的其他节点，因此可能会意外启动计算机上的多个节点并将他们加入了同一个集群。在这种情况下，你可能会在上面的返回中看到多个节点。</p>
+<p>我们也可以查看集群中的节点信息</p>
+
+<pre><code>GET /_cat/nodes?v</code></pre>
+<p>返回结果是</p>
+
+<pre><code>ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+127.0.0.1           10           5   5    4.46                        mdi      *      PB2SGZY</code></pre>
+<p>在这里，我们可以看到一个名为“PB2SGZY”的节点，它是我们集群中当前的单个节点。</p>
+<h4>List All Indices</h4>
+<p>我们可以这样查看所有的索引</p>
+
+<pre><code>GET /_cat/indices?v</code></pre>
+<p>返回结果是</p>
+
+<pre><code>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</code></pre>
+<blockquote><p>如果没有其他内容，说明集群里面还没有创建索引。</p>
+</blockquote>
+<h4>Create an Index</h4>
+<p>让我们创建一个名为“customer”的索引，然后重新查看一下所有的索引</p>
+
+<pre><code>PUT /customer?pretty
+GET /_cat/indices?v</code></pre>
+<p>返回结果是</p>
+
+<pre><code>health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   customer 95SQ4TSUT7mWBT7VNHH67A   5   1          0            0       260b           260b</code></pre>
+<p>第二个命令的结果告诉我们，我们现在有一个名为customer的索引，它有5个主分片和1个副本（默认值），并且它包含0个文档。</p>
+<p>你可能还注意到cusomer索引被标记了黄色。根据之前的说明，黄色表示某些副本尚未分配。这个customer发生这种状况的原因是默认elasticsearch给它创建了一个副本。因为我们此时在集群里只有一个节点，而根据高可用的原则，我们目前不能分配空间给这个副本，直到另外一个节点加入此集群。一旦将该副本分配到第二个节点后，此索引的运行状况将变为绿色。</p>
+<h4>Index and Query a Document</h4>
+<p>现在我们放一点东西到customer索引中。我们将索引一个简单的customer文档到customer索引中，和下面的命令一样，我们给这个文档分配的ID为1：</p>
+
+<pre><code>PUT /customer/_doc/1?pretty
+{
+  "name": "John Doe"
+}</code></pre>
+<p>返回结果是</p>
+
+<pre><code>{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "result" : "created",
+  "_shards" : {
+    "total" : 2,
+    "successful" : 1,
+    "failed" : 0
+  },
+  "_seq_no" : 0,
+  "_primary_term" : 1
+}</code></pre>
+<p>从上面可以看出，在customer索引中，一个新的customer文档已经被成功创建了。这个文档就像我们在创建时指定的一样，内部ID为1。</p>
+<p>需要重点注意的是，elasticsearch并不是严格的要求你在向一个索引内部存放文档之前先手动创建改索引。在上面的例子中，如果customer索引不存在的情况下，elasticsearch会自动创建该索引。</p>
+<p>现在让我们检索刚刚编入索引的文档：</p>
+
+<pre><code>GET /customer/_doc/1?pretty</code></pre>
+<p>返回结果是</p>
+
+<pre><code>{
+  "_index" : "customer",
+  "_type" : "_doc",
+  "_id" : "1",
+  "_version" : 1,
+  "found" : true,
+  "_source" : { "name": "John Doe" }
+}</code></pre>
+<p>结果中列出了原始文档信息，另外，<code>found</code>字段说明我们找到了一个请求ID为1的文档，<code>_source</code>字段返回我们从上一步索引的完整JSON文档。</p>
+<h4>Delete an Index</h4>
+<p>现在让我们删除我们刚刚创建的索引，然后再来查看一下索引列表</p>
+
+<pre><code>DELETE /customer?pretty
+GET /_cat/indices?v</code></pre>
+<p>返回结果是</p>
+
+<pre><code>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</code></pre>
+<p>这意味着索引已经删除成功，我们重新回到了我们集群最开始空无一物的状态。</p>
+<p>在我们继续前进之前，让我们先来看看目前我们学到了API中的哪些操作</p>
+
+<pre><code>PUT /customer
+PUT /customer/_doc/1
+{
+  "name": "John Doe"
+}
+GET /customer/_doc/1
+DELETE /customer</code></pre>
+<p>如果我们学习上面这些命令足够细心，我们会发现在elasticsearch中与数据交互的一种语法。这种语法可以总结为：</p>
+
+<pre><code>&lt;HTTP Verb&gt; /&lt;Index&gt;/&lt;Type&gt;/&lt;ID&gt;</code></pre>
+<p>这种REST访问模式在所有API命令中都非常普遍，如果你能记住它，你将在掌握Elasticsearch方面有一个良好的开端。</p>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/elk">
+              elk
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elasticsearch_1.1.0_docker_installation.html">
+                elasticsearch 1.1.0: docker installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.0_elasticsearch_concept.html">
+                elk 1.0.0: elasticsearch concept
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.1_elasticsearch_removal_of_mapping_types.html">
+                elk 1.0.1: elasticsearch removal of mapping types
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.3_after_installation_modify_your_data.html">
+                elk 1.0.3: modify your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.4_after_installation_explore_your_data.html">
+                elk 1.0.4: explore your data
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.5_elasticsearch_index_templates.html">
+                elk 1.0.5: elasticsearch index templates
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.6_elasticsearch_mapping.html">
+                elk 1.0.6: elasticsearch mapping
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.7.a_elasticsearch_cluster_api_cluster_setting.html">
+                elk 1.0.7.a: elasticsearch cluster api - cluster setting
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.8.a_elasticsearch_modules_snapshot_and_restore.html">
+                elk 1.0.8.a: elasticsearch modules - snapshot and restore
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.0_production_installation.html">
+                elk 1.1.0: production installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.1.1_production_installation_add_xpack.html">
+                elk 1.1.1: production installation add xpack
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.2.0_elasticsearch_upgrade_from_6.2.4_to_6.4.2.html">
+                elk 1.2.0: elasticsearch upgrade from 6.2.4 to 6.4.2
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_1.0.2_after_installation_explore_your_cluster.html">
+                elk 1.10.2: explore you cluster
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.1.0_conf_logstash_index_name_date.html">
+                elk 2.1.0 logstash config index name with current date
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.0_conf_filebeat_logstash_kafka.html">
+                elk 2.2.0 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_2.2.1_error_filebeat_kafka_waiting_for_space.html">
+                elk 2.2.1 config kafka with filebeat and logstash
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.1.0_logstash_plugin_grok.html">
+                elk 3.1.0 logstash plugin grok
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/bigdata/elk/elk_3.2.0_logstash_plugin_geoip_and_kibana_visualize.html">
+                elk 3.2.0 logstash plugin geoip and kibana visualize
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/bigdata/cloudera">
+              cloudera
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

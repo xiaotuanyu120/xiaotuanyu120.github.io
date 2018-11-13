@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>3.5.0 RAC-配置用户和组</h3>
+<hr>
+<h3>1. 用户及组</h3>
+<h4>1) 创建用户oracle，grid及相关用户组</h4>
+<p>对于安装oracle RAC database 11g r2，oracle推荐给oracle grid Infrastructure创建grid用户，给oracle RAC database 软件安装创建oracle用户。基于所安装的软件，每个用户被分配不同的用户组来处理特定的角色。但是按此方法分开创建用户还需要oracle和grid都有一个公有的主组，oracle的中央inventory组(oinstall)。</p>
+<p>以下是为安装Oracle RAC database cluster和部分Oracle用户的系统用户组别：</p>
+<ul>
+<li>OSDBA group (DBA) – 确定具有DBA特权的操作系统用户帐户</li>
+<li>OSOPER group (OPER) – 创建了一个可选组，用于将有限的DBA权限（SYSOPER权限）分配给特定的操作系统用户帐户</li>
+</ul>
+<p>以下是为安装oracle Grid infrastructure和部分grid用户的系统用户组别：</p>
+<ul>
+<li>OSDBA group (ASMDBA) – 提供Oracle ASM instances的管理访问</li>
+<li>OSASM group (ASMADMIN) – 通过SYSASM特权为存储文件提供管理访问</li>
+<li>OSOPER group (ASMOPER) – 创建一个可选组，用于将有关ASM的有限的DBA权限分配给特定操作系统用户账户</li>
+</ul>
+<div class="highlight"><pre><span></span>groupadd --gid <span class="m">54321</span> oinstall
+groupadd --gid <span class="m">54322</span> dba
+groupadd --gid <span class="m">54323</span> asmdba
+groupadd --gid <span class="m">54324</span> asmoper
+groupadd --gid <span class="m">54325</span> asmadmin
+groupadd --gid <span class="m">54326</span> oper
+
+useradd --uid <span class="m">54321</span> --gid oinstall --groups dba,oper,asmdba,asmoper oracle
+passwd oracle
+useradd --uid <span class="m">54322</span> --gid oinstall --groups dba,asmadmin,asmdba,asmoper grid
+passwd grid
+
+id oracle
+<span class="nv">uid</span><span class="o">=</span><span class="m">54321</span><span class="o">(</span>oracle<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">54321</span><span class="o">(</span>oinstall<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">54321</span><span class="o">(</span>oinstall<span class="o">)</span>,54322<span class="o">(</span>dba<span class="o">)</span>,54323<span class="o">(</span>asmdba<span class="o">)</span>,54324<span class="o">(</span>asmoper<span class="o">)</span>,54326<span class="o">(</span>oper<span class="o">)</span>
+
+id grid
+<span class="nv">uid</span><span class="o">=</span><span class="m">54322</span><span class="o">(</span>grid<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">54321</span><span class="o">(</span>oinstall<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">54321</span><span class="o">(</span>oinstall<span class="o">)</span>,54322<span class="o">(</span>dba<span class="o">)</span>,54323<span class="o">(</span>asmdba<span class="o">)</span>,54324<span class="o">(</span>asmoper<span class="o">)</span>,54325<span class="o">(</span>asmadmin<span class="o">)</span>
+</pre></div>
+<h4>2) 给grid和oracle用户设定limits</h4>
+<p>oracle推荐给每个oracle用户设定soft和hard限制，包含以下三项</p>
+<ul>
+<li>nofile，文件描述符打开限制</li>
+<li>nproc，进程限制</li>
+<li>stack，堆栈段的容量</li>
+</ul>
+<p>之所以要设定这些限制，是为了预防因为某个用户耗尽所有系统资源造成的系统级别的崩溃</p>
+<div class="highlight"><pre><span></span>touch /etc/security/limits.d/99-grid-oracle-limits.conf
+vim /etc/security/limits.d/99-grid-oracle-limits.conf
+******************************************************
+oracle soft nproc <span class="m">2047</span>
+oracle hard nproc <span class="m">16384</span>
+oracle soft nofile <span class="m">1024</span>
+oracle hard nofile <span class="m">65536</span>
+oracle soft stack <span class="m">10240</span>
+oracle hard stack <span class="m">32768</span>
+grid soft nproc <span class="m">2047</span>
+grid hard nproc <span class="m">16384</span>
+grid soft nofile <span class="m">1024</span>
+grid hard nofile <span class="m">65536</span>
+grid soft stack <span class="m">10240</span>
+grid hard stack <span class="m">32768</span>
+******************************************************
+</pre></div>
+<blockquote><p>特别需要注意的是，linux中，当系统去读取/etc/security/limits.conf中的配置之后，会去读取/etc/security/limits.d/目录中的*.conf文件，读取顺序为，特殊字符、数字的升序来排序，大写字幕和小写字幕按照字幕顺序排序。如果两个文件包含相同的内容，最后被读取的优先。</p>
+<p>limits.conf文件中的修改会立即生效，为了保险起见，也可以重新登陆用户来使其生效。</p>
+</blockquote>
+<p>使用root用户创建以下脚本，放在/etc/profile.d中，以便用户创建相应的ulimits设置</p>
+<div class="highlight"><pre><span></span>vi /etc/profile.d/oracle-grid.sh
+******************************************************
+<span class="c1">#Setting the appropriate ulimits for oracle and grid user</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$USER</span> <span class="o">=</span> <span class="s2">&quot;oracle&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="nv">$SHELL</span> <span class="o">=</span> <span class="s2">&quot;/bin/ksh&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ <span class="nb">ulimit</span> -u <span class="m">16384</span>
+ <span class="nb">ulimit</span> -n <span class="m">65536</span>
+ <span class="k">else</span>
+ <span class="nb">ulimit</span> -u <span class="m">16384</span> -n <span class="m">65536</span>
+ <span class="k">fi</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$USER</span> <span class="o">=</span> <span class="s2">&quot;grid&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ <span class="k">if</span> <span class="o">[</span> <span class="nv">$SHELL</span> <span class="o">=</span> <span class="s2">&quot;/bin/ksh&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ <span class="nb">ulimit</span> -u <span class="m">16384</span>
+ <span class="nb">ulimit</span> -n <span class="m">65536</span>
+ <span class="k">else</span>
+ <span class="nb">ulimit</span> -u <span class="m">16384</span> -n <span class="m">65536</span>
+ <span class="k">fi</span>
+<span class="k">fi</span>
+******************************************************
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.0.0_silent_installation_env.html">
+                1.0.0 silent模式安装oracle 11G R2 之 环境准备
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.1.0_silent_installation_oracle_install.html">
+                1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.2.0_silent_installation_netca_listen.html">
+                1.2.0 silent模式安装oracle 11G R2 之 netca监听
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">
+                1.3.0 silent模式安装oracle 11G R2 之 安装database实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.4.0_silent_installation_error.html">
+                1.4.0 silent模式安装oracle 11G R2 之 安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">
+                1.5.0 silent安装之cvuqdisk
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.6.0_OUI_installation_error.html">
+                1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.1.0_oracle_sql_statement.html">
+                2.1.0 oracle sql语句之表备份实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.2.0_oracle_sql_drop_database.html">
+                2.2.0 oracle sql语句之删除数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">
+                3.1.0 RAC-架构预览
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">
+                3.2.0 RAC-配置主机名和网络
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">
+                3.3.0 RAC-配置ntp服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">
+                3.4.0 RAC-系统配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user&group.html">
+                3.5.0 RAC-配置用户和组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">
+                3.6.0 RAC-存储配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">
+                3.7.0 RAC-安装oracle grid infrastructure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">
+                3.8.0 RAC-安装oracle 11g r2软件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">
+                3.9.0 RAC-通过ASMCA创建ASM硬盘组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.10.0_rac_dbca_create_database.html">
+                3.10.0 RAC-通过DBCA创建数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.11.0_rac_management.html">
+                3.11.0 RAC-管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">
+                4.1.0 oracle error之ORA-01034
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.2.0_oracle_error_display.html">
+                4.2.0 oracle error之图形安装DISPLAY错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">
+                5.1.0 oracle dataguard 11g r2 搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">
+                5.1.1 oracle dataguard 11g r2 rman恢复错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">
+                5.2.0 oracle dataguard 11g r2 一主多备搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">
+                6.2.0 ora-28001 the password has expired
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

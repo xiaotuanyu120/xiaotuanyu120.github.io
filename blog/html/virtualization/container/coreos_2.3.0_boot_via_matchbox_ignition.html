@@ -1,0 +1,808 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>0. 环境及文档</h3>
+<p>实验目的是搭建多节点的coreos，教程是baremetal，这里使用vagrant+virtualbox虚拟机模拟baremetal</p>
+<table>
+<thead><tr>
+<th>items</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>虚拟机</td>
+<td>virtualbox</td>
+</tr>
+<tr>
+<td>虚拟机管理工具</td>
+<td>vagrant</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>coreos</td>
+</tr>
+</tbody>
+</table>
+<p>安装大体上是按照<a href="https://coreos.com/matchbox/docs/latest/getting-started.html">参考文档</a>，但是根据我自己的环境进行了相应调整。</p>
+<hr>
+<h3>0. 安装准备与介绍</h3>
+<ol>
+<li>coreos版本需要大于等于CoreOS version 962.0.0</li>
+<li>此教程使用flannel来管理pod网络(当然，也可以使用calico)</li>
+<li>使用matchbox来启动和配置coreos集群</li>
+</ol>
+<hr>
+<h3>1. 安装matchbox</h3>
+<h4>1) 安装provisioner主机(CoreOS for matchbox use)</h4>
+<p>安装过程参照<a href="http://linux.xiao5tech.com/virtualization/container/coreos_1.2.0_vagrant_install.html">CoreOS+vagrant安装教程</a></p>
+<blockquote><p>默认对core用户做了sshkey认证，可以将pub key拷贝到root下，以下操作都是使用root操作</p>
+</blockquote>
+<h4>2) matchbox安装配置</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 下载</span>
+wget https://github.com/coreos/matchbox/releases/download/v0.6.0/matchbox-v0.6.0-linux-amd64.tar.gz
+
+<span class="c1"># 解包</span>
+tar zxvf matchbox-v0.6.0-linux-amd64.tar.gz
+
+<span class="c1"># 拷贝systemcd unit文件去系统</span>
+<span class="nb">cd</span> matchbox-v0.6.0-linux-amd64
+cp contrib/systemd/matchbox-on-coreos.service /etc/systemd/system/matchbox.service
+<span class="c1"># 文件的内容如下</span>
+<span class="c1"># ***********************************************************</span>
+<span class="c1"># [Unit]</span>
+<span class="c1"># Description=CoreOS matchbox Server</span>
+<span class="c1"># Documentation=https://github.com/coreos/matchbox</span>
+<span class="c1">#</span>
+<span class="c1"># [Service]</span>
+<span class="c1"># Environment=&quot;IMAGE=quay.io/coreos/matchbox&quot;</span>
+<span class="c1"># Environment=&quot;VERSION=v0.6.0&quot;</span>
+<span class="c1"># Environment=&quot;MATCHBOX_ADDRESS=0.0.0.0:8080&quot;</span>
+<span class="c1"># ExecStartPre=/usr/bin/mkdir -p /etc/matchbox</span>
+<span class="c1"># ExecStartPre=/usr/bin/mkdir -p /var/lib/matchbox/assets</span>
+<span class="c1"># ExecStart=/usr/bin/rkt run \</span>
+<span class="c1">#   --net=host \</span>
+<span class="c1">#   --inherit-env \</span>
+<span class="c1">#   --trust-keys-from-https \</span>
+<span class="c1">#   --mount volume=data,target=/var/lib/matchbox \</span>
+<span class="c1">#   --mount volume=config,target=/etc/matchbox \</span>
+<span class="c1">#   --volume data,kind=host,source=/var/lib/matchbox \</span>
+<span class="c1">#   --volume config,kind=host,source=/etc/matchbox \</span>
+<span class="c1">#   ${IMAGE}:${VERSION}</span>
+<span class="c1">#</span>
+<span class="c1"># [Install]</span>
+<span class="c1"># WantedBy=multi-user.target</span>
+<span class="c1"># ***********************************************************</span>
+<span class="c1">#</span>
+<span class="c1"># 这里我们只使用http提供服务，其实还可以通过gRPC提供服务，那个需要配置证书，详情可见上面的教程链接</span>
+
+<span class="c1"># 自定义systemd units，增加gRPC协议</span>
+mkdir /etc/systemd/system/matchbox.service.d
+vim /etc/systemd/system/matchbox.service.d/override.conf
+***********************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&quot;MATCHBOX_ADDRESS=0.0.0.0:8080&quot;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&quot;MATCHBOX_RPC_ADDRESS=0.0.0.0:8081&quot;</span>
+***********************************************************
+<span class="nb">cd</span> scripts/tls/
+<span class="nb">export</span> <span class="nv">SAN</span><span class="o">=</span>DNS.1:matchbox.example.com,IP.1:172.17.8.101
+./cert-gen
+mkdir -p /etc/matchbox
+cp ca.crt server.crt server.key /etc/matchbox
+
+<span class="c1"># 启动服务</span>
+sudo systemctl daemon-reload
+sudo systemctl start matchbox
+sudo systemctl <span class="nb">enable</span> matchbox
+</pre></div>
+<h4>3) 下载coreos镜像</h4>
+<p>下载coreos镜像，之后pxe安装的时候能快些</p>
+<div class="highlight"><pre><span></span><span class="c1"># 下载最新的stable版本</span>
+<span class="nb">cd</span> /root/matchbox-v0.6.0-linux-amd64
+./scripts/get-coreos stable <span class="m">1353</span>.7.0 .
+<span class="c1"># 别忘记最后的&quot;.&quot;</span>
+
+<span class="c1"># 拷贝coreos到/var/lib/matchbox/assets</span>
+cp -r coreos /var/lib/matchbox/assets
+<span class="c1"># 检测服务</span>
+curl http://172.17.8.101:8080/assets/coreos/1353.7.0/
+&lt;pre&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;CoreOS_Image_Signing_Key.asc&quot;</span>&gt;CoreOS_Image_Signing_Key.asc&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_image.bin.bz2&quot;</span>&gt;coreos_production_image.bin.bz2&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_image.bin.bz2.sig&quot;</span>&gt;coreos_production_image.bin.bz2.sig&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_pxe.vmlinuz&quot;</span>&gt;coreos_production_pxe.vmlinuz&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_pxe.vmlinuz.sig&quot;</span>&gt;coreos_production_pxe.vmlinuz.sig&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_pxe_image.cpio.gz&quot;</span>&gt;coreos_production_pxe_image.cpio.gz&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;coreos_production_pxe_image.cpio.gz.sig&quot;</span>&gt;coreos_production_pxe_image.cpio.gz.sig&lt;/a&gt;
+&lt;/pre&gt;
+</pre></div>
+<h4>4) 配置DHCP,TFTP和DNS</h4>
+<p>coreos提供dnsmasq这样一个镜像来提供DHCP,TFTP和DNS服务，可以使用rkt或者docker启动这个镜像</p>
+<div class="highlight"><pre><span></span><span class="c1"># 使用rkt</span>
+sudo rkt run --net<span class="o">=</span>host quay.io/coreos/dnsmasq <span class="se">\</span>
+  --caps-retain<span class="o">=</span>CAP_NET_ADMIN,CAP_NET_BIND_SERVICE,CAP_SETGID,CAP_SETUID,CAP_NET_RAW <span class="se">\</span>
+  -- -d -q <span class="se">\</span>
+  --dhcp-range<span class="o">=</span><span class="m">172</span>.17.8.102,172.17.8.110 <span class="se">\</span>
+  --enable-tftp <span class="se">\</span>
+  --tftp-root<span class="o">=</span>/var/lib/tftpboot <span class="se">\</span>
+  --dhcp-userclass<span class="o">=</span>set:ipxe,iPXE <span class="se">\</span>
+  --dhcp-boot<span class="o">=</span>tag:#ipxe,undionly.kpxe <span class="se">\</span>
+  --dhcp-boot<span class="o">=</span>tag:ipxe,http://172.17.8.101:8080/boot.ipxe <span class="se">\</span>
+  --address<span class="o">=</span>/matchbox.example.com/172.17.8.101 <span class="se">\</span>
+  --log-queries <span class="se">\</span>
+  --log-dhcp
+
+<span class="c1"># 或者使用docker</span>
+docker run --rm --cap-add<span class="o">=</span>NET_ADMIN --net<span class="o">=</span>host quay.io/coreos/dnsmasq <span class="se">\</span>
+  -d -q <span class="se">\</span>
+  --dhcp-range<span class="o">=</span><span class="m">172</span>.17.8.102,172.17.8.110 <span class="se">\</span>
+  --enable-tftp --tftp-root<span class="o">=</span>/var/lib/tftpboot <span class="se">\</span>
+  --dhcp-userclass<span class="o">=</span>set:ipxe,iPXE <span class="se">\</span>
+  --dhcp-boot<span class="o">=</span>tag:#ipxe,undionly.kpxe <span class="se">\</span>
+  --dhcp-boot<span class="o">=</span>tag:ipxe,http://172.17.8.101:8080/boot.ipxe <span class="se">\</span>
+  --address<span class="o">=</span>/matchbox.example/172.17.8.101 <span class="se">\</span>
+  --log-queries <span class="se">\</span>
+  --log-dhcp
+</pre></div>
+<blockquote><p>参考链接：<br>
+<a href="https://github.com/coreos/matchbox/tree/master/contrib/dnsmasq">https://github.com/coreos/matchbox/tree/master/contrib/dnsmasq</a></p>
+</blockquote>
+<hr>
+<h3>3. terraform</h3>
+<h4>1) 安装terraform</h4>
+<div class="highlight"><pre><span></span>wget https://releases.hashicorp.com/terraform/0.9.4/terraform_0.9.4_linux_amd64.zip
+unzip terraform_0.9.4_linux_amd64.zip
+./terraform version
+Terraform v0.9.4
+
+wget https://github.com/coreos/terraform-provider-matchbox/releases/download/v0.1.0/terraform-provider-matchbox-v0.1.0-linux-amd64.tar.gz
+tar zxvf terraform-provider-matchbox-v0.1.0-linux-amd64.tar.gz
+
+vim ~/.terraformrc
+**********************************************************
+providers <span class="o">{</span>
+  <span class="nv">matchbox</span> <span class="o">=</span> <span class="s2">&quot;/root/terraform-provider-matchbox-v0.1.0-linux-amd64/terraform-provider-matchbox&quot;</span>
+<span class="o">}</span>
+**********************************************************
+</pre></div>
+<h4>2) 使用terraform提供matchbox资源</h4>
+<div class="highlight"><pre><span></span>mkdir ~/.matchbox
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/ca.crt ~/.matchbox/
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/client.crt ~/.matchbox/
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/client.key ~/.matchbox/
+
+git clone https://github.com/coreos/matchbox.git
+<span class="nb">cd</span> matchbox/examples/terraform
+<span class="nb">cd</span> simple-install
+cp terraform.tfvars.example terraform.tfvars
+
+vim terraform.tfvars
+**********************************************************
+<span class="nv">matchbox_http_endpoint</span> <span class="o">=</span> <span class="s2">&quot;http://172.17.8.101:8080&quot;</span>
+<span class="nv">matchbox_rpc_endpoint</span> <span class="o">=</span> <span class="s2">&quot;172.17.8.101:8081&quot;</span>
+<span class="nv">ssh_authorized_key</span> <span class="o">=</span> <span class="s2">&quot;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv7 ... == root@myvagrant&quot;</span>
+**********************************************************
+
+vim profiles.tf
+**********************************************************
+// Create a CoreOS-install profile
+resource <span class="s2">&quot;matchbox_profile&quot;</span> <span class="s2">&quot;coreos-install&quot;</span> <span class="o">{</span>
+  <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;coreos-install&quot;</span>
+  <span class="nv">kernel</span> <span class="o">=</span> <span class="s2">&quot;http://172.17.8.101:8080/assets/coreos/1353.7.0/coreos_production_pxe.vmlinuz&quot;</span>
+  <span class="nv">initrd</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;http://172.17.8.101:8080/assets/coreos/1353.7.0/coreos_production_pxe_image.cpio.gz&quot;</span>
+  <span class="o">]</span>
+  <span class="nv">args</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;coreos.config.url=</span><span class="si">${</span><span class="nv">var</span><span class="p">.matchbox_http_endpoint</span><span class="si">}</span><span class="s2">/ignition?uuid=</span><span class="nv">$$</span><span class="s2">{uuid}&amp;mac=</span><span class="nv">$$</span><span class="s2">{mac:hexhyp}&quot;</span>,
+    <span class="s2">&quot;coreos.first_boot=yes&quot;</span>,
+    <span class="s2">&quot;console=tty0&quot;</span>,
+    <span class="s2">&quot;console=ttyS0&quot;</span>,
+  <span class="o">]</span>
+  <span class="nv">container_linux_config</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">(</span><span class="s2">&quot;./cl/coreos-install.yaml.tmpl&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+// Create a simple profile which just sets an SSH authorized_key
+resource <span class="s2">&quot;matchbox_profile&quot;</span> <span class="s2">&quot;simple&quot;</span> <span class="o">{</span>
+  <span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;simple&quot;</span>
+  <span class="nv">container_linux_config</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">file</span><span class="p">(</span><span class="s2">&quot;./cl/simple.yaml.tmpl&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+**********************************************************
+
+~/terraform plan
+~/terraform apply
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/openstack">
+              openstack
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/docker">
+              docker
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/kvm">
+              kvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/container">
+              container
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
+                cgroups 1.0.0 什么是cgroups？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
+                coreos 1.1.0 系统安装-bare metal
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
+                coreos 1.2.0 系统安装-vagrant
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
+                coreos 2.1.0 ignition简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
+                coreos 2.2.0 pxe引导coreos启动(cloudinit)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
+                coreos 2.2.1 pxe引导coreos启动(ignition)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
+                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
+                coreos 2.3.0 ignition+matchbox安装coreos集群
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
+                coreos 2.4.0 生成ssl/tls自签名认证证书
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
+                etcd 1.1.2 etcd install single node(systemd)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
+                etcd 1.1.3 etcd install static cluster(centos6)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
+                etcd 1.1.4 etcd install static cluster with ssl/tls
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
+                etcd 1.1.5 etcd install discovery cluster(coreos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
+                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
+                etcd 2.1.0 etcd-api python-etcd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
+                etcd 2.2.0 搭配confd做配置管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
+                flannel 1.1.0 install flannel using binaries（systemd）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
+                flannel 1.2.0 configuration ans option
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
+                kubernetes 1.1.0 简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
+                kubernetes 1.2.0 vagrant+coreos(flannel)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
+                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
+                kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
+                kubernetes 1.2.3 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
+                kubernetes 1.2.4 traefik ingress
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
+                kubernetes 1.2.5 ingress ssl
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
+                kubernetes 1.2.6 kube-dns
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
+                kubernetes 1.2.7 EFK
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
+                kubernetes 1.3.0 run-stateless-application-deployment
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
+                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
+              </a>
+             </li>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

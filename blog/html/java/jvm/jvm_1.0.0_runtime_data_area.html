@@ -1,0 +1,565 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>JVM: 1.0.0 运行时数据区域概念</h3>
+<hr>
+<h3>1. 运行时数据区域概念概述</h3>
+<p><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5">oracle 官方文档</a></p>
+<p>JVM定义在程序执行期间使用的各种运行时数据区。 其中一些数据区域是在Java虚拟机启动时创建的，在JVM退出时才会被销毁。 其他数据区域是属于每个线程的，每个线程的数据区在创建线程时创建，并在线程退出时被销毁。</p>
+<h4>1) PC寄存器(program counter)</h4>
+<p>JVM可以同时支持许多线程在执行。 每个JVM线程都有自己的pc（程序计数器）寄存器。 在任何时候，每个JVM线程都会执行单个方法的代码，即该线程的当前方法。 如果该方法不是native的，则pc寄存器包含当前正在执行的JVM指令的地址。 如果线程当前正在执行的方法是native，那么JVM的pc寄存器的值是未定义的。Java虚拟机的pc寄存器足以在特定平台上保存returnAddress或本地指针。</p>
+<h4>2) JVM栈</h4>
+<p>每个JVM线程都有一个私有JVM栈，与线程同时创建。 一个JVM栈会存储frames。 Java虚拟机堆栈类似于诸如C的常规语言的堆栈：它保存局部变量和部分结果，并且在方法调用和返回中起作用。 因为Java虚拟机堆栈从来不被直接操作，除了push和pop frames，frames可以被堆分配。 JVM栈的内存不需要是连续的。</p>
+<p>该规范允许JVM栈具有固定大小或者根据计算的需要动态地扩展和收缩。 如果JVM栈是固定大小的，则当创建该栈时，可以独立地选择每个JVM栈的大小。</p>
+<p>JVM可以为程序员或用户提供对JVM栈初始大小的控制，以及在动态扩展或收缩Java虚拟机堆栈的情况下控制最大值和最小值。</p>
+<p>以下异常与JVM栈相关：</p>
+<ul>
+<li>如果线程中的计算需要比所允许的JVM栈更大，则JVM将抛出StackOverflowError。</li>
+<li>如果JVM栈可以动态扩展，但尝试扩展时可用的内存不足，或者没有足够的内存可用于为新线程创建初始JVM栈，则JVM抛出OutOfMemoryError。</li>
+</ul>
+<p>总结栈的特点</p>
+<ul>
+<li>每个线程有自己独立的JVM栈，也就是java方法的调用栈。同时JVM规范为了允许native代码可以调用Java代码，以及允许Java代码调用native方法，还规定每个Java线程拥有自己的独立的native方法栈。但这并不意味着每个java线程拥有两个栈，两个栈只是概念上区分，其实实际这两个方法调用栈是混在一起的。</li>
+</ul>
+<h4>3) JVM堆</h4>
+<p>在JVM中的堆(heap)被JVM线程所共享，堆是一个JVM的运行时数据区域，从中可以给类实例和数组分配内存。当JVM启动时创建堆内存区域，object的堆存储由自动存储管理系统（称为垃圾收集器）回收;object不会显式的释放内存。</p>
+<p>以下异常条件与堆相关联：</p>
+<ul>
+<li>如果计算需要比自动存储管理系统可用的更多的堆，Java虚拟机将抛出OutOfMemoryError。</li>
+</ul>
+<p>总结堆的特点</p>
+<ul>
+<li>堆在JVM启动时创建</li>
+<li>堆会被同一个java实例中的所有线程所共享</li>
+<li>由垃圾回收机制(GC:garbage collection)管理回收。</li>
+</ul>
+<h4>4) JVM方法区(永久代)</h4>
+<p>JVM具有在所有JVM线程之间共享的方法区。方法区类似于用于操作系统过程中的常规语言的编译代码或类似于“text”段的存储区域。它存储per-class结构，如运行时常量池，字段和方法数据，以及方法和构造函数的代码，包括在类和实例初始化和接口初始化中使用的特殊方法。</p>
+<p>方法区在JVM启动时创建。虽然方法区在逻辑上是堆的一部分，但一般简单的情况下可能选择不对其进行垃圾回收或压缩它。本规范不强制用于管理编译代码的方法区域或策略的位置。方法区可以具有固定大小，或者可以根据计算的需要进行扩展，并且如果不需要更大的方法区，则可以收缩。方法区的内存不需要是连续的。</p>
+<p>JVM实现可以为程序员或用户提供对方法区域的初始大小的控制，以及在变化大小的方法区的情况下，控制最大值和最小值。</p>
+<p>以下异常条件与方法区域相关联:</p>
+<ul>
+<li>如果方法区域中的内存不能用于满足分配请求，则Java虚拟机将抛出OutOfMemoryError。</li>
+</ul>
+<p>总结方法区的特点</p>
+<ul>
+<li>JVM线程共享方法区</li>
+<li>方法区在JVM启动时创建</li>
+</ul>
+<blockquote><p>方法区是一种jvm规范，永久代是hotspot虚拟机（oracle jdk都是这种虚拟机）对方法区的一种实现，从jdk7中，oracle就已经开始了永久代的取消工作，更是在jdk8中，彻底使用元空间来替代了永久代。</p>
+<p>取消持久代的很主要的一个原因是，持久代使用的是java heap，在动态生成类时，永久代分配空间不足，无法满足类信息的储存需要，报出内存溢出错误。 而元空间直接使用的是native heap，也就是说直接试用了系统的内存，因此，默认情况下，元空间的大小只受到系统内存的限制，当然，我们也可以通过jvm <code>-XX:</code>指定参数的方式来限制它。<br>
+另外一个原因就是，持久代这东西只有hotspot虚拟机里面有，而BEA JRockit和IBM J9里面并没有这样一个概念，而oracle收购了BEA JRockit，并且，想把hotspot和JRockit合并。</p>
+<p>jvm对方法区的调优参数，从jdk7的永久代的限制参数更改为jdk8的元空间限制参数：</p>
+<ul>
+<li>永久代：<ul>
+<li>PermSize，初始化大小，默认是12M</li>
+<li>MaxPermSize，最大容量，默认是64M</li>
+</ul>
+</li>
+<li>元空间：<ul>
+<li>MetaspaceSize，初始化大小，默认会根据程序运行动态调整</li>
+<li>MaxMetaspaceSize，最大容量，默认是系统内存上限</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.cnblogs.com/paddix/p/5309550.html">永久代与元空间的异同</a></p>
+</blockquote>
+<h4>5) JVM常量池</h4>
+<p>常量池是为了避免频繁的创建和销毁对象而影响系统性能而分配的一个内存区域。运行时常量池是在一个class文件中的constant_pool表的每个类或每个接口的运行时表示</p>
+<p>总结常量池特点</p>
+<ul>
+<li>class文件中的常量池，class文件中保存了常量池信息，用于存放编译期生成的各种字面量(literal)和符号引用量(Symbolic References),这部分内容将在类加载后进入方法区的运行时常量池中存放</li>
+<li>方法区中的运行时常量池，与class文件常量池的区别在于，它具备动态性。</li>
+<li>常量池可节省内存(例如：会把相同的字符串常量合并)，可节省运行时间(例如，比较字符串时，==只对比两个引用是否一致，不需要去比较内容)</li>
+</ul>
+<h4>6) JVM本地方法栈</h4>
+<p>JVM的实现可以使用俗称为“C栈”的常规栈来支持本地方法（以Java编程语言之外的语言编写的方法）。本地方法栈也可以通过在诸如C语言中实现用于JVM的指令集的解释器来使用。不能加载本地方法并且本身不依赖于常规栈的JVM实现不需要提供本地方法堆栈。如果提供，本地方法堆栈通常在每个线程创建时为每个线程分配。</p>
+<p>该规范允许本地方法堆栈具有固定大小或者根据计算的需要动态地扩展和收缩。如果本地方法堆栈具有固定大小，则当创建该堆栈时，可以独立地选择每个本地方法堆栈的大小。 JVM实现可以为程序员或用户提供对本地方法栈的初始大小的控制，以及在变化大小的本地方法栈的情况下，控制最大和最小方法栈大小。</p>
+<p>以下异常条件与本机方法堆栈相关联：</p>
+<ul>
+<li>如果线程中的计算需要比所允许的更大的本地方法堆栈，则JVM将抛出StackOverflowError。</li>
+<li>如果本地方法堆栈可以动态扩展并尝试本地方法堆栈扩展，但是内存不足可用，或者如果没有足够的内存可用于为新线程创建初始本地方法堆栈，Java虚拟机将抛出OutOfMemoryError 。</li>
+</ul>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/jvm">
+              jvm
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
+                JVM: 1.0.0 运行时数据区域概念
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
+                JVM: 2.0.0 内存区域调优参数
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
+                JVM: 2.1.0 调优实践
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
+                JVM: 3.0.0 jvm状态查看命令(JDK自带)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
+                jdk: 1.0.0 jdk简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
+                jdk: 1.1.0 jre1.6安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
+                jdk: 1.1.1 jdk1.8安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
+                jdk: 2.1.0 命令行编译java项目
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

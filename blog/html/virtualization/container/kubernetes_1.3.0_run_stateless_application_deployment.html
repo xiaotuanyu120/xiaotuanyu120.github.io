@@ -1,0 +1,898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>kubernetes 1.3.0 run-stateless-application-deployment</h3>
+<hr>
+<h3>0. Objectives</h3>
+<ul>
+<li>deployment(nginx) 创建；</li>
+<li>deployment信息查看(kubectl)；</li>
+<li>deployment 更新。</li>
+</ul>
+<blockquote><p>参考链接：<a href="https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/">kubenetes 官方文档</a></p>
+<p>执行以下操作之前，可以参照文档先创建一个kubenetes cluster</p>
+</blockquote>
+<h3>1. Creating and exploring an nginx deployment</h3>
+<p><code>deployment.yaml</code></p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1beta2</span> <span class="c1"># for versions before 1.8.0 use apps/v1beta1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">selector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">matchLabels</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span> <span class="c1"># tells deployment to run 2 pods matching the template</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="c1"># create pods using pod definition in this template</span>
+    <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+      <span class="c1"># unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is</span>
+      <span class="c1"># generated from the deployment name</span>
+      <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">containers</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.7.9</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">containerPort</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+</pre></div>
+<h4>1) 创建deploment</h4>
+<div class="highlight"><pre><span></span>kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment.yaml
+</pre></div>
+<h4>2) 查看deploment</h4>
+<div class="highlight"><pre><span></span>kubectl describe deployment nginx-deployment
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 15 Jan 2018 06:19:34 +0000
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision=1
+                        kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"apps/v1beta2","kind":"Deployment","metadata":{"annotations":{},"name":"nginx-deployment","namespace":"default"},"spec":{"replicas":2,"se...
+Selector:               app=nginx
+Replicas:               2 desired | 2 updated | 2 total | 0 available | 2 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        nginx:1.7.9
+    Port:         80/TCP
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      False   MinimumReplicasUnavailable
+  Progressing    True    ReplicaSetUpdated
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-deployment-6c54bd5869 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  15m   deployment-controller  Scaled up replica set nginx-deployment-6c54bd5869 to 2</code></pre>
+<h4>3) 查看pods</h4>
+<div class="highlight"><pre><span></span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running   0          16m
+nginx-deployment-6c54bd5869-p79hd   1/1       Running   0          16m</code></pre>
+<h4>4) 查看pod详细信息</h4>
+<div class="highlight"><pre><span></span>kubectl describe pod nginx-deployment-6c54bd5869-f56kg
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>Name:           nginx-deployment-6c54bd5869-f56kg
+Namespace:      default
+Node:           node01/10.0.2.15
+Start Time:     Mon, 15 Jan 2018 07:00:55 +0000
+Labels:         app=nginx
+                pod-template-hash=2710681425
+Annotations:    &lt;none&gt;
+Status:         Running
+IP:             10.5.52.3
+Controlled By:  ReplicaSet/nginx-deployment-6c54bd5869
+Containers:
+  nginx:
+    Container ID:   docker://cf62a29a203a6870fa8a8fc0610835cb16e53bd31a30d2c75a734b59ced355b5
+    Image:          nginx:1.7.9
+    Image ID:       docker-pullable://nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9d794affb40e0714846c451
+    Port:           80/TCP
+    State:          Running
+      Started:      Mon, 15 Jan 2018 07:02:32 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+Conditions:
+  Type           Status
+  Initialized    True
+  Ready          True
+  PodScheduled   True
+Volumes:         &lt;none&gt;
+QoS Class:       BestEffort
+Node-Selectors:  &lt;none&gt;
+Tolerations:     &lt;none&gt;
+Events:
+  Type     Reason             Age                 From               Message
+  ----     ------             ----                ----               -------
+  Warning  FailedScheduling   26m (x26 over 33m)  default-scheduler  0/3 nodes are available: 3 NodeNotReady.
+  Normal   Scheduled          22m                 default-scheduler  Successfully assigned nginx-deployment-6c54bd5869-f56kg to node01
+  Normal   Pulling            22m                 kubelet, node01    pulling image "nginx:1.7.9"
+  Normal   Pulled             21m                 kubelet, node01    Successfully pulled image "nginx:1.7.9"
+  Normal   Created            21m                 kubelet, node01    Created container
+  Normal   Started            21m                 kubelet, node01    Started container
+  Warning  MissingClusterDNS  1m (x20 over 22m)   kubelet, node01    pod: "nginx-deployment-6c54bd5869-f56kg_default(65c64d74-f9c0-11e7-a243-525400cae48b)". kubelet does not have ClusterDNS IP configured and cannot create Pod using "ClusterFirst" policy. Falling back to "Default" policy.</code></pre>
+<h3>2. Updating the deployment</h3>
+<p>升级nginx到1.8,<code>deployment-update.yaml</code></p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1beta2</span> <span class="c1"># for versions before 1.8.0 use apps/v1beta1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">selector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">matchLabels</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">containers</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.8</span> <span class="c1"># Update the version of nginx from 1.7.9 to 1.8</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">containerPort</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+</pre></div>
+<h4>1) apply新的deploment</h4>
+<div class="highlight"><pre><span></span>kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment-update.yaml
+</pre></div>
+<h4>2) 查看pod更新过程</h4>
+<div class="highlight"><pre><span></span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>NAME                                READY     STATUS              RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running             0          37m
+nginx-deployment-6c54bd5869-p79hd   1/1       Running             0          37m
+nginx-deployment-7694d679d9-z5fdf   0/1       ContainerCreating   0          40s</code></pre>
+<p>查看正在创建的pod的状态</p>
+<div class="highlight"><pre><span></span>kubectl describe pod nginx-deployment-7694d679d9-z5fdf
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>Name:           nginx-deployment-7694d679d9-z5fdf
+Namespace:      default
+Node:           node03/10.0.2.15
+Start Time:     Mon, 15 Jan 2018 07:27:08 +0000
+Labels:         app=nginx
+                pod-template-hash=3250823585
+Annotations:    &lt;none&gt;
+Status:         Pending
+IP:             
+Controlled By:  ReplicaSet/nginx-deployment-7694d679d9
+Containers:
+  nginx:
+    Container ID:   
+    Image:          nginx:1.8
+    Image ID:       
+    Port:           80/TCP
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+Conditions:
+  Type           Status
+  Initialized    True
+  Ready          False
+  PodScheduled   True
+Volumes:         &lt;none&gt;
+QoS Class:       BestEffort
+Node-Selectors:  &lt;none&gt;
+Tolerations:     &lt;none&gt;
+Events:
+  Type     Reason             Age                From               Message
+  ----     ------             ----               ----               -------
+  Normal   Scheduled          53s                default-scheduler  Successfully assigned nginx-deployment-7694d679d9-z5fdf to node03
+  Warning  MissingClusterDNS  51s (x2 over 53s)  kubelet, node03    pod: "nginx-deployment-7694d679d9-z5fdf_default(7e34acdf-f9c5-11e7-a243-525400cae48b)". kubelet does not have ClusterDNS IP configured and cannot create Pod using "ClusterFirst" policy. Falling back to "Default" policy.
+  Normal   Pulling            51s                kubelet, node03    pulling image "nginx:1.8"</code></pre>
+<blockquote><p>正在pull nginx1.8的镜像</p>
+</blockquote>
+<p>k8s已经创建了新的pod，杀死了一个pod</p>
+<div class="highlight"><pre><span></span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>NAME                                READY     STATUS              RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running             0          40m
+nginx-deployment-7694d679d9-4465x   0/1       ContainerCreating   0          1m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running             0          3m</code></pre>
+<p>最终会创建两个新的pod，所有旧的pod被杀死</p>
+<div class="highlight"><pre><span></span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre></div>
+
+<pre><code>NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-7694d679d9-4465x   1/1       Running   0          2m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running   0          5m</code></pre>
+<p>查看新的deployment</p>
+
+<pre><code>kubectl describe deployment nginx-deployment</code></pre>
+<p>输出结果中能很清晰的看到更新过程</p>
+
+<pre><code>Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 15 Jan 2018 06:50:37 +0000
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision=2
+                        kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"apps/v1beta2","kind":"Deployment","metadata":{"annotations":{},"name":"nginx-deployment","namespace":"default"},"spec":{"replicas":2,"se...
+Selector:               app=nginx
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        nginx:1.8
+    Port:         80/TCP
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-deployment-7694d679d9 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  42m   deployment-controller  Scaled up replica set nginx-deployment-6c54bd5869 to 2
+  Normal  ScalingReplicaSet  6m    deployment-controller  Scaled up replica set nginx-deployment-7694d679d9 to 1
+  Normal  ScalingReplicaSet  3m    deployment-controller  Scaled down replica set nginx-deployment-6c54bd5869 to 1
+  Normal  ScalingReplicaSet  3m    deployment-controller  Scaled up replica set nginx-deployment-7694d679d9 to 2
+  Normal  ScalingReplicaSet  55s   deployment-controller  Scaled down replica set nginx-deployment-6c54bd5869 to 0</code></pre>
+<h3>3. Scaling the application by increasing the replica count</h3>
+<p>修改replicas为4</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1beta2</span> <span class="c1"># for versions before 1.8.0 use apps/v1beta1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">selector</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">matchLabels</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span> <span class="c1"># Update the replicas from 2 to 4</span>
+  <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">labels</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">containers</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.8</span>
+        <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">containerPort</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+</pre></div>
+<h4>1) apply新的deploment</h4>
+<div class="highlight"><pre><span></span>kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment-scale.yaml
+</pre></div>
+<h4>2) 查看更新结果</h4>
+<div class="highlight"><pre><span></span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre></div>
+<p>输出结果</p>
+
+<pre><code>NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-7694d679d9-4465x   1/1       Running   0          10m
+nginx-deployment-7694d679d9-ncg7f   1/1       Running   0          2m
+nginx-deployment-7694d679d9-skxr9   1/1       Running   0          2m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running   0          13m</code></pre>
+<h3>4. Deleting a deployment</h3>
+<div class="highlight"><pre><span></span>kubectl delete deployment nginx-deployment
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/openstack">
+              openstack
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/docker">
+              docker
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/kvm">
+              kvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/container">
+              container
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
+                cgroups 1.0.0 什么是cgroups？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
+                coreos 1.1.0 系统安装-bare metal
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
+                coreos 1.2.0 系统安装-vagrant
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
+                coreos 2.1.0 ignition简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
+                coreos 2.2.0 pxe引导coreos启动(cloudinit)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
+                coreos 2.2.1 pxe引导coreos启动(ignition)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
+                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
+                coreos 2.3.0 ignition+matchbox安装coreos集群
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
+                coreos 2.4.0 生成ssl/tls自签名认证证书
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
+                etcd 1.1.2 etcd install single node(systemd)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
+                etcd 1.1.3 etcd install static cluster(centos6)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
+                etcd 1.1.4 etcd install static cluster with ssl/tls
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
+                etcd 1.1.5 etcd install discovery cluster(coreos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
+                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
+                etcd 2.1.0 etcd-api python-etcd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
+                etcd 2.2.0 搭配confd做配置管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
+                flannel 1.1.0 install flannel using binaries（systemd）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
+                flannel 1.2.0 configuration ans option
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
+                kubernetes 1.1.0 简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
+                kubernetes 1.2.0 vagrant+coreos(flannel)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
+                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
+                kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
+                kubernetes 1.2.3 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
+                kubernetes 1.2.4 traefik ingress
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
+                kubernetes 1.2.5 ingress ssl
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
+                kubernetes 1.2.6 kube-dns
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
+                kubernetes 1.2.7 EFK
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
+                kubernetes 1.3.0 run-stateless-application-deployment
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
+                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
+              </a>
+             </li>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

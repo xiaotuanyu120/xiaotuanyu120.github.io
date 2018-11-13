@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>redis: 4.1.0 主从配置</h3>
+<hr>
+<h3>0. redis主从理论知识</h3>
+<ul>
+<li>redis采用异步复制，从2.8版本开始，slave会周期性的去在replication流中获取数据</li>
+<li>master可以有多个slave</li>
+<li>slave可以接受其他slave的连接，也就是说可以使用master-slave-slave的架构</li>
+<li>在master端，redis的主从复制是非阻塞的，也就是说，在一或多个slave在同步的同时，master还可以处理正常的queries。</li>
+<li>在slave端，redis的是也是非阻塞的，也就是说，在slave同步数据时，也可以用旧有的数据来响应queries，但这必须在redis的配置文件中进行配置。否则，你可以配置redis如果同步数据流down时返回一个error给queries。然而，当redis同步完成后，会删除旧有的dataset，并加载新的dataset，此时slave会阻塞不去接受新的连接直至数据替换完成。</li>
+<li>主从同时也是可扩展的，可用于创建多个slave，或者简单的用来做数据冗余。</li>
+<li>主从也可以避免master持久化完成的dataset所造成的硬盘消耗，一个典型的技术方案是，完全关闭master端的数据持久化，而在slave上实时写入所有的数据。但这样处理时一定要小心，当master重启后，它会是一个空的dataset，若此时slave去同步，则slave也会清空自己的dataset。  </li>
+</ul>
+<p><a href="http://redis.io/topics/replication">redis 主从参考链接</a></p>
+<hr>
+<h3>1. redis软件准备</h3>
+<p>需要同时在master和slave上执行下面所有操作</p>
+<h4>1) 安装redis</h4>
+<div class="highlight"><pre><span></span>wget http://download.redis.io/releases/redis-2.8.24.tar.gz
+tar zxf redis-2.8.24.tar.gz
+<span class="nb">cd</span> redis-2.8.24
+make
+make install
+</pre></div>
+<h4>2) 拷贝redis启动脚本</h4>
+<p>slave上操作时需要把6379端口换成6380</p>
+<div class="highlight"><pre><span></span>cp utils/redis_init_script /etc/init.d/redis
+chmod <span class="m">755</span> /etc/init.d/redis
+vi /etc/init.d/redis
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 修改配置文件位置</span>
+<span class="nv">REDISPORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nv">EXEC</span><span class="o">=</span>/usr/local/bin/redis-server
+<span class="nv">CLIEXEC</span><span class="o">=</span>/usr/local/bin/redis-cli
+
+<span class="nv">PIDFILE</span><span class="o">=</span>/var/run/redis_<span class="si">${</span><span class="nv">REDISPORT</span><span class="si">}</span>.pid
+<span class="nv">CONF</span><span class="o">=</span><span class="s2">&quot;/etc/redis/</span><span class="si">${</span><span class="nv">REDISPORT</span><span class="si">}</span><span class="s2">.conf&quot;</span>
+
+<span class="c1"># 如果设置了auth的话，需要在关闭时提供密码字符串</span>
+<span class="c1"># 配置一个自定义变量</span>
+<span class="nv">AUTH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;customized_pass&quot;</span>
+<span class="c1"># 在关闭stop case中增加&quot;-a $AUTH_PASSWORD&quot;</span>
+<span class="nv">$CLIEXEC</span> -p <span class="nv">$REDISPORT</span> -a <span class="nv">$AUTH_PASSWORD</span> shutdown
+******************************
+chkconfig redis on
+</pre></div>
+<h4>3) 配置redis</h4>
+<p>master上使用6379端口，"bind ip"未配置时默认是监听所有的连接
+slave上使用6380端口，下面的6379在slave是统统换成6380</p>
+<div class="highlight"><pre><span></span>mkdir /etc/redis
+cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+daemonize yes
+pidfile /var/run/redis_6379.pid
+port <span class="m">6379</span>
+******************************
+</pre></div>
+<hr>
+<h3>2. 配置主从</h3>
+<h4>1) 主上配置</h4>
+<div class="highlight"><pre><span></span>vim /etc/redis/6379.conf
+******************************
+<span class="c1"># 此配置需要去tomcat配置中增加password配置，否则会报错</span>
+requirepass customized_pass
+******************************
+</pre></div>
+<h4>2) 从上配置</h4>
+<div class="highlight"><pre><span></span>vim /etc/redis/6380.conf
+******************************
+slaveof <span class="m">192</span>.168.110.4 <span class="m">6379</span>
+
+<span class="c1"># 此配置需要去tomcat配置中增加password配置，否则会报错</span>
+masterauth customized_pass
+******************************
+</pre></div>
+<h4>3) 启动主和从上的redis服务</h4>
+<div class="highlight"><pre><span></span>service redis start
+</pre></div>
+<h4>4) 效果查看</h4>
+<div class="highlight"><pre><span></span><span class="c1"># master上</span>
+redis-cli
+<span class="c1"># 此语句</span>
+<span class="m">127</span>.0.0.1:6379&gt; auth customized_pass
+OK
+<span class="m">127</span>.0.0.1:6379&gt; <span class="nb">set</span> good bad
+OK
+<span class="m">127</span>.0.0.1:6379&gt; <span class="nb">set</span> fork first
+OK
+
+<span class="c1"># slave上</span>
+redis-cli -p <span class="m">6380</span>
+<span class="m">127</span>.0.0.1:6380&gt; get fork
+<span class="s2">&quot;first&quot;</span>
+<span class="m">127</span>.0.0.1:6380&gt; KEYS *
+<span class="m">1</span><span class="o">)</span> <span class="s2">&quot;fork&quot;</span>
+<span class="m">2</span><span class="o">)</span> <span class="s2">&quot;good&quot;</span>
+
+<span class="c1"># master上检查主从状态</span>
+<span class="m">127</span>.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:1
+slave0:ip<span class="o">=</span><span class="m">192</span>.168.110.5,port<span class="o">=</span><span class="m">6380</span>,state<span class="o">=</span>online,offset<span class="o">=</span><span class="m">125900</span>,lag<span class="o">=</span><span class="m">0</span>
+master_repl_offset:125900
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:2
+repl_backlog_histlen:125899
+</pre></div>
+<h4>5) 从转主的命令</h4>
+<div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1:6380&gt; slaveof no one
+OK
+<span class="m">127</span>.0.0.1:6380&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:0
+master_repl_offset:127944
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+</pre></div>
+<hr>
+<h3>3. redis常用配置</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 只读配置，不可以在此节点写入key-value</span>
+slave-read-only yes
+
+<span class="c1"># 日志配置</span>
+loglevel notice
+logfile <span class="s2">&quot;/var/log/redis.log&quot;</span>
+<span class="c1"># loglevel可以是以下几种</span>
+<span class="c1"># debug (a lot of information, useful for development/testing)</span>
+<span class="c1"># verbose (many rarely useful info, but not a mess like the debug level)</span>
+<span class="c1"># notice (moderately verbose, what you want in production probably)</span>
+<span class="c1"># warning (only very important / critical messages are logged)</span>
+
+<span class="c1"># 当slave失去与master的连接，或者正在同步过程中时，以下配置设定了不同的行为</span>
+slave-serve-stale-data yes
+<span class="c1"># 当为yes时，返回旧有数据或者空值</span>
+<span class="c1"># 当为no时，返回error&quot;SYNC with master in progress&quot;</span>
+
+<span class="c1"># 主从条件配置</span>
+min-slaves-to-write <span class="m">3</span>
+min-slaves-max-lag <span class="m">10</span>
+<span class="c1"># 含义为，最少3个ping间隔在10s以内的slave同时在线时，master才会接受写入的操作，否则则停止接受写入操作。</span>
+<span class="c1"># 默认情况下，min-slaves-to-write为0，min-slaves-max-lag默认是10，含义是disable此功能</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.0_install.html">
+                redis: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">
+                redis: 1.1.1 redis replication(sentinel集群)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">
+                redis: 1.1.2 redis-py(sentinel)获取master信息
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.0_basic_cmd.html">
+                redis: 1.2.0 基本管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">
+                redis: 1.2.1 将redis执行结果输出到文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.2_security_disable_command.html">
+                redis: 1.2.2 安全性(CONFIG重命名)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_3.1.0_consistent.html">
+                redis: 3.1.0 持久化、备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.1.0_replication.html">
+                redis: 4.1.0 主从配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">
+                redis: 4.2.0 主从遇到的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">
+                redis: 5.1.0 错误-降级后启动报错
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

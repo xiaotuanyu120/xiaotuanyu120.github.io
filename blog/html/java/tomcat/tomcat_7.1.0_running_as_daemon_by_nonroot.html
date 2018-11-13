@@ -1,0 +1,756 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>tomcat 7.1.0 使用非root用户用daemon运行tomcat</h3>
+<hr>
+<h3>0. 背景</h3>
+<p>因为安全问题，在线上运行tomcat一般不用root权限来运行，而是采用非root用户来运行。<br>
+<a href="https://tomcat.apache.org/tomcat-7.0-doc/setup.html#Unix_daemon">tomcat7 官方daemon运行文档</a></p>
+<h3>1. 官方提供的daemon模式</h3>
+<h4>1) 编译安装jsvc</h4>
+<div class="highlight"><pre><span></span><span class="c1"># step 0. 准备java环境 及 编译环境</span>
+<span class="c1"># 提前下载jdk（本例中将jdk放置在/usr/local/java目录中）</span>
+yum install gcc gcc-c++ make autoconf -y
+
+<span class="c1"># step 1. 安装tomcat</span>
+wget http://mirror.rise.ph/apache/tomcat/tomcat-7/v7.0.88/bin/apache-tomcat-7.0.88.tar.gz
+tar zxvf apache-tomcat-7.0.88.tar.gz
+mv apache-tomcat-7.0.88 /usr/local/tomcat
+
+<span class="c1"># step 2. 编译jsvc</span>
+<span class="nb">cd</span> /usr/local/tomcat/bin
+tar zxvf commons-daemon-native.tar.gz
+<span class="nb">cd</span> commons-daemon-1.1.0-native-src/unix/
+./configure --with-java<span class="o">=</span>/usr/local/java
+make
+<span class="c1"># --with-java参数可手动指定JAVA_HOME路径，若不指定，则默认寻找系统环境中的JAVA_HOME变量</span>
+
+<span class="c1"># step 3. 拷贝jsvc到tomcat的bin目录</span>
+cp jsvc ../..
+<span class="nb">cd</span> ../..
+</pre></div>
+<p>此时我们的软件环境已经准备完毕，能够用采用unix daemon模式启动tomcat，核心在于jsvc命令。例如我们可以使用以下命令来启动tomcat</p>
+<div class="highlight"><pre><span></span><span class="nv">CATALINA_BASE</span><span class="o">=</span><span class="nv">$CATALINA_HOME</span>
+<span class="nb">cd</span> <span class="nv">$CATALINA_HOME</span>
+./bin/jsvc <span class="se">\</span>
+    -classpath <span class="nv">$CATALINA_HOME</span>/bin/bootstrap.jar:<span class="nv">$CATALINA_HOME</span>/bin/tomcat-juli.jar <span class="se">\</span>
+    -outfile <span class="nv">$CATALINA_BASE</span>/logs/catalina.out <span class="se">\</span>
+    -errfile <span class="nv">$CATALINA_BASE</span>/logs/catalina.err <span class="se">\</span>
+    -Dcatalina.home<span class="o">=</span><span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+    -Dcatalina.base<span class="o">=</span><span class="nv">$CATALINA_BASE</span> <span class="se">\</span>
+    -Djava.util.logging.manager<span class="o">=</span>org.apache.juli.ClassLoaderLogManager <span class="se">\</span>
+    -Djava.util.logging.config.file<span class="o">=</span><span class="nv">$CATALINA_BASE</span>/conf/logging.properties <span class="se">\</span>
+    org.apache.catalina.startup.Bootstrap
+</pre></div>
+<p>可以使用<code>jsvc --help</code>查看更多选项，其中一个比较重要的选项就是<code>-user</code>，使用这个参数可以指定另外一个用户来启动tomcat daemon。</p>
+<h4>2) daemon.sh参数介绍及自定义</h4>
+<p>jsvc提供了<code>$CATALINA_HOME/bin/daemon.sh</code>文件来替代上面的命令行模式来启动tomcat.
+我们有两种定义它的方式，</p>
+<ul>
+<li>一种是直接修改它来达到自定义目的；</li>
+<li>另外一种是通过创建另外一个脚本，通过调用daemon.sh然后传入变量的方式来自定义。</li>
+</ul>
+<blockquote><p><code>daemon.sh</code>其他重要参数：</p>
+<ul>
+<li><code>CATALINA_OUT</code>, catalina.out的位置</li>
+<li><code>JAVA_OPTS</code>, jvm options</li>
+</ul>
+</blockquote>
+<p>个人推荐第二种，下面是可使用的自定义参数</p>
+<ul>
+<li><code>--java-home</code>，会传给jsvc的<code>-java-home</code>，默认使用系统环境java命令来判断JAVA_HOME</li>
+<li><code>--catalina-home</code>，会传给jsvc的<code>-Dcatalina.home</code>，默认使用当前daemon.sh脚本所在目录的上级目录作为catalina.home</li>
+<li><code>--catalina-base</code>，会传给jsvc的<code>-Dcatalina.base</code>，默认和--catalina-home值相同</li>
+<li><code>--tomcat-user</code>，回传给jsvc的<code>-user</code>，默认竟然是tomcat用户</li>
+</ul>
+<p>自定义部分</p>
+<div class="highlight"><pre><span></span><span class="c1"># 自定义catalina.out日志位置</span>
+<span class="c1"># 注释下一行内容</span>
+<span class="c1"># test &quot;.$CATALINA_OUT&quot; = . &amp;&amp; CATALINA_OUT=&quot;$CATALINA_BASE/logs/catalina-daemon.out&quot;</span>
+<span class="c1"># 自定义为其他位置</span>
+<span class="nv">CATALINA_OUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CATALINA_BASE</span><span class="s2">/logs/catalina-daemon.out&quot;</span>
+</pre></div>
+<h4>3) 准备tomcat用户</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 增加tomcat用户</span>
+groupadd tomcat
+useradd -s /sbin/nologin -g tomcat tomcat
+
+<span class="c1"># 将tomcat目录属主和属组修改为刚创建的tomcat用户</span>
+chown -R tomcat.tomcat /usr/local/tomcat
+</pre></div>
+<h4>4) 自定义启动脚本</h4>
+<p>可以通过以下脚本放在<code>/etc/init.d/</code>中来充当tomcat的启动脚本</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># chkconfig: 2345 20 80</span>
+<span class="c1"># description: script for tomcat start</span>
+
+<span class="nv">CATALINA_HOME</span><span class="o">=</span>/usr/local/tomcat
+<span class="nv">CATALINA_BASE</span><span class="o">=</span><span class="nv">$CATALINA_HOME</span>
+<span class="nv">TOMCAT_USER</span><span class="o">=</span>tomcat
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/java
+
+<span class="k">function</span> jsvc_exec<span class="o">()</span> <span class="o">{</span>
+    <span class="si">${</span><span class="nv">CATALINA_HOME</span><span class="si">}</span>/bin/daemon.sh <span class="se">\</span>
+        --java-home <span class="nv">$JAVA_HOME</span> <span class="se">\</span>
+        --catalina-home <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+        --catalina-base <span class="nv">$CATALINA_BASE</span> <span class="se">\</span>
+        --tomcat-user <span class="nv">$TOMCAT_USER</span> <span class="se">\</span>
+        --service-start-wait-time <span class="m">50</span> <span class="se">\</span>
+        <span class="nv">$1</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+    start   <span class="o">)</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    stop    <span class="o">)</span>
+      jsvc_exec stop
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    restart  <span class="o">)</span>
+      jsvc_exec stop
+      sleep <span class="m">2</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    version    <span class="o">)</span>
+      jsvc_exec version
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    *       <span class="o">)</span>
+      <span class="nb">echo</span> <span class="s2">&quot;Unknown command: \`</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;commands:&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  restart           Retart Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  start             Start Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  stop              Stop Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  version           What version of commons daemon and Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;                    are you running?&quot;</span>
+      <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+<blockquote><p><a href="http://grokbase.com/t/tomcat/users/14aebxdq0j/how-can-tomcat-be-started-at-boot-time-as-a-non-root-user">脚本启动时会启动一个root进程和一个我们指定的user的解释</a><br>
+另外值得注意的是，root进程负责的是派生我们指定的user来运行的进程，如果杀掉user运行的进程，则root进程会持续派生新的进程出来。</p>
+</blockquote>
+<p>若希望用一个脚本来管理多个同样功能的tomcat，可使用下面的数组脚本</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># chkconfig: 2345 20 80</span>
+<span class="c1"># description: script for tomcat start</span>
+
+<span class="nv">CATALINA_HOMES</span><span class="o">=(</span>/usr/local/tomcat01 /usr/local/tomcat02<span class="o">)</span>
+<span class="nv">TOMCAT_USER</span><span class="o">=</span>tomcat
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/java
+
+<span class="k">function</span> jsvc_exec<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">retval</span><span class="o">=</span><span class="m">0</span>
+    <span class="k">for</span> CATALINA_HOME in <span class="si">${</span><span class="nv">CATALINA_HOMES</span><span class="p">[@]</span><span class="si">}</span>
+    <span class="k">do</span>
+        <span class="o">[</span> <span class="nv">$retval</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nv">$retval</span> -eq <span class="m">255</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">break</span>
+        <span class="si">${</span><span class="nv">CATALINA_HOME</span><span class="si">}</span>/bin/daemon.sh <span class="se">\</span>
+            --java-home <span class="nv">$JAVA_HOME</span> <span class="se">\</span>
+            --catalina-home <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+            --catalina-base <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+            --tomcat-user <span class="nv">$TOMCAT_USER</span> <span class="se">\</span>
+            --service-start-wait-time <span class="m">50</span> <span class="se">\</span>
+            <span class="nv">$1</span>
+        <span class="nv">retval</span><span class="o">=</span><span class="nv">$?</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+    start   <span class="o">)</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    stop    <span class="o">)</span>
+      jsvc_exec stop
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    restart  <span class="o">)</span>
+      jsvc_exec stop
+      sleep <span class="m">2</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    version    <span class="o">)</span>
+      jsvc_exec version
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    *       <span class="o">)</span>
+      <span class="nb">echo</span> <span class="s2">&quot;Unknown command: \`</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;commands:&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  restart           Retart Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  start             Start Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  stop              Stop Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  version           What version of commons daemon and Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;                    are you running?&quot;</span>
+      <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+<blockquote><p><code>--service-start-wait-time 50</code>解决的是tomcat进程启动过慢时，jsvc返回为1的问题。 因为jsvc启动需要等到进程返回"I am ready"时才会返回。 如果这个wait的时间被超过，则返回为1（<a href="https://commons.apache.org/proper/commons-daemon/jsvc.html">参考文档</a>）</p>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/jvm">
+              jvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/tomcat">
+              tomcat
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">
+                tomcat 1.1.0 配置-sessionCookieName
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.1_config_ssl_tomcat7.html">
+                tomcat 1.1.1 配置-SSL
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.2_config_server_xml.html">
+                tomcat 1.1.2 server.xml 配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.1.3_config_context.html">
+                tomcat 1.1.3 配置-context
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">
+                tomcat 1.2.0 日志-cronolog日志切割
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.1_log_log4j.html">
+                tomcat 1.2.1 日志-log4j配置相对路径
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.2.2_log_juli_loglevel.html">
+                tomcat 1.2.2 日志-JULI日志级别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.0_optimize_apr_mode.html">
+                tomcat 1.3.0 优化-apr模式
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.1_optimize_server_xml.html">
+                tomcat 1.3.1 优化-server.xml
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_1.3.2_optimize_test_concurrent_more_than_10000.html">
+                tomcat 1.3.2 优化-如何承载上万并发
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.0_problem_startup_slow_tomcat7.html">
+                tomcat 2.1.0 问题-tomcat7启动速度慢
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.1_entropy_source.html">
+                tomcat 2.1.1 问题-tomcat7启动安全-熵池
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.1.2_error_shutdown_connection_refuse.html">
+                tomcat 2.1.2 问题-tomcat7 shutdown 提示 connection refused
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.2.0_java.lang.ClassCastException.html">
+                tomcat 2.2.0 问题-java.lang.ClassCastException
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_2.2.1_tomcat7_classloader_howto_translate.html">
+                tomcat 2.2.1 tomcat7类加载器HOWTO-中文翻译
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_3.1.0_manage_check_version.html">
+                tomcat 3.1.0 管理-查看tomcat版本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_3.2.0_tomcat_manager.html">
+                tomcat 3.2.0 tomcat manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_4.1.0_application_session_keep_with_memcached.html">
+                tomcat 4.1.0 应用-memcached会话保持
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.0_redis_session_gradle_compile_jar.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.1_redis_session_gradle_compile_jar_tomcat8.5_and_jdk8.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager - tomcat8.5
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_6.1.0_tomcat6_vs_tomcat7.html">
+                tomcat 6.1.0 tomcat6 和 tomcat7的简要区别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_7.1.0_running_as_daemon_by_nonroot.html">
+                tomcat 7.1.0 使用非root用户用daemon运行tomcat
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/TOMCAT9_安装配置.html">
+                tomcat: 1.1.0 tomcat9安装配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/tomcat/tomcat_5.1.2_session_sharing_by_using_redis.html">
+                tomcat: 5.1.2 tomcat-session sharing
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

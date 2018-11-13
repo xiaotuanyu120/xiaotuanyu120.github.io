@@ -1,0 +1,831 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>etcd 1.1.4 etcd install static cluster with ssl/tls</h3>
+<hr>
+<h3>0. 安装etcd集群之前</h3>
+<p>本文是在上一篇<a href="http://linux.xiao5tech.com/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd集群的static启动方法</a>)的基础上，增加<a href="https://github.com/coreos/etcd/blob/master/Documentation/op-guide/security.md">ssl/tls认证</a>的内容。</p>
+<hr>
+<h3>1. 使用static方法启动etcd集群(ssl/tls)</h3>
+<h4>1) 安装etcd</h4>
+<p>参照<a href="http://linux.xiao5tech.com/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd集群的static启动方法</a>，这里不再赘述。</p>
+<h4>2) 生成认证文件</h4>
+<p>生成认证文件详细操作参照<a href="https://github.com/coreos/docs/blob/master/os/generate-self-signed-certificates.md">使用cfssl生成认证文件的文档</a>，这里仅提及必要的内容，生成配置文件可在任意linux系统中生成，只需要在生成之后把相应的认证文件拷贝到相应节点即可。</p>
+<p>etcd里面可以做的认证包括：</p>
+<ul>
+<li>客户端验证服务端身份，需要在服务端提供服务器认证文件，例如server.pem，server-key.pem</li>
+<li>服务端验证客户端身份，需要在客户端提供客户端认证文件，例如client-key.pem，client.pem</li>
+<li>etcd集群节点互相认证身份，需要各节点提供节点认证文件，例如member1.pem，member1-key.pem<blockquote><p>当然任何认证都需要的一个文件是ca.pem</p>
+</blockquote>
+</li>
+</ul>
+<p>CA选项文件<code>ca-config.json</code>和<code>ca-csr.json</code>自定义内容</p>
+
+<pre><code>{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            },
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}</code></pre>
+
+<pre><code>{
+    "CN": "etcd cluster CA",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "PH",
+            "L": "CA",
+            "O": "skyluster",
+            "ST": "manila",
+            "OU": "OM"
+        }
+    ]
+}</code></pre>
+<p>server端选项文件<code>server.json</code></p>
+
+<pre><code>{
+    "CN": "etcdServer",
+    "hosts": [
+        "192.168.86.19",
+        "192.168.86.20",
+        "192.168.86.21",
+        "127.0.0.1"
+    ],
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "PH",
+            "L": "CA",
+            "ST": "MANILA"
+        }
+    ]
+}</code></pre>
+<p>peer端选项文件<code>member1.json</code></p>
+
+<pre><code>{
+    "CN": "member1",
+    "hosts": [
+        "192.168.86.19"
+    ],
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "PH",
+            "L": "CA",
+            "ST": "MANILA"
+        }
+    ]
+}</code></pre>
+<blockquote><p>另外两个节点只要修改CN和hosts就好</p>
+</blockquote>
+<p>client端选项文件<code>client.json</code></p>
+
+<pre><code>{
+    "CN": "client",
+    "hosts": [""],
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "PH",
+            "L": "CA",
+            "ST": "MANILA"
+        }
+    ]
+}</code></pre>
+<p>使用上述选项文件，我们可以生成以下认证文件</p>
+<ul>
+<li>ca.csr  ca-key.pem  ca.pem</li>
+<li>server.csr  server-key.pem  server.pem</li>
+<li>member1.csr  member1-key.pem  member1.pem</li>
+<li>member2.csr  member2-key.pem  member2.pem</li>
+<li>member3.csr  member3-key.pem  member3.pem</li>
+<li>client.csr  client-key.pem  client.pem</li>
+</ul>
+<h4>3) 拷贝认证文件到对应节点</h4>
+<p>本文中生成认证文件的节点不在etcd集群中</p>
+<div class="highlight"><pre><span></span>mkdir -p /etc/etcd/ssl
+
+<span class="c1"># 1. 拷贝server认证文件</span>
+scp server.pem server-key.pem root@192.168.86.19:/etc/etcd/ssl
+scp server.pem server-key.pem root@192.168.86.20:/etc/etcd/ssl
+scp server.pem server-key.pem root@192.168.86.21:/etc/etcd/ssl
+<span class="c1"># 用于提供server身份认证</span>
+
+<span class="c1"># 2. 拷贝client认证文件</span>
+<span class="c1">#首先需要拷贝ca.pem或ca.csr到服务端</span>
+scp ca.pem root@192.168.86.19:/etc/etcd/ssl
+scp ca.pem root@192.168.86.20:/etc/etcd/ssl
+scp ca.pem root@192.168.86.21:/etc/etcd/ssl
+<span class="c1">#然后把client.pem client-key.pem拷贝到需要访问etcd集群的客户端</span>
+scp ca.pem client.pem client-key.pem root@&lt;client-ip&gt;:/any/dir
+
+<span class="c1"># 3. 拷贝peer认证文件</span>
+scp member1.pem member1-key.pem root@192.168.86.19:/etc/etcd/ssl
+scp member2.pem member2-key.pem root@192.168.86.20:/etc/etcd/ssl
+scp member3.pem member3-key.pem root@192.168.86.21:/etc/etcd/ssl
+</pre></div>
+<h4>4) 启动etcd</h4>
+<p>在各个节点创建新文件<code>/usr/local/bin/etcdStart</code></p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+etcd --name infra0 --data-dir /home/etcd --initial-advertise-peer-urls https://192.168.86.19:2380 <span class="se">\</span>
+  --listen-peer-urls https://192.168.86.19:2380 <span class="se">\</span>
+  --listen-client-urls https://192.168.86.19:2379,https://127.0.0.1:2379 <span class="se">\</span>
+  --advertise-client-urls https://192.168.86.19:2379 <span class="se">\</span>
+  --initial-cluster-token etcd-cluster-1 <span class="se">\</span>
+  --initial-cluster <span class="nv">infra0</span><span class="o">=</span>https://192.168.86.19:2380,infra1<span class="o">=</span>https://192.168.86.20:2380,infra2<span class="o">=</span>https://192.168.86.21:2380 <span class="se">\</span>
+  --initial-cluster-state new <span class="se">\</span>
+  --client-cert-auth --trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --cert-file /etc/etcd/ssl/server.pem --key-file /etc/etcd/ssl/server-key.pem <span class="se">\</span>
+  --peer-client-cert-auth --peer-trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --peer-cert-file /etc/etcd/ssl/member1.pem --peer-key-file /etc/etcd/ssl/member1-key.pem <span class="p">&amp;</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+etcd --name infra1 --data-dir /home/etcd --initial-advertise-peer-urls https://192.168.86.20:2380 <span class="se">\</span>
+  --listen-peer-urls https://192.168.86.20:2380 <span class="se">\</span>
+  --listen-client-urls https://192.168.86.20:2379,https://127.0.0.1:2379 <span class="se">\</span>
+  --advertise-client-urls https://192.168.86.20:2379 <span class="se">\</span>
+  --initial-cluster-token etcd-cluster-1 <span class="se">\</span>
+  --initial-cluster <span class="nv">infra0</span><span class="o">=</span>https://192.168.86.19:2380,infra1<span class="o">=</span>https://192.168.86.20:2380,infra2<span class="o">=</span>https://192.168.86.21:2380 <span class="se">\</span>
+  --initial-cluster-state new <span class="se">\</span>
+  --client-cert-auth --trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --cert-file /etc/etcd/ssl/server.pem --key-file /etc/etcd/ssl/server-key.pem <span class="se">\</span>
+  --peer-client-cert-auth --peer-trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --peer-cert-file /etc/etcd/ssl/member2.pem --peer-key-file /etc/etcd/ssl/member2-key.pem <span class="p">&amp;</span>
+</pre></div>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+etcd --name infra2 --data-dir /home/etcd --initial-advertise-peer-urls https://192.168.86.21:2380 <span class="se">\</span>
+  --listen-peer-urls https://192.168.86.21:2380 <span class="se">\</span>
+  --listen-client-urls https://192.168.86.21:2379,https://127.0.0.1:2379 <span class="se">\</span>
+  --advertise-client-urls https://192.168.86.21:2379 <span class="se">\</span>
+  --initial-cluster-token etcd-cluster-1 <span class="se">\</span>
+  --initial-cluster <span class="nv">infra0</span><span class="o">=</span>https://192.168.86.19:2380,infra1<span class="o">=</span>https://192.168.86.20:2380,infra2<span class="o">=</span>https://192.168.86.21:2380 <span class="se">\</span>
+  --initial-cluster-state new <span class="se">\</span>
+  --client-cert-auth --trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --cert-file /etc/etcd/ssl/server.pem --key-file /etc/etcd/ssl/server-key.pem <span class="se">\</span>
+  --peer-client-cert-auth --peer-trusted-ca-file /etc/etcd/ssl/ca.pem <span class="se">\</span>
+  --peer-cert-file /etc/etcd/ssl/member3.pem --peer-key-file /etc/etcd/ssl/member3-key.pem <span class="p">&amp;</span>
+</pre></div>
+<p>在各节点上启动etcd</p>
+<div class="highlight"><pre><span></span>chmod u+x,g+x /usr/local/bin/etcdStart
+etcdStart
+</pre></div>
+<h4>5) 检查etcd状态</h4>
+<p>查看集群状态</p>
+<div class="highlight"><pre><span></span><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl --cacert ./ca.pem --cert ./client.pem --key ./client-key.pem --endpoints https://192.168.86.20:2379 member list
+3a7da2665bb89ebd, started, infra1, https://192.168.86.20:2380, https://192.168.86.20:2379
+86a76c24d67842f0, started, infra2, https://192.168.86.21:2380, https://192.168.86.21:2379
+dd786e4fce611409, started, infra0, https://192.168.86.19:2380, https://192.168.86.19:2379
+</pre></div>
+<blockquote><p><code>ETCDCTL_API=3</code>变量的作用是让etctl使用etcd3的api语法，默认是etcd2的api语法。</p>
+</blockquote>
+<p>增删改查</p>
+<div class="highlight"><pre><span></span><span class="c1"># 使用etcdctl</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl --cacert ./ca.pem --cert ./client.pem --key ./client-key.pem --endpoints https://192.168.86.20:2379 put /v2/keys/test <span class="nb">test</span>
+OK
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl --cacert ./ca.pem --cert ./client.pem --key ./client-key.pem --endpoints https://192.168.86.20:2379 get /v2/keys/test
+/v2/keys/test
+<span class="nb">test</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl --cacert ./ca.pem --cert ./client.pem --key ./client-key.pem --endpoints https://192.168.86.20:2379 del /v2/keys/test
+<span class="m">1</span>
+<span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl --cacert ./ca.pem --cert ./client.pem --key ./client-key.pem --endpoints https://192.168.86.20:2379 get /v2/keys/test
+</pre></div>
+<blockquote><p>因为key格式的原因，无法使用curl来访问，需要后续研究</p>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/openstack">
+              openstack
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/docker">
+              docker
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/kvm">
+              kvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/container">
+              container
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
+                cgroups 1.0.0 什么是cgroups？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
+                coreos 1.1.0 系统安装-bare metal
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
+                coreos 1.2.0 系统安装-vagrant
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
+                coreos 2.1.0 ignition简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
+                coreos 2.2.0 pxe引导coreos启动(cloudinit)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
+                coreos 2.2.1 pxe引导coreos启动(ignition)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
+                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
+                coreos 2.3.0 ignition+matchbox安装coreos集群
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
+                coreos 2.4.0 生成ssl/tls自签名认证证书
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
+                etcd 1.1.2 etcd install single node(systemd)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
+                etcd 1.1.3 etcd install static cluster(centos6)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
+                etcd 1.1.4 etcd install static cluster with ssl/tls
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
+                etcd 1.1.5 etcd install discovery cluster(coreos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
+                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
+                etcd 2.1.0 etcd-api python-etcd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
+                etcd 2.2.0 搭配confd做配置管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
+                flannel 1.1.0 install flannel using binaries（systemd）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
+                flannel 1.2.0 configuration ans option
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
+                kubernetes 1.1.0 简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
+                kubernetes 1.2.0 vagrant+coreos(flannel)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
+                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
+                kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
+                kubernetes 1.2.3 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
+                kubernetes 1.2.4 traefik ingress
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
+                kubernetes 1.2.5 ingress ssl
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
+                kubernetes 1.2.6 kube-dns
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
+                kubernetes 1.2.7 EFK
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
+                kubernetes 1.3.0 run-stateless-application-deployment
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
+                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
+              </a>
+             </li>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

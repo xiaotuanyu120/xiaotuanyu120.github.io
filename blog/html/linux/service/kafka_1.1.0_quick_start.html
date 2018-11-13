@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>kafka 1.1.0 quick start</h3>
+<hr>
+<h3>1. kafka installation</h3>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. download kafka</span>
+wget http://www-eu.apache.org/dist/kafka/2.0.0/kafka_2.11-2.0.0.tgz
+tar -xzf kafka_2.11-2.0.0.tgz
+mv kafka_2.11-2.0.0 /usr/local/
+
+<span class="c1"># step 2. prepare kafka systemd unit files</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]</span>
+<span class="s1">Description=Apache Zookeeper server (Kafka)</span>
+<span class="s1">Documentation=http://zookeeper.apache.org</span>
+<span class="s1">Requires=network.target</span>
+<span class="s1">After=network.target</span>
+
+<span class="s1">[Service]</span>
+<span class="s1">Type=simple</span>
+<span class="s1">User=root</span>
+<span class="s1">Group=root</span>
+<span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144</span>
+<span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.11-2.0.0/config/zookeeper.properties</span>
+<span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-stop.sh</span>
+
+<span class="s1">[Install]</span>
+<span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka-zookeeper.service
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]</span>
+<span class="s1">Description=Apache Kafka server (broker)</span>
+<span class="s1">Documentation=http://kafka.apache.org/documentation.html</span>
+<span class="s1">Requires=network.target</span>
+<span class="s1">After=network.target kafka-zookeeper.service</span>
+
+<span class="s1">[Service]</span>
+<span class="s1">Type=simple</span>
+<span class="s1">User=root</span>
+<span class="s1">Group=root</span>
+<span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144</span>
+<span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-start.sh /usr/local/kafka_2.11-2.0.0/config/server.properties</span>
+<span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-stop.sh</span>
+
+<span class="s1">[Install]</span>
+<span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka.service
+
+<span class="c1"># step 3. reload systemd unit files</span>
+systemctl daemon-reload
+</pre></div>
+<h3>2. kafka configuration</h3>
+<p><code>config/zookeeper.properties</code>部分配置</p>
+<div class="highlight"><pre><span></span><span class="c"># the directory where the snapshot is stored.</span>
+<span class="na">dataDir</span><span class="o">=</span><span class="s">/tmp/zookeeper</span>
+</pre></div>
+<p><code>config/server.properties</code>部分配置</p>
+<div class="highlight"><pre><span></span><span class="c"># The id of the broker. This must be set to a unique integer for each broker.</span>
+<span class="na">broker.id</span><span class="o">=</span><span class="s">0</span>
+
+<span class="c"># The address the socket server listens on. It will get the value returned from </span>
+<span class="c"># java.net.InetAddress.getCanonicalHostName() if not configured.</span>
+<span class="na">listeners</span><span class="o">=</span><span class="s">PLAINTEXT://:9092</span>
+
+<span class="c"># The number of threads that the server uses for receiving requests from the network and sending responses to the network</span>
+<span class="na">num.network.threads</span><span class="o">=</span><span class="s">3</span>
+
+<span class="c"># The number of threads that the server uses for processing requests, which may include disk I/O</span>
+<span class="na">num.io.threads</span><span class="o">=</span><span class="s">8</span>
+
+<span class="c"># The send buffer (SO_SNDBUF) used by the socket server</span>
+<span class="na">socket.send.buffer.bytes</span><span class="o">=</span><span class="s">102400</span>
+
+<span class="c"># The receive buffer (SO_RCVBUF) used by the socket server</span>
+<span class="na">socket.receive.buffer.bytes</span><span class="o">=</span><span class="s">102400</span>
+
+<span class="c"># The maximum size of a request that the socket server will accept (protection against OOM)</span>
+<span class="na">socket.request.max.bytes</span><span class="o">=</span><span class="s">104857600</span>
+
+<span class="c"># A comma separated list of directories under which to store log files</span>
+<span class="na">log.dirs</span><span class="o">=</span><span class="s">/tmp/kafka-logs</span>
+
+<span class="c"># The default number of log partitions per topic. More partitions allow greater</span>
+<span class="c"># parallelism for consumption, but this will also result in more files across</span>
+<span class="c"># the brokers.</span>
+<span class="na">num.partitions</span><span class="o">=</span><span class="s">1</span>
+</pre></div>
+<blockquote><p>此处只是部分配置，详细可以参照官方文档查看所有配置信息</p>
+</blockquote>
+<h3>3. kafka start</h3>
+<div class="highlight"><pre><span></span>systemctl start kafka-zookeeper.service
+systemctl start kafka.service
+</pre></div>
+<h3>4. Create a topic</h3>
+<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">1</span> --partitions <span class="m">1</span> --topic <span class="nb">test</span>
+Created topic <span class="s2">&quot;test&quot;</span>.
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+<span class="nb">test</span>
+
+<span class="c1"># alter partition numbers</span>
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions <span class="m">2</span> --topic <span class="nb">test</span>
+WARNING: If partitions are increased <span class="k">for</span> a topic that has a key, the partition logic or ordering of the messages will be affected
+Adding partitions succeeded!
+</pre></div>
+<h3>5. 生产和消费数据</h3>
+<div class="highlight"><pre><span></span>bin/kafka-console-producer.sh --broker-list <span class="m">192</span>.168.33.10:9092 --topic <span class="nb">test</span>
+<span class="nb">test</span>
+test2
+quit
+
+bin/kafka-console-consumer.sh --bootstrap-server <span class="m">192</span>.168.33.10:9092 --topic <span class="nb">test</span> --from-beginning
+<span class="nb">test</span>
+quit
+test2
+</pre></div>
+<h3>6. 设置一个多broker的集群</h3>
+<p>配置和启动集群</p>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. 准备其他两个节点的配置文件</span>
+cp config/server.properties config/server-1.properties
+cp config/server.properties config/server-2.properties
+
+<span class="c1"># config/server-1.properties</span>
+broker.id<span class="o">=</span><span class="m">1</span>
+<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9093
+log.dirs<span class="o">=</span>/tmp/kafka-logs-1
+
+<span class="c1"># config/server-2.properties:</span>
+broker.id<span class="o">=</span><span class="m">2</span>
+<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9094
+log.dirs<span class="o">=</span>/tmp/kafka-logs-2
+
+<span class="c1"># step 2. 准备systemd unit file</span>
+<span class="c1"># - 复制/usr/lib/systemd/system/kafka.service为/usr/lib/systemd/system/kafka-1.service和/usr/lib/systemd/system/kafka-2.service</span>
+<span class="c1"># - 修改ExecStart中指向的配置文件为对应的配置文件（上面准备的）</span>
+
+
+<span class="c1"># step 3. 启动集群</span>
+systemct daemon-reload
+systemctl start kafka-1
+systemctl start kafka-2
+</pre></div>
+<p>设定多factor单分区的topic</p>
+<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">1</span> --topic my-replicated-topic
+Created topic <span class="s2">&quot;my-replicated-topic&quot;</span>.
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
+    Topic: my-replicated-topic  Partition: <span class="m">0</span>    Leader: <span class="m">1</span>   Replicas: <span class="m">1</span>,0,2 Isr: <span class="m">1</span>,0,2
+</pre></div>
+<p>设定多factor多分区的topic</p>
+<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">4</span> --topic my-replicated-topic-4
+Created topic <span class="s2">&quot;my-replicated-topic-4&quot;</span>.
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic-4
+Topic:my-replicated-topic-4 PartitionCount:4    ReplicationFactor:3 Configs:
+    Topic: my-replicated-topic-4    Partition: <span class="m">0</span>    Leader: <span class="m">2</span>   Replicas: <span class="m">2</span>,1,0 Isr: <span class="m">2</span>,1,0
+    Topic: my-replicated-topic-4    Partition: <span class="m">1</span>    Leader: <span class="m">0</span>   Replicas: <span class="m">0</span>,2,1 Isr: <span class="m">0</span>,2,1
+    Topic: my-replicated-topic-4    Partition: <span class="m">2</span>    Leader: <span class="m">1</span>   Replicas: <span class="m">1</span>,0,2 Isr: <span class="m">1</span>,0,2
+    Topic: my-replicated-topic-4    Partition: <span class="m">3</span>    Leader: <span class="m">2</span>   Replicas: <span class="m">2</span>,0,1 Isr: <span class="m">2</span>,0,1
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
+                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
+                WIKI: 1.2.0 moinmoin基本设置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
+                ffmpeg 1.1.0 compile install(centos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
+                fluentd 1.0.0 读“fluentd官方文档”笔记
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
+                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
+                inotify: 1.1.0 初识inotify
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
+                inotify: 2.1.0 inotify+rsync实现实时文件同步
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
+                inotify: 3.1.0 inotify实现代码回滚(设想)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
+                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
+                kafka 1.1.0 quick start
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
+                keepalive 1.1.0 nginx高可用
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
+                ldap 1.0.0: installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
+                vnc: 1.1.0 centos 7 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
+                zookeeper 1.1.0 standalone 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
+                zookeeper 1.2.0 replicated 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
+                zookeeper 1.3.0 zookeeper 数据清理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
+                zookeeper 1.4.0 管理（启动脚本）
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

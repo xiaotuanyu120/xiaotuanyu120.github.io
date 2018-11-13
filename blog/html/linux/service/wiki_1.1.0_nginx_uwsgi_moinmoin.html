@@ -1,0 +1,801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>WIKI: 1.1.0 nginx+uwsgi部署moinmoin</h3>
+<hr>
+<h3>1. 安装uwsgi</h3>
+<div class="highlight"><pre><span></span>wget http://projects.unbit.it/downloads/uwsgi-2.0.12.tar.gz
+tar zxvf uwsgi-2.0.12.tar.gz
+mv uwsgi-2.0.12 /data/server/uwsgi
+<span class="nb">cd</span> /data/server/uwsgi
+make
+cp uwsgi /usr/local/bin/uwsgi
+</pre></div>
+<hr>
+<h3>2. 测试uwsgi</h3>
+<div class="highlight"><pre><span></span>vim /root/test.py
+**************************************
+def application<span class="o">(</span>env, start_response<span class="o">)</span>:
+    start_response<span class="o">(</span><span class="s1">&#39;200 OK&#39;</span>, <span class="o">[(</span><span class="s1">&#39;Content-Type&#39;</span>,<span class="s1">&#39;text/html&#39;</span><span class="o">)])</span>
+    <span class="k">return</span> <span class="s2">&quot;Hello World&quot;</span>
+**************************************
+
+uwsgi --http  :8001 --wsgi-file /root/test.py --daemonize<span class="o">=</span>/root/test.log
+curl <span class="m">127</span>.0.0.1:8001
+Hello World
+</pre></div>
+<hr>
+<h3>3. 安装moinmoin</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 方法1（弃用，因为试用了几次都不成功，不能import MoinMoin）</span>
+wget https://static.moinmo.in/files/moin-1.9.8.tar.gz
+tar zxvf moin-1.9.8.tar.gz
+<span class="nb">cd</span> moin-1.9.8
+python setup.py install --force --prefix /usr/local --record<span class="o">=</span>install.log
+
+<span class="c1"># 方法2（成功的方法）</span>
+pip install moin
+Collecting moin
+  Downloading moin-1.9.8.tar.gz <span class="o">(</span><span class="m">37</span>.1MB<span class="o">)</span>
+    <span class="m">100</span>% <span class="p">|</span>████████████████████████████████<span class="p">|</span> <span class="m">37</span>.1MB <span class="m">7</span>.6kB/s
+Building wheels <span class="k">for</span> collected packages: moin
+  Running setup.py bdist_wheel <span class="k">for</span> moin ... <span class="k">done</span>
+  Stored in directory: /root/.cache/pip/wheels/34/78/2c/64fccf6482fb6d515ecabf7edb0291e7f88e8a0b7888794b46
+Successfully built moin
+Installing collected packages: moin
+Successfully installed moin-1.9.8
+</pre></div>
+<hr>
+<h3>4. 准备wiki的uwsgi配置文件</h3>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/local/py27/share/moin
+<span class="c1"># 创建wiki目录</span>
+mkdir mywiki
+<span class="c1"># 拷贝配置文件到wiki目录</span>
+cp -r <span class="o">{</span>data,underlay,server/moin.wsgi,config/wikiconfig.py<span class="o">}</span> mywiki
+<span class="c1"># 指定python环境</span>
+vim mywiki/moin.wsgi
+******************************************
+<span class="c1">## 找到a1、a2，在下面添加以下语句</span>
+
+<span class="c1"># a1) Path of the directory where the MoinMoin code package is located.</span>
+<span class="c1">#     Needed if you installed with --prefix=PREFIX or you didn&#39;t use setup.py.</span>
+<span class="c1">#sys.path.insert(0, &#39;PREFIX/lib/python2.3/site-packages&#39;)</span>
+sys.path.insert<span class="o">(</span><span class="m">0</span>, <span class="s1">&#39;/usr/local/py27/lib/python2.7/site-packages&#39;</span><span class="o">)</span>
+
+<span class="c1"># a2) Path of the directory where wikiconfig.py / farmconfig.py is located.</span>
+<span class="c1">#     See wiki/config/... for some sample config files.</span>
+sys.path.insert<span class="o">(</span><span class="m">0</span>, <span class="s1">&#39;/usr/local/py27/share/moin/mywiki&#39;</span><span class="o">)</span>
+
+<span class="c1">## 关闭moinmoin的静态文件提供功能，让web服务器来提供静态文件（未配置）</span>
+<span class="c1">#application = make_application(shared=True)</span>
+<span class="nv">application</span> <span class="o">=</span> make_application<span class="o">(</span><span class="nv">shared</span><span class="o">=</span>False<span class="o">)</span>
+******************************************
+
+<span class="c1"># 配置静态文件路径（未配置）</span>
+vim mywiki/wikiconfig.py
+******************************************
+class Config<span class="o">(</span>multiconfig.DefaultConfig<span class="o">)</span>:
+    <span class="nv">url_prefix_static</span> <span class="o">=</span> <span class="s1">&#39;/usr/local/share/moin/htdocs&#39;</span>
+******************************************
+</pre></div>
+<hr>
+<h3>5. 配置uwsgi文件</h3>
+<div class="highlight"><pre><span></span><span class="c1"># vim mywiki/uwsgi.ini</span>
+******************************************
+<span class="o">[</span>uwsgi<span class="o">]</span>
+<span class="nv">uid</span> <span class="o">=</span> nginx
+<span class="nv">gid</span> <span class="o">=</span> nginx
+<span class="nv">socket</span> <span class="o">=</span> /tmp/moin.sock
+chmod-socket <span class="o">=</span> <span class="m">660</span>
+
+<span class="nv">chdir</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki
+wsgi-file <span class="o">=</span> moin.wsgi
+<span class="nv">pidfile</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki/uwsgi.pid
+
+<span class="nv">master</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">workers</span> <span class="o">=</span> <span class="m">3</span>
+max-requests <span class="o">=</span> <span class="m">200</span>
+
+<span class="nv">harakiri</span> <span class="o">=</span> <span class="m">30</span>
+die-on-term <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">daemonize</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki/moin-uwsgi.log
+<span class="nv">vacuum</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c1">## 参数解释</span>
+harakiri： timeout
+daemoinize： run background <span class="p">&amp;</span> log
+vacuum： 当服务器退出的时候自动删除unix socket文件和pid文件
+******************************************
+</pre></div>
+<hr>
+<h3>6. 配置uwsgi启动脚本</h3>
+<div class="highlight"><pre><span></span>vim /etc/init.d/uwsgid
+******************************************
+<span class="c1">#! /bin/sh</span>
+<span class="c1"># chkconfig: 2345 55 25</span>
+<span class="c1"># For CentOS/Redhat run: &#39;chkconfig --add uwsgi&#39;</span>
+
+<span class="nv">DESC</span><span class="o">=</span><span class="s2">&quot;uwsgi daemon&quot;</span>
+<span class="nv">NAME</span><span class="o">=</span>uwsgi
+<span class="nv">DAEMON</span><span class="o">=</span>/usr/local/bin/uwsgi
+<span class="nv">CONFIGFILE</span><span class="o">=</span>/usr/local/py27/share/moin/mywiki/<span class="nv">$NAME</span>.ini
+<span class="nv">PIDFILE</span><span class="o">=</span>/usr/local/py27/share/moin/mywiki/<span class="nv">$NAME</span>.pid
+<span class="nv">SCRIPTNAME</span><span class="o">=</span>/etc/init.d/uwsgid
+
+<span class="nb">set</span> -e
+<span class="o">[</span> -x <span class="s2">&quot;</span><span class="nv">$DAEMON</span><span class="s2">&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
+
+do_start<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> <span class="nv">$CONFIGFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&quot;uwsgi already running&quot;</span>
+<span class="o">}</span>
+
+do_stop<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> --stop <span class="nv">$PIDFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&quot;uwsgi not running&quot;</span>
+    rm -f <span class="nv">$PIDFILE</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$DAEMON</span><span class="s2"> STOPED.&quot;</span>
+<span class="o">}</span>
+
+do_reload<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> --reload <span class="nv">$PIDFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&quot;uwsgi can&#39;t reload&quot;</span>
+<span class="o">}</span>
+
+do_status<span class="o">()</span> <span class="o">{</span>
+    ps aux<span class="p">|</span>grep <span class="nv">$DAEMON</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+ status<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&quot;Status </span><span class="nv">$NAME</span><span class="s2">: \n&quot;</span>
+    do_status
+ <span class="p">;;</span>
+ start<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&quot;Starting </span><span class="nv">$NAME</span><span class="s2">: \n&quot;</span>
+    do_start
+ <span class="p">;;</span>
+ stop<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&quot;Stopping </span><span class="nv">$NAME</span><span class="s2">: \n&quot;</span>
+    do_stop
+ <span class="p">;;</span>
+ reload<span class="p">|</span>graceful<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&quot;Reloading </span><span class="nv">$NAME</span><span class="s2">: \n&quot;</span>
+    do_reload
+ <span class="p">;;</span>
+ *<span class="o">)</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Usage: </span><span class="nv">$SCRIPTNAME</span><span class="s2"> {start|stop|reload}&quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    <span class="nb">exit</span> <span class="m">3</span>
+ <span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+******************************************
+<span class="c1"># chmod 755 /etc/init.d/uwsgid</span>
+<span class="c1"># chkconfig --add uwsgid</span>
+<span class="c1"># chkconfig uwsgid on</span>
+</pre></div>
+<hr>
+<h3>7. 安装nginx</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 安装过程略，记录过太多次</span>
+nginx -V
+nginx version: nginx/1.8.0
+built by gcc <span class="m">4</span>.4.7 <span class="m">20120313</span> <span class="o">(</span>Red Hat <span class="m">4</span>.4.7-16<span class="o">)</span> <span class="o">(</span>GCC<span class="o">)</span>
+built with OpenSSL <span class="m">1</span>.0.1e-fips <span class="m">11</span> Feb <span class="m">2013</span>
+TLS SNI support enabled
+configure arguments: --user<span class="o">=</span>nginx --group<span class="o">=</span>nginx --prefix<span class="o">=</span>/data/server/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre --with-http_realip_module
+
+<span class="c1"># 配置nginx</span>
+vim /data/server/nginx/conf/nginx.conf
+******************************************
+user  nginx<span class="p">;</span>
+......
+    server <span class="se">\{</span>
+        listen       <span class="m">80</span> default_server<span class="p">;</span>
+        server_name  _<span class="p">;</span>
+
+        location / <span class="o">{</span>
+            uwsgi_pass unix:/tmp/moin.sock<span class="p">;</span>
+            include uwsgi_params<span class="p">;</span>
+        <span class="o">}</span>
+******************************************
+<span class="c1"># 配置wiki目录权限让nginx可以访问</span>
+chown -R nginx:nginx /usr/local/py27/share
+</pre></div>
+<hr>
+<h3>8. 如何用命令行启动uwsgi服务</h3>
+<div class="highlight"><pre><span></span>uwsgi -s <span class="m">127</span>.0.0.1:9003 -M -t <span class="m">30</span> -A <span class="m">4</span> -p <span class="m">2</span> -d /data/logs/moin-uwsgi.log /data/server/moin/ /data/server/moin/wiki/moin.wsgi
+<span class="c1">## 参数（标注配置项的都可以写入配置文件）</span>
+<span class="c1"># -s socket(配置项) bind to the specified UNIX/TCP socket using default protocol</span>
+<span class="c1"># -M master(配置项) enable master process</span>
+<span class="c1"># -t harakiri(配置项) set harakiri timeout</span>
+<span class="c1"># -A sharedarea(配置项) create a raw shared memory area of specified pages (note: it supports keyval too)</span>
+<span class="c1"># -p workers(配置项) spawn the specified number of workers/processes</span>
+<span class="c1"># -d daemonize(配置项) daemonize uWSGI</span>
+<span class="c1"># &quot;/data/server/moin&quot; pythonpath add directory (or glob) to pythonpath</span>
+<span class="c1"># &quot;/data/server/moin/wiki/moin.wsgi&quot; wsgi-file load .wsgi file</span>
+</pre></div>
+<hr>
+<h3>9. 遇到的问题</h3>
+<h4>1) 报错</h4>
+<div class="highlight"><pre><span></span>uwsgi -s <span class="m">127</span>.0.0.1:9003 -M -t <span class="m">30</span> -A <span class="m">4</span> -p <span class="m">2</span> -d /data/logs/moin-uwsgi.log --pythonpath /data/server/moin/ --wsgi-file /data/server/moin/wiki/moin.wsgi
+/usr/bin/uwsgi:4:in <span class="s1">&#39;exec&#39;</span>: No such file or directory - /etc/uwsgi/ext/uwsgi/uwsgi.ruby <span class="o">(</span>Errno::ENOENT<span class="o">)</span>
+    from /usr/bin/uwsgi:4
+</pre></div>
+<h4>2) 解决方案</h4>
+<div class="highlight"><pre><span></span>yum install -y ruby-devel
+mkdir -p /usr/local/ext/uwsgi
+<span class="nb">cd</span> /usr/local/ext/uwsgi/
+ruby /data/server/uwsgi/ext/uwsgi/extconf.rb
+<span class="c1"># extconf.rb需要根据你服务器文件的实际位置来定，可以find找出</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
+                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
+                WIKI: 1.2.0 moinmoin基本设置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
+                ffmpeg 1.1.0 compile install(centos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
+                fluentd 1.0.0 读“fluentd官方文档”笔记
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
+                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
+                inotify: 1.1.0 初识inotify
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
+                inotify: 2.1.0 inotify+rsync实现实时文件同步
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
+                inotify: 3.1.0 inotify实现代码回滚(设想)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
+                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
+                kafka 1.1.0 quick start
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
+                keepalive 1.1.0 nginx高可用
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
+                ldap 1.0.0: installation
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
+                vnc: 1.1.0 centos 7 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
+                zookeeper 1.1.0 standalone 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
+                zookeeper 1.2.0 replicated 安装部署
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
+                zookeeper 1.3.0 zookeeper 数据清理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
+                zookeeper 1.4.0 管理（启动脚本）
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

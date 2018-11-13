@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>1.2.1 Dockerfile</h3>
+<hr>
+<h3>0. Dockerfile前言</h3>
+<p>docker镜像自定义的核心文件就是Dockerfile，通过其来进行一系列操作来构建适合使用的镜像。</p>
+<blockquote><p>主要参考官方 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile documents</a>和<a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Dockerfile 最佳实践</a></p>
+</blockquote>
+<hr>
+<h3>1. Dockerfile使用方法</h3>
+<p>在Dockerfile所在的目录中执行以下命令即可。当没有指定Dockerfile时，docker默认寻找当前目录下的Dockerfile文件。</p>
+<div class="highlight"><pre><span></span>docker build .
+
+<span class="c1"># 需要手动指定Dockerfile可使用-f</span>
+docker build -f /path/to/a/Dockerfile .
+
+<span class="c1"># 可使用-t指定仓库路径和tag</span>
+docker build -t shykes/myapp .
+<span class="c1"># 也可以同时指定多个</span>
+docker build -t shykes/myapp:1.0.2 -t shykes/myapp:latest .
+</pre></div>
+<blockquote><p>推荐编译docker镜像时，创建一个空目录，然后将Dockerfile放进该目录。目录中仅需要放置其他一些构建镜像必备的文件即可。</p>
+<p>需要注意的是，Dockerfile中的每一条指令都是顺序执行且独立的，这意味着<code>RUN cd /tmp</code>不会对接下来的指令有任何影响</p>
+</blockquote>
+<hr>
+<h3>2. Dockerfile格式</h3>
+
+<pre><code># Comment
+INSTRUCTION arguments</code></pre>
+<p>注释使用<code>#</code>；</p>
+<p>构造命令不区分大小写，但是一般都大写和后面的参数加以区分；</p>
+<p>Dockerfile必须以<code>FROM</code>开头，从基本镜像开始向下顺序执行构造命令；</p>
+<hr>
+<h3>3. 构造命令</h3>
+<h4>1) FROM</h4>
+
+<pre><code>FROM &lt;image&gt; [AS &lt;name&gt;]
+FROM &lt;image&gt;[:&lt;tag&gt;] [AS &lt;name&gt;]
+FROM &lt;image&gt;[@&lt;digest&gt;] [AS &lt;name&gt;]</code></pre>
+<p><image>可以是公共仓库镜像或者私有仓库镜像，只要是有效的即可；</p>
+<h4>2) RUN</h4>
+
+<pre><code># shell模式
+RUN &lt;command&gt;
+
+# exec模式
+RUN ["executable", "param1", "param2"]</code></pre>
+<p>exec模式是解析成json数组，所以必须要用双引号</p>
+<h4>3) EXPOSE</h4>
+
+<pre><code>EXPOSE &lt;port&gt; [&lt;port&gt;...]</code></pre>
+<p>指定容器运行时的监听端口，例如apache web服务器容器需要监听80</p>
+<h4>4) ENV</h4>
+
+<pre><code>ENV &lt;key&gt; &lt;value&gt;
+ENV &lt;key&gt;=&lt;value&gt; ...</code></pre>
+<p>第一种方式，<code>ENV &lt;key&gt; &lt;value&gt;</code>在第一个空格之后全部都是value，包括空格和引号；</p>
+<p>第二种方式，<code>ENV &lt;key&gt;=&lt;value&gt; ...</code>可以用于给多个变量赋值，使用脱意符号来输入空格。</p>
+<p>以下两种方式是相同的</p>
+
+<pre><code># first form
+ENV myName John Doe
+ENV myDog Rex The Dog
+ENV myCat fluffy
+
+# second form
+ENV myName="John Doe" myDog=Rex\ The\ Dog \
+    myCat=fluffy</code></pre>
+<h4>5) ADD &amp; COPY</h4>
+
+<pre><code>ADD &lt;src&gt;... &lt;dest&gt;
+COPY &lt;src&gt;... &lt;dest&gt;</code></pre>
+<p>如果src是个目录，会拷贝这个目录下面的所有内容到dest中</p>
+<h4>6) CMD</h4>
+
+<pre><code># exec form, this is the preferred form
+CMD ["executable","param1","param2"]
+
+# as default parameters to ENTRYPOINT
+CMD ["param1","param2"]
+
+# shell form
+CMD command param1 param2</code></pre>
+<p>CMD这个命令的初衷是作为ENTRYPOINT的默认参数，如果用作此用，需要CMD和ENTRYPOINT都使用json数组的方式</p>
+<h4>7) ENTRYPOINT</h4>
+
+<pre><code># exec form, preferred
+ENTRYPOINT ["executable", "param1", "param2"]
+
+# shell form
+ENTRYPOINT command param1 param2</code></pre>
+<p>当容器启动的时候执行的命令，比如说<code>ENTRYPOINT top -b</code></p>
+<h4>8) VOLUME</h4>
+
+<pre><code>VOLUME ["/data"]</code></pre>
+<p>相当于把本机的或者其他容器的磁盘挂载到当前容器中，上面的例子就是把宿主机的/data挂载到了容器的/data上。可以在容器运行时使用<code>-v</code>来达到同样的效果，而且<code>-v</code>更方便的是可以手动更改挂载目录的路径，例如<code>-v /home/data:/data</code>这样就把本机的/home/data挂载到了容器的/data上面。</p>
+<h4>9) USER</h4>
+
+<pre><code>USER &lt;user&gt;[:&lt;group&gt;] or
+USER &lt;UID&gt;[:&lt;GID&gt;]</code></pre>
+<p>指定一个非root用户，用于执行RUN,CMD,ENTRYPOINT等命令，也用于容器的运行。</p>
+<h4>10) WORKDIR</h4>
+
+<pre><code>WORKDIR /path/to/workdir</code></pre>
+<p>用于指定RUN, CMD, ENTRYPOINT, COPY 和 ADD这些命令的执行目录，当然，如果你指定的是绝对路径的话不受此影响。</p>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/openstack">
+              openstack
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/docker">
+              docker
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
+                1.1.0 安装(Centos7)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
+                1.1.0.1 install docker on mac
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
+                1.1.1 二进制文件安装(Centos7)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
+                1.1.2 为docker创建docker0以外的网桥
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
+                1.2.0 基础命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
+                1.2.1 Dockerfile
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
+                1.2.2 docker容器时间不准解决方案
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
+                2.1.1 镜像-查找与下载镜像
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
+                2.1.2 镜像-镜像信息的查看与管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
+                2.1.3 镜像-镜像的删除
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
+                2.1.4 镜像-镜像的导入和导出
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
+                2.1.5 镜像-镜像的上传
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
+                2.1.6 镜像-build 镜像
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
+                3.1.0 docker封装nginx服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
+                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
+                3.3.0 docker nginx with multiple sites
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
+                4.0.0 docker 本地registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
+                4.1.0 在docker中运行gitlab ce
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.2.0_jenkins.html">
+                4.2.0 在docker中运行jenkins
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/kvm">
+              kvm
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/virtualization/container">
+              container
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>

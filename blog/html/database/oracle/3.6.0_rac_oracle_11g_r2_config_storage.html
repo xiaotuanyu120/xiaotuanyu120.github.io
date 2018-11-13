@@ -1,0 +1,920 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"> <head>
+  <title>Xiao5tech Docs</title>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <link href="/static/css/bootstrap.css" rel="stylesheet"/>
+  <link href="/static/css/combined.css" rel="stylesheet"/>
+  <link href="/static/css/combined-doc.css" rel="stylesheet"/>
+  <link href="/static/css/style.css" rel="stylesheet"/>
+  <link href="/static/css/pygments.css" rel="stylesheet"/>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" type="text/css"/>
+ </head> <body>
+  <nav class="navbar navbar-default inner" role="navigation">
+   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     </button>
+     <div class="brand-wrapper">
+      <a class="navbar-brand" href="/"></a>
+     </div>
+     <div class="search-icon show">
+      <i class="fa fa-search">
+      </i>
+      Search
+     </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <div class="search-container tiny">
+      <div id="gcse">
+       <script type="text/javascript">
+        (function() {
+          var cx = '012343983721360531439:ff68trchadg';
+          var gcse = document.createElement('script');
+          gcse.type = 'text/javascript';
+          gcse.async = true;
+          gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(gcse, s);
+        })();
+       </script>
+       <gcse:search gname="standard">
+       </gcse:search>
+      </div>
+      <i class="fa fa-times close-search">
+      </i>
+     </div>
+     <ul class="nav navbar-nav navbar-main show">
+      <li>
+       <div id="gcse-mobile">
+        <gcse:search gname="mobile">
+        </gcse:search>
+       </div>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">
+        社区
+        <i class="fa fa-caret-down">
+        </i>
+       </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          论坛
+         </a>
+        </li>
+        <li role="presentation">
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">
+          博客
+         </a>
+        </li>
+       </ul>
+      </li>
+      <li>
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">
+        文档
+        <i class="fa fa-caret-down">
+        </i>
+      </a>
+       <i class="mobile-expand">
+       </i>
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">
+        <li role="presentation">
+         <a href="" role="menuitem" tabindex="-1">
+          完整文档分类
+         </a>
+        </li>
+        <li class="divider" role="presentation">
+        </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+       </ul>
+      </li>
+      <li>
+      </li>
+      <li>
+      </li>
+      <li>
+       <a class="sign-in-btn" href="">
+        Log In
+       </a>
+      </li>
+     </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+   </div>
+   <!-- /.container -->
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
+     </div>
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>3.6.0 RAC-存储配置</h3>
+<hr>
+<h3>1. 存储配置</h3>
+<p>接下来的存储配置会提供关于以下内容的推荐配置</p>
+<ul>
+<li>设置设备的多路径映射</li>
+<li>为ASM 硬盘管理使用udev规则或者oracle的ASMLib</li>
+<li>为了最佳性能而使用的tuned package</li>
+</ul>
+<h4>1) 设置DM-Multipath</h4>
+<p>设备多路径映射提供了聚合多个I/O路径来实现高可用，I/O负载均衡和命名持久化的能力。</p>
+<blockquote><p>注意，在进行一下步骤之前，先确保每个节点都可以访问oracle集群的共享存储。如果是虚拟机环境，请先创建共享磁盘，并挂在到每个模拟节点上</p>
+</blockquote>
+<p>以下是安装和配置设备多路径映射设备的推荐步骤</p>
+<div class="highlight"><pre><span></span><span class="c1"># 安装device-mapper-multipath</span>
+yum install device-mapper-multipath
+
+<span class="c1"># 准备配置文件</span>
+cp /usr/share/doc/device-mapper-multipath-0.4.9/multipath.conf /etc/
+
+<span class="c1"># 获取本地硬盘在系统中的scsi id</span>
+scsi_id --whitelisted --replace-whitespace --device<span class="o">=</span>/dev/sda
+1ATA_VBOX_HARDDISK_VB542a6eee-dbfb1007
+
+
+<span class="c1"># 修改配置文件，将上面的scsi id加入黑名单</span>
+vim /etc/multipath.conf
+******************************************************
+<span class="c1"># virtualbox虚拟环境中，这里必须添加getuid_callout字段中的&quot;--replace-whitespace&quot;，因为上面的scsi_id拥有&quot;_&quot;</span>
+defaults <span class="o">{</span>
+        getuid_callout          <span class="s2">&quot;/lib/udev/scsi_id --whitelisted --replace-whitespace --device=/dev/%n&quot;</span>
+        user_friendly_names     yes
+<span class="o">}</span>
+
+<span class="c1"># 禁掉本地磁盘</span>
+blacklist <span class="o">{</span>
+       wwid 1ATA_VBOX_HARDDISK_VB542a6eee-dbfb1007
+        devnode <span class="s2">&quot;^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*&quot;</span>
+        devnode <span class="s2">&quot;^hd[a-z]&quot;</span>
+<span class="o">}</span>
+******************************************************
+
+<span class="c1"># 重启服务</span>
+service multipathd start
+
+<span class="c1"># 设置开机启动服务</span>
+chkconfig multipathd on
+
+<span class="c1"># 查看</span>
+multipath -ll
+db2 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d<span class="o">)</span> dm-3 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">4</span>:0:0:0 sdc <span class="m">8</span>:32  active ready running
+db1 <span class="o">(</span>1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2<span class="o">)</span> dm-2 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span>10G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">3</span>:0:0:0 sdb <span class="m">8</span>:16  active ready running
+redo <span class="o">(</span>1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf<span class="o">)</span> dm-5 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">6</span>:0:0:0 sde <span class="m">8</span>:64  active ready running
+fra <span class="o">(</span>1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a<span class="o">)</span> dm-4 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">5</span>:0:0:0 sdd <span class="m">8</span>:48  active ready running
+ocrvote3 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBce272003-a253f798<span class="o">)</span> dm-8 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">9</span>:0:0:0 sdh <span class="m">8</span>:112 active ready running
+ocrvote2 <span class="o">(</span>1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce<span class="o">)</span> dm-7 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">8</span>:0:0:0 sdg <span class="m">8</span>:96  active ready running
+ocrvote1 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100<span class="o">)</span> dm-6 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">7</span>:0:0:0 sdf <span class="m">8</span>:80  active ready running
+
+
+<span class="c1"># 进一步配置</span>
+vim /etc/multipath.conf
+******************************************************
+<span class="c1"># 正式环境应该如此配置，但是virtualbox磁盘似乎不支持alua方式，所以prio项在测试环境中需要注释</span>
+defaults <span class="o">{</span>
+ udev_dir /dev
+ polling_interval <span class="m">10</span>
+ path_selector <span class="s2">&quot;round-robin 0&quot;</span>
+ path_grouping_policy multibus
+ getuid_callout <span class="s2">&quot;/lib/udev/scsi_id --whitelisted --device=/dev/%n&quot;</span>
+ prio alua
+ path_checker readsector0
+ rr_min_io <span class="m">100</span>
+ max_fds <span class="m">8192</span>
+ rr_weight priorities
+ failback immediate
+ no_path_retry fail
+ user_friendly_names yes
+<span class="o">}</span>
+<span class="c1"># prio字段</span>
+<span class="c1"># 作用：Specifies the default function to call to obtain a path priority value.</span>
+<span class="c1"># Possible values include:</span>
+<span class="c1">#     const: Set a priority of 1 to all paths.</span>
+<span class="c1">#     emc: Generate the path priority for EMC arrays.</span>
+<span class="c1">#     alua: Generate the path priority based on the SCSI-3 ALUA settings.</span>
+<span class="c1">#     netapp: Generate the path priority for NetApp arrays.</span>
+<span class="c1">#     rdac: Generate the path priority for LSI/Engenio RDAC controller.</span>
+<span class="c1">#     hp_sw: Generate the path priority for Compaq/HP controller in active/standby mode.</span>
+<span class="c1">#     hds: Generate the path priority for Hitachi HDS Modular storage arrays.</span>
+<span class="c1">#     The default value is const.</span>
+
+<span class="c1">## 添加一下别名</span>
+multipaths <span class="o">{</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2
+                <span class="nb">alias</span>                   db1
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d
+                <span class="nb">alias</span>                   db2
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a
+                <span class="nb">alias</span>                   fra
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf
+                <span class="nb">alias</span>                   redo
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100
+                <span class="nb">alias</span>                   ocrvote1
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce
+                <span class="nb">alias</span>                   ocrvote2
+        <span class="o">}</span>
+        multipath <span class="o">{</span>
+                wwid                    1ATA_VBOX_HARDDISK_VBce272003-a253f798
+                <span class="nb">alias</span>                   ocrvote3
+        <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># 此处的wwid是需要共享的磁盘的scsi_id，一共7个磁盘</span>
+******************************************************
+
+<span class="c1"># 重启服务</span>
+service multipathd restart
+
+<span class="c1"># 查看状态</span>
+cat /etc/multipath/bindings
+<span class="c1"># Multipath bindings, Version : 1.0</span>
+<span class="c1"># NOTE: this file is automatically maintained by the multipath program.</span>
+<span class="c1"># You should not need to edit this file in normal circumstances.</span>
+<span class="c1">#</span>
+<span class="c1"># Format:</span>
+<span class="c1"># alias wwid</span>
+<span class="c1">#</span>
+mpatha 1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2
+
+multipath -ll
+db2 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d<span class="o">)</span> dm-3 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">4</span>:0:0:0 sdc <span class="m">8</span>:32  active ready running
+db1 <span class="o">(</span>1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2<span class="o">)</span> dm-2 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span>10G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">3</span>:0:0:0 sdb <span class="m">8</span>:16  active ready running
+redo <span class="o">(</span>1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf<span class="o">)</span> dm-5 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">6</span>:0:0:0 sde <span class="m">8</span>:64  active ready running
+fra <span class="o">(</span>1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a<span class="o">)</span> dm-4 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">8</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">5</span>:0:0:0 sdd <span class="m">8</span>:48  active ready running
+ocrvote3 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBce272003-a253f798<span class="o">)</span> dm-8 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">9</span>:0:0:0 sdh <span class="m">8</span>:112 active ready running
+ocrvote2 <span class="o">(</span>1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce<span class="o">)</span> dm-7 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">8</span>:0:0:0 sdg <span class="m">8</span>:96  active ready running
+ocrvote1 <span class="o">(</span>1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100<span class="o">)</span> dm-6 ATA,VBOX HARDDISK
+<span class="nv">size</span><span class="o">=</span><span class="m">1</span>.0G <span class="nv">features</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">hwhandler</span><span class="o">=</span><span class="s1">&#39;0&#39;</span> <span class="nv">wp</span><span class="o">=</span>rw
+<span class="sb">`</span>-+- <span class="nv">policy</span><span class="o">=</span><span class="s1">&#39;round-robin 0&#39;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">1</span> <span class="nv">status</span><span class="o">=</span>active
+ <span class="sb">`</span>- <span class="m">7</span>:0:0:0 sdf <span class="m">8</span>:80  active ready running
+</pre></div>
+<h4>2) 给共享磁盘分区</h4>
+<p>在第一个节点，给所有的共享磁盘卷分区(db1,db2,fra,redo,ocrvote1,ocrvote2,ocrvote3)</p>
+<div class="highlight"><pre><span></span>parted /dev/mapper/db1 mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/db2 mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/fra mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/redo mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/ocrvote1 mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/ocrvote2 mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+
+parted /dev/mapper/ocrvote3 mklabel gpt mkpart primary <span class="s2">&quot;1 -1&quot;</span>
+</pre></div>
+<p>检查分区后的磁盘，看名称后是否增加了p1</p>
+<div class="highlight"><pre><span></span>ll /dev/mapper/<span class="o">[</span>dfor<span class="o">]</span>*
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:51 /dev/mapper/db1 -&gt; ../dm-2
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/db2 -&gt; ../dm-3
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/db2p1 -&gt; ../dm-9
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/fra -&gt; ../dm-4
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/frap1 -&gt; ../dm-10
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote1 -&gt; ../dm-6
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote1p1 -&gt; ../dm-12
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote2 -&gt; ../dm-7
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote2p1 -&gt; ../dm-13
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote3 -&gt; ../dm-8
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/ocrvote3p1 -&gt; ../dm-14
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/redo -&gt; ../dm-5
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">08</span>:52 /dev/mapper/redop1 -&gt; ../dm-11
+</pre></div>
+<p>若有没有增加的，需要执行以下命令</p>
+<div class="highlight"><pre><span></span>kpartx -a /dev/mapper/db1
+<span class="c1"># 如果执行完命令还是没有出现db1p1，需要重启系统</span>
+</pre></div>
+<p>在其他节点执行以下命令</p>
+<div class="highlight"><pre><span></span><span class="c1"># 依次执行(db1,db2,fra,redo,ocrvote1,ocrvote2,ocrvote3)</span>
+kpartx -a /dev/mapper/db1
+<span class="c1"># 如果执行完命令还是没有出现db1p1，需要重启系统</span>
+</pre></div>
+<h4>3) 配置oracle ASM硬盘</h4>
+<p>配置oracle ASM 需要udev rule或者ASMLib。<br>
+Oracle的ASMLib是一个可选的实用程序，用于管理和帮助用户使用Oracle ASM设备，并且不是Oracle ASM磁盘正常运行所必需的。此外，Oracle ASMLib对Oracle数据库性能没有任何影响，需要一个标记为kmod-oracleasm和专有用户空间实用程序的内核模块才能正常工作。<br>
+udev规则代表了Oracle ASMLib的替代方法，不需要额外的内核模块，因此在Linux系统上保持了更小的占用空间。<br>
+只能同时选用其中一种方法，此处使用udev 。</p>
+<ol>
+<li><p>在第一个节点，使用root身份，为每个映射的硬盘卷识别Device Mapper Universally Unique IDentifier (DM_UUID)。</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> i in ocrvote1p1 ocrvote2p1 ocrvote3p1 db1p1 db2p1 frap1 redop1<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&quot;%s %s\n&quot;</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>udevadm info --query<span class="o">=</span>all --name<span class="o">=</span>/dev/mapper/<span class="nv">$i</span> <span class="p">|</span> grep -i dm_uuid<span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
+ocrvote1p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100
+ocrvote2p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce
+ocrvote3p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798
+db1p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2
+db2p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d
+frap1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a
+redop1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf
+</pre></div>
+</li>
+<li><p>在/etc/udev/rules.d中创建<code>99-oracle-asmdevices.rules</code>
+``` bash
+vim /etc/udev/rules.d/99-oracle-asmdevices.rules</p>
+</li>
+</ol>
+<hr>
+<p>KERNEL=="dm-<em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-</em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-<em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-</em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-<em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-</em>",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a",OWNER="grid",GROUP="asmadmin",MODE="0660"
+KERNEL=="dm-*",ENV{DM_UUID}=="part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf",OWNER="grid",GROUP="asmadmin",MODE="0660"</p>
+<hr>
+
+<pre><code>含义是，如果任何`dm-*`设备匹配到了DM_UUID，则将其owner设置为grid用户，将其group设置为asmadmin组，将其权限修改为0660.
+
+3. 拷贝`99-oracle-asmdevices.rules`到集群中所有节点
+``` bash
+scp /etc/udev/rules.d/99-oracle-asmdevices.rules db-oracle-node2:/etc/udev/rules.d/</code></pre>
+<ol>
+<li><p>在每个节点上确认分区存在</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> i in db1p1 db2p1 frap1 redop1 ocrvote1p1 ocrvote2p1 ocrvote3p1<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&quot;%s %s\n&quot;</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>ls -ll /dev/mapper/<span class="nv">$i</span><span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span> <span class="k">done</span>
+db1p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:10 /dev/mapper/db1p1 -&gt; ../dm-15
+db2p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/db2p1 -&gt; ../dm-12
+frap1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/frap1 -&gt; ../dm-13
+redop1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/redop1 -&gt; ../dm-9
+ocrvote1p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/ocrvote1p1 -&gt; ../dm-11
+ocrvote2p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/ocrvote2p1 -&gt; ../dm-10
+ocrvote3p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> <span class="m">09</span>:05 /dev/mapper/ocrvote3p1 -&gt; ../dm-14
+</pre></div>
+</li>
+<li><p>在每个节点上确认udev rules
+``` bash
+# 根据上面分区对应的dm-x来确定执行命令的对象
+udevadm test /sys/block/dm-9
+udevadm test /sys/block/dm-10
+udevadm test /sys/block/dm-11
+udevadm test /sys/block/dm-12
+udevadm test /sys/block/dm-13
+udevadm test /sys/block/dm-14
+udevadm test /sys/block/dm-15</p>
+</li>
+</ol>
+<h1>检测结果</h1>
+<p>ll /dev/dm-*|grep grid
+brw-rw----. 1 grid asmadmin 253, 10 Dec 26 09:35 /dev/dm-10
+brw-rw----. 1 grid asmadmin 253, 11 Dec 26 09:35 /dev/dm-11
+brw-rw----. 1 grid asmadmin 253, 12 Dec 26 09:35 /dev/dm-12
+brw-rw----. 1 grid asmadmin 253, 13 Dec 26 09:35 /dev/dm-13
+brw-rw----. 1 grid asmadmin 253, 14 Dec 26 09:35 /dev/dm-14
+brw-rw----. 1 grid asmadmin 253, 15 Dec 26 09:35 /dev/dm-15
+brw-rw----. 1 grid asmadmin 253,  9 Dec 26 09:34 /dev/dm-9</p>
+
+<pre><code>
+#### 4) 使用Automatic System Tuning来优化数据库存储
+建议使用Red Hat Enterprise Linux 6中的调整软件包，通过使用配置文件自动调整系统以适应常见工作负载，每个配置文件针对不同的工作负载场景进行了调整，例如
+- enterprise-storage
+- power savings
+- high network throughput
+
+建议创建一个与enterprise-storage profile相同的内容自定义配置文件，但禁用Transparent HugePages (THP)   
+在每一个集群内节点上使用root执行以下操作
+``` bash
+# 安装tuned
+yum install tuned
+# 开机启动设置
+chkconfig tuned on
+# 启动服务
+service tuned start
+
+# 拷贝一个自定义配置文件
+cd /etc/tune-profiles/
+cp -r enterprise-storage enterprise-storage-no-thp
+
+# 禁用thp
+vim /etc/tune-profiles/enterprise-storage-no-thp/ktune.sh
+******************************************************
+# 修改 set_transparent_hugepages always为
+set_transparent_hugepages never
+******************************************************
+
+# 选定自定义的配置文件
+tuned-adm profile enterprise-storage-no-thp
+Stopping tuned:                                            [  OK  ]
+Switching to profile 'enterprise-storage-no-thp'
+Applying deadline elevator: dm-0 dm-1 dm-10 dm-11 dm-12 dm-13 dm-14 dm-15 dm-2 dm-3 dm-4 dm-5 dm-6 dm-7 dm-8 dm-9 sda sdb sdc sdd sde sdf sdg s[  OK  ]
+Applying ktune sysctl settings:
+/etc/ktune.d/tunedadm.conf:                                [  OK  ]
+Calling '/etc/ktune.d/tunedadm.sh start':                  [  OK  ]
+Applying sysctl settings from /etc/sysctl.conf
+Starting tuned:                                            [  OK  ]
+
+# 检查thp是否禁用
+cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
+always madvise [never]</code></pre>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/javascript" role="menuitem" tabindex="-1">
+              javascript
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.0.0_silent_installation_env.html">
+                1.0.0 silent模式安装oracle 11G R2 之 环境准备
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.1.0_silent_installation_oracle_install.html">
+                1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.2.0_silent_installation_netca_listen.html">
+                1.2.0 silent模式安装oracle 11G R2 之 netca监听
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">
+                1.3.0 silent模式安装oracle 11G R2 之 安装database实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.4.0_silent_installation_error.html">
+                1.4.0 silent模式安装oracle 11G R2 之 安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">
+                1.5.0 silent安装之cvuqdisk
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/1.6.0_OUI_installation_error.html">
+                1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.1.0_oracle_sql_statement.html">
+                2.1.0 oracle sql语句之表备份实例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/2.2.0_oracle_sql_drop_database.html">
+                2.2.0 oracle sql语句之删除数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">
+                3.1.0 RAC-架构预览
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">
+                3.2.0 RAC-配置主机名和网络
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">
+                3.3.0 RAC-配置ntp服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">
+                3.4.0 RAC-系统配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user&group.html">
+                3.5.0 RAC-配置用户和组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">
+                3.6.0 RAC-存储配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">
+                3.7.0 RAC-安装oracle grid infrastructure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">
+                3.8.0 RAC-安装oracle 11g r2软件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">
+                3.9.0 RAC-通过ASMCA创建ASM硬盘组
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.10.0_rac_dbca_create_database.html">
+                3.10.0 RAC-通过DBCA创建数据库
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/3.11.0_rac_management.html">
+                3.11.0 RAC-管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">
+                4.1.0 oracle error之ORA-01034
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/4.2.0_oracle_error_display.html">
+                4.2.0 oracle error之图形安装DISPLAY错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">
+                5.1.0 oracle dataguard 11g r2 搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">
+                5.1.1 oracle dataguard 11g r2 rman恢复错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">
+                5.2.0 oracle dataguard 11g r2 一主多备搭建
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">
+                6.2.0 ora-28001 the password has expired
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>  <footer>
+   <div class="container">
+    <div class="row footer-links">
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       友情链接
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类2
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-2 col-sm-2">
+      <h3>
+       footer 分类3
+      </h3>
+      <ul>
+       <li>
+        <a href="">
+         标题1
+        </a>
+       </li>
+       <li>
+        <a href="">
+         标题2
+        </a>
+       </li>
+      </ul>
+     </div>
+     <div class="col-lg-4 col-sm-4">
+      <h3>
+       footer 长分类4
+      </h3>
+      <a class="social-icons footer-twitter" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-facebook" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-linkedin" href="" target="_blank">
+      </a>
+      <a class="social-icons footer-youtube" href="" target="_blank">
+      </a>
+      <p class="fine-print">
+       网战由flask，nginx，uwsgi，mistune等技术支持。linux.xiao5tech.com由
+       <a href="http://flask.pocoo.org/" target="_blank">
+        flask
+       </a>
+       和
+       <a href="https://nginx.org/" target="_blank">
+        nginx
+       </a>
+       驱动。
+      </p>
+     </div>
+    </div>
+   </div>
+  </footer>  <script src="/static/js/jquery-3.1.1.js" type="text/javascript">
+  </script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="/static/js/bootstrap.js" type="text/javascript">
+  </script>
+  <!-- The rest of the JS -->
+  <script src="/static/js/navigation.js" type="text/javascript">
+  </script>
+  <!-- Docs JS -->
+  <script src="/static/js/docs.js" type="text/javascript">
+  </script>
+  <!-- Popovers -->
+  <script src="/static/js/webui-popover.js" type="text/javascript">
+  </script>
+  <!-- Javascript for page -->
+  <script type="text/javascript">
+   // Change character image on refresh
+      // Add file names and captions to doc-characters.json
+    $.getJSON("/static/js/doc-characters.json", function(data) {
+      var item = data.images[Math.floor(Math.random()*data.images.length)];
+      $('<img src="/static/js/../images/superuser-img/' + item.image + '">').appendTo('#superuser-img');
+      $('<p>' + item.caption + '<strong>Xiao5tech docs</strong></p>').appendTo('#superuser-img');
+    });
+  </script>
+
+ </body></html>
