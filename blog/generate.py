@@ -61,6 +61,7 @@ class Md2Html(object):
         self.template_7_body_script = "/".join((self.template_dir, "template-7-body-script.html"))
         self.template_8_html_end = "/".join((self.template_dir, "template-8-html-end.html"))
         self.template_index_begin = "/".join((self.template_dir, "template-index-begin.html"))
+        self.template_index_midd = "/".join((self.template_dir, "template-index-midd.html"))
         self.template_index_end = "/".join((self.template_dir, "template-index-end.html"))
         self.template_category_index_begin = "/".join((self.template_dir, "template-category-index-begin.html"))
         self.template_category_index_end = "/".join((self.template_dir, "template-category-index-end.html"))
@@ -335,10 +336,25 @@ class Md2Html(object):
 
         index_list_html = self._get_cat_list_html()
 
+        with codecs.open(self.template_index_midd, 'r', encoding='utf8') as f:
+            template_index_midd = f.read()
+
+        latest_page_htmls = []
+        for page, page_url in self.LATEST_PAGE.items():
+            page_html = '\n\
+       <a href="%s">\n\
+        %s\n\
+       </a><br>\n' % (page_url, page)
+            latest_page_htmls.append(page_html)
+        latest_page_raw_htmls = "".join(latest_page_htmls)
+
         with codecs.open(self.template_index_end, 'r', encoding='utf8') as f:
             template_index_end = f.read()
 
-        return "".join((template_index_begin, index_list_html, template_index_end))
+        return "".join((
+            template_index_begin, index_list_html,
+            template_index_midd, latest_page_raw_htmls,
+            template_index_end))
 
     def _get_content_list(self, topic_for=None):
         """ return a dict of {cat:sub-cat-html-content}
