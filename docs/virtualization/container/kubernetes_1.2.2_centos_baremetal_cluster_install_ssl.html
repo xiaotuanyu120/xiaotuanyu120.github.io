@@ -107,13 +107,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -196,7 +196,7 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>kubernetes 1.2.2 kubernetes集群安装(centos7裸机)</h3>
+      <div class="col-lg-12"><h3>kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</h3>
 <hr>
 <h2>0. 背景介绍</h2>
 <h3>1) 参照文档</h3>
@@ -1187,7 +1187,7 @@ etcd-0               Healthy   <span class="o">{</span><span class="s2">&quot;he
 <h3>1) 部署flannel(node节点)</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 下载flannel</span>
 <span class="nv">FLANNEL_VER</span><span class="o">=</span>v0.9.1
-wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz
+wget https://github.com/coreos/flannel/releases/download/<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>/flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz
 mkdir flannel
 tar zxvf flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz -C flannel
 cp flannel/flanneld /usr/local/bin
@@ -1490,13 +1490,13 @@ certificatesigningrequest <span class="s2">&quot;node-csr-TIZ6m0T5hZD6rgZBLCxzgd
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -1689,7 +1689,7 @@ certificatesigningrequest <span class="s2">&quot;node-csr-TIZ6m0T5hZD6rgZBLCxzgd
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
-                kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+                kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
               </a>
              </li>
              <li class="toctree-l2">
