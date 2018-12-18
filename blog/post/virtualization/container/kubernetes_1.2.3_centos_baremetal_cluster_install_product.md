@@ -4,7 +4,7 @@ date: 2018-01-25 10:55:00
 categories: virtualization/container
 tags: [container,docker,kubernetes,flannel]
 ---
-### kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
+### kubernetes 1.2.1 kubernetes集群安装(生产环境)
 
 ---
 
@@ -129,7 +129,7 @@ cp etcd-${ETCD_VER}-linux-amd64/{etcd,etcdctl} k8s/etcd/bin/
 
 # 下载flannel
 FLANNEL_VER=v0.9.1
-wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-${FLANNEL_VER}-linux-amd64.tar.gz
+wget https://github.com/coreos/flannel/releases/download/${FLANNEL_VER}/flannel-${FLANNEL_VER}-linux-amd64.tar.gz
 mkdir flannel
 tar zxvf flannel-${FLANNEL_VER}-linux-amd64.tar.gz -C flannel
 cp flannel/{flanneld,mk-docker-opts.sh} k8s/base/bin
@@ -139,7 +139,7 @@ DOCKER_VER=17.09.0
 wget https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VER}-ce.tgz
 tar zxvf docker-${DOCKER_VER}-ce.tgz
 wget https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64 -O docker-compose
-mv docker-compose docker
+mv docker-compose docker/docker-compose
 cp docker/* k8s/base/bin
 ```
 
@@ -394,7 +394,7 @@ echo '{
   "storage-opts": [
     "overlay2.override_kernel_check=true"
   ]
-}' > /root/k8s/node/daemon.json
+}' > /root/k8s/base/daemon.json
 
 # docker.service
 echo '[Unit]

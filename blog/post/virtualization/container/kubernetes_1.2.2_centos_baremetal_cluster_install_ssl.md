@@ -1,10 +1,10 @@
 ---
-title: kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+title: kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
 date: 2018-01-21 10:55:00
 categories: virtualization/container
 tags: [container,docker,kubernetes,flannel]
 ---
-### kubernetes 1.2.2 kubernetes集群安装(centos7裸机)
+### kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
 
 ---
 
@@ -984,7 +984,7 @@ etcd-0               Healthy   {"health": "true"}
 ``` bash
 # 下载flannel
 FLANNEL_VER=v0.9.1
-wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-${FLANNEL_VER}-linux-amd64.tar.gz
+wget https://github.com/coreos/flannel/releases/download/${FLANNEL_VER}/flannel-${FLANNEL_VER}-linux-amd64.tar.gz
 mkdir flannel
 tar zxvf flannel-${FLANNEL_VER}-linux-amd64.tar.gz -C flannel
 cp flannel/flanneld /usr/local/bin
