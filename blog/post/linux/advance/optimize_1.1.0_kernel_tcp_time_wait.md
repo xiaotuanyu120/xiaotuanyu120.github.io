@@ -1,10 +1,10 @@
 ---
-title: 调优: 1.1.0 TCP中的TIME_WAIT
+title: 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
 date: 2017-02-07 16:56:00
 categories: linux/advance
 tags: [linux,tcp,time_wait]
 ---
-### 调优: 1.1.0 TCP中的TIME_WAIT
+### 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
 
 ---
 
