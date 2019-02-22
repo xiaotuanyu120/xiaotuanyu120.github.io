@@ -196,29 +196,78 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多</h3>
+      <div class="col-lg-12"><h3>优化nf_conntrack表来解决tcp包被drop的问题</h3>
 <hr>
-<h3>1. 什么是TIME_WAIT?</h3>
-<p>TIME_WAIT是TCP连接中的一个状态，当TCP连接关闭之后，会在内存中维护一个控制块TCB，用来记录最近关闭连接的IP和端口，这类信息会维持一小段时间(最大分段使用期的2倍，2MSL)，以确保这段时间内不会有相同的IP和端口号的新连接，目的是为了预防，上一个连接的分组包延迟到达，而被新的连接接受而导致TCP流被破坏。此时TCP的状态就是TIME_WAIT。<br>
-但是处于TIME_WAIT状态的TCP连接过多也会造成性能问题，比如我们的可用源端口只有60000个，而在2MSL(2分钟左右)内是无法被重用的，也就是说我们的tcp连接率就限制在了在60000/120 = 500次/秒。<br>
-既然没有遇到端口耗尽的问题，在有大量TCP连接及内存中的TCB占据比例过大时，也会严重影响系统的性能。<br>
-<a href="http://www.isi.edu/touch/pubs/infocomm99/infocomm99-web/">参考文档资料</a></p>
+<h3>1. 问题背景?</h3>
+<p>机房某台服务器上的redis突然无法被访问，机房switch的监控检查该服务器有流量，但是zabbix上显示该服务器流量全部断掉，服务排查了正常。检查<code>/var/log/message</code>日志发现有大量的报错如下：</p>
+
+<pre><code>kernel: nf_conntrack: table full, dropping packet.</code></pre>
+<p>通过排查错误才知道，原来是linux会维护一个连接跟踪的表，上面的报错是因为内核默认的值无法满足目前redis的访问能力。</p>
+<p><a href="https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt">参考文档资料</a></p>
 <hr>
 <h3>2. TCP优化</h3>
 <div class="highlight"><pre><span></span>vim /etc/sysctl.conf
 ***************************************
-<span class="c1"># 开启SYN cookies，当syn队列溢出时，启用cookies来处理</span>
-net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
-<span class="c1"># 允许TIME_WAIT SOCKETS重新用于新的TCP连接</span>
-net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
-<span class="c1"># 开启TCP连接中的TIME_WAIT SOCKETS快速回收</span>
-net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
-<span class="c1"># 修改默认的timeout时间为30s</span>
-net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+<span class="c1"># 调整nf_conntrack表最大上限</span>
+net.netfilter.nf_conntrack_max<span class="o">=</span><span class="m">1048576</span>
 ***************************************
 
 <span class="c1"># 使配置立即生效</span>
 sysctl -p
+</pre></div>
+<p><strong>其他nf_conntrack参数</strong></p>
+<div class="highlight"><pre><span></span>sysctl -a<span class="p">|</span>grep nf_conntrack
+
+net.netfilter.nf_conntrack_acct <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_buckets <span class="o">=</span> <span class="m">16384</span>
+net.netfilter.nf_conntrack_checksum <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_count <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_dccp_loose <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_dccp_timeout_closereq <span class="o">=</span> <span class="m">64</span>
+net.netfilter.nf_conntrack_dccp_timeout_closing <span class="o">=</span> <span class="m">64</span>
+net.netfilter.nf_conntrack_dccp_timeout_open <span class="o">=</span> <span class="m">43200</span>
+net.netfilter.nf_conntrack_dccp_timeout_partopen <span class="o">=</span> <span class="m">480</span>
+net.netfilter.nf_conntrack_dccp_timeout_request <span class="o">=</span> <span class="m">240</span>
+net.netfilter.nf_conntrack_dccp_timeout_respond <span class="o">=</span> <span class="m">480</span>
+net.netfilter.nf_conntrack_dccp_timeout_timewait <span class="o">=</span> <span class="m">240</span>
+net.netfilter.nf_conntrack_events <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_expect_max <span class="o">=</span> <span class="m">256</span>
+net.netfilter.nf_conntrack_frag6_high_thresh <span class="o">=</span> <span class="m">4194304</span>
+net.netfilter.nf_conntrack_frag6_low_thresh <span class="o">=</span> <span class="m">3145728</span>
+net.netfilter.nf_conntrack_frag6_timeout <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_generic_timeout <span class="o">=</span> <span class="m">600</span>
+net.netfilter.nf_conntrack_helper <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_icmp_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_icmpv6_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_log_invalid <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_max <span class="o">=</span> <span class="m">65536</span>
+net.netfilter.nf_conntrack_sctp_timeout_closed <span class="o">=</span> <span class="m">10</span>
+net.netfilter.nf_conntrack_sctp_timeout_cookie_echoed <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_cookie_wait <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_established <span class="o">=</span> <span class="m">432000</span>
+net.netfilter.nf_conntrack_sctp_timeout_heartbeat_acked <span class="o">=</span> <span class="m">210</span>
+net.netfilter.nf_conntrack_sctp_timeout_heartbeat_sent <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_ack_sent <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_recd <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_sent <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_tcp_be_liberal <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_tcp_loose <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_tcp_max_retrans <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_tcp_timeout_close <span class="o">=</span> <span class="m">10</span>
+net.netfilter.nf_conntrack_tcp_timeout_close_wait <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_tcp_timeout_established <span class="o">=</span> <span class="m">432000</span>
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_last_ack <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_tcp_timeout_max_retrans <span class="o">=</span> <span class="m">300</span>
+net.netfilter.nf_conntrack_tcp_timeout_syn_recv <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_tcp_timeout_syn_sent <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_time_wait <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_unacknowledged <span class="o">=</span> <span class="m">300</span>
+net.netfilter.nf_conntrack_timestamp <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_udp_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_udp_timeout_stream <span class="o">=</span> <span class="m">180</span>
+net.netfilter.nf_conntrack_udplite_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_udplite_timeout_stream <span class="o">=</span> <span class="m">180</span>
 </pre></div>
       </div>
      </div>
