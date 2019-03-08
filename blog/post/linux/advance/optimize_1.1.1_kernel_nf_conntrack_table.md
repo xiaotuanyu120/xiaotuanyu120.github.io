@@ -87,3 +87,13 @@ net.netfilter.nf_conntrack_udp_timeout_stream = 180
 net.netfilter.nf_conntrack_udplite_timeout = 30
 net.netfilter.nf_conntrack_udplite_timeout_stream = 180
 ```
+
+### 3. 后续问题
+后面又再次出现这个问题，就深入研究了一下。iptables是基于netfilter的，所以原因是因为启用了iptables，开启了tcp包的追踪。追踪文件是在/proc/net/nf_conntrack，里面会跟踪每个tcp连接的状态。
+
+解决这个问题有几个方案
+1. 提高netfilter跟踪tcp表的max值
+2. 优化程序，降低短连接的数量
+3. iptables里面使用`-j notrace`关闭tcp包的追踪
+
+详情见[这篇博客](http://www.10tiao.com/html/488/201701/2247484116/1.html)或者深入搜索netfilter里面的nf_conntrack这个东西的原理，目前我们是通过第三个方案，禁用tcp追踪来解决的。
