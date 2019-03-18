@@ -25,6 +25,7 @@ cd openresty-${VERSION}/
             --with-pcre \
             --with-pcre-jit \
             --with-http_gzip_static_module \
+            --with-http_v2_module \
             -j2
 make -j2
 make install
