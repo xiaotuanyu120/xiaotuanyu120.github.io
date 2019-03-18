@@ -54,3 +54,8 @@ ipset test foo 192.168.1.1
 -A INPUT -p tcp -m set --match-set foo src,src --dport 443 -j ACCEPT
 ```
 > 特别关注"src,src"，因为有ip和mac两个src
+
+### 4. comment用法
+``` bash
+ipset add foo 192.168.1.1 comment "this is a comment"
+```
