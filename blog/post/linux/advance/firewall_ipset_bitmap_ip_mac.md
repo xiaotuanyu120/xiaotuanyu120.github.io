@@ -14,17 +14,43 @@ tags: [linux,iptables,ipset,firewall]
 
 ---
 
-### 1. 基础用法
+### 1. 基础用法 - ip
+``` bash
+ipset create foo hash:ip netmask 30
+ipset add foo 192.168.1.0/24
+ipset test foo 192.168.1.2
+```
+
+**iptables规则**
+```
+-A INPUT -p tcp -m set --match-set foo src --dport 443 -j ACCEPT
+-A INPUT -p tcp -m set --match-set foo dst --dport 443 -j ACCEPT
+```
+> src是匹配source，dst是匹配destination
+
+### 2. 基础用法 - mac
+``` bash
+ipset create foo hash:mac
+ipset add foo 01:02:03:04:05:06
+ipset test foo 01:02:03:04:05:06
+```
+
+**iptables规则**
+```
+-A INPUT -p tcp -m set --match-set foo src --dport 443 -j ACCEPT
+-A INPUT -p tcp -m set --match-set foo dst --dport 443 -j ACCEPT
+```
+> src是匹配source，dst是匹配destination
+
+### 3. 基础用法 - ip,mac
 ``` bash
 ipset create foo bitmap:ip,mac range 192.168.0.0/16
 ipset add foo 192.168.1.1,12:34:56:78:9A:BC
 ipset test foo 192.168.1.1
 ```
 
----
-
-### 2. iptables中的规则写法
+**iptables规则**
 ```
--A INPUT -p tcp -m set --match-set foo src,src --destination-port 443 -j ACCEPT
+-A INPUT -p tcp -m set --match-set foo src,src --dport 443 -j ACCEPT
 ```
 > 特别关注"src,src"，因为有ip和mac两个src
