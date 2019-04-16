@@ -3,7 +3,7 @@
 原版是使用flask做的web服务器，此版本为了使用gitpages，特地改成了完全html静态文件的版本。此版本去掉了flask相关文件和功能，仅保留了markdown文件转换成静态文件的功能
 
 ### 使用说明
-####step 1. 安装程序
+#### step 1. 安装程序
 在linux环境中按照如下操作
 ``` bash
 git clone https://github.com/xiaotuanyu120/xiaotuanyu120.github.io.git

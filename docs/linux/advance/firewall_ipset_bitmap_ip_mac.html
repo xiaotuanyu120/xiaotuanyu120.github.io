@@ -107,13 +107,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -124,11 +124,6 @@
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/javascript" role="menuitem" tabindex="-1">
-              javascript
              </a>
             </li>
             <li role="presentation">
@@ -202,17 +197,41 @@
 <p><a href="http://ipset.netfilter.org/ipset.man.html">ipset Man 文档</a><br>
 <a href="https://forums.gentoo.org/viewtopic-t-962562-start-0.html">gentoo 论坛关于ipset bitmap:ip,mac在iptables中规则的讨论</a></p>
 <hr>
-<h3>1. 基础用法</h3>
+<h3>1. 基础用法 - ip</h3>
+<div class="highlight"><pre><span></span>ipset create foo hash:ip netmask <span class="m">30</span>
+ipset add foo <span class="m">192</span>.168.1.0/24
+ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.2
+</pre></div>
+<p><strong>iptables规则</strong></p>
+
+<pre><code>-A INPUT -p tcp -m set --match-set foo src --dport 443 -j ACCEPT
+-A INPUT -p tcp -m set --match-set foo dst --dport 443 -j ACCEPT</code></pre>
+<blockquote><p>src是匹配source，dst是匹配destination</p>
+</blockquote>
+<h3>2. 基础用法 - mac</h3>
+<div class="highlight"><pre><span></span>ipset create foo hash:mac
+ipset add foo <span class="m">01</span>:02:03:04:05:06
+ipset <span class="nb">test</span> foo <span class="m">01</span>:02:03:04:05:06
+</pre></div>
+<p><strong>iptables规则</strong></p>
+
+<pre><code>-A INPUT -p tcp -m set --match-set foo src --dport 443 -j ACCEPT
+-A INPUT -p tcp -m set --match-set foo dst --dport 443 -j ACCEPT</code></pre>
+<blockquote><p>src是匹配source，dst是匹配destination</p>
+</blockquote>
+<h3>3. 基础用法 - ip,mac</h3>
 <div class="highlight"><pre><span></span>ipset create foo bitmap:ip,mac range <span class="m">192</span>.168.0.0/16
 ipset add foo <span class="m">192</span>.168.1.1,12:34:56:78:9A:BC
 ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
 </pre></div>
-<hr>
-<h3>2. iptables中的规则写法</h3>
+<p><strong>iptables规则</strong></p>
 
-<pre><code>-A INPUT -p tcp -m set --match-set foo src,src --destination-port 443 -j ACCEPT</code></pre>
+<pre><code>-A INPUT -p tcp -m set --match-set foo src,src --dport 443 -j ACCEPT</code></pre>
 <blockquote><p>特别关注"src,src"，因为有ip和mac两个src</p>
 </blockquote>
+<h3>4. comment用法</h3>
+<div class="highlight"><pre><span></span>ipset add foo <span class="m">192</span>.168.1.1 comment <span class="s2">&quot;this is a comment&quot;</span>
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -247,13 +266,13 @@ ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -264,11 +283,6 @@ ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/javascript" role="menuitem" tabindex="-1">
-              javascript
              </a>
             </li>
             <li role="presentation">
@@ -341,6 +355,11 @@ ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/linux_optimize_ulimit.html">
                 linux: ulimit优化
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/linux_optimize_ulimit_ext_file_describer.html">
+                linux: ulimit优化 - 扩展文件句柄vs文件描述符
               </a>
              </li>
              <li class="toctree-l2">
@@ -429,6 +448,16 @@ ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
+                内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/optimize_1.1.1_kernel_nf_conntrack_table.html">
+                内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/tools_1.1.0_z_cd.html">
                 工具: 1.1.0 切换目录-z武器
               </a>
@@ -441,11 +470,6 @@ ipset <span class="nb">test</span> foo <span class="m">192</span>.168.1.1
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/systeminfo_1.1.0_cpuinfo.html">
                 系统信息：1.1.0 cpuinfo 超线程引起的争吵
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
-                调优: 1.1.0 TCP中的TIME_WAIT
               </a>
              </li>
              <li class="toctree-l2">
