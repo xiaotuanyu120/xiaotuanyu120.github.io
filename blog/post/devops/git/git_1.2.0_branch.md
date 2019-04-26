@@ -56,4 +56,9 @@ git merge test
 #### 5) 删除分支
 ``` bash
 git branch -d test
-```
+```
+
+#### 6) 推送本地branch到remote
+``` bash
+git push origin test
+```
