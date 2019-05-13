@@ -193,7 +193,7 @@
      <div class="row">
       <div class="col-lg-12"><h3>node.js: 4.0 npm install error</h3>
 <hr>
-<h3>1. npm install Error</h3>
+<h3>1. npm install Error one</h3>
 <div class="highlight"><pre><span></span>npm install
 ...
 gyp WARN EACCES attempting to reinstall using temporary dev dir <span class="s2">&quot;/root/fabric-samples/fabcar/node_modules/pkcs11js/.node-gyp&quot;</span>
@@ -204,6 +204,27 @@ gyp WARN EACCES user <span class="s2">&quot;root&quot;</span> does not have perm
 <div class="highlight"><pre><span></span>npm install --unsafe-perm --verbose
 </pre></div>
 <blockquote><p><a href="https://github.com/nodejs/node-gyp/issues/454">github issue 链接</a></p>
+</blockquote>
+<h3>2. npm install Error two</h3>
+<p>有时候我们会用普通用户来执行npm install，明明使用了sudo，还是会报</p>
+
+<pre><code>sudo PATH=/usr/java/jdk1.8.0_144/bin:/usr/java/jdk1.8.0_144/bin:/usr/local/bin:/usr/bin:/usr/java/jdk1.7.0_79/bin:/usr/java/jdk1.7.0_79/jre/bin:/usr/local/node-v10.15.3/bin:/usr/local/node-v10.15.3/bin /usr/local/node-v10.15.3/bin/npm install --unsafe-perm --allow-root
+Unhandled rejection Error: Command failed: /usr/bin/git clone --depth=1 -q -b master git://github.com/mattermost/marked.git /root/.npm/_cacache/tmp/git-clone-353bdefa
+fatal: could not create leading directories of '/root/.npm/_cacache/tmp/git-clone-353bdefa': Permission denied
+
+    at ChildProcess.exithandler (child_process.js:294:12)
+    at ChildProcess.emit (events.js:189:13)
+    at maybeClose (internal/child_process.js:970:16)
+    at Socket.stream.socket.on (internal/child_process.js:389:11)
+    at Socket.emit (events.js:189:13)
+    at Pipe._handle.close (net.js:597:12)
+Unhandled rejection Error: Command failed: /usr/bin/git submodule update -q --init --recursive
+fatal: Could not change back to '/root/.npm/_cacache/tmp/git-clone-ef63fcf9': Permission denied
+...</code></pre>
+<p>解决办法：</p>
+<div class="highlight"><pre><span></span>sudo sudo <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/node/bin npm install --unsafe-perm --allow-root
+</pre></div>
+<blockquote><p><code>PATH=$PATH:/usr/local/node/bin</code>，这个是为了解决，有时候执行sudo，而本地env中的变量没有保持到sudo的用户中，从而报：node无法找到的错误</p>
 </blockquote>
       </div>
      </div>
