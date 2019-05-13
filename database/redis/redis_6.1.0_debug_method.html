@@ -191,73 +191,72 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.0.0_install_war.html">
-                jenkins: 1.0.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">
-                jenkins: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.0.0_config_basic.html">
-                jenkins: 2.0.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">
-                jenkins: 2.1.0 git+maven+jdk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">
-                jenkins: 2.2.0 配置JENKINS_HOME
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">
-                jenkins: 2.3.0 修改slave节点的环境变量
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>redis: 6.1.0 DEBUG方法</h3>
+<hr>
+<h3>0. 需要DEBUG的情况</h3>
+<p>基本上都是一些未完全了解redis而导致的异常性能问题；<br>
+举例说：</p>
+<ol>
+<li>redis定时会流量增高</li>
+<li>redis不定时流量增高</li>
+</ol>
+<p>像我们就遇到了redis定时流量增高的问题。在业务代码方面排查感觉无处下手的时候，在redis这边使用工具查看当时的可疑拖慢性能的操作，是一个好方法</p>
+<h3>1. 参考链接</h3>
+<ul>
+<li><a href="https://redis.io/commands/monitor">redis-cli的monitor命令</a>，用来记录详细的客户端操作命令，；需要注意的是，一些特殊的管理员命令，由于安全问题，是无法监控到的，例如说CONFIG命令。</li>
+<li><a href="https://github.com/sripathikrishnan/redis-rdb-tools">rdbtools</a>，一个开源python工具，可以把rdb文件转换成json格式，还能把内存里面的数据统计成csv格式的文件；特别方便来查找大容量的key</li>
+</ul>
+<h3>2. monitor命令用法</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 1. 使用redis-cli</span>
+redis-cli -a <span class="s1">&#39;password&#39;</span> monitor &gt; result.out
+<span class="c1"># -a 是指定redis授权密码，如果无密码，可省略</span>
+<span class="c1"># 想结束monitor过程，直接使用CTRL+C</span>
+
+<span class="c1"># 2. 使用telnet</span>
+telnet localhost <span class="m">6379</span>
+Trying <span class="m">127</span>.0.0.1...
+Connected to localhost.
+Escape character is <span class="s1">&#39;^]&#39;</span>.
+MONITOR
++OK
++1339518083.107412 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;keys&quot;</span> <span class="s2">&quot;*&quot;</span>
++1339518087.877697 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;dbsize&quot;</span>
++1339518090.420270 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;set&quot;</span> <span class="s2">&quot;x&quot;</span> <span class="s2">&quot;6&quot;</span>
++1339518096.506257 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;get&quot;</span> <span class="s2">&quot;x&quot;</span>
++1339518099.363765 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;del&quot;</span> <span class="s2">&quot;x&quot;</span>
++1339518100.544926 <span class="o">[</span><span class="m">0</span> <span class="m">127</span>.0.0.1:60866<span class="o">]</span> <span class="s2">&quot;get&quot;</span> <span class="s2">&quot;x&quot;</span>
+QUIT
++OK
+Connection closed by foreign host.
+<span class="c1"># 使用QUIT退出这个过程</span>
+</pre></div>
+<blockquote><p>monitor只可以用来debug信息，长期开放会显著降低redis性能</p>
+</blockquote>
+<h3>3. rdbtools用法</h3>
+<h4>1) 安装rdbtools</h4>
+<div class="highlight"><pre><span></span>pip install rdbtools
+</pre></div>
+<h4>2) 转换rdb文件为json格式</h4>
+<div class="highlight"><pre><span></span>rdb -c json /var/redis/6379/dump.rdb &gt; dump.json
+<span class="c1"># -c 等同于 --command</span>
+</pre></div>
+<h4>3) 生成内存数据报告</h4>
+<div class="highlight"><pre><span></span>rdb -c memory /var/redis/6379/dump.rdb --bytes <span class="m">128</span> -f memory.csv
+<span class="c1"># 生成内容是以下格式</span>
+<span class="c1"># Database Number, Data Type, Key, Memory Used in bytes and RDB Encoding type.</span>
+</pre></div>
+<blockquote><p>Memory usage includes the key, the value and any other overheads. 注意这个内存占用量是个近似值，实际使用会比这个大一点。</p>
+</blockquote>
+<h4>4) 查看指定key的内存占用情况</h4>
+<div class="highlight"><pre><span></span>redis-memory-for-key -s localhost -p <span class="m">6379</span> -a mypassword person:1
+Key             person:1
+Bytes               <span class="m">111</span>
+Type                <span class="nb">hash</span>
+Encoding            ziplist
+Number of Elements      <span class="m">2</span>
+Length of Largest Element   <span class="m">8</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -353,61 +352,79 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
+            <a class="reference internal" href="/database/oracle">
+              oracle
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
+            <a class="reference internal" href="/database/redis">
+              redis
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.0_install.html">
+                redis: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">
+                redis: 1.1.1 redis replication(sentinel集群)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">
+                redis: 1.1.2 redis-py(sentinel)获取master信息
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.0_basic_cmd.html">
+                redis: 1.2.0 基本管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">
+                redis: 1.2.1 将redis执行结果输出到文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.2_security_disable_command.html">
+                redis: 1.2.2 安全性(CONFIG重命名)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_3.1.0_consistent.html">
+                redis: 3.1.0 持久化、备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.1.0_replication.html">
+                redis: 4.1.0 主从配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">
+                redis: 4.2.0 主从遇到的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">
+                redis: 5.1.0 错误-降级后启动报错
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_6.1.0_debug_method.html">
+                redis: 6.1.0 DEBUG方法
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
+            <a class="reference internal" href="/database/mysql">
+              mysql
             </a>
             <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.0.0_install_war.html">
-                jenkins: 1.0.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">
-                jenkins: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.0.0_config_basic.html">
-                jenkins: 2.0.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">
-                jenkins: 2.1.0 git+maven+jdk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">
-                jenkins: 2.2.0 配置JENKINS_HOME
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">
-                jenkins: 2.3.0 修改slave节点的环境变量
-              </a>
-             </li>
             </ul>
            </li>       </ul>
       </div>
