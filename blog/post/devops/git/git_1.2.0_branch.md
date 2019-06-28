@@ -16,11 +16,15 @@ git branch test
 
 #### 2) 查看分支
 ``` bash
+# 查看本地分支
 git branch
 * client
   list
   master
   test
+
+# 查看远程分支
+git branch -r
 ```
 > 有"\*"标识的是当前分支
 
@@ -61,4 +65,9 @@ git branch -d test
 #### 6) 推送本地branch到remote
 ``` bash
 git push origin test
+```
+
+#### 7) 下载远程分支到本地
+``` bash
+git checkout --track origin/branch_name
 ```
