@@ -198,11 +198,15 @@
 <div class="highlight"><pre><span></span>git branch <span class="nb">test</span>
 </pre></div>
 <h4>2) 查看分支</h4>
-<div class="highlight"><pre><span></span>git branch
+<div class="highlight"><pre><span></span><span class="c1"># 查看本地分支</span>
+git branch
 * client
   list
   master
   <span class="nb">test</span>
+
+<span class="c1"># 查看远程分支</span>
+git branch -r
 </pre></div>
 <blockquote><p>有"*"标识的是当前分支</p>
 </blockquote>
@@ -236,6 +240,9 @@ git merge <span class="nb">test</span>
 </pre></div>
 <h4>6) 推送本地branch到remote</h4>
 <div class="highlight"><pre><span></span>git push origin <span class="nb">test</span>
+</pre></div>
+<h4>7) 下载远程分支到本地</h4>
+<div class="highlight"><pre><span></span>git checkout --track origin/branch_name
 </pre></div>
       </div>
      </div>
