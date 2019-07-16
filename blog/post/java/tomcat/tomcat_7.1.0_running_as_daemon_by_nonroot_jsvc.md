@@ -1,10 +1,10 @@
 ---
-title: tomcat 7.1.0 使用非root用户用daemon运行tomcat
+title: tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)
 date: 2018-05-30 21:41:00
 categories: java/tomcat
 tags: [linux,tomcat]
 ---
-### tomcat 7.1.0 使用非root用户用daemon运行tomcat
+### tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)
 
 ---
 

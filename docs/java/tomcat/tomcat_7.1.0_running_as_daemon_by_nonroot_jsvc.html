@@ -191,12 +191,291 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
+      <div class="col-lg-12"><h3>tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)</h3>
+<hr>
+<h3>0. 背景</h3>
+<p>因为安全问题，在线上运行tomcat一般不用root权限来运行，而是采用非root用户来运行。<br>
+<a href="https://tomcat.apache.org/tomcat-7.0-doc/setup.html#Unix_daemon">tomcat7 官方daemon运行文档</a></p>
+<h3>1. 官方提供的daemon模式</h3>
+<h4>1) 编译安装jsvc</h4>
+<div class="highlight"><pre><span></span><span class="c1"># step 0. 准备java环境 及 编译环境</span>
+<span class="c1"># 提前下载jdk（本例中将jdk放置在/usr/local/java目录中）</span>
+yum install gcc gcc-c++ make autoconf -y
+
+<span class="c1"># step 1. 安装tomcat</span>
+wget http://mirror.rise.ph/apache/tomcat/tomcat-7/v7.0.88/bin/apache-tomcat-7.0.88.tar.gz
+tar zxvf apache-tomcat-7.0.88.tar.gz
+mv apache-tomcat-7.0.88 /usr/local/tomcat
+
+<span class="c1"># step 2. 编译jsvc</span>
+<span class="nb">cd</span> /usr/local/tomcat/bin
+tar zxvf commons-daemon-native.tar.gz
+<span class="nb">cd</span> commons-daemon-1.1.0-native-src/unix/
+./configure --with-java<span class="o">=</span>/usr/local/java
+make
+<span class="c1"># --with-java参数可手动指定JAVA_HOME路径，若不指定，则默认寻找系统环境中的JAVA_HOME变量</span>
+
+<span class="c1"># step 3. 拷贝jsvc到tomcat的bin目录</span>
+cp jsvc ../..
+<span class="nb">cd</span> ../..
+</pre></div>
+<p>此时我们的软件环境已经准备完毕，能够用采用unix daemon模式启动tomcat，核心在于jsvc命令。例如我们可以使用以下命令来启动tomcat</p>
+<div class="highlight"><pre><span></span><span class="nv">CATALINA_BASE</span><span class="o">=</span><span class="nv">$CATALINA_HOME</span>
+<span class="nb">cd</span> <span class="nv">$CATALINA_HOME</span>
+./bin/jsvc <span class="se">\</span>
+    -classpath <span class="nv">$CATALINA_HOME</span>/bin/bootstrap.jar:<span class="nv">$CATALINA_HOME</span>/bin/tomcat-juli.jar <span class="se">\</span>
+    -outfile <span class="nv">$CATALINA_BASE</span>/logs/catalina.out <span class="se">\</span>
+    -errfile <span class="nv">$CATALINA_BASE</span>/logs/catalina.err <span class="se">\</span>
+    -Dcatalina.home<span class="o">=</span><span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+    -Dcatalina.base<span class="o">=</span><span class="nv">$CATALINA_BASE</span> <span class="se">\</span>
+    -Djava.util.logging.manager<span class="o">=</span>org.apache.juli.ClassLoaderLogManager <span class="se">\</span>
+    -Djava.util.logging.config.file<span class="o">=</span><span class="nv">$CATALINA_BASE</span>/conf/logging.properties <span class="se">\</span>
+    org.apache.catalina.startup.Bootstrap
+</pre></div>
+<p>可以使用<code>jsvc --help</code>查看更多选项，其中一个比较重要的选项就是<code>-user</code>，使用这个参数可以指定另外一个用户来启动tomcat daemon。</p>
+<h4>2) daemon.sh参数介绍及自定义</h4>
+<p>jsvc提供了<code>$CATALINA_HOME/bin/daemon.sh</code>文件来替代上面的命令行模式来启动tomcat.
+我们有两种定义它的方式，</p>
+<ul>
+<li>一种是直接修改它来达到自定义目的；</li>
+<li>另外一种是通过创建另外一个脚本，通过调用daemon.sh然后传入变量的方式来自定义。</li>
+</ul>
+<blockquote><p><code>daemon.sh</code>其他重要参数：</p>
+<ul>
+<li><code>CATALINA_OUT</code>, catalina.out的位置</li>
+<li><code>JAVA_OPTS</code>, jvm options</li>
+</ul>
+</blockquote>
+<p>个人推荐第二种，下面是可使用的自定义参数</p>
+<ul>
+<li><code>--java-home</code>，会传给jsvc的<code>-java-home</code>，默认使用系统环境java命令来判断JAVA_HOME</li>
+<li><code>--catalina-home</code>，会传给jsvc的<code>-Dcatalina.home</code>，默认使用当前daemon.sh脚本所在目录的上级目录作为catalina.home</li>
+<li><code>--catalina-base</code>，会传给jsvc的<code>-Dcatalina.base</code>，默认和--catalina-home值相同</li>
+<li><code>--tomcat-user</code>，回传给jsvc的<code>-user</code>，默认竟然是tomcat用户</li>
+</ul>
+<p>自定义部分</p>
+<div class="highlight"><pre><span></span><span class="c1"># 自定义catalina.out日志位置</span>
+<span class="c1"># 注释下一行内容</span>
+<span class="c1"># test &quot;.$CATALINA_OUT&quot; = . &amp;&amp; CATALINA_OUT=&quot;$CATALINA_BASE/logs/catalina-daemon.out&quot;</span>
+<span class="c1"># 自定义为其他位置</span>
+<span class="nv">CATALINA_OUT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$CATALINA_BASE</span><span class="s2">/logs/catalina-daemon.out&quot;</span>
+</pre></div>
+<h4>3) 准备tomcat用户</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 增加tomcat用户</span>
+groupadd tomcat
+useradd -s /sbin/nologin -g tomcat tomcat
+
+<span class="c1"># 将tomcat目录属主和属组修改为刚创建的tomcat用户</span>
+chown -R tomcat.tomcat /usr/local/tomcat
+</pre></div>
+<h4>4) 自定义启动脚本</h4>
+<p>可以通过以下脚本放在<code>/etc/init.d/</code>中来充当tomcat的启动脚本</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># chkconfig: 2345 20 80</span>
+<span class="c1"># description: script for tomcat start</span>
+
+<span class="nv">CATALINA_HOME</span><span class="o">=</span>/usr/local/tomcat
+<span class="nv">CATALINA_BASE</span><span class="o">=</span><span class="nv">$CATALINA_HOME</span>
+<span class="nv">TOMCAT_USER</span><span class="o">=</span>tomcat
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/java
+
+<span class="k">function</span> jsvc_exec<span class="o">()</span> <span class="o">{</span>
+    <span class="si">${</span><span class="nv">CATALINA_HOME</span><span class="si">}</span>/bin/daemon.sh <span class="se">\</span>
+        --java-home <span class="nv">$JAVA_HOME</span> <span class="se">\</span>
+        --catalina-home <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+        --catalina-base <span class="nv">$CATALINA_BASE</span> <span class="se">\</span>
+        --tomcat-user <span class="nv">$TOMCAT_USER</span> <span class="se">\</span>
+        --service-start-wait-time <span class="m">50</span> <span class="se">\</span>
+        <span class="nv">$1</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+    start   <span class="o">)</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    stop    <span class="o">)</span>
+      jsvc_exec stop
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    restart  <span class="o">)</span>
+      jsvc_exec stop
+      sleep <span class="m">2</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    version    <span class="o">)</span>
+      jsvc_exec version
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    *       <span class="o">)</span>
+      <span class="nb">echo</span> <span class="s2">&quot;Unknown command: \`</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;commands:&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  restart           Retart Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  start             Start Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  stop              Stop Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  version           What version of commons daemon and Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;                    are you running?&quot;</span>
+      <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+<blockquote><p><a href="http://grokbase.com/t/tomcat/users/14aebxdq0j/how-can-tomcat-be-started-at-boot-time-as-a-non-root-user">脚本启动时会启动一个root进程和一个我们指定的user的解释</a><br>
+另外值得注意的是，root进程负责的是派生我们指定的user来运行的进程，如果杀掉user运行的进程，则root进程会持续派生新的进程出来。</p>
+</blockquote>
+<p>若希望用一个脚本来管理多个同样功能的tomcat，可使用下面的数组脚本</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># chkconfig: 2345 20 80</span>
+<span class="c1"># description: script for tomcat start</span>
+
+<span class="nv">CATALINA_HOMES</span><span class="o">=(</span>/usr/local/tomcat01 /usr/local/tomcat02<span class="o">)</span>
+<span class="nv">TOMCAT_USER</span><span class="o">=</span>tomcat
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/java
+
+<span class="k">function</span> jsvc_exec<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">retval</span><span class="o">=</span><span class="m">0</span>
+    <span class="k">for</span> CATALINA_HOME in <span class="si">${</span><span class="nv">CATALINA_HOMES</span><span class="p">[@]</span><span class="si">}</span>
+    <span class="k">do</span>
+        <span class="o">[</span> <span class="nv">$retval</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nv">$retval</span> -eq <span class="m">255</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">break</span>
+        <span class="si">${</span><span class="nv">CATALINA_HOME</span><span class="si">}</span>/bin/daemon.sh <span class="se">\</span>
+            --java-home <span class="nv">$JAVA_HOME</span> <span class="se">\</span>
+            --catalina-home <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+            --catalina-base <span class="nv">$CATALINA_HOME</span> <span class="se">\</span>
+            --tomcat-user <span class="nv">$TOMCAT_USER</span> <span class="se">\</span>
+            --service-start-wait-time <span class="m">50</span> <span class="se">\</span>
+            <span class="nv">$1</span>
+        <span class="nv">retval</span><span class="o">=</span><span class="nv">$?</span>
+    <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
+    start   <span class="o">)</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    stop    <span class="o">)</span>
+      jsvc_exec stop
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    restart  <span class="o">)</span>
+      jsvc_exec stop
+      sleep <span class="m">2</span>
+      jsvc_exec start
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    version    <span class="o">)</span>
+      jsvc_exec version
+      <span class="nb">exit</span> <span class="nv">$?</span>
+    <span class="p">;;</span>
+    *       <span class="o">)</span>
+      <span class="nb">echo</span> <span class="s2">&quot;Unknown command: \`</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;commands:&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  restart           Retart Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  start             Start Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  stop              Stop Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;  version           What version of commons daemon and Tomcat&quot;</span>
+      <span class="nb">echo</span> <span class="s2">&quot;                    are you running?&quot;</span>
+      <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</pre></div>
+<blockquote><p><code>--service-start-wait-time 50</code>解决的是tomcat进程启动过慢时，jsvc返回为1的问题。 因为jsvc启动需要等到进程返回"I am ready"时才会返回。 如果这个wait的时间被超过，则返回为1（<a href="https://commons.apache.org/proper/commons-daemon/jsvc.html">参考文档</a>）</p>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
            <li class="toctree-l1">
             <a class="reference internal" href="/java/tomcat">
               tomcat
@@ -327,184 +606,6 @@
                 tomcat: 5.1.2 tomcat-session sharing
               </a>
              </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
-     </div>
-     <div class="row docs-byline bottom">
-      <div class="docs-updated">
-       updated: 2017-04-20 10:25
-      </div>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
-     <div class="btn-group docs-sidebar-releases">
-      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
-       <i class="fa fa-arrow-circle-o-left">
-       </i>
-      </button>
-      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
-       Xiao5tech Docs
-       <i class="fa fa-caret-down">
-       </i>
-      </button>
-      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
-       <li role="presentation" class="dropdown-header">
-        完整文档分类
-       </li>
-            <li role="presentation">
-             <a href="/web" role="menuitem" tabindex="-1">
-              web
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/java" role="menuitem" tabindex="-1">
-              java
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/database" role="menuitem" tabindex="-1">
-              database
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/python" role="menuitem" tabindex="-1">
-              python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/devops" role="menuitem" tabindex="-1">
-              devops
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/bigdata" role="menuitem" tabindex="-1">
-              bigdata
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blog" role="menuitem" tabindex="-1">
-              blog
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/virtualization" role="menuitem" tabindex="-1">
-              virtualization
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/linux" role="menuitem" tabindex="-1">
-              linux
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/go" role="menuitem" tabindex="-1">
-              go
-             </a>
-            </li>      </ul>
-     </div>
-      <div class="docs-sidebar-toc">
-      <div class="docs-sidebar-section" id="table-of-contents">
-       <a href="#" class="docs-sidebar-section-title">
-        <h4>Contents</h4>
-       </a>
-       <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/tomcat">
-              tomcat
-            </a>
-            <ul>
             </ul>
            </li>
            <li class="toctree-l1">
