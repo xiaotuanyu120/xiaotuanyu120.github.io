@@ -243,6 +243,22 @@ reading from file /tmp/tcpdump1.cap, link-type EN10MB <span class="o">(</span>Et
 <span class="m">16</span>:13:38.113868 IP web01.gateway.2wire.net.ssh &gt; Essence-PC.gateway.2wire.net.56918: Flags <span class="o">[</span>P.<span class="o">]</span>, seq <span class="m">3436852828</span>:3436852972, ack <span class="m">1010809782</span>, win <span class="m">543</span>, length <span class="m">144</span>
 <span class="m">16</span>:13:38.163777 IP Essence-PC.gateway.2wire.net.56918 &gt; web01.gateway.2wire.net.ssh: Flags <span class="o">[</span>.<span class="o">]</span>, ack <span class="m">144</span>, win <span class="m">253</span>, length <span class="m">0</span>
 <span class="c1">#和上面一样的命令，只是去掉了-nn参数，ip和端口都变成了name</span>
+
+<span class="c1"># -Z 指定用户</span>
+tcpdump -Z root
+<span class="c1"># 针对错误：tcpdump: Couldn&#39;t find user &#39;tcpdump&#39;</span>
+
+<span class="c1"># 指定hostname</span>
+tcpdump host www.baidu.com
+
+<span class="c1"># 指定src</span>
+tcpdump src <span class="m">192</span>.168.1.1
+
+<span class="c1"># 指定dst</span>
+tcpdump dst <span class="m">192</span>.168.1.1
+
+<span class="c1"># 指定post</span>
+tcpdump port <span class="m">80</span>
 </pre></div>
 <hr>
 <h3>2. 命令：tshark(wireshark)-非重点</h3>
