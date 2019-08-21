@@ -220,8 +220,7 @@ cat /proc/sys/net/ipv4/ip_local_port_range
 <p>根据上面的tcp并发算法能看出来，针对于同一个服务端口，tcp并发随着可用的端口范围的增加而增加。</p>
 <h4>2) 使用不同的服务端口来提供服务</h4>
 <p>所谓tcp连接，是由<local-ip>:<local-port> <remote-ip>:<remote-port>四段确定的一个tcp连接，在不考虑其他三段的情况下，监听一个80和同时监听80和81，能提供的tcp并发理论上直接是相差了一倍</p>
-<h4>3) 优化程序</h4>
-<h4>4) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)</h4>
+<h4>3) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)</h4>
 <div class="highlight"><pre><span></span>vim /etc/sysctl.conf
 ***************************************
 <span class="c1"># 启用tcp的时间戳配置，只有启用这个，下面reuse和recycle才生效。</span>
@@ -261,10 +260,12 @@ net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
 sysctl -p
 </pre></div>
 <h3>3. 扩展连接</h3>
-<p><a href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">sysctl configuration in linux kernel docs</a>，这里面可以查看sysctl每一项优化的官方文档说明
-<a href="https://tools.ietf.org/html/rfc793">RFC 793: TCP</a>，这里可以查看TCP的相关原理说明
-<a href="https://tools.ietf.org/html/rfc6191#page-3">RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明</a>
-<a href="https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing">TIMEWAIT精品文章 - 强烈推荐</a></p>
+<ul>
+<li><a href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">sysctl configuration in linux kernel docs</a>，这里面可以查看sysctl每一项优化的官方文档说明</li>
+<li><a href="https://tools.ietf.org/html/rfc793">RFC 793: TCP</a>，这里可以查看TCP的相关原理说明</li>
+<li><a href="https://tools.ietf.org/html/rfc6191#page-3">RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明</a></li>
+<li><a href="https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing">TIMEWAIT精品文章 - 强烈推荐</a></li>
+</ul>
       </div>
      </div>
      <div class="row docs-byline bottom">

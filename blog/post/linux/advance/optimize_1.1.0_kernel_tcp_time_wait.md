@@ -41,8 +41,7 @@ echo "(60999-32768)/60"|bc
 #### 2) 使用不同的服务端口来提供服务
 所谓tcp连接，是由<local-ip>:<local-port> <remote-ip>:<remote-port>四段确定的一个tcp连接，在不考虑其他三段的情况下，监听一个80和同时监听80和81，能提供的tcp并发理论上直接是相差了一倍
 
-#### 3) 优化程序
-#### 4) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)
+#### 3) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)
 ``` bash
 vim /etc/sysctl.conf
 ***************************************
@@ -85,7 +84,7 @@ sysctl -p
 
 
 ### 3. 扩展连接
-[sysctl configuration in linux kernel docs](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)，这里面可以查看sysctl每一项优化的官方文档说明
-[RFC 793: TCP](https://tools.ietf.org/html/rfc793)，这里可以查看TCP的相关原理说明
-[RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明](https://tools.ietf.org/html/rfc6191#page-3)
-[TIMEWAIT精品文章 - 强烈推荐](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing)
+- [sysctl configuration in linux kernel docs](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt)，这里面可以查看sysctl每一项优化的官方文档说明
+- [RFC 793: TCP](https://tools.ietf.org/html/rfc793)，这里可以查看TCP的相关原理说明
+- [RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明](https://tools.ietf.org/html/rfc6191#page-3)
+- [TIMEWAIT精品文章 - 强烈推荐](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing)
