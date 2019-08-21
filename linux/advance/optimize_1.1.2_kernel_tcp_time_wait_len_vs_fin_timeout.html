@@ -191,80 +191,60 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多</h3>
+      <div class="col-lg-12"><h3>内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？</h3>
 <hr>
-<h3>1. 关于TIME_WAIT</h3>
-<h4>1) 什么是TIME_WAIT?</h4>
-<p>TIME_WAIT是TCP连接中的一个状态，每一个TCP连接都会在内存中维护一个控制块TCB(Transmission Control Block），用来记录TCP连接的IP和端口等信息。TIME_WAIT状态会维持一小段时间(最大分段使用期的2倍，2MSL)，以确保这段时间内不会有相同的IP和端口号的新连接，目的是为了预防，上一个连接的分组包延迟到达，而被新的连接接受而导致TCP流被破坏。<br>
-但是处于TIME_WAIT状态的TCP连接过多也会造成性能问题，比如我们的可用源端口只有60000个，而在2MSL(Maximum Segment Lifetime, 时间根据不同系统不一样，大概2分钟左右)内是无法被重用的，也就是说我们的tcp连接率就限制在了在60000/120 = 500次/秒。<br>
-即使没有遇到端口耗尽的问题，在有大量TCP连接及TCB占用内存比例过大时，也会严重影响系统的性能。</p>
-<h4>2) TIME_WAIT的用处</h4>
+<h3>1. 关于TIMEWAIT</h3>
+<p>参见<a href="https://linux.xiao5tech.com/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">TIMEWAIT优化篇</a></p>
+<h3>2. 关于MSL</h3>
+<p>优化TIMEWAIT的方法中，有一种论调是在tcp优化时，因为TIMEWAIT的存活时间是2MSL，所以我们需要缩短MSL来达到快速回收TIMEWAIT状态的tcp的目的。<br>
+那么这里引出几个问题，MSL在linux中，是否可以调优？网上普遍流传的tcp_fin_timeout是否可以控制MSL的时间长短呢？</p>
+<h4>1) 关于MSL是否可以调优</h4>
+<p>首先，我们的目的是要调优TIMEWAIT，因此，才会关注MSL这个时间。而在linux的内核源码的<a href="https://github.com/torvalds/linux/blob/master/include/net/tcp.h">tcp.h</a>中，有这样一段</p>
+<div class="highlight"><pre><span></span><span class="cp">#define TCP_TIMEWAIT_LEN (60*HZ) </span><span class="cm">/* how long to wait to destroy TIME-WAIT</span>
+<span class="cm">                  * state, about 60 seconds */</span><span class="cp"></span>
+</pre></div>
+<p>这里可以看出，TIMEWAIT的销毁时间，是由TCP_TIMEWAIT_LEN来控制的，而其是个常量，是60s，是无法被调优的。</p>
+<h4>2) 网上为何流传tcp_fin_timeout是2MSL呢？</h4>
+<p><strong>个人猜测</strong>是两个原因:</p>
 <ul>
-<li>避免延迟的tcp片段被新的不相干的tcp连接接收，由此新的tcp连接遭到破坏</li>
-<li>保证TCP四次挥手中的最后一个ACK能顺利到达，若最后一个ACK丢失，当再次使用同一个端口上发起SYN时，则对方的LAST_ACK状态会返回RST。</li>
+<li>第一是因为默认情况下，TCP_FIN_TIMEOUT就等于TCP_TIMEWAIT_LEN<div class="highlight"><pre><span></span><span class="cp">#define TCP_FIN_TIMEOUT TCP_TIMEWAIT_LEN</span>
+                               <span class="cm">/* BSD style FIN_WAIT2 deadlock breaker.</span>
+<span class="cm">                * It used to be 3min, new value is 60sec,</span>
+<span class="cm">                * to combine FIN-WAIT-2 timeout with</span>
+<span class="cm">                * TIME-WAIT timer.</span>
+<span class="cm">                */</span>
+</pre></div>
+</li>
+<li>第二是因为，tcp_fin_timeout本身就是设定处于FIN_WAIT2状态下的tcp连接等待最后一个FIN的超时时间，这个超时时间越短，就越快加速等不到FIN的情况下FIN_WAIT2到下一步的过程，也是能一定程度上加快tcp的生命周期，所以才和TIMEWAIT的销毁时间等同来讲。</li>
 </ul>
-<h3>2. 计算TCP并发数</h3>
-<p>因为每一个tcp连接是由<local-ip>:<local-port> <remote-ip>:<remote-port>确定的，此处限定<local-ip>,<remote-ip>,<remote-port>三项不变，只有<local-port>一个变量的情况下的tcp并发计算方法</p>
-<div class="highlight"><pre><span></span><span class="c1"># 查看可用端口数目</span>
-cat /proc/sys/net/ipv4/ip_local_port_range
-<span class="m">32768</span>   <span class="m">60999</span>
+<blockquote><p>以上两个原因，都是个人猜测，个人猜测，请在未验证之前，不要拿来作为依据。</p>
+</blockquote>
+<h3>3. 验证一波fin_timeout和TIMEWAIT的销毁时间确实没关系</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 1. 搭建一个tomcat，用于测试，此处忽略</span>
 
-<span class="c1"># TIME_WAIT状态tcp存活时间，默认是2倍的MSL，在linux内核源码中，这个值是个常量TCP_TIMEWAIT_LEN=60s，是不可以改变的。</span>
+<span class="c1"># 2. 首先设定fin_timeout为一个极短的时间</span>
+<span class="nb">echo</span> <span class="s2">&quot;3&quot;</span> &gt; /proc/sys/net/ipv4/tcp_fin_timeout
+<span class="c1"># 验证一下</span>
+cat /proc/sys/net/ipv4/tcp_fin_timeout
+<span class="m">3</span>
 
-<span class="c1"># 计算tcp并发数</span>
-<span class="nb">echo</span> <span class="s2">&quot;(60999-32768)/60&quot;</span><span class="p">|</span>bc
-<span class="m">470</span>
+<span class="c1"># 3. curl一下tomcat，创建几个tcp连接</span>
+curl <span class="m">127</span>.0.0.1:8080 -I
+
+<span class="c1"># 4. 使用ss检查处于timewait状态的连接，使用-o来检查其时间</span>
+ss -n -o state time-wait
+Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+tcp    <span class="m">0</span>      <span class="m">0</span>      <span class="m">127</span>.0.0.1:42924              <span class="m">127</span>.0.0.1:8080                timer:<span class="o">(</span>timewait,55sec,0<span class="o">)</span>
+tcp    <span class="m">0</span>      <span class="m">0</span>      <span class="m">127</span>.0.0.1:42922              <span class="m">127</span>.0.0.1:8080                timer:<span class="o">(</span>timewait,54sec,0<span class="o">)</span>
+<span class="c1"># 发现初始化时间就是60s</span>
+<span class="c1"># 再次检查，发现时间减少，直到时间为0，tcp连接消失</span>
+ss -n -o state time-wait
+Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+tcp    <span class="m">0</span>      <span class="m">0</span>      <span class="m">127</span>.0.0.1:42924              <span class="m">127</span>.0.0.1:8080                timer:<span class="o">(</span>timewait,34sec,0<span class="o">)</span>
+tcp    <span class="m">0</span>      <span class="m">0</span>      <span class="m">127</span>.0.0.1:42922              <span class="m">127</span>.0.0.1:8080                timer:<span class="o">(</span>timewait,33sec,0<span class="o">)</span>
 </pre></div>
-<h3>3. TCP针对TIME_WAIT过多可以进行的优化</h3>
-<h4>1) 增加可用的端口范围</h4>
-<p>根据上面的tcp并发算法能看出来，针对于同一个服务端口，tcp并发随着可用的端口范围的增加而增加。</p>
-<h4>2) 使用不同的服务端口来提供服务</h4>
-<p>所谓tcp连接，是由<local-ip>:<local-port> <remote-ip>:<remote-port>四段确定的一个tcp连接，在不考虑其他三段的情况下，监听一个80和同时监听80和81，能提供的tcp并发理论上直接是相差了一倍</p>
-<h4>3) 优化程序</h4>
-<h4>4) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)</h4>
-<div class="highlight"><pre><span></span>vim /etc/sysctl.conf
-***************************************
-<span class="c1"># 启用tcp的时间戳配置，只有启用这个，下面reuse和recycle才生效。</span>
-net.ipv4.tcp_timestamps <span class="o">=</span> <span class="m">1</span>
-
-<span class="c1"># 允许TIME_WAIT SOCKETS重新用于新的TCP连接，依赖开启tcp优化中的tcp_timestamp</span>
-<span class="c1"># tcp_tw_reuse - INTEGER</span>
-<span class="c1">#     Enable reuse of TIME-WAIT sockets for new connections when it is</span>
-<span class="c1">#     safe from protocol viewpoint.</span>
-<span class="c1">#     0 - disable</span>
-<span class="c1">#     1 - global enable</span>
-<span class="c1">#     2 - enable for loopback traffic only</span>
-<span class="c1">#     It should not be changed without advice/request of technical</span>
-<span class="c1">#     experts.</span>
-<span class="c1">#     Default: 2</span>
-net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
-
-<span class="c1"># ！！！网上很多人转载这个，但是这个配置不要用于nat网络里面，详情可以自己谷歌此配置和nat关键字！！！</span>
-<span class="c1"># 开启TCP连接中的TIME_WAIT SOCKETS快速回收，依赖开启tcp优化中的tcp_timestamp</span>
-net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
-<span class="c1"># ！！！nat网络下不建议开！！！</span>
-
-<span class="c1"># 修改FIN_WAIT2状态tcp的超时时间为30s，默认等于TCP_TIMEWAIT_LEN，是60s</span>
-<span class="c1"># tcp_fin_timeout - INTEGER</span>
-<span class="c1">#     The length of time an orphaned (no longer referenced by any</span>
-<span class="c1">#     application) connection will remain in the FIN_WAIT_2 state</span>
-<span class="c1">#     before it is aborted at the local end.  While a perfectly</span>
-<span class="c1">#     valid &quot;receive only&quot; state for an un-orphaned connection, an</span>
-<span class="c1">#     orphaned connection in FIN_WAIT_2 state could otherwise wait</span>
-<span class="c1">#     forever for the remote to close its end of the connection.</span>
-<span class="c1">#     Cf. tcp_max_orphans</span>
-<span class="c1">#     Default: 60 seconds</span>
-net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
-***************************************
-
-<span class="c1"># 使配置立即生效</span>
-sysctl -p
-</pre></div>
-<h3>3. 扩展连接</h3>
-<p><a href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">sysctl configuration in linux kernel docs</a>，这里面可以查看sysctl每一项优化的官方文档说明
-<a href="https://tools.ietf.org/html/rfc793">RFC 793: TCP</a>，这里可以查看TCP的相关原理说明
-<a href="https://tools.ietf.org/html/rfc6191#page-3">RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明</a>
-<a href="https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing">TIMEWAIT精品文章 - 强烈推荐</a></p>
+<blockquote><p>以上的操作实际上验证了，修改<code>tcp_fin_timeout</code>是无法修改TIMEWAIT的销毁时间的。</p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
