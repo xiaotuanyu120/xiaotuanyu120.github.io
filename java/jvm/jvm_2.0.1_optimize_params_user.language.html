@@ -191,167 +191,40 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
-                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
-                WIKI: 1.2.0 moinmoin基本设置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
-                ffmpeg 1.1.0 compile install(centos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
-                fluentd 1.0.0 读“fluentd官方文档”笔记
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
-                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
-                inotify: 1.1.0 初识inotify
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
-                inotify: 2.1.0 inotify+rsync实现实时文件同步
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
-                inotify: 3.1.0 inotify实现代码回滚(设想)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
-                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
-                kafka 1.1.0 quick start
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
-                keepalive 1.1.0 nginx高可用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
-                ldap 1.0.0: installation
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
-                svn: 1.1.0 centos6下yum安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
-                svn: 1.2.0 centos6下源码安装svn1.6.19
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
-                svn: 1.2.1 svn-tools
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
-                svn: 1.3.0 配置svn
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
-                svn: 1.4.0 svn tags vs git tags
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
-                vnc: 1.1.0 centos 7 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
-                zookeeper 1.1.0 standalone 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
-                zookeeper 1.2.0 replicated 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
-                zookeeper 1.3.0 zookeeper 数据清理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
-                zookeeper 1.4.0 管理（启动脚本）
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</h3>
+<hr>
+<h3>0. 问题背景</h3>
+<p>有一个java程序使用了oracle driver连接oracle数据库，结果在tomcat启动的时候，有如下报错信息</p>
+
+<pre><code>2019-09-03 11:16:52,474 [Druid-ConnectionPool-Create-2015198630] ERROR [com.alibaba.druid.pool.DruidDataSource] - create connection error
+java.sql.SQLException: Locale not recognized
+        at oracle.jdbc.driver.T4CTTIoauthenticate.setSessionFields(T4CTTIoauthenticate.java:1006)
+        at oracle.jdbc.driver.T4CTTIoauthenticate.&lt;init&gt;(T4CTTIoauthenticate.java:238)
+        at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:401)
+        at oracle.jdbc.driver.PhysicalConnection.&lt;init&gt;(PhysicalConnection.java:553)
+        at oracle.jdbc.driver.T4CConnection.&lt;init&gt;(T4CConnection.java:254)
+        at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+        at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:528)
+        at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1375)
+        at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1431)
+        at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:1844)</code></pre>
+<h3>1. 问题原因</h3>
+<p>通过搜索报错，在stackoverflow上发现这样一个<a href="https://stackoverflow.com/questions/9685052/an-getting-this-error-when-i-run-my-project-java-sql-sqlexception-locale-not-r">回答</a>，于是检查了tomcat配置，配置如下</p>
+
+<pre><code>JAVA_OPTS="$JAVA_OPTS -Djavax.servlet.request.encoding=UTF-8 -Dfile.encoding=UTF-8 -Duser.language=zh_CN -Dsun.jnu.encoding=UTF-8"</code></pre>
+<p>重点是<code>-Duser.language=zh_CN</code>，原来JVM里面是有两个system property来一起表示<code>zh_CN</code>，一个是<code>user.language</code>，一个是<code>user.country</code>。这里应该配置成<code>-Duser.language=zh -Duser.country=CN</code>。</p>
+<blockquote><p>这里有几点需要说明：</p>
+<ul>
+<li>之所以有加这个参数，是因为线上有这个标准。而之所以这个标准以前存在了很久没有报错，<strong>&lt;个人猜测&gt;</strong>是因为mysql里面没有依赖JVM的Locale这个system property<strong>&lt;个人猜测&gt;</strong>。</li>
+<li>其实如果没有手动增加<code>user.language</code>和<code>user.country</code>这两个system property，JVM会使用默认的<code>en</code>和<code>US</code>，也不会报错，这边是画蛇添足了。</li>
+</ul>
+</blockquote>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">oracle对jdk7中的Locale官方文档</a></li>
+<li><a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">iana对语言的缩写描述文档 - 关于zh和其他语言缩写标准</a></li>
+</ul>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -447,155 +320,69 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/java/product_issues">
+              product_issues
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
+            <a class="reference internal" href="/java/tomcat">
+              tomcat
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
+            <a class="reference internal" href="/java/jvm">
+              jvm
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
-                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
+              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
+                JVM: 1.0.0 运行时数据区域概念
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
-                WIKI: 1.2.0 moinmoin基本设置
+              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
+                JVM: 2.0.0 内存区域调优参数
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
-                ffmpeg 1.1.0 compile install(centos)
+              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
+                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
-                fluentd 1.0.0 读“fluentd官方文档”笔记
+              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
+                JVM: 2.1.0 调优实践
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
-                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
+              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
+                JVM: 3.0.0 jvm状态查看命令(JDK自带)
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
-                inotify: 1.1.0 初识inotify
+              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
+                jdk: 1.0.0 jdk简介
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
-                inotify: 2.1.0 inotify+rsync实现实时文件同步
+              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
+                jdk: 1.1.0 jre1.6安装
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
-                inotify: 3.1.0 inotify实现代码回滚(设想)
+              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
+                jdk: 1.1.1 jdk1.8安装
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
-                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
+              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
+                jdk: 2.1.0 命令行编译java项目
               </a>
              </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
-                kafka 1.1.0 quick start
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
-                keepalive 1.1.0 nginx高可用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
-                ldap 1.0.0: installation
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
-                svn: 1.1.0 centos6下yum安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
-                svn: 1.2.0 centos6下源码安装svn1.6.19
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
-                svn: 1.2.1 svn-tools
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
-                svn: 1.3.0 配置svn
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
-                svn: 1.4.0 svn tags vs git tags
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
-                vnc: 1.1.0 centos 7 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
-                zookeeper 1.1.0 standalone 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
-                zookeeper 1.2.0 replicated 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
-                zookeeper 1.3.0 zookeeper 数据清理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
-                zookeeper 1.4.0 管理（启动脚本）
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
             </ul>
            </li>       </ul>
       </div>
