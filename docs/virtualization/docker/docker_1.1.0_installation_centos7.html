@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -203,85 +208,57 @@ CentOS Linux release <span class="m">7</span>.2.1511 <span class="o">(</span>Cor
 uname -r
 <span class="m">3</span>.10.0-327.el7.x86_64
 </pre></div>
-<hr>
 <h3>1. 删除老版本的docker</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 如果曾经在redhat的源中安装过老版的docker，删除它</span>
-yum -y remove docker docker-common container-selinux
-yum -y remove docker-selinux
+yum remove docker <span class="se">\</span>
+                  docker-client <span class="se">\</span>
+                  docker-client-latest <span class="se">\</span>
+                  docker-common <span class="se">\</span>
+                  docker-latest <span class="se">\</span>
+                  docker-latest-logrotate <span class="se">\</span>
+                  docker-logrotate <span class="se">\</span>
+                  docker-engine
 </pre></div>
-<hr>
 <h3>2. yum安装docker</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 创建docker的yum源</span>
-yum install -y yum-utils
+yum install -y yum-utils <span class="se">\</span>
+  device-mapper-persistent-data <span class="se">\</span>
+  lvm2
 yum-config-manager <span class="se">\</span>
     --add-repo <span class="se">\</span>
     https://download.docker.com/linux/centos/docker-ce.repo
 
-<span class="c1"># 关闭testing源(默认为关闭)</span>
-yum-config-manager --disable docker-testing
+<span class="c1"># 关闭非稳定源(默认为关闭)</span>
+yum-config-manager --disable docker-ce-edge
+yum-config-manager --disable docker-ce-test
+yum-config-manager --disable docker-ce-nightly
 
 <span class="c1"># 安装docker</span>
-yum -y install docker-ce
+<span class="nv">VERSION_STRING</span><span class="o">=</span><span class="m">18</span>.06.3.ce-3.el7
+yum install -y docker-ce-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> docker-ce-cli-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> containerd.io
 </pre></div>
-<hr>
-<h3>3. 启动docker服务</h3>
+<h3>3. install docker-compose</h3>
+<div class="highlight"><pre><span></span>curl -L <span class="s2">&quot;https://github.com/docker/compose/releases/download/1.24.1/docker-compose-</span><span class="k">$(</span>uname -s<span class="k">)</span><span class="s2">-</span><span class="k">$(</span>uname -m<span class="k">)</span><span class="s2">&quot;</span> -o /usr/local/bin/docker-compose
+chmod <span class="m">755</span> /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</pre></div>
+<blockquote><p><a href="https://docs.docker.com/compose/install/">docker-compose installation</a></p>
+</blockquote>
+<h3>4. 启动docker服务</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 启动docker服务</span>
+systemctl daemon-reload
 systemctl <span class="nb">enable</span> docker
 systemctl start docker
 
 <span class="c1"># 查看docker版本</span>
 docker version
-Client:
- Version:      <span class="m">1</span>.13.1
- API version:  <span class="m">1</span>.26
- Go version:   go1.7.5
- Git commit:   092cba3
- Built:        Wed Feb  <span class="m">8</span> <span class="m">06</span>:38:28 <span class="m">2017</span>
- OS/Arch:      linux/amd64
-
-Server:
- Version:      <span class="m">1</span>.13.1
- API version:  <span class="m">1</span>.26 <span class="o">(</span>minimum version <span class="m">1</span>.12<span class="o">)</span>
- Go version:   go1.7.5
- Git commit:   092cba3
- Built:        Wed Feb  <span class="m">8</span> <span class="m">06</span>:38:28 <span class="m">2017</span>
- OS/Arch:      linux/amd64
- Experimental: <span class="nb">false</span>
 </pre></div>
-<hr>
-<h3>4. 查看服务是否正常</h3>
+<h3>5. 查看服务是否正常</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 测试docker是否正常</span>
 docker run hello-world
-Unable to find image <span class="s1">&#39;hello-world:latest&#39;</span> locally
-latest: Pulling from library/hello-world
-78445dd45222: Pull <span class="nb">complete</span>
-Digest: sha256:c5515758d4c5e1e838e9cd307f6c6a0d620b5e07e6f927b07d05f6d12a1ac8d7
-Status: Downloaded newer image <span class="k">for</span> hello-world:latest
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- <span class="m">1</span>. The Docker client contacted the Docker daemon.
- <span class="m">2</span>. The Docker daemon pulled the <span class="s2">&quot;hello-world&quot;</span> image from the Docker Hub.
- <span class="m">3</span>. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- <span class="m">4</span>. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://cloud.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/engine/userguide/
 
 <span class="c1"># 查看近期docker进程</span>
 docker ps -a
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES
-7fe36705b599        hello-world         <span class="s2">&quot;/hello&quot;</span>            <span class="m">47</span> seconds ago      Exited <span class="o">(</span><span class="m">0</span><span class="o">)</span> <span class="m">46</span> seconds ago                       dreamy_einstein
 </pre></div>
       </div>
      </div>
@@ -334,6 +311,11 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">

@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import os
+import sys
 import re
 import json
 
@@ -583,6 +584,10 @@ def _generate_html(md_cname, md_content, renderer):
         html_content = mistune.Markdown(renderer=renderer)(md_content)
     except TypeError as e:
         print "ERROR: [%s]'s error is '%s'" % (md_cname, str(e))
+        return
+    except:
+        e = sys.exc_info()[0]
+        print("ERROR: [%s]'s error is '%s'" % (md_cname, str(e)))
         return
     return html_content
 

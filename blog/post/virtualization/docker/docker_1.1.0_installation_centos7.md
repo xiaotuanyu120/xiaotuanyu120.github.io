@@ -20,56 +20,54 @@ uname -r
 3.10.0-327.el7.x86_64
 ```
 
----
-
 ### 1. 删除老版本的docker
 ``` bash
 # 如果曾经在redhat的源中安装过老版的docker，删除它
-yum -y remove docker docker-common container-selinux
-yum -y remove docker-selinux
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
 ```
-
----
 
 ### 2. yum安装docker
 ``` bash
 # 创建docker的yum源
-yum install -y yum-utils
+yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
 yum-config-manager \
     --add-repo \
     https://download.docker.com/linux/centos/docker-ce.repo
 
-# 关闭testing源(默认为关闭)
-yum-config-manager --disable docker-testing
+# 关闭非稳定源(默认为关闭)
+yum-config-manager --disable docker-ce-edge
+yum-config-manager --disable docker-ce-test
+yum-config-manager --disable docker-ce-nightly
 
 # 安装docker
-yum -y install docker-ce
+VERSION_STRING=18.06.3.ce-3.el7
+yum install -y docker-ce-${VERSION_STRING} docker-ce-cli-${VERSION_STRING} containerd.io
 ```
 
----
+### 3. install docker-compose
+``` bash
+curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod 755 /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+```
+> [docker-compose installation](https://docs.docker.com/compose/install/)
 
-### 3. 启动docker服务
+### 4. 启动docker服务
 ``` bash
 # 启动docker服务
+systemctl daemon-reload
 systemctl enable docker
 systemctl start docker
 
 # 查看docker版本
 docker version
-Client:
- Version:      1.13.1
- API version:  1.26
- Go version:   go1.7.5
- Git commit:   092cba3
- Built:        Wed Feb  8 06:38:28 2017
- OS/Arch:      linux/amd64
-
-Server:
- Version:      1.13.1
- API version:  1.26 (minimum version 1.12)
- Go version:   go1.7.5
- Git commit:   092cba3
- Built:        Wed Feb  8 06:38:28 2017
- OS/Arch:      linux/amd64
- Experimental: false
-```---### 4. 查看服务是否正常``` bash# 测试docker是否正常docker run hello-worldUnable to find image 'hello-world:latest' locallylatest: Pulling from library/hello-world78445dd45222: Pull completeDigest: sha256:c5515758d4c5e1e838e9cd307f6c6a0d620b5e07e6f927b07d05f6d12a1ac8d7Status: Downloaded newer image for hello-world:latestHello from Docker!This message shows that your installation appears to be working correctly.To generate this message, Docker took the following steps: 1. The Docker client contacted the Docker daemon. 2. The Docker daemon pulled the "hello-world" image from the Docker Hub. 3. The Docker daemon created a new container from that image which runs the    executable that produces the output you are currently reading. 4. The Docker daemon streamed that output to the Docker client, which sent it    to your terminal.To try something more ambitious, you can run an Ubuntu container with: $ docker run -it ubuntu bashShare images, automate workflows, and more with a free Docker ID: https://cloud.docker.com/For more examples and ideas, visit: https://docs.docker.com/engine/userguide/# 查看近期docker进程docker ps -aCONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS               NAMES7fe36705b599        hello-world         "/hello"            47 seconds ago      Exited (0) 46 seconds ago                       dreamy_einstein```
+```### 5. 查看服务是否正常``` bash# 测试docker是否正常docker run hello-world# 查看近期docker进程docker ps -a```

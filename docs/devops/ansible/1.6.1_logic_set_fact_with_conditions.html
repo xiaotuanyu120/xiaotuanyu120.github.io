@@ -196,47 +196,199 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
+      <div class="col-lg-12"><h3>1.6.1: LOGIC - 根据条件手动设定变量 - if else and when</h3>
+<h3>1. set_fact基本用法</h3>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set_fact basic usage</span>
+  <span class="nt">set_fact</span><span class="p">:</span>
+    <span class="nt">fact1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fact1_value</span>
+    <span class="nt">php_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.6.40</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
+    <span class="nt">msg</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">fact1</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+<h3>2. 根据简单条件来设定</h3>
+<p>此处逻辑设定</p>
+<ul>
+<li>对于<code>[mysql, nginx, php-fpm]</code>三个服务</li>
+<li>其中任意一个服务未启动，则设定<code>lnmp_running</code>为<code>false</code>
+``` yaml</li>
+</ul>
+<hr>
+<ul>
+<li>name: populate service facts
+service_facts:</li>
+</ul>
+<h1>值得注意的是</h1>
+<h1>判断条件里面，增加判断lnmp_is_running是否被定义，是为了避免变量被重复覆盖</h1>
+<h1>导致循环中只有最后一个元素的运行状态决定了lnmp_is_running的值得情况</h1>
+<h1>所以这里增加判断，只要lnmp_is_running被定义了，其他元素就可以skip了</h1>
+<ul>
+<li>name: set lnmp_is_running false
+set_fact:
+  lnmp_is_running: false
+when: lnmp_is_running is not defined and ansible_facts.services['{{item}}.service'].state != 'running'
+with_items: "{{ ['php-fpm', 'mysql', 'nginx'] }}"
+ignore_errors: yes</li>
+</ul>
+<h1>值得注意的是</h1>
+<h1>如果when的条件全部元素都未达成，lnmp_is_running是不会被设定的，尝试使用它时会报错该变量未定义</h1>
+<h1>所以上面使用了两个when来达到if else的效果</h1>
+<ul>
+<li><p>name: set lnmp_is_running true
+set_fact:
+  lnmp_is_running: true
+when: lnmp_is_running is not defined</p>
+</li>
+<li><p>debug:
+  msg: "{{ lnmp_is_running }}"
+```</p>
+</li>
+</ul>
+<h3>3. 根据复杂条件来设定</h3>
+<p>此处逻辑设定</p>
+<ul>
+<li>对于<code>[mysql, nginx, php-fpm]</code>三个服务</li>
+<li>其中任意一个服务未启动，则设定<code>lnmp_running</code>为<code>false</code></li>
+<li>同时需要记录未启动的服务列表<code>failed_services</code></li>
+</ul>
+<p>增加一个前提，我们提前设定一个空列表<code>failed_services</code></p>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">failed_services</span><span class="p">:</span> <span class="p p-Indicator">[]</span>
+</pre></div>
+<p>此时上面的yaml就要改动一下</p>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">populate service facts</span>
+  <span class="nt">service_facts</span><span class="p">:</span>
+
+<span class="c1"># 值得注意的是</span>
+<span class="c1"># 判断条件里面，增加判断lnmp_is_running是否被定义，是为了避免变量被重复覆盖</span>
+<span class="c1"># 导致循环中只有最后一个元素的运行状态决定了lnmp_is_running的值得情况</span>
+<span class="c1"># 所以这里增加判断，只要lnmp_is_running被定义了，其他元素就可以skip了</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running false</span>
+  <span class="nt">set_fact</span><span class="p">:</span>
+    <span class="nt">lnmp_is_running</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}false</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{lnmp_is_running}}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}&quot;</span>
+    <span class="nt">failed_services</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">ports_listen_check</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">[&#39;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">item.port</span><span class="nv"> </span><span class="s">}}&#39;]&quot;</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_facts.services[&#39;\{\{item.name}}.service&#39;].state != &#39;running&#39;</span>
+  <span class="nt">with_items</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">[{&#39;name&#39;:&#39;php-fpm&#39;,&#39;port&#39;:&#39;81&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;mysql&#39;,&#39;port&#39;:&#39;3306&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;nginx&#39;,&#39;port&#39;:&#39;80&#39;}]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="c1"># 值得注意的是</span>
+<span class="c1"># 如果when的条件全部元素都未达成，lnmp_is_running是不会被设定的，尝试使用它时会报错该变量未定义</span>
+<span class="c1"># 所以上面使用了两个when来达到if else的效果</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running true</span>
+  <span class="nt">set_fact</span><span class="p">:</span>
+    <span class="nt">lnmp_is_running</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lnmp_is_running is not defined</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
+    <span class="nt">msg</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">}}&quot;</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
            <li class="toctree-l1">
             <a class="reference internal" href="/devops/jenkins">
               jenkins
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.0.0_install_war.html">
-                jenkins: 1.0.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">
-                jenkins: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.0.0_config_basic.html">
-                jenkins: 2.0.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">
-                jenkins: 2.1.0 git+maven+jdk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">
-                jenkins: 2.2.0 配置JENKINS_HOME
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">
-                jenkins: 2.3.0 修改slave节点的环境变量
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -244,91 +396,6 @@
               git
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.1.0_install.html">
-                git: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.0_branch.html">
-                git: 1.2.0 分支
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.1_branch_pr.html">
-                git: 1.2.1 分支-Pull Request
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.2_tag.html">
-                git: 1.2.2 git tag
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.3.0_gitignore.html">
-                git: 1.3.0 忽略文件-“.gitignore”
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.4.0_delete_file.html">
-                git: 1.4.0 删除文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.5.0_mv.html">
-                git: 1.5.0 mv error(case sensitive of linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.6.0_commit_reverse.html">
-                git: 1.6.0 撤销操作
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.7.0_push_403.html">
-                git: 1.7.0 push返回403
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
-                git: 1.8.0 添加链接文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/github_tutorial.html">
-                github: 入门引导
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.1.0_install.html">
-                gitlab: 1.1.0 安装(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.2.0_config_external_port.html">
-                gitlab: 1.2.0 配置gitlab访问端口
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore.html">
-                gitlab: 1.3.0 gitlab备份及恢复
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.1.0_create_local_repo.html">
-                git仓库: 1.1.0 centos6搭建git本地服务器
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.2.0_anonymous_access.html">
-                git仓库: 1.2.0 本地服务器开启匿名访问
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.3.0_web.html">
-                git仓库: 1.3.0 本地服务器web界面
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -336,51 +403,6 @@
               vagrant
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_1.0.0_安装.html">
-                vagrant: 1.0.0 多平台安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_2.0.0_初识.html">
-                vagrant: 2.0.0 初识
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_3.1.0_basic_command.html">
-                vagrant: 3.1.0 基础操作命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_3.2.0_basic_config.html">
-                vagrant: 3.2.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_3.3.0_multiple_vms.html">
-                vagrant: 3.3.0 在一个目录中创建多主机
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_4.0.0_snapshot.html">
-                vagrant: 4.0.0 快照
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_5.0.0_booting_mount_error.html">
-                vagrant: 5.0.0 开机挂载错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_5.1.0_virtualbox_guest_additions_error.html">
-                vagrant: 5.1.0 开机挂载错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_5.2.0_rsync_instead_of_mount.html">
-                vagrant: 5.2.0 using rsync instead of mount
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -593,136 +615,6 @@
                 ansible: handler
               </a>
              </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
-     </div>
-     <div class="row docs-byline bottom">
-      <div class="docs-updated">
-       updated: 2017-04-20 10:25
-      </div>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
-     <div class="btn-group docs-sidebar-releases">
-      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
-       <i class="fa fa-arrow-circle-o-left">
-       </i>
-      </button>
-      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
-       Xiao5tech Docs
-       <i class="fa fa-caret-down">
-       </i>
-      </button>
-      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
-       <li role="presentation" class="dropdown-header">
-        完整文档分类
-       </li>
-            <li role="presentation">
-             <a href="/web" role="menuitem" tabindex="-1">
-              web
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/java" role="menuitem" tabindex="-1">
-              java
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/database" role="menuitem" tabindex="-1">
-              database
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/python" role="menuitem" tabindex="-1">
-              python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/devops" role="menuitem" tabindex="-1">
-              devops
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/bigdata" role="menuitem" tabindex="-1">
-              bigdata
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blog" role="menuitem" tabindex="-1">
-              blog
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/virtualization" role="menuitem" tabindex="-1">
-              virtualization
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/linux" role="menuitem" tabindex="-1">
-              linux
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/go" role="menuitem" tabindex="-1">
-              go
-             </a>
-            </li>      </ul>
-     </div>
-      <div class="docs-sidebar-toc">
-      <div class="docs-sidebar-section" id="table-of-contents">
-       <a href="#" class="docs-sidebar-section-title">
-        <h4>Contents</h4>
-       </a>
-       <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
             </ul>
            </li>       </ul>
       </div>
