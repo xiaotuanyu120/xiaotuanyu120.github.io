@@ -57,6 +57,7 @@ ln -s ${NGINX_BUILD_DIR} ${DOCKER_YAML_DIR}/nginx
 
 #### 2） nginx编译文件准备
 - **nginx主配文件**
+
 ``` bash
 echo 'user  nginx;
 worker_processes  auto;
@@ -95,6 +96,7 @@ http {
 ```
 
 - **registry虚拟主机文件**
+
 ``` bash
 # 选择1：HTTP版本
 echo '# Configuration for the server
@@ -139,6 +141,7 @@ server {
 > 把`<your-domain.com>`改成自己的域名
 
 - **如果启用了SSL，准备证书文件**
+
 ``` bash
 # 准备证书给nginx
 cat << EOF > ${NGINX_BUILD_DIR}/domain.crt
@@ -154,6 +157,7 @@ cp ${NGINX_BUILD_DIR}/{domain.crt,domain.key} ${REG_RUNTIME_DIR}
 ```
 
 - **nginx镜像Dockerfile文件**
+
 ``` bash
 # 选择1：HTTP版本
 cat << EOF > ${NGINX_BUILD_DIR}/Dockerfile
@@ -173,6 +177,7 @@ EOF
 ```
 
 #### 3) registry和nginx的docker-compose文件准备
+
 ``` bash
 # 选择1：HTTP版本
 cat << EOF > ${DOCKER_YAML_DIR}/docker-compose-registry.yaml
