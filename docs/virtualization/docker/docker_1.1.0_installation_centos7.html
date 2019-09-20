@@ -233,8 +233,11 @@ yum-config-manager --disable docker-ce-edge
 yum-config-manager --disable docker-ce-test
 yum-config-manager --disable docker-ce-nightly
 
-<span class="c1"># 安装docker</span>
-<span class="nv">VERSION_STRING</span><span class="o">=</span><span class="m">18</span>.06.3.ce-3.el7
+<span class="c1"># 查看所有可用的版本</span>
+yum list docker-ce --showduplicates <span class="p">|</span> sort -r
+
+<span class="c1"># 选择要安装的版本，已经安装docker</span>
+<span class="nv">VERSION_STRING</span><span class="o">=</span><span class="m">18</span>.09.1
 yum install -y docker-ce-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> docker-ce-cli-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> containerd.io
 </pre></div>
 <h3>3. install docker-compose</h3>

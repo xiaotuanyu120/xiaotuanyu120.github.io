@@ -48,8 +48,11 @@ yum-config-manager --disable docker-ce-edge
 yum-config-manager --disable docker-ce-test
 yum-config-manager --disable docker-ce-nightly
 
-# 安装docker
-VERSION_STRING=18.06.3.ce-3.el7
+# 查看所有可用的版本
+yum list docker-ce --showduplicates | sort -r
+
+# 选择要安装的版本，已经安装docker
+VERSION_STRING=18.09.1
 yum install -y docker-ce-${VERSION_STRING} docker-ce-cli-${VERSION_STRING} containerd.io
 ```
 
@@ -70,4 +73,13 @@ systemctl start docker
 
 # 查看docker版本
 docker version
-```### 5. 查看服务是否正常``` bash# 测试docker是否正常docker run hello-world# 查看近期docker进程docker ps -a```
+```
+
+### 5. 查看服务是否正常
+``` bash
+# 测试docker是否正常
+docker run hello-world
+
+# 查看近期docker进程
+docker ps -a
+```

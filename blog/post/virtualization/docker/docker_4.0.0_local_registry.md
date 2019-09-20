@@ -15,21 +15,95 @@ tags: [docker,registry]
 ---
 
 ### 1. 准备文件
-准备文件目录结构
+#### 0) 变量设定
 ``` bash
-mkdir -p /data/docker/nginx
-```
-nginx 文件准备
-``` bash
-echo 'FROM nginx:stable
-RUN rm /etc/nginx/conf.d/default.conf
-ADD nginx.conf /etc/nginx/conf.d/' > /data/docker/nginx/Dockerfile
+# docker路径变量
+DOCKER_DIR=/data/docker
+DOCKER_YAML_DIR=${DOCKER_DIR}/yml
+DOCKER_BUILD_DIR=${DOCKER_DIR}/build
+DOCKER_RUNTIME_DIR=${DOCKER_DIR}/runtime
+DOCKER_DATA_DIR=${DOCKER_DIR}/data
 
+# nginx路径变量
+NGINX_BUILD_DIR=${DOCKER_BUILD_DIR}/nginx
+NGINX_DATA_DIR=${DOCKER_DATA_DIR}/nginx
+NGINX_LOG_DIR=${NGINX_DATA_DIR}/logs
+
+# registry路径变量
+REG_RUNTIME_DIR=${DOCKER_RUNTIME_DIR}/registry
+REG_DATA_DIR=${DOCKER_DATA_DIR}/registry
+```
+
+#### 1） 准备文件目录结构
+``` bash
+# 创建docker相关路径
+mkdir -p ${DOCKER_YAML_DIR}
+mkdir -p ${DOCKER_BUILD_DIR}
+mkdir -p ${DOCKER_RUNTIME_DIR}
+mkdir -p ${DOCKER_DATA_DIR}
+
+# 创建nginx相关路径
+mkdir -p ${NGINX_BUILD_DIR}
+mkdir -p ${NGINX_DATA_DIR}
+mkdir -p ${NGINX_LOG_DIR}
+
+# 创建registry数据目录
+mkdir -p ${REG_RUNTIME_DIR}
+mkdir -p ${REG_DATA_DIR}
+
+# yml和编译目录保持在同一个目录下
+ln -s ${NGINX_BUILD_DIR} ${DOCKER_YAML_DIR}/nginx
+```
+
+#### 2） nginx编译文件准备
+- **nginx主配文件**
+``` bash
+echo 'user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    use epoll;
+    worker_connections 51200;
+    multi_accept on;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  "$http_x_forwarded_for - $remote_user [$time_local] $request "
+                      "$status $body_bytes_sent $http_referer "
+                      "$http_user_agent $remote_addr "
+                      "$upstream_addr $upstream_response_time $request_time $host $proxy_add_x_forwarded_for";
+
+    access_log  off;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+}' > ${NGINX_BUILD_DIR}/nginx.conf
+```
+
+- **registry虚拟主机文件**
+``` bash
+# 选择1：HTTP版本
 echo '# Configuration for the server
 server {
     charset utf-8;
     listen 80;
+    server_name <your-domain.com>;
     client_max_body_size 1000M;
+    access_log /var/log/nginx/docker-registry.access.log main;
     location / {
         proxy_pass       http://reg:5000;
         proxy_redirect   off;
@@ -38,13 +112,70 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Host $server_name;
         }
-    }' > /data/docker/nginx/nginx.conf
-```
-> client_max_body_size 1000M; 是为了防止上传时的413错误，这个错误提示客户端上传数据容量超过限制；
+    }' > ${NGINX_BUILD_DIR}/docker-registry.conf
 
-docker-compose文件准备
+# 选择2：HTTPS版本
+echo '# Configuration for the server
+server {
+    charset utf-8;
+    listen 80;
+    listen 443 ssl;
+    server_name <your-domain.com>;
+    ssl_certificate     conf.d/domain.crt;
+    ssl_certificate_key conf.d/domain.key;
+    client_max_body_size 1000M;
+    access_log /var/log/nginx/docker-registry.access.log main;
+    location / {
+        proxy_pass       http://reg:443;
+        proxy_redirect   off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        }
+    }' > ${NGINX_BUILD_DIR}/docker-registry.conf
+```
+> `client_max_body_size 1000M`; 是为了防止上传时的413错误，这个错误提示客户端上传数据容量超过限制；
+> 把`<your-domain.com>`改成自己的域名
+
+- **如果启用了SSL，准备证书文件**
 ``` bash
-echo "# nginx:80 --> reg:5000
+# 准备证书给nginx
+cat << EOF > ${NGINX_BUILD_DIR}/domain.crt
+<your crt content>
+EOF
+
+cat << EOF > ${NGINX_BUILD_DIR}/domain.key
+<your crt content>
+EOF
+
+# 将证书给registry一份
+cp ${NGINX_BUILD_DIR}/{domain.crt,domain.key} ${REG_RUNTIME_DIR}
+```
+
+- **nginx镜像Dockerfile文件**
+``` bash
+# 选择1：HTTP版本
+cat << EOF > ${NGINX_BUILD_DIR}/Dockerfile
+FROM nginx:stable
+RUN rm /etc/nginx/conf.d/default.conf
+ADD docker-registry.conf /etc/nginx/conf.d/
+EOF
+
+# 选择2：HTTPS版本
+cat << EOF > ${NGINX_BUILD_DIR}/Dockerfile
+FROM nginx:stable
+RUN rm /etc/nginx/conf.d/default.conf
+ADD docker-registry.conf /etc/nginx/conf.d/
+ADD domain.crt /etc/nginx/conf.d/
+ADD domain.key /etc/nginx/conf.d/
+EOF
+```
+
+#### 3) registry和nginx的docker-compose文件准备
+``` bash
+# 选择1：HTTP版本
+cat << EOF > ${DOCKER_YAML_DIR}/docker-compose-registry.yaml
 version: '2'
 services:
   nginx:
@@ -52,8 +183,9 @@ services:
     build: nginx
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+    volumes:
+      - '${NGINX_LOG_DIR}:/var/log/nginx'
     links:
       - reg
   reg:
@@ -61,16 +193,42 @@ services:
     container_name: reg
     restart: always
     volumes:
-      - '/data/registry:/var/lib/registry'" > /data/docker/docker-compose-registry.yaml
+      - '${REG_DATA_DIR}:/var/lib/registry'
+EOF
+
+# 选择2：HTTPS版本
+cat << EOF > ${DOCKER_YAML_DIR}/docker-compose-registry.yaml
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    build: nginx
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '${NGINX_LOG_DIR}:/var/log/nginx'
+    links:
+      - reg
+  reg:
+    environment:
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/domain.key
+    image: 'registry:2'
+    container_name: reg
+    restart: always
+    volumes:
+      - '${REG_DATA_DIR}:/var/lib/registry'
+      - '${REG_RUNTIME_DIR}:/certs'
+EOF
 ```
 
-### 2. 运行reg
+### 2. 运行registry
 ``` bash
-# 创建registry数据目录
-mkdir -p /data/registry
-
 # 使用docker-compose启动registry
-docker-compose -f /data/docker/docker-compose-registry.yaml up -d
+docker-compose -f ${DOCKER_YAML_DIR}/docker-compose-registry.yaml up -d
 ```
 
 ### 3. 从docker HUB上拷贝镜像到本地registry
