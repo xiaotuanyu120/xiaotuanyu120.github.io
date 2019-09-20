@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -199,57 +204,208 @@
 </blockquote>
 <hr>
 <h3>1. 准备文件</h3>
-<p>准备文件目录结构</p>
-<div class="highlight"><pre><span></span>mkdir -p /data/docker/nginx
-</pre></div>
-<p>nginx 文件准备</p>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s1">&#39;FROM nginx:stable</span>
-<span class="s1">RUN rm /etc/nginx/conf.d/default.conf</span>
-<span class="s1">ADD nginx.conf /etc/nginx/conf.d/&#39;</span> &gt; /data/docker/nginx/Dockerfile
+<h4>0) 变量设定</h4>
+<div class="highlight"><pre><span></span><span class="c1"># docker路径变量</span>
+<span class="nv">DOCKER_DIR</span><span class="o">=</span>/data/docker
+<span class="nv">DOCKER_YAML_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DIR</span><span class="si">}</span>/yml
+<span class="nv">DOCKER_BUILD_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DIR</span><span class="si">}</span>/build
+<span class="nv">DOCKER_RUNTIME_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DIR</span><span class="si">}</span>/runtime
+<span class="nv">DOCKER_DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DIR</span><span class="si">}</span>/data
 
-<span class="nb">echo</span> <span class="s1">&#39;# Configuration for the server</span>
-<span class="s1">server {</span>
-<span class="s1">    charset utf-8;</span>
-<span class="s1">    listen 80;</span>
-<span class="s1">    client_max_body_size 1000M;</span>
-<span class="s1">    location / {</span>
-<span class="s1">        proxy_pass       http://reg:5000;</span>
-<span class="s1">        proxy_redirect   off;</span>
-<span class="s1">        proxy_set_header Host $host;</span>
-<span class="s1">        proxy_set_header X-Real-IP $remote_addr;</span>
-<span class="s1">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span>
-<span class="s1">        proxy_set_header X-Forwarded-Host $server_name;</span>
-<span class="s1">        }</span>
-<span class="s1">    }&#39;</span> &gt; /data/docker/nginx/nginx.conf
+<span class="c1"># nginx路径变量</span>
+<span class="nv">NGINX_BUILD_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_BUILD_DIR</span><span class="si">}</span>/nginx
+<span class="nv">NGINX_DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/nginx
+<span class="nv">NGINX_LOG_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">NGINX_DATA_DIR</span><span class="si">}</span>/logs
+
+<span class="c1"># registry路径变量</span>
+<span class="nv">REG_RUNTIME_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>/registry
+<span class="nv">REG_DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/registry
 </pre></div>
-<blockquote><p>client_max_body_size 1000M; 是为了防止上传时的413错误，这个错误提示客户端上传数据容量超过限制；</p>
+<h4>1） 准备文件目录结构</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 创建docker相关路径</span>
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_YAML_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_BUILD_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>
+
+<span class="c1"># 创建nginx相关路径</span>
+mkdir -p <span class="si">${</span><span class="nv">NGINX_BUILD_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">NGINX_DATA_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">NGINX_LOG_DIR</span><span class="si">}</span>
+
+<span class="c1"># 创建registry数据目录</span>
+mkdir -p <span class="si">${</span><span class="nv">REG_RUNTIME_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">REG_DATA_DIR</span><span class="si">}</span>
+
+<span class="c1"># yml和编译目录保持在同一个目录下</span>
+ln -s <span class="si">${</span><span class="nv">NGINX_BUILD_DIR</span><span class="si">}</span> <span class="si">${</span><span class="nv">DOCKER_YAML_DIR</span><span class="si">}</span>/nginx
+</pre></div>
+<h4>2） nginx编译文件准备</h4>
+<ul>
+<li><strong>nginx主配文件</strong>
+``` bash
+echo 'user  nginx;
+worker_processes  auto;</li>
+</ul>
+<p>error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;</p>
+<p>events {
+    use epoll;
+    worker_connections 51200;
+    multi_accept on;
+}</p>
+<p>http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;</p>
+
+<pre><code>log_format  main  "$http_x_forwarded_for - $remote_user [$time_local] $request "
+                  "$status $body_bytes_sent $http_referer "
+                  "$http_user_agent $remote_addr "
+                  "$upstream_addr $upstream_response_time $request_time $host $proxy_add_x_forwarded_for";
+
+access_log  off;
+
+sendfile        on;
+#tcp_nopush     on;
+
+keepalive_timeout  65;
+
+#gzip  on;
+
+include /etc/nginx/conf.d/*.conf;
+</code></pre>
+<p>}' &gt; ${NGINX_BUILD_DIR}/nginx.conf</p>
+
+<pre><code>
+- **registry虚拟主机文件**
+``` bash
+# 选择1：HTTP版本
+echo '# Configuration for the server
+server {
+    charset utf-8;
+    listen 80;
+    server_name &lt;your-domain.com&gt;;
+    client_max_body_size 1000M;
+    access_log /var/log/nginx/docker-registry.access.log main;
+    location / {
+        proxy_pass       http://reg:5000;
+        proxy_redirect   off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        }
+    }' &gt; ${NGINX_BUILD_DIR}/docker-registry.conf
+
+# 选择2：HTTPS版本
+echo '# Configuration for the server
+server {
+    charset utf-8;
+    listen 80;
+    listen 443 ssl;
+    server_name &lt;your-domain.com&gt;;
+    ssl_certificate     conf.d/domain.crt;
+    ssl_certificate_key conf.d/domain.key;
+    client_max_body_size 1000M;
+    access_log /var/log/nginx/docker-registry.access.log main;
+    location / {
+        proxy_pass       http://reg:443;
+        proxy_redirect   off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Host $server_name;
+        }
+    }' &gt; ${NGINX_BUILD_DIR}/docker-registry.conf</code></pre>
+<blockquote><p><code>client_max_body_size 1000M</code>; 是为了防止上传时的413错误，这个错误提示客户端上传数据容量超过限制；
+把<code>&lt;your-domain.com&gt;</code>改成自己的域名</p>
 </blockquote>
-<p>docker-compose文件准备</p>
-<div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;# nginx:80 --&gt; reg:5000</span>
-<span class="s2">version: &#39;2&#39;</span>
-<span class="s2">services:</span>
-<span class="s2">  nginx:</span>
-<span class="s2">    container_name: nginx</span>
-<span class="s2">    build: nginx</span>
-<span class="s2">    restart: always</span>
-<span class="s2">    ports:</span>
-<span class="s2">      - &quot;</span><span class="m">80</span>:80<span class="s2">&quot;</span>
-<span class="s2">      - &quot;</span><span class="m">443</span>:443<span class="s2">&quot;</span>
-<span class="s2">    links:</span>
-<span class="s2">      - reg</span>
-<span class="s2">  reg:</span>
-<span class="s2">    image: &#39;registry:2&#39;</span>
-<span class="s2">    container_name: reg</span>
-<span class="s2">    restart: always</span>
-<span class="s2">    volumes:</span>
-<span class="s2">      - &#39;/data/registry:/var/lib/registry&#39;&quot;</span> &gt; /data/docker/docker-compose-registry.yaml
-</pre></div>
-<h3>2. 运行reg</h3>
-<div class="highlight"><pre><span></span><span class="c1"># 创建registry数据目录</span>
-mkdir -p /data/registry
+<ul>
+<li><strong>如果启用了SSL，准备证书文件</strong>
+``` bash
+# 准备证书给nginx
+cat &lt;&lt; EOF &gt; ${NGINX_BUILD_DIR}/domain.crt
+<your crt content>
+EOF</li>
+</ul>
+<p>cat &lt;&lt; EOF &gt; ${NGINX_BUILD_DIR}/domain.key</p>
+<p><your crt content>
+EOF</p>
+<h1>将证书给registry一份</h1>
+<p>cp ${NGINX_BUILD_DIR}/{domain.crt,domain.key} ${REG_RUNTIME_DIR}</p>
 
-<span class="c1"># 使用docker-compose启动registry</span>
-docker-compose -f /data/docker/docker-compose-registry.yaml up -d
+<pre><code>
+- **nginx镜像Dockerfile文件**
+``` bash
+# 选择1：HTTP版本
+cat &lt;&lt; EOF &gt; ${NGINX_BUILD_DIR}/Dockerfile
+FROM nginx:stable
+RUN rm /etc/nginx/conf.d/default.conf
+ADD docker-registry.conf /etc/nginx/conf.d/
+EOF
+
+# 选择2：HTTPS版本
+cat &lt;&lt; EOF &gt; ${NGINX_BUILD_DIR}/Dockerfile
+FROM nginx:stable
+RUN rm /etc/nginx/conf.d/default.conf
+ADD docker-registry.conf /etc/nginx/conf.d/
+ADD domain.crt /etc/nginx/conf.d/
+ADD domain.key /etc/nginx/conf.d/
+EOF</code></pre>
+<h4>3) registry和nginx的docker-compose文件准备</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 选择1：HTTP版本</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YAML_DIR}/docker-compose-registry.yaml</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  nginx:</span>
+<span class="s">    container_name: nginx</span>
+<span class="s">    build: nginx</span>
+<span class="s">    restart: always</span>
+<span class="s">    ports:</span>
+<span class="s">      - &#39;80:80&#39;</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${NGINX_LOG_DIR}:/var/log/nginx&#39;</span>
+<span class="s">    links:</span>
+<span class="s">      - reg</span>
+<span class="s">  reg:</span>
+<span class="s">    image: &#39;registry:2&#39;</span>
+<span class="s">    container_name: reg</span>
+<span class="s">    restart: always</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${REG_DATA_DIR}:/var/lib/registry&#39;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 选择2：HTTPS版本</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YAML_DIR}/docker-compose-registry.yaml</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  nginx:</span>
+<span class="s">    container_name: nginx</span>
+<span class="s">    build: nginx</span>
+<span class="s">    restart: always</span>
+<span class="s">    ports:</span>
+<span class="s">      - &#39;80:80&#39;</span>
+<span class="s">      - &#39;443:443&#39;</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${NGINX_LOG_DIR}:/var/log/nginx&#39;</span>
+<span class="s">    links:</span>
+<span class="s">      - reg</span>
+<span class="s">  reg:</span>
+<span class="s">    environment:</span>
+<span class="s">      - REGISTRY_HTTP_ADDR=0.0.0.0:443</span>
+<span class="s">      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt</span>
+<span class="s">      - REGISTRY_HTTP_TLS_KEY=/certs/domain.key</span>
+<span class="s">    image: &#39;registry:2&#39;</span>
+<span class="s">    container_name: reg</span>
+<span class="s">    restart: always</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${REG_DATA_DIR}:/var/lib/registry&#39;</span>
+<span class="s">      - &#39;${REG_RUNTIME_DIR}:/certs&#39;</span>
+<span class="s">EOF</span>
+</pre></div>
+<h3>2. 运行registry</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 使用docker-compose启动registry</span>
+docker-compose -f <span class="si">${</span><span class="nv">DOCKER_YAML_DIR</span><span class="si">}</span>/docker-compose-registry.yaml up -d
 </pre></div>
 <h3>3. 从docker HUB上拷贝镜像到本地registry</h3>
 <ol>
@@ -373,6 +529,11 @@ registry:2
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
