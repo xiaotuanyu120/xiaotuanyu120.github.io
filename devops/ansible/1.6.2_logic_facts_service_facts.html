@@ -196,56 +196,28 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>1.6.2: LOGIC-service_facts</h3>
+<h3>1. service_facts用法</h3>
+<p><strong>基础用法</strong></p>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">populate service facts</span>
+  <span class="nt">service_facts</span><span class="p">:</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
+    <span class="nt">var</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_facts.services</span>
+</pre></div>
+<p><strong>查看指定服务的运行状态方法</strong></p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">populate service facts</span>
+  <span class="nt">service_facts</span><span class="p">:</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
+    <span class="nt">var</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_facts.services[&#39;\{\{item}}.service&#39;]</span>
+  <span class="nt">with_items</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">[&#39;php-fpm&#39;,</span><span class="nv"> </span><span class="s">&#39;mysql&#39;,</span><span class="nv"> </span><span class="s">&#39;nginx&#39;]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</pre></div>
+<blockquote><p>ansible 2.5 及其更新版本可用</p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -346,44 +318,236 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/tomcat">
-              tomcat
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
+            <a class="reference internal" href="/devops/git">
+              git
             </a>
             <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.0.0_ansible_intro.html">
+                1.0.0: ansible简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.0.1_ansible_intro_connection.html">
+                1.0.1: ansible-连接上的理论知识
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.0_ansible_install.html">
+                1.1.0: ansible安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.1_ansible_error_install_paramiko_cryptography.html">
+                1.1.1: 安装paramiko时报crytography安装错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.1.2_ansible_become_sudo.html">
+                1.1.2: ansible-become(sudo)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.0_inventory_basic.html">
+                1.2.0: INVENTORY基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.1_inventory_folder.html">
+                1.2.1: INVENTORY 目录
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.2.2_inventory_variable.html">
+                1.2.2: inventory variable
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.0_playbook_basic.html">
+                1.3.0: PLAYBOOK基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.1_playbook_yum.html">
+                1.3.1: PLAYBOOK-模块yum
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.2_playbook_get_url.html">
+                1.3.2: PLAYBOOK-模块get_url
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.3.1_playbook_copy_error.html">
+                1.3.3.1: PLAYBOOK-copy error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.3_playbook_copy_fetch.html">
+                1.3.3: PLAYBOOK-模块copy,fetch
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.4_playbook_unarchive.html">
+                1.3.4: PLAYBOOK-模块unarchive
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.5_playbook_register_when_include.html">
+                1.3.5: playbook-register+when+include
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.6_playbook_dynamic_loop_include.html">
+                1.3.6: playbook-动态、循环include(yaml)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.7_playbook_handler_multitasks.html">
+                1.3.7: playbook-handlers(多个actions)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.8_playbook_loop_include.html">
+                1.3.8: playbook-include&loop error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.9_playbook_check_file_state.html">
+                1.3.9: playbook-stat
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.10_playbook_debug_register_with_items.html">
+                1.3.10: playbook-debug_register&with_items
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.11_playbook_distribution_when.html">
+                1.3.11: playbook-when distribution version/release
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
+                1.3.12: playbook with_items and register
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
+                1.3.12: playbook with_items and register
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.3.14_playbook_determine_the_length_of_list.html">
+                1.3.14: determine the length of list
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.4.1_ansible_options_exatra-vars.html">
+                1.4.1: options --extra-vars
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.4.2_ansible_options_C.html">
+                1.4.2: options -C
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.1_var_ssh_keyphrase.html">
+                1.5.1: vars ssh连接变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.2_var_host_group_basic.html">
+                1.5.2: vars host&group变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.3_var_rootgroup_subgroup.html">
+                1.5.3: vars 组变量之父组和子组的变量是否可储存在同一个目录中？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.5.4_var_same_host_different_group.html">
+                1.5.4: vars host在不同group中，变量覆盖问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.1_logic_set_fact_with_conditions.html">
+                1.6.1: LOGIC - 根据条件手动设定变量 - if else and when
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.2_logic_facts_service_facts.html">
+                1.6.2: LOGIC-service_facts
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.1.0_example_ansible_tomcat_standalone.html">
+                2.1.0: example tomcat启动脚本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.2.0_example_lookup_environment_javahome.html">
+                2.2.0: example 使用ansible环境变量获取主机JAVA_HOME
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/2.3.0_example_yaml_file_parse.html">
+                2.3.0: example python解析yaml文件(ansible)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.0_awx_installation.html">
+                3.1.0: awx 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.1_awx_usage_problem_01.html">
+                3.1.1: awx 使用问题 - ssh连接错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.1.2_awx_usage_problem_02.html">
+                3.1.2: awx 使用问题 - systemctl Interactive authentication required
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/3.2.0_awx_setup_tutorial.html">
+                3.2.0: awx 使用简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/ANSIBLE_pythonapi研究.html">
+                ANSIBLE: python api研究
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/ansible_handler.html">
+                ansible: handler
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>
