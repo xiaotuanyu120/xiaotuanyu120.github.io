@@ -196,148 +196,65 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
-                1.1.0 安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
-                1.1.0.1 install docker on mac
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
-                1.1.1 二进制文件安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
-                1.1.2 为docker创建docker0以外的网桥
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
-                1.2.0 基础命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
-                1.2.1 Dockerfile
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
-                1.2.2 docker容器时间不准解决方案
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
-                2.1.1 镜像-查找与下载镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
-                2.1.2 镜像-镜像信息的查看与管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
-                2.1.3 镜像-镜像的删除
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
-                2.1.4 镜像-镜像的导入和导出
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
-                2.1.5 镜像-镜像的上传
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
-                2.1.6 镜像-build 镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
-                2.2.3 Dockerfile entrypoint with script
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
-                3.1.0 docker封装nginx服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
-                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
-                3.3.0 docker nginx with multiple sites
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
-                4.0.0 docker 本地registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
-                4.0.1 docker 本地registry 使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
-                4.1.0 在docker中运行gitlab ce
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.2.0_jenkins.html">
-                4.2.0 在docker中运行jenkins
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>4.0.1 docker 本地registry 使用说明</h3>
+<hr>
+<h3>1. 从docker HUB上拷贝镜像到本地registry</h3>
+<h4>1) 从docker HUB上下载镜像</h4>
+<div class="highlight"><pre><span></span>docker pull ubuntu:16.04
+</pre></div>
+<h4>2) 给下载的镜像打新tag</h4>
+<div class="highlight"><pre><span></span>docker tag ubuntu:16.04 &lt;your-domain&gt;/my-ubuntu
+docker images
+REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
+registry                   <span class="m">2</span>                   c2a449c9f834        <span class="m">8</span> days ago          <span class="m">33</span>.2MB
+ubuntu                     <span class="m">16</span>.04               d355ed3537e9        <span class="m">2</span> weeks ago         119MB
+localhost:5000/my-ubuntu   latest              d355ed3537e9        <span class="m">2</span> weeks ago         119MB
+</pre></div>
+<blockquote><p><code>&lt;your-domain&gt;</code>替换成你自己的docker-registry的域名</p>
+</blockquote>
+<h4>3) 上传镜像到本地registry中</h4>
+<div class="highlight"><pre><span></span>docker push &lt;your-domain&gt;/my-ubuntu
+</pre></div>
+<h4>4) 移除本地镜像</h4>
+<div class="highlight"><pre><span></span>docker image remove ubuntu:16.04
+docker image remove &lt;your-domain&gt;/my-ubuntu
+</pre></div>
+<h4>5) 从本地registry中下载镜像</h4>
+<div class="highlight"><pre><span></span>docker pull &lt;your-domain&gt;/my-ubuntu
+</pre></div>
+<h3>2. registry服务配置</h3>
+<h4>1) 自动启动registry</h4>
+<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
+  -p <span class="m">5000</span>:5000 <span class="se">\</span>
+  --restart<span class="o">=</span>always <span class="se">\</span>
+  --name registry <span class="se">\</span>
+  registry:2
+</pre></div>
+<blockquote><p>docker使用<code>--restart=always</code>来重新启动无论因为任何原因退出的容器，当然，不包括手动执行<code>docker stop</code>命令。加上此参数开启的容器，可以尝试kill掉它的进程，会发现它会自动启动。</p>
+</blockquote>
+<h4>2) 自定义端口</h4>
+<p>如果5000端口已经被使用，使用<code>-p 5001:5000</code>来指定5001端口</p>
+<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
+  -p <span class="m">5001</span>:5000 <span class="se">\</span>
+  --name registry-test <span class="se">\</span>
+  registry:2
+</pre></div>
+<p>但如果希望改变容器内部的运行端口， 使用<code>-e REGISTRY_HTTP_ADDR=0.0.0.0:5001</code></p>
+<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
+  -e <span class="nv">REGISTRY_HTTP_ADDR</span><span class="o">=</span><span class="m">0</span>.0.0.0:5001 <span class="se">\</span>
+  -p <span class="m">5001</span>:5001 <span class="se">\</span>
+  --name registry-test <span class="se">\</span>
+  registry:2
+</pre></div>
+<h4>3) 挂载外部目录储存数据</h4>
+<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
+  -p <span class="m">5000</span>:5000 <span class="se">\</span>
+  --restart<span class="o">=</span>always <span class="se">\</span>
+  --name registry <span class="se">\</span>
+  -v /mnt/registry:/var/lib/registry <span class="se">\</span>
+  registry:2
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">

@@ -128,7 +128,7 @@ server {
     client_max_body_size 1000M;
     access_log /var/log/nginx/docker-registry.access.log main;
     location / {
-        proxy_pass       http://reg:443;
+        proxy_pass       https://reg:443;
         proxy_redirect   off;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -230,88 +230,86 @@ services:
 EOF
 ```
 
-### 2. 运行registry
+### 2. 本地基础认证(可选)
+``` bash
+# 基础变量设置
+REG_AUTH_LOCAL_DIR=${REG_RUNTIME_DIR}/auth
+REG_AUTH_MOUNT_DIR=/auth
+REG_USER=<your-username>
+REG_PASSWD=<your-password>
+
+# 准备本地auth目录和文件
+mkdir ${REG_AUTH_LOCAL_DIR}
+docker run \
+  --entrypoint htpasswd \
+  registry:2 -Bbn ${REG_USER} ${REG_PASSWD} > ${REG_AUTH_LOCAL_DIR}/htpasswd
+
+# 更新docker-compose文件
+# 选择1：HTTP版本
+cat << EOF > ${DOCKER_YAML_DIR}/docker-compose-registry.yaml
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    build: nginx
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - '${NGINX_LOG_DIR}:/var/log/nginx'
+    links:
+      - reg
+  reg:
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+    image: 'registry:2'
+    container_name: reg
+    restart: always
+    volumes:
+      - '${REG_DATA_DIR}:/var/lib/registry'
+      - '${REG_AUTH_LOCAL_DIR}:${REG_AUTH_MOUNT_DIR}'
+EOF
+
+# 选择2：HTTPS版本
+cat << EOF > ${DOCKER_YAML_DIR}/docker-compose-registry.yaml
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    build: nginx
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '${NGINX_LOG_DIR}:/var/log/nginx'
+    links:
+      - reg
+  reg:
+    environment:
+      - REGISTRY_HTTP_ADDR=0.0.0.0:443
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/domain.key
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+    image: 'registry:2'
+    container_name: reg
+    restart: always
+    volumes:
+      - '${REG_DATA_DIR}:/var/lib/registry'
+      - '${REG_RUNTIME_DIR}:/certs'
+      - '${REG_AUTH_LOCAL_DIR}:${REG_AUTH_MOUNT_DIR}'
+EOF
+```
+
+### 3. 运行registry
 ``` bash
 # 使用docker-compose启动registry
 docker-compose -f ${DOCKER_YAML_DIR}/docker-compose-registry.yaml up -d
-```
 
-### 3. 从docker HUB上拷贝镜像到本地registry
-1. 从docker HUB上下载镜像
-``` bash
-docker pull ubuntu:16.04
-```
-2. tag下载的镜像
-``` bash
-docker tag ubuntu:16.04 localhost:5000/my-ubuntu
-docker images
-REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
-registry                   2                   c2a449c9f834        8 days ago          33.2MB
-ubuntu                     16.04               d355ed3537e9        2 weeks ago         119MB
-localhost:5000/my-ubuntu   latest              d355ed3537e9        2 weeks ago         119MB
-```
-3. 上传镜像到本地registry中
-``` bash
-docker push localhost:5000/my-ubuntu
-```
-4. 移除本地镜像
-``` bash
-docker image remove ubuntu:16.04
-docker image remove localhost:5000/my-ubuntu
-```
-5. 从本地registry中下载镜像
-``` bash
-docker pull localhost:5000/my-ubuntu
-```
-
----
-
-### 4. 关停registry
-``` bash
-docker stop registry
-```
-> 重新启动registry后，上传的镜像依然存在
-
-``` bash
-docker stop registry && docker rm -v registry
-```
-> 删除了容器后，上传的镜像也会删除
-
----
-
-### 5. registry服务配置
-1. 自动启动registry
-``` bash
-docker run -d \
-  -p 5000:5000 \
-  --restart=always \
-  --name registry \
-  registry:2
-```
-> docker使用`--restart=always`来重新启动无论因为任何原因退出的容器，当然，不包括手动执行`docker stop`命令。加上此参数开启的容器，可以尝试kill掉它的进程，会发现它会自动启动。
-
-2. 自定义端口
-如果5000端口已经被使用，使用`-p 5001:5000`来指定5001端口
-``` bash
-docker run -d \
-  -p 5001:5000 \
-  --name registry-test \
-  registry:2
-```
-但如果希望改变容器内部的运行端口， 使用`-e REGISTRY_HTTP_ADDR=0.0.0.0:5001`
-``` bash
-docker run -d \
-  -e REGISTRY_HTTP_ADDR=0.0.0.0:5001 \
-  -p 5001:5001 \
-  --name registry-test \
-  registry:2
-```
-3. 挂载外部目录储存数据
-``` bash
-docker run -d \
-  -p 5000:5000 \
-  --restart=always \
-  --name registry \
-  -v /mnt/registry:/var/lib/registry \
-  registry:2
+# 使用之前先认证
+docker login --username ${REG_USER} --password ${REG_PASSWD} reg.easydevops.net
 ```
