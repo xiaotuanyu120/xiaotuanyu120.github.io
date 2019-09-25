@@ -312,7 +312,7 @@ ln -s <span class="si">${</span><span class="nv">NGINX_BUILD_DIR</span><span cla
 <span class="s1">    client_max_body_size 1000M;</span>
 <span class="s1">    access_log /var/log/nginx/docker-registry.access.log main;</span>
 <span class="s1">    location / {</span>
-<span class="s1">        proxy_pass       http://reg:443;</span>
+<span class="s1">        proxy_pass       https://reg:443;</span>
 <span class="s1">        proxy_redirect   off;</span>
 <span class="s1">        proxy_set_header Host $host;</span>
 <span class="s1">        proxy_set_header X-Real-IP $remote_addr;</span>
@@ -409,81 +409,86 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YAML_DIR}/docker-compose-registry
 <span class="s">      - &#39;${REG_RUNTIME_DIR}:/certs&#39;</span>
 <span class="s">EOF</span>
 </pre></div>
-<h3>2. 运行registry</h3>
+<h3>2. 本地基础认证(可选)</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 基础变量设置</span>
+<span class="nv">REG_AUTH_LOCAL_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">REG_RUNTIME_DIR</span><span class="si">}</span>/auth
+<span class="nv">REG_AUTH_MOUNT_DIR</span><span class="o">=</span>/auth
+<span class="nv">REG_USER</span><span class="o">=</span>&lt;your-username&gt;
+<span class="nv">REG_PASSWD</span><span class="o">=</span>&lt;your-password&gt;
+
+<span class="c1"># 准备本地auth目录和文件</span>
+mkdir <span class="si">${</span><span class="nv">REG_AUTH_LOCAL_DIR</span><span class="si">}</span>
+docker run <span class="se">\</span>
+  --entrypoint htpasswd <span class="se">\</span>
+  registry:2 -Bbn <span class="si">${</span><span class="nv">REG_USER</span><span class="si">}</span> <span class="si">${</span><span class="nv">REG_PASSWD</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">REG_AUTH_LOCAL_DIR</span><span class="si">}</span>/htpasswd
+
+<span class="c1"># 更新docker-compose文件</span>
+<span class="c1"># 选择1：HTTP版本</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YAML_DIR}/docker-compose-registry.yaml</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  nginx:</span>
+<span class="s">    container_name: nginx</span>
+<span class="s">    build: nginx</span>
+<span class="s">    restart: always</span>
+<span class="s">    ports:</span>
+<span class="s">      - &#39;80:80&#39;</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${NGINX_LOG_DIR}:/var/log/nginx&#39;</span>
+<span class="s">    links:</span>
+<span class="s">      - reg</span>
+<span class="s">  reg:</span>
+<span class="s">    environment:</span>
+<span class="s">      - REGISTRY_AUTH=htpasswd</span>
+<span class="s">      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm</span>
+<span class="s">      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd</span>
+<span class="s">    image: &#39;registry:2&#39;</span>
+<span class="s">    container_name: reg</span>
+<span class="s">    restart: always</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${REG_DATA_DIR}:/var/lib/registry&#39;</span>
+<span class="s">      - &#39;${REG_AUTH_LOCAL_DIR}:${REG_AUTH_MOUNT_DIR}&#39;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 选择2：HTTPS版本</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YAML_DIR}/docker-compose-registry.yaml</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  nginx:</span>
+<span class="s">    container_name: nginx</span>
+<span class="s">    build: nginx</span>
+<span class="s">    restart: always</span>
+<span class="s">    ports:</span>
+<span class="s">      - &#39;80:80&#39;</span>
+<span class="s">      - &#39;443:443&#39;</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${NGINX_LOG_DIR}:/var/log/nginx&#39;</span>
+<span class="s">    links:</span>
+<span class="s">      - reg</span>
+<span class="s">  reg:</span>
+<span class="s">    environment:</span>
+<span class="s">      - REGISTRY_HTTP_ADDR=0.0.0.0:443</span>
+<span class="s">      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt</span>
+<span class="s">      - REGISTRY_HTTP_TLS_KEY=/certs/domain.key</span>
+<span class="s">      - REGISTRY_AUTH=htpasswd</span>
+<span class="s">      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm</span>
+<span class="s">      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd</span>
+<span class="s">    image: &#39;registry:2&#39;</span>
+<span class="s">    container_name: reg</span>
+<span class="s">    restart: always</span>
+<span class="s">    volumes:</span>
+<span class="s">      - &#39;${REG_DATA_DIR}:/var/lib/registry&#39;</span>
+<span class="s">      - &#39;${REG_RUNTIME_DIR}:/certs&#39;</span>
+<span class="s">      - &#39;${REG_AUTH_LOCAL_DIR}:${REG_AUTH_MOUNT_DIR}&#39;</span>
+<span class="s">EOF</span>
+</pre></div>
+<h3>3. 运行registry</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 使用docker-compose启动registry</span>
 docker-compose -f <span class="si">${</span><span class="nv">DOCKER_YAML_DIR</span><span class="si">}</span>/docker-compose-registry.yaml up -d
+
+<span class="c1"># 使用之前先认证</span>
+docker login --username <span class="si">${</span><span class="nv">REG_USER</span><span class="si">}</span> --password <span class="si">${</span><span class="nv">REG_PASSWD</span><span class="si">}</span> reg.easydevops.net
 </pre></div>
-<h3>3. 从docker HUB上拷贝镜像到本地registry</h3>
-<ol>
-<li>从docker HUB上下载镜像<div class="highlight"><pre><span></span>docker pull ubuntu:16.04
-</pre></div>
-</li>
-<li>tag下载的镜像<div class="highlight"><pre><span></span>docker tag ubuntu:16.04 localhost:5000/my-ubuntu
-docker images
-REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
-registry                   <span class="m">2</span>                   c2a449c9f834        <span class="m">8</span> days ago          <span class="m">33</span>.2MB
-ubuntu                     <span class="m">16</span>.04               d355ed3537e9        <span class="m">2</span> weeks ago         119MB
-localhost:5000/my-ubuntu   latest              d355ed3537e9        <span class="m">2</span> weeks ago         119MB
-</pre></div>
-</li>
-<li>上传镜像到本地registry中<div class="highlight"><pre><span></span>docker push localhost:5000/my-ubuntu
-</pre></div>
-</li>
-<li>移除本地镜像<div class="highlight"><pre><span></span>docker image remove ubuntu:16.04
-docker image remove localhost:5000/my-ubuntu
-</pre></div>
-</li>
-<li>从本地registry中下载镜像<div class="highlight"><pre><span></span>docker pull localhost:5000/my-ubuntu
-</pre></div>
-</li>
-</ol>
-<hr>
-<h3>4. 关停registry</h3>
-<div class="highlight"><pre><span></span>docker stop registry
-</pre></div>
-<blockquote><p>重新启动registry后，上传的镜像依然存在</p>
-</blockquote>
-<div class="highlight"><pre><span></span>docker stop registry <span class="o">&amp;&amp;</span> docker rm -v registry
-</pre></div>
-<blockquote><p>删除了容器后，上传的镜像也会删除</p>
-</blockquote>
-<hr>
-<h3>5. registry服务配置</h3>
-<ol>
-<li><p>自动启动registry</p>
-<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
--p <span class="m">5000</span>:5000 <span class="se">\</span>
---restart<span class="o">=</span>always <span class="se">\</span>
---name registry <span class="se">\</span>
-registry:2
-</pre></div>
-<blockquote><p>docker使用<code>--restart=always</code>来重新启动无论因为任何原因退出的容器，当然，不包括手动执行<code>docker stop</code>命令。加上此参数开启的容器，可以尝试kill掉它的进程，会发现它会自动启动。</p>
-</blockquote>
-</li>
-<li><p>自定义端口
-如果5000端口已经被使用，使用<code>-p 5001:5000</code>来指定5001端口</p>
-<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
--p <span class="m">5001</span>:5000 <span class="se">\</span>
---name registry-test <span class="se">\</span>
-registry:2
-</pre></div>
-<p>但如果希望改变容器内部的运行端口， 使用<code>-e REGISTRY_HTTP_ADDR=0.0.0.0:5001</code></p>
-<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
--e <span class="nv">REGISTRY_HTTP_ADDR</span><span class="o">=</span><span class="m">0</span>.0.0.0:5001 <span class="se">\</span>
--p <span class="m">5001</span>:5001 <span class="se">\</span>
---name registry-test <span class="se">\</span>
-registry:2
-</pre></div>
-</li>
-<li>挂载外部目录储存数据<div class="highlight"><pre><span></span>docker run -d <span class="se">\</span>
--p <span class="m">5000</span>:5000 <span class="se">\</span>
---restart<span class="o">=</span>always <span class="se">\</span>
---name registry <span class="se">\</span>
--v /mnt/registry:/var/lib/registry <span class="se">\</span>
-registry:2
-</pre></div>
-</li>
-</ol>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -684,6 +689,11 @@ registry:2
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
                 4.0.0 docker 本地registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
+                4.0.1 docker 本地registry 使用说明
               </a>
              </li>
              <li class="toctree-l2">
