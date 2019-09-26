@@ -16,7 +16,12 @@ tags: [docker]
 ### 1. 解决办法
 在Dockerfile中增加以下内容
 ```
-ENV TZ=America/Shanghai
+ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+```
+如果是alpine底层镜像的
+```
+RUN apk add --no-cache tzdata
+ENV TZ Asia/Shanghai
 ```
 > [stackoverflow 解决办法](https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes)
