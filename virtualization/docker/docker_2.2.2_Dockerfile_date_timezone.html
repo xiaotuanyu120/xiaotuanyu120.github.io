@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -199,8 +204,12 @@
 <h3>1. 解决办法</h3>
 <p>在Dockerfile中增加以下内容</p>
 
-<pre><code>ENV TZ=America/Shanghai
+<pre><code>ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone</code></pre>
+<p>如果是alpine底层镜像的</p>
+
+<pre><code>RUN apk add --no-cache tzdata
+ENV TZ Asia/Shanghai</code></pre>
 <blockquote><p><a href="https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes">stackoverflow 解决办法</a></p>
 </blockquote>
       </div>
@@ -254,6 +263,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -346,6 +360,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
+                1.2.4 docker容器安装microsoft truetype 字体
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
                 2.1.1 镜像-查找与下载镜像
               </a>
@@ -398,6 +417,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
                 4.0.0 docker 本地registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
+                4.0.1 docker 本地registry 使用说明
               </a>
              </li>
              <li class="toctree-l2">
