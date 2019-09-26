@@ -203,7 +203,7 @@
 <h3>1. 解决方案</h3>
 
 <pre><code># debian作为底层镜像时
-RUN apt-get update \
+RUN apt-get update; \
     apt-get install ttf-mscorefonts-installer
 
 # alpine作为底层镜像时
