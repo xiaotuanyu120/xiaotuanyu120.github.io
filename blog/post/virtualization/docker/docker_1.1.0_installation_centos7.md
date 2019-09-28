@@ -35,6 +35,8 @@ yum remove docker \
 
 ### 2. yum安装docker
 ``` bash
+id docker >/dev/null 2>&1 || useradd -r -s /sbin/nologin docker
+
 # 创建docker的yum源
 yum install -y yum-utils \
   device-mapper-persistent-data \
@@ -54,6 +56,14 @@ yum list docker-ce --showduplicates | sort -r
 # 选择要安装的版本，已经安装docker
 VERSION_STRING=18.09.1
 yum install -y docker-ce-${VERSION_STRING} docker-ce-cli-${VERSION_STRING} containerd.io
+
+# 如果安装的是`18.09`，需要额外执行以下步骤，来解决docker服务启动失败的问题
+# 问题详情参照：https://github.com/docker/for-linux/issues/475
+IS_1809=18.09.*
+[[ ${VERSION_STRING} =~ ${IS_1809} ]] && [[ -d /etc/systemd/system/containerd.service.d ]] || (
+    /usr/bin/mkdir /etc/systemd/system/containerd.service.d;
+    echo -e '[Service]\nExecStartPre=' > override.conf
+    )
 ```
 
 ### 3. install docker-compose
