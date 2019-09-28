@@ -1,10 +1,12 @@
 ---
-title: SHELL: 5.0 多个tomcat管理脚本
+title: EXAMPLE: 3.0 多个tomcat管理脚本
 date: 2017-01-20 17:06:00
 categories: linux/shell
 tags: [shell]
 ---
+### EXAMPLE: 3.0 多个tomcat管理脚本
 
+### 1. 脚本内容
 ``` bash
 #!/bin/bash
 #chkconfig: 35 80 90
@@ -50,51 +52,11 @@ function run() {
 run_log=/tmp/payshop.log
 echo > $run_log
 shop_base=/home/webserver
-shopTomcat=(bstdshop
-            bxlyshop
-            cxlmyshop
-            cxsshop
-            cyhlwshop
-            dftxxshop
-            dtsshop
-            e68shop
-            fcksshop
-            fcydshop
-            fdlshop
-            fgyshop
-            htwzshop
-            hxmyshop
-            jtdxxshop
-            jtytshop
-            jwsmshop
-            kmfsshop
-            kpwdshop
-            ktsshop
-            kxyxshop
-            kzsmshop
-            ljxshop
-            lxqwlshop
-            nkwshop
-            pmsdshop
-            qhdsshop
-            qswmshop
-            qxfwshop
-            qyqfshop
-            stczshop
-            sxmjcshop
-            tlfzshop
-            twhshop
-            tylshop
-            watshop
-            wbthshop
-            wdfsshop
-            xdkjshop
-            xdyshop
-            xhcshop
-            xyhmyshop
-            ycmshop
-            ylxxshop
-            zrhyshop)
+shopTomcat=(shop01
+            shop02
+            shop03
+            shop04
+            shop05)
 
 
 
