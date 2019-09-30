@@ -1,10 +1,10 @@
 ---
-title: 2.1.0 docker-compose: network
+title: docker-compose 2.1.0 network
 date: 2019-09-30 13:00:00
 categories: virtualization/docker
 tags: [docker,docker-compose]
 ---
-### 2.1.0 docker-compose: network
+### docker-compose 2.1.0 network
 
 ---
 
