@@ -196,158 +196,96 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
-                1.1.0 安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
-                1.1.0.1 install docker on mac
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
-                1.1.1 二进制文件安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
-                1.1.2 为docker创建docker0以外的网桥
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
-                1.2.0 基础命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
-                1.2.1 Dockerfile
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
-                1.2.2 docker容器时间不准解决方案
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
-                1.2.4 docker容器安装microsoft truetype 字体
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
-                2.1.0 docker-compose: network
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
-                2.1.1 镜像-查找与下载镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
-                2.1.2 镜像-镜像信息的查看与管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
-                2.1.3 镜像-镜像的删除
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
-                2.1.4 镜像-镜像的导入和导出
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
-                2.1.5 镜像-镜像的上传
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
-                2.1.6 镜像-build 镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
-                2.2.3 Dockerfile entrypoint with script
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
-                3.1.0 docker封装nginx服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
-                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
-                3.3.0 docker nginx with multiple sites
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
-                4.0.0 docker 本地registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
-                4.0.1 docker 本地registry 使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
-                4.1.0 在docker中运行gitlab ce
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.2.0_jenkins.html">
-                4.2.0 在docker中运行jenkins
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>2.1.0 docker-compose: network</h3>
+<hr>
+<h3>0. docker-compose 默认网络</h3>
+<p>在没有指定加入网络的情况下，docker-compose会默认创建一个网络，重点概括如下：</p>
+<ul>
+<li>yaml文件所在的目录<code>&lt;folder_name&gt;</code>是一个project</li>
+<li>docker-compose创建的默认网络是<code>&lt;folder_name&gt;_default</code></li>
+<li>在同一个网络中的容器，网络可以互通，互相使用<code>service_name</code>当做对方的<code>hostname</code></li>
+<li>在同一个网络中的容器，可以互相访问对方的<code>容器端口</code>，而不必要去使用对方的<code>主机端口</code></li>
+</ul>
+<h3>1. docker-compose 指定网络</h3>
+<p>可以使用<code>networks</code>这个顶级key来创建网络，然后在各个service里面使用<code>networks</code>来指定service加入的网络。当然，也可以不使用<code>networks</code>顶级key创建网络，直接在service里面指定要加入的非docker-compose创建的网络。</p>
+<p>下面这个例子中，proxy因为不需要访问db，所以只和app在同一个网络中，而app则同时处于proxy和db所在的网络中</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&quot;3&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">proxy</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">./proxy</span>
+    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">frontend</span>
+  <span class="l l-Scalar l-Scalar-Plain">app</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">./app</span>
+    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">frontend</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">aliases</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">upstream</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">alias2</span>
+      <span class="l l-Scalar l-Scalar-Plain">backend</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">aliases</span><span class="p p-Indicator">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db-client</span>
+  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+    <span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">backend</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">db_net</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">ipv4_address</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">172.16.238.10</span>
+        <span class="l l-Scalar l-Scalar-Plain">ipv6_address</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2001:3984:3989::10</span>
+
+<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">frontend</span><span class="p p-Indicator">:</span>
+    <span class="c1"># Use a custom driver</span>
+    <span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">custom-driver-1</span>
+  <span class="l l-Scalar l-Scalar-Plain">backend</span><span class="p p-Indicator">:</span>
+    <span class="c1"># Use a custom driver which takes special options</span>
+    <span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">custom-driver-2</span>
+    <span class="l l-Scalar l-Scalar-Plain">driver_opts</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">foo</span><span class="p p-Indicator">:</span> <span class="s">&quot;1&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">bar</span><span class="p p-Indicator">:</span> <span class="s">&quot;2&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">db_net</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bridge</span>
+    <span class="l l-Scalar l-Scalar-Plain">enable_ipv6</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">ipam</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+      <span class="l l-Scalar l-Scalar-Plain">config</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">subnet</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">172.16.238.0/24</span>
+        <span class="l l-Scalar l-Scalar-Plain">gateway</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">172.16.238.1</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">subnet</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2001:3984:3989::/64</span>
+        <span class="l l-Scalar l-Scalar-Plain">gateway</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2001:3984:3989::1</span>
+</pre></div>
+<blockquote><p>注意以下两项配置：</p>
+<ul>
+<li>aliases: 在不同网络中，给每个service设定多个hostname</li>
+<li>ipv4&amp;ipv6的地址配置和地址指定</li>
+</ul>
+</blockquote>
+<h3>2. docker-compose 自定义默认网络</h3>
+<p>如果你的project还是全部在同一个网络中，你只是想改动默认网络的部分配置，可以按照下面的方式</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&quot;3.5&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;8000:8000&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">postgres</span>
+
+<span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+    <span class="c1"># Use a custom driver</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">default_network</span>
+    <span class="l l-Scalar l-Scalar-Plain">driver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">custom-driver-1</span>
+</pre></div>
+<p>如果想把外部网络拿来当成默认网络，可以这样使用</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">networks</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">default</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">external</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">my-pre-existing-network</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
