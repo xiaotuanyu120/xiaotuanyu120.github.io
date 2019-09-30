@@ -60,10 +60,9 @@ yum install -y docker-ce-${VERSION_STRING} docker-ce-cli-${VERSION_STRING} conta
 # 如果安装的是`18.09`，需要额外执行以下步骤，来解决docker服务启动失败的问题
 # 问题详情参照：https://github.com/docker/for-linux/issues/475
 IS_1809=18.09.*
-[[ ${VERSION_STRING} =~ ${IS_1809} ]] && [[ -d /etc/systemd/system/containerd.service.d ]] || (
-    /usr/bin/mkdir /etc/systemd/system/containerd.service.d;
-    echo -e '[Service]\nExecStartPre=' > override.conf
-    )
+[[ ${VERSION_STRING} =~ ${IS_1809} ]] && (
+  [[ ! -d /etc/systemd/system/containerd.service.d ]] && /usr/bin/mkdir /etc/systemd/system/containerd.service.d;
+  [[ ! -f /etc/systemd/system/containerd.service.d/override.conf ]] && echo -e '[Service]\nExecStartPre=' > /etc/systemd/system/containerd.service.d/override.conf;)
 ```
 
 ### 3. install docker-compose
