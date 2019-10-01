@@ -255,14 +255,31 @@ v8.11.3
 <p>默认情况下 installer/inventory 文件会把awx安装在本地，如果需要安装到其他机器，可以修改 installer/inventory<br>
 里面还有其他变量可以修改</p>
 <ul>
+<li>常规配置<ul>
 <li>host_port, 默认访问端口80</li>
-<li>use_docker_compose, 设置为true则使用docker-compose</li>
-<li>docker_compose_dir, 设置docker-compose.yml储存的目录，默认是/var/lib/awx</li>
+<li>host_port_ssl，ssl端口，默认是端口443，只有在ssl_certificate配置的时候才生效</li>
+<li>ssl_certificate，指定包含crt和key的文件</li>
+<li>docker_compose_dir, 设置docker-compose.yml储存的目录，默认是/tmp/awxcompose</li>
+</ul>
+</li>
+<li>PostgreSQL<ul>
+<li>postgres_data_dir，pg数据库容器的数据挂载目录，默认是/tmp/pgdocker</li>
+<li>pg_hostname，如果想用外部的pg，设定外部pg的hostname，这样安装awx的时候，awx不会创建pg镜像</li>
+</ul>
+</li>
+<li>docker-registry<ul>
+<li>docker_registry，镜像仓库地址，例如127.0.0.1:5000</li>
+<li>docker_registry_repository，镜像仓库命名空间，例如awx</li>
+<li>docker_registry_username，镜像仓库用户名，在运行install的时候，传入<code>docker_registry_password</code>来认证</li>
+</ul>
+</li>
 </ul>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> awx/installer
 
 <span class="c1"># 安装awx</span>
 ansible-playbook -i inventory install.yml
+<span class="c1"># 如果配置了docker_registry_user</span>
+<span class="c1"># ansible-playbook -i inventory -e docker_registry_password=password install.yml</span>
 
 docker ps
 CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                                                 NAMES
@@ -279,8 +296,8 @@ inventory中还有其他的变量可以修改，例如，是否更换默认的po
 <h4>step 4. 访问awx</h4>
 <p>可以通过<a href="http://localhost访问，默认账号和密码是awx/password">http://localhost访问，默认账号和密码是awx/password</a></p>
 <h4>step 5. maintenance</h4>
-<p>inventory中默认的docker-compose配置<code>docker_compose_dir=/var/lib/awx</code></p>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> /var/lib/awx/
+<p>inventory中默认的docker-compose配置<code>docker_compose_dir=/tmp/awxcompose</code></p>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /tmp/awxcompose
 
 <span class="c1"># 停止awx</span>
 docker-compose stop
