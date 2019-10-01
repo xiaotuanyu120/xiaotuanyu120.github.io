@@ -201,11 +201,13 @@
 <h3>0. 什么是awx？</h3>
 <p>AWX是redhat，在ansible的基础上提供的一个开源web工程。 它提供了web界面、REST API和任务引擎。 同时，redhat还有一个收费项目（awx的上游项目）ANSIBLE TOWER，是awx的商业版本。</p>
 <h3>1. 安装awx</h3>
-<h4>step 0. 系统环境</h4>
+<h4>step 0. 系统环境和准备工作</h4>
 <ul>
 <li>centos7 64位  </li>
 <li>python 2.7.5</li>
 </ul>
+<div class="highlight"><pre><span></span>yum install wget vim -y
+</pre></div>
 <h4>step 1. 准备工作</h4>
 <p>安装 Ansible（Version 2.4+）</p>
 <div class="highlight"><pre><span></span>yum install ansible -y
@@ -213,7 +215,7 @@
 <blockquote><p>centos7 里面的ansible版本是大于2.4的，此处安装的是2.5.5</p>
 </blockquote>
 <p>安装 Docker<br>
-可以参照这个安装教程：<a href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual/blob/master/virtualization/docker/docker_1.1.0_installation_centos7.md">docker installation</a></p>
+可以参照这个安装教程：<a href="https://linux.xiao5tech.com/virtualization/docker/docker_1.1.0_installation_centos7.html">docker installation</a></p>
 <p>安装 docker-py Python module</p>
 <div class="highlight"><pre><span></span>wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
@@ -226,7 +228,7 @@ pip install docker-compose
 <div class="highlight"><pre><span></span>yum install make -y
 </pre></div>
 <p>安装 Git Requires Version 1.8.4+
-参照这个安装教程: <a href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual/blob/master/devops/git/git_1.1.0_install.md">git installation from source</a></p>
+参照这个安装教程: <a href="https://linux.xiao5tech.com/devops/git/git_1.1.0_install.html">git installation from source</a></p>
 <div class="highlight"><pre><span></span><span class="c1"># 安装docker之后，安装docker-compose</span>
 wget https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64
 mv docker-compose-Linux-x86_64 /usr/bin/docker-compose
