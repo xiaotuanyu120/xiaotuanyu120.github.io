@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -201,10 +206,7 @@
 <li>centos7 64位  </li>
 <li>python 2.7.5</li>
 </ul>
-<h4>step 1. clone repo</h4>
-<div class="highlight"><pre><span></span>git clone https://github.com/ansible/awx.git
-</pre></div>
-<h4>step 2. 准备工作</h4>
+<h4>step 1. 准备工作</h4>
 <p>安装 Ansible（Version 2.4+）</p>
 <div class="highlight"><pre><span></span>yum install ansible -y
 </pre></div>
@@ -243,6 +245,9 @@ npm -v
 
 node -v
 v8.11.3
+</pre></div>
+<h4>step 2. clone repo</h4>
+<div class="highlight"><pre><span></span>git clone https://github.com/ansible/awx.git
 </pre></div>
 <h4>step 3. install awx base on docker-compose</h4>
 <p>默认情况下 installer/inventory 文件会把awx安装在本地，如果需要安装到其他机器，可以修改 installer/inventory<br>
@@ -335,6 +340,11 @@ docker-compose pull <span class="o">&amp;&amp;</span> docker-compose up --force-
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -377,15 +387,8 @@ docker-compose pull <span class="o">&amp;&amp;</span> docker-compose up --force-
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
             </a>
             <ul>
             </ul>
@@ -501,12 +504,12 @@ docker-compose pull <span class="o">&amp;&amp;</span> docker-compose up --force-
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
+              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
                 1.3.12: playbook with_items and register
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
+              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
                 1.3.12: playbook with_items and register
               </a>
              </li>
@@ -543,6 +546,21 @@ docker-compose pull <span class="o">&amp;&amp;</span> docker-compose up --force-
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/ansible/1.5.4_var_same_host_different_group.html">
                 1.5.4: vars host在不同group中，变量覆盖问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.1_logic_set_fact_with_conditions.html">
+                1.6.1: LOGIC - 根据条件手动设定变量 - if else and when
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.2_logic_facts_service_facts.html">
+                1.6.2: LOGIC-service_facts
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.3_logic_failed_when.html">
+                1.6.3: LOGIC-faied when
               </a>
              </li>
              <li class="toctree-l2">
@@ -593,8 +611,15 @@ docker-compose pull <span class="o">&amp;&amp;</span> docker-compose up --force-
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
             </a>
             <ul>
             </ul>
