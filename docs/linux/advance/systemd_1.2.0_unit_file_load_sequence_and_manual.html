@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -223,6 +228,69 @@
 <li>unit files可以是一个其他非表中目录的文件的链接（链接文件必须在表中的目录中）</li>
 </ol>
 </blockquote>
+<h3>3. unit files覆盖配置</h3>
+<p>可以在上面三个unit files目录中(推荐/etc/systemd/system)创建<code>&lt;unitfile_name&gt;.d/*.conf</code>，里面写上包含覆盖或增加内容的conf文件。daemon-reload后，使用<code>systemctl cat &lt;service_name&gt;</code>来查看</p>
+<div class="highlight"><pre><span></span>systemctl cat docker.service
+<span class="c1"># /usr/lib/systemd/system/docker.service</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Docker Application Container Engine
+<span class="nv">Documentation</span><span class="o">=</span>https://docs.docker.com
+<span class="nv">BindsTo</span><span class="o">=</span>containerd.service
+<span class="nv">After</span><span class="o">=</span>network-online.target firewalld.service
+<span class="nv">Wants</span><span class="o">=</span>network-online.target
+<span class="nv">Requires</span><span class="o">=</span>docker.socket
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>notify
+<span class="c1"># the default is not to use systemd for cgroups because the delegate issues still</span>
+<span class="c1"># exists and systemd currently does not support the cgroup feature set required</span>
+<span class="c1"># for containers run by docker</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd -H fd://
+<span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -s HUP <span class="nv">$MAINPID</span>
+<span class="nv">TimeoutSec</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">RestartSec</span><span class="o">=</span><span class="m">2</span>
+<span class="nv">Restart</span><span class="o">=</span>always
+
+<span class="c1"># Note that StartLimit* options were moved from &quot;Service&quot; to &quot;Unit&quot; in systemd 229.</span>
+<span class="c1"># Both the old, and new location are accepted by systemd 229 and up, so using the old location</span>
+<span class="c1"># to make them work for either version of systemd.</span>
+<span class="nv">StartLimitBurst</span><span class="o">=</span><span class="m">3</span>
+
+<span class="c1"># Note that StartLimitInterval was renamed to StartLimitIntervalSec in systemd 230.</span>
+<span class="c1"># Both the old, and new name are accepted by systemd 230 and up, so using the old name to make</span>
+<span class="c1"># this option work for either version of systemd.</span>
+<span class="nv">StartLimitInterval</span><span class="o">=</span>60s
+
+<span class="c1"># Having non-zero Limit*s causes performance problems due to accounting overhead</span>
+<span class="c1"># in the kernel. We recommend using cgroups to do container-local accounting.</span>
+<span class="nv">LimitNOFILE</span><span class="o">=</span>infinity
+<span class="nv">LimitNPROC</span><span class="o">=</span>infinity
+<span class="nv">LimitCORE</span><span class="o">=</span>infinity
+
+<span class="c1"># Comment TasksMax if your systemd version does not supports it.</span>
+<span class="c1"># Only systemd 226 and above support this option.</span>
+<span class="nv">TasksMax</span><span class="o">=</span>infinity
+
+<span class="c1"># set delegate yes so that systemd does not reset the cgroups of docker containers</span>
+<span class="nv">Delegate</span><span class="o">=</span>yes
+
+<span class="c1"># kill only the docker process, not all processes in the cgroup</span>
+<span class="nv">KillMode</span><span class="o">=</span>process
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+
+<span class="c1"># /etc/systemd/system/docker.service.d/network.conf</span>
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">ExecStartPost</span><span class="o">=</span>-/usr/bin/docker network create --driver<span class="o">=</span>bridge --subnet<span class="o">=</span><span class="m">172</span>.30.1.0/24 --ip-range<span class="o">=</span><span class="m">172</span>.30.1.0/24 --gateway<span class="o">=</span><span class="m">172</span>.30.1.254 net1
+<span class="nv">ExecStartPost</span><span class="o">=</span>-/usr/bin/docker network create --driver<span class="o">=</span>bridge --subnet<span class="o">=</span><span class="m">172</span>.30.2.0/24 --ip-range<span class="o">=</span><span class="m">172</span>.30.2.0/24 --gateway<span class="o">=</span><span class="m">172</span>.30.2.254 net2
+</pre></div>
+<blockquote><p>扩展命令</p>
+<ul>
+<li><code>systemctl cat &lt;service_name&gt;</code>，查看配置文件内容</li>
+<li><code>systemctl show &lt;service_name&gt;</code>，查看实际生效的内容</li>
+</ul>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -274,6 +342,11 @@
             <li role="presentation">
              <a href="/python" role="menuitem" tabindex="-1">
               python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -374,6 +447,11 @@
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_alive_time_check.html">
+                network: tcp 连接存活时间查询方法
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_vmware_clone_Centos6.html">
                 network: vmware克隆Centos6后的网络设置
               </a>
@@ -439,6 +517,11 @@
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/systemd_1.3.0_start_pre_and_post.html">
+                systemd 1.3.0 exec pre and post
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
                 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
               </a>
@@ -446,6 +529,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/optimize_1.1.1_kernel_nf_conntrack_table.html">
                 内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/optimize_1.1.2_kernel_tcp_time_wait_len_vs_fin_timeout.html">
+                内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
               </a>
              </li>
              <li class="toctree-l2">
