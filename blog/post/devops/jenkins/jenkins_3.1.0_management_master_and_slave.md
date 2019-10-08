@@ -1,10 +1,10 @@
 ---
-title: 4.2.0 在docker中运行jenkins
+title: jenkins: 3.1.0 在docker中运行jenkins
 date: 2018-01-27 10:53:00
-categories: virtualization/docker
+categories: devops/jenkins
 tags: [docker,jenkins]
 ---
-### 4.2.0 在docker中运行jenkins
+### jenkins: 3.1.0 在docker中运行jenkins
 
 ---
 
@@ -59,7 +59,9 @@ services:
     container_name: jenkins
     restart: always
     volumes:
-      - '/data/jenkins_home:/var/jenkins_home'" > /data/docker/docker-compose-nginx-jenkins.yaml
+      - '/data/jenkins_home:/var/jenkins_home'
+    environment:
+      - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai" > /data/docker/docker-compose-nginx-jenkins.yaml
 ```
 
 ### 2. 运行jenkins
@@ -84,17 +86,25 @@ google搜索了解决方案
 ``` bash
 mkdir jenkins
 cd jenkins
-echo 'FROM jenkins/jenkins:lts
+cat << EOF > Dockerfile
+FROM jenkins/jenkins:lts
 USER root
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone ;\
+    echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 RUN apt-get update \
-      && apt-get install -y git maven sudo libltdl7 \
+      && apt-get install -y git maven sudo libltdl7 rsync \
       && rm -rf /var/lib/apt/lists/*
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 USER jenkins
-ADD jdk8.tar.gz /usr/local/
-ADD jenkins.sh /etc/profile.d' > Dockerfile
+ADD jdk-8u221-linux-x64.tar.gz /usr/local/
+ADD jdk-7u80-linux-x64.tar.gz /usr/local/
+RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EOF
 ```
-> jdk8 是下载的包解压后自己打的tar包，jenkins.sh里面是写了jdk8的环境变量，其他git和mvn是使用apt-get安装
+> apt 安装 git maven rsync
+> jenkins的时区设置为东八区
+> PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openjdk编译
+
 #### 2) 如何在jenkins(docker)中编译docker镜像
 jenkins本身就是docker中运行的，怎么在它里面完成编译docker镜像的任务呢，难道我需要在里面继续安装一个docker？  
 显然那样太low，网上参考google文档，找到了一种解决方案，就是通过mountdocker文件和socket文件去docker容器中，使jenkins可以调用host的docker命令和socket文件，来达到编译镜像的目的
@@ -110,6 +120,8 @@ services:
       - /data/jenkins_home:/var/jenkins_home
       - /var/run:/var/run:rw
       - /usr/bin/docker:/usr/bin/docker
+    environment:
+      - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai
 ```
 > jenkins/jenkins:myjks，是我按照上面的Dockerfile自己编译的docker镜像
 
