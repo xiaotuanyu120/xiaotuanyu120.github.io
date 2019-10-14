@@ -1,130 +1,86 @@
 ---
-title: jenkins: 3.1.0 在docker中运行jenkins
-date: 2018-01-27 10:53:00
+title: jenkins: 3.1.0 管理slave节点
+date: 2019-10-08 10:56:00
 categories: devops/jenkins
 tags: [docker,jenkins]
 ---
-### jenkins: 3.1.0 在docker中运行jenkins
+### jenkins: 3.1.0 管理slave节点
 
 ---
 
-### 0. 环境
-安装docker和docker-compose肯定是必备环境，这里会使用docker-compose来启动一个nginx和一个jenkins，link在一起提供服务  
-[run jenkins in container](https://github.com/jenkinsci/docker/blob/master/README.md)  
-[jenkins image on docker hub](https://hub.docker.com/r/jenkins/jenkins/)
+### 1. 管理slave节点
+#### step 0. 和slave节点通信有几种方式
+- SSH
+- windows administrative account
+- Java Web Start (JNLP)
 
----
+你可以选择最适合你环境的，我们这里使用SSH的方式
 
-### 1. 准备文件
-准备文件目录结构
+
+#### step 1. 生成ssh文件
+在jenkins-master上执行
 ``` bash
-mkdir -p /data/docker/nginx
-```
-nginx 文件准备
-``` bash
-echo 'FROM nginx:stable
-RUN rm /etc/nginx/conf.d/default.conf
-ADD nginx.conf /etc/nginx/conf.d/' > /data/docker/nginx/Dockerfile
+# 使用jenkins用户执行下面命令
 
-echo '# Configuration for the server
-server {
-    charset utf-8;
-    listen 80;
-    location / {
-        proxy_pass       http://jenkins:8080;
-        proxy_redirect   off;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Host $server_name;
-        }
-    }' > /data/docker/nginx/nginx.conf
-```
-docker-compose文件准备
-``` bash
-echo "# nginx:80 --> jenkins:8080
-version: '2'
-services:
-  nginx:
-    container_name: nginx
-    build: nginx
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    links:
-      - jenkins
-  jenkins:
-    image: 'jenkins/jenkins:lts'
-    container_name: jenkins
-    restart: always
-    volumes:
-      - '/data/jenkins_home:/var/jenkins_home'
-    environment:
-      - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai" > /data/docker/docker-compose-nginx-jenkins.yaml
-```
-
-### 2. 运行jenkins
-``` bash
-# 创建jenkins数据目录
-mkdir -p /data/jenkins_home
-
-# 因为jenkins在container中的属主属组是jenkins，uid是1000，需要提前设定好属主属组，不然会报错
-chown -R 1000:1000 /data/jenkins_home
-
-# 使用docker-compose启动jenkins
-docker-compose -f /data/docker/docker-compose-nginx-jenkins.yaml up -d
-```
-
-### 3. 用以上方式启动jenkins的问题，及解决方案
-使用以上方式启动jenkins，有几个问题  
-#### 1) 缺少组件
-- 没有git
-- 没有jdk
-- 没有mvn
-google搜索了解决方案
-``` bash
+# DOCKER
+# 如果使用的是docker启动的jenkins，可以执行
 mkdir jenkins
-cd jenkins
-cat << EOF > Dockerfile
-FROM jenkins/jenkins:lts
-USER root
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone ;\
-    echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
-RUN apt-get update \
-      && apt-get install -y git maven sudo libltdl7 rsync \
-      && rm -rf /var/lib/apt/lists/*
-USER jenkins
-ADD jdk-8u221-linux-x64.tar.gz /usr/local/
-ADD jdk-7u80-linux-x64.tar.gz /usr/local/
-RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-EOF
-```
-> apt 安装 git maven rsync
-> jenkins的时区设置为东八区
-> PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openjdk编译
+chmod 777 jenkins
+docker run --rm -it -v `pwd`/jenkins:/var/jenkins_home jenkins:lts ssh-keygen
+chmod 755 jenkins
+# 在./jenkins/.ssh目录得到id_rsa和id_rsa.pub两个文件
 
-#### 2) 如何在jenkins(docker)中编译docker镜像
-jenkins本身就是docker中运行的，怎么在它里面完成编译docker镜像的任务呢，难道我需要在里面继续安装一个docker？  
-显然那样太low，网上参考google文档，找到了一种解决方案，就是通过mountdocker文件和socket文件去docker容器中，使jenkins可以调用host的docker命令和socket文件，来达到编译镜像的目的
-``` yaml
-version: '2'
+# 非DOCKER
+su - jenkins
+ssh-keygen
+# 在/home/jenkins/.ssh目录得到id_rsa和id_rsa.pub两个文件
+```
+
+#### step 2. 在jenkins上配置凭证
+- 选择credentials
+- 点击global域链接
+- 选择增加credentials
+- 填写信息
+  - Kind: SSH Username with private key
+  - Scope: Global
+  - Username: jenkins
+  - Private key: Enter directly and paste the 'id_rsa' private key of Jenkins user from the master server.
+
+#### step 3. 启动docker-slave
+``` bash
+cat << EOF > docker-compose-jenkins-slave.yml
+version: '3'
 services:
-  jenkins:
-    #image: 'jenkins/jenkins:lts'
-    image: 'jenkins/jenkins:myjks'
-    container_name: jenkins
+  jenkins-slave:
+    image: 'jenkins/ssh-slave'
+    container_name: jenkins-slave
     restart: always
     volumes:
       - /data/jenkins_home:/var/jenkins_home
-      - /var/run:/var/run:rw
+      - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker
     environment:
       - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai
+    entrypoint:
+      - setup-sshd
+      - "<id_rsa.pub>"
+EOF
+
+docker-compose -f docker-compose-jenkins-slave.yml up -d
 ```
-> jenkins/jenkins:myjks，是我按照上面的Dockerfile自己编译的docker镜像
 
-> 注意如果jenkins里面配置unix:///var/run/docker.sock时提示找不到，或者权限不足，可以改一下docker.sock的文件权限来解决
+#### step 4. jenkins web端配置上新的slave
+- Manage Jenkins
+- Manage Nodes
+- New Node
+- 输入node名称，选择permanent agent，点击OK
+- 输入node节点详细信息
+  - Description: slave01 node agent server
+  - Remote root directory: /home/jenkins
+  - Labels: slave01
+  - Launch method: Launch slave agent via SSH, type the host ip address '10.0.15.21', choose the authentication using 'Jenkins' credential.
 
-> 注：[参考链接](https://renzedevries.wordpress.com/2016/06/30/building-containers-with-docker-in-docker-and-jenkins/)
+
+- Manage Jenkins
+- Configure System
+- 配置slave

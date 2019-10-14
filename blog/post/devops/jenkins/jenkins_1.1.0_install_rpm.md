@@ -1,10 +1,10 @@
 ---
-title: jenkins: 1.1.0 安装
+title: jenkins: 1.1.0 使用二进制文件安装jenkins
 date: 2016-08-12 10:45:00
 categories: devops/jenkins
 tags: [java,jenkins,linux]
 ---
-### jenkins: 1.1.0 安装
+### jenkins: 1.1.0 使用二进制文件安装jenkins
 
 ---
 
