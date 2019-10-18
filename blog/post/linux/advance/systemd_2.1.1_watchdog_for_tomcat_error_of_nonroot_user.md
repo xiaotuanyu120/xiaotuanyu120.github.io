@@ -29,3 +29,6 @@ bash脚本里面，我是使用ss命令得到了监听端口关联的pid。在go
 经过一番搜索，在执行command的时候，可以让系统附加执行setgpid，这样可以让catalina.sh和jvm进程之间属于同一个group pid，而通过使用ps和grep命令，通过列出的pgid列筛选出实际的jvm的pid，来配置了正确的MAINPID。
 
 ### [源码地址](https://github.com/xiaotuanyu120/systemd-watchdog-tomcat)
+
+### 扩展阅读
+- [关于nonroot用户运行systemd的issue](https://github.com/systemd/systemd/issues/2739)
