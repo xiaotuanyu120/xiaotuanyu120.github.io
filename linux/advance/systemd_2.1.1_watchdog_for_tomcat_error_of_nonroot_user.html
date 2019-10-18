@@ -211,6 +211,10 @@
 <p>bash脚本里面，我是使用ss命令得到了监听端口关联的pid。在go里面，一番了解后，发现本身os.exec.command是可以返回执行命令的pid的，于是尝试了以下，发现tomcat可以正常启动，其他逻辑也正常，但是有一个问题，MAINPID不是JVM的pid，而是catalina.sh这个脚本的pid。相当于我们需要获取脚本fork的子进程的pid。</p>
 <p>经过一番搜索，在执行command的时候，可以让系统附加执行setgpid，这样可以让catalina.sh和jvm进程之间属于同一个group pid，而通过使用ps和grep命令，通过列出的pgid列筛选出实际的jvm的pid，来配置了正确的MAINPID。</p>
 <h3><a href="https://github.com/xiaotuanyu120/systemd-watchdog-tomcat">源码地址</a></h3>
+<h3>扩展阅读</h3>
+<ul>
+<li><a href="https://github.com/systemd/systemd/issues/2739">关于nonroot用户运行systemd的issue</a></li>
+</ul>
       </div>
      </div>
      <div class="row docs-byline bottom">
