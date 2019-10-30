@@ -1,10 +1,10 @@
 ---
-title: vagrant: 5.1.0 开机挂载错误
+title: vagrant: 5.1.0 安装virtualbox的guest插件
 date: 2018-02-06 17:53:00
 categories: devops/vagrant
 tags: [devops,vagrant]
 ---
-### vagrant: 5.0.0 开机挂载错误
+### vagrant: 5.1.0 安装virtualbox的guest插件
 
 ---
 
