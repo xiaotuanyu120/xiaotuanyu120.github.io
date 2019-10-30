@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -201,11 +206,12 @@
 </blockquote>
 <hr>
 <h3>2. 解决办法</h3>
-<div class="highlight"><pre><span></span>yum install gcc make kernel-devel kernel-headers
-<span class="nb">cd</span> /opt/VBoxGuestAdditions-5.0.26/init
-sudo ./vboxadd setup
+<div class="highlight"><pre><span></span>yum install gcc make kernel kernel-devel kernel-headers -y
+<span class="nb">cd</span> /opt/VBoxGuestAdditions-*/init
+./vboxadd setup
 </pre></div>
 <blockquote><p>然后在host中执行"vagrant reload"即可</p>
+<p>注意查看kernel版本和kernel-headers、kernel-devel的版本是否匹配，如果非匹配，可以查看新安装的kernel是否和其匹配，如果匹配，重启一下系统再次检查即可。</p>
 </blockquote>
       </div>
      </div>
@@ -261,6 +267,11 @@ sudo ./vboxadd setup
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -303,6 +314,20 @@ sudo ./vboxadd setup
        </a>
        <ul>
            <li class="toctree-l1">
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/devops/vagrant">
               vagrant
             </a>
@@ -344,7 +369,7 @@ sudo ./vboxadd setup
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/vagrant/vagrant_5.1.0_virtualbox_guest_additions_error.html">
-                vagrant: 5.1.0 开机挂载错误
+                vagrant: 5.1.0 安装virtualbox的guest插件
               </a>
              </li>
              <li class="toctree-l2">
@@ -357,20 +382,6 @@ sudo ./vboxadd setup
            <li class="toctree-l1">
             <a class="reference internal" href="/devops/git">
               git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
             </a>
             <ul>
             </ul>
