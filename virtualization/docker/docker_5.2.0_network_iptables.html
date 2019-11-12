@@ -196,158 +196,113 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
-                1.1.0 安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
-                1.1.0.1 install docker on mac
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
-                1.1.1 二进制文件安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
-                1.1.2 为docker创建docker0以外的网桥
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
-                1.2.0 基础命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
-                1.2.1 Dockerfile
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
-                1.2.2 docker容器时间不准解决方案
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
-                1.2.4 docker容器安装microsoft truetype 字体
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
-                2.1.1 镜像-查找与下载镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
-                2.1.2 镜像-镜像信息的查看与管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
-                2.1.3 镜像-镜像的删除
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
-                2.1.4 镜像-镜像的导入和导出
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
-                2.1.5 镜像-镜像的上传
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
-                2.1.6 镜像-build 镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
-                2.2.3 Dockerfile entrypoint with script
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
-                3.1.0 docker封装nginx服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
-                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
-                3.3.0 docker nginx with multiple sites
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
-                4.0.0 docker 本地registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
-                4.0.1 docker 本地registry 使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
-                4.1.0 在docker中运行gitlab ce
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
-                5.2.0 网络：docker中的iptables
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
-                docker-compose 2.1.0 network
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>5.2.0 网络：docker中的iptables</h3>
+<hr>
+<h3>0. 问题背景</h3>
+<p>启动了一个tomcat的docker容器，将其端口映射到宿主机的80端口上</p>
+<div class="highlight"><pre><span></span>docker run -itd --rm -p <span class="m">80</span>:8080 --name tomcat tomcat:jdk8
+</pre></div>
+<p>然后按照我们的生产惯例，需要对80端口做防火墙限制，于是按照经验，增加了下面这条规则</p>
+
+<pre><code>iptables -A INPUT -s 172.16.0.0/24 -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A INPUT -j REJECT --reject-with icmp-host-prohibited</code></pre>
+<blockquote><p>允许172.16.0.0/24的来源ip访问80端口，禁止其他来源ip对任何ip的访问</p>
+</blockquote>
+<p>结果奇怪的事情发生了，经过测试，刚才设想的规则竟然没有生效，任何来源ip都可以访问80端口。于是觉得自己应该详细研究一下iptables和docker之间到底发生了什么了。</p>
+<h3>1. docker and iptables</h3>
+<p>先来研究一下docker和iptables的关系，首先，在开始之前，请先阅读以下两个文档</p>
+<ul>
+<li><a href="http://ipset.netfilter.org/iptables.man.html">iptables-manual</a></li>
+<li><a href="https://docs.docker.com/network/iptables/">docker and iptables</a></li>
+</ul>
+<p>iptables本身，最有价值的是一张图，关于这个图，大家可以搜索iptables关键字，然后查看图片，就会有很多，在这里不赘述。里面重点如下</p>
+<ol>
+<li>iptables比较重要的几个表：raw，nat，filter，mangle</li>
+<li>每个表里面有很多链，有默认链，也可以增加自定义链</li>
+<li>一个tcp包到达后，并不是走完一个表的所有链然后再去走另外一个包里面的所有链，而是根据链的顺序来走，详细可以参照你查到的iptables图片</li>
+</ol>
+<p>大概先说一下docker官方文档里面讲的iptables相关内容</p>
+<ol>
+<li>docker会把iptables规则写到DOCKER链里面</li>
+<li>如果需要增加自己的规则，请写到DOCKER-USER链中</li>
+<li>默认docker是会自动管理iptables规则，我们可以选择关闭它，然后手动管理（如果你手动管理了，那真是脑子有问题了）</li>
+</ol>
+<h3>2. 实际分析</h3>
+<p>理论看完了，那么咱们来实际分析问题，既然docker官方推荐咱们使用DOCKER-USER链，那咱们试试写入如下规则</p>
+<div class="highlight"><pre><span></span><span class="c1"># 咱们先drop所有的80的包看见效果</span>
+iptables -I DOCKER-USER -t tcp -m tcp --dport <span class="m">80</span> -j DROP
+</pre></div>
+<p>结果让我大跌眼镜，WHAT？我竟然还可以访问？为啥子来？</p>
+<p>冷静，冷静，首先先看看现在的iptables规则</p>
+<div class="highlight"><pre><span></span>iptables-save
+<span class="c1"># 输出了两部分</span>
+<span class="c1"># 第一部分，nat表，部分内容如下</span>
+*nat
+:PREROUTING ACCEPT <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:INPUT ACCEPT <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:OUTPUT ACCEPT <span class="o">[</span><span class="m">4</span>:296<span class="o">]</span>
+:POSTROUTING ACCEPT <span class="o">[</span><span class="m">4</span>:296<span class="o">]</span>
+:DOCKER - <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+-A PREROUTING -m addrtype --dst-type LOCAL -j DOCKER
+-A OUTPUT ! -d <span class="m">127</span>.0.0.0/8 -m addrtype --dst-type LOCAL -j DOCKER
+-A POSTROUTING -s <span class="m">172</span>.28.0.0/16 ! -o br-0be676646756 -j MASQUERADE
+-A POSTROUTING -s <span class="m">172</span>.17.0.0/16 ! -o docker0 -j MASQUERADE
+-A POSTROUTING -s <span class="m">172</span>.17.0.2/32 -d <span class="m">172</span>.17.0.2/32 -p tcp -m tcp --dport <span class="m">8080</span> -j MASQUERADE
+-A DOCKER -i br-0be676646756 -j RETURN
+-A DOCKER -i docker0 -j RETURN
+-A DOCKER ! -i docker0 -p tcp -m tcp --dport <span class="m">80</span> -j DNAT --to-destination <span class="m">172</span>.17.0.2:8080
+COMMIT
+<span class="c1"># Completed on Tue Nov 12 06:12:30 2019</span>
+
+<span class="c1"># 第二部分，filter表，这部分内容不重要，可以忽略，只要关注上面的nat表内容即可</span>
+*filter
+:INPUT ACCEPT <span class="o">[</span><span class="m">69</span>:4048<span class="o">]</span>
+:FORWARD DROP <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:OUTPUT ACCEPT <span class="o">[</span><span class="m">37</span>:2916<span class="o">]</span>
+:DOCKER - <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:DOCKER-ISOLATION-STAGE-1 - <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:DOCKER-ISOLATION-STAGE-2 - <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+:DOCKER-USER - <span class="o">[</span><span class="m">0</span>:0<span class="o">]</span>
+......
+COMMIT
+<span class="c1"># Completed on Tue Nov 12 06:12:30 2019</span>
+</pre></div>
+<p>发现问题了，WTF，原来在nat表里面的链PREROUTING，将所有LOCAL类型的都转给了nat中的DOCKER链</p>
+
+<pre><code>iptables -I DOCKER-USER -p tcp -m tcp --dport 80 -j DROP</code></pre>
+<p>然后在nat表的DOCKER链中，对来源ip进行了nat转换，变成了<code>容器ip:8080</code></p>
+
+<pre><code>-A DOCKER ! -i docker0 -p tcp -m tcp --dport 80 -j DNAT --to-destination 172.17.0.2:8080</code></pre>
+<p>那么问题就好理解了，因为当包到达INPUT表中的DOCKER-USER链时，它已经不是访问80端口了，已经是8080了，我们对80做的限制，当然是无效的。</p>
+<p>汗，既然找到了原因，那么再来分析一下我们的需求</p>
+<ul>
+<li>开放程序给部分ip</li>
+<li>禁止其他所有的来源ip对该程序的访问</li>
+</ul>
+<p>这样的话，我们可以增加以下规则（提前先清除掉之前增加的所有自定义规则）</p>
+<div class="highlight"><pre><span></span>iptables -I DOCKER-USER -p tcp -j DROP
+iptables -I DOCKER-USER -s <span class="m">172</span>.16.0.0/24 -p tcp -m tcp --dport <span class="m">8080</span> -j ACCEPT
+</pre></div>
+<p>然后事实再一次打脸，WTF，白名单内的我竟然无法访问了。汗，仔细看了以下，原来我这样的设置，是禁调了很多docker默认的容器间的、容器和宿主机网桥的网络规则。</p>
+<p>如果要修复这个问题，我们可以配置好各个容器网卡之间的访问规则，然后再配置容器网卡和宿主机网桥之间的规则（事实上我们现在就是这样干的）。但是这样有个问题，容器网卡的名称，都是随机的啊亲，难道每一次创建虚拟网卡后都来改一遍规则吗？</p>
+<p>那么我还有一个办法，我手动创建容器网络，给它们指定网段，到时候开通规则直接网段间允许所有不就可以啦，美滋滋。</p>
+<p>但是冷静了5s之后，我还是觉得有点不对劲。再过了5s思考之后，我知道了不对劲的原因，这样一点都不完美啊，docker自动创建的规则和自定义的规则包括网络的设置交叉在一起，逻辑一点不清晰。难道就不能有更好的解决方案吗？</p>
+<h3>3. 最终方案</h3>
+<p>经过思考之后，发现，其实在input表里面的DOCKER-USER链中做规则限制，已经进入了容器的访问阶段了，既然在这个阶段设定规则如此复杂，那么如果在它的前一个阶段来配置自定义规则呢？</p>
+<p>在nat表中，我们增加以下规则</p>
+<div class="highlight"><pre><span></span><span class="c1"># 在表nat中创建新的链DOCKER-FILTER</span>
+iptables -t nat -N DOCKER-FILTER
+
+<span class="c1"># 禁止所有nat表中的访问，然后将所有LOCAL流量导到DOCKER-FILTER中</span>
+iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j RETURN
+iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j DOCKER-FILTER
+</pre></div>
+<p>这样的话，nat表中的流量变成了PREROUTING -&gt; DOCKER-FILTER -&gt; 禁止</p>
+<p>然后，我们再将自己允许的规则写入</p>
+<div class="highlight"><pre><span></span>iptables -t nat -A DOCKER-FILTER -p tcp -m tcp --dport <span class="m">80</span> -m state --state NEW,ESTABLISHED -j DOCKER
+</pre></div>
+<p>这样的话，nat表中的允许的流量变成了PREROUTING -&gt; DOCKER-FILTER -&gt; DOCKER，nat表中禁止的流量变成了PREROUTING -&gt; DOCKER-FILTER -&gt; 禁止。</p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
