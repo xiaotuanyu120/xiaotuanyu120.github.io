@@ -117,7 +117,7 @@ iptables -I DOCKER-USER -s 172.16.0.0/24 -p tcp -m tcp --dport 8080 -j ACCEPT
 iptables -t nat -N DOCKER-FILTER
 
 # 禁止所有nat表中的访问，然后将所有LOCAL流量导到DOCKER-FILTER中
-iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j RETURN
+iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j RETURN # 当我们在一个内置的链中使用了RETURN，那么，默认的策略会应用到这个包上，PREROUTING默认的策略是ACCEPT，不过不用担心，因为只要它不去DOCKER链，依然是无法访问程序的
 iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j DOCKER-FILTER
 ```
 这样的话，nat表中的流量变成了PREROUTING -> DOCKER-FILTER -> 禁止
