@@ -196,90 +196,123 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.0.0_install_war.html">
-                jenkins: 1.0.0 使用war包启动jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">
-                jenkins: 1.1.0 使用二进制文件安装jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.2.0_install_docker.html">
-                jenkins: 1.2.0 在docker中运行jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.0.0_config_basic.html">
-                jenkins: 2.0.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">
-                jenkins: 2.1.0 git+maven+jdk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">
-                jenkins: 2.2.0 配置JENKINS_HOME
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">
-                jenkins: 2.3.0 修改slave节点的环境变量
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_3.1.0_management_master_and_slave.html">
-                jenkins: 3.1.0 管理slave节点
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/sonarqube">
-              sonarqube
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>sonarqube: 1.0.0 installation - docker</h3>
+<hr>
+<h3>1. 参考链接</h3>
+<ul>
+<li><a href="https://hub.docker.com/_/sonarqube/">sonarqube - dockerhub docs</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-prod-prerequisites">elasticsearch - system requirement</a></li>
+</ul>
+<h3>2. docker宿主机系统环境配置要求</h3>
+<div class="highlight"><pre><span></span><span class="c1"># STEP: sysctl config</span>
+<span class="c1"># set sysctl config permanently</span>
+sed -i <span class="s1">&#39;/vm.max_map_count=.*$/ d&#39;</span> /etc/sysctl.conf
+sed -i <span class="s1">&#39;fs.file-max=.*$/ d&#39;</span> /etc/sysctl.conf
+<span class="nb">echo</span> <span class="s2">&quot;vm.max_map_count=262144&quot;</span> &gt;&gt; /etc/sysctl.conf
+<span class="nb">echo</span> <span class="s2">&quot;fs.file-max=65536&quot;</span> &gt;&gt; /etc/sysctl.conf
+
+<span class="c1"># set vm.max_map_count on a live system</span>
+sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span>
+sysctl -w fs.file-max<span class="o">=</span><span class="m">65536</span>
+
+<span class="c1"># STEP: disable swap</span>
+<span class="c1"># disable swap on a live system</span>
+swapoff -a
+<span class="c1"># disable swap permanantly</span>
+sed -ri <span class="s1">&#39;s/^#?(.*)(swap.*swap)(.*$)/#\1\2\3/g&#39;</span> /etc/fstab
+
+
+<span class="c1"># STEP: increase limit</span>
+<span class="c1"># increase limit on a live system</span>
+<span class="nb">ulimit</span> -n <span class="m">65536</span>
+<span class="nb">ulimit</span> -u <span class="m">4096</span>
+<span class="c1"># increase limit permanantly</span>
+sed -i <span class="s1">&#39;/^\*.*soft.*nofile/ d&#39;</span> /etc/security/limits.conf
+sed -i <span class="s1">&#39;/^\*.*hard.*nofile/ d&#39;</span> /etc/security/limits.conf
+sed -i <span class="s1">&#39;/^\*.*soft.*nproc/ d&#39;</span> /etc/security/limits.conf
+sed -i <span class="s1">&#39;/^\*.*hard.*nproc/ d&#39;</span> /etc/security/limits.conf
+<span class="nb">echo</span> <span class="s2">&quot;</span>
+<span class="s2">*               soft    nofile           65536</span>
+<span class="s2">*               hard    nofile           65536</span>
+<span class="s2">*               soft    nproc            4096</span>
+<span class="s2">*               hard    nproc            4096&quot;</span> &gt;&gt; /etc/security/limits.conf
+
+sed -ri <span class="s1">&#39;s/^#?(DefaultLimitNOFILE)=(.*)$/\1=65536/g&#39;</span> /etc/systemd/system.conf
+sed -ri <span class="s1">&#39;s/^#?(DefaultLimitNPROC)=(.*)$/\1=4096/g&#39;</span> /etc/systemd/system.conf
+systemctl daemon-reexec
+</pre></div>
+<h3>3. sonarqube启动</h3>
+<h4>1) 初始化sonarqube</h4>
+<p>使用下面的命令启动sonarqube。这将初始化所有sonarqube数据(复制默认插件，创建Elasticsearch数据文件夹，
+创建sonar.properties配置文件)。查看日志，一旦容器正确启动，就可以强制退出(ctrl+c)并继续进行下一步。</p>
+<div class="highlight"><pre><span></span><span class="c1"># create folder</span>
+<span class="nv">DOCKER_DATA_DIR</span><span class="o">=</span>/data/docker
+<span class="nv">SONARQUBE_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/data/sonarqube
+<span class="nv">SONARQUBE_CONF_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/conf
+<span class="nv">SONARQUBE_LOG_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/logs
+<span class="nv">SONARQUBE_EXT_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/extensions
+<span class="nv">SONARQUBE_DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/data
+<span class="nv">SONARQUBE_YML_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/yml
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_CONF_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_LOG_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_EXT_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_DATA_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_YML_DIR</span><span class="si">}</span>
+
+<span class="c1"># 一次性运行sonarqube，初始化数据</span>
+docker run --rm <span class="se">\</span>
+  -p <span class="m">9000</span>:9000 <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_CONF_DIR</span><span class="si">}</span>:/opt/sonarqube/conf <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_EXT_DIR</span><span class="si">}</span>:/opt/sonarqube/extensions <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_LOG_DIR</span><span class="si">}</span>:/opt/sonarqube/logs <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_DATA_DIR</span><span class="si">}</span>:/opt/sonarqube/data <span class="se">\</span>
+  sonarqube
+</pre></div>
+<h4>2) 配置sonarqube</h4>
+<p>修改<code>sonar.properties</code>修改数据库连接url。配置文件中有各个支持数据库的配置模板，删除想要的数据库的配置模板配置的注释即可。</p>
+
+<pre><code>#Example for PostgreSQL
+#也可以不在这里配置，在下面的docker-compose.yml文件中传入环境变量来配置
+sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube</code></pre>
+<blockquote><p>根据<a href="https://jira.sonarsource.com/browse/SONAR-12501">SONAR-12501</a>,不要在<code>sonar.properties</code>中配置<code>sonar.jdbc.username</code>和<code>sonar.jdbc.password</code>。要使用环境变量替代，在version 8中，这个bug被修复</p>
+</blockquote>
+<h4>3) 启动sonarqube</h4>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; docker &gt; ${SONARQUBE_YML_DIR}/docker-compose.yml</span>
+<span class="s">version: &#39;2.2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  sonarqube:</span>
+<span class="s">    image: sonarqube:7.9-community</span>
+<span class="s">    container_name: sonarqube</span>
+<span class="s">    environment:</span>
+<span class="s">      - sonar.jdbc.username=sonar</span>
+<span class="s">      - sonar.jdbc.password=sonar</span>
+<span class="s">      - sonar.jdbc.url=jdbc:postgresql://localhost/sonar</span>
+<span class="s">    ulimits:</span>
+<span class="s">      memlock:</span>
+<span class="s">        soft: -1</span>
+<span class="s">        hard: -1</span>
+<span class="s">      nproc: 4096</span>
+<span class="s">      nofile:</span>
+<span class="s">        soft: 65536</span>
+<span class="s">        hard: 65536</span>
+<span class="s">    volumes:</span>
+<span class="s">      - ${SONARQUBE_CONF_DIR}:/opt/sonarqube/conf</span>
+<span class="s">      - ${SONARQUBE_EXT_DIR}:/opt/sonarqube/extensions</span>
+<span class="s">      - ${SONARQUBE_LOG_DIR}:/opt/sonarqube/logs</span>
+<span class="s">      - ${SONARQUBE_DATA_DIR}:/opt/sonarqube/data</span>
+<span class="s">    ports:</span>
+<span class="s">      - 9000:9000</span>
+<span class="s">EOF</span>
+
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">SONARQUBE_YML_DIR</span><span class="si">}</span>
+docker-compose up -d
+</pre></div>
+<blockquote><p>启动后，默认的用户名和密码是<code>admin:admin</code></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -391,46 +424,6 @@
               jenkins
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.0.0_install_war.html">
-                jenkins: 1.0.0 使用war包启动jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">
-                jenkins: 1.1.0 使用二进制文件安装jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_1.2.0_install_docker.html">
-                jenkins: 1.2.0 在docker中运行jenkins
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.0.0_config_basic.html">
-                jenkins: 2.0.0 基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">
-                jenkins: 2.1.0 git+maven+jdk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">
-                jenkins: 2.2.0 配置JENKINS_HOME
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">
-                jenkins: 2.3.0 修改slave节点的环境变量
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/jenkins/jenkins_3.1.0_management_master_and_slave.html">
-                jenkins: 3.1.0 管理slave节点
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -452,6 +445,11 @@
               sonarqube
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.0.0_installation.html">
+                sonarqube: 1.0.0 installation - docker
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>
