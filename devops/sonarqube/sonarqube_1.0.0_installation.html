@@ -247,29 +247,20 @@ systemctl daemon-reexec
 创建sonar.properties配置文件)。查看日志，一旦容器正确启动，就可以强制退出(ctrl+c)并继续进行下一步。</p>
 <div class="highlight"><pre><span></span><span class="c1"># create folder</span>
 <span class="nv">DOCKER_DATA_DIR</span><span class="o">=</span>/data/docker
-<span class="nv">SONARQUBE_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/data/sonarqube
-<span class="nv">SONARQUBE_CONF_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/conf
-<span class="nv">SONARQUBE_LOG_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/logs
-<span class="nv">SONARQUBE_EXT_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/extensions
-<span class="nv">SONARQUBE_DATA_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/data
-<span class="nv">SONARQUBE_YML_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>/yml
+<span class="nv">SONARQUBE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/data/sonarqube
+<span class="nv">SONARQUBE_DB</span><span class="o">=</span><span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>/data/postgres
 
 mkdir -p <span class="si">${</span><span class="nv">DOCKER_DATA_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_CONF_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_LOG_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_EXT_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_DATA_DIR</span><span class="si">}</span>
-mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_YML_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_HOME</span><span class="si">}</span>/<span class="o">{</span>conf,logs,extensions,data,yml<span class="o">}</span>
+mkdir -p <span class="si">${</span><span class="nv">SONARQUBE_DB</span><span class="si">}</span>/data
 
 <span class="c1"># 一次性运行sonarqube，初始化数据</span>
 docker run --rm <span class="se">\</span>
   -p <span class="m">9000</span>:9000 <span class="se">\</span>
-  -v <span class="si">${</span><span class="nv">SONARQUBE_CONF_DIR</span><span class="si">}</span>:/opt/sonarqube/conf <span class="se">\</span>
-  -v <span class="si">${</span><span class="nv">SONARQUBE_EXT_DIR</span><span class="si">}</span>:/opt/sonarqube/extensions <span class="se">\</span>
-  -v <span class="si">${</span><span class="nv">SONARQUBE_LOG_DIR</span><span class="si">}</span>:/opt/sonarqube/logs <span class="se">\</span>
-  -v <span class="si">${</span><span class="nv">SONARQUBE_DATA_DIR</span><span class="si">}</span>:/opt/sonarqube/data <span class="se">\</span>
-  sonarqube
+  -v <span class="si">${</span><span class="nv">SONARQUBE_HOME</span><span class="si">}</span>/conf:/opt/sonarqube/conf <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_HOME</span><span class="si">}</span>/extensions:/opt/sonarqube/extensions <span class="se">\</span>
+  -v <span class="si">${</span><span class="nv">SONARQUBE_HOME</span><span class="si">}</span>/data:/opt/sonarqube/data <span class="se">\</span>
+  sonarqube:8.0-community-beta --init
 </pre></div>
 <h4>2) 配置sonarqube</h4>
 <p>修改<code>sonar.properties</code>修改数据库连接url。配置文件中有各个支持数据库的配置模板，删除想要的数据库的配置模板配置的注释即可。</p>
@@ -280,16 +271,19 @@ sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube</code></pre>
 <blockquote><p>根据<a href="https://jira.sonarsource.com/browse/SONAR-12501">SONAR-12501</a>,不要在<code>sonar.properties</code>中配置<code>sonar.jdbc.username</code>和<code>sonar.jdbc.password</code>。要使用环境变量替代，在version 8中，这个bug被修复</p>
 </blockquote>
 <h4>3) 启动sonarqube</h4>
-<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; docker &gt; ${SONARQUBE_YML_DIR}/docker-compose.yml</span>
+<div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt; EOF &gt; docker &gt; ${SONARQUBE_HOME}/yml/docker-compose.yml</span>
 <span class="s">version: &#39;2.2&#39;</span>
 <span class="s">services:</span>
 <span class="s">  sonarqube:</span>
 <span class="s">    image: sonarqube:7.9-community</span>
 <span class="s">    container_name: sonarqube</span>
+<span class="s">    restart: unless-stopped</span>
+<span class="s">    depends_on:</span>
+<span class="s">      - sonarqube_db</span>
 <span class="s">    environment:</span>
 <span class="s">      - sonar.jdbc.username=sonar</span>
 <span class="s">      - sonar.jdbc.password=sonar</span>
-<span class="s">      - sonar.jdbc.url=jdbc:postgresql://localhost/sonar</span>
+<span class="s">      - sonar.jdbc.url=jdbc:postgresql://sonarqube_db:5432/sonar</span>
 <span class="s">    ulimits:</span>
 <span class="s">      memlock:</span>
 <span class="s">        soft: -1</span>
@@ -299,15 +293,24 @@ sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube</code></pre>
 <span class="s">        soft: 65536</span>
 <span class="s">        hard: 65536</span>
 <span class="s">    volumes:</span>
-<span class="s">      - ${SONARQUBE_CONF_DIR}:/opt/sonarqube/conf</span>
-<span class="s">      - ${SONARQUBE_EXT_DIR}:/opt/sonarqube/extensions</span>
-<span class="s">      - ${SONARQUBE_LOG_DIR}:/opt/sonarqube/logs</span>
-<span class="s">      - ${SONARQUBE_DATA_DIR}:/opt/sonarqube/data</span>
+<span class="s">      - ${SONARQUBE_HOME}/conf:/opt/sonarqube/conf</span>
+<span class="s">      - ${SONARQUBE_HOME}/extensions:/opt/sonarqube/extensions</span>
+<span class="s">      - ${SONARQUBE_HOME}/logs:/opt/sonarqube/logs</span>
+<span class="s">      - ${SONARQUBE_HOME}/data:/opt/sonarqube/data</span>
 <span class="s">    ports:</span>
 <span class="s">      - 9000:9000</span>
+<span class="s">  sonarqube_db:</span>
+<span class="s">    image: postgres</span>
+<span class="s">    container_name: sonarqube_db</span>
+<span class="s">    restart: unless-stopped</span>
+<span class="s">    environment:</span>
+<span class="s">      - POSTGRES_USER=sonar</span>
+<span class="s">      - POSTGRES_PASSWORD=sonar</span>
+<span class="s">    volumes:</span>
+<span class="s">      - ${SONARQUBE_DB}/data:/var/lib/postgresql/data</span>
 <span class="s">EOF</span>
 
-<span class="nb">cd</span> <span class="si">${</span><span class="nv">SONARQUBE_YML_DIR</span><span class="si">}</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">SONARQUBE_HOME</span><span class="si">}</span>/yml
 docker-compose up -d
 </pre></div>
 <blockquote><p>启动后，默认的用户名和密码是<code>admin:admin</code></p>
