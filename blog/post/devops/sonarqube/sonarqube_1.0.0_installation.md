@@ -59,29 +59,20 @@ systemctl daemon-reexec
 ``` bash
 # create folder
 DOCKER_DATA_DIR=/data/docker
-SONARQUBE_DIR=${DOCKER_DATA_DIR}/data/sonarqube
-SONARQUBE_CONF_DIR=${SONARQUBE_DIR}/conf
-SONARQUBE_LOG_DIR=${SONARQUBE_DIR}/logs
-SONARQUBE_EXT_DIR=${SONARQUBE_DIR}/extensions
-SONARQUBE_DATA_DIR=${SONARQUBE_DIR}/data
-SONARQUBE_YML_DIR=${SONARQUBE_DIR}/yml
+SONARQUBE_HOME=${DOCKER_DATA_DIR}/data/sonarqube
+SONARQUBE_DB=${DOCKER_DATA_DIR}/data/postgres
 
 mkdir -p ${DOCKER_DATA_DIR}
-mkdir -p ${SONARQUBE_DIR}
-mkdir -p ${SONARQUBE_CONF_DIR}
-mkdir -p ${SONARQUBE_LOG_DIR}
-mkdir -p ${SONARQUBE_EXT_DIR}
-mkdir -p ${SONARQUBE_DATA_DIR}
-mkdir -p ${SONARQUBE_YML_DIR}
+mkdir -p ${SONARQUBE_HOME}/{conf,logs,extensions,data,yml}
+mkdir -p ${SONARQUBE_DB}/data
 
 # 一次性运行sonarqube，初始化数据
 docker run --rm \
   -p 9000:9000 \
-  -v ${SONARQUBE_CONF_DIR}:/opt/sonarqube/conf \
-  -v ${SONARQUBE_EXT_DIR}:/opt/sonarqube/extensions \
-  -v ${SONARQUBE_LOG_DIR}:/opt/sonarqube/logs \
-  -v ${SONARQUBE_DATA_DIR}:/opt/sonarqube/data \
-  sonarqube
+  -v ${SONARQUBE_HOME}/conf:/opt/sonarqube/conf \
+  -v ${SONARQUBE_HOME}/extensions:/opt/sonarqube/extensions \
+  -v ${SONARQUBE_HOME}/data:/opt/sonarqube/data \
+  sonarqube:8.0-community-beta --init
 ```
 
 #### 2) 配置sonarqube
@@ -95,16 +86,19 @@ sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
 
 #### 3) 启动sonarqube
 ``` bash
-cat << EOF > docker > ${SONARQUBE_YML_DIR}/docker-compose.yml
+cat << EOF > docker > ${SONARQUBE_HOME}/yml/docker-compose.yml
 version: '2.2'
 services:
   sonarqube:
     image: sonarqube:7.9-community
     container_name: sonarqube
+    restart: unless-stopped
+    depends_on:
+      - sonarqube_db
     environment:
       - sonar.jdbc.username=sonar
       - sonar.jdbc.password=sonar
-      - sonar.jdbc.url=jdbc:postgresql://localhost/sonar
+      - sonar.jdbc.url=jdbc:postgresql://sonarqube_db:5432/sonar
     ulimits:
       memlock:
         soft: -1
@@ -114,15 +108,24 @@ services:
         soft: 65536
         hard: 65536
     volumes:
-      - ${SONARQUBE_CONF_DIR}:/opt/sonarqube/conf
-      - ${SONARQUBE_EXT_DIR}:/opt/sonarqube/extensions
-      - ${SONARQUBE_LOG_DIR}:/opt/sonarqube/logs
-      - ${SONARQUBE_DATA_DIR}:/opt/sonarqube/data
+      - ${SONARQUBE_HOME}/conf:/opt/sonarqube/conf
+      - ${SONARQUBE_HOME}/extensions:/opt/sonarqube/extensions
+      - ${SONARQUBE_HOME}/logs:/opt/sonarqube/logs
+      - ${SONARQUBE_HOME}/data:/opt/sonarqube/data
     ports:
       - 9000:9000
+  sonarqube_db:
+    image: postgres
+    container_name: sonarqube_db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ${SONARQUBE_DB}/data:/var/lib/postgresql/data
 EOF
 
-cd ${SONARQUBE_YML_DIR}
+cd ${SONARQUBE_HOME}/yml
 docker-compose up -d
 ```
 > 启动后，默认的用户名和密码是`admin:admin`
