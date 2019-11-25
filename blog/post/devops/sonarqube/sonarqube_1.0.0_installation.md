@@ -96,7 +96,9 @@ services:
     depends_on:
       - sonarqube_db
     environment:
-      - sonar.web.javaOpts=-server -Xmx4096m -Xms4096m
+      - sonar.web.javaOpts=-server -Xmx2048m -Xms2048m
+      - sonar.ce.javaOpts=-server -Xmx4096m -Xms4096m
+      - sonar.search.javaOpts=-server -Xmx4096m -Xms4096m
       - sonar.jdbc.username=sonar
       - sonar.jdbc.password=sonar
       - sonar.jdbc.url=jdbc:postgresql://sonarqube_db:5432/sonar

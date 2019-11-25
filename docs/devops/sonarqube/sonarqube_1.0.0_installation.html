@@ -281,7 +281,9 @@ sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube</code></pre>
 <span class="s">    depends_on:</span>
 <span class="s">      - sonarqube_db</span>
 <span class="s">    environment:</span>
-<span class="s">      - sonar.web.javaOpts=-server -Xmx4096m -Xms4096m</span>
+<span class="s">      - sonar.web.javaOpts=-server -Xmx2048m -Xms2048m</span>
+<span class="s">      - sonar.ce.javaOpts=-server -Xmx4096m -Xms4096m</span>
+<span class="s">      - sonar.search.javaOpts=-server -Xmx4096m -Xms4096m</span>
 <span class="s">      - sonar.jdbc.username=sonar</span>
 <span class="s">      - sonar.jdbc.password=sonar</span>
 <span class="s">      - sonar.jdbc.url=jdbc:postgresql://sonarqube_db:5432/sonar</span>
