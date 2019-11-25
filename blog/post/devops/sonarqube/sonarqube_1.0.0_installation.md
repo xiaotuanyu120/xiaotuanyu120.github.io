@@ -90,7 +90,7 @@ cat << EOF > docker > ${SONARQUBE_HOME}/yml/docker-compose.yml
 version: '2.2'
 services:
   sonarqube:
-    image: sonarqube:7.9-community
+    image: sonarqube:8.0-community-beta
     container_name: sonarqube
     restart: unless-stopped
     depends_on:
