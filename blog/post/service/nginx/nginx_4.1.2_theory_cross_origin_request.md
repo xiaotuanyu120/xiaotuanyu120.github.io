@@ -24,6 +24,14 @@ tags: [nginx,cors]
 location ~* \.(ttf|ttc|otf|eot|woff|font.css)$ {
     # 允许谁跨域访问，不推荐使用*,不安全。
     add_header Access-Control-Allow-Origin  http://backend.test.com;
+    add_header Access-Control-Allow-Credentials true;
+    add_header Access-Control-Allow-Headers Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,X-Requested-With;
+    add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+
+    if ($request_method = 'OPTIONS')
+    {
+        return 204;
+    }
 }
 
 # 针对多个域名放开
@@ -31,8 +39,25 @@ location ~* \.(ttf|ttc|otf|eot|woff|font.css)$ {
     if ($http_origin = 'http://backend.test.com') {
         add_header 'Access-Control-Allow-Origin' "$http_origin";
     }
+
     if ($http_origin = 'http://wap.test.com') {
         add_header 'Access-Control-Allow-Origin' "$http_origin";
     }
+
+    add_header Access-Control-Allow-Credentials true;
+    add_header Access-Control-Allow-Headers Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,X-Requested-With;
+    add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+
+    if ($request_method = 'OPTIONS')
+    {
+        return 204;
+    }
 }
 ```
+
+### 3. 报错
+报错信息
+```
+Access to XMLHttpRequest at 'https://some_domain' from origin 'https://some_domain' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header contains multiple values 'https://some_domain, http://another_domain', but only one is allowed.
+```
+不要怀疑，这是因为你做了重复的跨域设置
