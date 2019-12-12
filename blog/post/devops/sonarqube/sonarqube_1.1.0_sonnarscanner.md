@@ -1,0 +1,34 @@
+---
+title: sonarqube: 1.1.0 sonarscanner扫描java代码
+date: 2019-12-12 14:05:00
+categories: devops/sonarqube
+tags: [devops,sonarqube,java]
+---
+### sonarqube: 1.1.0 sonarscanner扫描java代码
+
+---
+
+### 1. sonarscanner简介
+参考链接：[sonarscanner官方文档](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/)
+
+其实sonarscanner只是sonarqube的一种代码扫描的方式，比较通用的方式。如果你用的是maven、gradle啥的，可以用对应的工具。恰好我就遇到了这样的project。所以只能使用最通用的方式，sonarscanner。
+
+sonarscanner就是你没有特定的scanner时，使用的一个代码的scanner。
+
+### 2. sonnarscanner使用
+``` bash
+# 例子
+sonar-scanner \
+  -Dsonar.host.url=http://sonarqube-domain:9000 \
+  -Dsonar.projectKey=project-name \
+  -Dsonar.sources=./src \
+  -Dsonar.sourceEncoding=UTF-8 \
+  -Dsonar.java.binaries=./path/to/classes \
+  -Dsonar.java.libraries=./path/to/**/*.jar
+```
+> 重点：
+> - java代码必须编译过后，使用sonar.java.binaries指向编译后的classes目录，然后sonar.sources指向源码目录，才可以正常检测
+> - 有些教程让我们指定sonar.languages，这个选项已经废弃了，sonar会自己检测源码是什么类型
+
+### 3. `ERROR: Error during SonarQube Scanner execution java.lang.IllegalStateException: No files nor directories matching`
+这个错误。。。其实就是因为没有提前编译java代码，所以classes目录不存在，导致报错。提前编译好java代码即可

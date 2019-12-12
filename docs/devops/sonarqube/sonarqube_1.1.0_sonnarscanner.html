@@ -196,67 +196,31 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/sonarqube">
-              sonarqube
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.0.0_installation.html">
-                sonarqube: 1.0.0 installation - docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.1.0_sonnarscanner.html">
-                sonarqube: 1.1.0 sonarscanner扫描java代码
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/arthas">
-              arthas
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>sonarqube: 1.1.0 sonarscanner扫描java代码</h3>
+<hr>
+<h3>1. sonarscanner简介</h3>
+<p>参考链接：<a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/">sonarscanner官方文档</a></p>
+<p>其实sonarscanner只是sonarqube的一种代码扫描的方式，比较通用的方式。如果你用的是maven、gradle啥的，可以用对应的工具。恰好我就遇到了这样的project。所以只能使用最通用的方式，sonarscanner。</p>
+<p>sonarscanner就是你没有特定的scanner时，使用的一个代码的scanner。</p>
+<h3>2. sonnarscanner使用</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 例子</span>
+sonar-scanner <span class="se">\</span>
+  -Dsonar.host.url<span class="o">=</span>http://sonarqube-domain:9000 <span class="se">\</span>
+  -Dsonar.projectKey<span class="o">=</span>project-name <span class="se">\</span>
+  -Dsonar.sources<span class="o">=</span>./src <span class="se">\</span>
+  -Dsonar.sourceEncoding<span class="o">=</span>UTF-8 <span class="se">\</span>
+  -Dsonar.java.binaries<span class="o">=</span>./path/to/classes <span class="se">\</span>
+  -Dsonar.java.libraries<span class="o">=</span>./path/to/**/*.jar
+</pre></div>
+<blockquote><p>重点：</p>
+<ul>
+<li>java代码必须编译过后，使用sonar.java.binaries指向编译后的classes目录，然后sonar.sources指向源码目录，才可以正常检测</li>
+<li>有些教程让我们指定sonar.languages，这个选项已经废弃了，sonar会自己检测源码是什么类型</li>
+</ul>
+</blockquote>
+<h3>3. <code>ERROR: Error during SonarQube Scanner execution java.lang.IllegalStateException: No files nor directories matching</code></h3>
+<p>这个错误。。。其实就是因为没有提前编译java代码，所以classes目录不存在，导致报错。提前编译好java代码即可</p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
