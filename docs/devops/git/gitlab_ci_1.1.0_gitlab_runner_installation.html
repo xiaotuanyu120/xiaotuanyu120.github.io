@@ -196,157 +196,165 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/giterror_1.1.0_curl_18.html">
-                git error: 1.1.0 curl 18 error
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.1.0_install.html">
-                git: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.0_branch.html">
-                git: 1.2.0 分支
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.1_branch_pr.html">
-                git: 1.2.1 分支-Pull Request
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.2_tag.html">
-                git: 1.2.2 git tag
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.3.0_gitignore.html">
-                git: 1.3.0 忽略文件-“.gitignore”
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.4.0_delete_file.html">
-                git: 1.4.0 删除文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.5.0_mv.html">
-                git: 1.5.0 mv error(case sensitive of linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.6.0_commit_reverse.html">
-                git: 1.6.0 撤销操作
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.7.0_push_403.html">
-                git: 1.7.0 push返回403
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
-                git: 1.8.0 添加链接文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/github_tutorial.html">
-                github: 入门引导
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.1.0_gitlab_runner_installation.html">
-                gitlab-ci: 1.1.0 gitlab-runner安装(docker)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
-                gitlab-ci: 1.2.0 .gitlab-ci.yml
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.1.0_install.html">
-                gitlab: 1.1.0 安装(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.2.0_config_external_port.html">
-                gitlab: 1.2.0 配置gitlab访问端口
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore.html">
-                gitlab: 1.3.0 gitlab备份及恢复
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.1.0_create_local_repo.html">
-                git仓库: 1.1.0 centos6搭建git本地服务器
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.2.0_anonymous_access.html">
-                git仓库: 1.2.0 本地服务器开启匿名访问
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.3.0_web.html">
-                git仓库: 1.3.0 本地服务器web界面
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/sonarqube">
-              sonarqube
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/arthas">
-              arthas
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>gitlab-ci: 1.1.0 gitlab-runner安装(docker)</h3>
+<hr>
+<h3>0. gitlab-runner简介</h3>
+<p>Gitlab Runner是一个用于执行CI任务然后返回结果给gitlab的开源工程。Gitlab Runner用于和Gitlab CI连接（人话就是想执行gitlab ci里面的任务必须要使用gitlabrunner，gitlab本身的程序只提供ci的web界面，而不执行具体的任务）。</p>
+<p>gitlab-runner是使用golang编写的，所以只是一个单个的可执行程序，不需要任何依赖。</p>
+<h4>gitlab-runner特性：</h4>
+<ul>
+<li>允许执行：<ul>
+<li>并行多个任务</li>
+<li>给多个server使用多个token（或者给多个project使用多个token）</li>
+<li>根据token来限制任务并发数量限制</li>
+</ul>
+</li>
+<li>任务可以执行在：<ul>
+<li>本地环境</li>
+<li>使用docker环境</li>
+<li>使用docker环境（通过ssh执行任务）</li>
+<li>使用docker环境（在云和虚拟化平台上自动扩展）</li>
+<li>使用通过ssh远程连接的server</li>
+</ul>
+</li>
+<li>支持bash、windows batch、windows powershell</li>
+<li>支持GNU/LINUX、windows、macos（任何支持docker的系统）</li>
+<li>支持自定义任务的运行环境</li>
+<li>不用重启自动重载配置文件</li>
+<li>开启docker缓存</li>
+<li>内嵌Prometheus服务</li>
+</ul>
+<h4>和gitlab版本的兼容性</h4>
+<p>gitlab-runner和gitlab版本应该一致，尽管较旧的Runner仍可以使用较新的GitLab版本，反之亦然，但在某些情况下，如果版本不同，则功能可能不可用或无法正常工作。向后不兼容仅适用于主要版本更新。</p>
+<h3>1. 按照gitlab-runner（docker）</h3>
+<p>gitlab-runner的官方镜像基于ubuntu或alpine，这个镜像只是一个gitlab-runner二进制命令的wrapper，就像在宿主机上直接执行gitlab-runner命令。</p>
+<h4>启动gitlab-runner</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 准备gitlab-runner配置目录</span>
+<span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="o">=</span>/data/docker/runtime/gitlab-runner/config
+<span class="o">[[</span> -d <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span> <span class="o">]]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>
+
+<span class="c1"># 启动gitlab-runner</span>
+cat <span class="s">&lt;&lt; EOF &gt; docker-compose-gitlab-runner.yml</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  gitlab-runner:</span>
+<span class="s">    image: gitlab/gitlab-runner:latest</span>
+<span class="s">    container_name: gitlab-runner</span>
+<span class="s">    restart: always</span>
+<span class="s">    volumes:</span>
+<span class="s">       - ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner</span>
+<span class="s">       - /var/run/docker.sock:/var/run/docker.sock</span>
+<span class="s">EOF</span>
+
+docker-compose -f docker-compose-gitlab-runner.yml up -d
+</pre></div>
+<h4>注册gitlab-runner到gitlab（会生成配置文件）</h4>
+<p>在注册gitlab-runner到gitlab之前，gitlab-runner不会执行任何任务。更多信息查看：<a href="https://docs.gitlab.com/runner/register/index.html#docker">register官方文档链接</a></p>
+<div class="highlight"><pre><span></span>docker run --rm -v <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>:/etc/gitlab-runner gitlab/gitlab-runner register <span class="se">\</span>
+  --non-interactive <span class="se">\</span>
+  --executor <span class="s2">&quot;docker&quot;</span> <span class="se">\</span>
+  --docker-image alpine:latest <span class="se">\</span>
+  --url <span class="s2">&quot;http://your-gitlab-domain&quot;</span> <span class="se">\</span>
+  --registration-token <span class="s2">&quot;your-gitlab-token&quot;</span> <span class="se">\</span>
+  --description <span class="s2">&quot;your-runner-description&quot;</span> <span class="se">\</span>
+  --tag-list <span class="s2">&quot;tag1,tag2&quot;</span> <span class="se">\</span>
+  --run-untagged<span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="se">\</span>
+  --locked<span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="se">\</span>
+  --access-level<span class="o">=</span><span class="s2">&quot;not_protected&quot;</span>
+</pre></div>
+<blockquote><p>主要选项介绍：</p>
+<ul>
+<li>executor，指定runner名称</li>
+<li>docker-image，指定任务执行默认的镜像（runner会控制docker，在宿主机启动独立的容器来执行任务，这里说的镜像就是这个容器的镜像。）</li>
+<li>url，指定gitlab的url</li>
+<li>registration-token，指定注册的runner的token，这个可以在gitlab的ci设定里面找到</li>
+</ul>
+</blockquote>
+<h4>如果sonarqube server使用的是一个内网域名，没有外网解析，执行job时报sonarqube域名无法解析，咋整？</h4>
+<p>参考链接：<a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">gitlab-runner executor 配置extra_hosts</a></p>
+<p>sonarqube server使用的是内网ip，然后自以为在gitlab-runner的容器启动时增加了<code>--add-host=mysonarqube-server-domain:ip-address</code>，应该就可以顺利解析了，结果事与愿违，竟然执行job时报解析不了sonarqube server域名的错误。</p>
+<p>苦思冥想了一段时间，才发现，原来gitlab-runner那个容器并不实际执行job。当runner接收到任务的时候，它会额外启动其他的容器来执行job，这就导致了，我在runner上配置的extra_hosts压根没起作用。下面列出以下runner的额外docker的配置：</p>
+
+<pre><code>[runners.docker]
+  host = ""
+  hostname = ""
+  tls_cert_path = "/Users/ayufan/.boot2docker/certs"
+  image = "ruby:2.1"
+  memory = "128m"
+  memory_swap = "256m"
+  memory_reservation = "64m"
+  oom_kill_disable = false
+  cpuset_cpus = "0,1"
+  cpus = "2"
+  dns = ["8.8.8.8"]
+  dns_search = [""]
+  privileged = false
+  userns_mode = "host"
+  cap_add = ["NET_ADMIN"]
+  cap_drop = ["DAC_OVERRIDE"]
+  devices = ["/dev/net/tun"]
+  disable_cache = false
+  wait_for_services_timeout = 30
+  cache_dir = ""
+  volumes = ["/data", "/home/project/cache"]
+  extra_hosts = ["other-host:127.0.0.1"]
+  shm_size = 300000
+  volumes_from = ["storage_container:ro"]
+  links = ["mysql_container:mysql"]
+  services = ["mysql", "redis:2.8", "postgres:9"]
+  allowed_images = ["ruby:*", "python:*", "php:*"]
+  allowed_services = ["postgres:9.4", "postgres:latest"]
+  [runners.docker.sysctls]
+    "net.ipv4.ip_forward" = "1"</code></pre>
+<blockquote><p>关于额外配置hosts解析的内容，只需要关注extra_hosts</p>
+</blockquote>
+<h4>如果执行任务的容器镜像使用的是私有仓库，auth问题这样解决</h4>
+<p>参考链接：<a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#using-statically-defined-credentials">配置私有docker仓库的auth认证</a></p>
+<div class="highlight"><pre><span></span><span class="c1"># 手动登录你的私有仓库</span>
+docker login --username &lt;username&gt; --password &lt;password&gt; &lt;your-docker-repo-domain&gt;
+
+<span class="c1"># 查看docker在本地生成的auth信息</span>
+cat ~/.docker/config.json 
+<span class="o">{</span>
+    <span class="s2">&quot;auths&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;&lt;your-docker-repo-domain&gt;&quot;</span>: <span class="o">{</span>
+            <span class="s2">&quot;auth&quot;</span>: <span class="s2">&quot;auth-string&quot;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">&quot;HttpHeaders&quot;</span>: <span class="o">{</span>
+        <span class="s2">&quot;User-Agent&quot;</span>: <span class="s2">&quot;Docker-Client/18.09.9 (linux)&quot;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># 打开gitlab-runner的持久化配置文件</span>
+vi <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>/config.toml
+<span class="c1"># 将docker镜像仓库的auth信息填写进去</span>
+<span class="o">[[</span>runners<span class="o">]]</span>
+  <span class="nv">environment</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;DOCKER_AUTH_CONFIG={\&quot;auths\&quot;:{\&quot;your-docker-repo-domain\&quot;:{\&quot;auth\&quot;:\&quot;auth-string\&quot;}}}&quot;</span><span class="o">]</span>
+</pre></div>
+<h4>如果执行任务的容器使用的镜像是基于alpine，那么如果任务运行时会遇到找不到java命令的错误</h4>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2">alpine镜像里面java找不到的报错解决方案</a></li>
+<li><a href="https://www.javatt.com/p/66709">修改sonarscanner文件，配置使用系统的java环境</a></li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c1"># 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java</span>
+sed -ir <span class="s1">&#39;s/^use_embedded_jre=.*$/use_embedded_jre=false/g&#39;</span> bin/sonar-scanner
+<span class="c1"># 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz</span>
+tar zcvf sonar-scanner-4.2.0.1873-linux.tar.gz bin conf jre lib
+
+<span class="c1"># 准备Dockerfile</span>
+<span class="c1"># 安装jre8运行sonnarscanner</span>
+<span class="c1"># 安装jdk7用于编译java工程（这个要依据你的java工程使用的jdk来定）</span>
+cat <span class="s">&lt;&lt; EOF &gt; Dockerfile</span>
+<span class="s">FROM alpine:latest</span>
+<span class="s">WORKDIR /app</span>
+<span class="s">ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app</span>
+<span class="s">RUN apk update &amp;&amp; apk upgrade &amp;&amp; \</span>
+<span class="s">    apk add --no-cache bash git openssh openjdk8-jre openjdk7</span>
+<span class="s">EOF</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">

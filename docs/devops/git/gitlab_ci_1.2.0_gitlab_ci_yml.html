@@ -182,83 +182,88 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>gitlab-ci: 1.2.0 .gitlab-ci.yml example</h3>
+<hr>
+<h3>0. .gitlab-ci.yml说明</h3>
+<p>参考链接：<a href="https://docs.gitlab.com/ee/ci/yaml/">.gitlab-ci.yml 官方文档</a>
+.gitlab-ci.yml是用于配置gitlab的pipeline，里面定义了</p>
+<ul>
+<li>gitlab-runner执行的内容</li>
+<li>特定条件触发后任务的执行走向</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-docker-image-repo&gt;/sonarscanner:4.2</span>
+
+<span class="l l-Scalar l-Scalar-Plain">stages</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
+
+<span class="l l-Scalar l-Scalar-Plain">analysis</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">stage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cd /builds/&lt;path-of-your-project&gt;</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo &gt; javafile.txt</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">find src/ -name *.java &gt;&gt; javafile.txt</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jarfiles=()</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">for jar in $(find path/to/lib -name *.jar);do jarfiles=(&quot;${jarfiles[@]}&quot; $jar);done</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">classfile=&quot;&quot;</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">for cf in ${jarfiles[@]};do classfile=&quot;${classfile}:${cf}&quot;;done</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/bin/mkdir -p path/to/classes</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/usr/lib/jvm/java-1.7-openjdk/bin/javac -d path/to/classes -sourcepath src -cp $classfile @javafile.txt</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/app/bin/sonar-scanner</span>
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.host.url=http://sonarqube-domain:9000</span> 
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.projectKey=project-name</span> 
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.sources=./src</span> 
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.sourceEncoding=UTF-8</span>
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.binaries=./path/to/classes</span>
+    <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.libraries=./path/to/**/*.jar</span>
+  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+</pre></div>
+<blockquote><p>注意点：</p>
+<ul>
+<li>只有一个stage里面的所有job都执行完毕了，才会去执行下一个stage</li>
+<li>同一个stage里面的job是同时被执行的</li>
+<li>only限定了只有master分支commit后才会触发pipeline的执行</li>
+</ul>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -328,118 +333,157 @@
              <a href="/go" role="menuitem" tabindex="-1">
               go
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
-        gitlab-ci: 1.2.0 .gitlab-ci.yml
-       </a><br>
-
-       <a href="devops/sonarqube/sonarqube_1.0.0_installation.html">
-        sonarqube: 1.0.0 installation - docker
-       </a><br>
-
-       <a href="linux/advance/systemd_2.1.0_watchdog_for_tomcat.html">
-        systemd 2.1.0 watchdog of systemd for tomcat
-       </a><br>
-
-       <a href="devops/git/gitlab_ci_1.1.0_gitlab_runner_installation.html">
-        gitlab-ci: 1.1.0 gitlab-runner安装(docker)
-       </a><br>
-
-       <a href="linux/shell/shell_1.0.2_variable_caculate.html">
-        SHELL: 1.0.2 变量：计算
-       </a><br>
-
-       <a href="linux/shell/shell_1.0.1_variable_builtin.html">
-        SHELL: 1.0.1 变量：内置变量
-       </a><br>
-
-       <a href="linux/advance/systemd_2.1.1_watchdog_for_tomcat_error_of_nonroot_user.html">
-        systemd 2.1.1 watchdog of systemd for tomcat continue: nonroot user problem
-       </a><br>
-
-       <a href="virtualization/docker/docker_5.2.0_network_iptables.html">
-        5.2.0 网络：docker中的iptables
-       </a><br>
-
-       <a href="devops/git/giterror_1.1.0_curl_18.html">
-        git error: 1.1.0 curl 18 error
-       </a><br>
-
-       <a href="devops/arthas/arthas_1.1.0_installation.html">
-        arthas: 1.1.0 安装使用
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/giterror_1.1.0_curl_18.html">
+                git error: 1.1.0 curl 18 error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.1.0_install.html">
+                git: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.2.0_branch.html">
+                git: 1.2.0 分支
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.2.1_branch_pr.html">
+                git: 1.2.1 分支-Pull Request
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.2.2_tag.html">
+                git: 1.2.2 git tag
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.3.0_gitignore.html">
+                git: 1.3.0 忽略文件-“.gitignore”
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.4.0_delete_file.html">
+                git: 1.4.0 删除文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.5.0_mv.html">
+                git: 1.5.0 mv error(case sensitive of linux)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.6.0_commit_reverse.html">
+                git: 1.6.0 撤销操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.7.0_push_403.html">
+                git: 1.7.0 push返回403
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
+                git: 1.8.0 添加链接文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/github_tutorial.html">
+                github: 入门引导
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.1.0_gitlab_runner_installation.html">
+                gitlab-ci: 1.1.0 gitlab-runner安装(docker)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
+                gitlab-ci: 1.2.0 .gitlab-ci.yml
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_1.1.0_install.html">
+                gitlab: 1.1.0 安装(centos6)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_1.2.0_config_external_port.html">
+                gitlab: 1.2.0 配置gitlab访问端口
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore.html">
+                gitlab: 1.3.0 gitlab备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitrepo_1.1.0_create_local_repo.html">
+                git仓库: 1.1.0 centos6搭建git本地服务器
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitrepo_1.2.0_anonymous_access.html">
+                git仓库: 1.2.0 本地服务器开启匿名访问
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitrepo_1.3.0_web.html">
+                git仓库: 1.3.0 本地服务器web界面
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/arthas">
+              arthas
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
