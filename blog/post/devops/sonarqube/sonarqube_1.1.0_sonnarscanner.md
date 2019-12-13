@@ -32,3 +32,27 @@ sonar-scanner \
 
 ### 3. `ERROR: Error during SonarQube Scanner execution java.lang.IllegalStateException: No files nor directories matching`
 这个错误。。。其实就是因为没有提前编译java代码，所以classes目录不存在，导致报错。提前编译好java代码即可
+
+
+### 4. 在docker中运行sonnarscanner
+参考链接：
+- [alpine镜像里面java找不到的报错解决方案](https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2)
+- [修改sonarscanner文件，配置使用系统的java环境](https://www.javatt.com/p/66709)
+
+``` bash
+# 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java
+sed -ir 's/^use_embedded_jre=.*$/use_embedded_jre=false/g' bin/sonar-scanner
+# 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz
+tar zcvf sonar-scanner-4.2.0.1873-linux.tar.gz bin conf jre lib
+
+# 准备Dockerfile
+# 安装jre8运行sonnarscanner
+# 安装jdk7用于编译java工程（这个要依据你的java工程使用的jdk来定）
+cat << EOF > Dockerfile
+FROM alpine:latest
+WORKDIR /app
+ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh openjdk8-jre openjdk7
+EOF
+```

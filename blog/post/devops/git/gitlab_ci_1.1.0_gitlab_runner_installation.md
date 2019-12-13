@@ -146,26 +146,3 @@ vi ${GITLAB_RUNNER_CONF_DIR}/config.toml
 [[runners]]
   environment = ["DOCKER_AUTH_CONFIG={\"auths\":{\"your-docker-repo-domain\":{\"auth\":\"auth-string\"}}}"]
 ```
-
-#### 如果执行任务的容器使用的镜像是基于alpine，那么如果任务运行时会遇到找不到java命令的错误
-参考链接：
-- [alpine镜像里面java找不到的报错解决方案](https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2)
-- [修改sonarscanner文件，配置使用系统的java环境](https://www.javatt.com/p/66709)
-
-``` bash
-# 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java
-sed -ir 's/^use_embedded_jre=.*$/use_embedded_jre=false/g' bin/sonar-scanner
-# 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz
-tar zcvf sonar-scanner-4.2.0.1873-linux.tar.gz bin conf jre lib
-
-# 准备Dockerfile
-# 安装jre8运行sonnarscanner
-# 安装jdk7用于编译java工程（这个要依据你的java工程使用的jdk来定）
-cat << EOF > Dockerfile
-FROM alpine:latest
-WORKDIR /app
-ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app
-RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh openjdk8-jre openjdk7
-EOF
-```
