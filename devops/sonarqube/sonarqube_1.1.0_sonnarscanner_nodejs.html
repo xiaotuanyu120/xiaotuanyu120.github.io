@@ -196,72 +196,39 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/sonarqube">
-              sonarqube
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.0.0_installation.html">
-                sonarqube: 1.0.0 installation - docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.1.0_sonnarscanner.html">
-                sonarqube: 1.1.0 sonarscanner扫描java代码
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/sonarqube/sonarqube_1.1.0_sonnarscanner_nodejs.html">
-                sonarqube: 1.2.0 sonarscanner扫描js代码
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/arthas">
-              arthas
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>sonarqube: 1.2.0 sonarscanner扫描js代码</h3>
+<hr>
+<h3>1. sonnarscanner扫描js代码示例</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 例子</span>
+sonar-scanner <span class="se">\</span>
+  -Dsonar.host.url<span class="o">=</span>http://sonarqube-domain:9000 <span class="se">\</span>
+  -Dsonar.projectKey<span class="o">=</span>project-name <span class="se">\</span>
+  -Dsonar.sources<span class="o">=</span>./src <span class="se">\</span>
+  -Dsonar.sourceEncoding<span class="o">=</span>UTF-8
+</pre></div>
+<h3>2. 在docker中运行sonnarscanner</h3>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2">alpine镜像里面java找不到的报错解决方案</a></li>
+<li><a href="https://www.javatt.com/p/66709">修改sonarscanner文件，配置使用系统的java环境</a></li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c1"># 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java</span>
+sed -ir <span class="s1">&#39;s/^use_embedded_jre=.*$/use_embedded_jre=false/g&#39;</span> bin/sonar-scanner
+<span class="c1"># 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz</span>
+tar zcvf sonar-scanner-4.2.0.1873-linux.tar.gz bin conf jre lib
+
+<span class="c1"># 准备Dockerfile</span>
+<span class="c1"># 安装jre8运行sonnarscanner</span>
+<span class="c1"># 安装nodejs编译js代码</span>
+cat <span class="s">&lt;&lt; EOF &gt; Dockerfile</span>
+<span class="s">FROM alpine:latest</span>
+<span class="s">WORKDIR /app</span>
+<span class="s">ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app</span>
+<span class="s">RUN apk update &amp;&amp; apk upgrade &amp;&amp; \</span>
+<span class="s">    apk add --no-cache bash git openssh openjdk8-jre nodejs</span>
+<span class="s">EOF</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
