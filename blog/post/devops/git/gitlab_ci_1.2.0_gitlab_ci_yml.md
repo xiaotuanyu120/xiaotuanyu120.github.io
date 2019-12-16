@@ -23,7 +23,7 @@ stages:
 analysis:
   stage: analysis
   script:
-  - cd /builds/<path-of-your-project>
+  - cd ${CI_PROJECT_DIR}
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
   - echo > javafile.txt
