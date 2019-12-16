@@ -107,13 +107,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -205,15 +205,15 @@
 <li>gitlab-runner执行的内容</li>
 <li>特定条件触发后任务的执行走向</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-docker-image-repo&gt;/sonarscanner:4.2</span>
+<div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-docker-image-repo&gt;/sonarscanner:4.2</span>
 
-<span class="l l-Scalar l-Scalar-Plain">stages</span><span class="p p-Indicator">:</span>
+<span class="nt">stages</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
 
-<span class="l l-Scalar l-Scalar-Plain">analysis</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">stage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
-  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cd /builds/&lt;path-of-your-project&gt;</span>
+<span class="nt">analysis</span><span class="p">:</span>
+  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
+  <span class="nt">script</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cd ${CI_PROJECT_DIR}</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo &gt; javafile.txt</span>
@@ -231,7 +231,7 @@
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.sourceEncoding=UTF-8</span>
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.binaries=./path/to/classes</span>
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.libraries=./path/to/**/*.jar</span>
-  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
+  <span class="nt">only</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
 </pre></div>
 <blockquote><p>注意点：</p>
@@ -275,13 +275,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
