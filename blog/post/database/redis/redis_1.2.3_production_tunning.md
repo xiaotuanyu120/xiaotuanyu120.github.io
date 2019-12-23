@@ -1,0 +1,26 @@
+---
+title: redis: 1.2.3 性能优化
+date: 2019-12-23 17:08:00
+categories: database/redis
+tags: [database,redis]
+---
+### redis: 1.2.3 性能优化
+
+---
+
+### 访问限制
+``` bash
+# 禁用keys，严重拖慢性能
+rename-command KEYS "u0utIN%t3"
+
+# 禁用flush，防止误删数据
+rename-command FLUSH "8yJ6rPyp-"
+
+# 禁用config命令，提升安全性
+rename-command CONFIG ""
+
+# 禁用select
+# - 切换database很容易发生问题
+# - 集群中不支持多个database
+rename-command SELECT ""
+```
