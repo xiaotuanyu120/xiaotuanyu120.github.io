@@ -200,13 +200,18 @@
 <hr>
 <p><a href="https://docs.docker.com/engine/installation/linux/centos/">docker安装官方文档</a></p>
 <h3>0. 环境介绍</h3>
-<div class="highlight"><pre><span></span><span class="c1"># 系统版本centos7.2</span>
-cat /etc/redhat-release
-CentOS Linux release <span class="m">7</span>.2.1511 <span class="o">(</span>Core<span class="o">)</span>
+<div class="highlight"><pre><span></span><span class="c1"># 系统版本</span>
+cat /etc/redhat-release 
+CentOS Linux release <span class="m">7</span>.7.1908 <span class="o">(</span>Core<span class="o">)</span>
 
 <span class="c1"># 内核版本</span>
 uname -r
-<span class="m">3</span>.10.0-327.el7.x86_64
+<span class="m">3</span>.10.0-957.12.2.el7.x86_64
+
+<span class="c1"># 开启内核的ip forward特性</span>
+<span class="nb">echo</span> <span class="s2">&quot;net.ipv4.ip_forward = 1&quot;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p
+<span class="c1"># net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器</span>
 </pre></div>
 <h3>1. 删除老版本的docker</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 如果曾经在redhat的源中安装过老版的docker，删除它</span>
@@ -239,8 +244,49 @@ yum-config-manager --disable docker-ce-nightly
 yum list docker-ce --showduplicates <span class="p">|</span> sort -r
 
 <span class="c1"># 选择要安装的版本，已经安装docker</span>
-<span class="nv">VERSION_STRING</span><span class="o">=</span><span class="m">18</span>.09.1
+<span class="nv">VERSION_STRING</span><span class="o">=</span><span class="m">19</span>.03.5
 yum install -y docker-ce-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> docker-ce-cli-<span class="si">${</span><span class="nv">VERSION_STRING</span><span class="si">}</span> containerd.io
+
+
+<span class="c1"># 满足overlay2(docker recommanded storage driver)的内核版本要求</span>
+<span class="c1"># - linux 4.0或者以上内核版本</span>
+<span class="c1"># - 或者，CENTOS或RHEL上的3.10.0-514或以上内核版本</span>
+uname -r
+<span class="m">3</span>.10.0-957.12.2.el7.x86_64
+<span class="c1"># centos7.7默认的内核版本已经满足了需要</span>
+<span class="c1"># 修改storage driver为overlay2</span>
+<span class="o">[[</span> -d /etc/docker <span class="o">]]</span> <span class="o">||</span> mkdir /etc/docker
+<span class="o">[[</span> -f /etc/docker/daemon.json <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>
+  sed -ri <span class="s2">&quot;s|^(.*)(\&quot;storage-driver\&quot;:).*\&quot;.*\&quot;.*</span>$<span class="s2">|\1\2 \&quot;overlay2\&quot;|g&quot;</span> /etc/docker/daemon.json
+<span class="o">)</span> <span class="o">||</span> <span class="o">(</span>
+  cat <span class="s">&lt;&lt; EOF &gt; /etc/docker/daemon.json</span>
+<span class="s">{</span>
+<span class="s">  &quot;storage-driver&quot;: &quot;overlay2&quot;</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+<span class="o">)</span>
+
+
+<span class="c1"># 修改cgroup driver设定(只需要在kubeadm的控制节点上执行)</span>
+<span class="c1"># 目前的主流linux发行版基本都使用systemd来作为系统的init程序，systemd此时会充当cgroup的管理器。</span>
+<span class="c1"># 而docker默认的cgroup驱动是cgroupfs，我们可以不修改它，但是这样意味着我们会有两个不同的cgroup管理器</span>
+<span class="c1"># 会在某些情况下检视和管理资源时发生疑惑，所以最好是改成统一的，都使用systemd。</span>
+<span class="c1"># 修改docker的cgroup driver</span>
+cat &gt; /etc/docker/daemon.json <span class="s">&lt;&lt; EOF</span>
+<span class="s">{</span>
+<span class="s">  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],</span>
+<span class="s">  &quot;log-driver&quot;: &quot;json-file&quot;,</span>
+<span class="s">  &quot;log-opts&quot;: {</span>
+<span class="s">    &quot;max-size&quot;: &quot;100m&quot;</span>
+<span class="s">  },</span>
+<span class="s">  &quot;storage-driver&quot;: &quot;overlay2&quot;,</span>
+<span class="s">  &quot;storage-opts&quot;: [</span>
+<span class="s">    &quot;overlay2.override_kernel_check=true&quot;</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+mkdir -p /etc/systemd/system/docker.service.d
+
 
 <span class="c1"># 如果安装的是`18.09`，需要额外执行以下步骤，来解决docker服务启动失败的问题</span>
 <span class="c1"># 问题详情参照：https://github.com/docker/for-linux/issues/475</span>
@@ -425,11 +471,6 @@ docker ps -a
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
-                2.1.0 docker-compose: network
-              </a>
-             </li>
-             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
                 2.1.1 镜像-查找与下载镜像
               </a>
@@ -495,8 +536,13 @@ docker ps -a
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.2.0_jenkins.html">
-                4.2.0 在docker中运行jenkins
+              <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
+                5.2.0 网络：docker中的iptables
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
+                docker-compose 2.1.0 network
               </a>
              </li>
             </ul>
