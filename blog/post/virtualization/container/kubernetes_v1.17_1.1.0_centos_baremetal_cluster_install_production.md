@@ -1,4 +1,4 @@
----
+
 title: kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
 date: 2019-12-24 09:55:00
 categories: virtualization/container
@@ -333,9 +333,9 @@ cat > server-csr.json << EOF
     "CN": "server",
     "hosts": [
       "127.0.0.1",
-      "192.168.33.101",
-      "192.168.33.102",
-      "192.168.33.103"
+      "${IP_LIST['etcd01']}",
+      "${IP_LIST['etcd02']}",
+      "${IP_LIST['etcd03']}"
     ],
     "key": {
         "algo": "rsa",
@@ -379,9 +379,9 @@ cat > peer-csr.json << EOF
 {
     "CN": "peer",
     "hosts": [
-      "192.168.33.101",
-      "192.168.33.102",
-      "192.168.33.103"
+      "${IP_LIST['etcd01']}",
+      "${IP_LIST['etcd02']}",
+      "${IP_LIST['etcd03']}"
     ],
     "key": {
         "algo": "rsa",
@@ -610,7 +610,7 @@ cd ${DEPLOY_DIR}/pki/kubernetes
 cat > admin-csr.json << EOF
 {
   "CN": "admin",
-  "hosts": [],
+  "hosts": [""],
   "key": {
     "algo": "rsa",
     "size": 2048
@@ -632,36 +632,26 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=clie
 # 生成文件：admin-key.pem admin.csr admin.pem
 ```
 
-### 5. 创建 kube-proxy, kubelet 认证文件
-``` bash
-cd ${DEPLOY_DIR}/pki/kubernetes
-
-# step 1. 创建"证书签名请求"文件
-
-
-
-```
-
-### 6. 校验证书方法
+### 5. 校验证书方法
 ``` bash
 cfssl-certinfo -cert server.pem
 ```
 
-### 7. 分发证书
+### 6. 分发证书
 ``` bash
 # 下发证书到master
 # 证书对象
 # - 根证书
 # - 管理员证书
-# - apiserver、frontend-proxy证书
+# - apiserver证书
 # - apiserver-etcd-client证书
 for master in {master01,master02,master03};do
   ssh root@${master} "mkdir -p ${K8S_PKI_DIR}/etcd"
   scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,ca-key.pem,admin.pem,admin-key.pem} ${master}:${K8S_PKI_DIR}
   scp ${DEPLOY_DIR}/pki/kubernetes/server.pem ${master}:${K8S_PKI_DIR}/apiserver.pem
   scp ${DEPLOY_DIR}/pki/kubernetes/server-key.pem ${master}:${K8S_PKI_DIR}/apiserver-key.pem
-  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client.pem
-  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client-key.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client-key.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-key.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client-key.pem
   scp ${DEPLOY_DIR}/pki/etcd/ca.pem ${master}:${K8S_PKI_DIR}/etcd
   scp ${DEPLOY_DIR}/pki/etcd/client.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client.pem
   scp ${DEPLOY_DIR}/pki/etcd/client-key.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client-key.pem
@@ -684,6 +674,7 @@ done
 ---
 
 ## 生成kubeconfig
+参照文档： [kubernetes in hard way about kubeconfig](https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md)
 ``` bash
 # 创建k8s-config目录
 mkdir -p ${DEPLOY_DIR}/kubeconfig
@@ -698,34 +689,37 @@ export KUBE_APISERVER="https://${KUBE_API_PROXY_IP}:443"
 # Token 可以是任意的包涵128 bit的字符串，可以使用安全的随机数发生器生成。
 export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 cat > ${DEPLOY_DIR}/kubeconfig/token.csv <<EOF
-${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,"system:kubelet-bootstrap"
+${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,"system:bootstrappers"
 EOF
 # 注意： 在进行后续操作前请检查 token.csv 文件，确认其中的 ${BOOTSTRAP_TOKEN} 环境变量已经被真实的值替换。
 cat ${DEPLOY_DIR}/kubeconfig/token.csv 
-# 输出类似这种值： 31c5af9c14a8f8ddbed6564234b2644f,kubelet-bootstrap,10001,"system:kubelet-bootstrap"
+# 输出类似这种值： 31c5af9c14a8f8ddbed6564234b2644f,kubelet-bootstrap,10001,"system:bootstrappers"
 
-# step 2. 生成 kubeconfig
-kubectl config set-cluster kubernetes \
-  --certificate-authority=${K8S_PKI_DIR}/ca.pem \
-  --embed-certs=true \
-  --server=${KUBE_APISERVER} \
-  --kubeconfig=bootstrap.kubelet.kubeconfig
-# 生成文件： bootstrap.kubelet.kubeconfig，内容为集群信息（证书、apiserver地址、集群名称）
+# step 2. 生成 kubeconfig 和 设置 current context
+# 注意点： credential必须是，用户组system:node和hostname小写化后的拼接
+for node in {node01,node02,node03};do
+  kubectl config set-cluster kubernetes \
+    --certificate-authority=${K8S_PKI_DIR}/ca.pem \
+    --embed-certs=true \
+    --server=${KUBE_APISERVER} \
+    --kubeconfig=bootstrap-kubelet-${node}.conf
 
-kubectl config set-credentials kubelet-bootstrap \
-  --token=${BOOTSTRAP_TOKEN} \
-  --kubeconfig=bootstrap.kubelet.kubeconfig
-# 修改文件： bootstrap.kubelet.kubeconfig，增加token等认证信息
+  kubectl config set-credentials system:node:${node} \
+    --token=${BOOTSTRAP_TOKEN} \
+    --kubeconfig=bootstrap-kubelet-${node}.conf
 
-kubectl config set-context default \
-  --cluster=kubernetes \
-  --user=kubelet-bootstrap \
-  --kubeconfig=bootstrap.kubelet.kubeconfig
-# 修改文件： bootstrap.kubelet.kubeconfig，增加context信息
+  kubectl config set-context default \
+    --cluster=kubernetes \
+    --user=kubelet-bootstrap \
+    --kubeconfig=bootstrap-kubelet-${node}.conf
 
-# step 3. 设置 current context
-kubectl config use-context default --kubeconfig=bootstrap.kubelet.kubeconfig
-# 修改文件： bootstrap.kubelet.kubeconfig，设定当前context为default
+  kubectl config use-context default --kubeconfig=bootstrap-kubelet-${node}.conf
+done
+# 依次执行了以下步骤：
+# 生成文件： bootstrap-kubelet-${node}.conf，内容为集群信息（证书、apiserver地址、集群名称）
+# 修改文件： bootstrap-kubelet-${node}.conf，增加token等认证信息
+# 修改文件： bootstrap-kubelet-${node}.conf，增加context信息
+# 修改文件： bootstrap-kubelet-${node}.conf，设定当前context为default
 ```
 
 ### 2. 创建 kube-proxy kubeconfig 文件
@@ -737,25 +731,25 @@ kubectl config set-cluster kubernetes \
   --certificate-authority=${DEPLOY_DIR}/pki/kubernetes/ca.pem \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
-  --kubeconfig=kube-proxy.kubeconfig
-# 生成文件： kube-proxy.kubeconfig，内容为集群信息（证书、apiserver地址、集群名称）
+  --kubeconfig=kube-proxy.conf
+# 生成文件： kube-proxy.conf，内容为集群信息（证书、apiserver地址、集群名称）
 
-kubectl config set-credentials kube-proxy \
+kubectl config set-credentials system:kube-proxy \
   --client-certificate=${DEPLOY_DIR}/pki/kubernetes/kube-proxy.pem \
   --client-key=${DEPLOY_DIR}/pki/kubernetes/kube-proxy-key.pem \
   --embed-certs=true \
-  --kubeconfig=kube-proxy.kubeconfig
-# 修改文件： kube-proxy.kubeconfig，增加认证用户和认证信息
+  --kubeconfig=kube-proxy.conf
+# 修改文件： kube-proxy.conf，增加认证用户和认证信息
 
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kube-proxy \
-  --kubeconfig=kube-proxy.kubeconfig
-# 修改文件： kube-proxy.kubeconfig，增加context信息
+  --kubeconfig=kube-proxy.conf
+# 修改文件： kube-proxy.conf，增加context信息
 
 # 设置 current context
-kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
-# 修改文件： kube-proxy.kubeconfig，设定当前context为default
+kubectl config use-context default --kubeconfig=kube-proxy.conf
+# 修改文件： kube-proxy.conf，设定当前context为default
 ```
 
 ### 3. 创建 admin kubeconfig 文件
@@ -765,25 +759,25 @@ kubectl config set-cluster kubernetes \
   --certificate-authority=${DEPLOY_DIR}/pki/kubernetes/ca.pem \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
-  --kubeconfig=admin.kubeconfig
-# 生成文件： admin.kubeconfig，内容为集群信息（证书、apiserver地址、集群名称）
+  --kubeconfig=admin.conf
+# 生成文件： admin.conf，内容为集群信息（证书、apiserver地址、集群名称）
 
 kubectl config set-credentials admin \
   --client-certificate=${DEPLOY_DIR}/pki/kubernetes/admin.pem \
   --embed-certs=true \
   --client-key=${DEPLOY_DIR}/pki/kubernetes/admin-key.pem \
-  --kubeconfig=admin.kubeconfig
-# 修改文件： admin.kubeconfig，增加认证用户和认证信息
+  --kubeconfig=admin.conf
+# 修改文件： admin.conf，增加认证用户和认证信息
 
 kubectl config set-context kubernetes \
   --cluster=kubernetes \
   --user=admin \
-  --kubeconfig=admin.kubeconfig
-# 修改文件： admin.kubeconfig，增加context信息
+  --kubeconfig=admin.conf
+# 修改文件： admin.conf，增加context信息
 
 # 设定上下文
-kubectl config use-context kubernetes --kubeconfig=admin.kubeconfig
-# 修改文件： admin.kubeconfig，设定当前context为kubernetes
+kubectl config use-context kubernetes --kubeconfig=admin.conf
+# 修改文件： admin.conf，设定当前context为kubernetes
 ```
 
 ### 4. 创建 kube-controller-manager kubeconfig 文件
@@ -792,20 +786,21 @@ kubectl config set-cluster kubernetes \
   --certificate-authority=${DEPLOY_DIR}/pki/kubernetes/ca.pem \
   --embed-certs=true \
   --server=https://127.0.0.1:6443 \
-  --kubeconfig=kube-controller-manager.kubeconfig
+  --kubeconfig=kube-controller-manager.conf
 
+# 注意点： credential必须是system:kube-controller-manager
 kubectl config set-credentials system:kube-controller-manager \
   --client-certificate=${DEPLOY_DIR}/pki/kubernetes/client.pem \
   --client-key=${DEPLOY_DIR}/pki/kubernetes/client-key.pem \
   --embed-certs=true \
-  --kubeconfig=kube-controller-manager.kubeconfig
+  --kubeconfig=kube-controller-manager.conf
 
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=system:kube-controller-manager \
-  --kubeconfig=kube-controller-manager.kubeconfig
+  --kubeconfig=kube-controller-manager.conf
 
-kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconfig
+kubectl config use-context default --kubeconfig=kube-controller-manager.conf
 ```
 
 ### 5. 创建 kube-scheduler kubeconfig 文件
@@ -814,40 +809,41 @@ kubectl config set-cluster kubernetes \
   --certificate-authority=${DEPLOY_DIR}/pki/kubernetes/ca.pem \
   --embed-certs=true \
   --server=https://127.0.0.1:6443 \
-  --kubeconfig=kube-scheduler.kubeconfig
+  --kubeconfig=kube-scheduler.conf
 
+# 注意点： credential必须是system:kube-scheduler
 kubectl config set-credentials system:kube-scheduler \
   --client-certificate=${DEPLOY_DIR}/pki/kubernetes/client.pem \
   --client-key=${DEPLOY_DIR}/pki/kubernetes/client-key.pem \
   --embed-certs=true \
-  --kubeconfig=kube-scheduler.kubeconfig
+  --kubeconfig=kube-scheduler.conf
 
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=system:kube-scheduler \
-  --kubeconfig=kube-scheduler.kubeconfig
+  --kubeconfig=kube-scheduler.conf
 
-kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
+kubectl config use-context default --kubeconfig=kube-scheduler.conf
 ```
 
 ### 6. 分发kubeconfig文件和admin上下文环境文件
 ``` bash
 cd ${DEPLOY_DIR}/kubeconfig
-# 将bootstrap.kubelet.kubeconfig和kube-proxy.kubeconfig分发到node节点
+# 将bootstrap.kubelet.<node-hostname>.conf和kube-proxy.conf分发到node节点
 for node in {node01,node02,node03};do
   ssh root@${node} "mkdir -p ${KUBECONFIG_DIR}"
-  scp ${DEPLOY_DIR}/kubeconfig/bootstrap.kubelet.kubeconfig ${node}:${KUBECONFIG_DIR}
-  scp ${DEPLOY_DIR}/kubeconfig/kube-proxy.kubeconfig ${node}:${KUBECONFIG_DIR}
+  scp ${DEPLOY_DIR}/kubeconfig/bootstrap-kubelet-${node}.conf ${node}:${KUBECONFIG_DIR}/bootstrap-kubelet.conf
+  scp ${DEPLOY_DIR}/kubeconfig/kube-proxy.conf ${node}:${KUBECONFIG_DIR}
 done
 
 # 将master节点的 kubeconfig 分发到所有master上
 for master in {master01,master02,master03};do
   ssh root@${master} "mkdir -p ${ADMIN_KUBECONFIG_DIR}"
   ssh root@${master} "mkdir -p ${KUBECONFIG_DIR}"
-  scp ${DEPLOY_DIR}/kubeconfig/admin.kubeconfig $master:${ADMIN_KUBECONFIG_DIR}/config
+  scp ${DEPLOY_DIR}/kubeconfig/admin.conf $master:${ADMIN_KUBECONFIG_DIR}/config
   scp ${DEPLOY_DIR}/kubeconfig/token.csv $master:${KUBECONFIG_DIR}
-  scp ${DEPLOY_DIR}/kubeconfig/kube-controller-manager.kubeconfig $master:${KUBECONFIG_DIR}
-  scp ${DEPLOY_DIR}/kubeconfig/kube-scheduler.kubeconfig $master:${KUBECONFIG_DIR}
+  scp ${DEPLOY_DIR}/kubeconfig/kube-controller-manager.conf $master:${KUBECONFIG_DIR}
+  scp ${DEPLOY_DIR}/kubeconfig/kube-scheduler.conf $master:${KUBECONFIG_DIR}
 done
 ```
 
@@ -875,7 +871,7 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --advertise-address=${IP_LIST[${master}]} \\
   --bind-address=${IP_LIST[${master}]} \\
   --secure-port=6443 \\
-  --authorization-mode=AlwaysAllow,Node,RBAC \\
+  --authorization-mode=Node,RBAC \\
   --enable-admission-plugins=NodeRestriction \\
   --enable-bootstrap-token-auth=true \\
   --token-auth-file=${KUBECONFIG_DIR}/token.csv \\
@@ -933,7 +929,7 @@ ExecStart=/usr/local/bin/kube-controller-manager \\
   --service-cluster-ip-range=${SERVICE_CLUSTER_IP_RANGE} \\
   --cluster-cidr=${POD_CLUSTER_IP_RANGE} \\
   --cluster-name=kubernetes \\
-  --kubeconfig=${KUBECONFIG_DIR}/kube-controller-manager.kubeconfig \\
+  --kubeconfig=${KUBECONFIG_DIR}/kube-controller-manager.conf \\
   --root-ca-file=${K8S_PKI_DIR}/ca.pem \\
   --cluster-signing-cert-file=${K8S_PKI_DIR}/ca.pem \\
   --cluster-signing-key-file=${K8S_PKI_DIR}/ca-key.pem \\
@@ -960,7 +956,7 @@ Documentation=https://github.com/kubernetes/kubernetes
 ExecStart=/usr/local/bin/kube-scheduler \\
   --bind-address=127.0.0.1 \\
   --master=https://${KUBE_API_PROXY_IP}:443 \\
-  --kubeconfig=${KUBECONFIG_DIR}/kube-scheduler.kubeconfig \\
+  --kubeconfig=${KUBECONFIG_DIR}/kube-scheduler.conf \\
   --leader-elect=true \\
   --v=2
 Restart=on-failure
@@ -1032,13 +1028,13 @@ ExecStart=/usr/local/bin/kubelet \\
   --address=${IP_LIST[${node}]} \\
   --hostname-override=${node} \\
   --pod-infra-container-image=k8s.gcr.io/pause-amd64:3.0 \\
-  --bootstrap-kubeconfig=${KUBECONFIG_DIR}/bootstrap.kubelet.kubeconfig \\
-  --kubeconfig=${KUBECONFIG_DIR}/kubelet.kubeconfig \\
+  --bootstrap-kubeconfig=${KUBECONFIG_DIR}/bootstrap-kubelet.conf \\
+  --kubeconfig=${KUBECONFIG_DIR}/kubelet.conf \\
   --cert-dir=${K8S_PKI_DIR} \\
   --hairpin-mode promiscuous-bridge \\
   --serialize-image-pulls=false \\
   --cgroup-driver=systemd \\
-  --cluster-dns=10.254.0.2 \\
+  --cluster-dns=${SERVICE_CLUSTER_IP_RANGE%.*}.2 \\
   --cluster-domain=cluster.local \\
   --v=2
 Restart=on-failure
@@ -1049,6 +1045,7 @@ WantedBy=multi-user.target
 EOF
 done
 # cgroup-driver和docker一致，皆为systemd
+# --cert-dir指定kubelet从master那边获取的签名证书存放目录
 
 for node in {node01,node02,node03};do
 cat << EOF > ${DEPLOY_DIR}/node/systemd-unit-files/kube-proxy-${node}.service
@@ -1064,7 +1061,7 @@ ExecStart=/usr/local/bin/kube-proxy \
   --master=https://${KUBE_API_PROXY_IP}:443 \
   --bind-address=${IP_LIST[${node}]} \
   --hostname-override=${node} \
-  --kubeconfig=${K8S_PKI_DIR}/kube-proxy.kubeconfig \
+  --kubeconfig=${K8S_PKI_DIR}/kube-proxy.conf \
   --cluster-cidr=${POD_CLUSTER_IP_RANGE}
 Restart=on-failure
 LimitNOFILE=65536
@@ -1136,14 +1133,30 @@ done
 ```
 
 ### 3. node节点
-kubelet 启动时向 kube-apiserver 发送 TLS bootstrapping 请求，需要先将 bootstrap token 文件中的 kubelet-bootstrap 用户赋予 system:node-bootstrapper cluster 角色(role)， 然后 kubelet 才能有权限创建认证请求(certificate signing requests)：
+下面执行的内容牵扯到kubelet-tls-bootstrap的内容，可以参考[官方文档](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
+
+kubelet 启动时向 kube-apiserver 发送 TLS bootstrapping 请求，需要先将 bootstrap token 文件中的 system:bootstrappers 用户组绑定到集群角色 system:node-bootstrapper 上， 然后 kubelet 才能有权限创建认证请求(certificate signing requests)：
 ``` bash
-# master节点执行
-kubectl create clusterrolebinding kubelet-bootstrap \
-  --clusterrole=system:node-bootstrapper \
-  --user=kubelet-bootstrap
+# master01节点执行
+# enable bootstrapping nodes to create CSR
+cat << EOF > ${DEPLOY_DIR}/kubeconfig/bootstrap-node-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: create-csrs-for-bootstrapping
+subjects:
+- kind: Group
+  name: system:bootstrappers
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: system:node-bootstrapper
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+kubectl apply -f ${DEPLOY_DIR}/kubeconfig/bootstrap-node-rbac.yaml
 ```
-> --user=kubelet-bootstrap 是在 /etc/kubernetes/token.csv 文件中指定的用户名，同时也写入了 /etc/kubernetes/bootstrap.kubelet.kubeconfig 文件；
+> system:bootstrappers 用户组 是在 token.csv 文件中指定的，同时也写入了 bootstrap.kubelet.<node-hostname>.kubeconfig 文件中
 
 ``` bash
 for node in {node01,node02,node03};do
