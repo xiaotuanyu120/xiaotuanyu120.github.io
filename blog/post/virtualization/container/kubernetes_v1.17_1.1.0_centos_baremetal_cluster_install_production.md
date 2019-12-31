@@ -13,6 +13,8 @@ tags: [container,docker,kubernetes,flannel]
 ### 1. 参照文档
 kubernetes的官方文档，目前官方维护的最老的1.13的版本里面，也已经无法找到当时我在1.9里面参照的`Creating a Custom Cluster from Scratch`那篇文档了，基本上能看出来趋势是希望采用kubeadm这个工具来初始化集群。但是其实二进制模式的安装还是可行，而且个人意见：二进制安装能增强维护人员对k8s集群的细节了解程度，并且能在解决安装时遇到各种问题的情况下增加对k8s管理知识的了解。
 
+关于文档，主体流程和重点部分可以参照 [kubeadm 实施流程文档](https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/)
+
 ### 2. 软件版本
 
 | items      | version    | comment                                                                                                                       |
@@ -365,7 +367,7 @@ cat > client-csr.json << EOF
             "C": "CN",
             "ST": "BeiJing",
             "L": "BeiJing",
-            "O": "k8s",
+            "O": "system:masters",
             "OU": "System"
         }
     ]
@@ -416,7 +418,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=peer
 ```
 
 
-### 3. 创建 k8s 认证文件
+### 3. 创建 k8s master节点 认证文件
 #### 1) 准备配置文件
 ``` bash
 cd ${DEPLOY_DIR}/pki/kubernetes
@@ -474,20 +476,23 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/ca-config.json <<EOF
 EOF
 
 # step 3. 创建"证书签名请求"文件
-# server限定k8s中
+
+# kube-apiserver
+# hosts内容：
 #   - HA所有监听ip、vip
-#   - 所有master监听ip
-#   - service网段第一个ip（文档上没找到，但是其他人都增加了）
-#   - k8s内嵌的一些内部域名
-cat > ${DEPLOY_DIR}/pki/kubernetes/server-csr.json << EOF
+#   - --apiserver-advertise-address指定的ip
+#   - service网段第一个ip
+#   - k8s DNS域名
+#   - master节点名称
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-apiserver-server-csr.json << EOF
 {
     "CN": "kubernetes",
     "hosts": [
       "127.0.0.1",
-      "192.168.33.101",
-      "192.168.33.102",
-      "192.168.33.103",
-      "10.254.0.1",
+      "${IP_LIST['master01']}",
+      "${IP_LIST['master02']}",
+      "${IP_LIST['master03']}",
+      "${SERVICE_CLUSTER_IP_RANGE%.*}.1",
       "kubernetes",
       "kubernetes.default",
       "kubernetes.default.svc",
@@ -510,10 +515,12 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/server-csr.json << EOF
 }
 EOF
 
-# step 4. 创建"证书签名请求"文件
-cat > ${DEPLOY_DIR}/pki/kubernetes/client-csr.json << EOF
+# kube-controller-manager
+# 注意点：
+# - CN名称必须是： system:kube-controller-manager
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client-csr.json << EOF
 {
-  "CN": "system:kube-proxy",
+  "CN": "system:kube-controller-manager",
   "hosts": [""],
   "key": {
     "algo": "rsa",
@@ -530,6 +537,48 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/client-csr.json << EOF
   ]
 }
 EOF
+
+cat > kube-proxy-csr.json << EOF
+{
+  "CN": "system:kube-proxy",
+  "hosts": [],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "k8s",
+      "OU": "System"
+    }
+  ]
+}
+EOF
+
+# kubelet
+# 注意点： organization必须是system:masters
+cat > kubelet-csr.json << EOF
+{
+  "CN": "system:kubelet",
+  "hosts": [],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "system:masters",
+      "OU": "System"
+    }
+  ]
+}
+EOF
 ```
 > [注：详情可以参照k8s证书官方文档](https://kubernetes.io/docs/concepts/cluster-administration/certificates/)  
 
@@ -537,14 +586,20 @@ EOF
 ``` bash
 # step 1. 生成 CA 证书和私钥
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
-# 生成文件：ca-key.pem ca.csr ca.pem
+# 生成文件： ca-key.pem ca.csr ca.pem
 
 # step 2. 生成应CSR文件请求，使用CA签名过的证书
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=server server-csr.json | cfssljson -bare server
-# 生成文件：server-key.pem server.csr server.pem
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=server kube-apiserver-csr.json | cfssljson -bare kube-apiserver
+# 生成文件： kube-apiserver-key.pem kube-apiserver.csr kube-apiserver.pem
 
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client client-csr.json | cfssljson -bare client
-# 生成文件：client-key.pem client.csr client.pem
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
+# 生成文件： kube-controller-manager-key.pem kube-controller-manager.csr kube-controller-manager.pem
+
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kube-proxy-csr.json | cfssljson -bare kube-proxy
+# 生成文件：kube-proxy-key.pem kube-proxy.csr kube-proxy.pem
+
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kubelet-csr.json | cfssljson -bare kubelet
+# 生成文件：kubelet-key.pem kubelet.csr kubelet.pem
 ```
 
 ### 4. 创建 admin 认证文件
@@ -577,34 +632,14 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=clie
 # 生成文件：admin-key.pem admin.csr admin.pem
 ```
 
-### 5. 创建 kube-proxy 认证文件
+### 5. 创建 kube-proxy, kubelet 认证文件
 ``` bash
 cd ${DEPLOY_DIR}/pki/kubernetes
 
 # step 1. 创建"证书签名请求"文件
-cat > kube-proxy-csr.json << EOF
-{
-  "CN": "system:kube-proxy",
-  "hosts": [],
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "CN",
-      "ST": "BeiJing",
-      "L": "BeiJing",
-      "O": "k8s",
-      "OU": "System"
-    }
-  ]
-}
-EOF
 
-# 生成 kube-proxy 客户端证书和私钥
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kube-proxy-csr.json | cfssljson -bare kube-proxy
-# 生成文件：kube-proxy-key.pem kube-proxy.csr kube-proxy.pem
+
+
 ```
 
 ### 6. 校验证书方法
@@ -625,18 +660,19 @@ for master in {master01,master02,master03};do
   scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,ca-key.pem,admin.pem,admin-key.pem} ${master}:${K8S_PKI_DIR}
   scp ${DEPLOY_DIR}/pki/kubernetes/server.pem ${master}:${K8S_PKI_DIR}/apiserver.pem
   scp ${DEPLOY_DIR}/pki/kubernetes/server-key.pem ${master}:${K8S_PKI_DIR}/apiserver-key.pem
-  scp ${DEPLOY_DIR}/pki/kubernetes/client.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client.pem
-  scp ${DEPLOY_DIR}/pki/kubernetes/client-key.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client-key.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client-key.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client-key.pem
   scp ${DEPLOY_DIR}/pki/etcd/ca.pem ${master}:${K8S_PKI_DIR}/etcd
   scp ${DEPLOY_DIR}/pki/etcd/client.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client.pem
   scp ${DEPLOY_DIR}/pki/etcd/client-key.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client-key.pem
 done
 
 # 下发证书到node
-for node in {node01,node02,node03};do
-  ssh root@${node} "mkdir -p ${K8S_PKI_DIR}"
-  scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,kube-proxy.pem,kube-proxy-key.pem} ${node}:${K8S_PKI_DIR}
-done
+#for node in {node01,node02,node03};do
+#  ssh root@${node} "mkdir -p ${K8S_PKI_DIR}"
+#  scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,kube-proxy.pem,kube-proxy-key.pem} ${node}:${K8S_PKI_DIR}
+#done
+# 因为有bootstrap-token功能，不需要手动分发认证了
 
 # 下发证书到etcd
 for etcd in {etcd01,etcd02,etcd03};do
@@ -878,6 +914,8 @@ done
 #   DefaultTolerationSeconds, DefaultStorageClass, StorageObjectInUseProtection, PersistentVolumeClaimResize,
 #   MutatingAdmissionWebhook, ValidatingAdmissionWebhook, RuntimeClass, ResourceQuota"
 # 若需要额外配置其他admission，请参照kubernetes admission controller官方文档
+
+# --enable-bootstrap-token-auth: 启用bootstrap-token认证，详情请参照官方文档
 
 # kube-controller-manager.service
 for master in {master01,master02,master03};do
