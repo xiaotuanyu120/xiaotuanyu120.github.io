@@ -17,24 +17,24 @@ kubernetes的官方文档，目前官方维护的最老的1.13的版本里面，
 
 ### 2. 软件版本
 
-| items      | version    | comment                                                                                                                       |
-| ---------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| OS         | centos7    | Version 4.0 or higher of the Linux kernel, or RHEL or CentOS using version 3.10.0-514 of the kernel or higher. (支持overlay2) |
-| kubernetes | 1.17       |                                                                                                                               |
-| docker     | 19.03.5-ce | Storage Driver: overlay2 <br>Logging Driver: journald <br>Cgroup Driver: systemd                                              |
-| etcd       | v3.3.18    |                                                                                                                               |
-| flannel    |            | 使用flannel做overlay网络，支持不同主机间pods间网络互通                                                                           |
+| items      | version    |
+| ---------- | ---------- |
+| OS         | centos7    |
+| kubernetes | 1.17       |
+| docker     | 19.03.5-ce |
+| etcd       | v3.3.18    |
+| flannel    |            |
 
 ### 3. 节点规划
 
-| 角色            | ip address    | 服务                                                       | comment             |
-| --------------- | ------------- | ---------------------------------------------------------- | ------------------- |
-| master01,etcd01 | 192.168.33.101| kube-apiserver,kube-controller-manager,kube-scheduler,etcd | 主节点01,etcd节点01 |
-| master02,etcd02 | 192.168.33.102| kube-apiserver,kube-controller-manager,kube-scheduler,etcd | 主节点02,etcd节点02 |
-| master03,etcd03 | 192.168.33.103| kube-apiserver,kube-controller-manager,kube-scheduler,etcd | 主节点03,etcd节点03 |
-| node01          | 192.168.33.104| flannel,docker,kubelet,kube-proxy                          | node节点01          |
-| node02          | 192.168.33.105| flannel,docker,kubelet,kube-proxy                          | node节点02          |
-| node03          | 192.168.33.106| flannel,docker,kubelet,kube-proxy                          | node节点03          |
+| 角色            | ip address    | 服务                                                              | comment             |
+| --------------- | ------------- | ----------------------------------------------------------------- | ------------------- |
+| master01,etcd01 | 192.168.33.101| kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker | 主节点01,etcd节点01 |
+| master02,etcd02 | 192.168.33.102| kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker | 主节点02,etcd节点02 |
+| master03,etcd03 | 192.168.33.103| kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker | 主节点03,etcd节点03 |
+| node01          | 192.168.33.104| kubelet,kube-proxy,docker                                         | node节点01          |
+| node02          | 192.168.33.105| kubelet,kube-proxy,docker                                         | node节点02          |
+| node03          | 192.168.33.106| kubelet,kube-proxy,docker                                         | node节点03          |
 
 ### 4. 网络规划
 
@@ -64,7 +64,8 @@ systemctl stop firewalld
 systemctl disable firewalld
 systemctl mask firewalld
 yum install -y iptables iptables-services
-systemctl enable iptables
+systemctl disable iptables
+systemctl stop iptables
 # 安装期间临时关闭防火墙，正式运行需开放api等服务的端口
 
 # 关闭selinux  
@@ -136,6 +137,7 @@ ETCD_VER=v3.3.18
 
 # 证书环境变量
 K8S_PKI_DIR=/etc/kubernetes/pki
+ETCD_PKI_DIR=/etc/etcd/pki
 ADMIN_KUBECONFIG_DIR=/root/.kube
 KUBECONFIG_DIR=/etc/kubernetes/kubeconfig
 
@@ -147,6 +149,7 @@ POD_CLUSTER_IP_RANGE=10.5.0.0/16
 ---
 
 ## 给kube-apiserver创建一个负载均衡
+这里我选择了master01机器上来部署高可用服务，当然你可以选择任意你希望部署的一台机器。
 ``` bash
 DOCKER_YML_DIR=/data/docker/yml
 DOCKER_RUNTIME_DIR=/data/docker/runtime
@@ -250,9 +253,9 @@ k8s集群需要如下证书文件：
 
 ### 1. 安装cfssl
 ``` bash
-curl -s -L -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
-curl -s -L -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
-curl -s -L -o /usr/local/bin/cfssl-certinfo https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64
+curl -s -L -o /usr/local/bin/cfssl https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64
+curl -s -L -o /usr/local/bin/cfssljson https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64
+curl -s -L -o /usr/local/bin/cfssl-certinfo https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl-certinfo_1.4.1_linux_amd64
 chmod +x /usr/local/bin/*
 export PATH=$PATH:/usr/local/bin
 
@@ -260,6 +263,7 @@ export PATH=$PATH:/usr/local/bin
 mkdir -p ${DEPLOY_DIR}/pki/{etcd,kubernetes}
 # 此目录只是临时存放ca生成文件，可随意更换位置
 ```
+> 因为[issues 717: 错误提示hosts缺失问题](https://github.com/cloudflare/cfssl/issues/717)，这里和官方文档不一样，从1.2升级到了1.4.1
 
 ### 2. 创建 etcd 认证文件
 #### 1) 准备配置文件
@@ -280,7 +284,7 @@ cat > ca-csr.json << EOF
       "C": "CN",
       "ST": "BeiJing",
       "L": "BeiJing",
-      "O": "someOrganization",
+      "O": "k8s",
       "OU": "System"
     }
   ]
@@ -289,6 +293,8 @@ EOF
 
 # step 2. 签名证书
 # 创建CA签名配置文件
+# [issue]: 因为etcd开启--client-cert-auth选项，导致需要给serverde profile (client auth) 权限
+# [issue-url]: https://github.com/etcd-io/etcd/issues/9785
 cat > ca-config.json <<EOF
 {
   "signing": {
@@ -300,7 +306,8 @@ cat > ca-config.json <<EOF
         "usages": [
             "signing",
             "key encipherment",
-            "server auth"
+            "server auth",
+            "client auth"
         ],
         "expiry": "87600h"
       },
@@ -484,7 +491,7 @@ EOF
 #   - service网段第一个ip
 #   - k8s DNS域名
 #   - master节点名称
-cat > ${DEPLOY_DIR}/pki/kubernetes/kube-apiserver-server-csr.json << EOF
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-apiserver-csr.json << EOF
 {
     "CN": "kubernetes",
     "hosts": [
@@ -518,9 +525,60 @@ EOF
 # kube-controller-manager
 # 注意点：
 # - CN名称必须是： system:kube-controller-manager
-cat > ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client-csr.json << EOF
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-csr.json << EOF
 {
   "CN": "system:kube-controller-manager",
+  "hosts": [
+    "127.0.0.1",
+    "${IP_LIST['master01']}",
+    "${IP_LIST['master02']}",
+    "${IP_LIST['master03']}"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "k8s",
+      "OU": "System"
+    }
+  ]
+}
+EOF
+
+# kube-scheduler
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-scheduler-csr.json << EOF
+{
+  "CN": "system:kube-scheduler",
+  "hosts": [
+    "127.0.0.1",
+    "${IP_LIST['master01']}",
+    "${IP_LIST['master02']}",
+    "${IP_LIST['master03']}"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "CN",
+      "ST": "BeiJing",
+      "L": "BeiJing",
+      "O": "k8s",
+      "OU": "System"
+    }
+  ]
+}
+EOF
+
+cat > ${DEPLOY_DIR}/pki/kubernetes/kube-proxy-csr.json << EOF
+{
+  "CN": "system:kube-proxy",
   "hosts": [""],
   "key": {
     "algo": "rsa",
@@ -538,47 +596,35 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-client-csr.json << EO
 }
 EOF
 
-cat > kube-proxy-csr.json << EOF
-{
-  "CN": "system:kube-proxy",
-  "hosts": [],
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "CN",
-      "ST": "BeiJing",
-      "L": "BeiJing",
-      "O": "k8s",
-      "OU": "System"
-    }
-  ]
-}
-EOF
-
-# kubelet
-# 注意点： organization必须是system:masters
-cat > kubelet-csr.json << EOF
-{
-  "CN": "system:kubelet",
-  "hosts": [],
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "CN",
-      "ST": "BeiJing",
-      "L": "BeiJing",
-      "O": "system:masters",
-      "OU": "System"
-    }
-  ]
-}
-EOF
+# # kubelet
+# # 注意点： 
+# # - organization必须是system:masters
+# # - 这里我只允许了hostname和内网ip来源，如果需要外网ip访问的，记得增加上外网ip
+# for node in {node01,node02,node03};do
+# cat > ${DEPLOY_DIR}/pki/kubernetes/kubelet-${node}-csr.json << EOF
+# {
+#   "CN": "system:node:${node}",
+#   "hosts": [
+#     "${node}",
+#     "${IP_LIST[${node}]}"
+#   ],
+#   "key": {
+#     "algo": "rsa",
+#     "size": 2048
+#   },
+#   "names": [
+#     {
+#       "C": "CN",
+#       "ST": "BeiJing",
+#       "L": "BeiJing",
+#       "O": "system:masters",
+#       "OU": "System"
+#     }
+#   ]
+# }
+# EOF
+# done
+# 因为使用了bootstrap token file，这里不需要生成kubelet的key
 ```
 > [注：详情可以参照k8s证书官方文档](https://kubernetes.io/docs/concepts/cluster-administration/certificates/)  
 
@@ -595,11 +641,17 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=serv
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 # 生成文件： kube-controller-manager-key.pem kube-controller-manager.csr kube-controller-manager.pem
 
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client kube-scheduler-csr.json | cfssljson -bare kube-scheduler
+# 生成文件： kube-scheduler-key.pem kube-scheduler.csr kube-scheduler.pem
+
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kube-proxy-csr.json | cfssljson -bare kube-proxy
 # 生成文件：kube-proxy-key.pem kube-proxy.csr kube-proxy.pem
 
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kubelet-csr.json | cfssljson -bare kubelet
-# 生成文件：kubelet-key.pem kubelet.csr kubelet.pem
+# for node in {node01,node02,node03};do
+#   cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kubelet-${node}-csr.json | cfssljson -bare kubelet-${node}
+# done
+# # 生成文件：kubelet-${node}-key.pem kubelet-${node}.csr kubelet-${node}.pem
+# 因为使用了bootstrap token file，这里不需要生成kubelet的key
 ```
 
 ### 4. 创建 admin 认证文件
@@ -646,13 +698,14 @@ cfssl-certinfo -cert server.pem
 # - apiserver证书
 # - apiserver-etcd-client证书
 for master in {master01,master02,master03};do
-  ssh root@${master} "mkdir -p ${K8S_PKI_DIR}/etcd"
+  ssh root@${master} "mkdir -p ${K8S_PKI_DIR}"
+  ssh root@${master} "mkdir -p ${ETCD_PKI_DIR}"
   scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,ca-key.pem,admin.pem,admin-key.pem} ${master}:${K8S_PKI_DIR}
-  scp ${DEPLOY_DIR}/pki/kubernetes/server.pem ${master}:${K8S_PKI_DIR}/apiserver.pem
-  scp ${DEPLOY_DIR}/pki/kubernetes/server-key.pem ${master}:${K8S_PKI_DIR}/apiserver-key.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-apiserver.pem ${master}:${K8S_PKI_DIR}/apiserver.pem
+  scp ${DEPLOY_DIR}/pki/kubernetes/kube-apiserver-key.pem ${master}:${K8S_PKI_DIR}/apiserver-key.pem
   scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client.pem
   scp ${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-key.pem ${master}:${K8S_PKI_DIR}/api-kubelet-client-key.pem
-  scp ${DEPLOY_DIR}/pki/etcd/ca.pem ${master}:${K8S_PKI_DIR}/etcd
+  scp ${DEPLOY_DIR}/pki/etcd/ca.pem ${master}:${ETCD_PKI_DIR}
   scp ${DEPLOY_DIR}/pki/etcd/client.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client.pem
   scp ${DEPLOY_DIR}/pki/etcd/client-key.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client-key.pem
 done
@@ -666,8 +719,8 @@ done
 
 # 下发证书到etcd
 for etcd in {etcd01,etcd02,etcd03};do
-  ssh root@${etcd} "mkdir -p ${K8S_PKI_DIR}/etcd"
-  scp ${DEPLOY_DIR}/pki/etcd/{ca.pem,server.pem,server-key.pem,peer.pem,peer-key.pem} ${etcd}:${K8S_PKI_DIR}/etcd
+  ssh root@${etcd} "mkdir -p ${ETCD_PKI_DIR}"
+  scp ${DEPLOY_DIR}/pki/etcd/{ca.pem,server.pem,server-key.pem,peer.pem,peer-key.pem} ${etcd}:${ETCD_PKI_DIR}
 done
 ```
 
@@ -685,7 +738,7 @@ mkdir -p ${DEPLOY_DIR}/kubeconfig
 cd ${DEPLOY_DIR}/kubeconfig
 export KUBE_APISERVER="https://${KUBE_API_PROXY_IP}:443"
 
-# step 1. 创建 bootstrap token
+# step 1. 创建 bootstrap token file
 # Token 可以是任意的包涵128 bit的字符串，可以使用安全的随机数发生器生成。
 export BOOTSTRAP_TOKEN=$(head -c 16 /dev/urandom | od -An -t x | tr -d ' ')
 cat > ${DEPLOY_DIR}/kubeconfig/token.csv <<EOF
@@ -710,7 +763,7 @@ for node in {node01,node02,node03};do
 
   kubectl config set-context default \
     --cluster=kubernetes \
-    --user=kubelet-bootstrap \
+    --user=system:node:${node} \
     --kubeconfig=bootstrap-kubelet-${node}.conf
 
   kubectl config use-context default --kubeconfig=bootstrap-kubelet-${node}.conf
@@ -790,8 +843,8 @@ kubectl config set-cluster kubernetes \
 
 # 注意点： credential必须是system:kube-controller-manager
 kubectl config set-credentials system:kube-controller-manager \
-  --client-certificate=${DEPLOY_DIR}/pki/kubernetes/client.pem \
-  --client-key=${DEPLOY_DIR}/pki/kubernetes/client-key.pem \
+  --client-certificate=${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager.pem \
+  --client-key=${DEPLOY_DIR}/pki/kubernetes/kube-controller-manager-key.pem \
   --embed-certs=true \
   --kubeconfig=kube-controller-manager.conf
 
@@ -813,8 +866,8 @@ kubectl config set-cluster kubernetes \
 
 # 注意点： credential必须是system:kube-scheduler
 kubectl config set-credentials system:kube-scheduler \
-  --client-certificate=${DEPLOY_DIR}/pki/kubernetes/client.pem \
-  --client-key=${DEPLOY_DIR}/pki/kubernetes/client-key.pem \
+  --client-certificate=${DEPLOY_DIR}/pki/kubernetes/kube-scheduler.pem \
+  --client-key=${DEPLOY_DIR}/pki/kubernetes/kube-scheduler-key.pem \
   --embed-certs=true \
   --kubeconfig=kube-scheduler.conf
 
@@ -871,6 +924,7 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --advertise-address=${IP_LIST[${master}]} \\
   --bind-address=${IP_LIST[${master}]} \\
   --secure-port=6443 \\
+  --insecure-port=0 \\
   --authorization-mode=Node,RBAC \\
   --enable-admission-plugins=NodeRestriction \\
   --enable-bootstrap-token-auth=true \\
@@ -881,7 +935,7 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --tls-cert-file=${K8S_PKI_DIR}/apiserver.pem \\
   --tls-private-key-file=${K8S_PKI_DIR}/apiserver-key.pem \\
   --service-account-key-file=${K8S_PKI_DIR}/ca-key.pem \\
-  --etcd-cafile=${K8S_PKI_DIR}/etcd/ca.pem \\
+  --etcd-cafile=${ETCD_PKI_DIR}/ca.pem \\
   --etcd-certfile=${K8S_PKI_DIR}/apiserver-etcd-client.pem \\
   --etcd-keyfile=${K8S_PKI_DIR}/apiserver-etcd-client-key.pem \\
   --etcd-servers=https://${IP_LIST["etcd01"]}:2379,https://${IP_LIST["etcd02"]}:2379,https://${IP_LIST["etcd03"]}:2379 \\
@@ -986,13 +1040,13 @@ EnvironmentFile=-/etc/etcd/etcd.conf
 ExecStart=/usr/local/bin/etcd \\
   --name=${etcd} \\
   --client-cert-auth=true \\
-  --trusted-ca-file=${K8S_PKI_DIR}/etcd/ca.pem \\
-  --cert-file=${K8S_PKI_DIR}/etcd/server.pem \\
-  --key-file=${K8S_PKI_DIR}/etcd/server-key.pem \\
+  --trusted-ca-file=${ETCD_PKI_DIR}/ca.pem \\
+  --cert-file=${ETCD_PKI_DIR}/server.pem \\
+  --key-file=${ETCD_PKI_DIR}/server-key.pem \\
   --peer-client-cert-auth=true \\
-  --peer-trusted-ca-file=${K8S_PKI_DIR}/etcd/ca.pem \\
-  --peer-cert-file=${K8S_PKI_DIR}/etcd/peer.pem \\
-  --peer-key-file=${K8S_PKI_DIR}/etcd/peer-key.pem \\
+  --peer-trusted-ca-file=${ETCD_PKI_DIR}/ca.pem \\
+  --peer-cert-file=${ETCD_PKI_DIR}/peer.pem \\
+  --peer-key-file=${ETCD_PKI_DIR}/peer-key.pem \\
   --initial-advertise-peer-urls=https://${IP_LIST[${etcd}]}:2380 \\
   --listen-peer-urls=https://${IP_LIST[${etcd}]}:2380 \\
   --listen-client-urls=https://${IP_LIST[${etcd}]}:2379,https://127.0.0.1:2379 \\
@@ -1104,22 +1158,22 @@ done
 ### 1. etcd节点
 ``` bash
 for etcd in {etcd01,etcd02,etcd03};do
-  ssh root@$etcd "mkdir -p /var/lib/etcd"
-  ssh root@$etcd "systemctl daemon-reload && systemctl enable etcd && systemctl start etcd"
+  ssh root@${etcd} "mkdir -p /var/lib/etcd"
+  ssh root@${etcd} "systemctl daemon-reload && systemctl enable etcd && systemctl start etcd"
 done
 
 etcdctl \
   --endpoints https://${IP_LIST["etcd01"]}:2379,https://${IP_LIST["etcd02"]}:2379,https://${IP_LIST["etcd03"]}:2379 \
-  --ca-file=${K8S_PKI_DIR}/etcd/ca.pem \
-  --cert-file=${K8S_PKI_DIR}/etcd/peer.pem \
-  --key-file=${K8S_PKI_DIR}/etcd/peer-key.pem \
+  --ca-file=${DEPLOY_DIR}/pki/etcd/ca.pem \
+  --cert-file=${DEPLOY_DIR}/pki/etcd/peer.pem \
+  --key-file=${DEPLOY_DIR}/pki/etcd/peer-key.pem \
   cluster-health
 
 etcdctl \
   --endpoints https://${IP_LIST["etcd01"]}:2379,https://${IP_LIST["etcd02"]}:2379,https://${IP_LIST["etcd03"]}:2379 \
-  --ca-file=${K8S_PKI_DIR}/etcd/ca.pem \
-  --cert-file=${K8S_PKI_DIR}/etcd/peer.pem \
-  --key-file=${K8S_PKI_DIR}/etcd/peer-key.pem \
+  --ca-file=${DEPLOY_DIR}/pki/etcd/ca.pem \
+  --cert-file=${DEPLOY_DIR}/pki/etcd/peer.pem \
+  --key-file=${DEPLOY_DIR}/pki/etcd/peer-key.pem \
   set /kubernetes/network/config "{ 'Network': ${POD_CLUSTER_IP_RANGE}, 'Backend': {'Type': 'vxlan'}}"
 ```
 
@@ -1132,14 +1186,16 @@ for master in {master01,master02,master03};do
 done
 ```
 
-### 3. node节点
+### 3. kubelet tls bootstrap
 下面执行的内容牵扯到kubelet-tls-bootstrap的内容，可以参考[官方文档](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)
-
-kubelet 启动时向 kube-apiserver 发送 TLS bootstrapping 请求，需要先将 bootstrap token 文件中的 system:bootstrappers 用户组绑定到集群角色 system:node-bootstrapper 上， 然后 kubelet 才能有权限创建认证请求(certificate signing requests)：
 ``` bash
-# master01节点执行
+mkdir -p ${DEPLOY_DIR}/kubelet-tls-bootstrap
+```
+
+创建ClusterRoleBinding允许kubelet创建CSR(certificate signing requests)
+``` bash
 # enable bootstrapping nodes to create CSR
-cat << EOF > ${DEPLOY_DIR}/kubeconfig/bootstrap-node-rbac.yaml
+cat << EOF > ${DEPLOY_DIR}/kubelet-tls-bootstrap/csr-create-rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -1154,10 +1210,52 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 EOF
 
-kubectl apply -f ${DEPLOY_DIR}/kubeconfig/bootstrap-node-rbac.yaml
+kubectl apply -f ${DEPLOY_DIR}/kubelet-tls-bootstrap/csr-create-rbac.yaml
 ```
-> system:bootstrappers 用户组 是在 token.csv 文件中指定的，同时也写入了 bootstrap.kubelet.<node-hostname>.kubeconfig 文件中
 
+创建ClusterRoleBinding允许kubelet请求和接收证书
+``` bash
+# Approve all CSRs for the group "system:bootstrappers"
+cat << EOF > ${DEPLOY_DIR}/kubelet-tls-bootstrap/csr-approve-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: auto-approve-csrs-for-group
+subjects:
+- kind: Group
+  name: system:bootstrappers
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+kubectl apply -f ${DEPLOY_DIR}/kubelet-tls-bootstrap/csr-approve-rbac.yaml
+```
+
+创建ClusterRoleBinding允许kubelet重签证书
+``` bash
+# Approve renewal CSRs for the group "system:nodes"
+cat << EOF > ${DEPLOY_DIR}/kubelet-tls-bootstrap/cert-renew-rbac.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: auto-approve-renewals-for-nodes
+subjects:
+- kind: Group
+  name: system:nodes
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+kubectl apply -f ${DEPLOY_DIR}/kubelet-tls-bootstrap/cert-renew-rbac.yaml
+```
+
+### 4. node节点
 ``` bash
 for node in {node01,node02,node03};do
   ssh root@${node} "mkdir -p /var/lib/kubelet"
@@ -1165,15 +1263,16 @@ for node in {node01,node02,node03};do
 done
 ```
 
-### 4. 通过node节点的tls认证请求
+### 5. 查看node节点的tls认证请求
 ``` bash
 # 查看csr请求
 kubectl get csr
-
-# 如果有需要批准的请求，可以执行approve csr请求
+# 如果自动认证签证证书失败，有需要人工批准的请求，可以执行approve csr请求
 # kubectl get csr | awk '/Pending/ {print $1}' | xargs kubectl certificate approve
+```
 
-# 查看集群状态
+### 6. 查看集群节点状态
+``` bash
 kubectl get nodes
 NAME      STATUS    ROLES     AGE       VERSION
 node01    Ready     <none>    40m       v1.9.1
