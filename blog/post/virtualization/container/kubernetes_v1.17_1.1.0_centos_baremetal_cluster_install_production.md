@@ -204,10 +204,10 @@ mkdir -p ${DEPLOY_DIR}/{node,master,etcd}/bin
 ``` bash
 cd ${DEPLOY_DIR}
 # 下载kubernetes
-wget https://dl.k8s.io/${K8S_VER}/kubernetes-server-linux-amd64.tar.gz
+wget https://dl.k8s.io/${K8S_VER}/kubernetes-server-linux-amd64.tar.gz -O ${DEPLOY_DIR}/kubernetes-server-linux-amd64.tar.gz
 tar zxvf kubernetes-server-linux-amd64.tar.gz
-cp kubernetes/server/bin/{kube-apiserver,kube-scheduler,kube-controller-manager,kubectl} ${DEPLOY_DIR}/master/bin
-cp kubernetes/server/bin/{kubelet,kube-proxy} ${DEPLOY_DIR}/node/bin
+cp ${DEPLOY_DIR}/kubernetes/server/bin/{kube-apiserver,kube-scheduler,kube-controller-manager,kubectl} ${DEPLOY_DIR}/master/bin
+cp ${DEPLOY_DIR}/kubernetes/server/bin/{kubelet,kube-proxy} ${DEPLOY_DIR}/node/bin
 
 # 下载etcd
 curl -L https://github.com/coreos/etcd/releases/download/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz \
@@ -576,6 +576,7 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/kube-scheduler-csr.json << EOF
 }
 EOF
 
+# kube-proxy
 cat > ${DEPLOY_DIR}/pki/kubernetes/kube-proxy-csr.json << EOF
 {
   "CN": "system:kube-proxy",
@@ -595,36 +596,6 @@ cat > ${DEPLOY_DIR}/pki/kubernetes/kube-proxy-csr.json << EOF
   ]
 }
 EOF
-
-# # kubelet
-# # 注意点： 
-# # - organization必须是system:masters
-# # - 这里我只允许了hostname和内网ip来源，如果需要外网ip访问的，记得增加上外网ip
-# for node in {node01,node02,node03};do
-# cat > ${DEPLOY_DIR}/pki/kubernetes/kubelet-${node}-csr.json << EOF
-# {
-#   "CN": "system:node:${node}",
-#   "hosts": [
-#     "${node}",
-#     "${IP_LIST[${node}]}"
-#   ],
-#   "key": {
-#     "algo": "rsa",
-#     "size": 2048
-#   },
-#   "names": [
-#     {
-#       "C": "CN",
-#       "ST": "BeiJing",
-#       "L": "BeiJing",
-#       "O": "system:masters",
-#       "OU": "System"
-#     }
-#   ]
-# }
-# EOF
-# done
-# 因为使用了bootstrap token file，这里不需要生成kubelet的key
 ```
 > [注：详情可以参照k8s证书官方文档](https://kubernetes.io/docs/concepts/cluster-administration/certificates/)  
 
@@ -646,12 +617,6 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=clie
 
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kube-proxy-csr.json | cfssljson -bare kube-proxy
 # 生成文件：kube-proxy-key.pem kube-proxy.csr kube-proxy.pem
-
-# for node in {node01,node02,node03};do
-#   cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=client  kubelet-${node}-csr.json | cfssljson -bare kubelet-${node}
-# done
-# # 生成文件：kubelet-${node}-key.pem kubelet-${node}.csr kubelet-${node}.pem
-# 因为使用了bootstrap token file，这里不需要生成kubelet的key
 ```
 
 ### 4. 创建 admin 认证文件
@@ -709,13 +674,6 @@ for master in {master01,master02,master03};do
   scp ${DEPLOY_DIR}/pki/etcd/client.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client.pem
   scp ${DEPLOY_DIR}/pki/etcd/client-key.pem ${master}:${K8S_PKI_DIR}/apiserver-etcd-client-key.pem
 done
-
-# 下发证书到node
-#for node in {node01,node02,node03};do
-#  ssh root@${node} "mkdir -p ${K8S_PKI_DIR}"
-#  scp ${DEPLOY_DIR}/pki/kubernetes/{ca.pem,kube-proxy.pem,kube-proxy-key.pem} ${node}:${K8S_PKI_DIR}
-#done
-# 因为有bootstrap-token功能，不需要手动分发认证了
 
 # 下发证书到etcd
 for etcd in {etcd01,etcd02,etcd03};do
@@ -1157,10 +1115,14 @@ done
 ## 启动服务
 ### 1. etcd节点
 ``` bash
+# 不知道为啥，这样老是启动失败，每次都是自己手动上去重启一下etcd，集群就成功了
 for etcd in {etcd01,etcd02,etcd03};do
   ssh root@${etcd} "mkdir -p /var/lib/etcd"
-  ssh root@${etcd} "systemctl daemon-reload && systemctl enable etcd && systemctl start etcd"
+  ssh root@${etcd} "systemctl daemon-reload"
+  ssh root@${etcd} "systemctl enable etcd"
+  ssh root@${etcd} "systemctl restart etcd"
 done
+# 应该是etcd必须是同时启动，才能成功，个人猜测
 
 etcdctl \
   --endpoints https://${IP_LIST["etcd01"]}:2379,https://${IP_LIST["etcd02"]}:2379,https://${IP_LIST["etcd03"]}:2379 \
