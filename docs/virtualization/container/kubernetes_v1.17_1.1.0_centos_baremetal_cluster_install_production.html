@@ -226,9 +226,6 @@
 <td>etcd</td>
 <td>v3.3.18</td>
 </tr>
-<tr>
-<td>flannel</td>
-</tr>
 </tbody>
 </table>
 <h3>3. 节点规划</h3>
@@ -1276,7 +1273,7 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/node/systemd-unit-files/kube
 <span class="s">  --master=https://${KUBE_API_PROXY_IP}:443 \</span>
 <span class="s">  --bind-address=${IP_LIST[${node}]} \</span>
 <span class="s">  --hostname-override=${node} \</span>
-<span class="s">  --kubeconfig=${K8S_PKI_DIR}/kube-proxy.conf \</span>
+<span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kube-proxy.conf \</span>
 <span class="s">  --cluster-cidr=${POD_CLUSTER_IP_RANGE}</span>
 <span class="s">Restart=on-failure</span>
 <span class="s">LimitNOFILE=65536</span>
@@ -1416,12 +1413,280 @@ kubectl get csr
 <span class="c1"># 如果自动认证签证证书失败，有需要人工批准的请求，可以执行approve csr请求</span>
 <span class="c1"># kubectl get csr | awk &#39;/Pending/ {print $1}&#39; | xargs kubectl certificate approve</span>
 </pre></div>
-<h3>6. 查看集群节点状态</h3>
-<div class="highlight"><pre><span></span>kubectl get nodes
+<h3>6. 查看集群状态</h3>
+<div class="highlight"><pre><span></span>kubectl get componentstatuses
+NAME                 STATUS    MESSAGE             ERROR
+scheduler            Healthy   ok                  
+controller-manager   Healthy   ok                  
+etcd-0               Healthy   <span class="o">{</span><span class="s2">&quot;health&quot;</span>:<span class="s2">&quot;true&quot;</span><span class="o">}</span>   
+etcd-2               Healthy   <span class="o">{</span><span class="s2">&quot;health&quot;</span>:<span class="s2">&quot;true&quot;</span><span class="o">}</span>   
+etcd-1               Healthy   <span class="o">{</span><span class="s2">&quot;health&quot;</span>:<span class="s2">&quot;true&quot;</span><span class="o">}</span>
+
+kubectl get nodes
 NAME      STATUS    ROLES     AGE       VERSION
 node01    Ready     &lt;none&gt;    40m       v1.9.1
 node02    Ready     &lt;none&gt;    3m        v1.9.1
 node03    Ready     &lt;none&gt;    3m        v1.9.1
+</pre></div>
+<hr>
+<h2>安装Pod网络附加组件</h2>
+<p>关于CNI网络组件的选择，可以自行搜索文档，此处选择使用flannel。</p>
+<h3>1. flannel需要的环境</h3>
+<ul>
+<li>bridge-nf-call-iptables内核优化开启，前面已经优化过，此处不需要再处理</li>
+<li>确保防火墙规则允许参与overlay网络的所有主机的UDP端口8285和8472通信，参照文档：<a href="https://coreos.com/flannel/docs/latest/troubleshooting.html#firewalls">coreos关于防火墙的说明</a></li>
+</ul>
+<h3>2. 启动flannel</h3>
+<p>官方kubeadm引导k8s集群的文档中，使用了这个yaml文件： <a href="https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml">https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml</a> 上面这个文件中默认使用了10.244.0.0/16作为pod的网络，如果希望自定义，需要在kubeadm init时增加--pod-network-cidr选项</p>
+<p>但是因为我们是二进制安装，此处我们下载上面的yaml文件，并手动修改pod网络的参数，并仅保留amd64硬件的daemonset，其他硬件平台的删除</p>
+<div class="highlight"><pre><span></span>mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon
+
+<span class="c1"># customize kube-flannel.yml</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/kube-addon/kube-flannel.yml</span>
+<span class="s">---</span>
+<span class="s">apiVersion: policy/v1beta1</span>
+<span class="s">kind: PodSecurityPolicy</span>
+<span class="s">metadata:</span>
+<span class="s">  name: psp.flannel.unprivileged</span>
+<span class="s">  annotations:</span>
+<span class="s">    seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default</span>
+<span class="s">    seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default</span>
+<span class="s">    apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default</span>
+<span class="s">    apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default</span>
+<span class="s">spec:</span>
+<span class="s">  privileged: false</span>
+<span class="s">  volumes:</span>
+<span class="s">    - configMap</span>
+<span class="s">    - secret</span>
+<span class="s">    - emptyDir</span>
+<span class="s">    - hostPath</span>
+<span class="s">  allowedHostPaths:</span>
+<span class="s">    - pathPrefix: &quot;/etc/cni/net.d&quot;</span>
+<span class="s">    - pathPrefix: &quot;/etc/kube-flannel&quot;</span>
+<span class="s">    - pathPrefix: &quot;/run/flannel&quot;</span>
+<span class="s">  readOnlyRootFilesystem: false</span>
+<span class="s">  # Users and groups</span>
+<span class="s">  runAsUser:</span>
+<span class="s">    rule: RunAsAny</span>
+<span class="s">  supplementalGroups:</span>
+<span class="s">    rule: RunAsAny</span>
+<span class="s">  fsGroup:</span>
+<span class="s">    rule: RunAsAny</span>
+<span class="s">  # Privilege Escalation</span>
+<span class="s">  allowPrivilegeEscalation: false</span>
+<span class="s">  defaultAllowPrivilegeEscalation: false</span>
+<span class="s">  # Capabilities</span>
+<span class="s">  allowedCapabilities: [&#39;NET_ADMIN&#39;]</span>
+<span class="s">  defaultAddCapabilities: []</span>
+<span class="s">  requiredDropCapabilities: []</span>
+<span class="s">  # Host namespaces</span>
+<span class="s">  hostPID: false</span>
+<span class="s">  hostIPC: false</span>
+<span class="s">  hostNetwork: true</span>
+<span class="s">  hostPorts:</span>
+<span class="s">  - min: 0</span>
+<span class="s">    max: 65535</span>
+<span class="s">  # SELinux</span>
+<span class="s">  seLinux:</span>
+<span class="s">    # SELinux is unsed in CaaSP</span>
+<span class="s">    rule: &#39;RunAsAny&#39;</span>
+<span class="s">---</span>
+<span class="s">kind: ClusterRole</span>
+<span class="s">apiVersion: rbac.authorization.k8s.io/v1beta1</span>
+<span class="s">metadata:</span>
+<span class="s">  name: flannel</span>
+<span class="s">rules:</span>
+<span class="s">  - apiGroups: [&#39;extensions&#39;]</span>
+<span class="s">    resources: [&#39;podsecuritypolicies&#39;]</span>
+<span class="s">    verbs: [&#39;use&#39;]</span>
+<span class="s">    resourceNames: [&#39;psp.flannel.unprivileged&#39;]</span>
+<span class="s">  - apiGroups:</span>
+<span class="s">      - &quot;&quot;</span>
+<span class="s">    resources:</span>
+<span class="s">      - pods</span>
+<span class="s">    verbs:</span>
+<span class="s">      - get</span>
+<span class="s">  - apiGroups:</span>
+<span class="s">      - &quot;&quot;</span>
+<span class="s">    resources:</span>
+<span class="s">      - nodes</span>
+<span class="s">    verbs:</span>
+<span class="s">      - list</span>
+<span class="s">      - watch</span>
+<span class="s">  - apiGroups:</span>
+<span class="s">      - &quot;&quot;</span>
+<span class="s">    resources:</span>
+<span class="s">      - nodes/status</span>
+<span class="s">    verbs:</span>
+<span class="s">      - patch</span>
+<span class="s">---</span>
+<span class="s">kind: ClusterRoleBinding</span>
+<span class="s">apiVersion: rbac.authorization.k8s.io/v1beta1</span>
+<span class="s">metadata:</span>
+<span class="s">  name: flannel</span>
+<span class="s">roleRef:</span>
+<span class="s">  apiGroup: rbac.authorization.k8s.io</span>
+<span class="s">  kind: ClusterRole</span>
+<span class="s">  name: flannel</span>
+<span class="s">subjects:</span>
+<span class="s">- kind: ServiceAccount</span>
+<span class="s">  name: flannel</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">---</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: ServiceAccount</span>
+<span class="s">metadata:</span>
+<span class="s">  name: flannel</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">---</span>
+<span class="s">kind: ConfigMap</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-cfg</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">data:</span>
+<span class="s">  cni-conf.json: |</span>
+<span class="s">    {</span>
+<span class="s">      &quot;cniVersion&quot;: &quot;0.2.0&quot;,</span>
+<span class="s">      &quot;name&quot;: &quot;cbr0&quot;,</span>
+<span class="s">      &quot;plugins&quot;: [</span>
+<span class="s">        {</span>
+<span class="s">          &quot;type&quot;: &quot;flannel&quot;,</span>
+<span class="s">          &quot;delegate&quot;: {</span>
+<span class="s">            &quot;hairpinMode&quot;: true,</span>
+<span class="s">            &quot;isDefaultGateway&quot;: true</span>
+<span class="s">          }</span>
+<span class="s">        },</span>
+<span class="s">        {</span>
+<span class="s">          &quot;type&quot;: &quot;portmap&quot;,</span>
+<span class="s">          &quot;capabilities&quot;: {</span>
+<span class="s">            &quot;portMappings&quot;: true</span>
+<span class="s">          }</span>
+<span class="s">        }</span>
+<span class="s">      ]</span>
+<span class="s">    }</span>
+<span class="s">  net-conf.json: |</span>
+<span class="s">    {</span>
+<span class="s">      &quot;Network&quot;: &quot;${POD_CLUSTER_IP_RANGE}&quot;,</span>
+<span class="s">      &quot;Backend&quot;: {</span>
+<span class="s">        &quot;Type&quot;: &quot;vxlan&quot;</span>
+<span class="s">      }</span>
+<span class="s">    }</span>
+<span class="s">---</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: DaemonSet</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-ds-amd64</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">spec:</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: flannel</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        tier: node</span>
+<span class="s">        app: flannel</span>
+<span class="s">    spec:</span>
+<span class="s">      affinity:</span>
+<span class="s">        nodeAffinity:</span>
+<span class="s">          requiredDuringSchedulingIgnoredDuringExecution:</span>
+<span class="s">            nodeSelectorTerms:</span>
+<span class="s">              - matchExpressions:</span>
+<span class="s">                  - key: beta.kubernetes.io/os</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - linux</span>
+<span class="s">                  - key: beta.kubernetes.io/arch</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - amd64</span>
+<span class="s">      hostNetwork: true</span>
+<span class="s">      tolerations:</span>
+<span class="s">      - operator: Exists</span>
+<span class="s">        effect: NoSchedule</span>
+<span class="s">      serviceAccountName: flannel</span>
+<span class="s">      initContainers:</span>
+<span class="s">      - name: install-cni</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-amd64</span>
+<span class="s">        command:</span>
+<span class="s">        - cp</span>
+<span class="s">        args:</span>
+<span class="s">        - -f</span>
+<span class="s">        - /etc/kube-flannel/cni-conf.json</span>
+<span class="s">        - /etc/cni/net.d/10-flannel.conflist</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: cni</span>
+<span class="s">          mountPath: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: kube-flannel</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-amd64</span>
+<span class="s">        command:</span>
+<span class="s">        - /opt/bin/flanneld</span>
+<span class="s">        args:</span>
+<span class="s">        - --ip-masq</span>
+<span class="s">        - --kube-subnet-mgr</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">          limits:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">        securityContext:</span>
+<span class="s">          privileged: false</span>
+<span class="s">          capabilities:</span>
+<span class="s">             add: [&quot;NET_ADMIN&quot;]</span>
+<span class="s">        env:</span>
+<span class="s">        - name: POD_NAME</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.name</span>
+<span class="s">        - name: POD_NAMESPACE</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.namespace</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: run</span>
+<span class="s">          mountPath: /run/flannel</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      volumes:</span>
+<span class="s">        - name: run</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /run/flannel</span>
+<span class="s">        - name: cni</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          configMap:</span>
+<span class="s">            name: kube-flannel-cfg</span>
+<span class="s">EOF</span>
+<span class="c1"># 包含以下资源</span>
+<span class="c1"># - PodSecurityPolicy</span>
+<span class="c1"># - ClusterRole</span>
+<span class="c1"># - ClusterRoleBinding</span>
+<span class="c1"># - ServiceAccount</span>
+<span class="c1"># - ConfigMap</span>
+<span class="c1"># - DaemonSet(for amd64 platform)</span>
+
+<span class="c1"># apply cni addon: flannel</span>
+kubectl apply -f <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/kube-flannel.yml
+</pre></div>
+<h3>3. 查看flannel运行状态</h3>
+<div class="highlight"><pre><span></span>kubectl get pods --namespace kube-system
+NAME                          READY   STATUS    RESTARTS   AGE
+kube-flannel-ds-amd64-g2snw   <span class="m">1</span>/1     Running   <span class="m">0</span>          62s
+kube-flannel-ds-amd64-pzmf5   <span class="m">1</span>/1     Running   <span class="m">0</span>          62s
+kube-flannel-ds-amd64-sxtdz   <span class="m">1</span>/1     Running   <span class="m">0</span>          62s
 </pre></div>
       </div>
      </div>
