@@ -14,7 +14,8 @@ tags: [database,redis]
 rename-command KEYS "u0utIN%t3"
 
 # 禁用flush，防止误删数据
-rename-command FLUSH "8yJ6rPyp-"
+rename-command FLUSHDB "8yJ6rPyp-"
+rename-command FLUSHALL "8yJ6rPyp-"
 
 # 禁用config命令，提升安全性
 rename-command CONFIG ""
