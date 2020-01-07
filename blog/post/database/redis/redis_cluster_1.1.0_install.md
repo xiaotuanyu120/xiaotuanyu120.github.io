@@ -235,3 +235,46 @@ redis-cli -a password --cluster create \
 # 会输出建议的master和slave分布，同意的话，输入yes即可
 # 会提示redis集群创建完毕
 ```
+
+### docker/nat网络环境支持
+在实际上生产的时候遇到了一个问题，因为机房是nat网络结构，导致了如果我们用内网ip把redis-cluster启动起来，机房外部的客户端A访问这个集群碰到redirect的情况会有问题。因为当连接上node01的时，碰到需要redirect的情况，node01给出的redirect的ip是内网ip，而客户端A是使用外网才能访问到redis-cluster，此时就是有报错。所以此时需要以下几个配置
+- cluster-announce-ip，手动配置加入集群的ip
+- cluster-announce-port，手动配置加入集群的port
+- cluster-announce-bus-port，如果这个端口配置，则取代regular port+10000的策略，使用这个端口来替代
+
+详细配置的官方解释看这里
+```
+########################## CLUSTER DOCKER/NAT support  ########################
+
+# In certain deployments, Redis Cluster nodes address discovery fails, because
+# addresses are NAT-ted or because ports are forwarded (the typical case is
+# Docker and other containers).
+#
+# In order to make Redis Cluster working in such environments, a static
+# configuration where each node knows its public address is needed. The
+# following two options are used for this scope, and are:
+#
+# * cluster-announce-ip
+# * cluster-announce-port
+# * cluster-announce-bus-port
+#
+# Each instruct the node about its address, client port, and cluster message
+# bus port. The information is then published in the header of the bus packets
+# so that other nodes will be able to correctly map the address of the node
+# publishing the information.
+#
+# If the above options are not used, the normal Redis Cluster auto-detection
+# will be used instead.
+#
+# Note that when remapped, the bus port may not be at the fixed offset of
+# clients port + 10000, so you can specify any port and bus-port depending
+# on how they get remapped. If the bus-port is not set, a fixed offset of
+# 10000 will be used as usually.
+#
+# Example:
+#
+# cluster-announce-ip 10.1.1.5
+# cluster-announce-port 6379
+# cluster-announce-bus-port 6380
+```
+> [redis.conf](http://download.redis.io/redis-stable/redis.conf)
