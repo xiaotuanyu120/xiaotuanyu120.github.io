@@ -1589,16 +1589,21 @@ kube-flannel-ds-amd64-sxtdz   1/1     Running   0          62s
 
 创建coredns部署脚本
 ``` bash
+# coredns脚本安装需要jq命令支持
 yum install epel-release -y
 yum install jq -y
 
+# 下载部署coredns需要的文件
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/deploy.sh -O ${DEPLOY_DIR}/kube-addon/deploy.sh
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O ${DEPLOY_DIR}/kube-addon/coredns.yaml.sed
 
+# 官方脚本里面的function名称不符合bash的标准，你敢信？
 sed -i "s/translate-kube-dns-configmap/translate_kube_dns_configmap/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
 sed -i "s/kube-dns-federation-to-coredns/kube_dns_federation_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
 sed -i "s/kube-dns-upstreamnameserver-to-coredns/kube_dns_upstreamnameserver_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
 sed -i "s/kube-dns-stubdomains-to-coredns/kube_dns_stubdomains_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
 
+# 部署coredns
+# -i 指定dns ip
 sh ${DEPLOY_DIR}/kube-addon/deploy.sh -i ${SERVICE_CLUSTER_IP_RANGE%.*}.2| kubectl apply -f -
 ```
