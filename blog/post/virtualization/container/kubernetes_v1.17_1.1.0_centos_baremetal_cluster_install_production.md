@@ -1581,3 +1581,24 @@ kube-flannel-ds-amd64-g2snw   1/1     Running   0          62s
 kube-flannel-ds-amd64-pzmf5   1/1     Running   0          62s
 kube-flannel-ds-amd64-sxtdz   1/1     Running   0          62s
 ```
+
+---
+
+## 安装DNS
+高版本里面基本都推荐使用CoreDNS替代，参考文档[K8S-COREDNS](https://kubernetes.io/docs/tasks/administer-cluster/coredns/#installing-coredns) & [COREDNS-GITHUB](https://github.com/coredns/deployment/tree/master/kubernetes)
+
+创建coredns部署脚本
+``` bash
+yum install epel-release -y
+yum install jq -y
+
+wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/deploy.sh -O ${DEPLOY_DIR}/kube-addon/deploy.sh
+wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O ${DEPLOY_DIR}/kube-addon/coredns.yaml.sed
+
+sed -i "s/translate-kube-dns-configmap/translate_kube_dns_configmap/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
+sed -i "s/kube-dns-federation-to-coredns/kube_dns_federation_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
+sed -i "s/kube-dns-upstreamnameserver-to-coredns/kube_dns_upstreamnameserver_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
+sed -i "s/kube-dns-stubdomains-to-coredns/kube_dns_stubdomains_to_coredns/g" ${DEPLOY_DIR}/kube-addon/deploy.sh
+
+sh ${DEPLOY_DIR}/kube-addon/deploy.sh -i ${SERVICE_CLUSTER_IP_RANGE%.*}.2| kubectl apply -f -
+```
