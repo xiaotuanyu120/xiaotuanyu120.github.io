@@ -1757,17 +1757,22 @@ kube-flannel-ds-amd64-sxtdz   <span class="m">1</span>/1     Running   <span cla
 <h2>安装DNS</h2>
 <p>高版本里面基本都推荐使用CoreDNS替代，参考文档<a href="https://kubernetes.io/docs/tasks/administer-cluster/coredns/#installing-coredns">K8S-COREDNS</a> &amp; <a href="https://github.com/coredns/deployment/tree/master/kubernetes">COREDNS-GITHUB</a></p>
 <p>创建coredns部署脚本</p>
-<div class="highlight"><pre><span></span>yum install epel-release -y
+<div class="highlight"><pre><span></span><span class="c1"># coredns脚本安装需要jq命令支持</span>
+yum install epel-release -y
 yum install jq -y
 
+<span class="c1"># 下载部署coredns需要的文件</span>
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/deploy.sh -O <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/coredns.yaml.sed
 
+<span class="c1"># 官方脚本里面的function名称不符合bash的标准，你敢信？</span>
 sed -i <span class="s2">&quot;s/translate-kube-dns-configmap/translate_kube_dns_configmap/g&quot;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
 sed -i <span class="s2">&quot;s/kube-dns-federation-to-coredns/kube_dns_federation_to_coredns/g&quot;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
 sed -i <span class="s2">&quot;s/kube-dns-upstreamnameserver-to-coredns/kube_dns_upstreamnameserver_to_coredns/g&quot;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
 sed -i <span class="s2">&quot;s/kube-dns-stubdomains-to-coredns/kube_dns_stubdomains_to_coredns/g&quot;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
 
+<span class="c1"># 部署coredns</span>
+<span class="c1"># -i 指定dns ip</span>
 sh <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh -i <span class="si">${</span><span class="nv">SERVICE_CLUSTER_IP_RANGE</span><span class="p">%.*</span><span class="si">}</span>.2<span class="p">|</span> kubectl apply -f -
 </pre></div>
       </div>
