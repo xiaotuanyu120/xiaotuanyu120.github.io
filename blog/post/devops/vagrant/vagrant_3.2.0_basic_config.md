@@ -56,3 +56,32 @@ end
 # 默认把host机器的Vagrantfile所在目录和虚机的/vagrant自动同步
 config.vm.synced_folder "d:/local/dir", "/vm/dir/"
 ```
+
+#### 5) 增加新硬盘
+首先检测自己box支持的存储控制器类型
+``` cmd
+VBoxManage showvminfo <vmname> | findstr "Storage Controller"
+Storage Controller Name (0):            IDE
+Storage Controller Type (0):            PIIX4
+Storage Controller Instance Number (0): 0
+Storage Controller Max Port Count (0):  2
+Storage Controller Port Count (0):      2
+Storage Controller Bootable (0):        on
+Audio:                       enabled (Driver: DSOUND, Controller: AC97, Codec: STAC9700)
+```
+
+在Vagrantfile增加以下内容
+```
+  config.vm.provider "virtualbox" do |vb|
+    
+    file_to_disk = 'disk2.vdi'
+    unless File.exist?(file_to_disk)
+      # 50 GB
+      vb.customize ['createhd', '--filename', file_to_disk, '--size', 50 * 1024]
+    end
+    vb.customize ['storageattach', :id, '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+  end
+```
+> 注意在`--storagectl`参数上增加上面检查出来对应的存储控制器名称
+
+> 然后就会发现，在vagrant目录出现硬盘文件
