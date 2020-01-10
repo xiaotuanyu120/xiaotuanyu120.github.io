@@ -59,7 +59,7 @@ config.vm.synced_folder "d:/local/dir", "/vm/dir/"
 
 #### 5) 增加新硬盘
 首先检测自己box支持的存储控制器类型
-``` cmd
+```
 VBoxManage showvminfo <vmname> | findstr "Storage Controller"
 Storage Controller Name (0):            IDE
 Storage Controller Type (0):            PIIX4
