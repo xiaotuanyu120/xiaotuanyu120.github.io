@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -233,6 +238,31 @@
 <div class="highlight"><pre><span></span><span class="c1"># 默认把host机器的Vagrantfile所在目录和虚机的/vagrant自动同步</span>
 <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;d:/local/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;/vm/dir/&quot;</span>
 </pre></div>
+<h4>5) 增加新硬盘</h4>
+<p>首先检测自己box支持的存储控制器类型</p>
+
+<pre><code>VBoxManage showvminfo &lt;vmname&gt; | findstr "Storage Controller"
+Storage Controller Name (0):            IDE
+Storage Controller Type (0):            PIIX4
+Storage Controller Instance Number (0): 0
+Storage Controller Max Port Count (0):  2
+Storage Controller Port Count (0):      2
+Storage Controller Bootable (0):        on
+Audio:                       enabled (Driver: DSOUND, Controller: AC97, Codec: STAC9700)</code></pre>
+<p>在Vagrantfile增加以下内容</p>
+
+<pre><code>  config.vm.provider "virtualbox" do |vb|
+
+    file_to_disk = 'disk2.vdi'
+    unless File.exist?(file_to_disk)
+      # 50 GB
+      vb.customize ['createhd', '--filename', file_to_disk, '--size', 50 * 1024]
+    end
+    vb.customize ['storageattach', :id, '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+  end</code></pre>
+<blockquote><p>注意在<code>--storagectl</code>参数上增加上面检查出来对应的存储控制器名称</p>
+<p>然后就会发现，在vagrant目录出现硬盘文件</p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -287,6 +317,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -329,6 +364,20 @@
        </a>
        <ul>
            <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/devops/vagrant">
               vagrant
             </a>
@@ -370,7 +419,7 @@
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/vagrant/vagrant_5.1.0_virtualbox_guest_additions_error.html">
-                vagrant: 5.1.0 开机挂载错误
+                vagrant: 5.1.0 安装virtualbox的guest插件
               </a>
              </li>
              <li class="toctree-l2">
@@ -381,15 +430,15 @@
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
+            <a class="reference internal" href="/devops/ansible">
+              ansible
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
+            <a class="reference internal" href="/devops/arthas">
+              arthas
             </a>
             <ul>
             </ul>
