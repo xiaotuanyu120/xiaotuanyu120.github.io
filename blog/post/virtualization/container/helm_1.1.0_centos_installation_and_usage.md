@@ -155,3 +155,34 @@ helm repo add dev https://example.com/dev-charts
 helm repo update
 helm repo remove dev
 ```
+
+### 3. 创建自己的chart
+``` bash
+# 创建自己的chart，会在当前目录生成一个和chart同名的目录
+helm create deis-workflow
+
+# 目录结构如下
+tree deis-workflow/
+deis-workflow/
+├── charts
+├── Chart.yaml
+├── templates
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── ingress.yaml
+│   ├── NOTES.txt
+│   ├── serviceaccount.yaml
+│   ├── service.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+
+# 可以自定义里面的值
+
+# 自定义修改好之后，可以打包成为一个chart
+helm package deis-workflow
+# deis-workflow-0.1.0.tgz
+
+# 可以这样安装自定义的包
+helm install deis-workflow ./deis-workflow-0.1.0.tgz
+```
