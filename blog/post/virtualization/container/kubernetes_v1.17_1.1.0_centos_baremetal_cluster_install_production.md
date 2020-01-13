@@ -1607,3 +1607,222 @@ sed -i "s/kube-dns-stubdomains-to-coredns/kube_dns_stubdomains_to_coredns/g" ${D
 # -i 指定dns ip
 sh ${DEPLOY_DIR}/kube-addon/deploy.sh -i ${SERVICE_CLUSTER_IP_RANGE%.*}.2| kubectl apply -f -
 ```
+
+---
+
+## 安装持久化存储方案（此处选择glusterfs）
+[k8s persistent volume docs](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+[部署glusterfs之前需求](https://github.com/gluster/gluster-kubernetes/blob/master/docs/setup-guide.md)
+[部署glusterfs文档](https://github.com/gluster/gluster-kubernetes)
+
+### 0. 浅谈选择glusterfs的理由
+看了k8s的pv文档后，因为前面安装k8s的环境是bare metal，所以无法使用云提供的方案，最终只能从glusterfs和ceph里面选择一个。经过网络上简单的搜索之后，发现glusterfs性能上比ceph稍高一点，另外它支持一个heketi，可以用restful的方式管理glusterfs的volume。虽然我没有实际部署对比过，但是倾向于glusterfs。
+
+另外，之前不知道使用k8s持久化存储之前需要先安装持久化存储，汗，走了一点弯路。
+
+### 1. k8s集群要求
+- 至少三个节点
+- 每个节点必须至少连接一个raw disk（例如EBS卷或本地磁盘），以供heketi使用。这些设备上不得包含任何数据，因为它们将由heketi格式化和分区。
+- 每个节点上必须保留以下端口供glusterfs使用：
+  - 2222 - GlusterFS pod's sshd
+  - 24007 - GlusterFS Daemon
+  - 24008 - GlusterFS Management
+  - 49152 to 49251 - Each brick for every volume on the host requires its own port. For every new brick, one new port will be used starting at 49152. We recommend a default range of 49152-49251 on each host, though you can adjust this to fit your needs.
+- 每个节点需要加载的内核模块
+  - dm_snapshot
+  - dm_mirror
+  - dm_thin_pool
+- 每个节点需要拥有`mount.glusterfs`命令
+- glusterfs客户端版本和server版本越接近越好
+
+``` bash
+# 检查raw disk环境
+fdisk -l
+# 查看结果中是否有未被使用的磁盘
+
+# 检查和加载内核模块
+lsmod | grep dm_snapshot || modprobe dm_snapshot
+lsmod | grep dm_mirror || modprobe dm_mirror
+lsmod | grep dm_thin_pool || modprobe dm_thin_pool
+lsmod | egrep '^(dm_snapshot|dm_mirror|dm_thin_pool)'
+
+# 安装mount.glusterfs命令
+yum install -y glusterfs-fuse
+# 查看glusterfs版本
+glusterfs --version
+```
+
+### 2. 部署glusterfs(master01上操作)
+``` bash
+# 下载安装文件
+# 以下测试使用的，最新commit是：
+#   Latest commit
+#   7246eb4
+#   on Jul 19, 2019
+# 这个时候的版本和kubenetes 1.17不兼容，有很多需要修改的东西
+# 我个人做了很多修改和debug，后面应该会修复，所以下面的内容
+# 请酌情来判断是否需要执行
+git clone https://github.com/gluster/gluster-kubernetes.git
+cd gluster-kubernetes/deploy
+
+# 准备topology文件
+# ***************************
+# 重点关注
+# - hostsnames.manage里面填写节点的hostname
+# - hostnames.storage里面填写节点的ip
+# - devices里面填写磁盘的名称
+# ***************************
+cat << EOF > topology.json
+{
+  "clusters": [
+    {
+      "nodes": [
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "node01"
+              ],
+              "storage": [
+                "${IP_LIST['node01']}"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sdb"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "node02"
+              ],
+              "storage": [
+                "${IP_LIST['node02']}"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sdb"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "node03"
+              ],
+              "storage": [
+                "${IP_LIST['node03']}"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sdb"
+          ]
+        }
+      ]
+    }
+  ]
+}
+EOF
+
+# 安装前确认节点都ready状态
+kubectl get nodes
+
+# ISSUCE解决：
+# k8s 1.17换了api版本
+sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/deploy-heketi-deployment.yaml
+sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/gluster-s3-template.yaml
+sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/glusterfs-daemonset.yaml
+sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/heketi-deployment.yaml
+sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" ocp-templates/glusterfs-template.yaml
+
+
+# error: error validating "STDIN": error validating data: ValidationError(DaemonSet.spec): missing required
+# field "selector" in io.k8s.api.apps.v1.DaemonSetSpec; if you choose to ignore these errors, turn validation off with --validate=false
+# k8s 1.17需要指定pod selector
+# 确认以下内容，如果不存在，请手动增加
+vim kube-templates/glusterfs-daemonset.yaml
+spec:
+  selector:
+    matchLabels:
+      name: glusterfs
+  template:
+    metadata:
+      labels:
+        name: glusterfs
+
+vim kube-templates/deploy-heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: deploy-heketi
+  template:
+    metadata:
+      labels:
+        name: deploy-heketi
+
+vim kube-templates/gluster-s3-template.yaml
+- kind: Deployment
+  spec:
+    selector:
+      matchLabels:
+        name: gluster-s3
+    template:
+      metadata:
+        labels:
+          name: gluster-s3
+
+vim kube-templates/heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: heketi
+  template:
+    metadata:
+      labels:
+        name: heketi
+
+# Determining heketi service URL ... Error: unknown flag: --show-all
+# See 'kubectl get --help' for usage.
+# Failed to communicate with heketi service.
+# kubectl v1.17 没有--show-all这个选项
+vim gk-deploy
+# 将下面的内容
+# heketi_pod=$(${CLI} get pod --no-headers --show-all --selector="heketi" | awk '{print $1}')
+# 修改为
+# heketi_pod=$(${CLI} get pod --no-headers --selector="heketi" | awk '{print $1}')
+
+# 部署heketi and GlusterFS
+./gk-deploy -g -y -v --admin-key adminkey --user-key userkey
+# 如果第一次没安装成功，需要二次安装，使用下面命令清除之前的安装资源
+# 清除磁盘(在节点机器上执行)
+# wipefs -a /dev/sdb
+# 删除资源和服务
+# ./gk-deploy -g --abort --admin-key adminkey --user-key userkey
+
+# 检查
+export HEKETI_CLI_SERVER=$(kubectl get svc/heketi --template 'http://{{.spec.clusterIP}}:{{(index .spec.ports 0).port}}')
+echo $HEKETI_CLI_SERVER
+curl $HEKETI_CLI_SERVER/hello
+# Hello from Heketi
+# 如果timeout的话，看看是不是master没搞成node节点，没加入kube-proxy
+# 可以获取到地址之后，到node节点上执行curl操作
+
+kubectl get nodes,pods
+NAME          STATUS   ROLES    AGE    VERSION
+node/node01   Ready    <none>   5d3h   v1.17.0
+node/node02   Ready    <none>   5d3h   v1.17.0
+node/node03   Ready    <none>   5d3h   v1.17.0
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/glusterfs-bhprz           1/1     Running   0          45m
+pod/glusterfs-jt64n           1/1     Running   0          45m
+pod/glusterfs-vkfp5           1/1     Running   0          45m
+pod/heketi-779bc95979-272qk   1/1     Running   0          38m
+```

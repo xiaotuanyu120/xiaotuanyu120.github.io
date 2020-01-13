@@ -1775,6 +1775,222 @@ sed -i <span class="s2">&quot;s/kube-dns-stubdomains-to-coredns/kube_dns_stubdom
 <span class="c1"># -i 指定dns ip</span>
 sh <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh -i <span class="si">${</span><span class="nv">SERVICE_CLUSTER_IP_RANGE</span><span class="p">%.*</span><span class="si">}</span>.2<span class="p">|</span> kubectl apply -f -
 </pre></div>
+<hr>
+<h2>安装持久化存储方案（此处选择glusterfs）</h2>
+<p><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">k8s persistent volume docs</a>
+<a href="https://github.com/gluster/gluster-kubernetes/blob/master/docs/setup-guide.md">部署glusterfs之前需求</a>
+<a href="https://github.com/gluster/gluster-kubernetes">部署glusterfs文档</a></p>
+<h3>0. 浅谈选择glusterfs的理由</h3>
+<p>看了k8s的pv文档后，因为前面安装k8s的环境是bare metal，所以无法使用云提供的方案，最终只能从glusterfs和ceph里面选择一个。经过网络上简单的搜索之后，发现glusterfs性能上比ceph稍高一点，另外它支持一个heketi，可以用restful的方式管理glusterfs的volume。虽然我没有实际部署对比过，但是倾向于glusterfs。</p>
+<p>另外，之前不知道使用k8s持久化存储之前需要先安装持久化存储，汗，走了一点弯路。</p>
+<h3>1. k8s集群要求</h3>
+<ul>
+<li>至少三个节点</li>
+<li>每个节点必须至少连接一个raw disk（例如EBS卷或本地磁盘），以供heketi使用。这些设备上不得包含任何数据，因为它们将由heketi格式化和分区。</li>
+<li>每个节点上必须保留以下端口供glusterfs使用：<ul>
+<li>2222 - GlusterFS pod's sshd</li>
+<li>24007 - GlusterFS Daemon</li>
+<li>24008 - GlusterFS Management</li>
+<li>49152 to 49251 - Each brick for every volume on the host requires its own port. For every new brick, one new port will be used starting at 49152. We recommend a default range of 49152-49251 on each host, though you can adjust this to fit your needs.</li>
+</ul>
+</li>
+<li>每个节点需要加载的内核模块<ul>
+<li>dm_snapshot</li>
+<li>dm_mirror</li>
+<li>dm_thin_pool</li>
+</ul>
+</li>
+<li>每个节点需要拥有<code>mount.glusterfs</code>命令</li>
+<li>glusterfs客户端版本和server版本越接近越好</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="c1"># 检查raw disk环境</span>
+fdisk -l
+<span class="c1"># 查看结果中是否有未被使用的磁盘</span>
+
+<span class="c1"># 检查和加载内核模块</span>
+lsmod <span class="p">|</span> grep dm_snapshot <span class="o">||</span> modprobe dm_snapshot
+lsmod <span class="p">|</span> grep dm_mirror <span class="o">||</span> modprobe dm_mirror
+lsmod <span class="p">|</span> grep dm_thin_pool <span class="o">||</span> modprobe dm_thin_pool
+lsmod <span class="p">|</span> egrep <span class="s1">&#39;^(dm_snapshot|dm_mirror|dm_thin_pool)&#39;</span>
+
+<span class="c1"># 安装mount.glusterfs命令</span>
+yum install -y glusterfs-fuse
+<span class="c1"># 查看glusterfs版本</span>
+glusterfs --version
+</pre></div>
+<h3>2. 部署glusterfs(master01上操作)</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 下载安装文件</span>
+<span class="c1"># 以下测试使用的，最新commit是：</span>
+<span class="c1">#   Latest commit</span>
+<span class="c1">#   7246eb4</span>
+<span class="c1">#   on Jul 19, 2019</span>
+<span class="c1"># 这个时候的版本和kubenetes 1.17不兼容，有很多需要修改的东西</span>
+<span class="c1"># 我个人做了很多修改和debug，后面应该会修复，所以下面的内容</span>
+<span class="c1"># 请酌情来判断是否需要执行</span>
+git clone https://github.com/gluster/gluster-kubernetes.git
+<span class="nb">cd</span> gluster-kubernetes/deploy
+
+<span class="c1"># 准备topology文件</span>
+<span class="c1"># ***************************</span>
+<span class="c1"># 重点关注</span>
+<span class="c1"># - hostsnames.manage里面填写节点的hostname</span>
+<span class="c1"># - hostnames.storage里面填写节点的ip</span>
+<span class="c1"># - devices里面填写磁盘的名称</span>
+<span class="c1"># ***************************</span>
+cat <span class="s">&lt;&lt; EOF &gt; topology.json</span>
+<span class="s">{</span>
+<span class="s">  &quot;clusters&quot;: [</span>
+<span class="s">    {</span>
+<span class="s">      &quot;nodes&quot;: [</span>
+<span class="s">        {</span>
+<span class="s">          &quot;node&quot;: {</span>
+<span class="s">            &quot;hostnames&quot;: {</span>
+<span class="s">              &quot;manage&quot;: [</span>
+<span class="s">                &quot;node01&quot;</span>
+<span class="s">              ],</span>
+<span class="s">              &quot;storage&quot;: [</span>
+<span class="s">                &quot;${IP_LIST[&#39;node01&#39;]}&quot;</span>
+<span class="s">              ]</span>
+<span class="s">            },</span>
+<span class="s">            &quot;zone&quot;: 1</span>
+<span class="s">          },</span>
+<span class="s">          &quot;devices&quot;: [</span>
+<span class="s">            &quot;/dev/sdb&quot;</span>
+<span class="s">          ]</span>
+<span class="s">        },</span>
+<span class="s">        {</span>
+<span class="s">          &quot;node&quot;: {</span>
+<span class="s">            &quot;hostnames&quot;: {</span>
+<span class="s">              &quot;manage&quot;: [</span>
+<span class="s">                &quot;node02&quot;</span>
+<span class="s">              ],</span>
+<span class="s">              &quot;storage&quot;: [</span>
+<span class="s">                &quot;${IP_LIST[&#39;node02&#39;]}&quot;</span>
+<span class="s">              ]</span>
+<span class="s">            },</span>
+<span class="s">            &quot;zone&quot;: 1</span>
+<span class="s">          },</span>
+<span class="s">          &quot;devices&quot;: [</span>
+<span class="s">            &quot;/dev/sdb&quot;</span>
+<span class="s">          ]</span>
+<span class="s">        },</span>
+<span class="s">        {</span>
+<span class="s">          &quot;node&quot;: {</span>
+<span class="s">            &quot;hostnames&quot;: {</span>
+<span class="s">              &quot;manage&quot;: [</span>
+<span class="s">                &quot;node03&quot;</span>
+<span class="s">              ],</span>
+<span class="s">              &quot;storage&quot;: [</span>
+<span class="s">                &quot;${IP_LIST[&#39;node03&#39;]}&quot;</span>
+<span class="s">              ]</span>
+<span class="s">            },</span>
+<span class="s">            &quot;zone&quot;: 1</span>
+<span class="s">          },</span>
+<span class="s">          &quot;devices&quot;: [</span>
+<span class="s">            &quot;/dev/sdb&quot;</span>
+<span class="s">          ]</span>
+<span class="s">        }</span>
+<span class="s">      ]</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 安装前确认节点都ready状态</span>
+kubectl get nodes
+
+<span class="c1"># ISSUCE解决：</span>
+<span class="c1"># k8s 1.17换了api版本</span>
+sed -ir <span class="s2">&quot;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&quot;</span> kube-templates/deploy-heketi-deployment.yaml
+sed -ir <span class="s2">&quot;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&quot;</span> kube-templates/gluster-s3-template.yaml
+sed -ir <span class="s2">&quot;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&quot;</span> kube-templates/glusterfs-daemonset.yaml
+sed -ir <span class="s2">&quot;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&quot;</span> kube-templates/heketi-deployment.yaml
+sed -ir <span class="s2">&quot;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&quot;</span> ocp-templates/glusterfs-template.yaml
+
+
+<span class="c1"># error: error validating &quot;STDIN&quot;: error validating data: ValidationError(DaemonSet.spec): missing required</span>
+<span class="c1"># field &quot;selector&quot; in io.k8s.api.apps.v1.DaemonSetSpec; if you choose to ignore these errors, turn validation off with --validate=false</span>
+<span class="c1"># k8s 1.17需要指定pod selector</span>
+<span class="c1"># 确认以下内容，如果不存在，请手动增加</span>
+vim kube-templates/glusterfs-daemonset.yaml
+spec:
+  selector:
+    matchLabels:
+      name: glusterfs
+  template:
+    metadata:
+      labels:
+        name: glusterfs
+
+vim kube-templates/deploy-heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: deploy-heketi
+  template:
+    metadata:
+      labels:
+        name: deploy-heketi
+
+vim kube-templates/gluster-s3-template.yaml
+- kind: Deployment
+  spec:
+    selector:
+      matchLabels:
+        name: gluster-s3
+    template:
+      metadata:
+        labels:
+          name: gluster-s3
+
+vim kube-templates/heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: heketi
+  template:
+    metadata:
+      labels:
+        name: heketi
+
+<span class="c1"># Determining heketi service URL ... Error: unknown flag: --show-all</span>
+<span class="c1"># See &#39;kubectl get --help&#39; for usage.</span>
+<span class="c1"># Failed to communicate with heketi service.</span>
+<span class="c1"># kubectl v1.17 没有--show-all这个选项</span>
+vim gk-deploy
+<span class="c1"># 将下面的内容</span>
+<span class="c1"># heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&quot;heketi&quot; | awk &#39;{print $1}&#39;)</span>
+<span class="c1"># 修改为</span>
+<span class="c1"># heketi_pod=$(${CLI} get pod --no-headers --selector=&quot;heketi&quot; | awk &#39;{print $1}&#39;)</span>
+
+<span class="c1"># 部署heketi and GlusterFS</span>
+./gk-deploy -g -y -v --admin-key adminkey --user-key userkey
+<span class="c1"># 如果第一次没安装成功，需要二次安装，使用下面命令清除之前的安装资源</span>
+<span class="c1"># 清除磁盘(在节点机器上执行)</span>
+<span class="c1"># wipefs -a /dev/sdb</span>
+<span class="c1"># 删除资源和服务</span>
+<span class="c1"># ./gk-deploy -g --abort --admin-key adminkey --user-key userkey</span>
+
+<span class="c1"># 检查</span>
+<span class="nb">export</span> <span class="nv">HEKETI_CLI_SERVER</span><span class="o">=</span><span class="k">$(</span>kubectl get svc/heketi --template <span class="s1">&#39;http://{{.spec.clusterIP}}:{{(index .spec.ports 0).port}}&#39;</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$HEKETI_CLI_SERVER</span>
+curl <span class="nv">$HEKETI_CLI_SERVER</span>/hello
+<span class="c1"># Hello from Heketi</span>
+<span class="c1"># 如果timeout的话，看看是不是master没搞成node节点，没加入kube-proxy</span>
+<span class="c1"># 可以获取到地址之后，到node节点上执行curl操作</span>
+
+kubectl get nodes,pods
+NAME          STATUS   ROLES    AGE    VERSION
+node/node01   Ready    &lt;none&gt;   5d3h   v1.17.0
+node/node02   Ready    &lt;none&gt;   5d3h   v1.17.0
+node/node03   Ready    &lt;none&gt;   5d3h   v1.17.0
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/glusterfs-bhprz           <span class="m">1</span>/1     Running   <span class="m">0</span>          45m
+pod/glusterfs-jt64n           <span class="m">1</span>/1     Running   <span class="m">0</span>          45m
+pod/glusterfs-vkfp5           <span class="m">1</span>/1     Running   <span class="m">0</span>          45m
+pod/heketi-779bc95979-272qk   <span class="m">1</span>/1     Running   <span class="m">0</span>          38m
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -1989,6 +2205,11 @@ sh <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
                 flannel 1.2.0 configuration ans option
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
+                helm 1.1.0 安装（centos 7）及使用
               </a>
              </li>
              <li class="toctree-l2">
