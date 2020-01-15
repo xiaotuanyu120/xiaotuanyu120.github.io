@@ -1060,47 +1060,63 @@ kubectl config use-context kubernetes --kubeconfig<span class="o">=</span>admin.
 <span class="c1"># 修改文件： admin.conf，设定当前context为kubernetes</span>
 </pre></div>
 <h3>4. 创建 kube-controller-manager kubeconfig 文件</h3>
-<div class="highlight"><pre><span></span>kubectl config set-cluster kubernetes <span class="se">\</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+kubectl config set-cluster kubernetes <span class="se">\</span>
   --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\</span>
   --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  --server<span class="o">=</span>https://127.0.0.1:6443 <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-controller-manager.conf
+  --server<span class="o">=</span>https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="si">${</span><span class="nv">master</span><span class="si">}</span><span class="p">]</span><span class="si">}</span>:6443 <span class="se">\</span>
+  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
 <span class="c1"># 注意点： credential必须是system:kube-controller-manager</span>
 kubectl config set-credentials system:kube-controller-manager <span class="se">\</span>
   --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-controller-manager.pem <span class="se">\</span>
   --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-controller-manager-key.pem <span class="se">\</span>
   --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-controller-manager.conf
+  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
 kubectl config set-context default <span class="se">\</span>
   --cluster<span class="o">=</span>kubernetes <span class="se">\</span>
   --user<span class="o">=</span>system:kube-controller-manager <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-controller-manager.conf
+  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
-kubectl config use-context default --kubeconfig<span class="o">=</span>kube-controller-manager.conf
+kubectl config use-context default --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+<span class="k">done</span>
 </pre></div>
+<blockquote><p>注意点：</p>
+<ul>
+<li>此处指定了--server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a></li>
+<li>另外，systemd unit文件中，--master是用来覆盖此处配置，可以省略</li>
+</ul>
+</blockquote>
 <h3>5. 创建 kube-scheduler kubeconfig 文件</h3>
-<div class="highlight"><pre><span></span>kubectl config set-cluster kubernetes <span class="se">\</span>
+<div class="highlight"><pre><span></span><span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+kubectl config set-cluster kubernetes <span class="se">\</span>
   --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\</span>
   --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  --server<span class="o">=</span>https://127.0.0.1:6443 <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-scheduler.conf
+  --server<span class="o">=</span>https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="si">${</span><span class="nv">master</span><span class="si">}</span><span class="p">]</span><span class="si">}</span>:6443 <span class="se">\</span>
+  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
 <span class="c1"># 注意点： credential必须是system:kube-scheduler</span>
 kubectl config set-credentials system:kube-scheduler <span class="se">\</span>
   --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-scheduler.pem <span class="se">\</span>
   --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-scheduler-key.pem <span class="se">\</span>
   --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-scheduler.conf
+  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
 kubectl config set-context default <span class="se">\</span>
   --cluster<span class="o">=</span>kubernetes <span class="se">\</span>
   --user<span class="o">=</span>system:kube-scheduler <span class="se">\</span>
-  --kubeconfig<span class="o">=</span>kube-scheduler.conf
+  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
 
-kubectl config use-context default --kubeconfig<span class="o">=</span>kube-scheduler.conf
+kubectl config use-context default --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+<span class="k">done</span>
 </pre></div>
+<blockquote><p>注意点：</p>
+<ul>
+<li>此处指定了--server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a></li>
+<li>另外，systemd unit文件中，--master是用来覆盖此处配置，可以省略</li>
+</ul>
+</blockquote>
 <h3>6. 分发kubeconfig文件和admin上下文环境文件</h3>
 <div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
 <span class="c1"># 将bootstrap.kubelet.&lt;node-hostname&gt;.conf和kube-proxy.conf分发到node节点</span>
@@ -1116,8 +1132,8 @@ kubectl config use-context default --kubeconfig<span class="o">=</span>kube-sche
   ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&quot;mkdir -p </span><span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span><span class="s2">&quot;</span>
   scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/admin.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">ADMIN_KUBECONFIG_DIR</span><span class="si">}</span>/config
   scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/token.csv <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>
-  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-controller-manager.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>
-  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-scheduler.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>/kube-controller-manager.conf
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>/kube-scheduler.conf
 <span class="k">done</span>
 </pre></div>
 <hr>
@@ -1202,7 +1218,6 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/ku
 <span class="s">[Service]</span>
 <span class="s">ExecStart=/usr/local/bin/kube-controller-manager \\</span>
 <span class="s">  --bind-address=127.0.0.1 \\</span>
-<span class="s">  --master=https://${KUBE_API_PROXY_IP}:443 \\</span>
 <span class="s">  --controllers=*,bootstrapsigner,tokencleaner \\</span>
 <span class="s">  --allocate-node-cidrs=true \\</span>
 <span class="s">  --service-cluster-ip-range=${SERVICE_CLUSTER_IP_RANGE} \\</span>
@@ -1234,7 +1249,6 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/ku
 <span class="s">[Service]</span>
 <span class="s">ExecStart=/usr/local/bin/kube-scheduler \\</span>
 <span class="s">  --bind-address=127.0.0.1 \\</span>
-<span class="s">  --master=https://${KUBE_API_PROXY_IP}:443 \\</span>
 <span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kube-scheduler.conf \\</span>
 <span class="s">  --leader-elect=true \\</span>
 <span class="s">  --v=2</span>
@@ -1694,6 +1708,382 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/kube-addon/kube-flannel.yml<
 <span class="s">      containers:</span>
 <span class="s">      - name: kube-flannel</span>
 <span class="s">        image: quay.io/coreos/flannel:v0.11.0-amd64</span>
+<span class="s">        command:</span>
+<span class="s">        - /opt/bin/flanneld</span>
+<span class="s">        args:</span>
+<span class="s">        - --ip-masq</span>
+<span class="s">        - --kube-subnet-mgr</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">          limits:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">        securityContext:</span>
+<span class="s">          privileged: false</span>
+<span class="s">          capabilities:</span>
+<span class="s">             add: [&quot;NET_ADMIN&quot;]</span>
+<span class="s">        env:</span>
+<span class="s">        - name: POD_NAME</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.name</span>
+<span class="s">        - name: POD_NAMESPACE</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.namespace</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: run</span>
+<span class="s">          mountPath: /run/flannel</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      volumes:</span>
+<span class="s">        - name: run</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /run/flannel</span>
+<span class="s">        - name: cni</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          configMap:</span>
+<span class="s">            name: kube-flannel-cfg</span>
+<span class="s">---</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: DaemonSet</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-ds-arm64</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">spec:</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: flannel</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        tier: node</span>
+<span class="s">        app: flannel</span>
+<span class="s">    spec:</span>
+<span class="s">      affinity:</span>
+<span class="s">        nodeAffinity:</span>
+<span class="s">          requiredDuringSchedulingIgnoredDuringExecution:</span>
+<span class="s">            nodeSelectorTerms:</span>
+<span class="s">              - matchExpressions:</span>
+<span class="s">                  - key: beta.kubernetes.io/os</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - linux</span>
+<span class="s">                  - key: beta.kubernetes.io/arch</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - arm64</span>
+<span class="s">      hostNetwork: true</span>
+<span class="s">      tolerations:</span>
+<span class="s">      - operator: Exists</span>
+<span class="s">        effect: NoSchedule</span>
+<span class="s">      serviceAccountName: flannel</span>
+<span class="s">      initContainers:</span>
+<span class="s">      - name: install-cni</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-arm64</span>
+<span class="s">        command:</span>
+<span class="s">        - cp</span>
+<span class="s">        args:</span>
+<span class="s">        - -f</span>
+<span class="s">        - /etc/kube-flannel/cni-conf.json</span>
+<span class="s">        - /etc/cni/net.d/10-flannel.conflist</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: cni</span>
+<span class="s">          mountPath: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: kube-flannel</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-arm64</span>
+<span class="s">        command:</span>
+<span class="s">        - /opt/bin/flanneld</span>
+<span class="s">        args:</span>
+<span class="s">        - --ip-masq</span>
+<span class="s">        - --kube-subnet-mgr</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">          limits:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">        securityContext:</span>
+<span class="s">          privileged: false</span>
+<span class="s">          capabilities:</span>
+<span class="s">             add: [&quot;NET_ADMIN&quot;]</span>
+<span class="s">        env:</span>
+<span class="s">        - name: POD_NAME</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.name</span>
+<span class="s">        - name: POD_NAMESPACE</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.namespace</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: run</span>
+<span class="s">          mountPath: /run/flannel</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      volumes:</span>
+<span class="s">        - name: run</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /run/flannel</span>
+<span class="s">        - name: cni</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          configMap:</span>
+<span class="s">            name: kube-flannel-cfg</span>
+<span class="s">---</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: DaemonSet</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-ds-arm</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">spec:</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: flannel</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        tier: node</span>
+<span class="s">        app: flannel</span>
+<span class="s">    spec:</span>
+<span class="s">      affinity:</span>
+<span class="s">        nodeAffinity:</span>
+<span class="s">          requiredDuringSchedulingIgnoredDuringExecution:</span>
+<span class="s">            nodeSelectorTerms:</span>
+<span class="s">              - matchExpressions:</span>
+<span class="s">                  - key: beta.kubernetes.io/os</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - linux</span>
+<span class="s">                  - key: beta.kubernetes.io/arch</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - arm</span>
+<span class="s">      hostNetwork: true</span>
+<span class="s">      tolerations:</span>
+<span class="s">      - operator: Exists</span>
+<span class="s">        effect: NoSchedule</span>
+<span class="s">      serviceAccountName: flannel</span>
+<span class="s">      initContainers:</span>
+<span class="s">      - name: install-cni</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-arm</span>
+<span class="s">        command:</span>
+<span class="s">        - cp</span>
+<span class="s">        args:</span>
+<span class="s">        - -f</span>
+<span class="s">        - /etc/kube-flannel/cni-conf.json</span>
+<span class="s">        - /etc/cni/net.d/10-flannel.conflist</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: cni</span>
+<span class="s">          mountPath: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: kube-flannel</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-arm</span>
+<span class="s">        command:</span>
+<span class="s">        - /opt/bin/flanneld</span>
+<span class="s">        args:</span>
+<span class="s">        - --ip-masq</span>
+<span class="s">        - --kube-subnet-mgr</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">          limits:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">        securityContext:</span>
+<span class="s">          privileged: false</span>
+<span class="s">          capabilities:</span>
+<span class="s">             add: [&quot;NET_ADMIN&quot;]</span>
+<span class="s">        env:</span>
+<span class="s">        - name: POD_NAME</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.name</span>
+<span class="s">        - name: POD_NAMESPACE</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.namespace</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: run</span>
+<span class="s">          mountPath: /run/flannel</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      volumes:</span>
+<span class="s">        - name: run</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /run/flannel</span>
+<span class="s">        - name: cni</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          configMap:</span>
+<span class="s">            name: kube-flannel-cfg</span>
+<span class="s">---</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: DaemonSet</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-ds-ppc64le</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">spec:</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: flannel</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        tier: node</span>
+<span class="s">        app: flannel</span>
+<span class="s">    spec:</span>
+<span class="s">      affinity:</span>
+<span class="s">        nodeAffinity:</span>
+<span class="s">          requiredDuringSchedulingIgnoredDuringExecution:</span>
+<span class="s">            nodeSelectorTerms:</span>
+<span class="s">              - matchExpressions:</span>
+<span class="s">                  - key: beta.kubernetes.io/os</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - linux</span>
+<span class="s">                  - key: beta.kubernetes.io/arch</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - ppc64le</span>
+<span class="s">      hostNetwork: true</span>
+<span class="s">      tolerations:</span>
+<span class="s">      - operator: Exists</span>
+<span class="s">        effect: NoSchedule</span>
+<span class="s">      serviceAccountName: flannel</span>
+<span class="s">      initContainers:</span>
+<span class="s">      - name: install-cni</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-ppc64le</span>
+<span class="s">        command:</span>
+<span class="s">        - cp</span>
+<span class="s">        args:</span>
+<span class="s">        - -f</span>
+<span class="s">        - /etc/kube-flannel/cni-conf.json</span>
+<span class="s">        - /etc/cni/net.d/10-flannel.conflist</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: cni</span>
+<span class="s">          mountPath: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: kube-flannel</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-ppc64le</span>
+<span class="s">        command:</span>
+<span class="s">        - /opt/bin/flanneld</span>
+<span class="s">        args:</span>
+<span class="s">        - --ip-masq</span>
+<span class="s">        - --kube-subnet-mgr</span>
+<span class="s">        resources:</span>
+<span class="s">          requests:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">          limits:</span>
+<span class="s">            cpu: &quot;100m&quot;</span>
+<span class="s">            memory: &quot;50Mi&quot;</span>
+<span class="s">        securityContext:</span>
+<span class="s">          privileged: false</span>
+<span class="s">          capabilities:</span>
+<span class="s">             add: [&quot;NET_ADMIN&quot;]</span>
+<span class="s">        env:</span>
+<span class="s">        - name: POD_NAME</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.name</span>
+<span class="s">        - name: POD_NAMESPACE</span>
+<span class="s">          valueFrom:</span>
+<span class="s">            fieldRef:</span>
+<span class="s">              fieldPath: metadata.namespace</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: run</span>
+<span class="s">          mountPath: /run/flannel</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      volumes:</span>
+<span class="s">        - name: run</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /run/flannel</span>
+<span class="s">        - name: cni</span>
+<span class="s">          hostPath:</span>
+<span class="s">            path: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          configMap:</span>
+<span class="s">            name: kube-flannel-cfg</span>
+<span class="s">---</span>
+<span class="s">apiVersion: apps/v1</span>
+<span class="s">kind: DaemonSet</span>
+<span class="s">metadata:</span>
+<span class="s">  name: kube-flannel-ds-s390x</span>
+<span class="s">  namespace: kube-system</span>
+<span class="s">  labels:</span>
+<span class="s">    tier: node</span>
+<span class="s">    app: flannel</span>
+<span class="s">spec:</span>
+<span class="s">  selector:</span>
+<span class="s">    matchLabels:</span>
+<span class="s">      app: flannel</span>
+<span class="s">  template:</span>
+<span class="s">    metadata:</span>
+<span class="s">      labels:</span>
+<span class="s">        tier: node</span>
+<span class="s">        app: flannel</span>
+<span class="s">    spec:</span>
+<span class="s">      affinity:</span>
+<span class="s">        nodeAffinity:</span>
+<span class="s">          requiredDuringSchedulingIgnoredDuringExecution:</span>
+<span class="s">            nodeSelectorTerms:</span>
+<span class="s">              - matchExpressions:</span>
+<span class="s">                  - key: beta.kubernetes.io/os</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - linux</span>
+<span class="s">                  - key: beta.kubernetes.io/arch</span>
+<span class="s">                    operator: In</span>
+<span class="s">                    values:</span>
+<span class="s">                      - s390x</span>
+<span class="s">      hostNetwork: true</span>
+<span class="s">      tolerations:</span>
+<span class="s">      - operator: Exists</span>
+<span class="s">        effect: NoSchedule</span>
+<span class="s">      serviceAccountName: flannel</span>
+<span class="s">      initContainers:</span>
+<span class="s">      - name: install-cni</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-s390x</span>
+<span class="s">        command:</span>
+<span class="s">        - cp</span>
+<span class="s">        args:</span>
+<span class="s">        - -f</span>
+<span class="s">        - /etc/kube-flannel/cni-conf.json</span>
+<span class="s">        - /etc/cni/net.d/10-flannel.conflist</span>
+<span class="s">        volumeMounts:</span>
+<span class="s">        - name: cni</span>
+<span class="s">          mountPath: /etc/cni/net.d</span>
+<span class="s">        - name: flannel-cfg</span>
+<span class="s">          mountPath: /etc/kube-flannel/</span>
+<span class="s">      containers:</span>
+<span class="s">      - name: kube-flannel</span>
+<span class="s">        image: quay.io/coreos/flannel:v0.11.0-s390x</span>
 <span class="s">        command:</span>
 <span class="s">        - /opt/bin/flanneld</span>
 <span class="s">        args:</span>
