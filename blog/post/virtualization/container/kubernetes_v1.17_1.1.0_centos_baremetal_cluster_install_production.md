@@ -196,7 +196,7 @@ docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
 master01上准备二进制文件，统一下发给所有其他机器，所以提前做好ssh信任
 ### 0. 准备各节点二进制文件目录
 ``` bash
-mkdir -p ${DEPLOY_DIR}/{node,master,etcd}/bin
+mkdir -p ${DEPLOY_DIR}/{node,master,etcd,cni}/bin
 ```
 
 ### 1. 下载二进制文件
@@ -213,7 +213,12 @@ curl -L https://github.com/coreos/etcd/releases/download/${ETCD_VER}/etcd-${ETCD
   -o etcd-${ETCD_VER}-linux-amd64.tar.gz
 tar xzvf etcd-${ETCD_VER}-linux-amd64.tar.gz
 cp etcd-${ETCD_VER}-linux-amd64/{etcd,etcdctl} ${DEPLOY_DIR}/etcd/bin/
+
+# 下载cni
+wget https://github.com/containernetworking/plugins/releases/download/v0.8.4/cni-plugins-linux-amd64-v0.8.4.tgz
+tar zxvf cni-plugins-linux-amd64-v0.8.4.tgz -C ${DEPLOY_DIR}/cni/bin/
 ```
+> [flannel cni issue: 890 about cni binary not found error](https://github.com/coreos/flannel/issues/890)
 
 ### 2. 分发二进制文件
 ``` bash
@@ -234,6 +239,12 @@ done
 # 下发etcd二进制文件
 for etcd in {etcd01,etcd02,etcd03};do
   rsync -av ${DEPLOY_DIR}/etcd/bin/* ${etcd}:/usr/local/bin/
+done
+
+# 下发cni二进制文件
+for node in {node01,node02,node03};do
+  ssh root@${node} "mkdir -p /opt/cni/bin"
+  rsync -av ${DEPLOY_DIR}/cni/bin/* ${node}:/usr/local/bin/
 done
 ```
 
@@ -1052,6 +1063,11 @@ WantedBy=multi-user.target
 EOF
 done
 ```
+> 如果中途修改过`--service-cluster-ip-range`(kube-apiserver,kube-controller-manager)，有可能会遇到下面的错误
+> - `"message": "Cluster IP *.*.*.* is not within the service CIDR *.*.*.*/**; please recreate service"`
+> 解决方案：
+> `kubectl get services --all-namespaces`获得系统的最初创建的集群的service后，删除它`kubectl delete service kubernets`
+> 然后系统会自动创建它，但是！！！不推荐生产环境已经存在应用service后这样搞！！！
 
 ### 2. 创建etcd所需unit文件
 ``` bash
@@ -1112,6 +1128,7 @@ WorkingDirectory=/var/lib/kubelet
 ExecStart=/usr/local/bin/kubelet \\
   --address=${IP_LIST[${node}]} \\
   --hostname-override=${node} \\
+  --network-plugin=cni \\
   --pod-infra-container-image=k8s.gcr.io/pause-amd64:3.0 \\
   --bootstrap-kubeconfig=${KUBECONFIG_DIR}/bootstrap-kubelet.conf \\
   --kubeconfig=${KUBECONFIG_DIR}/kubelet.conf \\
@@ -1341,6 +1358,10 @@ node03    Ready     <none>    3m        v1.9.1
 mkdir -p ${DEPLOY_DIR}/kube-addon
 
 # customize kube-flannel.yml
+# ！！！！！！！！！！！！！！！！
+# ！！！ 有时候下面这个命令，会导致文件里面有乱码，为啥子我也没弄清楚，最后执行完检查下
+# ！！！ 如果有问题，手动粘贴以下内容，记得把变量${POD_CLUSTER_IP_RANGE}替换为它的值
+# ！！！！！！！！！！！！！！！！
 cat << EOF > ${DEPLOY_DIR}/kube-addon/kube-flannel.yml
 ---
 apiVersion: policy/v1beta1
@@ -1568,382 +1589,6 @@ spec:
         - name: flannel-cfg
           configMap:
             name: kube-flannel-cfg
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: kube-flannel-ds-arm64
-  namespace: kube-system
-  labels:
-    tier: node
-    app: flannel
-spec:
-  selector:
-    matchLabels:
-      app: flannel
-  template:
-    metadata:
-      labels:
-        tier: node
-        app: flannel
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: beta.kubernetes.io/os
-                    operator: In
-                    values:
-                      - linux
-                  - key: beta.kubernetes.io/arch
-                    operator: In
-                    values:
-                      - arm64
-      hostNetwork: true
-      tolerations:
-      - operator: Exists
-        effect: NoSchedule
-      serviceAccountName: flannel
-      initContainers:
-      - name: install-cni
-        image: quay.io/coreos/flannel:v0.11.0-arm64
-        command:
-        - cp
-        args:
-        - -f
-        - /etc/kube-flannel/cni-conf.json
-        - /etc/cni/net.d/10-flannel.conflist
-        volumeMounts:
-        - name: cni
-          mountPath: /etc/cni/net.d
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      containers:
-      - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.11.0-arm64
-        command:
-        - /opt/bin/flanneld
-        args:
-        - --ip-masq
-        - --kube-subnet-mgr
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "50Mi"
-          limits:
-            cpu: "100m"
-            memory: "50Mi"
-        securityContext:
-          privileged: false
-          capabilities:
-             add: ["NET_ADMIN"]
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        volumeMounts:
-        - name: run
-          mountPath: /run/flannel
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel-cfg
-          configMap:
-            name: kube-flannel-cfg
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: kube-flannel-ds-arm
-  namespace: kube-system
-  labels:
-    tier: node
-    app: flannel
-spec:
-  selector:
-    matchLabels:
-      app: flannel
-  template:
-    metadata:
-      labels:
-        tier: node
-        app: flannel
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: beta.kubernetes.io/os
-                    operator: In
-                    values:
-                      - linux
-                  - key: beta.kubernetes.io/arch
-                    operator: In
-                    values:
-                      - arm
-      hostNetwork: true
-      tolerations:
-      - operator: Exists
-        effect: NoSchedule
-      serviceAccountName: flannel
-      initContainers:
-      - name: install-cni
-        image: quay.io/coreos/flannel:v0.11.0-arm
-        command:
-        - cp
-        args:
-        - -f
-        - /etc/kube-flannel/cni-conf.json
-        - /etc/cni/net.d/10-flannel.conflist
-        volumeMounts:
-        - name: cni
-          mountPath: /etc/cni/net.d
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      containers:
-      - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.11.0-arm
-        command:
-        - /opt/bin/flanneld
-        args:
-        - --ip-masq
-        - --kube-subnet-mgr
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "50Mi"
-          limits:
-            cpu: "100m"
-            memory: "50Mi"
-        securityContext:
-          privileged: false
-          capabilities:
-             add: ["NET_ADMIN"]
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        volumeMounts:
-        - name: run
-          mountPath: /run/flannel
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel-cfg
-          configMap:
-            name: kube-flannel-cfg
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: kube-flannel-ds-ppc64le
-  namespace: kube-system
-  labels:
-    tier: node
-    app: flannel
-spec:
-  selector:
-    matchLabels:
-      app: flannel
-  template:
-    metadata:
-      labels:
-        tier: node
-        app: flannel
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: beta.kubernetes.io/os
-                    operator: In
-                    values:
-                      - linux
-                  - key: beta.kubernetes.io/arch
-                    operator: In
-                    values:
-                      - ppc64le
-      hostNetwork: true
-      tolerations:
-      - operator: Exists
-        effect: NoSchedule
-      serviceAccountName: flannel
-      initContainers:
-      - name: install-cni
-        image: quay.io/coreos/flannel:v0.11.0-ppc64le
-        command:
-        - cp
-        args:
-        - -f
-        - /etc/kube-flannel/cni-conf.json
-        - /etc/cni/net.d/10-flannel.conflist
-        volumeMounts:
-        - name: cni
-          mountPath: /etc/cni/net.d
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      containers:
-      - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.11.0-ppc64le
-        command:
-        - /opt/bin/flanneld
-        args:
-        - --ip-masq
-        - --kube-subnet-mgr
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "50Mi"
-          limits:
-            cpu: "100m"
-            memory: "50Mi"
-        securityContext:
-          privileged: false
-          capabilities:
-             add: ["NET_ADMIN"]
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        volumeMounts:
-        - name: run
-          mountPath: /run/flannel
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel-cfg
-          configMap:
-            name: kube-flannel-cfg
----
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: kube-flannel-ds-s390x
-  namespace: kube-system
-  labels:
-    tier: node
-    app: flannel
-spec:
-  selector:
-    matchLabels:
-      app: flannel
-  template:
-    metadata:
-      labels:
-        tier: node
-        app: flannel
-    spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: beta.kubernetes.io/os
-                    operator: In
-                    values:
-                      - linux
-                  - key: beta.kubernetes.io/arch
-                    operator: In
-                    values:
-                      - s390x
-      hostNetwork: true
-      tolerations:
-      - operator: Exists
-        effect: NoSchedule
-      serviceAccountName: flannel
-      initContainers:
-      - name: install-cni
-        image: quay.io/coreos/flannel:v0.11.0-s390x
-        command:
-        - cp
-        args:
-        - -f
-        - /etc/kube-flannel/cni-conf.json
-        - /etc/cni/net.d/10-flannel.conflist
-        volumeMounts:
-        - name: cni
-          mountPath: /etc/cni/net.d
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      containers:
-      - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.11.0-s390x
-        command:
-        - /opt/bin/flanneld
-        args:
-        - --ip-masq
-        - --kube-subnet-mgr
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "50Mi"
-          limits:
-            cpu: "100m"
-            memory: "50Mi"
-        securityContext:
-          privileged: false
-          capabilities:
-             add: ["NET_ADMIN"]
-        env:
-        - name: POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        volumeMounts:
-        - name: run
-          mountPath: /run/flannel
-        - name: flannel-cfg
-          mountPath: /etc/kube-flannel/
-      volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel-cfg
-          configMap:
-            name: kube-flannel-cfg
 EOF
 # 包含以下资源
 # - PodSecurityPolicy
@@ -1956,6 +1601,7 @@ EOF
 # apply cni addon: flannel
 kubectl apply -f ${DEPLOY_DIR}/kube-addon/kube-flannel.yml
 ```
+> `--kube-subnet-mgr`，使用了这个选项，flannel不会去etcd中获取网络配置信息，而是通过`/etc/kube-flannel/net-conf.json`来获取网络配置
 
 ### 3. 查看flannel运行状态
 ``` bash
@@ -1995,9 +1641,9 @@ sh ${DEPLOY_DIR}/kube-addon/deploy.sh -i ${SERVICE_CLUSTER_IP_RANGE%.*}.2| kubec
 ---
 
 ## 安装持久化存储方案（此处选择glusterfs）
-[k8s persistent volume docs](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
-[部署glusterfs之前需求](https://github.com/gluster/gluster-kubernetes/blob/master/docs/setup-guide.md)
-[部署glusterfs文档](https://github.com/gluster/gluster-kubernetes)
+- [k8s persistent volume docs](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+- [部署glusterfs之前需求](https://github.com/gluster/gluster-kubernetes/blob/master/docs/setup-guide.md)
+- [部署glusterfs文档](https://github.com/gluster/gluster-kubernetes)
 
 ### 0. 浅谈选择glusterfs的理由
 看了k8s的pv文档后，因为前面安装k8s的环境是bare metal，所以无法使用云提供的方案，最终只能从glusterfs和ceph里面选择一个。经过网络上简单的搜索之后，发现glusterfs性能上比ceph稍高一点，另外它支持一个heketi，可以用restful的方式管理glusterfs的volume。虽然我没有实际部署对比过，但是倾向于glusterfs。
@@ -2019,6 +1665,7 @@ sh ${DEPLOY_DIR}/kube-addon/deploy.sh -i ${SERVICE_CLUSTER_IP_RANGE%.*}.2| kubec
 - 每个节点需要拥有`mount.glusterfs`命令
 - glusterfs客户端版本和server版本越接近越好
 
+#### 在节点上执行
 ``` bash
 # 检查raw disk环境
 fdisk -l
@@ -2028,17 +1675,31 @@ fdisk -l
 lsmod | grep dm_snapshot || modprobe dm_snapshot
 lsmod | grep dm_mirror || modprobe dm_mirror
 lsmod | grep dm_thin_pool || modprobe dm_thin_pool
+# 检查加载是否成功
 lsmod | egrep '^(dm_snapshot|dm_mirror|dm_thin_pool)'
+# 输出内容
+# dm_thin_pool           66358  0 
+# dm_snapshot            39103  0 
+# dm_mirror              22289  0 
 
 # 安装mount.glusterfs命令
-yum install -y glusterfs-fuse
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-libs-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-client-xlators-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-fuse-7.1-1.el7.x86_64.rpm
+# 默认安装的是glusterfs 3.12，为了和下面gk-deploy脚本里面安装的版本一致，手动安装7.1版本
+
 # 查看glusterfs版本
 glusterfs --version
+glusterfs 7.1
+
+mount.glusterfs -V
+glusterfs 7.1
 ```
 
 ### 2. 部署glusterfs(master01上操作)
 ``` bash
-# 下载安装文件
+# step 1. 下载安装文件
 # 以下测试使用的，最新commit是：
 #   Latest commit
 #   7246eb4
@@ -2049,7 +1710,7 @@ glusterfs --version
 git clone https://github.com/gluster/gluster-kubernetes.git
 cd gluster-kubernetes/deploy
 
-# 准备topology文件
+# step 2. 准备topology文件
 # ***************************
 # 重点关注
 # - hostsnames.manage里面填写节点的hostname
@@ -2118,16 +1779,15 @@ EOF
 # 安装前确认节点都ready状态
 kubectl get nodes
 
-# ISSUCE解决：
-# k8s 1.17换了api版本
+# step 3. ISSUCE解决(在官方的git中已经有看到解决的pr，但我当前使用的时间点还需要自己来修改)
+# 1) k8s 1.17换了api版本
 sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/deploy-heketi-deployment.yaml
 sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/gluster-s3-template.yaml
 sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/glusterfs-daemonset.yaml
 sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" kube-templates/heketi-deployment.yaml
 sed -ir "s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g" ocp-templates/glusterfs-template.yaml
 
-
-# error: error validating "STDIN": error validating data: ValidationError(DaemonSet.spec): missing required
+# 2) error: error validating "STDIN": error validating data: ValidationError(DaemonSet.spec): missing required
 # field "selector" in io.k8s.api.apps.v1.DaemonSetSpec; if you choose to ignore these errors, turn validation off with --validate=false
 # k8s 1.17需要指定pod selector
 # 确认以下内容，如果不存在，请手动增加
@@ -2172,7 +1832,7 @@ spec:
       labels:
         name: heketi
 
-# Determining heketi service URL ... Error: unknown flag: --show-all
+# 3) Determining heketi service URL ... Error: unknown flag: --show-all
 # See 'kubectl get --help' for usage.
 # Failed to communicate with heketi service.
 # kubectl v1.17 没有--show-all这个选项
@@ -2182,21 +1842,59 @@ vim gk-deploy
 # 修改为
 # heketi_pod=$(${CLI} get pod --no-headers --selector="heketi" | awk '{print $1}')
 
-# 部署heketi and GlusterFS
-./gk-deploy -g -y -v --admin-key adminkey --user-key userkey
+# step 4. 部署heketi and GlusterFS
+ADMIN_KEY=adminkey
+USER_KEY=userkey
+./gk-deploy -g -y -v --admin-key ${ADMIN_KEY} --user-key ${USER_KEY}
 # 如果第一次没安装成功，需要二次安装，使用下面命令清除之前的安装资源
-# 清除磁盘(在节点机器上执行)
-# wipefs -a /dev/sdb
 # 删除资源和服务
 # ./gk-deploy -g --abort --admin-key adminkey --user-key userkey
+# 查看lv名称
+# lvs
+# 删除lv
+# lvremove /dev/vg
+# 清除磁盘(在节点机器上执行)
+# wipefs -a /dev/sdc
 
-# 检查
+# step 5. 检查heketi和glusterfs运行情况
 export HEKETI_CLI_SERVER=$(kubectl get svc/heketi --template 'http://{{.spec.clusterIP}}:{{(index .spec.ports 0).port}}')
 echo $HEKETI_CLI_SERVER
 curl $HEKETI_CLI_SERVER/hello
 # Hello from Heketi
 # 如果timeout的话，看看是不是master没搞成node节点，没加入kube-proxy
 # 可以获取到地址之后，到node节点上执行curl操作
+
+
+# step 6. 创建storageclass，来自动为pvc创建pv
+SECRET_KEY=`echo -n "${ADMIN_KEY}" | base64`
+
+cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: heketi-secret
+  namespace: default
+data:
+  # base64 encoded password. E.g.: echo -n "mypassword" | base64
+  key: ${SECRET_KEY}
+type: kubernetes.io/glusterfs
+EOF
+
+cat << EOF | kubectl apply -f -
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: glusterfs-storage
+provisioner: kubernetes.io/glusterfs
+parameters:
+  resturl: "${HEKETI_CLI_SERVER}"
+  restuser: "admin"
+  secretNamespace: "default"
+  secretName: "heketi-secret"
+  volumetype: "replicate:3"
+EOF
+# 注意生成pvc资源时，需要指定storageclass为上面配置的"glusterfs-storage"
+
 
 kubectl get nodes,pods
 NAME          STATUS   ROLES    AGE    VERSION
