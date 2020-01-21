@@ -48,3 +48,16 @@ analysis:
 > - 只有一个stage里面的所有job都执行完毕了，才会去执行下一个stage
 > - 同一个stage里面的job是同时被执行的
 > - only限定了只有master分支commit后才会触发pipeline的执行
+
+
+### 1. [cache说明](https://docs.gitlab.com/ee/ci/yaml/README.html#cache)
+``` yaml
+rspec:
+  script: test
+  cache:
+    paths:
+      - vendor/ruby
+      - node_modules
+```
+cache用于指定应在job之间缓存的文件和目录的列表。
+> paths是相对于`${CI_PROJECT_DIR}`下面的相对路径

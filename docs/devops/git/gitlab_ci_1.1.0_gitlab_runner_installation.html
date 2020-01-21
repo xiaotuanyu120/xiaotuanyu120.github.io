@@ -107,13 +107,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -307,6 +307,7 @@ docker-compose -f docker-compose-gitlab-runner.yml up -d
   [runners.docker.sysctls]
     "net.ipv4.ip_forward" = "1"</code></pre>
 <blockquote><p>关于额外配置hosts解析的内容，只需要关注extra_hosts</p>
+<p>因为我们是所有的是docker启动的gitlab-runner，这个配置文件的位置是挂载进gitlab-runner中的/etc/gitlab-runner/config.toml</p>
 </blockquote>
 <h4>如果执行任务的容器镜像使用的是私有仓库，auth问题这样解决</h4>
 <p>参考链接：<a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#using-statically-defined-credentials">配置私有docker仓库的auth认证</a></p>
@@ -366,13 +367,13 @@ vi <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span
              </a>
             </li>
             <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
              </a>
             </li>
             <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
              </a>
             </li>
             <li role="presentation">
@@ -505,6 +506,11 @@ vi <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
                 gitlab-ci: 1.2.0 .gitlab-ci.yml
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.3.0_build_docker_image.html">
+                gitlab-ci: 1.3.0 编译docker镜像
               </a>
              </li>
              <li class="toctree-l2">
