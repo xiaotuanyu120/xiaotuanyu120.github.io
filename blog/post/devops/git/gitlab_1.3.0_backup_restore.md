@@ -54,3 +54,16 @@ gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
 > 备份恢复必须要同样的gitlab版本
 
 > BACKUP=timestamp_of_backup，不需要指定文件名称，只需要指定timestamp就可以
+
+
+### 3. gitlab 升级
+参考文档
+- [官方升级推荐指南](https://docs.gitlab.com/ee/policy/maintenance.html#upgrade-recommendations)
+- [官方docker升级指南](https://docs.gitlab.com/omnibus/docker/README.html#upgrade-gitlab-to-newer-version)
+- [官方论坛问答](https://forum.gitlab.com/t/updating-gitlab-ce-9-1-2-ce-0-to-11-4-5-ce-0-on-debian-jessie/21117/2)
+
+总结就是，
+- 官方推荐先升级小版本到主版本的最新，例如你现在是9.4.5，你就升级到9版本的最新稳定版本(9.5.10)
+- 然后升级到下一个大版本的第一个初始稳定版本，例如9.5.10升级到10.0.0；接着进行同样的循环，在升级到10版本里面的最新稳定版本
+
+> 值得注意的是：gitlab每次升级完，第一次启动，会自动进行升级动作。所以只需要按照官方推荐的升级节奏，小版本升级 - 大版本升级，即可
