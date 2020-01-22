@@ -1,10 +1,10 @@
 ---
-title: gitlab: 1.3.0 gitlab备份及恢复
+title: gitlab: 1.3.0 gitlab备份,恢复及升级
 date: 2018-07-06 08:57:00
 categories: devops/git
 tags: [gitlab,backup,restore]
 ---
-### gitlab: 1.3.0 gitlab备份及恢复
+### gitlab: 1.3.0 gitlab备份,恢复及升级
 
 ---
 
