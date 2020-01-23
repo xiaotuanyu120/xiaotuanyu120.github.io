@@ -50,6 +50,13 @@ gitlab-ctl stop sidekiq
 
 # 恢复数据
 gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
+
+# 如果是docker版本恢复
+# docker容器中的git用户的uid和gid是998，可以通过下面命令查看
+# docker exec -it <cotainer-name> id git
+# 得到git用户的uid后，需要给备份tar文件修改属主属组，不然会有权限报错
+chown 998.998 </path/to/your-git-backup-file>
+docker exec -it <cotainer-name> gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
 ```
 > 备份恢复必须要同样的gitlab版本
 

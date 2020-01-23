@@ -38,6 +38,11 @@ helm search repo [package-name]
 # - package-name可以是不完整的包名称
 ```
 
+下载chart
+``` bash
+helm fetch repo-name/[package-name]
+```
+
 安装chart
 ``` bash
 ## INSTALL
