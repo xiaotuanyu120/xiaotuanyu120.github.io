@@ -196,203 +196,61 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
-                cgroups 1.0.0 什么是cgroups？
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
-                coreos 1.1.0 系统安装-bare metal
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
-                coreos 1.2.0 系统安装-vagrant
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
-                coreos 2.1.0 ignition简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
-                coreos 2.2.0 pxe引导coreos启动(cloudinit)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
-                coreos 2.2.1 pxe引导coreos启动(ignition)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
-                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
-                coreos 2.3.0 ignition+matchbox安装coreos集群
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
-                coreos 2.4.0 生成ssl/tls自签名认证证书
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
-                etcd 1.1.2 etcd install single node(systemd)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
-                etcd 1.1.3 etcd install static cluster(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
-                etcd 1.1.4 etcd install static cluster with ssl/tls
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
-                etcd 1.1.5 etcd install discovery cluster(coreos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
-                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
-                etcd 2.1.0 etcd-api python-etcd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
-                etcd 2.2.0 搭配confd做配置管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
-                flannel 1.1.0 install flannel using binaries（systemd）
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
-                flannel 1.2.0 configuration ans option
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
-                helm 1.1.0 安装（centos 7）及使用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.1_chartmuseum.html">
-                helm 1.1.1 chartmuseum
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
-                kubernetes 1.1.0 简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
-                kubernetes 1.2.0 vagrant+coreos(flannel)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
-                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
-                kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
-                kubernetes 1.2.3 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
-                kubernetes 1.2.4 traefik ingress
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
-                kubernetes 1.2.5 ingress ssl
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
-                kubernetes 1.2.6 kube-dns
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
-                kubernetes 1.2.7 EFK
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
-                kubernetes 1.3.0 run-stateless-application-deployment
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
-                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
-                kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>helm 1.1.1 chartmuseum</h3>
+<hr>
+<h3>0. 什么是chartmuseum?</h3>
+<p><a href="https://github.com/helm/chartmuseum">chartmuseum</a>是一个开源的helm chart本地仓库</p>
+<h3>1. <a href="https://github.com/helm/charts/tree/master/stable/chartmuseum">安装chartmuseum</a>？</h3>
+<div class="highlight"><pre><span></span>helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm repo update
+helm fetch stable/chartmuseum
+tar zxvf chartmuseum-2.7.0.tgz
+<span class="nb">cd</span> chartmuseum
+</pre></div>
+<h3>2. 自定义chartmuseum</h3>
+<div class="highlight"><pre><span></span><span class="nt">env</span><span class="p">:</span>
+  <span class="nt">open</span><span class="p">:</span>
+    <span class="c1"># 启用api调用，不然会限制所有/api的访问</span>
+    <span class="nt">DISABLE_API</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="c1"># 允许重复上传chart包</span>
+    <span class="nt">ALLOW_OVERWRITE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">secret</span><span class="p">:</span>
+    <span class="c1"># Redis requirepass server configuration</span>
+    <span class="nt">CACHE_REDIS_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redisp@ssw0rd</span>
+<span class="c1"># 因为要用pv，这里设定一个有pv硬盘提供的节点</span>
+<span class="nt">nodeSelector</span><span class="p">:</span>
+  <span class="nt">storagenode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">glusterfs</span>
+<span class="nt">persistence</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="c1"># 指定storageclass</span>
+  <span class="nt">storageClass</span><span class="p">:</span> <span class="s">&quot;glusterfs-storage&quot;</span>
+<span class="c1"># 用ingress会比较方便，记住域名就可以了</span>
+<span class="nt">ingress</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">hosts</span><span class="p">:</span>
+      <span class="c1"># 指定访问域名</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">chartmuseum.domain1.com</span>
+      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+      <span class="nt">tls</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+<h3>3. 使用chartmuseum</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 查看ingress-controller service的nodeport端口，这里是31253</span>
+kubectl get svc -n ingress-nginx
+NAME            TYPE       CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
+ingress-nginx   NodePort   <span class="m">10</span>.244.137.221   &lt;none&gt;        <span class="m">80</span>:31253/TCP,443:32111/TCP   7d1h
+
+<span class="c1"># 把刚才指定的域名指定解析</span>
+kubectl get nodes -o wide
+<span class="c1"># 获得节点的ip</span>
+<span class="nb">echo</span> <span class="s2">&quot;node-ip chartmuseum.domain1.com&quot;</span> &gt;&gt; /etc/hosts
+
+<span class="c1"># 把刚才的chartmuseum打包，先将version: 2.7.0，增加一个patch版本，改成2.7.1</span>
+helm package .
+<span class="c1"># 会生成chartmuseum-2.7.0.tgz</span>
+<span class="c1"># 上传到自己的chartmuseum</span>
+curl --data-binary <span class="s2">&quot;@chartmuseum-2.7.0.tgz&quot;</span> http://chartmuseum.domain1.com:31253/api/charts
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
