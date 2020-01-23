@@ -66,3 +66,23 @@ helm package .
 # 上传到自己的chartmuseum
 curl --data-binary "@chartmuseum-2.7.0.tgz" http://chartmuseum.domain1.com:31253/api/charts
 ```
+
+### 4. 使用helm-push插件
+``` bash
+# step 1. install helm-push
+helm plugin install https://github.com/chartmuseum/helm-push
+
+# step 2. add chartmuseum repo
+helm repo add chartmuseum http://chartmuseum.domain1.com:31253
+
+# step 3.a push directory
+cd .. && cat chartmuseum/Chart.yaml|grep version
+
+helm push chartmuseum/ chartmuseum
+# 可以手动指定version
+# helm push chartmuseum/ --version="version-string" chartmuseum
+
+# step 3.b push tar file
+cd chartmuseum
+helm push chartmuseum-2.7.0.tgz chartmuseum
+```

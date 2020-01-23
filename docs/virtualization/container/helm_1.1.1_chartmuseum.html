@@ -250,6 +250,24 @@ helm package .
 <span class="c1"># 上传到自己的chartmuseum</span>
 curl --data-binary <span class="s2">&quot;@chartmuseum-2.7.0.tgz&quot;</span> http://chartmuseum.domain1.com:31253/api/charts
 </pre></div>
+<h3>4. 使用helm-push插件</h3>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. install helm-push</span>
+helm plugin install https://github.com/chartmuseum/helm-push
+
+<span class="c1"># step 2. add chartmuseum repo</span>
+helm repo add chartmuseum http://chartmuseum.domain1.com:31253
+
+<span class="c1"># step 3.a push directory</span>
+<span class="nb">cd</span> .. <span class="o">&amp;&amp;</span> cat chartmuseum/Chart.yaml<span class="p">|</span>grep version
+
+helm push chartmuseum/ chartmuseum
+<span class="c1"># 可以手动指定version</span>
+<span class="c1"># helm push chartmuseum/ --version=&quot;version-string&quot; chartmuseum</span>
+
+<span class="c1"># step 3.b push tar file</span>
+<span class="nb">cd</span> chartmuseum
+helm push chartmuseum-2.7.0.tgz chartmuseum
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
