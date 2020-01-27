@@ -485,7 +485,7 @@ chmod +x <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class
 <span class="c1"># 下发cni二进制文件</span>
 <span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
   ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&quot;mkdir -p /opt/cni/bin&quot;</span>
-  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/cni/bin/* <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/usr/local/bin/
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/cni/bin/* <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/opt/cni/bin
 <span class="k">done</span>
 </pre></div>
 <hr>
@@ -2305,6 +2305,11 @@ pod/heketi-779bc95979-272qk   <span class="m">1</span>/1     Running   <span cla
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
                 helm 1.1.0 安装（centos 7）及使用
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_1.1.1_chartmuseum.html">
+                helm 1.1.1 chartmuseum
               </a>
              </li>
              <li class="toctree-l2">
