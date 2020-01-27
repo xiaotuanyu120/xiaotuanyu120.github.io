@@ -244,7 +244,7 @@ done
 # 下发cni二进制文件
 for node in {node01,node02,node03};do
   ssh root@${node} "mkdir -p /opt/cni/bin"
-  rsync -av ${DEPLOY_DIR}/cni/bin/* ${node}:/usr/local/bin/
+  rsync -av ${DEPLOY_DIR}/cni/bin/* ${node}:/opt/cni/bin
 done
 ```
 
