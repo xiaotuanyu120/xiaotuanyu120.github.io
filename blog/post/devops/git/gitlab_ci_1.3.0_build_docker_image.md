@@ -64,7 +64,6 @@ before_script:
 build:
   stage: build
   script:
-  - cd ${CI_PROJECT_DIR}
   - npm install
   - npm run build:prod
   - docker build --cache-from <your-private-registry>/vue:latest -t <your-private-registry>/vue:$CI_COMMIT_SHA -t <your-private-registry>/vue:latest .

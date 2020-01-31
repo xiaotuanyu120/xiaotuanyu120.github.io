@@ -33,7 +33,36 @@ gitlab-ctl reconfigure
 
 ---
 
-### 2. 测试访问
-0. 在浏览器中访问服务器ip
-1. 第一个页面是给root用户配置一个密码
-2. 使用root登陆
+### 2. docker-compose安装
+``` bash
+cat << EOF > docker-compose-gitlab.yml
+version: '3'
+services:
+  web:
+    container_name: gitlab
+    image: gitlab/gitlab-ce:11.11.8-ce.0
+    restart: always
+    hostname: 'git.easydevops.net'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://<your domain here>'
+        nginx['client_max_body_size'] = '1024m'
+        gitlab_rails['rack_attack_git_basic_auth'] = {
+           'enabled' => true,
+           'ip_whitelist' => ["127.0.0.1","<your auth ip here>"],
+           'maxretry' => 10,
+           'findtime' => 60,
+           'bantime' => 3600
+        }
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - '/data/docker/runtime/gitlab/config:/etc/gitlab'
+      - '/data/docker/data/gitlab/logs:/var/log/gitlab'
+      - '/data/docker/data/gitlab/data:/var/opt/gitlab'
+EOF
+
+docker-compose -f docker-compose-gitlab.yml up -d
+```
+> 更多environment配置见：[Omnibus GitLab template](https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template)

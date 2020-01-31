@@ -52,8 +52,8 @@ services:
     container_name: gitlab-runner
     restart: always
     volumes:
-       - ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner
-       - /var/run/docker.sock:/var/run/docker.sock
+      - ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner
+      - /var/run/docker.sock:/var/run/docker.sock
 EOF
 
 docker-compose -f docker-compose-gitlab-runner.yml up -d

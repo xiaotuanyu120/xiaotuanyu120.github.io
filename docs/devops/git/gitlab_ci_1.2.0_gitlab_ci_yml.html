@@ -213,7 +213,6 @@
 <span class="nt">analysis</span><span class="p">:</span>
   <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
   <span class="nt">script</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cd ${CI_PROJECT_DIR}</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo &gt; javafile.txt</span>
@@ -241,7 +240,13 @@
 <li>only限定了只有master分支commit后才会触发pipeline的执行</li>
 </ul>
 </blockquote>
-<h3>1. <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#cache">cache说明</a></h3>
+<h3>1. <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#cache">cache</a> vs <a href="https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts">artifacts</a></h3>
+<p>官方文档<a href="https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts">cache vs artifacts</a>里面说：</p>
+<ul>
+<li>cache：用于储存工程依赖文件</li>
+<li>artifacts：用于储存在stage之间需要传递的文件</li>
+</ul>
+<h4>cache</h4>
 <div class="highlight"><pre><span></span><span class="nt">rspec</span><span class="p">:</span>
   <span class="nt">script</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
   <span class="nt">cache</span><span class="p">:</span>
@@ -249,8 +254,23 @@
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vendor/ruby</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node_modules</span>
 </pre></div>
-<p>cache用于指定应在job之间缓存的文件和目录的列表。</p>
 <blockquote><p>paths是相对于<code>${CI_PROJECT_DIR}</code>下面的相对路径</p>
+<p>虽然，gitlab官方说cache是用来缓存一些依赖文件，但是我个人不知道用法有问题还是咋回事，就没成功过</p>
+</blockquote>
+<h4>artifacts</h4>
+<div class="highlight"><pre><span></span><span class="nt">deploy</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">...</span>
+  <span class="l l-Scalar l-Scalar-Plain">artifacts</span><span class="p p-Indicator">:</span>
+    <span class="nt">paths</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span>
+    <span class="nt">expire_in</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1 day</span>
+</pre></div>
+<blockquote><p>erro: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
+<a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a></p>
+<ol>
+<li>gitlab启动参数增加nginx的<code>client_max_body_size</code></li>
+<li>gitlab的admin的CICD设置中，调大artifacts的上限大小</li>
+</ol>
 </blockquote>
       </div>
      </div>
@@ -443,8 +463,8 @@
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore.html">
-                gitlab: 1.3.0 gitlab备份及恢复
+              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore_update.html">
+                gitlab: 1.3.0 gitlab备份,恢复及升级
               </a>
              </li>
              <li class="toctree-l2">

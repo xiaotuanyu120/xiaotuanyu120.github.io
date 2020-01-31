@@ -23,7 +23,6 @@ stages:
 analysis:
   stage: analysis
   script:
-  - cd ${CI_PROJECT_DIR}
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
   - echo > javafile.txt
@@ -50,7 +49,12 @@ analysis:
 > - only限定了只有master分支commit后才会触发pipeline的执行
 
 
-### 1. [cache说明](https://docs.gitlab.com/ee/ci/yaml/README.html#cache)
+### 1. [cache](https://docs.gitlab.com/ee/ci/yaml/README.html#cache) vs [artifacts](https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts)
+官方文档[cache vs artifacts](https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts)里面说：
+- cache：用于储存工程依赖文件
+- artifacts：用于储存在stage之间需要传递的文件
+
+#### cache
 ``` yaml
 rspec:
   script: test
@@ -59,5 +63,20 @@ rspec:
       - vendor/ruby
       - node_modules
 ```
-cache用于指定应在job之间缓存的文件和目录的列表。
 > paths是相对于`${CI_PROJECT_DIR}`下面的相对路径
+
+> 虽然，gitlab官方说cache是用来缓存一些依赖文件，但是我个人不知道用法有问题还是咋回事，就没成功过
+
+#### artifacts
+``` yaml
+deploy:
+  ...
+  artifacts:
+    paths:
+    - target
+    expire_in: 1 day
+```
+> erro: `ERROR: Uploading artifacts to coordinator... too large archive`
+> [解决方法](https://gitlab.com/gitlab-org/gitlab-foss/issues/14841)
+> 1. gitlab启动参数增加nginx的`client_max_body_size`
+> 2. gitlab的admin的CICD设置中，调大artifacts的上限大小

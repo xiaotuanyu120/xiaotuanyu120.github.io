@@ -196,142 +196,70 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>gitlab-ci: 1.1.0 gitlab-runner安装(docker)</h3>
+      <div class="col-lg-12"><h3>helm 2.1.0 从零开始创建tomcat的charts</h3>
 <hr>
-<h3>0. gitlab-runner简介</h3>
-<p>Gitlab Runner是一个用于执行CI任务然后返回结果给gitlab的开源工程。Gitlab Runner用于和Gitlab CI连接（人话就是想执行gitlab ci里面的任务必须要使用gitlabrunner，gitlab本身的程序只提供ci的web界面，而不执行具体的任务）。</p>
-<p>gitlab-runner是使用golang编写的，所以只是一个单个的可执行程序，不需要任何依赖。</p>
-<h4>gitlab-runner特性：</h4>
-<ul>
-<li>允许执行：<ul>
-<li>并行多个任务</li>
-<li>给多个server使用多个token（或者给多个project使用多个token）</li>
-<li>根据token来限制任务并发数量限制</li>
-</ul>
-</li>
-<li>任务可以执行在：<ul>
-<li>本地环境</li>
-<li>使用docker环境</li>
-<li>使用docker环境（通过ssh执行任务） - 不推荐，后续会废弃掉</li>
-<li>使用docker环境（在云和虚拟化平台上自动扩展） - 不推荐，后续会废弃掉</li>
-<li>使用通过ssh远程连接的server</li>
-</ul>
-</li>
-<li>支持bash、windows batch、windows powershell</li>
-<li>支持GNU/LINUX、windows、macos（任何支持docker的系统）</li>
-<li>支持自定义任务的运行环境</li>
-<li>不用重启自动重载配置文件</li>
-<li>开启docker缓存</li>
-<li>内嵌Prometheus服务</li>
-</ul>
-<h4>和gitlab版本的兼容性</h4>
-<p>gitlab-runner和gitlab版本应该一致，尽管较旧的Runner仍可以使用较新的GitLab版本，反之亦然，但在某些情况下，如果版本不同，则功能可能不可用或无法正常工作。向后不兼容仅适用于主要版本更新。</p>
-<h3>1. 按照gitlab-runner（docker）</h3>
-<p>gitlab-runner的官方镜像基于ubuntu或alpine，这个镜像只是一个gitlab-runner二进制命令的wrapper，就像在宿主机上直接执行gitlab-runner命令。</p>
-<h4>启动gitlab-runner</h4>
-<div class="highlight"><pre><span></span><span class="c1"># 准备gitlab-runner配置目录</span>
-<span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="o">=</span>/data/docker/runtime/gitlab-runner/config
-<span class="o">[[</span> -d <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span> <span class="o">]]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>
-
-<span class="c1"># 启动gitlab-runner</span>
-cat <span class="s">&lt;&lt; EOF &gt; docker-compose-gitlab-runner.yml</span>
-<span class="s">version: &#39;2&#39;</span>
-<span class="s">services:</span>
-<span class="s">  gitlab-runner:</span>
-<span class="s">    image: gitlab/gitlab-runner:latest</span>
-<span class="s">    container_name: gitlab-runner</span>
-<span class="s">    restart: always</span>
-<span class="s">    volumes:</span>
-<span class="s">      - ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner</span>
-<span class="s">      - /var/run/docker.sock:/var/run/docker.sock</span>
-<span class="s">EOF</span>
-
-docker-compose -f docker-compose-gitlab-runner.yml up -d
+<h3>0. 问题背景</h3>
+<p>为什么不用stable中的tomcat？呵呵，看不懂，不可控。</p>
+<p>个人思路是使用tomcat官方docker镜像先提前配置好，然后只需要给helm传参（image），其他的helm参数可以先提前写好模板。</p>
+<h3>1. 从零开始helm创建tomcat的charts</h3>
+<h4>背景</h4>
+<p>假设我们有一个前后端分离项目，前端项目web-frontend已经存在，后端项目我们称其为web</p>
+<h4>开始创建</h4>
+<p>创建charts模板web</p>
+<div class="highlight"><pre><span></span>helm create web
 </pre></div>
-<h4>注册gitlab-runner到gitlab（会生成配置文件）</h4>
-<p>在注册gitlab-runner到gitlab之前，gitlab-runner不会执行任何任务。更多信息查看：<a href="https://docs.gitlab.com/runner/register/index.html#docker">register官方文档链接</a></p>
-<div class="highlight"><pre><span></span>docker run --rm -v <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>:/etc/gitlab-runner gitlab/gitlab-runner register <span class="se">\</span>
-  --non-interactive <span class="se">\</span>
-  --executor <span class="s2">&quot;docker&quot;</span> <span class="se">\</span>
-  --docker-image alpine:latest <span class="se">\</span>
-  --url <span class="s2">&quot;http://your-gitlab-domain&quot;</span> <span class="se">\</span>
-  --registration-token <span class="s2">&quot;your-gitlab-token&quot;</span> <span class="se">\</span>
-  --description <span class="s2">&quot;your-runner-description&quot;</span> <span class="se">\</span>
-  --tag-list <span class="s2">&quot;tag1,tag2&quot;</span> <span class="se">\</span>
-  --run-untagged<span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="se">\</span>
-  --locked<span class="o">=</span><span class="s2">&quot;false&quot;</span> <span class="se">\</span>
-  --access-level<span class="o">=</span><span class="s2">&quot;not_protected&quot;</span>
+<p>修改service.yaml
+<code>vim web/templates/service.yaml</code></p>
+<div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">.Values.service.type</span> <span class="p p-Indicator">}}</span>
+  <span class="nt">ports</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">port</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">.Values.service.port</span> <span class="p p-Indicator">}}</span>
+      <span class="nt">targetPort</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">.Values.template.containerPort</span> <span class="p p-Indicator">}}</span>
 </pre></div>
-<blockquote><p>主要选项介绍：</p>
-<ul>
-<li>executor，指定runner名称</li>
-<li>docker-image，指定任务执行默认的镜像（runner会控制docker，在宿主机启动独立的容器来执行任务，这里说的镜像就是这个容器的镜像。）</li>
-<li>url，指定gitlab的url</li>
-<li>registration-token，指定注册的runner的token，这个可以在gitlab的ci设定里面找到</li>
-</ul>
+<p>修改deployment.yml
+<code>vim web/templates/deployment.yaml</code></p>
+<div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">template</span><span class="p">:</span>
+    <span class="nt">spec</span><span class="p">:</span>
+      <span class="nt">containers</span><span class="p">:</span>
+          <span class="nt">image</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">.Values.image.repository</span> <span class="p p-Indicator">}}</span>
+          <span class="nt">ports</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http</span>
+              <span class="nt">containerPort</span><span class="p">:</span> <span class="p p-Indicator">{{</span> <span class="nv">.Values.template.containerPort</span> <span class="p p-Indicator">}}</span>
+              <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+</pre></div>
+<p>修改values.yaml
+<code>vim web/values.yaml</code></p>
+<div class="highlight"><pre><span></span><span class="nt">imagePullSecrets</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">myregistrykey</span>
+<span class="nt">serviceAccount</span><span class="p">:</span>
+  <span class="nt">create</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">securityContext</span><span class="p">:</span>
+  <span class="nt">runAsNonRoot</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">runAsUser</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">999</span>
+  <span class="nt">runAsGroup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">999</span>
+<span class="nt">template</span><span class="p">:</span>
+  <span class="nt">containerPort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="nt">service</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="nt">ingress</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">hosts</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">chart-example.local</span>
+      <span class="nt">paths</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+</pre></div>
+<blockquote><p>imagePullSecrets，是用来指定从私有镜像仓库下载镜像的auth信息，详情可以参照:
+<a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">pull_image_from_private_registry</a></p>
 </blockquote>
-<h4>如果sonarqube server使用的是一个内网域名，没有外网解析，执行job时报sonarqube域名无法解析，咋整？</h4>
-<p>参考链接：<a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">gitlab-runner executor 配置extra_hosts</a></p>
-<p>sonarqube server使用的是内网ip，然后自以为在gitlab-runner的容器启动时增加了<code>--add-host=mysonarqube-server-domain:ip-address</code>，应该就可以顺利解析了，结果事与愿违，竟然执行job时报解析不了sonarqube server域名的错误。</p>
-<p>苦思冥想了一段时间，才发现，原来gitlab-runner那个容器并不实际执行job。当runner接收到任务的时候，它会额外启动其他的容器来执行job，这就导致了，我在runner上配置的extra_hosts压根没起作用。下面列出以下runner的额外docker的配置：</p>
-
-<pre><code>[runners.docker]
-  host = ""
-  hostname = ""
-  tls_cert_path = "/Users/ayufan/.boot2docker/certs"
-  image = "ruby:2.1"
-  memory = "128m"
-  memory_swap = "256m"
-  memory_reservation = "64m"
-  oom_kill_disable = false
-  cpuset_cpus = "0,1"
-  cpus = "2"
-  dns = ["8.8.8.8"]
-  dns_search = [""]
-  privileged = false
-  userns_mode = "host"
-  cap_add = ["NET_ADMIN"]
-  cap_drop = ["DAC_OVERRIDE"]
-  devices = ["/dev/net/tun"]
-  disable_cache = false
-  wait_for_services_timeout = 30
-  cache_dir = ""
-  volumes = ["/data", "/home/project/cache"]
-  extra_hosts = ["other-host:127.0.0.1"]
-  shm_size = 300000
-  volumes_from = ["storage_container:ro"]
-  links = ["mysql_container:mysql"]
-  services = ["mysql", "redis:2.8", "postgres:9"]
-  allowed_images = ["ruby:*", "python:*", "php:*"]
-  allowed_services = ["postgres:9.4", "postgres:latest"]
-  [runners.docker.sysctls]
-    "net.ipv4.ip_forward" = "1"</code></pre>
-<blockquote><p>关于额外配置hosts解析的内容，只需要关注extra_hosts</p>
-<p>因为我们是所有的是docker启动的gitlab-runner，这个配置文件的位置是挂载进gitlab-runner中的/etc/gitlab-runner/config.toml</p>
-</blockquote>
-<h4>如果执行任务的容器镜像使用的是私有仓库，auth问题这样解决</h4>
-<p>参考链接：<a href="https://docs.gitlab.com/ee/ci/docker/using_docker_images.html#using-statically-defined-credentials">配置私有docker仓库的auth认证</a></p>
-<div class="highlight"><pre><span></span><span class="c1"># 手动登录你的私有仓库</span>
-docker login --username &lt;username&gt; --password &lt;password&gt; &lt;your-docker-repo-domain&gt;
-
-<span class="c1"># 查看docker在本地生成的auth信息</span>
-cat ~/.docker/config.json 
-<span class="o">{</span>
-    <span class="s2">&quot;auths&quot;</span>: <span class="o">{</span>
-        <span class="s2">&quot;&lt;your-docker-repo-domain&gt;&quot;</span>: <span class="o">{</span>
-            <span class="s2">&quot;auth&quot;</span>: <span class="s2">&quot;auth-string&quot;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>,
-    <span class="s2">&quot;HttpHeaders&quot;</span>: <span class="o">{</span>
-        <span class="s2">&quot;User-Agent&quot;</span>: <span class="s2">&quot;Docker-Client/18.09.9 (linux)&quot;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1"># 打开gitlab-runner的持久化配置文件</span>
-vi <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>/config.toml
-<span class="c1"># 将docker镜像仓库的auth信息填写进去</span>
-<span class="o">[[</span>runners<span class="o">]]</span>
-  <span class="nv">environment</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;DOCKER_AUTH_CONFIG={\&quot;auths\&quot;:{\&quot;your-docker-repo-domain\&quot;:{\&quot;auth\&quot;:\&quot;auth-string\&quot;}}}&quot;</span><span class="o">]</span>
+<h4>测试启动</h4>
+<div class="highlight"><pre><span></span>helm upgrade --install my-release ./web --set image.repository<span class="o">=</span>reg.easydevops.net/long8-web-test:7d8784
 </pre></div>
       </div>
      </div>
@@ -434,150 +362,206 @@ vi <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/giterror_1.1.0_curl_18.html">
-                git error: 1.1.0 curl 18 error
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.1.0_install.html">
-                git: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.0_branch.html">
-                git: 1.2.0 分支
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.1_branch_pr.html">
-                git: 1.2.1 分支-Pull Request
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.2.2_tag.html">
-                git: 1.2.2 git tag
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.3.0_gitignore.html">
-                git: 1.3.0 忽略文件-“.gitignore”
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.4.0_delete_file.html">
-                git: 1.4.0 删除文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.5.0_mv.html">
-                git: 1.5.0 mv error(case sensitive of linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.6.0_commit_reverse.html">
-                git: 1.6.0 撤销操作
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.7.0_push_403.html">
-                git: 1.7.0 push返回403
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
-                git: 1.8.0 添加链接文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/github_tutorial.html">
-                github: 入门引导
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.1.0_gitlab_runner_installation.html">
-                gitlab-ci: 1.1.0 gitlab-runner安装(docker)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
-                gitlab-ci: 1.2.0 .gitlab-ci.yml
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.3.0_build_docker_image.html">
-                gitlab-ci: 1.3.0 编译docker镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.1.0_install.html">
-                gitlab: 1.1.0 安装(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.2.0_config_external_port.html">
-                gitlab: 1.2.0 配置gitlab访问端口
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore_update.html">
-                gitlab: 1.3.0 gitlab备份,恢复及升级
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.1.0_create_local_repo.html">
-                git仓库: 1.1.0 centos6搭建git本地服务器
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.2.0_anonymous_access.html">
-                git仓库: 1.2.0 本地服务器开启匿名访问
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitrepo_1.3.0_web.html">
-                git仓库: 1.3.0 本地服务器web界面
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/sonarqube">
-              sonarqube
+            <a class="reference internal" href="/virtualization/openstack">
+              openstack
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
+            <a class="reference internal" href="/virtualization/docker">
+              docker
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
+            <a class="reference internal" href="/virtualization/kvm">
+              kvm
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/arthas">
-              arthas
+            <a class="reference internal" href="/virtualization/container">
+              container
             </a>
             <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
-            </a>
-            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
+                cgroups 1.0.0 什么是cgroups？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
+                coreos 1.1.0 系统安装-bare metal
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
+                coreos 1.2.0 系统安装-vagrant
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
+                coreos 2.1.0 ignition简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
+                coreos 2.2.0 pxe引导coreos启动(cloudinit)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
+                coreos 2.2.1 pxe引导coreos启动(ignition)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
+                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
+                coreos 2.3.0 ignition+matchbox安装coreos集群
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
+                coreos 2.4.0 生成ssl/tls自签名认证证书
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
+                etcd 1.1.2 etcd install single node(systemd)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
+                etcd 1.1.3 etcd install static cluster(centos6)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
+                etcd 1.1.4 etcd install static cluster with ssl/tls
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
+                etcd 1.1.5 etcd install discovery cluster(coreos)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
+                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
+                etcd 2.1.0 etcd-api python-etcd
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
+                etcd 2.2.0 搭配confd做配置管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
+                flannel 1.1.0 install flannel using binaries（systemd）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
+                flannel 1.2.0 configuration ans option
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
+                helm 1.1.0 安装（centos 7）及使用
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_1.1.1_chartmuseum.html">
+                helm 1.1.1 chartmuseum
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">
+                helm 2.1.0 从零开始创建tomcat的charts
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
+                kubernetes 1.1.0 简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
+                kubernetes 1.2.0 vagrant+coreos(flannel)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
+                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
+                kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
+                kubernetes 1.2.3 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
+                kubernetes 1.2.4 traefik ingress
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
+                kubernetes 1.2.5 ingress ssl
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
+                kubernetes 1.2.6 kube-dns
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
+                kubernetes 1.2.7 EFK
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
+                kubernetes 1.3.0 run-stateless-application-deployment
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
+                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
+                kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">
+                kubernetes v1.17 1.1.1 pull image from private registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">
+                kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>

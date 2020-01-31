@@ -196,22 +196,289 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
+      <div class="col-lg-12"><h3>kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</h3>
+<hr>
+<h2>本文档背景介绍</h2>
+<h3>1. 思路背景</h3>
+<p>虽然gitlab提供了和kubernetes的integration，但是在我看来有几个缺点：</p>
+<ol>
+<li>太复杂，试图增加很多功能，但是我只需要ci/cd流里面的功能</li>
+<li>gitlab社区版有很多功能限制
+所以，这边研究一下如何自定义环境变量在gitlab-runner上来使用helm和k8s交互，以达到CI/CD的目的。</li>
+</ol>
+<h3>2. 提供kubernetes访问资源</h3>
+<h4>变量环境</h4>
+<div class="highlight"><pre><span></span><span class="nv">DEPLOY_DIR</span><span class="o">=</span>/root/k8s
+<span class="o">[[</span> -d <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes <span class="o">]]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+<span class="o">[[</span> -d <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig <span class="o">]]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+</pre></div>
+<h4>生成gitlab-runner访问证书</h4>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+
+<span class="c1"># 指定用户和用户组</span>
+<span class="c1"># CN: gitlab</span>
+<span class="c1"># O: devops</span>
+<span class="c1"># 名称可以随便写，后面授权的时候和此处设定的保持一致即可</span>
+cat &gt; gitlab-csr.json <span class="s">&lt;&lt; EOF</span>
+<span class="s">{</span>
+<span class="s">  &quot;CN&quot;: &quot;gitlab&quot;,</span>
+<span class="s">  &quot;hosts&quot;: [</span>
+<span class="s">    &quot;your-gitlab-runner-ip01&quot;,</span>
+<span class="s">    &quot;your-gitlab-runner-ip02&quot;</span>
+<span class="s">  ],</span>
+<span class="s">  &quot;key&quot;: {</span>
+<span class="s">    &quot;algo&quot;: &quot;rsa&quot;,</span>
+<span class="s">    &quot;size&quot;: 2048</span>
+<span class="s">  },</span>
+<span class="s">  &quot;names&quot;: [</span>
+<span class="s">    {</span>
+<span class="s">      &quot;C&quot;: &quot;CN&quot;,</span>
+<span class="s">      &quot;ST&quot;: &quot;BeiJing&quot;,</span>
+<span class="s">      &quot;L&quot;: &quot;BeiJing&quot;,</span>
+<span class="s">      &quot;O&quot;: &quot;devops&quot;,</span>
+<span class="s">      &quot;OU&quot;: &quot;System&quot;</span>
+<span class="s">    }</span>
+<span class="s">  ]</span>
+<span class="s">}</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 使用k8s集群的ca给证书签名</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client gitlab-csr.json <span class="p">|</span> cfssljson -bare gitlab
+<span class="c1"># 生成证书使用的如下文件，需要自己去获得，如果不是你自己创建的集群，请找kubernetes管理员要以下信息</span>
+<span class="c1"># ca.pem ca-key.pem 是kubernetes集群创建的时候生成的ca</span>
+<span class="c1"># ca-config.json 是kubernetes集群创建的时候生成的签名用的配置文件，里面保存了各种profile（server,client等）</span>
+</pre></div>
+<h4>生成kubeconfig</h4>
+<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">KUBE_APISERVER</span><span class="o">=</span><span class="s2">&quot;https://&lt;your-kubernetes-api-external-ip&gt;:443&quot;</span>
+
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+
+<span class="c1"># step 1. 生成 kubeconfig</span>
+kubectl config set-cluster kubernetes <span class="se">\</span>
+  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\</span>
+  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  --server<span class="o">=</span><span class="si">${</span><span class="nv">KUBE_APISERVER</span><span class="si">}</span> <span class="se">\</span>
+  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 2. 设定认证信息</span>
+kubectl config set-credentials gitlab <span class="se">\</span>
+  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/gitlab.pem <span class="se">\</span>
+  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/gitlab-key.pem <span class="se">\</span>
+  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 3. 设定上下文（用户、集群）</span>
+kubectl config set-context kubernetes <span class="se">\</span>
+  --cluster<span class="o">=</span>kubernetes <span class="se">\</span>
+  --user<span class="o">=</span>gitlab <span class="se">\</span>
+  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 4. 设定当前上下文</span>
+kubectl config use-context kubernetes --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 5. 将文件进行base64加密</span>
+cat gitlab.conf <span class="p">|</span> base64
+<span class="c1"># 可以通过base64命令给解析出内容来</span>
+<span class="c1"># cat gitlab.conf | base64|base64 -d</span>
+</pre></div>
+<h4>kubernetes集群给上面用户授权</h4>
+<p>这里以测试环境举例</p>
+<div class="highlight"><pre><span></span><span class="c1"># 创建测试环境的namespace</span>
+kubectl create namespace env-test
+
+<span class="c1"># 授权kubernetes内置的edit角色给用户</span>
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -</span>
+<span class="s">apiVersion: rbac.authorization.k8s.io/v1</span>
+<span class="s">kind: RoleBinding</span>
+<span class="s">metadata:</span>
+<span class="s">  name: devops-edit</span>
+<span class="s">  namespace: env-test</span>
+<span class="s">roleRef:</span>
+<span class="s">  apiGroup: rbac.authorization.k8s.io</span>
+<span class="s">  kind: ClusterRole</span>
+<span class="s">  name: edit</span>
+<span class="s">subjects:</span>
+<span class="s">- apiGroup: rbac.authorization.k8s.io</span>
+<span class="s">  kind: Group</span>
+<span class="s">  name: devops</span>
+<span class="s">EOF</span>
+<span class="c1"># 之所以授权给组不是授权给用户，是因为有可能后面再增加其他用户</span>
+</pre></div>
+<h3>3. gitlab创建CI/CD文件</h3>
+<h4>Dockerfile</h4>
+<div class="highlight"><pre><span></span>FROM my-tomcat:7-jdk8-openjdk
+RUN rm -rf /usr/local/tomcat/webapps/*
+ADD CODE.tar.gz /usr/local/tomcat/webapps
+CMD <span class="o">[</span><span class="s2">&quot;catalina.sh&quot;</span>, <span class="s2">&quot;start&quot;</span>, <span class="s2">&quot;&amp;&amp;&quot;</span>, <span class="s2">&quot;tail&quot;</span>, <span class="s2">&quot;-f&quot;</span>, <span class="s2">&quot;/usr/local/tomcat/logs/catalina.out&quot;</span><span class="o">]</span>
+</pre></div>
+<blockquote><p>CODE.tar.gz 是代码编译后的CODE目录（my-tomcat是自定义的镜像，server.xml中配置webapps/CODE为代码目录）</p>
+</blockquote>
+<h4>.gitlab-ci.yml</h4>
+<div class="highlight"><pre><span></span>stages:
+  - build
+  - analysis
+  - publish_image
+
+variables:
+  DOCKER_HOST: unix:///var/run/docker.sock
+  DOCKER_DRIVER: overlay2
+
+build:
+  stage: build
+  image: reg.easydevops.net/sonarscanner:4.2
+  script:
+  - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
+  - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
+  - <span class="nb">echo</span> &gt; javafile.txt
+  - find src/ -name *.java &gt;&gt; javafile.txt
+  - <span class="nv">jarfiles</span><span class="o">=()</span>
+  - <span class="k">for</span> jar in <span class="k">$(</span>find WebRoot/WEB-INF/lib -name *.jar<span class="k">)</span><span class="p">;</span><span class="k">do</span> <span class="nv">jarfiles</span><span class="o">=(</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">jarfiles</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="nv">$jar</span><span class="o">)</span><span class="p">;</span><span class="k">done</span>
+  - <span class="nv">classfile</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+  - <span class="k">for</span> cf in <span class="si">${</span><span class="nv">jarfiles</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span> <span class="nv">classfile</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">classfile</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">cf</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="k">done</span>
+  - /bin/mkdir -p WebRoot/WEB-INF/classes
+  - /usr/lib/jvm/java-1.7-openjdk/bin/javac -d WebRoot/WEB-INF/classes -sourcepath src -cp <span class="nv">$classfile</span> @javafile.txt
+  artifacts:
+    paths:
+    - WebRoot
+    expire_in: <span class="m">1</span> day
+  only:
+  - master
+
+analysis:
+  stage: analysis
+  image: reg.easydevops.net/sonarscanner:4.2
+  script:
+  - /app/bin/sonar-scanner
+    -Dsonar.host.url<span class="o">=</span>http://sonarqube.easydevops.net:9000 
+    -Dsonar.projectKey<span class="o">=</span>long8-web 
+    -Dsonar.sources<span class="o">=</span>./src 
+    -Dsonar.sourceEncoding<span class="o">=</span>UTF-8
+    -Dsonar.java.binaries<span class="o">=</span>./WebRoot/WEB-INF/classes
+    -Dsonar.java.libraries<span class="o">=</span>./WebRoot/WEB-INF/**/*.jar
+  only:
+  - master
+
+publish_image:
+  stage: publish_image
+  image: reg.easydevops.net/base-dind-build
+  before_script:
+  - docker login -u reg_user01 -p VOtern93 reg.easydevops.net
+  script:
+  - ls WebRoot
+  - mv WebRoot CODE
+  - tar zcvf CODE.tar.gz CODE
+  - docker build --cache-from reg.easydevops.net/long8-web-test:latest
+    -t reg.easydevops.net/long8-web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+    -t reg.easydevops.net/long8-web-test:latest .
+  - docker push reg.easydevops.net/long8-web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+  only:
+  - master
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
            <li class="toctree-l1">
             <a class="reference internal" href="/virtualization/openstack">
               openstack
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/openstack/kolla-ansible_openstack_install.html">
-                
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -219,121 +486,6 @@
               docker
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
-                1.1.0 安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
-                1.1.0.1 install docker on mac
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
-                1.1.1 二进制文件安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
-                1.1.2 为docker创建docker0以外的网桥
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
-                1.2.0 基础命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
-                1.2.1 Dockerfile
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
-                1.2.2 docker容器时间不准解决方案
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
-                1.2.4 docker容器安装microsoft truetype 字体
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
-                2.1.1 镜像-查找与下载镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
-                2.1.2 镜像-镜像信息的查看与管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
-                2.1.3 镜像-镜像的删除
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
-                2.1.4 镜像-镜像的导入和导出
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
-                2.1.5 镜像-镜像的上传
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
-                2.1.6 镜像-build 镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
-                2.2.3 Dockerfile entrypoint with script
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
-                3.1.0 docker封装nginx服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
-                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
-                3.3.0 docker nginx with multiple sites
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
-                4.0.0 docker 本地registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
-                4.0.1 docker 本地registry 使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
-                4.1.0 在docker中运行gitlab ce
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
-                5.2.0 网络：docker中的iptables
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
-                docker-compose 2.1.0 network
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -341,61 +493,6 @@
               kvm
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">
-                KVM 1.1.0 安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">
-                KVM 1.2.0 创建VM(linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">
-                KVM 1.2.1 创建VM(vnc-windows)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">
-                KVM 1.2.2 创建VM-脚本复制VM
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">
-                KVM 1.2.3 管理VM-增加网卡
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">
-                KVM 1.3.0 kvm管理-virt-top
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">
-                KVM 1.3.1 kvm管理-basic
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">
-                KVM 1.3.2 kvm管理-advance
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">
-                KVM 1.3.3 kvm管理-克隆
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">
-                KVM 1.3.4 VM-快照
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.4.0_error.html">
-                KVM 1.4.0 kvm错误汇总
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -578,136 +675,6 @@
                 kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
               </a>
              </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
-     </div>
-     <div class="row docs-byline bottom">
-      <div class="docs-updated">
-       updated: 2017-04-20 10:25
-      </div>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
-     <div class="btn-group docs-sidebar-releases">
-      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
-       <i class="fa fa-arrow-circle-o-left">
-       </i>
-      </button>
-      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
-       Xiao5tech Docs
-       <i class="fa fa-caret-down">
-       </i>
-      </button>
-      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
-       <li role="presentation" class="dropdown-header">
-        完整文档分类
-       </li>
-            <li role="presentation">
-             <a href="/web" role="menuitem" tabindex="-1">
-              web
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/java" role="menuitem" tabindex="-1">
-              java
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/database" role="menuitem" tabindex="-1">
-              database
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/python" role="menuitem" tabindex="-1">
-              python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/devops" role="menuitem" tabindex="-1">
-              devops
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/bigdata" role="menuitem" tabindex="-1">
-              bigdata
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blog" role="menuitem" tabindex="-1">
-              blog
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/virtualization" role="menuitem" tabindex="-1">
-              virtualization
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/linux" role="menuitem" tabindex="-1">
-              linux
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/go" role="menuitem" tabindex="-1">
-              go
-             </a>
-            </li>      </ul>
-     </div>
-      <div class="docs-sidebar-toc">
-      <div class="docs-sidebar-section" id="table-of-contents">
-       <a href="#" class="docs-sidebar-section-title">
-        <h4>Contents</h4>
-       </a>
-       <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
             </ul>
            </li>       </ul>
       </div>
