@@ -199,10 +199,12 @@
       <div class="col-lg-12"><h3>kubernetes v1.17 1.1.1 pull image from private registry</h3>
 <hr>
 <h3>1. 从私有镜像仓库拉取镜像</h3>
-<div class="highlight"><pre><span></span>docker login --username &lt;username&gt; --password &lt;password&gt; &lt;your-private-registry-domain&gt;
+<div class="highlight"><pre><span></span><span class="c1"># 获取auth信息</span>
+docker login --username &lt;username&gt; --password &lt;password&gt; &lt;your-private-registry-domain&gt;
 <span class="nv">DOCKERCONFIGJSON</span><span class="o">=</span><span class="sb">`</span>cat ~/.docker/config.json <span class="p">|</span> base64 -w <span class="m">0</span><span class="sb">`</span>
 <span class="nb">echo</span> <span class="si">${</span><span class="nv">DOCKERCONFIGJSON</span><span class="si">}</span>
 
+<span class="c1"># 创建secret</span>
 cat <span class="s">&lt;&lt; EOF | kubectl apply -f -</span>
 <span class="s">apiVersion: v1</span>
 <span class="s">kind: Secret</span>
@@ -213,6 +215,15 @@ cat <span class="s">&lt;&lt; EOF | kubectl apply -f -</span>
 <span class="s">  .dockerconfigjson: ${DOCKERCONFIGJSON}</span>
 <span class="s">type: kubernetes.io/dockerconfigjson</span>
 <span class="s">EOF</span>
+
+<span class="c1"># 配置pods使用secret</span>
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  template:
+    spec:
+      imagePullSecrets:
+      - name: myregistrykey
 </pre></div>
 <blockquote><p>参考文档：<a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">pull-image-private-registry</a></p>
 </blockquote>
