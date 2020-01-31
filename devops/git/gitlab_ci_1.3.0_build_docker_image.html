@@ -251,7 +251,6 @@ check_interval = 0
 <span class="nt">build</span><span class="p">:</span>
   <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
   <span class="nt">script</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cd ${CI_PROJECT_DIR}</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">npm install</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">npm run build:prod</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker build --cache-from &lt;your-private-registry&gt;/vue:latest -t &lt;your-private-registry&gt;/vue:$CI_COMMIT_SHA -t &lt;your-private-registry&gt;/vue:latest .</span>
@@ -457,8 +456,8 @@ check_interval = 0
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore.html">
-                gitlab: 1.3.0 gitlab备份及恢复
+              <a class="reference internal" href="/devops/git/gitlab_1.3.0_backup_restore_update.html">
+                gitlab: 1.3.0 gitlab备份,恢复及升级
               </a>
              </li>
              <li class="toctree-l2">
