@@ -80,5 +80,5 @@ ingress:
 
 #### 测试启动
 ``` bash
-helm upgrade --install my-release ./web --set image.repository=reg.easydevops.net/long8-web-test:7d8784
+helm upgrade --install my-release ./web --set image.repository=<image>
 ```
