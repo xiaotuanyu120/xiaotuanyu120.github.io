@@ -23,6 +23,11 @@ tags: [gitlab,backup,restore]
 #### 1) 手动备份
 ``` bash
 gitlab-rake gitlab:backup:create
+
+# 如果是docker版本的备份
+docker exec -it <name of container> gitlab-backup create
+# 如果gitlab是12.1和之前的版本
+# docker exec -it <name of container> gitlab-rake gitlab:backup:create
 ```
 
 #### 2) cron定时备份
@@ -42,6 +47,8 @@ crontab -e
 gitlab_rails['backup_keep_time'] = 604800
 ```
 
+> 注意点：除了生成数据备份之外，认证文件也需要备份一下`/etc/gitlab/gitlab-secrets.json`
+
 ### 2. 恢复gitlab备份
 ``` bash
 # 关闭访问数据库的服务
@@ -56,7 +63,9 @@ gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
 # docker exec -it <cotainer-name> id git
 # 得到git用户的uid后，需要给备份tar文件修改属主属组，不然会有权限报错
 chown 998.998 </path/to/your-git-backup-file>
-docker exec -it <cotainer-name> gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
+docker exec -it <name of container> gitlab-backup restore BACKUP=1493107454_2018_04_25_10.6.4-ce
+# 如果gitlab是12.1和之前的版本
+# docker exec -it <cotainer-name> gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
 ```
 > 备份恢复必须要同样的gitlab版本
 

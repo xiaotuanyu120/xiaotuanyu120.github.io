@@ -212,6 +212,11 @@
 <p>因为一直都是在用gitlab rpm安装，所以下面只讨论yum或rpm安装的gitlab的文件备份方式</p>
 <h4>1) 手动备份</h4>
 <div class="highlight"><pre><span></span>gitlab-rake gitlab:backup:create
+
+<span class="c1"># 如果是docker版本的备份</span>
+docker <span class="nb">exec</span> -it &lt;name of container&gt; gitlab-backup create
+<span class="c1"># 如果gitlab是12.1和之前的版本</span>
+<span class="c1"># docker exec -it &lt;name of container&gt; gitlab-rake gitlab:backup:create</span>
 </pre></div>
 <h4>2) cron定时备份</h4>
 <div class="highlight"><pre><span></span>sudo su -
@@ -224,6 +229,8 @@ crontab -e
 
 <pre><code># limit backup lifetime to 7 days - 604800 seconds
 gitlab_rails['backup_keep_time'] = 604800</code></pre>
+<blockquote><p>注意点：除了生成数据备份之外，认证文件也需要备份一下<code>/etc/gitlab/gitlab-secrets.json</code></p>
+</blockquote>
 <h3>2. 恢复gitlab备份</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 关闭访问数据库的服务</span>
 gitlab-ctl stop unicorn
@@ -237,7 +244,9 @@ gitlab-rake gitlab:backup:restore <span class="nv">BACKUP</span><span class="o">
 <span class="c1"># docker exec -it &lt;cotainer-name&gt; id git</span>
 <span class="c1"># 得到git用户的uid后，需要给备份tar文件修改属主属组，不然会有权限报错</span>
 chown <span class="m">998</span>.998 &lt;/path/to/your-git-backup-file&gt;
-docker <span class="nb">exec</span> -it &lt;cotainer-name&gt; gitlab-rake gitlab:backup:restore <span class="nv">BACKUP</span><span class="o">=</span>1493107454_2018_04_25_10.6.4-ce
+docker <span class="nb">exec</span> -it &lt;name of container&gt; gitlab-backup restore <span class="nv">BACKUP</span><span class="o">=</span>1493107454_2018_04_25_10.6.4-ce
+<span class="c1"># 如果gitlab是12.1和之前的版本</span>
+<span class="c1"># docker exec -it &lt;cotainer-name&gt; gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce</span>
 </pre></div>
 <blockquote><p>备份恢复必须要同样的gitlab版本</p>
 <p>BACKUP=timestamp_of_backup，不需要指定文件名称，只需要指定timestamp就可以</p>
