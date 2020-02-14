@@ -247,15 +247,21 @@
 <li>artifacts：用于储存在stage之间需要传递的文件</li>
 </ul>
 <h4>cache</h4>
-<div class="highlight"><pre><span></span><span class="nt">rspec</span><span class="p">:</span>
-  <span class="nt">script</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
-  <span class="nt">cache</span><span class="p">:</span>
-    <span class="nt">paths</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vendor/ruby</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node_modules</span>
+<div class="highlight"><pre><span></span><span class="nt">cache</span><span class="p">:</span>
+  <span class="nt">key</span><span class="p">:</span>
+    <span class="nt">files</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Gemfile.lock</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">package.json</span>
+  <span class="nt">paths</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vendor/ruby</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node_modules</span>
 </pre></div>
-<blockquote><p>paths是相对于<code>${CI_PROJECT_DIR}</code>下面的相对路径</p>
-<p>虽然，gitlab官方说cache是用来缓存一些依赖文件，但是我个人不知道用法有问题还是咋回事，就没成功过</p>
+<blockquote><p>如果没有用到共享缓存，只是用本地缓存，必须保证runner对project的唯一性</p>
+<ul>
+<li>key: 是决定是否更新新缓存的条件，一旦此条件发生变化，就创建新的缓存（一旦Gemfile.lock或package.json变化，会重新创建cache）</li>
+<li>paths: 是相对于<code>${CI_PROJECT_DIR}</code>下面的相对路径，是被缓存的目标</li>
+</ul>
+<p>gitlab版本需要更新到12.5+</p>
 </blockquote>
 <h4>artifacts</h4>
 <div class="highlight"><pre><span></span><span class="nt">deploy</span><span class="p">:</span>

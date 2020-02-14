@@ -56,16 +56,21 @@ analysis:
 
 #### cache
 ``` yaml
-rspec:
-  script: test
-  cache:
-    paths:
-      - vendor/ruby
-      - node_modules
+cache:
+  key:
+    files:
+      - Gemfile.lock
+      - package.json
+  paths:
+    - vendor/ruby
+    - node_modules
 ```
-> paths是相对于`${CI_PROJECT_DIR}`下面的相对路径
+> 如果没有用到共享缓存，只是用本地缓存，必须保证runner对project的唯一性
 
-> 虽然，gitlab官方说cache是用来缓存一些依赖文件，但是我个人不知道用法有问题还是咋回事，就没成功过
+> - key: 是决定是否更新新缓存的条件，一旦此条件发生变化，就创建新的缓存（一旦Gemfile.lock或package.json变化，会重新创建cache）
+> - paths: 是相对于`${CI_PROJECT_DIR}`下面的相对路径，是被缓存的目标
+
+> gitlab版本需要更新到12.5+
 
 #### artifacts
 ``` yaml

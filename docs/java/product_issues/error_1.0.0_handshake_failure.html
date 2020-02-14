@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -194,9 +199,13 @@
       <div class="col-lg-12"><h3>error 1.0.0 SSLHandshakeException handshake_failure</h3>
 <hr>
 <h3>1. 错误信息</h3>
+<p>错误信息1：</p>
 <div class="highlight"><pre><span></span><span class="o">[</span><span class="n">ERROR</span><span class="o">]</span><span class="n">_2018</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">08</span> <span class="mi">16</span><span class="o">:</span><span class="mi">31</span><span class="o">:</span><span class="mi">10</span> <span class="mi">990</span> <span class="o">:</span> <span class="o">[</span><span class="n">http</span><span class="o">-</span><span class="n">apr</span><span class="o">-</span><span class="mi">8580</span><span class="o">-</span><span class="n">exec</span><span class="o">-</span><span class="mi">81</span><span class="o">]</span> <span class="err">\</span>
 <span class="n">getHttpContentByBtParam</span> <span class="n">请求调用异常</span><span class="err">：</span>
 <span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">Received</span> <span class="n">fatal</span> <span class="n">alert</span><span class="o">:</span> <span class="n">handshake_failure</span>
+</pre></div>
+<p>错误信息2</p>
+<div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">validator</span><span class="o">.</span><span class="na">ValidatorException</span><span class="o">:</span> <span class="n">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="n">failed</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">certpath</span><span class="o">.</span><span class="na">SunCertPathBuilderException</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span>
 </pre></div>
 <h3>2. 解决办法</h3>
 <h4>1) 解决方案一，增加证书到受信任列表中</h4>
@@ -211,7 +220,19 @@ keytool -keystore cacerts -importcert <span class="se">\</span>
   -alias equifaxsecureca <span class="se">\</span>
   -file Equifax_Secure_Certificate_Authority.cer
 </pre></div>
-<blockquote><p>需要输入cacerts的密码，默认密码是changeit</p>
+<blockquote><p>需要输入cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
+<p>如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）</p>
+<ul>
+<li>通过浏览器访问接口url</li>
+<li>点击url框左边小绿锁</li>
+<li>点击“certificate”</li>
+<li>点击“详细信息”的tab</li>
+<li>点击“公钥”字段</li>
+<li>点击右下角“复制到文件”那个按钮</li>
+<li>弹出的窗口选择“下一步”</li>
+<li>弹出的窗口选择“Base64编码X.509(.CER)(S)”</li>
+<li>保存到本地即可，然后用笔记本打开，拷贝内容到服务器上</li>
+</ul>
 </blockquote>
 <h4>2) 解决方案二，jdk7 - 替换无限制策略文件</h4>
 <p>上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
@@ -304,6 +325,11 @@ crypto.policy<span class="o">=</span>unlimited
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -353,13 +379,6 @@ crypto.policy<span class="o">=</span>unlimited
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
             <a class="reference internal" href="/java/product_issues">
               product_issues
             </a>
@@ -384,6 +403,13 @@ crypto.policy<span class="o">=</span>unlimited
                 nexus: 1.1.0 installation
               </a>
              </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/jvm">
+              jvm
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>

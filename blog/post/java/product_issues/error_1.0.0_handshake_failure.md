@@ -9,10 +9,16 @@ tags: [linux, java_env, ssl, handshake_failure]
 ---
 
 ### 1. 错误信息
+错误信息1：
 ``` java
 [ERROR]_2018-03-08 16:31:10 990 : [http-apr-8580-exec-81] \
 getHttpContentByBtParam 请求调用异常：
 javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
+```
+
+错误信息2
+``` java
+javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 ```
 
 ### 2. 解决办法
@@ -29,7 +35,19 @@ keytool -keystore cacerts -importcert \
   -alias equifaxsecureca \
   -file Equifax_Secure_Certificate_Authority.cer
 ```
-> 需要输入cacerts的密码，默认密码是changeit
+> 需要输入cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）
+
+> 如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）
+- 通过浏览器访问接口url
+- 点击url框左边小绿锁
+- 点击“certificate”
+- 点击“详细信息”的tab
+- 点击“公钥”字段
+- 点击右下角“复制到文件”那个按钮
+- 弹出的窗口选择“下一步”
+- 弹出的窗口选择“Base64编码X.509(.CER)(S)”
+- 保存到本地即可，然后用笔记本打开，拷贝内容到服务器上
+
 
 #### 2) 解决方案二，jdk7 - 替换无限制策略文件
 上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
