@@ -233,6 +233,8 @@ keytool -keystore cacerts -importcert <span class="se">\</span>
 <li>弹出的窗口选择“Base64编码X.509(.CER)(S)”</li>
 <li>保存到本地即可，然后用笔记本打开，拷贝内容到服务器上</li>
 </ul>
+<p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
+<code>/usr/java/jdk1.7.0_79/bin/keytool -keystore /usr/java/jdk1.7.0_79/jre/lib/security/cacerts -importcert -alias example -file example.cer</code></p>
 </blockquote>
 <h4>2) 解决方案二，jdk7 - 替换无限制策略文件</h4>
 <p>上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
