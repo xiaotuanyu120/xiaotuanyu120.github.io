@@ -196,67 +196,72 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
-                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>nexus: 1.1.0 installation</h3>
+<h3>1. Java环境</h3>
+<p>可参照<a href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual/blob/master/java/jvm/jdk_1.1.1_1.8_installation.md">jdk8安装文档</a></p>
+<p>环境说明：</p>
+<ul>
+<li>版本： jdk 8u144</li>
+<li>路径： /usr/java/jdk1.8.0_144</li>
+</ul>
+<h3>2. 安装nexus</h3>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. 下载安装nexus</span>
+wget https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+tar zxvf tar zxvf latest-unix.tar.gz
+mv nexus-3.13.0-01 /usr/local
+<span class="c1">#做软连接，脚本可以识别程序目录的位置</span>
+ln -s /usr/local/nexus-3.13.0-01 /usr/local/nexus
+
+<span class="c1"># step 2. 准备nexus运行用户</span>
+groupadd nexus
+useradd -g nexus nexus
+
+<span class="c1"># step 3. 配置环境变量</span>
+<span class="c1">#配置JAVA_HOME</span>
+sed -i <span class="s1">&#39;s/^# INSTALL4J_JAVA_HOME_OVERRIDE=.*$/INSTALL4J_JAVA_HOME_OVERRIDE=\/usr\/java\/jdk1.8.0_144/g&#39;</span> /usr/local/nexus/bin/nexus
+<span class="c1">#配置运行用户</span>
+sed -i <span class="s2">&quot;s/^#run_as_user=&quot;&quot;/run_as_user=&#39;nexus&#39;/g&quot;</span> /usr/local/nexus/bin/nexus.rc
+<span class="c1">#配置data_dir位置</span>
+sed -i <span class="s2">&quot;s/^-Dkaraf.data=.*</span>$<span class="s2">/-Dkaraf.data=\/home\/nexus\/sonatype-work\/nexus3/g&quot;</span> /usr/local/nexus/bin/nexus.vmoptions
+sed -i <span class="s2">&quot;s/^-Djava.io.tmpdir=.*</span>$<span class="s2">/-Djava.io.tmpdir=\/home\/nexus\/sonatype-work\/nexus3\/tmp/g&quot;</span> /usr/local/nexus/bin/nexus.vmoptions
+sed -i <span class="s2">&quot;s/^-XX:LogFile=.*</span>$<span class="s2">/-XX:LogFile=\/home\/nexus\/sonatype-work\/nexus3\/log\/jvm.log/g&quot;</span> /usr/local/nexus/bin/nexus.vmoptions
+
+<span class="c1">#######################################</span>
+<span class="c1"># 如果是centos 7，直接执行step4，step6</span>
+<span class="c1"># 如果是centos 6，执行执行step5，step7</span>
+<span class="c1">#######################################</span>
+
+<span class="c1"># step 4. 准备systemd unit file</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]</span>
+<span class="s1">Description=nexus service</span>
+<span class="s1">After=network.target</span>
+
+<span class="s1">[Service]</span>
+<span class="s1">Type=forking</span>
+<span class="s1">LimitNOFILE=65536</span>
+<span class="s1">ExecStart=/usr/local/nexus/bin/nexus start</span>
+<span class="s1">ExecStop=/usr/local/nexus/bin/nexus stop</span>
+<span class="s1">User=nexus</span>
+<span class="s1">Restart=on-abort</span>
+
+<span class="s1">[Install]</span>
+<span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/nexus.service
+
+<span class="c1"># step 5. 准备SYSV init文件</span>
+ln -s /usr/local/nexus/bin/nexus /etc/init.d/nexus
+
+<span class="c1"># step 6. 启动nexus(systemd)</span>
+systemctl daemon-reload
+systemctl <span class="nb">enable</span> nexus
+systemctl start nexus
+
+<span class="c1"># step 7. 启动nexus(SYSV init)</span>
+chkconfig nexus on
+service nexus start
+</pre></div>
+<h3>3. 配置nexus</h3>
+<p>默认是8081端口访问，更多配置jvm，data目录，http访问端口，上下文配置等可参照<a href="https://help.sonatype.com/repomanager3/installation/configuring-the-runtime-environment">官方文档</a>。 另外默认的admin账号密码是amdin:admin123。</p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -357,8 +362,56 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
+                error 1.0.0 SSLHandshakeException handshake_failure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
+                error 1.1.0 EPR ... Operation not found ... WSA Action =
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
+                log4j 1.1.0 log4j.properties appender配置说明
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
+                nexus: 1.1.0 installation
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
             </a>
             <ul>
             </ul>
