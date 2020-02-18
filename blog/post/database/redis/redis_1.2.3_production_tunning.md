@@ -25,3 +25,4 @@ rename-command CONFIG ""
 # - 集群中不支持多个database
 rename-command SELECT ""
 ```
+> 禁用select命令容易造成`Unknown command 'SELECT' reading the append only file`错误，原因是，aof机制中使用了select命令，但是我们给禁用了，所以它无法加载aof文件来启动redis

@@ -85,7 +85,7 @@ server {
 </Server>
 ```
 里面改了如下配置：
-- 设定只可以从127.0.0.1代理过来
+- 设定从127.0.0.1代理过来的请求，不会增加到proxiesHeader配置的header（默认是x-forwarded-by）中
 - 设定remote ip的header是"x-forwarded-for"
 - 设定http的port是6116，否则默认是80
 - 设定protocol的header是"x-forwarded-proto"
@@ -93,4 +93,5 @@ server {
 
 > 原理就是设定https的header，然后根据header内容判断是不是https；然后因为http不是80，所以设定一下端口号
 
-> [tomcat 7 offical docs](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html#Introduction)
+> - [tomcat 7 offical docs](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html#Introduction)
+> - [nginx reverse tomcat blog](https://devtidbits.com/2015/12/08/nginx-as-a-reverse-proxy-to-apache-tomcat/)
