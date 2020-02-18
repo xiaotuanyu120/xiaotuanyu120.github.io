@@ -196,67 +196,39 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
-                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>log4j 1.1.0 log4j.properties appender配置说明</h3>
+<hr>
+<h3>0. 参考文档</h3>
+<p><a href="http://logging.apache.org/log4j/1.2/manual.html">log4j 1.2 文档</a></p>
+<hr>
+<h3>1. <code>log4j.properties</code>示例文档</h3>
+<div class="highlight"><pre><span></span><span class="c1"># log4j.rootLogger 或者 log4j.rootCategory = [日志级别],AppenderName1,AppenderName2</span>
+<span class="c1"># 日志级别：</span>
+<span class="c1">#     TRACE, DEBUG, INFO, WARN, ERROR and FATAL</span>
+<span class="c1"># 日志级别顺序：</span>
+<span class="c1">#     DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</span>
+log4j.rootLogger<span class="o">=</span>debug, stdout, R
+
+<span class="c1"># log4j.appender.stdout 代表的是stdout这个appender名称</span>
+log4j.appender.stdout<span class="o">=</span>org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout<span class="o">=</span>org.apache.log4j.PatternLayout
+
+<span class="c1"># Pattern to output the caller&#39;s file name and line number.</span>
+log4j.appender.stdout.layout.ConversionPattern<span class="o">=</span>%5p <span class="o">[</span>%t<span class="o">]</span> <span class="o">(</span>%F:%L<span class="o">)</span> - %m%n
+
+log4j.appender.R<span class="o">=</span>org.apache.log4j.RollingFileAppender
+log4j.appender.R.File<span class="o">=</span>example.log
+
+log4j.appender.R.MaxFileSize<span class="o">=</span>100KB
+<span class="c1"># Keep one backup file</span>
+log4j.appender.R.MaxBackupIndex<span class="o">=</span><span class="m">1</span>
+
+log4j.appender.R.layout<span class="o">=</span>org.apache.log4j.PatternLayout
+log4j.appender.R.layout.ConversionPattern<span class="o">=</span>%p %t %c - %m%n
+</pre></div>
+<blockquote><p>重点： <code>log4j.rootLogger 或者 log4j.rootCategory = [日志级别],AppenderName1,AppenderName2</code>，使用AppenderName之前，必须在这边配置的AppenderName。</p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -357,8 +329,56 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
+                error 1.0.0 SSLHandshakeException handshake_failure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
+                error 1.1.0 EPR ... Operation not found ... WSA Action =
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
+                log4j 1.1.0 log4j.properties appender配置说明
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
+                nexus: 1.1.0 installation
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
             </a>
             <ul>
             </ul>

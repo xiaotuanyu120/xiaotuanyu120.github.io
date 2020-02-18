@@ -196,27 +196,335 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
+      <div class="col-lg-12"><h3>tomcat: 5.1.2 tomcat-session sharing</h3>
+<hr>
+<h3>1. 环境介绍</h3>
+<p><strong>软件版本</strong></p>
+<ul>
+<li>nginx: 1.10.1</li>
+<li>jdk: 6.0.45</li>
+<li>tomcat: 6.0.41</li>
+<li>redis: 2.8.24</li>
+</ul>
+<p><strong>软件架构</strong></p>
+<table>
+<thead><tr>
+<th style="text-align:center">软件名称</th>
+<th style="text-align:center">HOST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">nginx</td>
+<td style="text-align:center">192.168.110.4</td>
+</tr>
+<tr>
+<td style="text-align:center">tomcat01</td>
+<td style="text-align:center">192.168.110.5</td>
+</tr>
+<tr>
+<td style="text-align:center">tomcat02</td>
+<td style="text-align:center">192.168.110.6</td>
+</tr>
+<tr>
+<td style="text-align:center">redis</td>
+<td style="text-align:center">192.168.110.5</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>2. 安装并配置nginx</h3>
+<p>在nginx节点执行以下命令</p>
+<h4>1) 安装nginx</h4>
+<div class="highlight"><pre><span></span>yum install epel-release -y
+yum install nginx -y
+chkconfig nginx on
+</pre></div>
+<h4>2) 配置nginx</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 新建nginx虚拟机配置文件</span>
+vim /etc/nginx/conf.d/sstest.conf
+******************************
+upstream ss <span class="o">{</span>
+    server <span class="m">192</span>.168.110.5:8080<span class="p">;</span>
+    server <span class="m">192</span>.168.110.6:8080<span class="p">;</span>
+<span class="o">}</span>
+
+server <span class="o">{</span>
+    listen <span class="m">80</span><span class="p">;</span>
+    server_name <span class="m">192</span>.168.110.4 default_server<span class="p">;</span>
+    location / <span class="o">{</span>
+        proxy_pass http://ss<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+******************************
+service nginx restart
+</pre></div>
+<hr>
+<h3>3. 安装并配置tomcat</h3>
+<p>在两台tomcat节点执行以下命令</p>
+<h4>1) 安装tomcat</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 下载并安装jdk1.6</span>
+<span class="c1"># 需要注册oracle帐号才能在下面下载</span>
+http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html
+chmod u+x jre-6u45-linux-x64.bin
+sh jre-6u45-linux-x64.bin
+mv jre1.6.0_45 /usr/local/
+ln -s /usr/local/jre1.6.0_45/ /usr/local/jdk
+vi /etc/profile.d/java-env.sh
+*******************************
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
+<span class="nv">JRE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre
+<span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">JRE_HOME</span><span class="si">}</span>/bin
+<span class="nv">CLASSPATH</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">JRE_HOME</span><span class="si">}</span>/lib
+*******************************
+<span class="nb">source</span> /etc/profile.d/java-env.sh
+
+<span class="c1"># 安装tomcat</span>
+wget http://mirror.rise.ph/apache/tomcat/tomcat-6/v6.0.45/bin/apache-tomcat-6.0.45.tar.gz
+tar zxf apache-tomcat-6.0.45.tar.gz
+mv apache-tomcat-6.0.45 /usr/local/tomcat
+</pre></div>
+<h4>2) 配置tomcat</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 配置tomcat虚拟主机</span>
+vim /usr/local/tomcat/conf/server.xml
+************************
+&lt;Host <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span>  <span class="nv">appBase</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+      <span class="nv">unpackWARs</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="nv">autoDeploy</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>&gt;
+  &lt;Context <span class="nv">path</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="nv">docBase</span><span class="o">=</span><span class="s2">&quot;/data/webapps&quot;</span> <span class="nv">reloadable</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> /&gt;
+  ......
+&lt;/Host&gt;
+************************
+
+vim /usr/local/tomcat/conf/context.xml
+******************************
+    &lt;Valve <span class="nv">className</span><span class="o">=</span><span class="s2">&quot;com.radiadesign.catalina.session.RedisSessionHandlerValve&quot;</span>/&gt;
+    &lt;Manager <span class="nv">className</span><span class="o">=</span><span class="s2">&quot;com.radiadesign.catalina.session.RedisSessionManager&quot;</span>
+     <span class="nv">host</span><span class="o">=</span><span class="s2">&quot;47.90.80.156&quot;</span>
+     <span class="nv">port</span><span class="o">=</span><span class="s2">&quot;6379&quot;</span>
+     <span class="nv">password</span><span class="o">=</span><span class="s2">&quot;mypass&quot;</span>
+     <span class="nv">database</span><span class="o">=</span><span class="s2">&quot;0&quot;</span>
+     <span class="nv">maxInactiveInterval</span><span class="o">=</span><span class="s2">&quot;60&quot;</span>
+    /&gt;
+******************************
+</pre></div>
+<p>Valve要在Manager之前<br>
+注意className，网上的都不一样，需要按照自己下载jar包的版本进行调整<br>
+其中password配置，是对应redis master中的requirepass配置项配置的密码
+其中maxInactiveInterval，配置的是非活动状态最大持续时间，即用户停止操作多长时间停掉session。</p>
+<h4>3) 编写测试程序</h4>
+<div class="highlight"><pre><span></span><span class="c1"># 创建web程序目录</span>
+mkdir -p /data/webapps/<span class="o">{</span>WEB-INF,META-INF,classes,lib<span class="o">}</span>
+<span class="nb">cd</span> /data/webapps
+
+<span class="c1"># 编写首页程序</span>
+<span class="c1"># ss02上把Tomcat01更换成Tomcat02</span>
+vim index.jsp
+***********************
+&lt;%@ page <span class="nv">language</span><span class="o">=</span><span class="s2">&quot;java&quot;</span> %&gt;
+&lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Tomcat01&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;font <span class="nv">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span>&gt;Tomcat01.magedu.com&lt;/font&gt;&lt;/h1&gt;
+    &lt;table <span class="nv">align</span><span class="o">=</span><span class="s2">&quot;centre&quot;</span> <span class="nv">border</span><span class="o">=</span><span class="s2">&quot;1&quot;</span>&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Session ID&lt;/td&gt;
+    &lt;% session.setAttribute<span class="o">(</span><span class="s2">&quot;magedu.com&quot;</span>,<span class="s2">&quot;magedu.com&quot;</span><span class="o">)</span><span class="p">;</span> %&gt;
+        &lt;td&gt;&lt;%<span class="o">=</span> session.getId<span class="o">()</span> %&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt;Created on&lt;/td&gt;
+        &lt;td&gt;&lt;%<span class="o">=</span> session.getCreationTime<span class="o">()</span> %&gt;&lt;/td&gt;
+     &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+***********************
+</pre></div>
+<hr>
+<h3>4. 安装并配置redis</h3>
+<h4>1) 安装redis</h4>
+<div class="highlight"><pre><span></span>wget http://download.redis.io/releases/redis-2.8.24.tar.gz
+tar zxf redis-2.8.24.tar.gz
+<span class="nb">cd</span> redis-2.8.24
+make
+make install
+</pre></div>
+<h4>2) 拷贝redis启动脚本</h4>
+<div class="highlight"><pre><span></span>cp utils/redis_init_script /etc/init.d/redis
+chmod <span class="m">755</span> /etc/init.d/redis
+vi /etc/init.d/redis
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 修改配置文件位置</span>
+<span class="nv">CONF</span><span class="o">=</span><span class="s2">&quot;/etc/redis/</span><span class="si">${</span><span class="nv">REDISPORT</span><span class="si">}</span><span class="s2">.conf&quot;</span>
+
+<span class="c1"># 如果设置了auth的话，需要在关闭时提供密码字符串</span>
+<span class="c1"># 配置一个自定义变量</span>
+<span class="nv">AUTH_PASSWORD</span><span class="o">=</span><span class="s2">&quot;123456&quot;</span>
+<span class="c1"># 在关闭stop case中增加&quot;-a $AUTH_PASSWORD&quot;</span>
+<span class="nv">$CLIEXEC</span> -p <span class="nv">$REDISPORT</span> -a <span class="nv">$AUTH_PASSWORD</span> shutdown
+******************************
+chkconfig redis on
+</pre></div>
+<h4>3) 配置redis</h4>
+<div class="highlight"><pre><span></span>mkdir /etc/redis
+cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+<span class="nb">bind</span> <span class="m">0</span>.0.0.0
+daemonize yes
+******************************
+</pre></div>
+<h4>4) 拷贝jar包到tomcat</h4>
+<div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat_redis_session_jar/master/tomcat6/tomcat-redis-session-manager-1.2.jar
+wget https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat_redis_session_jar/master/tomcat6/jedis-2.1.0.jar
+wget https://raw.githubusercontent.com/xiaotuanyu120/nginx_tomcat_redis_session_jar/master/tomcat6/commons-pool-1.6.jar
+
+mv tomcat-redis-session-manager-1.2.jar jedis-2.1.0.jar commons-pool-1.6.jar /usr/local/tomcat/lib/
+</pre></div>
+<p>根据jdk和tomcat版本,需要的jar包完全不一样,不同的jar包版本对应的tomcat Context配置亦不同</p>
+<blockquote><p><strong>错误经历</strong><br>
+按照官方的提示，使用的tomcat-redis-session-manager-1.2-tomcat-6.jar这个发行的包，但是实际使用时，发现主页登录的验证码无法刷出，tomcat报错以下信息：<br>
+RedisSession.setAttribute(RedisSession.java:56，按照作者的解释，是因为原key和新key皆为空，产生了空指针错误。<br>
+解决办法：<br>
+jcoleman给发现这个问题的一个哥们单独修改和编译了一个包，因为tomcat6版本太过老旧，作者没有去更新官方的包，<a href="https://github.com/jcoleman/tomcat-redis-session-manager/issues/13，换成这个页面上下载的包后，问题得到了完整的解决">https://github.com/jcoleman/tomcat-redis-session-manager/issues/13，换成这个页面上下载的包后，问题得到了完整的解决</a></p>
+</blockquote>
+<h4>5) 启动redis、重启tomcat服务</h4>
+<div class="highlight"><pre><span></span>service redis start
+
+<span class="c1"># 在两个tomcat节点上重启tomcat</span>
+/usr/local/tomcat/bin/catalina.sh stop
+/usr/local/tomcat/bin/catalina.sh start
+</pre></div>
+<hr>
+<h3>5. 效果测试</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 分别访问tomca01和tomcat02</span>
+curl -I http://47.90.80.156:8080/
+HTTP/1.1 <span class="m">200</span> OK
+Server: Apache-Coyote/1.1
+Set-Cookie: <span class="nv">JSESSIONID</span><span class="o">=</span>7E548773A2181763F25C709490677B41<span class="p">;</span> <span class="nv">Path</span><span class="o">=</span>/
+Content-Type: text/html
+Content-Length: <span class="m">370</span>
+Date: Tue, <span class="m">27</span> Sep <span class="m">2016</span> <span class="m">08</span>:32:06 GMT
+
+curl -I http://47.90.80.167:8080/
+HTTP/1.1 <span class="m">200</span> OK
+Server: Apache-Coyote/1.1
+Set-Cookie: <span class="nv">JSESSIONID</span><span class="o">=</span>2E10147173A1565E1BAA79D766A29410<span class="p">;</span> <span class="nv">Path</span><span class="o">=</span>/
+Content-Type: text/html
+Content-Length: <span class="m">370</span>
+Date: Tue, <span class="m">27</span> Sep <span class="m">2016</span> <span class="m">08</span>:32:29 GMT
+
+<span class="c1"># 负载均衡端访问</span>
+web端访问，session值统一
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
            <li class="toctree-l1">
             <a class="reference internal" href="/service/apache">
               apache
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.0.0_apache_installation.html">
-                apache: 1.0.0 配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.1.0_apache_config_basic.html">
-                apache: 1.1.0 配置说明
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -224,86 +532,6 @@
               nginx
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.0_configuration_multi_port_listen.html">
-                nginx: 2.1.0 同时监听http和https
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.1_configuration_https_optimize.html">
-                nginx: 2.1.1 configuration https optimization
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.2_configuration_catch_all_server_name.html">
-                nginx: 2.1.1 configuration server_name-"_"误解
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.3_configuration_gzip_optimize.html">
-                nginx: 2.1.3 configuration gzip optimization
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.4_configuration_rewrite_http_to_https.html">
-                nginx: 2.1.4 configuration rewrite http到https
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.5_configuration_proxy_pass_with_URI.html">
-                nginx: 2.1.5 configuration proxy_pass with URI
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_3.1.0_module_nginx-sticky-module.html">
-                nginx: 3.1.0 module - nginx-sticky-module
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.0_theory_reverse_tomcat_use_other_port.html">
-                nginx: 4.1.0 theory nginx反向代理tomcat，使用非80端口
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.0.1_theory_reverse_tomcat_use_other_port_2.html">
-                nginx: 4.1.0.1 nginx 监听https和http，然后使用http反向代理tomcat
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.1_theory_proxy_get_real_ip.html">
-                nginx: 4.1.1 theory 获取真实客户端ip
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.2_theory_cross_origin_request.html">
-                nginx: 4.1.2 theory CORS-跨源资源分享
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.3_theory_timeout_in_nginx.html">
-                nginx: 4.1.3 nginx中的timeout
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.1.0_if_statement_with_variables.html">
-                nginx: 7.1.0 if语句、参数变量、自定义header变量
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.2.0_geo_if_filter.html">
-                nginx: 7.2.0 if语句、参数变量、geoip
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.3.0_match_parameter_in_location.html">
-                nginx: 7.3.0 在location里面匹配parameters
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/openresty_1.1.0_installation.html">
-                openresty: 1.1.0 在location里面匹配parameters
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -436,168 +664,6 @@
                 tomcat: 5.1.2 tomcat-session sharing
               </a>
              </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/proxy/loadbalance_1.1.0_F5_cookie_persistence.html">
-                loadbalance: 1.1.0 cookie persistence
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
-     </div>
-     <div class="row docs-byline bottom">
-      <div class="docs-updated">
-       updated: 2017-04-20 10:25
-      </div>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
-     <div class="btn-group docs-sidebar-releases">
-      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
-       <i class="fa fa-arrow-circle-o-left">
-       </i>
-      </button>
-      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
-       Xiao5tech Docs
-       <i class="fa fa-caret-down">
-       </i>
-      </button>
-      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
-       <li role="presentation" class="dropdown-header">
-        完整文档分类
-       </li>
-            <li role="presentation">
-             <a href="/web" role="menuitem" tabindex="-1">
-              web
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/java" role="menuitem" tabindex="-1">
-              java
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/database" role="menuitem" tabindex="-1">
-              database
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/python" role="menuitem" tabindex="-1">
-              python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/devops" role="menuitem" tabindex="-1">
-              devops
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/bigdata" role="menuitem" tabindex="-1">
-              bigdata
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blog" role="menuitem" tabindex="-1">
-              blog
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/virtualization" role="menuitem" tabindex="-1">
-              virtualization
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/linux" role="menuitem" tabindex="-1">
-              linux
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/go" role="menuitem" tabindex="-1">
-              go
-             </a>
-            </li>      </ul>
-     </div>
-      <div class="docs-sidebar-toc">
-      <div class="docs-sidebar-section" id="table-of-contents">
-       <a href="#" class="docs-sidebar-section-title">
-        <h4>Contents</h4>
-       </a>
-       <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
             </ul>
            </li>
            <li class="toctree-l1">

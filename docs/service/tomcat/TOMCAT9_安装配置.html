@@ -196,67 +196,69 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
-                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>1.1.0 tomcat9安装配置</h3>
+<hr>
+<h3>0. 版本的选择</h3>
+<p><a href="http://tomcat.apache.org/whichversion.html">http://tomcat.apache.org/whichversion.html</a></p>
+<h2>有关版本的介绍，每个tomcat版本对应什么java版本可在上面链接中查看</h2>
+<p>1、安装tomcat 9
+1）下载、安装tomcat9</p>
+<h1>wget <a href="http://www.eu.apache.org/dist/tomcat/tomcat-9/v9.0.0.M1/bin/apache-tomcat-9.0.0.M1.tar.gz">http://www.eu.apache.org/dist/tomcat/tomcat-9/v9.0.0.M1/bin/apache-tomcat-9.0.0.M1.tar.gz</a></h1>
+<h1>tar zxvf apache-tomcat-9.0.0.M1.tar.gz</h1>
+<h1>mv /usr/local/src/apache-tomcat-9.0.0.M1 /usr/local/tomcat9</h1>
+<h2>拷贝并编辑启动脚本</h2>
+<h1>cp -pv /usr/local/tomcat9/bin/catalina.sh /etc/init.d/tomcat</h1>
+<h1>vi /etc/init.d/tomcat</h1>
+<hr>
+<h1>chkconfig: 2345 63 37          #注意chkconfig后面的":"，忘记的话会提示不支持chkconfig</h1>
+<h1>description: tomcat server init script</h1>
+<h1>Source Function Library</h1>
+<p>. /etc/init.d/functions
+JAVA_HOME=/usr/local/jdk1.8.0_66
+CATALINA_HOME=/usr/local/tomcat9</p>
+<hr>
+<h2>设置tomcat服务开机启动</h2>
+<h1>chmod 755 /etc/init.d/tomcat</h1>
+<h1>chkconfig --add tomcat</h1>
+<h1>chkconfig tomcat on</h1>
+<h1>service tomcat start</h1>
+<p>Using CATALINA_BASE:   /usr/local/tomcat9
+Using CATALINA_HOME:   /usr/local/tomcat9
+Using CATALINA_TMPDIR: /usr/local/tomcat9/temp
+Using JRE_HOME:        /usr/local/jdk1.8.0_66
+Using CLASSPATH:       /usr/local/tomcat9/bin/bootstrap.jar:/usr/local/tomcat9/bin/tomcat-juli.jar
+Tomcat started.</p>
+<h2>编辑iptables防火墙，放行8080端口</h2>
+<h1>vim /etc/sysconfig/iptables</h1>
+<hr>
+<p>在"-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT"下添加
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT</p>
+<hr>
+<h1>service iptables restart</h1>
+<p>2、查看状态</p>
+<h2>查看tomcat进程</h2>
+<h1>ps aux |grep tomcat</h1>
+<p>root       2403  0.6 12.3 2741832 124128 pts/2  Sl   08:45   0:08 /usr/local/jdk1.8.0_66/bin/java -Djava.util.logging.config.file=/usr/local/tomcat9/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -classpath /usr/local/tomcat9/bin/bootstrap.jar:/usr/local/tomcat9/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat9 -Dcatalina.home=/usr/local/tomcat9 -Djava.io.tmpdir=/usr/local/tomcat9/temp org.apache.catalina.startup.Bootstrap start</p>
+<h2>查看tomcat监听端口</h2>
+<h1>netstat -lnpt |grep java</h1>
+<p>tcp        0      0 ::ffff:127.0.0.1:8005       :::<em>                        LISTEN      2403/java
+tcp        0      0 :::8009                     :::</em>                        LISTEN      2403/java
+tcp        0      0 :::8080                     :::*                        LISTEN      2403/java</p>
+<h2>端口简介</h2>
+<h2>server.xml中配置</h2>
+<p>8005，用于shutdown tomcat服务
+8009，用于listen ajp的port
+（The Apache JServ Protocol (AJP) is a binary protocol that can proxy inbound requests from a web server through to an application server that sits behind the web server.）
+8080，用于web访问的port</p>
+<h2>网络访问8080端口效果</h2>
+<p>3、配置简介
+1）可通过CATALINA_HOME和CATALINA_BASE来实现MULTIPLE INSTANCE的效果
+CATALINA_HOME指定tomcat安装目录，主要包括bin,lib
+CATALINA_BASE指定instance目录，主要需要拷贝conf,lib,logs,webapps,work,temp
+CLASSPATH变量可指定以上两个变量的lib，系统会优先查找CATALINA_BASE的
+2）官方推荐多instance的时候，lib最好是独立的
+3）所有配置的详解，最好查看tomcat官方网站，都会有详细的讲解</p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -357,8 +359,161 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">
+                tomcat 1.1.0 配置-sessionCookieName
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.1.1_config_ssl_tomcat7.html">
+                tomcat 1.1.1 配置-SSL
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.1.2_config_server_xml.html">
+                tomcat 1.1.2 server.xml 配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.1.3_config_context.html">
+                tomcat 1.1.3 配置-context
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">
+                tomcat 1.2.0 日志-cronolog日志切割
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.2.1_log_log4j.html">
+                tomcat 1.2.1 日志-log4j配置相对路径
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.2.2_log_juli_loglevel.html">
+                tomcat 1.2.2 日志-JULI日志级别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.3.0_optimize_apr_mode.html">
+                tomcat 1.3.0 优化-apr模式
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.3.1_optimize_server_xml.html">
+                tomcat 1.3.1 优化-server.xml
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_1.3.2_optimize_test_concurrent_more_than_10000.html">
+                tomcat 1.3.2 优化-如何承载上万并发
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_2.1.0_problem_startup_slow_tomcat7.html">
+                tomcat 2.1.0 问题-tomcat7启动速度慢
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_2.1.1_entropy_source.html">
+                tomcat 2.1.1 问题-tomcat7启动安全-熵池
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_2.1.2_error_shutdown_connection_refuse.html">
+                tomcat 2.1.2 问题-tomcat7 shutdown 提示 connection refused
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_2.2.0_java.lang.ClassCastException.html">
+                tomcat 2.2.0 问题-java.lang.ClassCastException
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_2.2.1_tomcat7_classloader_howto_translate.html">
+                tomcat 2.2.1 tomcat7类加载器HOWTO-中文翻译
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_3.1.0_manage_check_version.html">
+                tomcat 3.1.0 管理-查看tomcat版本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_3.2.0_tomcat_manager.html">
+                tomcat 3.2.0 tomcat manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_4.1.0_application_session_keep_with_memcached.html">
+                tomcat 4.1.0 应用-memcached会话保持
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_5.1.0_redis_session_gradle_compile_jar.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_5.1.1_redis_session_gradle_compile_jar_tomcat8.5_and_jdk8.html">
+                tomcat 5.1.0 gradle编译tomcat-redis-session-manager - tomcat8.5
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_6.1.0_tomcat6_vs_tomcat7.html">
+                tomcat 6.1.0 tomcat6 和 tomcat7的简要区别
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_7.1.0_running_as_daemon_by_nonroot_jsvc.html">
+                tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_7.1.1_running_as_daemon_by_nonroot_systemd.html">
+                tomcat 7.1.1 使用非root用户用daemon运行tomcat - (systemd) - 推荐
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/TOMCAT9_安装配置.html">
+                tomcat: 1.1.0 tomcat9安装配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/tomcat/tomcat_5.1.2_session_sharing_by_using_redis.html">
+                tomcat: 5.1.2 tomcat-session sharing
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
             </a>
             <ul>
             </ul>

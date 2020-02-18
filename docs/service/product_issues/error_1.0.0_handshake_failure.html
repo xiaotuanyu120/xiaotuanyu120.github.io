@@ -196,67 +196,84 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
-                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>error 1.0.0 SSLHandshakeException handshake_failure</h3>
+<hr>
+<h3>1. 错误信息</h3>
+<p>错误信息1：</p>
+<div class="highlight"><pre><span></span><span class="o">[</span><span class="n">ERROR</span><span class="o">]</span><span class="n">_2018</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">08</span> <span class="mi">16</span><span class="o">:</span><span class="mi">31</span><span class="o">:</span><span class="mi">10</span> <span class="mi">990</span> <span class="o">:</span> <span class="o">[</span><span class="n">http</span><span class="o">-</span><span class="n">apr</span><span class="o">-</span><span class="mi">8580</span><span class="o">-</span><span class="n">exec</span><span class="o">-</span><span class="mi">81</span><span class="o">]</span> <span class="err">\</span>
+<span class="n">getHttpContentByBtParam</span> <span class="n">请求调用异常</span><span class="err">：</span>
+<span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">Received</span> <span class="n">fatal</span> <span class="n">alert</span><span class="o">:</span> <span class="n">handshake_failure</span>
+</pre></div>
+<p>错误信息2</p>
+<div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">validator</span><span class="o">.</span><span class="na">ValidatorException</span><span class="o">:</span> <span class="n">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="n">failed</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">certpath</span><span class="o">.</span><span class="na">SunCertPathBuilderException</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span>
+</pre></div>
+<h3>2. 解决办法</h3>
+<h4>1) 解决方案一，增加证书到受信任列表中</h4>
+<p>问题的原因，是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。<br>
+这样的解决思路就来到了如何将需要连接的域名的ssl证书增加到受信任列表中，java程序是跑在jvm虚拟机里面，默认是用的是<code>&lt;java-home&gt;/lib/security/cacerts</code>。
+给jvm增加ssl证书可以参照<a href="https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store">microsoft java add certificate</a></p>
+<div class="highlight"><pre><span></span><span class="c1"># list all certificate</span>
+keytool -list -keystore cacerts
+
+<span class="c1"># example to add equifaxsecureca</span>
+keytool -keystore cacerts -importcert <span class="se">\</span>
+  -alias equifaxsecureca <span class="se">\</span>
+  -file Equifax_Secure_Certificate_Authority.cer
+</pre></div>
+<blockquote><p>需要输入cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
+<p>如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）</p>
+<ul>
+<li>通过浏览器访问接口url</li>
+<li>点击url框左边小绿锁</li>
+<li>点击“certificate”</li>
+<li>点击“详细信息”的tab</li>
+<li>点击“公钥”字段</li>
+<li>点击右下角“复制到文件”那个按钮</li>
+<li>弹出的窗口选择“下一步”</li>
+<li>弹出的窗口选择“Base64编码X.509(.CER)(S)”</li>
+<li>保存到本地即可，然后用笔记本打开，拷贝内容到服务器上</li>
+</ul>
+<p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
+<code>/usr/java/jdk1.7.0_79/bin/keytool -keystore /usr/java/jdk1.7.0_79/jre/lib/security/cacerts -importcert -alias example -file example.cer</code></p>
+</blockquote>
+<h4>2) 解决方案二，jdk7 - 替换无限制策略文件</h4>
+<p>上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
+<a href="https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure">stackoverflow answer</a></p>
+<h4>3) 解决方案三，jdk8 - 修改配置</h4>
+<p>在<a href="https://stackoverflow.com/questions/37741142/how-to-install-unlimited-strength-jce-for-java-8-in-os-x">stackoverflow提问中</a>，找到了jdk8的处理办法。
+jdk8在update 151中加入了一个配置，用以打开和关闭无限制策略。而在update 161中，默认是启用了无限制策略。如果需要确认，可以查看以下配置</p>
+<div class="highlight"><pre><span></span>vim <span class="nv">$JAVA_HOME</span>/jre/lib/security/java.security
+******************************
+crypto.policy<span class="o">=</span>unlimited
+******************************
+
+<span class="c1"># 1.  If the Security property &quot;crypto.policy&quot; has been defined,</span>
+<span class="c1">#     then the following mechanism is used:</span>
+<span class="c1">#</span>
+<span class="c1">#     The policy files are stored as jar files in subdirectories of</span>
+<span class="c1"># &lt;java-home&gt;/lib/security/policy.  Each directory contains a complete</span>
+<span class="c1"># set of policy files.</span>
+<span class="c1">#</span>
+<span class="c1">#     The &quot;crypto.policy&quot; Security property controls the directory</span>
+<span class="c1">#     selection, and thus the effective cryptographic policy.</span>
+<span class="c1">#</span>
+<span class="c1"># The default set of directories is:</span>
+<span class="c1">#</span>
+<span class="c1">#     limited | unlimited</span>
+<span class="c1">#</span>
+<span class="c1"># 2.  If the &quot;crypto.policy&quot; property is not set and the traditional</span>
+<span class="c1">#     US_export_policy.jar and local_policy.jar files</span>
+<span class="c1">#     (e.g. limited/unlimited) are found in the legacy</span>
+<span class="c1">#     &lt;java-home&gt;/lib/security directory, then the rules embedded within</span>
+<span class="c1">#     those jar files will be used. This helps preserve compatibility</span>
+<span class="c1"># for users upgrading from an older installation.</span>
+<span class="c1">#</span>
+<span class="c1"># 3.  If the jar files are not present in the legacy location</span>
+<span class="c1">#     and the &quot;crypto.policy&quot; Security property is not defined,</span>
+<span class="c1">#     then the JDK will use the unlimited settings (equivalent to</span>
+<span class="c1">#     crypto.policy=unlimited)</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -357,8 +374,56 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
+                error 1.0.0 SSLHandshakeException handshake_failure
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
+                error 1.1.0 EPR ... Operation not found ... WSA Action =
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
+                log4j 1.1.0 log4j.properties appender配置说明
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
+                nexus: 1.1.0 installation
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
             </a>
             <ul>
             </ul>
