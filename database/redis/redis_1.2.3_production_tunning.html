@@ -214,6 +214,8 @@ rename-command CONFIG <span class="s2">&quot;&quot;</span>
 <span class="c1"># - 集群中不支持多个database</span>
 rename-command SELECT <span class="s2">&quot;&quot;</span>
 </pre></div>
+<blockquote><p>禁用select命令容易造成<code>Unknown command 'SELECT' reading the append only file</code>错误，原因是，aof机制中使用了select命令，但是我们给禁用了，所以它无法加载aof文件来启动redis</p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
