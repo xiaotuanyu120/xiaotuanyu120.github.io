@@ -1,7 +1,7 @@
 ---
 title: php: mysql驱动
 date: 2016-12-19 15:37:00
-categories: linux/lnmp
+categories: service/lnmp
 tags: [linux,lnmp]
 ---
 ### php: mysql驱动mysqlnd、libmysqlclient

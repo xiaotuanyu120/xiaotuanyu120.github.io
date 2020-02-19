@@ -1,15 +1,21 @@
-LANMP: 查看编译参数
-2015年12月12日 星期六
-9:07
+---
+title: LANMP: 查看编译参数
+date: 2015-12-12 09:07:00
+categories: service/lnmp
+tags: [apache,configuration]
+---
+### LANMP: 查看编译参数
+
+``` bash
+# apache编译参数获取
+cat /path/to/apache/build/config.nice
  
-1、apache编译参数获取
-# cat /path/to/apache/build/config.nice
+# nginx编译参数
+/path/to/sbin/nginx -v
  
-2、nginx编译参数
-# /path/to/sbin/nginx -v
+# php编译参数
+/path/to/bin/php -i | grep configure
  
-3、php编译参数
-# /path/to/bin/php -i | grep configure
- 
-4、mysql编译参数
-# cat /path/to/mysql/bin/mysqlbug | grep configure
+# mysql编译参数
+cat /path/to/mysql/bin/mysqlbug | grep configure
+```

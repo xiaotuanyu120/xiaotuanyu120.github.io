@@ -277,6 +277,8 @@
 <li><a href="https://devtidbits.com/2015/12/08/nginx-as-a-reverse-proxy-to-apache-tomcat/">nginx reverse tomcat blog</a></li>
 </ul>
 </blockquote>
+<p>这个时候，我们访问 <a href="http://example.com:6116">http://example.com:6116</a> 和 <a href="http://server_ip:6116">http://server_ip:6116</a> 是都可以成功访问到网站的。</p>
+<p>PS: 如果使用的是cdn(80)-nginx(6116)-tomcat(8080)，访问url是 <a href="http://example.com">http://example.com</a> 没有加后面的端口，那么这个时候要去掉<code>httpServerPort="6116"</code>这个配置，因为这里的端口，需要和客户端访问的端口一致</p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -378,8 +380,22 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
             </a>
             <ul>
             </ul>
@@ -472,22 +488,15 @@
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
             <a class="reference internal" href="/service/proxy">
               proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
             </a>
             <ul>
             </ul>

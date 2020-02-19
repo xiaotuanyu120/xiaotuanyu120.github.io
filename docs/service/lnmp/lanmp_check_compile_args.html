@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -191,23 +196,19 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>php: mysql驱动mysqlnd、libmysqlclient</h3>
-<hr>
-<h3>1. 选择一个库</h3>
-<p>mysqli，PDO_MySQL和mysql PHP扩展是基于C客户端库之上的轻量级容器。扩展可以使用mysqlnd库或libmysqlclient库。必须在编译PHP时决定使用哪个库。</p>
-<p>从5.3.0开始，mysqlnd库成为了PHP发行版的一部分。 它提供了诸如延迟连接、查询缓存等功能，还有部分libmysqlclient不提供的功能，因此强烈建议使用内置的mysqlnd库。 有关更多详细信息，请参阅mysqlnd文档，以及它提供的功能和功能的列表。</p>
-<p>示例：Configure commands for using mysqlnd or libmysqlclient</p>
-<div class="highlight"><pre><span></span><span class="c1"># 强烈推荐, 使用mysqlnd编译</span>
-./configure --with-mysqli<span class="o">=</span>mysqlnd --with-pdo-mysql<span class="o">=</span>mysqlnd --with-mysql<span class="o">=</span>mysqlnd
+      <div class="col-lg-12"><h3>LANMP: 查看编译参数</h3>
+<div class="highlight"><pre><span></span><span class="c1"># apache编译参数获取</span>
+cat /path/to/apache/build/config.nice
 
-<span class="c1"># 次要推荐, compiles with mysqlnd as of PHP 5.4</span>
-./configure --with-mysqli --with-pdo-mysql --with-mysql
+<span class="c1"># nginx编译参数</span>
+/path/to/sbin/nginx -v
 
-<span class="c1"># 不推荐, 使用libmysqlclient编译</span>
-./configure --with-mysqli<span class="o">=</span>/path/to/mysql_config --with-pdo-mysql<span class="o">=</span>/path/to/mysql_config --with-mysql<span class="o">=</span>/path/to/mysql_config
+<span class="c1"># php编译参数</span>
+/path/to/bin/php -i <span class="p">|</span> grep configure
+
+<span class="c1"># mysql编译参数</span>
+cat /path/to/mysql/bin/mysqlbug <span class="p">|</span> grep configure
 </pre></div>
-<p>特别推荐使用mysqlnd替代MySQL Client Server library (libmysqlclient)。支持所有的类，而且还在持续被提升。</p>
-<p><a href="http://php.net/manual/zh/mysqlinfo.library.choosing.php">原文英文文档</a></p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -262,6 +263,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -304,48 +310,53 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/lnmp">
+            <a class="reference internal" href="/service/lnmp">
               lnmp
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/lnmp/php_choose_mysql_driver.html">
+              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
+                LANMP: 查看编译参数
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/lnmp/php_choose_mysql_driver.html">
                 php: mysql驱动
               </a>
              </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
+            <a class="reference internal" href="/service/nginx">
+              nginx
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
             </a>
             <ul>
             </ul>

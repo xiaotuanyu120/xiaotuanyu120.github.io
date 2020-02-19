@@ -95,3 +95,8 @@ server {
 
 > - [tomcat 7 offical docs](https://tomcat.apache.org/tomcat-7.0-doc/config/valve.html#Introduction)
 > - [nginx reverse tomcat blog](https://devtidbits.com/2015/12/08/nginx-as-a-reverse-proxy-to-apache-tomcat/)
+
+
+这个时候，我们访问 http://example.com:6116 和 http://server_ip:6116 是都可以成功访问到网站的。
+
+PS: 如果使用的是cdn(80)-nginx(6116)-tomcat(8080)，访问url是 http://example.com 没有加后面的端口，那么这个时候要去掉`httpServerPort="6116"`这个配置，因为这里的端口，需要和客户端访问的端口一致
