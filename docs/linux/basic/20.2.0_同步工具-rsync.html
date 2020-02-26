@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -478,6 +483,11 @@ total size is <span class="m">124</span>  speedup is <span class="m">1</span>.05
 <p><strong>服务器配置文件/etc/rsyncd.conf(需要手动创建)</strong></p>
 <div class="highlight"><pre><span></span>vi /etc/rsyncd.conf
 *************************************************
+<span class="nv">uid</span><span class="o">=</span>www
+<span class="nv">gid</span><span class="o">=</span>www
+use <span class="nv">chroot</span><span class="o">=</span>no
+max <span class="nv">connections</span><span class="o">=</span><span class="m">5</span>
+incoming <span class="nv">chmod</span> <span class="o">=</span> D755,F644
 <span class="c1">## 全局配置</span>
 <span class="nv">port</span><span class="o">=</span><span class="m">8700</span>
 <span class="c1">#监听端口，默认是873，若不是873，客户端需要增加--port 8700指定端口</span>
@@ -486,21 +496,22 @@ log <span class="nv">file</span><span class="o">=</span>/var/log/rsync.log
 <span class="c1">#默认就是这个文件，可通过此行设置其他文件，日志很重要，用于排错</span>
 pid <span class="nv">file</span><span class="o">=</span>/var/run/rsyncd.pid
 <span class="c1">#进程文件，默认就是这个文件</span>
-<span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.0.5
-设置server端的ip，设置不正确的话rsync daemon无法启动
+lock <span class="nv">file</span> <span class="o">=</span> /var/run/rsync.lock
+log <span class="nv">file</span> <span class="o">=</span> /var/log/rsync.log
 
 <span class="c1">## 模块1</span>
 <span class="o">[</span>test1<span class="o">]</span>
 <span class="c1">#模块名称，用在客户端命令里</span>
 <span class="nv">path</span><span class="o">=</span>/root/perm
 <span class="c1">#指定此模块共享文件的目录</span>
+ignore errors
 use <span class="nv">chroot</span><span class="o">=</span>yes
 <span class="c1">#指定是否限定用户的活动范围就是path指定的目录</span>
 max <span class="nv">connections</span><span class="o">=</span><span class="m">4</span>
 <span class="c1">#指定最大连接数</span>
-<span class="nb">read</span> <span class="nv">only</span><span class="o">=</span><span class="nb">true</span>
+<span class="nb">read</span> <span class="nv">only</span><span class="o">=</span>no
 <span class="c1">#如果设为只读，那客户端用户不可push文件进来，只能读取走</span>
-<span class="nv">list</span><span class="o">=</span>no
+<span class="nv">list</span><span class="o">=</span>yes
 <span class="c1">#设定用户是否可以通过--list来查看server端的模块</span>
 <span class="nv">uid</span><span class="o">=</span>root
 <span class="c1">#若client写入文件，写入文件的属主归属</span>
@@ -754,6 +765,11 @@ crontab -e
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -795,41 +811,6 @@ crontab -e
         <h4>Contents</h4>
        </a>
        <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/basic">
               basic
@@ -1640,6 +1621,34 @@ crontab -e
                 二十九讲TOMCAT&RESIN
               </a>
              </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>
