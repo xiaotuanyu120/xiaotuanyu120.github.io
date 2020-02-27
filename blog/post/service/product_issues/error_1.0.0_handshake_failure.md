@@ -49,14 +49,21 @@ keytool -keystore cacerts -importcert \
 > - 保存到本地即可，然后用笔记本打开，拷贝内容到服务器上
 
 > 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
-> `/usr/java/jdk1.7.0_79/bin/keytool -keystore /usr/java/jdk1.7.0_79/jre/lib/security/cacerts -importcert -alias example -file example.cer`
+``` bash
+JAVA_HOME=/usr/local/jdk1.7.0_79
+
+echo 'certification_file_content' > example.com.cer
+
+${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert -alias example.com -file example.com.cer
+```
 
 
-#### 2) 解决方案二，jdk7 - 替换无限制策略文件
+#### 2) 解决方案二，关掉jdk的ssl证书白名单限制
+**jdk7 - 替换无限制策略文件**
 上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
 [stackoverflow answer](https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure)  
 
-#### 3) 解决方案三，jdk8 - 修改配置
+**jdk8 - 修改配置**
 在[stackoverflow提问中](https://stackoverflow.com/questions/37741142/how-to-install-unlimited-strength-jce-for-java-8-in-os-x)，找到了jdk8的处理办法。
 jdk8在update 151中加入了一个配置，用以打开和关闭无限制策略。而在update 161中，默认是启用了无限制策略。如果需要确认，可以查看以下配置
 ``` bash

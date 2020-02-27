@@ -234,45 +234,53 @@ keytool -keystore cacerts -importcert <span class="se">\</span>
 <li>保存到本地即可，然后用笔记本打开，拷贝内容到服务器上</li>
 </ul>
 <p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
-<code>/usr/java/jdk1.7.0_79/bin/keytool -keystore /usr/java/jdk1.7.0_79/jre/lib/security/cacerts -importcert -alias example -file example.cer</code></p>
+``` bash
+JAVA_HOME=/usr/local/jdk1.7.0_79</p>
 </blockquote>
-<h4>2) 解决方案二，jdk7 - 替换无限制策略文件</h4>
-<p>上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
-<a href="https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure">stackoverflow answer</a></p>
-<h4>3) 解决方案三，jdk8 - 修改配置</h4>
-<p>在<a href="https://stackoverflow.com/questions/37741142/how-to-install-unlimited-strength-jce-for-java-8-in-os-x">stackoverflow提问中</a>，找到了jdk8的处理办法。
-jdk8在update 151中加入了一个配置，用以打开和关闭无限制策略。而在update 161中，默认是启用了无限制策略。如果需要确认，可以查看以下配置</p>
-<div class="highlight"><pre><span></span>vim <span class="nv">$JAVA_HOME</span>/jre/lib/security/java.security
+<p>echo 'certification_file_content' &gt; example.com.cer</p>
+<p>${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert -alias example.com -file example.com.cer</p>
+
+<pre><code>
+
+#### 2) 解决方案二，关掉jdk的ssl证书白名单限制
+**jdk7 - 替换无限制策略文件**
+上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
+[stackoverflow answer](https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure)  
+
+**jdk8 - 修改配置**
+在[stackoverflow提问中](https://stackoverflow.com/questions/37741142/how-to-install-unlimited-strength-jce-for-java-8-in-os-x)，找到了jdk8的处理办法。
+jdk8在update 151中加入了一个配置，用以打开和关闭无限制策略。而在update 161中，默认是启用了无限制策略。如果需要确认，可以查看以下配置
+``` bash
+vim $JAVA_HOME/jre/lib/security/java.security
 ******************************
-crypto.policy<span class="o">=</span>unlimited
+crypto.policy=unlimited
 ******************************
 
-<span class="c1"># 1.  If the Security property &quot;crypto.policy&quot; has been defined,</span>
-<span class="c1">#     then the following mechanism is used:</span>
-<span class="c1">#</span>
-<span class="c1">#     The policy files are stored as jar files in subdirectories of</span>
-<span class="c1"># &lt;java-home&gt;/lib/security/policy.  Each directory contains a complete</span>
-<span class="c1"># set of policy files.</span>
-<span class="c1">#</span>
-<span class="c1">#     The &quot;crypto.policy&quot; Security property controls the directory</span>
-<span class="c1">#     selection, and thus the effective cryptographic policy.</span>
-<span class="c1">#</span>
-<span class="c1"># The default set of directories is:</span>
-<span class="c1">#</span>
-<span class="c1">#     limited | unlimited</span>
-<span class="c1">#</span>
-<span class="c1"># 2.  If the &quot;crypto.policy&quot; property is not set and the traditional</span>
-<span class="c1">#     US_export_policy.jar and local_policy.jar files</span>
-<span class="c1">#     (e.g. limited/unlimited) are found in the legacy</span>
-<span class="c1">#     &lt;java-home&gt;/lib/security directory, then the rules embedded within</span>
-<span class="c1">#     those jar files will be used. This helps preserve compatibility</span>
-<span class="c1"># for users upgrading from an older installation.</span>
-<span class="c1">#</span>
-<span class="c1"># 3.  If the jar files are not present in the legacy location</span>
-<span class="c1">#     and the &quot;crypto.policy&quot; Security property is not defined,</span>
-<span class="c1">#     then the JDK will use the unlimited settings (equivalent to</span>
-<span class="c1">#     crypto.policy=unlimited)</span>
-</pre></div>
+# 1.  If the Security property "crypto.policy" has been defined,
+#     then the following mechanism is used:
+#
+#     The policy files are stored as jar files in subdirectories of
+# &lt;java-home&gt;/lib/security/policy.  Each directory contains a complete
+# set of policy files.
+#
+#     The "crypto.policy" Security property controls the directory
+#     selection, and thus the effective cryptographic policy.
+#
+# The default set of directories is:
+#
+#     limited | unlimited
+#
+# 2.  If the "crypto.policy" property is not set and the traditional
+#     US_export_policy.jar and local_policy.jar files
+#     (e.g. limited/unlimited) are found in the legacy
+#     &lt;java-home&gt;/lib/security directory, then the rules embedded within
+#     those jar files will be used. This helps preserve compatibility
+# for users upgrading from an older installation.
+#
+# 3.  If the jar files are not present in the legacy location
+#     and the "crypto.policy" Security property is not defined,
+#     then the JDK will use the unlimited settings (equivalent to
+#     crypto.policy=unlimited)</code></pre>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -374,20 +382,6 @@ crypto.policy<span class="o">=</span>unlimited
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
             <a class="reference internal" href="/service/tomcat">
               tomcat
             </a>
@@ -422,8 +416,29 @@ crypto.policy<span class="o">=</span>unlimited
             </ul>
            </li>
            <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/service/proxy">
               proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
             </a>
             <ul>
             </ul>
