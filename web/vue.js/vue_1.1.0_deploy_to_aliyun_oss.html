@@ -196,65 +196,58 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/web/node.js">
-              node.js
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/web/jquery">
-              jquery
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/web/vue.js">
-              vue.js
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/web/css">
-              css
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/overflow.html">
-                css: overflow
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/width_control_media_rule.html">
-                css: 使用@media规则来控制不同浏览器页面宽度
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/fonts_1.0_google_fonts.html">
-                fonts: 1.0 google font的使用
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/web/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>vue: 0.1.0 部署vue项目到阿里云的OSS中</h3>
+<h2>1. 部署静态站点到OSS的标准步骤</h2>
+<ul>
+<li>购买oss，创建bucket</li>
+<li>在bucket中上传静态站点需要的所有文件（如果要上传目录，可以使用<a href="https://help.aliyun.com/document_detail/61872.html">oss browser</a>）</li>
+<li>在<code>基础设置</code> - <code>静态页面</code> 中做以下设定<ul>
+<li>默认首页</li>
+<li>404页面</li>
+<li>子目录首页：如果开通此选项，如果你访问<code>https://example.com/folder</code>且这个目录不存在时，会根据你所选择的选项进行对应的处理(详情见你设定的页面，有很详细解释，基本上就是返回404或者帮你重定向)</li>
+</ul>
+</li>
+<li>在<code>传输管理</code> - <code>域名管理</code> 中做以下设定<ul>
+<li>绑定用户域名</li>
+<li>增加域名对应的证书</li>
+<li>将域名的dns解析到阿里云提供的cname上</li>
+</ul>
+</li>
+</ul>
+<h2>2. vue相遇遇到的问题和解决方案</h2>
+<h3>遇到的问题</h3>
+<p>发现我们的网站是分pc和mobile网站，访问首页的时候，会根据客户端来重定向到对应客户端平台的url，例如：<code>https://www.example.com/pc/home/index</code>和<code>https://www.example.com/mobile/home/index</code>。访问第一次的时候正常，但是每当刷新首页时，就会返回404页面。</p>
+<h3>解决过程</h3>
+<p>首先猜测访问过程，第一次访问可以刷新出页面的原因，可能是因为我们访问的是<code>https://www.example.com</code>，虽然由vue-router给跳转到了<code>https://www.example.com/pc/home/index</code>，但是我们发给oss的请求是<code>https://www.example.com</code>，oss显然意识到了我们的请求是正常的，且首页存在，于是成功返回。但是当我们二次手动刷新此页面时，请求的url变成了<code>https://www.example.com/pc/home/index</code>，这个路径在oss肯定是不存在的，404返回是正常行为。</p>
+<p>因为在部署到oss之前，vue项目在服务器上是正常的，所以我重新读了一下nginx配置，其中关键是这部分</p>
+
+<pre><code>  location / {
+    root   /app;
+    index  index.html;
+    try_files $uri $uri/ /index.html;
+  }</code></pre>
+<p>其中的逻辑就是，如果<code>$uri</code>不存在，那么首先试一下<code>$uri/</code>，如果还是不存在，再试一下<code>/index.html</code>。</p>
+<p>于是参照这个逻辑，又参照了下面参考链接中其他人的做法，我用以下配置解决了此问题</p>
+<ul>
+<li><code>基础设置</code> - <code>镜像回源</code> - <code>创建规则</code><ul>
+<li>回源类型：重定向</li>
+<li>回源条件：http状态码=404</li>
+<li>回源地址：添加前后缀 - 实际是添加了后缀，就是给<code>$uri</code>加上后缀<code>/</code></li>
+<li>重定向code：301</li>
+</ul>
+</li>
+</ul>
+<p>问题得到顺利解决</p>
+<h2>3. 问题思考</h2>
+<h3>解决方式和子目录首页的逻辑很相似，为什么不用子目录首页？</h3>
+<p>因为子目录首页原理是访问子目录路径下的<code>index.html</code>，若在oss中子目录下并没有首页文件，依然会是返回404，那么会导致无限循环</p>
+<h3>给<code>$uri</code>后面增加<code>/</code>，在oss里面岂不是依然不存在这个路径，为什么就能解决这个问题</h3>
+<p>首先声明，下面解释只是个人猜测。
+在说明这个问题之前，我们先看一下nginx的日志里面的逻辑，nginx常规情况下是使用location的匹配来对request进行路由的，但是因为vue有自己内置的路由逻辑，所以对于vue项目，nginx只需要无脑的把所有请求统统塞给vue即可，如果尝试<code>uri</code>不成功，则尝试一下给<code>uri</code>加上<code>/</code>。我个人猜测，这应该是vue自己的机制（未深入了解）。详细的原因，推荐阅读官方文档（偷个懒，上班太忙，实在没时间去深入了解前端知识）</p>
+<blockquote><p>参考链接
+<a href="https://www.cnblogs.com/xuejiangjun/p/9454221.html">cnblog: 某用户的vue部署到oss的经验</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -373,6 +366,11 @@
               vue.js
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/web/vue.js/vue_1.1.0_deploy_to_aliyun_oss.html">
+                vue: 0.1.0 部署vue项目到阿里云的OSS中
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -380,21 +378,6 @@
               css
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/overflow.html">
-                css: overflow
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/width_control_media_rule.html">
-                css: 使用@media规则来控制不同浏览器页面宽度
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/web/css/fonts_1.0_google_fonts.html">
-                fonts: 1.0 google font的使用
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
