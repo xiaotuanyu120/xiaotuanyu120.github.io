@@ -212,15 +212,23 @@
 <p>问题的原因，是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。<br>
 这样的解决思路就来到了如何将需要连接的域名的ssl证书增加到受信任列表中，java程序是跑在jvm虚拟机里面，默认是用的是<code>&lt;java-home&gt;/lib/security/cacerts</code>。
 给jvm增加ssl证书可以参照<a href="https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store">microsoft java add certificate</a></p>
-<div class="highlight"><pre><span></span><span class="c1"># list all certificate</span>
+<div class="highlight"><pre><span></span><span class="c1"># 获取域名证书</span>
+<span class="nv">domain</span><span class="o">=</span>www.example.com
+echo<span class="p">|</span>openssl s_client -servername <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> -connect <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>:443<span class="p">|</span><span class="se">\</span>
+    sed -ne <span class="s1">&#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39;</span> &gt; <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
+
+<span class="c1"># list all certificate</span>
 keytool -list -keystore cacerts
 
 <span class="c1"># example to add equifaxsecureca</span>
 keytool -keystore cacerts -importcert <span class="se">\</span>
-  -alias equifaxsecureca <span class="se">\</span>
-  -file Equifax_Secure_Certificate_Authority.cer
+  -storepass changeit <span class="se">\</span>
+  -noprompt <span class="se">\</span>
+  -trustcacerts <span class="se">\</span>
+  -alias <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> <span class="se">\</span>
+  -file <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
 </pre></div>
-<blockquote><p>需要输入cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
+<blockquote><p>cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
 <p>如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）</p>
 <ul>
 <li>通过浏览器访问接口url</li>
@@ -236,9 +244,17 @@ keytool -keystore cacerts -importcert <span class="se">\</span>
 <p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
 ``` bash
 JAVA_HOME=/usr/local/jdk1.7.0_79</p>
+<h1>获取域名证书</h1>
+<p>domain=www.example.com
+echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
+  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt; ${domain}.crt</p>
 </blockquote>
-<p>echo 'certification_file_content' &gt; example.com.cer</p>
-<p>${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert -alias example.com -file example.com.cer</p>
+<p>${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert \
+  -storepass changeit \
+  -noprompt \
+  -trustcacerts \
+  -alias ${domain} \
+  -file ${domain}.crt</p>
 
 <pre><code>
 

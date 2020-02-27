@@ -27,15 +27,23 @@ javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: 
 这样的解决思路就来到了如何将需要连接的域名的ssl证书增加到受信任列表中，java程序是跑在jvm虚拟机里面，默认是用的是`<java-home>/lib/security/cacerts`。
 给jvm增加ssl证书可以参照[microsoft java add certificate](https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store)
 ``` bash
+# 获取域名证书
+domain=www.example.com
+echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
+    sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${domain}.crt
+
 # list all certificate
 keytool -list -keystore cacerts
 
 # example to add equifaxsecureca
 keytool -keystore cacerts -importcert \
-  -alias equifaxsecureca \
-  -file Equifax_Secure_Certificate_Authority.cer
+  -storepass changeit \
+  -noprompt \
+  -trustcacerts \
+  -alias ${domain} \
+  -file ${domain}.crt
 ```
-> 需要输入cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）
+> cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）
 
 > 如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）
 > - 通过浏览器访问接口url
@@ -51,10 +59,17 @@ keytool -keystore cacerts -importcert \
 > 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
 ``` bash
 JAVA_HOME=/usr/local/jdk1.7.0_79
+# 获取域名证书
+domain=www.example.com
+echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
+  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${domain}.crt
 
-echo 'certification_file_content' > example.com.cer
-
-${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert -alias example.com -file example.com.cer
+${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert \
+  -storepass changeit \
+  -noprompt \
+  -trustcacerts \
+  -alias ${domain} \
+  -file ${domain}.crt
 ```
 
 
