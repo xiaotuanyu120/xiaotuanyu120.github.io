@@ -240,7 +240,13 @@
 <li>only限定了只有master分支commit后才会触发pipeline的执行</li>
 </ul>
 </blockquote>
-<h3>1. <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#cache">cache</a> vs <a href="https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts">artifacts</a></h3>
+<h3>1. 常用的gitlab ci内置变量</h3>
+<ul>
+<li><code>CI_BUILDS_DIR</code>，执行build的根目录，默认是<code>/builds</code></li>
+<li><code>CI_PROJECT_DIR</code>，当前project的被clone到的目录，也就是默认你所有script执行命令运行的目录</li>
+<li><code>CI_COMMIT_SHA</code>，commit的sha值</li>
+</ul>
+<h3>2. <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#cache">cache</a> vs <a href="https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts">artifacts</a></h3>
 <p>官方文档<a href="https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts">cache vs artifacts</a>里面说：</p>
 <ul>
 <li>cache：用于储存工程依赖文件</li>
@@ -262,15 +268,37 @@
 <li>paths: 是相对于<code>${CI_PROJECT_DIR}</code>下面的相对路径，是被缓存的目标</li>
 </ul>
 <p>gitlab版本需要更新到12.5+</p>
+<p><strong><code>not supported: outside build directory</code></strong>，cache不支持在build目录之外的目录</p>
 </blockquote>
-<h4>artifacts</h4>
-<div class="highlight"><pre><span></span><span class="nt">deploy</span><span class="p">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">...</span>
-  <span class="l l-Scalar l-Scalar-Plain">artifacts</span><span class="p p-Indicator">:</span>
-    <span class="nt">paths</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span>
-    <span class="nt">expire_in</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1 day</span>
-</pre></div>
+<p>!!! <strong>CACHE: MAVEN LOCAL REPOSITORY</strong> !!!</p>
+<ul>
+<li>然后在.gitlab-ci.yml中配置
+``` yaml
+variables:
+MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2</li>
+</ul>
+<p>cache:
+  paths:</p>
+
+<pre><code>- ${CI_PROJECT_DIR}/.m2
+
+</code></pre>
+<p>script:</p>
+
+<pre><code>- mvn clean install -Dmaven.test.skip=true ${MAVEN_OPTS}
+</code></pre>
+
+<pre><code>
+&gt; [stackoverflow: change local m2 dir](https://stackoverflow.com/questions/16591080/maven-alternative-m2-directory)
+
+#### artifacts
+``` yaml
+deploy:
+  ...
+  artifacts:
+    paths:
+    - target
+    expire_in: 1 day</code></pre>
 <blockquote><p>erro: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
 <a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a></p>
 <ol>
@@ -436,6 +464,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
                 git: 1.8.0 添加链接文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.9.0_combine_commits_using_rebase.html">
+                git: 1.9.0 使用rebase合并多个commit
               </a>
              </li>
              <li class="toctree-l2">

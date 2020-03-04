@@ -49,7 +49,13 @@ analysis:
 > - only限定了只有master分支commit后才会触发pipeline的执行
 
 
-### 1. [cache](https://docs.gitlab.com/ee/ci/yaml/README.html#cache) vs [artifacts](https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts)
+### 1. 常用的gitlab ci内置变量
+- `CI_BUILDS_DIR`，执行build的根目录，默认是`/builds`
+- `CI_PROJECT_DIR`，当前project的被clone到的目录，也就是默认你所有script执行命令运行的目录
+- `CI_COMMIT_SHA`，commit的sha值
+
+
+### 2. [cache](https://docs.gitlab.com/ee/ci/yaml/README.html#cache) vs [artifacts](https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts)
 官方文档[cache vs artifacts](https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts)里面说：
 - cache：用于储存工程依赖文件
 - artifacts：用于储存在stage之间需要传递的文件
@@ -71,6 +77,24 @@ cache:
 > - paths: 是相对于`${CI_PROJECT_DIR}`下面的相对路径，是被缓存的目标
 
 > gitlab版本需要更新到12.5+
+
+> **`not supported: outside build directory`**，cache不支持在build目录之外的目录
+
+!!! **CACHE: MAVEN LOCAL REPOSITORY** !!!
+- 然后在.gitlab-ci.yml中配置
+``` yaml
+variables:
+  MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
+
+cache:
+  paths:
+    - ${CI_PROJECT_DIR}/.m2
+
+  script:
+    - mvn clean install -Dmaven.test.skip=true ${MAVEN_OPTS}
+```
+
+> [stackoverflow: change local m2 dir](https://stackoverflow.com/questions/16591080/maven-alternative-m2-directory)
 
 #### artifacts
 ``` yaml
