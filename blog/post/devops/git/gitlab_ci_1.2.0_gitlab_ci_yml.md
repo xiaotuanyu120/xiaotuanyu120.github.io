@@ -109,3 +109,12 @@ deploy:
 > [解决方法](https://gitlab.com/gitlab-org/gitlab-foss/issues/14841)
 > 1. gitlab启动参数增加nginx的`client_max_body_size`
 > 2. gitlab的admin的CICD设置中，调大artifacts的上限大小
+
+### 3. 关于curl的用法
+``` yaml
+  script: >-
+    curl -X post -H "Content-Type:application/json" -H "Authorization: 认证字符串" -d "{\"extra_vars\": {\"role\": \"test_role\",\"project\": {\"version\": \"${CI_COMMIT_SHA:0:6}\",\"name\": \"project_name\"},\"host\": \"project_host\"}}" http://awx_domain/api/v2/job_templates/deploy_test/launch/
+```
+> 别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
+> [gitlab issues](https://gitlab.com/gitlab-org/gitlab-foss/issues/59726)
+> [stackoverflow](https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973)

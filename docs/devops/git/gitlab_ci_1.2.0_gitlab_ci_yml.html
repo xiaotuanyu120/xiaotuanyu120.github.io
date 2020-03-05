@@ -306,6 +306,14 @@ deploy:
 <li>gitlab的admin的CICD设置中，调大artifacts的上限大小</li>
 </ol>
 </blockquote>
+<h3>3. 关于curl的用法</h3>
+<div class="highlight"><pre><span></span><span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">&gt;-</span>
+    <span class="no">curl -X post -H &quot;Content-Type:application/json&quot; -H &quot;Authorization: 认证字符串&quot; -d &quot;{\&quot;extra_vars\&quot;: {\&quot;role\&quot;: \&quot;test_role\&quot;,\&quot;project\&quot;: {\&quot;version\&quot;: \&quot;${CI_COMMIT_SHA:0:6}\&quot;,\&quot;name\&quot;: \&quot;project_name\&quot;},\&quot;host\&quot;: \&quot;project_host\&quot;}}&quot; http://awx_domain/api/v2/job_templates/deploy_test/launch/</span>
+</pre></div>
+<blockquote><p>别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
+<a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/59726">gitlab issues</a>
+<a href="https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973">stackoverflow</a></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
