@@ -298,6 +298,7 @@ jstat -gcutil 16009 250 20
  33.33   0.00   0.00   9.44  24.37    148    1.431     0    0.000    1.431
  33.33   0.00  77.94   9.44  24.37    148    1.431     0    0.000    1.431
 ```
+> [-gc 输出的结果单位是KB](https://stackoverflow.com/questions/31010463/java-8-find-out-size-of-metaspace-at-runtime)
 
 ---
 
