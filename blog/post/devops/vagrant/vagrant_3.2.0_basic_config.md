@@ -54,7 +54,10 @@ end
 #### 4) 同步目录
 ``` ruby
 # 默认把host机器的Vagrantfile所在目录和虚机的/vagrant自动同步
-config.vm.synced_folder "d:/local/dir", "/vm/dir/"
+  config.vm.synced_folder "d:/local/dir", "/vm/dir/"
+# 也可以用nfs，听说会比较快
+  config.vm.synced_folder "D:/go/src/mattermost-server", "/root/go/src/mattermost-server", type: "nfs"
+  config.vm.synced_folder "D:/go/src/mattermost-webapp", "/root/go/src/mattermost-webapp", type: "nfs"
 ```
 
 #### 5) 增加新硬盘
