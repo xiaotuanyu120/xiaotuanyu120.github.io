@@ -236,7 +236,10 @@
 </blockquote>
 <h4>4) 同步目录</h4>
 <div class="highlight"><pre><span></span><span class="c1"># 默认把host机器的Vagrantfile所在目录和虚机的/vagrant自动同步</span>
-<span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;d:/local/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;/vm/dir/&quot;</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;d:/local/dir&quot;</span><span class="p">,</span> <span class="s2">&quot;/vm/dir/&quot;</span>
+<span class="c1"># 也可以用nfs，听说会比较快</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;D:/go/src/mattermost-server&quot;</span><span class="p">,</span> <span class="s2">&quot;/root/go/src/mattermost-server&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;nfs&quot;</span>
+  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;D:/go/src/mattermost-webapp&quot;</span><span class="p">,</span> <span class="s2">&quot;/root/go/src/mattermost-webapp&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;nfs&quot;</span>
 </pre></div>
 <h4>5) 增加新硬盘</h4>
 <p>首先检测自己box支持的存储控制器类型</p>
