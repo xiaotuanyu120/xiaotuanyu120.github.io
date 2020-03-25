@@ -196,230 +196,69 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>apache: 1.1.0 配置说明</h3>
-<h3>1. 配置结构</h3>
-<div class="highlight"><pre><span></span>.
-├── extra                                     <span class="c1"># 扩展子配置目录</span>
-│   ├── httpd-autoindex.conf
-│   ├── httpd-dav.conf
-│   ├── httpd-default.conf
-│   ├── httpd-info.conf
-│   ├── httpd-languages.conf
-│   ├── httpd-manual.conf
-│   ├── httpd-mpm.conf
-│   ├── httpd-multilang-errordoc.conf
-│   ├── httpd-ssl.conf
-│   ├── httpd-userdir.conf
-│   ├── httpd-vhosts.conf
-│   └── proxy-html.conf
-├── httpd.conf                                <span class="c1"># 主配置文件(配置入口)</span>
-├── magic                                     <span class="c1"># 和mime相关的，详情见http://httpd.apache.org/docs/current/mod/mod_mime_magic.html#mimemagicfile</span>
-├── mime.types                                <span class="c1"># mime文件，指定文件类型的</span>
-└── original                                  <span class="c1"># 原始配置文件副本</span>
-    ├── extra
-    │   ├── httpd-autoindex.conf
-    │   ├── httpd-dav.conf
-    │   ├── httpd-default.conf
-    │   ├── httpd-info.conf
-    │   ├── httpd-languages.conf
-    │   ├── httpd-manual.conf
-    │   ├── httpd-mpm.conf
-    │   ├── httpd-multilang-errordoc.conf
-    │   ├── httpd-ssl.conf
-    │   ├── httpd-userdir.conf
-    │   ├── httpd-vhosts.conf
-    │   └── proxy-html.conf
-    └── httpd.conf
-
-<span class="m">3</span> directories, <span class="m">29</span> files
-</pre></div>
-<blockquote><p>重点：httpd.conf是主配文件，也是配置文件的入口，其他配置文件都通过这里Include</p>
-<p>PS: 主配文件也可以修改，可以在启动时动态指定，但是一般都是用默认的</p>
-</blockquote>
-<h3>2. httpd.conf常见配置</h3>
-
-<pre><code># 这里是指定httpd的软件目录
-ServerRoot "/usr/local/httpd-2.4.41"
-
-# 监听的域名可以通过指定多个Listen来监听多个端口
-# 443因为牵扯到要加载mod_ssl模块，所以是需要一定条件来监听
-Listen 80
-
-# 可以通过调整LoadModule配置，来增删加载的模块
-LoadModule authn_file_module modules/mod_authn_file.so
-LoadModule authn_core_module modules/mod_authn_core.so
-LoadModule authz_host_module modules/mod_authz_host.so
-LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
-LoadModule authz_user_module modules/mod_authz_user.so
-LoadModule authz_core_module modules/mod_authz_core.so
-LoadModule access_compat_module modules/mod_access_compat.so
-LoadModule auth_basic_module modules/mod_auth_basic.so
-LoadModule reqtimeout_module modules/mod_reqtimeout.so
-LoadModule filter_module modules/mod_filter.so
-LoadModule mime_module modules/mod_mime.so
-LoadModule log_config_module modules/mod_log_config.so
-LoadModule env_module modules/mod_env.so
-LoadModule headers_module modules/mod_headers.so
-LoadModule setenvif_module modules/mod_setenvif.so
-LoadModule version_module modules/mod_version.so
-LoadModule ssl_module modules/mod_ssl.so
-LoadModule unixd_module modules/mod_unixd.so
-LoadModule status_module modules/mod_status.so
-LoadModule autoindex_module modules/mod_autoindex.so
-LoadModule dir_module modules/mod_dir.so
-LoadModule alias_module modules/mod_alias.so
-
-# php的模块
-LoadModule php5_module        modules/libphp5.so
-
-
-# 这种if的模块，只有在httpd启动或者重启的时候才会执行，一旦条件匹配
-# 将会应用到全局
-&lt;IfModule unixd_module&gt;
-User  www
-Group www
-&lt;/IfModule&gt;
-
-ServerAdmin you@example.com
-
-# 这里是安全配置，避免有人通过某些方式访问整个系统文件
-&lt;Directory /&gt;
-    # 禁用.htaccess
-    AllowOverride none
-    # 全部禁止访问根目录
-    Require all denied
-&lt;/Directory&gt;
-
-# &lt;Directory directory-path&gt; ... &lt;/Directory&gt;
-# directory-path可以加双引号，也可以不加，但是中间有空格的时候，必须加
-# directory-path可以用wildcard匹配，?代表任意字符，*代表任意多个字符
-# 但是/任何情况下不会被匹配，所以/*/html不会匹配/var/www/html，但是会匹配/data/html
-DocumentRoot "/usr/local/httpd-2.4.41/htdocs"
-&lt;Directory "/usr/local/httpd-2.4.41/htdocs"&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Require all granted
-&lt;/Directory&gt;
-
-&lt;IfModule dir_module&gt;
-    DirectoryIndex index.html
-&lt;/IfModule&gt;
-
-# 安全配置，禁止所有人访问.htaccess等文件
-&lt;Files ".ht*"&gt;
-    Require all denied
-&lt;/Files&gt;
-
-ErrorLog "logs/error_log"
-LogLevel warn
-
-# 日志格式配置
-&lt;IfModule log_config_module&gt;
-    LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-    LogFormat "%h %l %u %t \"%r\" %&gt;s %b" common
-    &lt;IfModule logio_module&gt;
-      LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
-    &lt;/IfModule&gt;
-    CustomLog "logs/access_log" common
-&lt;/IfModule&gt;
-
-&lt;IfModule alias_module&gt;
-    ScriptAlias /cgi-bin/ "/usr/local/httpd-2.4.41/cgi-bin/"
-&lt;/IfModule&gt;
-&lt;IfModule cgid_module&gt;
-&lt;/IfModule&gt;
-&lt;Directory "/usr/local/httpd-2.4.41/cgi-bin"&gt;
-    AllowOverride None
-    Options None
-    Require all granted
-&lt;/Directory&gt;
-&lt;IfModule headers_module&gt;
-    RequestHeader unset Proxy early
-&lt;/IfModule&gt;
-&lt;IfModule mime_module&gt;
-    TypesConfig conf/mime.types
-    AddType application/x-compress .Z
-    AddType application/x-gzip .gz .tgz
-    AddType application/x-httpd-php .php
-&lt;/IfModule&gt;
-
-# 引入外部配置
-# 1. 引入mpm的配置
-Include conf/extra/httpd-mpm.conf
-# 2. 引入虚拟主机配置
-Include conf/site-enabled/*.conf
-
-&lt;IfModule proxy_html_module&gt;
-Include conf/extra/proxy-html.conf
-&lt;/IfModule&gt;
-
-# 在启用mod_ssl模块的情况下，再来监听443
-# ssl_module和mod_ssl是一样效果的
-# &lt;IfModule mod_ssl.c&gt;
-# Listen 443
-# &lt;/IfModule&gt;
-&lt;IfModule ssl_module&gt;
-Listen 443
-SSLRandomSeed startup builtin
-SSLRandomSeed connect builtin
-&lt;/IfModule&gt;</code></pre>
-<h3>3. VirtualHost常见配置</h3>
-
-<pre><code>&lt;VirtualHost *:80&gt;
-    # ServerName指定一个唯一的值，来和其他的虚拟主机区分
-    ServerName example.com
-    # ServerAlias来扩展监听多个域名
-    ServerAlias www.example.com *.example.com
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-error_log"
-    CustomLog "logs/example-access_log" common
-&lt;/VirtualHost&gt;
-
-&lt;VirtualHost *:443&gt;
-    ServerName example-ssl.com
-    ServerAlias www.example-ssl.com *.example-ssl.com
-    SSLEngine on
-    SSLCertificateFile "/path/to/www.example.com.cert"
-    SSLCertificateKeyFile "/path/to/www.example.com.key"
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-ssl-error_log"
-    CustomLog "logs/example-ssl-access_log" common
-&lt;/VirtualHost&gt;</code></pre>
-<h3>4. 如何同时监听80和443</h3>
-<p>apache是无法和nginx一样，同时监听80和443的，但是可以用下面的方式来达到节省配置项的效果
-<code>example.conf</code></p>
-
-<pre><code>&lt;VirtualHost *:80&gt;
-    Include conf/site-enabled/example.include
-&lt;/VirtualHost&gt;
-
-&lt;VirtualHost *:443&gt;
-    SSLEngine on
-    Include conf/site-enabled/example.include
-&lt;/VirtualHost&gt;</code></pre>
-<p><code>example.include</code></p>
-
-<pre><code>    ServerName example-ssl.com
-    ServerAlias www.example-ssl.com *.example-ssl.com
-    SSLCertificateFile "/path/to/www.example.com.cert"
-    SSLCertificateKeyFile "/path/to/www.example.com.key"
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-ssl-error_log"
-    CustomLog "logs/example-ssl-access_log" common</code></pre>
-<h3>5. 关于apache使用的php.ini文件位置</h3>
-<p>如果想查看现在的php.ini位置，可以编写info.php文件，将其放置在DocumentRoot中，并在浏览器中访问查看。</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-  <span class="nb">phpinfo</span><span class="p">();</span>
-</pre></div>
-<p>如果想自定义修改php.ini的位置，可以在httpd.conf中做如下配置</p>
-
-<pre><code>PHPINIDir /usr/local/php/etc/apache2/</code></pre>
-<blockquote><p>按照以上配置，apache会调用<code>/usr/local/php/etc/apache2/php.ini</code></p>
-</blockquote>
-      </div>
+      <div class="col-lg-12">       <div class="docs-body">
+        <div class="section" id="kolla-ansible-deployment-guide">
+         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
+         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
+         <div class="toctree-wrapper compound">
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/arthas">
+              arthas
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/mattermost/mattermost_1.0_build.html">
+                mattermost: 1.0 build
+              </a>
+             </li>
+            </ul>
+           </li>          </ul>
+         </div>
+        </div>
+       </div>      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -520,53 +359,55 @@ SSLRandomSeed connect builtin
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
+            <a class="reference internal" href="/devops/git">
+              git
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
+            <a class="reference internal" href="/devops/ansible">
+              ansible
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
+            <a class="reference internal" href="/devops/arthas">
+              arthas
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.0.0_apache_installation.html">
-                apache: 1.0.0 配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.1.0_apache_config_basic.html">
-                apache: 1.1.0 配置说明
+              <a class="reference internal" href="/devops/mattermost/mattermost_1.0_build.html">
+                mattermost: 1.0 build
               </a>
              </li>
             </ul>

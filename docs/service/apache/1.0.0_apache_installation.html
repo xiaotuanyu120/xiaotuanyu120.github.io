@@ -227,8 +227,9 @@
 
 <span class="c1">## BASE PACKAGES INSTALLATION</span>
 yum install epel-release -y
-yum install gcc gcc-c++ zlib zlib-devel lynx -y
+yum install gcc gcc-c++ zlib zlib-devel lynx php-mysql -y
 yum install wget -y
+<span class="c1">## php-mysql: mysqli for php and apache</span>
 
 <span class="c1">## USER CREATE</span>
 id <span class="si">${</span><span class="nv">WEB_USER</span><span class="si">}</span> &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> useradd -r -s /sbin/nologin <span class="si">${</span><span class="nv">WEB_USER</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">WEB_USER</span><span class="si">}</span><span class="s2"> already exist!!&quot;</span>
@@ -297,11 +298,13 @@ make install
   tar zxvf php-<span class="si">${</span><span class="nv">PHPVER</span><span class="si">}</span>.tar.gz
   <span class="nb">cd</span> php-<span class="si">${</span><span class="nv">PHPVER</span><span class="si">}</span>
   <span class="c1"># apxs</span>
-  ./configure --prefix<span class="o">=</span><span class="si">${</span><span class="nv">PHPDIR</span><span class="si">}</span> --with-apxs2<span class="o">=</span><span class="si">${</span><span class="nv">HTTPDDIR</span><span class="si">}</span>/bin/apxs --with-mysql
+  ./configure --prefix<span class="o">=</span><span class="si">${</span><span class="nv">PHPDIR</span><span class="si">}</span> --with-apxs2<span class="o">=</span><span class="si">${</span><span class="nv">HTTPDDIR</span><span class="si">}</span>/bin/apxs <span class="se">\</span>
+    --with-mysql --with-mysqli --with-pdo-mysql
   make
   make install
   <span class="nb">cd</span> <span class="si">${</span><span class="nv">INSTALL_DIR</span><span class="si">}</span>
 <span class="k">fi</span>
+<span class="c1">## --with-mysqli and --with-pdo-mysql is compile with the rpm package php-mysql</span>
 
 <span class="c1">## CREATE HTTPD-VIRTUALHOST-DIR</span>
 <span class="o">[[</span> -d <span class="si">${</span><span class="nv">HTTPDDIR</span><span class="si">}</span>/conf/site-enabled <span class="o">]]</span> <span class="o">||</span> mkdir <span class="si">${</span><span class="nv">HTTPDDIR</span><span class="si">}</span>/conf/site-enabled
