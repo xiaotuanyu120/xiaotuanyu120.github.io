@@ -94,6 +94,9 @@ ADD <src>... <dest>
 COPY <src>... <dest>
 ```
 如果src是个目录，会拷贝这个目录下面的所有内容到dest中
+
+> [docker ADD 不会解压zip包](https://github.com/moby/moby/issues/15036)
+
 #### 6) CMD
 ```
 # exec form, this is the preferred form
