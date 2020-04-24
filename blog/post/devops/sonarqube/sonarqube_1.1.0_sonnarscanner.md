@@ -53,6 +53,30 @@ FROM alpine:latest
 WORKDIR /app
 ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app
 RUN apk update && apk upgrade && \
-    apk add --no-cache bash git openssh openjdk8-jre openjdk7
+    apk add --no-cache bash git openssh openjdk8 openjdk7 maven && \
+    echo "export JAVA_HOME=/usr/lib/jvm/default-jvm" >> /etc/profile
+ADD settings.xml /usr/share/java/maven-3/conf/settings.xml
+EOF
+
+# 准备Dockerfile所需要的文件
+cat << EOF > settings.xml
+<settings>
+    <pluginGroups>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>
+                  http://sonarqube.example.net:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+     </profiles>
+</settings>
 EOF
 ```
