@@ -201,22 +201,187 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
+      <div class="col-lg-12"><h3>docker example 1.2.0 ftp</h3>
+<hr>
+<h3>1. ftp</h3>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3.1&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">ftp</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">PUBLICHOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+      <span class="nt">FTP_USER_NAME</span><span class="p">:</span> <span class="s">&quot;ftpuser&quot;</span>
+      <span class="nt">FTP_USER_PASS</span><span class="p">:</span> <span class="s">&quot;ftppass&quot;</span>
+      <span class="nt">FTP_USER_HOME</span><span class="p">:</span> <span class="s">&quot;/var/www/html&quot;</span>
+      <span class="nt">FTP_USER_UID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="nt">FTP_USER_GID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="nt">FTP_PASSIVE_PORTS</span><span class="p">:</span> <span class="s">&quot;30000:30050&quot;</span>
+      <span class="nt">FTP_MAX_CONNECTIONS</span><span class="p">:</span> <span class="s">&quot;20&quot;</span>
+      <span class="nt">FTP_MAC_CLIENTS</span><span class="p">:</span> <span class="s">&quot;10&quot;</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/ftp/userdata:/etc/pure-ftpd/passwd</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;21:21&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;30000-30050:30000-30050&quot;</span>
+
+<span class="c1"># networks:</span>
+<span class="c1">#   default:</span>
+<span class="c1">#     external:</span>
+<span class="c1">#       name: production</span>
+</pre></div>
+<h3>2. ftp+nginx</h3>
+<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3.1&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">nginx</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.16.1</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/nginx/conf.d:/etc/nginx/conf.d</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/nginx/ssl:/etc/nginx/ssl</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/nginx/logs:/etc/nginx/logs</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;80:80&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;443:443&quot;</span>
+
+  <span class="nt">ftp</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">PUBLICHOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+      <span class="nt">FTP_USER_NAME</span><span class="p">:</span> <span class="s">&quot;ftpuser&quot;</span>
+      <span class="nt">FTP_USER_PASS</span><span class="p">:</span> <span class="s">&quot;ftppass&quot;</span>
+      <span class="nt">FTP_USER_HOME</span><span class="p">:</span> <span class="s">&quot;/var/www/html&quot;</span>
+      <span class="nt">FTP_USER_UID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="nt">FTP_USER_GID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="nt">FTP_PASSIVE_PORTS</span><span class="p">:</span> <span class="s">&quot;30000:30050&quot;</span>
+      <span class="nt">FTP_MAX_CONNECTIONS</span><span class="p">:</span> <span class="s">&quot;20&quot;</span>
+      <span class="nt">FTP_MAC_CLIENTS</span><span class="p">:</span> <span class="s">&quot;10&quot;</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/ftp/userdata:/etc/pure-ftpd/passwd</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;21:21&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;30000-30050:30000-30050&quot;</span>
+
+<span class="c1"># networks:</span>
+<span class="c1">#   default:</span>
+<span class="c1">#     external:</span>
+<span class="c1">#       name: production</span>
+</pre></div>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
+            <li role="presentation">
+             <a href="/web" role="menuitem" tabindex="-1">
+              web
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/java" role="menuitem" tabindex="-1">
+              java
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cryptography" role="menuitem" tabindex="-1">
+              cryptography
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/service" role="menuitem" tabindex="-1">
+              service
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/database" role="menuitem" tabindex="-1">
+              database
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/python" role="menuitem" tabindex="-1">
+              python
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/devops" role="menuitem" tabindex="-1">
+              devops
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/bigdata" role="menuitem" tabindex="-1">
+              bigdata
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/blog" role="menuitem" tabindex="-1">
+              blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/virtualization" role="menuitem" tabindex="-1">
+              virtualization
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/linux" role="menuitem" tabindex="-1">
+              linux
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/go" role="menuitem" tabindex="-1">
+              go
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>      </ul>
+     </div>
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
+       </a>
+       <ul>
            <li class="toctree-l1">
             <a class="reference internal" href="/virtualization/openstack">
               openstack
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/openstack/kolla-ansible_openstack_install.html">
-                
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -359,371 +524,6 @@
                 docker-compose 2.1.0 network
               </a>
              </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">
-                KVM 1.1.0 安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">
-                KVM 1.2.0 创建VM(linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">
-                KVM 1.2.1 创建VM(vnc-windows)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">
-                KVM 1.2.2 创建VM-脚本复制VM
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">
-                KVM 1.2.3 管理VM-增加网卡
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">
-                KVM 1.3.0 kvm管理-virt-top
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">
-                KVM 1.3.1 kvm管理-basic
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">
-                KVM 1.3.2 kvm管理-advance
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">
-                KVM 1.3.3 kvm管理-克隆
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">
-                KVM 1.3.4 VM-快照
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.4.0_error.html">
-                KVM 1.4.0 kvm错误汇总
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
-                cgroups 1.0.0 什么是cgroups？
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
-                coreos 1.1.0 系统安装-bare metal
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
-                coreos 1.2.0 系统安装-vagrant
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
-                coreos 2.1.0 ignition简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
-                coreos 2.2.0 pxe引导coreos启动(cloudinit)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
-                coreos 2.2.1 pxe引导coreos启动(ignition)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
-                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
-                coreos 2.3.0 ignition+matchbox安装coreos集群
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
-                coreos 2.4.0 生成ssl/tls自签名认证证书
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
-                etcd 1.1.2 etcd install single node(systemd)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
-                etcd 1.1.3 etcd install static cluster(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
-                etcd 1.1.4 etcd install static cluster with ssl/tls
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
-                etcd 1.1.5 etcd install discovery cluster(coreos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
-                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
-                etcd 2.1.0 etcd-api python-etcd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
-                etcd 2.2.0 搭配confd做配置管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
-                flannel 1.1.0 install flannel using binaries（systemd）
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
-                flannel 1.2.0 configuration ans option
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
-                helm 1.1.0 安装（centos 7）及使用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.1_chartmuseum.html">
-                helm 1.1.1 chartmuseum
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">
-                helm 2.1.0 从零开始创建tomcat的charts
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
-                kubernetes 1.1.0 简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
-                kubernetes 1.2.0 vagrant+coreos(flannel)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
-                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
-                kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
-                kubernetes 1.2.3 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
-                kubernetes 1.2.4 traefik ingress
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
-                kubernetes 1.2.5 ingress ssl
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
-                kubernetes 1.2.6 kube-dns
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
-                kubernetes 1.2.7 EFK
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
-                kubernetes 1.3.0 run-stateless-application-deployment
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
-                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
-                kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">
-                kubernetes v1.17 1.1.1 pull image from private registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">
-                kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
-     </div>
-     <div class="row docs-byline bottom">
-      <div class="docs-updated">
-       updated: 2017-04-20 10:25
-      </div>
-     </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
-     <div class="btn-group docs-sidebar-releases">
-      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
-       <i class="fa fa-arrow-circle-o-left">
-       </i>
-      </button>
-      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
-       Xiao5tech Docs
-       <i class="fa fa-caret-down">
-       </i>
-      </button>
-      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
-       <li role="presentation" class="dropdown-header">
-        完整文档分类
-       </li>
-            <li role="presentation">
-             <a href="/web" role="menuitem" tabindex="-1">
-              web
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/java" role="menuitem" tabindex="-1">
-              java
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/cryptography" role="menuitem" tabindex="-1">
-              cryptography
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/service" role="menuitem" tabindex="-1">
-              service
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/database" role="menuitem" tabindex="-1">
-              database
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/python" role="menuitem" tabindex="-1">
-              python
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/devops" role="menuitem" tabindex="-1">
-              devops
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/bigdata" role="menuitem" tabindex="-1">
-              bigdata
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/blog" role="menuitem" tabindex="-1">
-              blog
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/virtualization" role="menuitem" tabindex="-1">
-              virtualization
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/linux" role="menuitem" tabindex="-1">
-              linux
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/go" role="menuitem" tabindex="-1">
-              go
-             </a>
-            </li>
-            <li role="presentation">
-             <a href="/android" role="menuitem" tabindex="-1">
-              android
-             </a>
-            </li>      </ul>
-     </div>
-      <div class="docs-sidebar-toc">
-      <div class="docs-sidebar-section" id="table-of-contents">
-       <a href="#" class="docs-sidebar-section-title">
-        <h4>Contents</h4>
-       </a>
-       <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
             </ul>
            </li>
            <li class="toctree-l1">
