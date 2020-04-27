@@ -42,3 +42,22 @@ jenkins-profile.sh
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 > jdk和node包请自行下载
+
+### 3. php-apache
+``` bash
+FROM php:5.6-apache
+RUN apt-get update \
+    # 增加图片系统库支持
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    apt-utils libpng-dev libfreetype6-dev libjpeg62-turbo-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    # 安装php扩展
+    && docker-php-ext-configure gd --with-freetype-dir --with-jpeg-dir --with-png-dir \
+    && docker-php-ext-install pdo_mysql mysqli mysql gd \
+    # apache开启功能
+    && a2enmod rewrite \
+    && ln -s /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled/ssl.conf \
+    && ln -s /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load \
+    && ln -s /etc/apache2/mods-available/socache_shmcb.load /etc/apache2/mods-enabled/socache_shmcb.load
+COPY --chown=33:33 . /var/www/html/
+```
