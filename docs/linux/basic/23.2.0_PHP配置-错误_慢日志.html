@@ -127,6 +127,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -161,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -191,7 +201,7 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>23.2.0: PHP配置-错误&amp;慢日志</h3>
+      <div class="col-lg-12"><h3>23.2.0: PHP配置 - access,slow,error 日志</h3>
 <hr>
 <h3>0. php错误日志配置</h3>
 <div class="highlight"><pre><span></span><span class="c1">## 如果使用了php-fpm</span>
@@ -253,12 +263,10 @@ E_USER_NOTICE     用户生成的提醒
 <span class="nv">request_slowlog_timeout</span> <span class="o">=</span> <span class="m">1</span>
 </pre></div>
 <hr>
-<h3>2. php-fpm错误日志配置</h3>
+<h3>2. php-fpm日志配置</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 以下可在不同的pool中配置</span>
 access.log <span class="o">=</span> /usr/local/php7/var/log/pool.access.log
 access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;%m %r%Q%q\&quot; %s %f %{mili}d %{kilo}M %C%%&quot;</span>
-<span class="nv">slowlog</span> <span class="o">=</span> /usr/local/php7/var/log/slow.log
-<span class="nv">request_slowlog_timeout</span> <span class="o">=</span> 15s
 </pre></div>
       </div>
      </div>
@@ -314,6 +322,11 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
              </a>
             </li>
             <li role="presentation">
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/blockchain" role="menuitem" tabindex="-1">
               blockchain
              </a>
@@ -347,6 +360,11 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
              <a href="/go" role="menuitem" tabindex="-1">
               go
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -355,41 +373,6 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
         <h4>Contents</h4>
        </a>
        <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/basic">
               basic
@@ -927,7 +910,7 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/basic/23.2.0_PHP配置-错误_慢日志.html">
-                23.2.0: PHP配置-错误&慢日志
+                23.2.0: PHP配置 - access,slow,error 日志
               </a>
              </li>
              <li class="toctree-l2">
@@ -1200,6 +1183,34 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
                 二十九讲TOMCAT&RESIN
               </a>
              </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>
