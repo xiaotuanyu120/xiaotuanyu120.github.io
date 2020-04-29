@@ -1,10 +1,10 @@
 ---
-title: docker example 1.1.0 mysql
+title: mysql: docker-compose(单实例和主从)
 date: 2020-04-21 09:08:00
-categories: virtualization/docker
+categories: database/mysql
 tags: [docker,docker-compose,mysql]
 ---
-### docker example 1.1.0 mysql
+### mysql: docker-compose(单实例和主从)
 
 ---
 
