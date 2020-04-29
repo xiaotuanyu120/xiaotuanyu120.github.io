@@ -1,14 +1,30 @@
 ---
-title: 23.5.0: PHP配置-进程数调整
+title: php 1.5.0: PHP配置 - 进程数调整
 date: 2016-01-11 09:59:00
-categories: linux/basic
+categories: linux/php
 tags: [php]
 ---
-### 23.5.0: PHP配置-进程数调整
+### php 1.5.0: PHP配置 - 进程数调整
 
 ---
 
-## 配置文件中的解释说明
+### 1. 进程模式和数量配置
+``` bash
+## 模式选择
+pm = static/dynamic
+## STATIC MODE
+生效配置：
+pm.max_children(同一时间可存在的最大进程数)
+
+## DYNAMIC MODE
+生效配置：
+pm.start_servers(php启动时创建的进程数)
+pm.min_spare_servers(处于idle状态下最少的进程数，少于此数会创建进程)
+pm.max_spare_servers(处于idle状态下最多的进程数，多于此数会杀掉进程)
+pm.max_children(同static中的效果，和pm.max_spare_servers区别在于，后者是设定的idel状态进程数，而前者是配置的所有状态下进程最大数目)
+```
+
+> 配置文件中的解释说明
 ```
 ; Choose how the process manager will control the number of child processes.
 ; Possible Values:
@@ -28,17 +44,3 @@ tags: [php]
 ;                                    number then some children will be killed.
 ; Note: This value is mandatory.
 ```
-## 总结
-``` bash
-## 模式选择
-pm = static/dynamic
-## STATIC MODE
-生效配置：
-pm.max_children(同一时间可存在的最大进程数)
-
-## DYNAMIC MODE
-生效配置：
-pm.start_servers(php启动时创建的进程数)
-pm.min_spare_servers(处于idle状态下最少的进程数，少于此数会创建进程)
-pm.max_spare_servers(处于idle状态下最多的进程数，多于此数会杀掉进程)
-pm.max_children(同static中的效果，和pm.max_spare_servers区别在于，后者是设定的idel状态进程数，而前者是配置的所有状态下进程最大数目)```

@@ -1,10 +1,10 @@
 ---
-title: 23.2.0: PHP配置 - access,slow,error 日志
+title: php 1.2.0: PHP配置 - access,slow,error 日志
 date: 2015-01-12 05:47:00
-categories: linux/basic
+categories: linux/php
 tags: [php]
 ---
-### 23.2.0: PHP配置 - access,slow,error 日志
+### php 1.2.0: PHP配置 - access,slow,error 日志
 
 ---
 

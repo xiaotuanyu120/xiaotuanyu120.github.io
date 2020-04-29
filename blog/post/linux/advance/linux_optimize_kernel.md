@@ -1,9 +1,21 @@
 ---
-title: linux内核优化
-date: 2016年7月29日
-categories: 16:38
+title: linux: 优化 - 内核
+date: 2016-07-29 16:38:00
+categories: linux/advance
+tags: [linux,kernel]
 ---
- 
+
+``` bash
+net.core.somaxconn = 655360
+# 系统全局参数：每一个`listen()`socket的最大backlog上限
+
+net.core.netdev_max_backlog = 1048576
+# 每个网络接口，允许后台排队队列数据包的最大数目
+
+net.ipv4.tcp_max_syn_backlog = 1048576
+# 尚未收到客户端确认信息的连接请求的最大值
+```
+
 5.4. 容量调节
 本小节总结了内存、内核以及文件系统容量，与每一部分相关的参数以及调节这些参数所涉及的交换条件。
 要在调节时临时设定这些值，请将所需值 echo 到 proc 文件系统中的适当文件中。例如：要将 overcommit_memory 临时设定为 1，请运行：
