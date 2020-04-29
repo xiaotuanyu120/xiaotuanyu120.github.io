@@ -166,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -208,30 +213,30 @@ tar zxvf chartmuseum-2.7.0.tgz
 <span class="nb">cd</span> chartmuseum
 </pre></div>
 <h3>2. 自定义chartmuseum</h3>
-<div class="highlight"><pre><span></span><span class="nt">env</span><span class="p">:</span>
-  <span class="nt">open</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">env</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">open</span><span class="p p-Indicator">:</span>
     <span class="c1"># 启用api调用，不然会限制所有/api的访问</span>
-    <span class="nt">DISABLE_API</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="l l-Scalar l-Scalar-Plain">DISABLE_API</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
     <span class="c1"># 允许重复上传chart包</span>
-    <span class="nt">ALLOW_OVERWRITE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">secret</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">ALLOW_OVERWRITE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">secret</span><span class="p p-Indicator">:</span>
     <span class="c1"># Redis requirepass server configuration</span>
-    <span class="nt">CACHE_REDIS_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">redisp@ssw0rd</span>
+    <span class="l l-Scalar l-Scalar-Plain">CACHE_REDIS_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redisp@ssw0rd</span>
 <span class="c1"># 因为要用pv，这里设定一个有pv硬盘提供的节点</span>
-<span class="nt">nodeSelector</span><span class="p">:</span>
-  <span class="nt">storagenode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">glusterfs</span>
-<span class="nt">persistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="l l-Scalar l-Scalar-Plain">nodeSelector</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">storagenode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">glusterfs</span>
+<span class="l l-Scalar l-Scalar-Plain">persistence</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
   <span class="c1"># 指定storageclass</span>
-  <span class="nt">storageClass</span><span class="p">:</span> <span class="s">&quot;glusterfs-storage&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">storageClass</span><span class="p p-Indicator">:</span> <span class="s">&quot;glusterfs-storage&quot;</span>
 <span class="c1"># 用ingress会比较方便，记住域名就可以了</span>
-<span class="nt">ingress</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">hosts</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">ingress</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span>
       <span class="c1"># 指定访问域名</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">chartmuseum.domain1.com</span>
-      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
-      <span class="nt">tls</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">chartmuseum.domain1.com</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+      <span class="l l-Scalar l-Scalar-Plain">tls</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 </pre></div>
 <h3>3. 使用chartmuseum</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 查看ingress-controller service的nodeport端口，这里是31253</span>
@@ -359,6 +364,11 @@ helm push chartmuseum-2.7.0.tgz chartmuseum
             <li role="presentation">
              <a href="/go" role="menuitem" tabindex="-1">
               go
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
              </a>
             </li>      </ul>
      </div>
@@ -495,6 +505,11 @@ helm push chartmuseum-2.7.0.tgz chartmuseum
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">
+                helm 2.1.0 从零开始创建tomcat的charts
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
                 kubernetes 1.1.0 简介
               </a>
@@ -552,6 +567,16 @@ helm push chartmuseum-2.7.0.tgz chartmuseum
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
                 kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">
+                kubernetes v1.17 1.1.1 pull image from private registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">
+                kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
               </a>
              </li>
             </ul>

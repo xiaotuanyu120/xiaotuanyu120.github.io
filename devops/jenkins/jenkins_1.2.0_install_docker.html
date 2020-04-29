@@ -166,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -291,18 +296,18 @@ PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openj
 <h4>2) 如何在jenkins(docker)中编译docker镜像</h4>
 <p>jenkins本身就是docker中运行的，怎么在它里面完成编译docker镜像的任务呢，难道我需要在里面继续安装一个docker？<br>
 显然那样太low，网上参考google文档，找到了一种解决方案，就是通过mountdocker文件和socket文件去docker容器中，使jenkins可以调用host的docker命令和socket文件，来达到编译镜像的目的</p>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">jenkins</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">jenkins</span><span class="p p-Indicator">:</span>
     <span class="c1">#image: &#39;jenkins/jenkins:lts&#39;</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;jenkins/jenkins:myjks&#39;</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jenkins</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="s">&#39;jenkins/jenkins:myjks&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jenkins</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/jenkins_home:/var/jenkins_home</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/usr/bin/docker:/usr/bin/docker</span>
-    <span class="nt">environment</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai</span>
 </pre></div>
 <blockquote><p>jenkins/jenkins:myjks，是我按照上面的Dockerfile自己编译的docker镜像</p>
@@ -401,6 +406,11 @@ PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openj
              <a href="/go" role="menuitem" tabindex="-1">
               go
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -409,6 +419,41 @@ PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openj
         <h4>Contents</h4>
        </a>
        <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/git">
+              git
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/vagrant">
+              vagrant
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/ansible">
+              ansible
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/arthas">
+              arthas
+            </a>
+            <ul>
+            </ul>
+           </li>
            <li class="toctree-l1">
             <a class="reference internal" href="/devops/jenkins">
               jenkins
@@ -457,22 +502,8 @@ PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openj
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/ansible">
-              ansible
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/vagrant">
-              vagrant
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
             </a>
             <ul>
             </ul>

@@ -166,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -205,14 +210,14 @@
 <li>gitlab-runner执行的内容</li>
 <li>特定条件触发后任务的执行走向</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-docker-image-repo&gt;/sonarscanner:4.2</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-docker-image-repo&gt;/sonarscanner:4.2</span>
 
-<span class="nt">stages</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">stages</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
 
-<span class="nt">analysis</span><span class="p">:</span>
-  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
-  <span class="nt">script</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">analysis</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">stage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">analysis</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo &gt; javafile.txt</span>
@@ -230,7 +235,7 @@
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.sourceEncoding=UTF-8</span>
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.binaries=./path/to/classes</span>
     <span class="l l-Scalar l-Scalar-Plain">-Dsonar.java.libraries=./path/to/**/*.jar</span>
-  <span class="nt">only</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
 </pre></div>
 <blockquote><p>注意点：</p>
@@ -253,12 +258,12 @@
 <li>artifacts：用于储存在stage之间需要传递的文件</li>
 </ul>
 <h4>cache</h4>
-<div class="highlight"><pre><span></span><span class="nt">cache</span><span class="p">:</span>
-  <span class="nt">key</span><span class="p">:</span>
-    <span class="nt">files</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">key</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">files</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Gemfile.lock</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">package.json</span>
-  <span class="nt">paths</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vendor/ruby</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">node_modules</span>
 </pre></div>
@@ -307,7 +312,7 @@ deploy:
 </ol>
 </blockquote>
 <h3>3. 关于curl的用法</h3>
-<div class="highlight"><pre><span></span><span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">&gt;-</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">&gt;-</span>
     <span class="no">curl -X post -H &quot;Content-Type:application/json&quot; -H &quot;Authorization: 认证字符串&quot; -d &quot;{\&quot;extra_vars\&quot;: {\&quot;role\&quot;: \&quot;test_role\&quot;,\&quot;project\&quot;: {\&quot;version\&quot;: \&quot;${CI_COMMIT_SHA:0:6}\&quot;,\&quot;name\&quot;: \&quot;project_name\&quot;},\&quot;host\&quot;: \&quot;project_host\&quot;}}&quot; http://awx_domain/api/v2/job_templates/deploy_test/launch/</span>
 </pre></div>
 <blockquote><p>别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
@@ -405,6 +410,11 @@ deploy:
             <li role="presentation">
              <a href="/go" role="menuitem" tabindex="-1">
               go
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
              </a>
             </li>      </ul>
      </div>
@@ -562,6 +572,13 @@ deploy:
            <li class="toctree-l1">
             <a class="reference internal" href="/devops/jenkins">
               jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
             </a>
             <ul>
             </ul>
