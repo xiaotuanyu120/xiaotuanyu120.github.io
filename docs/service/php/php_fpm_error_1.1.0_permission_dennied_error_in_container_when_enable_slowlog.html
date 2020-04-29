@@ -201,319 +201,42 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">
-                tomcat 1.1.0 配置-sessionCookieName
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.1.1_config_ssl_tomcat7.html">
-                tomcat 1.1.1 配置-SSL
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.1.2_config_server_xml.html">
-                tomcat 1.1.2 server.xml 配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.1.3_config_context.html">
-                tomcat 1.1.3 配置-context
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">
-                tomcat 1.2.0 日志-cronolog日志切割
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.2.1_log_log4j.html">
-                tomcat 1.2.1 日志-log4j配置相对路径
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.2.2_log_juli_loglevel.html">
-                tomcat 1.2.2 日志-JULI日志级别
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.3.0_optimize_apr_mode.html">
-                tomcat 1.3.0 优化-apr模式
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.3.1_optimize_server_xml.html">
-                tomcat 1.3.1 优化-server.xml
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_1.3.2_optimize_test_concurrent_more_than_10000.html">
-                tomcat 1.3.2 优化-如何承载上万并发
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_2.1.0_problem_startup_slow_tomcat7.html">
-                tomcat 2.1.0 问题-tomcat7启动速度慢
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_2.1.1_entropy_source.html">
-                tomcat 2.1.1 问题-tomcat7启动安全-熵池
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_2.1.2_error_shutdown_connection_refuse.html">
-                tomcat 2.1.2 问题-tomcat7 shutdown 提示 connection refused
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_2.2.0_java.lang.ClassCastException.html">
-                tomcat 2.2.0 问题-java.lang.ClassCastException
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_2.2.1_tomcat7_classloader_howto_translate.html">
-                tomcat 2.2.1 tomcat7类加载器HOWTO-中文翻译
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_3.1.0_manage_check_version.html">
-                tomcat 3.1.0 管理-查看tomcat版本
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_3.2.0_tomcat_manager.html">
-                tomcat 3.2.0 tomcat manager
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_4.1.0_application_session_keep_with_memcached.html">
-                tomcat 4.1.0 应用-memcached会话保持
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_5.1.0_redis_session_gradle_compile_jar.html">
-                tomcat 5.1.0 gradle编译tomcat-redis-session-manager
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_5.1.1_redis_session_gradle_compile_jar_tomcat8.5_and_jdk8.html">
-                tomcat 5.1.0 gradle编译tomcat-redis-session-manager - tomcat8.5
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_6.1.0_tomcat6_vs_tomcat7.html">
-                tomcat 6.1.0 tomcat6 和 tomcat7的简要区别
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_7.1.0_running_as_daemon_by_nonroot_jsvc.html">
-                tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_7.1.1_running_as_daemon_by_nonroot_systemd.html">
-                tomcat 7.1.1 使用非root用户用daemon运行tomcat - (systemd) - 推荐
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/TOMCAT9_安装配置.html">
-                tomcat: 1.1.0 tomcat9安装配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/tomcat/tomcat_5.1.2_session_sharing_by_using_redis.html">
-                tomcat: 5.1.2 tomcat-session sharing
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/php_choose_mysql_driver.html">
-                php: mysql驱动
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.0_configuration_multi_port_listen.html">
-                nginx: 2.1.0 同时监听http和https
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.1_configuration_https_optimize.html">
-                nginx: 2.1.1 configuration https optimization
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.2_configuration_catch_all_server_name.html">
-                nginx: 2.1.1 configuration server_name-"_"误解
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.3_configuration_gzip_optimize.html">
-                nginx: 2.1.3 configuration gzip optimization
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.4_configuration_rewrite_http_to_https.html">
-                nginx: 2.1.4 configuration rewrite http到https
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.5_configuration_proxy_pass_with_URI.html">
-                nginx: 2.1.5 configuration proxy_pass with URI
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_3.1.0_module_nginx-sticky-module.html">
-                nginx: 3.1.0 module - nginx-sticky-module
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.0_theory_reverse_tomcat_use_other_port.html">
-                nginx: 4.1.0 theory nginx反向代理tomcat，使用非80端口
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.0.1_theory_reverse_tomcat_use_other_port_2.html">
-                nginx: 4.1.0.1 nginx 监听https和http，然后使用http反向代理tomcat
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.1_theory_proxy_get_real_ip.html">
-                nginx: 4.1.1 theory 获取真实客户端ip
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.2_theory_cross_origin_request.html">
-                nginx: 4.1.2 theory CORS-跨源资源分享
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_4.1.3_theory_timeout_in_nginx.html">
-                nginx: 4.1.3 nginx中的timeout
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.1.0_if_statement_with_variables.html">
-                nginx: 7.1.0 if语句、参数变量、自定义header变量
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.2.0_geo_if_filter.html">
-                nginx: 7.2.0 if语句、参数变量、geoip
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_7.3.0_match_parameter_in_location.html">
-                nginx: 7.3.0 在location里面匹配parameters
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/openresty_1.1.0_installation.html">
-                openresty: 1.1.0 在location里面匹配parameters
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/proxy/loadbalance_1.1.0_F5_cookie_persistence.html">
-                loadbalance: 1.1.0 cookie persistence
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.0.0_apache_installation.html">
-                apache: 1.0.0 配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/apache/1.1.0_apache_config_basic.html">
-                apache: 1.1.0 配置说明
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误</h3>
+<h3>0. 问题背景</h3>
+<p>使用容器启动了php-fpm，开启了慢日志</p>
+<p>慢日志配置 - php-fpm.conf</p>
+
+<pre><code>slowlog = /var/log/php-fpm/$pool.log.slow
+request_slowlog_timeout = 3</code></pre>
+<p>此时出现了报错</p>
+<p>error报错信息</p>
+
+<pre><code>[29-Apr-2020 01:36:20] NOTICE: about to trace 8
+[29-Apr-2020 01:36:20] ERROR: failed to open /proc/8/mem: Permission denied (13)
+[29-Apr-2020 01:36:20] NOTICE: finished trace of 8</code></pre>
+<p>查到了<a href="https://github.com/docker-library/php/issues/498">这篇github issuce</a>，里面大概意思讲说，php-fpm是通过trace其他进程来支持某些功能（例如慢日志，获取其他进程响应request信息）</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">fpm_trace_ready</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">)</span> <span class="cm">/* </span><span class="p">{{{</span> <span class="err">*/</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+
+    <span class="n">sprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&quot;/proc/%d/&quot;</span> <span class="n">PROC_MEM_FILE</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">pid</span><span class="p">);</span>
+    <span class="n">mem_file</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="n">mem_file</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">zlog</span><span class="p">(</span><span class="n">ZLOG_SYSERROR</span><span class="p">,</span> <span class="s">&quot;failed to open %s&quot;</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/* }}} */</span>
+</pre></div>
+<p>但是docker为了安全性，默认是未开启所有的<a href="http://man7.org/linux/man-pages/man7/capabilities.7.html">linux capability</a>。比如说，php-fpm的trace依赖的<code>CAP_SYS_PTRACE</code>就不在<a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">docker默认开启的CAP名单</a>中。</p>
+<p>此时我们要解决这个问题，就需要额外开启<code>CAP_SYS_PTRACE</code></p>
+<p>docker run方法： <code>--cap-add SYS_PTRACE</code></p>
+<p>docker-compose方法：</p>
+<div class="highlight"><pre><span></span><span class="nt">cap_add</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">SYS_PTRACE</span>
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -665,6 +388,11 @@
               php
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
+                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>

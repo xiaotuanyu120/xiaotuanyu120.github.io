@@ -258,12 +258,14 @@ E_USER_NOTICE     用户生成的提醒
 </blockquote>
 <hr>
 <h3>1. php慢日志配置</h3>
+<p>php-fpm.conf中配置</p>
 <div class="highlight"><pre><span></span><span class="c1">## 慢日志路径和超时时间设置</span>
 <span class="nv">slowlog</span> <span class="o">=</span> /usr/local/php/logs/slow.log
 <span class="nv">request_slowlog_timeout</span> <span class="o">=</span> <span class="m">1</span>
 </pre></div>
 <hr>
-<h3>2. php-fpm日志配置</h3>
+<h3>2. php日志配置</h3>
+<p>php-fpm.conf中配置</p>
 <div class="highlight"><pre><span></span><span class="c1"># 以下可在不同的pool中配置</span>
 access.log <span class="o">=</span> /usr/local/php7/var/log/pool.access.log
 access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;%m %r%Q%q\&quot; %s %f %{mili}d %{kilo}M %C%%&quot;</span>
