@@ -1,10 +1,10 @@
 ---
-title: docker example 1.2.0 ftp
+title: ftp: docker-compose with nginx
 date: 2020-04-24 09:22:00
-categories: virtualization/docker
+categories: service/ftp
 tags: [docker,docker-compose,ftp]
 ---
-### docker example 1.2.0 ftp
+### ftp: docker-compose with nginx
 
 ---
 
