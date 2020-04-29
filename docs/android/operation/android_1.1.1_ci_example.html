@@ -216,30 +216,30 @@ ENV ANDROID_HOME=/usr/local/android
 RUN yes|sdkmanager --sdk_root=/usr/local/android --licenses \
     &amp;&amp; sdkmanager --sdk_root=/usr/local/android "build-tools;28.0.3"</code></pre>
 <h3>2. .gitlab-ci.yml</h3>
-<div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your-reg.com/base-dind-build</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">your-reg.com/base-dind-build</span>
 
-<span class="nt">stages</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">stages</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
 
-<span class="nt">variables</span><span class="p">:</span>
-  <span class="nt">DOCKER_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">unix:///var/run/docker.sock</span>
-  <span class="nt">DOCKER_DRIVER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">overlay2</span>
+<span class="l l-Scalar l-Scalar-Plain">variables</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">DOCKER_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">unix:///var/run/docker.sock</span>
+  <span class="l l-Scalar l-Scalar-Plain">DOCKER_DRIVER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">overlay2</span>
 
-<span class="nt">before_script</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">before_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker login -u username -p password your-reg.com</span>
 
-<span class="nt">build</span><span class="p">:</span>
-  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
-  <span class="nt">script</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">stage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chmod +x commandlinetools-linux-6200805_latest/tools/bin/*</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker build</span>
       <span class="l l-Scalar l-Scalar-Plain">--cache-from your-reg.com/android-build:latest</span>
       <span class="l l-Scalar l-Scalar-Plain">-t your-reg.com/android-build:${CI_COMMIT_SHA:0:6}</span>
       <span class="l l-Scalar l-Scalar-Plain">-t your-reg.com/android-build:latest .</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker push your-reg.com/android-build:${CI_COMMIT_SHA:0:6}</span>
-  <span class="nt">environment</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">production</span>
-  <span class="nt">only</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">production</span>
+  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
 </pre></div>
       </div>

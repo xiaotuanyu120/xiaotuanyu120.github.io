@@ -1,7 +1,7 @@
 ---
 title: php 1.2.0: PHP配置 - access,slow,error 日志
 date: 2015-01-12 05:47:00
-categories: linux/php
+categories: service/php
 tags: [php]
 ---
 ### php 1.2.0: PHP配置 - access,slow,error 日志

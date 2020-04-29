@@ -233,7 +233,7 @@ request_slowlog_timeout = 3</code></pre>
 <p>此时我们要解决这个问题，就需要额外开启<code>CAP_SYS_PTRACE</code></p>
 <p>docker run方法： <code>--cap-add SYS_PTRACE</code></p>
 <p>docker-compose方法：</p>
-<div class="highlight"><pre><span></span><span class="nt">cap_add</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">cap_add</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">SYS_PTRACE</span>
 </pre></div>
       </div>

@@ -204,25 +204,25 @@
       <div class="col-lg-12"><h3>docker example 1.2.0 ftp</h3>
 <hr>
 <h3>1. ftp</h3>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3.1&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">ftp</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">PUBLICHOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
-      <span class="nt">FTP_USER_NAME</span><span class="p">:</span> <span class="s">&quot;ftpuser&quot;</span>
-      <span class="nt">FTP_USER_PASS</span><span class="p">:</span> <span class="s">&quot;ftppass&quot;</span>
-      <span class="nt">FTP_USER_HOME</span><span class="p">:</span> <span class="s">&quot;/var/www/html&quot;</span>
-      <span class="nt">FTP_USER_UID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="nt">FTP_USER_GID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="nt">FTP_PASSIVE_PORTS</span><span class="p">:</span> <span class="s">&quot;30000:30050&quot;</span>
-      <span class="nt">FTP_MAX_CONNECTIONS</span><span class="p">:</span> <span class="s">&quot;20&quot;</span>
-      <span class="nt">FTP_MAC_CLIENTS</span><span class="p">:</span> <span class="s">&quot;10&quot;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3.1&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">PUBLICHOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_NAME</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftpuser&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_PASS</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftppass&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_HOME</span><span class="p p-Indicator">:</span> <span class="s">&quot;/var/www/html&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_UID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_GID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_PASSIVE_PORTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;30000:30050&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_MAX_CONNECTIONS</span><span class="p p-Indicator">:</span> <span class="s">&quot;20&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_MAC_CLIENTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;10&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/ftp/userdata:/etc/pure-ftpd/passwd</span>
-    <span class="nt">ports</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;21:21&quot;</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;30000-30050:30000-30050&quot;</span>
 
@@ -232,38 +232,38 @@
 <span class="c1">#       name: production</span>
 </pre></div>
 <h3>2. ftp+nginx</h3>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3.1&#39;</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3.1&#39;</span>
 
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">nginx</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.16.1</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:1.16.1</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/nginx/conf.d:/etc/nginx/conf.d</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/nginx/ssl:/etc/nginx/ssl</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/nginx/logs:/etc/nginx/logs</span>
-    <span class="nt">ports</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;80:80&quot;</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;443:443&quot;</span>
 
-  <span class="nt">ftp</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">PUBLICHOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
-      <span class="nt">FTP_USER_NAME</span><span class="p">:</span> <span class="s">&quot;ftpuser&quot;</span>
-      <span class="nt">FTP_USER_PASS</span><span class="p">:</span> <span class="s">&quot;ftppass&quot;</span>
-      <span class="nt">FTP_USER_HOME</span><span class="p">:</span> <span class="s">&quot;/var/www/html&quot;</span>
-      <span class="nt">FTP_USER_UID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="nt">FTP_USER_GID</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="nt">FTP_PASSIVE_PORTS</span><span class="p">:</span> <span class="s">&quot;30000:30050&quot;</span>
-      <span class="nt">FTP_MAX_CONNECTIONS</span><span class="p">:</span> <span class="s">&quot;20&quot;</span>
-      <span class="nt">FTP_MAC_CLIENTS</span><span class="p">:</span> <span class="s">&quot;10&quot;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">PUBLICHOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_NAME</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftpuser&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_PASS</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftppass&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_HOME</span><span class="p p-Indicator">:</span> <span class="s">&quot;/var/www/html&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_UID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_GID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_PASSIVE_PORTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;30000:30050&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_MAX_CONNECTIONS</span><span class="p p-Indicator">:</span> <span class="s">&quot;20&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">FTP_MAC_CLIENTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;10&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/ftp/userdata:/etc/pure-ftpd/passwd</span>
-    <span class="nt">ports</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;21:21&quot;</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;30000-30050:30000-30050&quot;</span>
 
@@ -427,6 +427,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
                 1.2.4 docker容器安装microsoft truetype 字体
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.5_Dockerfile_example.html">
+                1.2.5 dockerfile 示例
               </a>
              </li>
              <li class="toctree-l2">

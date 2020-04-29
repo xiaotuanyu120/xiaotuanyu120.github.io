@@ -166,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -199,13 +204,13 @@
       <div class="col-lg-12"><h3>1.6.1: LOGIC - 根据条件手动设定变量 - if else and when</h3>
 <h3>1. set_fact基本用法</h3>
 <div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set_fact basic usage</span>
-  <span class="nt">set_fact</span><span class="p">:</span>
-    <span class="nt">fact1</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fact1_value</span>
-    <span class="nt">php_ver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.6.40</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">set_fact basic usage</span>
+  <span class="l l-Scalar l-Scalar-Plain">set_fact</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">fact1</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">fact1_value</span>
+    <span class="l l-Scalar l-Scalar-Plain">php_ver</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5.6.40</span>
 
-<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
-    <span class="nt">msg</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">fact1</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">debug</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">msg</span><span class="p p-Indicator">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">fact1</span><span class="nv"> </span><span class="s">}}&quot;</span>
 </pre></div>
 <h3>2. 根据简单条件来设定</h3>
 <p>此处逻辑设定</p>
@@ -254,35 +259,35 @@ when: lnmp_is_running is not defined</p>
 </ul>
 <p>增加一个前提，我们提前设定一个空列表<code>failed_services</code></p>
 <div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="nt">failed_services</span><span class="p">:</span> <span class="p p-Indicator">[]</span>
+<span class="l l-Scalar l-Scalar-Plain">failed_services</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[]</span>
 </pre></div>
 <p>此时上面的yaml就要改动一下</p>
 <div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">populate service facts</span>
-  <span class="nt">service_facts</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">populate service facts</span>
+  <span class="l l-Scalar l-Scalar-Plain">service_facts</span><span class="p p-Indicator">:</span>
 
 <span class="c1"># 值得注意的是</span>
 <span class="c1"># 判断条件里面，增加判断lnmp_is_running是否被定义，是为了避免变量被重复覆盖</span>
 <span class="c1"># 导致循环中只有最后一个元素的运行状态决定了lnmp_is_running的值得情况</span>
 <span class="c1"># 所以这里增加判断，只要lnmp_is_running被定义了，其他元素就可以skip了</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running false</span>
-  <span class="nt">set_fact</span><span class="p">:</span>
-    <span class="nt">lnmp_is_running</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}false</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{lnmp_is_running}}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}&quot;</span>
-    <span class="nt">failed_services</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">ports_listen_check</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">[&#39;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">item.port</span><span class="nv"> </span><span class="s">}}&#39;]&quot;</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_facts.services[&#39;\{\{item.name}}.service&#39;].state != &#39;running&#39;</span>
-  <span class="nt">with_items</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">[{&#39;name&#39;:&#39;php-fpm&#39;,&#39;port&#39;:&#39;81&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;mysql&#39;,&#39;port&#39;:&#39;3306&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;nginx&#39;,&#39;port&#39;:&#39;80&#39;}]</span><span class="nv"> </span><span class="s">}}&quot;</span>
-  <span class="nt">ignore_errors</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running false</span>
+  <span class="l l-Scalar l-Scalar-Plain">set_fact</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">lnmp_is_running</span><span class="p p-Indicator">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}false</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{lnmp_is_running}}</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">%</span><span class="nv"> </span><span class="s">endif</span><span class="nv"> </span><span class="err">\</span><span class="s">%</span><span class="err">\</span><span class="s">}&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">failed_services</span><span class="p p-Indicator">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">ports_listen_check</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">[&#39;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">item.port</span><span class="nv"> </span><span class="s">}}&#39;]&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_facts.services[&#39;\{\{item.name}}.service&#39;].state != &#39;running&#39;</span>
+  <span class="l l-Scalar l-Scalar-Plain">with_items</span><span class="p p-Indicator">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">[{&#39;name&#39;:&#39;php-fpm&#39;,&#39;port&#39;:&#39;81&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;mysql&#39;,&#39;port&#39;:&#39;3306&#39;},</span><span class="nv"> </span><span class="s">{&#39;name&#39;:&#39;nginx&#39;,&#39;port&#39;:&#39;80&#39;}]</span><span class="nv"> </span><span class="s">}}&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">ignore_errors</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
 
 <span class="c1"># 值得注意的是</span>
 <span class="c1"># 如果when的条件全部元素都未达成，lnmp_is_running是不会被设定的，尝试使用它时会报错该变量未定义</span>
 <span class="c1"># 所以上面使用了两个when来达到if else的效果</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running true</span>
-  <span class="nt">set_fact</span><span class="p">:</span>
-    <span class="nt">lnmp_is_running</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lnmp_is_running is not defined</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">set lnmp_is_running true</span>
+  <span class="l l-Scalar l-Scalar-Plain">set_fact</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">lnmp_is_running</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">lnmp_is_running is not defined</span>
 
-<span class="p p-Indicator">-</span> <span class="nt">debug</span><span class="p">:</span>
-    <span class="nt">msg</span><span class="p">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">debug</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">msg</span><span class="p p-Indicator">:</span> <span class="s">&quot;</span><span class="err">\</span><span class="s">{</span><span class="err">\</span><span class="s">{</span><span class="nv"> </span><span class="s">lnmp_is_running</span><span class="nv"> </span><span class="s">}}&quot;</span>
 </pre></div>
       </div>
      </div>
@@ -376,6 +381,11 @@ when: lnmp_is_running is not defined</p>
              <a href="/go" role="menuitem" tabindex="-1">
               go
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -385,15 +395,15 @@ when: lnmp_is_running is not defined</p>
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/jenkins">
-              jenkins
+            <a class="reference internal" href="/devops/git">
+              git
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/devops/git">
-              git
+            <a class="reference internal" href="/devops/sonarqube">
+              sonarqube
             </a>
             <ul>
             </ul>
@@ -516,12 +526,12 @@ when: lnmp_is_running is not defined</p>
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
+              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
                 1.3.12: playbook with_items and register
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">
+              <a class="reference internal" href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">
                 1.3.12: playbook with_items and register
               </a>
              </li>
@@ -571,6 +581,11 @@ when: lnmp_is_running is not defined</p>
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/devops/ansible/1.6.3_logic_failed_when.html">
+                1.6.3: LOGIC-faied when
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/devops/ansible/2.1.0_example_ansible_tomcat_standalone.html">
                 2.1.0: example tomcat启动脚本
               </a>
@@ -615,6 +630,27 @@ when: lnmp_is_running is not defined</p>
                 ansible: handler
               </a>
              </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/arthas">
+              arthas
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/jenkins">
+              jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>

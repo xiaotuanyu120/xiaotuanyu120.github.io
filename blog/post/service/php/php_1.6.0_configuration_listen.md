@@ -1,7 +1,7 @@
 ---
 title: php 1.6.0: PHP配置 - listen
 date: 2016-01-14 14:34:00
-categories: linux/php
+categories: service/php
 tags: [php]
 ---
 ### php 1.6.0: PHP配置 - listen

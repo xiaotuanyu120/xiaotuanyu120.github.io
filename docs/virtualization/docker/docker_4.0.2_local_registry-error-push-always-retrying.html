@@ -221,13 +221,13 @@ e0a42524f665: Pushing [==================================================&gt;]  
 blob upload unknown</code></pre>
 <h3>1. 解决方法</h3>
 <p>增加一个环境变量<code>REGISTRY_HTTP_HOST=http://extreg.blablabla.com:81</code></p>
-<div class="highlight"><pre><span></span><span class="nt">reg</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;registry:2&#39;</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">reg</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">environment</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">reg</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="s">&#39;registry:2&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">reg</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">REGISTRY_HTTP_HOST=http://extreg.blablabla.com:81</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;/data/docker/data/reg:/var/lib/registry&#39;</span>
 </pre></div>
 <ul>
@@ -391,6 +391,11 @@ blob upload unknown</code></pre>
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.5_Dockerfile_example.html">
+                1.2.5 dockerfile 示例
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
                 2.1.1 镜像-查找与下载镜像
               </a>
@@ -441,6 +446,11 @@ blob upload unknown</code></pre>
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.4.0_example_error_alphine_java_not_found.html">
+                3.4.0 alpine oracle java no such file or directory error
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
                 4.0.0 docker 本地registry
               </a>
@@ -463,6 +473,16 @@ blob upload unknown</code></pre>
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
                 5.2.0 网络：docker中的iptables
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_example_1.1.0_mysql.html">
+                docker example 1.1.0 mysql
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_example_1.2.0_ftp.html">
+                docker example 1.2.0 ftp
               </a>
              </li>
              <li class="toctree-l2">

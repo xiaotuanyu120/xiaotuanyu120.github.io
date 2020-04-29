@@ -166,6 +166,11 @@
               go
              </a>
             </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -236,26 +241,26 @@ check_interval = 0
     [runners.cache.gcs]</code></pre>
 <blockquote><p>根据<a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html">gitlab CI using_docker_build</a>里面的说明，必须要使用privileged模式</p>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-private-registry&gt;/base-dind-build</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;your-private-registry&gt;/base-dind-build</span>
 
-<span class="nt">stages</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">stages</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
 
-<span class="nt">variables</span><span class="p">:</span>
-  <span class="nt">DOCKER_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">unix:///var/run/docker.sock</span>
-  <span class="nt">DOCKER_DRIVER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">overlay2</span>
+<span class="l l-Scalar l-Scalar-Plain">variables</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">DOCKER_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">unix:///var/run/docker.sock</span>
+  <span class="l l-Scalar l-Scalar-Plain">DOCKER_DRIVER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">overlay2</span>
 
-<span class="nt">before_script</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">before_script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker login -u &lt;user&gt; -p &lt;password&gt; &lt;your-private-registry&gt;</span>
 
-<span class="nt">build</span><span class="p">:</span>
-  <span class="nt">stage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
-  <span class="nt">script</span><span class="p">:</span>
+<span class="l l-Scalar l-Scalar-Plain">build</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">stage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">build</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">npm install</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">npm run build:prod</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker build --cache-from &lt;your-private-registry&gt;/vue:latest -t &lt;your-private-registry&gt;/vue:$CI_COMMIT_SHA -t &lt;your-private-registry&gt;/vue:latest .</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">docker push &lt;your-private-registry&gt;/luckyio-vue:$CI_COMMIT_SHA</span>
-  <span class="nt">only</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">only</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">manual</span>
 </pre></div>
@@ -357,6 +362,11 @@ check_interval = 0
              <a href="/go" role="menuitem" tabindex="-1">
               go
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/android" role="menuitem" tabindex="-1">
+              android
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -423,6 +433,11 @@ check_interval = 0
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/git_1.8.0_add_link_file.html">
                 git: 1.8.0 添加链接文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/git_1.9.0_combine_commits_using_rebase.html">
+                git: 1.9.0 使用rebase合并多个commit
               </a>
              </li>
              <li class="toctree-l2">
@@ -508,6 +523,13 @@ check_interval = 0
            <li class="toctree-l1">
             <a class="reference internal" href="/devops/jenkins">
               jenkins
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/devops/mattermost">
+              mattermost
             </a>
             <ul>
             </ul>

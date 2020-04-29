@@ -1,7 +1,7 @@
 ---
 title: php 1.1.0: 查看环境信息
 date: 2015-01-12 05:47:00
-categories: linux/php
+categories: service/php
 tags: [php]
 ---
 ### php 1.1.0: 查看环境信息

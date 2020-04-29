@@ -201,75 +201,52 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>php 1.2.0: PHP配置 - access,slow,error 日志</h3>
+      <div class="col-lg-12"><h3>php 1.4.0: 性能调优</h3>
 <hr>
-<h3>0. php错误日志配置</h3>
-<div class="highlight"><pre><span></span><span class="c1">## 如果使用了php-fpm</span>
-vim php-fpm.conf
-************************************
-<span class="o">[</span>global<span class="o">]</span>
-<span class="nv">error_log</span> <span class="o">=</span> log/error_log
+<h3>1. backlog（影响并发数目）</h3>
+<p>backlog的意思是，超出目前程序对于请求处理能力最大值，之后可以准许排队的请求数量。对于linux+nginx+php的组合来讲，需要合理的搭配这三者的处理能力（处理中的连接数最大值+backlog排队数值），综合调优。</p>
+<p>nginx的backlog配置(nginx.conf)</p>
 
-<span class="o">[</span>www<span class="o">]</span>
-<span class="nv">catch_workers_output</span> <span class="o">=</span> yes
-************************************
-
-
-vim php.ini
-************************************
-<span class="c1">## 是否在浏览器展示错误信息</span>
-<span class="nv">display_error</span><span class="o">=</span>off
-<span class="c1">## 用于处理web服务器返回500时，查看进一步的错误信息</span>
-
-<span class="c1">## 是否开启日志记录</span>
-<span class="nv">log_errors</span><span class="o">=</span>on
-
-<span class="c1">## 错误日志的记录路径       </span>
-<span class="nv">error_log</span><span class="o">=</span>/path/to/logfile
-
-<span class="c1">## 错误日志的记录级别</span>
-<span class="nv">error_reporting</span> <span class="o">=</span> E_ALL <span class="p">&amp;</span> ~E_NOTICE
-
-<span class="c1">## 错误级别参考</span>
-E_ALL             所有错误和警告（除E_STRICT外）
-E_ERROR           致命的错误。脚本的执行被暂停。
-E_RECOVERABLE_ERROR    大多数的致命错误。
-E_WARNING         非致命的运行时错误，只是警告，但执行不会停止。
-E_PARSE           编译时解析错误，解析错误应该只由分析器生成。
-E_NOTICE          脚本运行时产生的提醒（往往是我们写的脚本里面的一些bug，比如某个变量没有定义），这个错误不会导致任务中断。
-E_STRICT          脚本运行时产生的提醒信息，包含php抛出的让我们要如何修改的建议信息。
-E_CORE_ERROR      在php启动后发生的致命性错误
-E_CORE_WARNING    在php启动后发生的非致命性错误，也就是警告信息
-E_COMPILE_ERROR   php编译时产生的致命性错误
-E_COMPILE_WARNING php编译时产生的警告信息
-E_USER_ERROR      用户生成的错误
-E_USER_WARNING    用户生成的警告
-E_USER_NOTICE     用户生成的提醒
-
-<span class="p">&amp;</span> 表示并且
-~ 表示非
-<span class="p">|</span> 表示或者
-************************************
-<span class="c1"># 需要确认指定的路径php daemon的用户有写权限</span>
-
-<span class="c1">## PS：修改配置之后，重启php服务和web服务器</span>
-</pre></div>
-<blockquote><p>假如你做了上面的操作，依然没有错误日志文件，或者没有内容，那你就需要去研究一下php文件内容中的这个设定了：error_reporting(0) (这个好坑)</p>
+<pre><code>listen 80  backlog=8192;
+listen 443 backlog=8192;</code></pre>
+<blockquote><p>默认值<code>-1</code>，即处理中的连接队列满了就拒绝; 处理中的连接队列最大值请查看<code>worker_connections</code>配置</p>
+<p>PS: <code>最大连接数</code>+<code>backlog</code>不能一味追求过大，要考虑后端php的处理能力，也要考虑linux系统的资源情况（主要是内存）</p>
 </blockquote>
-<hr>
-<h3>1. php慢日志配置</h3>
-<p>php-fpm.conf中配置</p>
-<div class="highlight"><pre><span></span><span class="c1">## 慢日志路径和超时时间设置</span>
-<span class="nv">slowlog</span> <span class="o">=</span> /usr/local/php/logs/slow.log
-<span class="nv">request_slowlog_timeout</span> <span class="o">=</span> <span class="m">1</span>
+<p>php-fpm的backlog配置(php-fpm.conf)</p>
+
+<pre><code>listen.backlog = 8192</code></pre>
+<blockquote><p>关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看<a href="service/php/php_1.5.0_configuration_process.html">php进程管理配置说明</a></p>
+<p>PS: php-fpm的backlog不能一味追求大，需要看硬件处理水平而定。</p>
+<ul>
+<li>如果<code>最大进程数</code>+<code>backlog</code>设置过大，php的处理性能跟不上，超出了nginx等待时间，则会返回504，而php会报错broken pipeline</li>
+<li>如果<code>最大进程数</code>+<code>backlog</code>设置过小，nginx的请求过多，则会返回502</li>
+</ul>
+</blockquote>
+<p>linux系统内核配置(/etc/sysctl.conf)</p>
+
+<pre><code># 系统全局参数：每一个listen() socket的最大backlog上限
+net.core.somaxconn = 655360
+
+# 每个网络接口，允许后台排队队列数据包的最大数目
+net.core.netdev_max_backlog = 1048576
+
+# 尚未收到客户端确认信息的连接请求的最大值
+net.ipv4.tcp_max_syn_backlog = 1048576</code></pre>
+<p>查看效果</p>
+<div class="highlight"><pre><span></span><span class="c1"># 修改完之后检查状态</span>
+ss -ln
+State      Recv-Q Send-Q        Local Address:Port          Peer Address:Port
+LISTEN     <span class="m">0</span>      <span class="m">8192</span>              <span class="m">127</span>.0.0.1:9000                     *:*
+LISTEN     <span class="m">0</span>      <span class="m">8192</span>                      *:80                       *:*
 </pre></div>
 <hr>
-<h3>2. php日志配置</h3>
-<p>php-fpm.conf中配置</p>
-<div class="highlight"><pre><span></span><span class="c1"># 以下可在不同的pool中配置</span>
-access.log <span class="o">=</span> /usr/local/php7/var/log/pool.access.log
-access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;%m %r%Q%q\&quot; %s %f %{mili}d %{kilo}M %C%%&quot;</span>
-</pre></div>
+<h3>2. 系统环境优化</h3>
+<p>除了backlog是为了应对突发能力的额外队列之外</p>
+<ul>
+<li>因为每个tcp连接都是一个文件，所以需要优化系统的最大文件打开数</li>
+<li>还因为系统对进程数量有限制，还需要优化系统的进程数量上限。</li>
+</ul>
+<p>此处的配置，可以参考<a href="linux/advance/linux_optimize_ulimit.html">linux limit 配置</a></p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -376,73 +353,85 @@ access.format <span class="o">=</span> <span class="s2">&quot;%R - %u %t \&quot;
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
+            <a class="reference internal" href="/service/nginx">
+              nginx
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
+            <a class="reference internal" href="/service/proxy">
+              proxy
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/php">
               php
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.1.0_check_php_env.html">
+              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
                 php 1.1.0: 查看环境信息
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.2.0_configuration_of_log.html">
+              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
                 php 1.2.0: PHP配置 - access,slow,error 日志
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.3.0_configuration_security.html">
+              <a class="reference internal" href="/service/php/php_1.3.0_configuration_security.html">
                 php 1.3.0: PHP配置 - 安全配置
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.4.0_configuration_concurrent_connection_tunning_with_nginx.html">
+              <a class="reference internal" href="/service/php/php_1.4.0_configuration_concurrent_connection_tunning_with_nginx.html">
                 php 1.4.0: 性能调优
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.5.0_configuration_process.html">
+              <a class="reference internal" href="/service/php/php_1.5.0_configuration_process.html">
                 php 1.5.0: PHP配置 - 进程数调整
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/php/php_1.6.0_configuration_listen.html">
+              <a class="reference internal" href="/service/php/php_1.6.0_configuration_listen.html">
                 php 1.6.0: PHP配置 - listen
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
+                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
               </a>
              </li>
             </ul>

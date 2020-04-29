@@ -1,7 +1,7 @@
 ---
 title: php 1.5.0: PHP配置 - 进程数调整
 date: 2016-01-11 09:59:00
-categories: linux/php
+categories: service/php
 tags: [php]
 ---
 ### php 1.5.0: PHP配置 - 进程数调整

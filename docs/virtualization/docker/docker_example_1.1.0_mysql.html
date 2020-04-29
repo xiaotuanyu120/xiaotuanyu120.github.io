@@ -204,19 +204,19 @@
       <div class="col-lg-12"><h3>docker example 1.1.0 mysql</h3>
 <hr>
 <h3>1. mysql</h3>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">db</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql:5.7.29</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
-    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--default-authentication-plugin=mysql_native_password</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="s">&quot;root_password&quot;</span>
-      <span class="nt">MYSQL_DATABASE</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database_name</span>
-      <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database_user</span>
-      <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="s">&quot;database_password&quot;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mysql:5.7.29</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">--default-authentication-plugin=mysql_native_password</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ROOT_PASSWORD</span><span class="p p-Indicator">:</span> <span class="s">&quot;root_password&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_DATABASE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database_name</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database_user</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span><span class="p p-Indicator">:</span> <span class="s">&quot;database_password&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;/data/docker/data/db/mysql:/var/lib/mysql&#39;</span>
 
 <span class="c1"># networks:</span>
@@ -225,35 +225,35 @@
 <span class="c1">#       name: production</span>
 </pre></div>
 <h3>2. mysql-replication</h3>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">db-master</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bergerx/mysql-replication:5.7</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db-master</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">MYSQL_ALLOW_EMPTY_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-      <span class="nt">REPLICATION_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database-user</span>
-      <span class="nt">REPLICATION_PASSWORD</span><span class="p">:</span> <span class="s">&quot;database-password&quot;</span>
-    <span class="nt">ports</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db-master</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bergerx/mysql-replication:5.7</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db-master</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ALLOW_EMPTY_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+      <span class="l l-Scalar l-Scalar-Plain">REPLICATION_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database-user</span>
+      <span class="l l-Scalar l-Scalar-Plain">REPLICATION_PASSWORD</span><span class="p p-Indicator">:</span> <span class="s">&quot;database-password&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;33063:3306&#39;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;/data/docker/data/db/mysql/master:/var/lib/mysql&#39;</span>
-  <span class="nt">db-slave</span><span class="p">:</span>
-    <span class="nt">depends_on</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">db-slave</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db-master</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bergerx/mysql-replication:5.7</span>
-    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db-slave</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">MYSQL_ALLOW_EMPTY_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-      <span class="nt">MASTER_HOST</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">db-master</span>
-      <span class="nt">MASTER_PORT</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3306</span> 
-      <span class="nt">REPLICATION_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">database-user</span>
-      <span class="nt">REPLICATION_PASSWORD</span><span class="p">:</span> <span class="s">&quot;database-password&quot;</span>
-    <span class="nt">ports</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bergerx/mysql-replication:5.7</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db-slave</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">MYSQL_ALLOW_EMPTY_PASSWORD</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+      <span class="l l-Scalar l-Scalar-Plain">MASTER_HOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">db-master</span>
+      <span class="l l-Scalar l-Scalar-Plain">MASTER_PORT</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3306</span> 
+      <span class="l l-Scalar l-Scalar-Plain">REPLICATION_USER</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database-user</span>
+      <span class="l l-Scalar l-Scalar-Plain">REPLICATION_PASSWORD</span><span class="p p-Indicator">:</span> <span class="s">&quot;database-password&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;33073:3306&#39;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&#39;/data/docker/data/db/mysql/slave:/var/lib/mysql&#39;</span>
 
 <span class="c1"># networks:</span>
@@ -431,6 +431,11 @@ mysql &gt; show slave status<span class="se">\G</span>
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.5_Dockerfile_example.html">
+                1.2.5 dockerfile 示例
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
                 2.1.1 镜像-查找与下载镜像
               </a>
@@ -513,6 +518,11 @@ mysql &gt; show slave status<span class="se">\G</span>
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker_example_1.1.0_mysql.html">
                 docker example 1.1.0 mysql
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_example_1.2.0_ftp.html">
+                docker example 1.2.0 ftp
               </a>
              </li>
              <li class="toctree-l2">

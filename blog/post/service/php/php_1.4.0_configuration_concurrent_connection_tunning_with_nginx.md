@@ -1,7 +1,7 @@
 ---
 title: php 1.4.0: 性能调优
 date: 2015-12-10 17:24:00
-categories: linux/php
+categories: service/php
 tags: [php,linux,nginx]
 ---
 ### php 1.4.0: 性能调优
