@@ -215,7 +215,7 @@ listen 443 backlog=8192;</code></pre>
 <p>php-fpm的backlog配置(php-fpm.conf)</p>
 
 <pre><code>listen.backlog = 8192</code></pre>
-<blockquote><p>关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看<a href="service/php/php_1.5.0_configuration_process.html">php进程管理配置说明</a></p>
+<blockquote><p>关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看<a href="/service/php/php_1.5.0_configuration_process.html">php进程管理配置说明</a></p>
 <p>PS: php-fpm的backlog不能一味追求大，需要看硬件处理水平而定。</p>
 <ul>
 <li>如果<code>最大进程数</code>+<code>backlog</code>设置过大，php的处理性能跟不上，超出了nginx等待时间，则会返回504，而php会报错broken pipeline</li>
@@ -246,7 +246,7 @@ LISTEN     <span class="m">0</span>      <span class="m">8192</span>            
 <li>因为每个tcp连接都是一个文件，所以需要优化系统的最大文件打开数</li>
 <li>还因为系统对进程数量有限制，还需要优化系统的进程数量上限。</li>
 </ul>
-<p>此处的配置，可以参考<a href="linux/advance/linux_optimize_ulimit.html">linux limit 配置</a></p>
+<p>此处的配置，可以参考<a href="/linux/advance/linux_optimize_ulimit.html">linux limit 配置</a></p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -430,8 +430,28 @@ LISTEN     <span class="m">0</span>      <span class="m">8192</span>            
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
+                php error: 不间断502问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_error_compile_process.html">
+                php error: 编译过程中的错误
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
                 php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
+                php: 安装zend guard loader
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_choose_mysql_driver.html">
+                php: 编译时增加mysql驱动模块
               </a>
              </li>
             </ul>

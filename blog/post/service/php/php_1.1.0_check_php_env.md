@@ -34,7 +34,7 @@ EOF
 通过浏览器访问这个文件（前提你必须在web服务器上做好php解析）  
 ![](/static/images/docs/service/php/phpinfo.png)
 
-> PS: 关于apache使用php.ini的位置查看说明，可以参照[apache配置基础中的第五部分](../apache/1.1.0_apache_config_basic.html)
+> PS: 关于apache使用php.ini的位置查看说明，可以参照[apache配置基础中的第五部分](/service/apache/1.1.0_apache_config_basic.html)
 
 #### 3) 模块查看
 ``` bash

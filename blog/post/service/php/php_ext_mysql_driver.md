@@ -1,10 +1,10 @@
 ---
-title: php: mysql驱动
+title: php extensions: 编译时增加mysql驱动模块
 date: 2016-12-19 15:37:00
-categories: service/lnmp
-tags: [linux,lnmp]
+categories: service/php
+tags: [php,mysql]
 ---
-### php: mysql驱动mysqlnd、libmysqlclient
+### php extensions: 编译时增加mysql驱动模块
 
 ---
 

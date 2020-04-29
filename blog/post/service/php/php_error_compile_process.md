@@ -1,8 +1,13 @@
-PHP: 编译报错
-2016年6月4日
-8:54
- 
-安装编译php时出现以下错误：
+---
+title: php error: 编译过程中的错误
+date: 2016-06-04 08:54:00
+categories: service/php
+tags: [php,make]
+---
+### php error: 编译过程中的错误
+
+### 1. 安装编译php时出现以下错误：
+``` bash
 ext/gd/libgd/.libs/gdkanji.o: In function `do_convert':
 /root/php-5.2.12/ext/gd/libgd/gdkanji.c:350: undefined reference to `libiconv_open'
 /root/php-5.2.12/ext/gd/libgd/gdkanji.c:365: undefined reference to `libiconv'
@@ -61,16 +66,39 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In function `convert':
 /root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:101: undefined reference to `libiconv_close'
 collect2: ld returned 1 exit status
 make: *** [sapi/cli/php] ?.. 1
+```
  
- 
-处理方法：
-./configure ............
- 
+处理方法1
+``` bash
+./configure ...
+
 vi Makefile
-找到下面这行：
+# 找到下面这行： 
+# EXTRA_LIBS = -lcrypt ... -liconv
+# 在最后添加-liconv
  
-EXTRA_LIBS = -lcrypt ...
- 
-在最后添加-liconv
- 
-保存后make通过；make install通过。
+make
+make install
+```
+
+处理方法2
+``` bash
+make ZEND_EXTRA_LIBS='-liconv'
+make install
+```
+
+### 2. /usr/bin/ld: cannot find -lltdl
+``` bash
+yum install libtool-ltdl-devel
+```
+
+### 3. error: Cannot find ldap libraries in /usr/lib
+``` bash
+yum install openldap openldap-clients openldap-devel openldap-servers
+cp -frp /usr/lib64/libldap* /usr/lib/
+```
+
+### 4. configure: error: Cannot find MySQL header files under yes.
+``` bash
+yum install mysql-devel
+```

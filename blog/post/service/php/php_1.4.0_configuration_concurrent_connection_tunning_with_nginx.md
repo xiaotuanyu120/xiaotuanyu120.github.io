@@ -24,7 +24,7 @@ php-fpm的backlog配置(php-fpm.conf)
 ```
 listen.backlog = 8192
 ```
-> 关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看[php进程管理配置说明](service/php/php_1.5.0_configuration_process.html)
+> 关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看[php进程管理配置说明](/service/php/php_1.5.0_configuration_process.html)
 
 > PS: php-fpm的backlog不能一味追求大，需要看硬件处理水平而定。
 > - 如果`最大进程数`+`backlog`设置过大，php的处理性能跟不上，超出了nginx等待时间，则会返回504，而php会报错broken pipeline
@@ -58,4 +58,4 @@ LISTEN     0      8192                      *:80                       *:*
 - 因为每个tcp连接都是一个文件，所以需要优化系统的最大文件打开数
 - 还因为系统对进程数量有限制，还需要优化系统的进程数量上限。
 
-此处的配置，可以参考[linux limit 配置](linux/advance/linux_optimize_ulimit.html)
+此处的配置，可以参考[linux limit 配置](/linux/advance/linux_optimize_ulimit.html)
