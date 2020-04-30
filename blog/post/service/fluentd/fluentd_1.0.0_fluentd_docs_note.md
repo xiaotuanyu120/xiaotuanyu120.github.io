@@ -1,7 +1,7 @@
 ---
 title: fluentd 1.0.0 读“fluentd官方文档”笔记
 date: 2017-11-27 15:59:00
-categories: linux/service
+categories: service/fluentd
 tags: [fluentd]
 ---
 ### fluentd 1.0.0 读“fluentd官方文档”笔记
