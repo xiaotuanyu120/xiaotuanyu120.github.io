@@ -1,10 +1,10 @@
 ---
-title: mysql: docker-compose(单实例和主从)
+title: mysql 1.0.1: docker-compose(单实例和主从)
 date: 2020-04-21 09:08:00
 categories: database/mysql
 tags: [docker,docker-compose,mysql]
 ---
-### mysql: docker-compose(单实例和主从)
+### mysql 1.0.1: docker-compose(单实例和主从)
 
 ---
 
