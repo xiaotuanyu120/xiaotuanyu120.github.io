@@ -201,125 +201,79 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>svn: 1.2.0 centos6下源码安装svn1.6.19</h3>
+<hr>
+<h3>0. svn的安装</h3>
+<p>公司的svn是使用源码安装，使用svnserve命令启动，和我以前使用httpd+svn的方式有所不同，重新搞一次加深印象</p>
+<hr>
+<h3>1. 环境准备</h3>
+<div class="highlight"><pre><span></span>yum install epel-release -y
+yum groupinstall base <span class="s2">&quot;Development tools&quot;</span> -y
+<span class="c1"># 为了解决&quot;/usr/bin/ld: cannot find -lexpat&quot;问题</span>
+yum install expat-devel
+</pre></div>
+<hr>
+<h3>2. 安装apr</h3>
+<p>版本号会更新，要根据安装时间来定</p>
+<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-1.5.2.tar.gz
+tar zxf apr-1.5.2.tar.gz
+<span class="nb">cd</span> apr-1.5.2
+./configure --prefix<span class="o">=</span>/usr/local/apr
+make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<hr>
+<h3>3. 安装apr-iconv</h3>
+<p>版本号会更新，要根据安装时间来定</p>
+<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-iconv-1.2.1.tar.gz
+tar zxf apr-iconv-1.2.1.tar.gz
+<span class="nb">cd</span> apr-iconv-1.2.1
+./configure --prefix<span class="o">=</span>/usr/local/apr-iconv --with-apr<span class="o">=</span>/usr/local/apr
+make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<hr>
+<h3>4. 安装apr-util</h3>
+<p>版本号会更新，要根据安装时间来定</p>
+<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-util-1.5.4.tar.gz
+tar zxf apr-util-1.5.4.tar.gz
+<span class="nb">cd</span> ../apr-util-1.5.4
+./configure --prefix<span class="o">=</span>/usr/local/apr-util --with-apr<span class="o">=</span>/usr/local/apr --with-apr-iconv<span class="o">=</span>/usr/local/apr-iconv/bin/apriconv
+make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<hr>
+<h3>5. 安装zlib</h3>
+<div class="highlight"><pre><span></span>wget http://nchc.dl.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz
+tar zxf zlib-1.2.8.tar.gz
+<span class="nb">cd</span> zlib-1.2.8
+./configure --prefix<span class="o">=</span>/usr/local/zlib
+make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<hr>
+<h3>6. 拷贝sqlite3.c文件</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 为了解决sqlite3缺少的问题，提前拷贝sqlite3.c到svn源码中</span>
+wget http://www.sqlite.org/2016/sqlite-amalgamation-3150000.zip
+wget http://archive.apache.org/dist/subversion/subversion-1.6.19.tar.gz
+unzip sqlite-amalgamation-3150000.zip
+tar zxf subversion-1.6.19.tar.gz
+mkdir subversion-1.6.19/sqlite-amalgamation
+cp sqlite-amalgamation-3150000/sqlite3.c subversion-1.6.19/sqlite-amalgamation
+</pre></div>
+<hr>
+<h3>7. 安装svn1.6.19</h3>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> subversion-1.6.19
+./configure --prefix<span class="o">=</span>/usr/local/svn --with-apr<span class="o">=</span>/usr/local/apr --with-apr-util<span class="o">=</span>/usr/local/apr-util --with-zlib<span class="o">=</span>/usr/local/zlib
+make <span class="o">&amp;&amp;</span> make install
+</pre></div>
+<hr>
+<h3>8. svn的相关配置文件</h3>
+<h4>1) 创建项目目录命令</h4>
+<div class="highlight"><pre><span></span>svnadmin create svndata
+</pre></div>
+<h4>2) 启动SVN命令</h4>
+<div class="highlight"><pre><span></span>svnserve -d -r /var/svn/repos
+</pre></div>
+<h4>3) svn配置说明</h4>
+<p>执行创建项目命令之后，会在svndata(举例项目目录为svndata)中产生初始化的相应文件，配置说明见<a href="http://linux.xiao5tech.com/linux/service/svn_1.3.0_configuration_basic.html">配置svn</a></p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -436,6 +390,31 @@
               svn
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -485,11 +464,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">

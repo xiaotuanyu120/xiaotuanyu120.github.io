@@ -201,125 +201,50 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>svn: 1.3.0 svn-配置基础</h3>
+<hr>
+<h3>0. svn安装</h3>
+<p>详细过程见<a href="http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html">源码安装svn</a></p>
+<hr>
+<h3>1. svn主配文件</h3>
+<p><code>conf/svnserve.conf</code></p>
+<div class="highlight"><pre><span></span><span class="o">[</span>general<span class="o">]</span>
+<span class="c1"># 配置匿名用户权限read，write，none</span>
+anon-access <span class="o">=</span> none
+<span class="c1"># 配置svn用户权限read，write，none</span>
+auth-access <span class="o">=</span> write
+<span class="c1"># 配置账号密码文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
+password-db <span class="o">=</span> passwd
+<span class="c1"># 配置权限控制文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
+authz-db <span class="o">=</span> authz
+</pre></div>
+<blockquote><p>详细配置说明及未介绍的sasl认证见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.svnserve.html#svn.serverconfig.svnserve.auth">文档</a></p>
+</blockquote>
+<hr>
+<h3>2. 账号密码文件</h3>
+<div class="highlight"><pre><span></span><span class="o">[</span>users<span class="o">]</span>
+<span class="nv">harry</span> <span class="o">=</span> foopassword
+<span class="nv">sally</span> <span class="o">=</span> barpassword
+</pre></div>
+<hr>
+<h3>3. 权限控制文件</h3>
+<div class="highlight"><pre><span></span><span class="o">[</span>groups<span class="o">]</span>
+<span class="nv">harry_and_sally</span> <span class="o">=</span> harry,sally
+
+<span class="c1"># 纯使用路径的话，回去在所有repo中匹配</span>
+<span class="o">[</span>/foo/bar<span class="o">]</span>
+<span class="nv">harry</span> <span class="o">=</span> rw
+* <span class="o">=</span>
+
+<span class="c1"># 使用repo_name:路径的话，只在repo_name中匹配路径</span>
+<span class="o">[</span>repository:/baz/fuz<span class="o">]</span>
+<span class="c1">#组名前面需要增加@</span>
+@harry_and_sally <span class="o">=</span> rw
+* <span class="o">=</span> r
+</pre></div>
+<blockquote><p>权限控制文件详细说明见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.pathbasedauthz.html">文档</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -436,6 +361,31 @@
               svn
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -485,11 +435,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">

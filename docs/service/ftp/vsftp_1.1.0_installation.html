@@ -201,125 +201,100 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>vsftp 1.1.0: vsftp 安装</h3>
+<hr>
+<h3>1. 安装vsftp</h3>
+<div class="highlight"><pre><span></span>yum install -y vsftpd db4-utils
+</pre></div>
+<h3>2. 准备vsftp使用的用户及密码文件</h3>
+<div class="highlight"><pre><span></span>useradd vsftpd-u -s /sbin/nologin
+
+cat <span class="s">&lt;&lt; EOF &gt; /etc/vsftpd/vsftpd_login</span>
+<span class="s">ftpa1                     #奇数行为用户名</span>
+<span class="s">*passwd1*                 #偶数行为密码</span>
+<span class="s">ftpa2</span>
+<span class="s">*passwd2*</span>
+<span class="s">EOF</span>
+
+<span class="c1">#保证安全性，设为只有root可读写</span>
+chmod <span class="m">600</span> /etc/vsftpd/vsftpd_login
+</pre></div>
+<h3>3. db_load命令来创建密码库文件</h3>
+<div class="highlight"><pre><span></span>db_load -T -t <span class="nb">hash</span> -f /etc/vsftpd/vsftpd_login /etc/vsftpd/vsftpd_login.db
+<span class="c1"># db_load工具是由db4-utils提供的</span>
+<span class="c1"># -T参数，让db_load将文本文件转换为db文件</span>
+<span class="c1"># -t参数，指定db库文件类型，此处指定为hash（哈希）</span>
+<span class="c1"># -f参数，指定input文件</span>
+<span class="c1"># 语法：db_load -T -t &lt;库类型&gt; -f &lt;input file&gt; &lt;output file&gt;</span>
+
+rm -rf /etc/vsftpd/vsftpd_login
+<span class="c1"># 保证安全性，设为只有root可读写</span>
+chmod <span class="m">600</span> /etc/vsftpd/vsftpd_login.db
+</pre></div>
+<h3>4. 配置/etc/pam.d/vsftpd和/etc/vsftpd/vsftpd.conf（全局设定）</h3>
+<div class="highlight"><pre><span></span>vi /etc/pam.d/vsftpd
+<span class="c1">## 将下面两行添加到最开头</span>
+<span class="c1">## 64系统是lib64，32位系统是lib</span>
+<span class="c1"># auth sufficient /lib64/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login</span>
+<span class="c1"># account sufficient /lib64/security/pam_userdb.so db=/etc/vsftpd/vsftpd_login</span>
+<span class="c1"># ......</span>
+
+vi /etc/vsftpd/vsftpd.conf
+<span class="c1">## 修改原内容</span>
+<span class="c1"># anonymous_enable=NO</span>
+<span class="c1"># anon_upload_enable=NO</span>
+<span class="c1"># anon_mkdir_write_enable=NO</span>
+<span class="c1">## 增加新内容</span>
+<span class="c1"># chroot_local_user=YES</span>
+<span class="c1"># guest_enable=YES</span>
+<span class="c1"># guest_username=vsftpd-u</span>
+<span class="c1"># virtual_use_local_privs=YES</span>
+<span class="c1"># user_config_dir=/etc/vsftpd/vsftpd_user_conf</span>
+</pre></div>
+<h3>5. 建立虚拟账户目录及独立配置文件（独立设定）</h3>
+<div class="highlight"><pre><span></span>mkdir /etc/vsftpd/vsftpd_user_conf
+<span class="nb">cd</span> /etc/vsftpd/vsftpd_user_conf/
+cat <span class="s">&lt;&lt; EOF &gt; ftpa1</span>
+<span class="s">local_root=/home/vsftpd-u/ftpa1</span>
+<span class="s">anonymous_enable=NO</span>
+<span class="s">write_enable=YES</span>
+<span class="s">local_umask=022</span>
+<span class="s">anon_upload_enable=NO</span>
+<span class="s">anon_mkdir_write_enable=NO</span>
+<span class="s">idle_session_timeout=600</span>
+<span class="s">data_connection_timeout=120</span>
+<span class="s">max_clients=10</span>
+<span class="s">max_per_ip=5</span>
+<span class="s">local_max_rate=50000</span>
+<span class="s">EOF</span>
+
+chown -R vsftpd-u:vsftpd-u /home/vsftpd-u
+</pre></div>
+<h3>6. Selinux 和 防火墙</h3>
+<p>selinux</p>
+<div class="highlight"><pre><span></span>setsebool -P allow_ftpd_full_access <span class="m">1</span>
+<span class="c1"># 如果未关闭selinux而且未设置ftp的访问权限，会报错500 oops cannot change directory</span>
+</pre></div>
+<p>Iptables</p>
+<ul>
+<li>passive mode添加iptables规则的方法</li>
+<li>vsftpd配置被动模式的端口范围
+<code>/etc/vsftpd/vsftpd.conf</code>
+<pre><code>listen_port=3721
+pasv_enable=YES
+pasv_min_port=3722
+pasv_max_port=3999
+port_enable=YES</code></pre>
+</li>
+</ul>
+<h1>iptables根据配置放行端口</h1>
+<div class="highlight"><pre><span></span>-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">3721</span> -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">3722</span>:3999 -j ACCEPT
+</pre></div>
+<h3>7. 启动vsftpd服务</h3>
+<div class="highlight"><pre><span></span>service vsftpd start
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -485,11 +460,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -525,6 +495,41 @@
               ftp
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.0.0_whats_ftp.html">
+                ftp: 1.0.0 ftp是什么？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.0_docker_compose.html">
+                ftp: 1.1.0 docker-compose with nginx
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.1.0_client.html">
+                ftp: 1.1.0 客户端lftp
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.1_installation.html">
+                pureftpd: 1.1.1 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.0_installation.html">
+                vsftp 1.1.0: vsftp 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">
+                vsftp error: 1.1.0 530 login incorrect
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.1_installation_centos6.html">
+                vsftp: 1.1.1 安装(centos6)
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">

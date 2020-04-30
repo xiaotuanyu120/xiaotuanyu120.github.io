@@ -201,125 +201,31 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>svn: 1.2.1 svn-tools</h3>
+<hr>
+<h3>0. svn tools</h3>
+<p>公司安装svn后，使用svnserve启动，使用authz文件认证，但是由于authz被人不小心改动了，检查错误废了半天劲。<br>
+后来查到有个svn的tools叫做svnauthz-validate命令，可以检查authz文件的语法错误。但是由于此命令当初编译的时候没有编译上所以需要重新编译安装上这个工具</p>
+<hr>
+<h3>1. 编译安装svntools</h3>
+<p>主要就是最后一句<code>make install-tools</code></p>
+<div class="highlight"><pre><span></span>./configure
+make
+make install
+make install-tools
+</pre></div>
+<blockquote><p>./configure命令处需要增加很多选项，这里主要是演示<code>make install-tools</code>所以就简写了，详细参阅上(一篇文章)[<a href="http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html">http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html</a>]</p>
+</blockquote>
+<hr>
+<h3>2. 测试svnauthz-validate</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 故意将authz文件中一个存在的组(ssc_manage)注释掉</span>
+svnauthz-validate authz
+svnauthz-validate: An authz rule refers to group <span class="s1">&#39;@ssc_manage&#39;</span>, which is undefined
+</pre></div>
+<blockquote><p>由于ssc_manage组未定义，但是下面却给这个组分配权限，这种语法错误就被检查出来了<br>
+在svn1.8版本以后svnauthz-validate命令改名为svnauthz</p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -436,6 +342,31 @@
               svn
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.1.0_centos6_yum_install.html">
+                svn: 1.1.0 centos6下yum安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.0_centos6_compile_install.html">
+                svn: 1.2.0 centos6下源码安装svn1.6.19
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.2.1_compile_install_svn_tools.html">
+                svn: 1.2.1 svn-tools
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.3.0_configuration_basic.html">
+                svn: 1.3.0 配置svn
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/svn/svn_1.4.0_tags_vs_git_tag.html">
+                svn: 1.4.0 svn tags vs git tags
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -485,11 +416,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
