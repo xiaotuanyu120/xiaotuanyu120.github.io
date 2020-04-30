@@ -201,244 +201,36 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>apache: 1.1.0 配置说明</h3>
-<h3>1. 配置结构</h3>
-<div class="highlight"><pre><span></span>.
-├── extra                                     <span class="c1"># 扩展子配置目录</span>
-│   ├── httpd-autoindex.conf
-│   ├── httpd-dav.conf
-│   ├── httpd-default.conf
-│   ├── httpd-info.conf
-│   ├── httpd-languages.conf
-│   ├── httpd-manual.conf
-│   ├── httpd-mpm.conf
-│   ├── httpd-multilang-errordoc.conf
-│   ├── httpd-ssl.conf
-│   ├── httpd-userdir.conf
-│   ├── httpd-vhosts.conf
-│   └── proxy-html.conf
-├── httpd.conf                                <span class="c1"># 主配置文件(配置入口)</span>
-├── magic                                     <span class="c1"># 和mime相关的，详情见http://httpd.apache.org/docs/current/mod/mod_mime_magic.html#mimemagicfile</span>
-├── mime.types                                <span class="c1"># mime文件，指定文件类型的</span>
-└── original                                  <span class="c1"># 原始配置文件副本</span>
-    ├── extra
-    │   ├── httpd-autoindex.conf
-    │   ├── httpd-dav.conf
-    │   ├── httpd-default.conf
-    │   ├── httpd-info.conf
-    │   ├── httpd-languages.conf
-    │   ├── httpd-manual.conf
-    │   ├── httpd-mpm.conf
-    │   ├── httpd-multilang-errordoc.conf
-    │   ├── httpd-ssl.conf
-    │   ├── httpd-userdir.conf
-    │   ├── httpd-vhosts.conf
-    │   └── proxy-html.conf
-    └── httpd.conf
-
-<span class="m">3</span> directories, <span class="m">29</span> files
+      <div class="col-lg-12"><h3>apache 1.3.0: iptables&amp;selinux</h3>
+<hr>
+<h3>0. 启动服务</h3>
+<div class="highlight"><pre><span></span><span class="c1"># /usr/local/apache2/bin/apachectl start</span>
 </pre></div>
-<blockquote><p>重点：httpd.conf是主配文件，也是配置文件的入口，其他配置文件都通过这里Include</p>
-<p>PS: 主配文件也可以修改，可以在启动时动态指定，但是一般都是用默认的</p>
-</blockquote>
-<h3>2. httpd.conf常见配置</h3>
+<hr>
+<h3>1. 配置防火墙</h3>
+<div class="highlight"><pre><span></span>vim /etc/sysconfig/iptables
+************************************
+<span class="c1">## 开放80端口</span>
+-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="m">80</span> -j ACCEPT
+************************************
 
-<pre><code># 这里是指定httpd的软件目录
-ServerRoot "/usr/local/httpd-2.4.41"
-# 注意结尾不要加"/"
-
-# 监听的域名可以通过指定多个Listen来监听多个端口
-# 443因为牵扯到要加载mod_ssl模块，所以是需要一定条件来监听
-Listen 80
-
-# 可以通过调整LoadModule配置，来增删加载的模块
-LoadModule authn_file_module modules/mod_authn_file.so
-LoadModule authn_core_module modules/mod_authn_core.so
-LoadModule authz_host_module modules/mod_authz_host.so
-LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
-LoadModule authz_user_module modules/mod_authz_user.so
-LoadModule authz_core_module modules/mod_authz_core.so
-LoadModule access_compat_module modules/mod_access_compat.so
-LoadModule auth_basic_module modules/mod_auth_basic.so
-LoadModule reqtimeout_module modules/mod_reqtimeout.so
-LoadModule filter_module modules/mod_filter.so
-LoadModule mime_module modules/mod_mime.so
-LoadModule log_config_module modules/mod_log_config.so
-LoadModule env_module modules/mod_env.so
-LoadModule headers_module modules/mod_headers.so
-LoadModule setenvif_module modules/mod_setenvif.so
-LoadModule version_module modules/mod_version.so
-LoadModule ssl_module modules/mod_ssl.so
-LoadModule unixd_module modules/mod_unixd.so
-LoadModule status_module modules/mod_status.so
-LoadModule autoindex_module modules/mod_autoindex.so
-LoadModule dir_module modules/mod_dir.so
-LoadModule alias_module modules/mod_alias.so
-
-# php的模块
-LoadModule php5_module        modules/libphp5.so
-
-
-# 这种if的模块，只有在httpd启动或者重启的时候才会执行，一旦条件匹配
-# 将会应用到全局
-&lt;IfModule unixd_module&gt;
-User  www
-Group www
-&lt;/IfModule&gt;
-
-ServerAdmin you@example.com
-
-# 这里是安全配置，避免有人通过某些方式访问整个系统文件
-&lt;Directory /&gt;
-    # 禁用.htaccess
-    AllowOverride none
-    # 全部禁止访问根目录
-    Require all denied
-&lt;/Directory&gt;
-
-# &lt;Directory directory-path&gt; ... &lt;/Directory&gt;
-# directory-path可以加双引号，也可以不加，但是中间有空格的时候，必须加
-# directory-path可以用wildcard匹配，?代表任意字符，*代表任意多个字符
-# 但是/任何情况下不会被匹配，所以/*/html不会匹配/var/www/html，但是会匹配/data/html
-DocumentRoot "/usr/local/httpd-2.4.41/htdocs"
-&lt;Directory "/usr/local/httpd-2.4.41/htdocs"&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Require all granted
-&lt;/Directory&gt;
-
-&lt;IfModule dir_module&gt;
-    DirectoryIndex index.html
-&lt;/IfModule&gt;
-
-# 安全配置，禁止所有人访问.htaccess等文件
-&lt;Files ".ht*"&gt;
-    Require all denied
-&lt;/Files&gt;
-
-ErrorLog "logs/error_log"
-LogLevel warn
-
-# 日志格式配置
-&lt;IfModule log_config_module&gt;
-    LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
-    LogFormat "%h %l %u %t \"%r\" %&gt;s %b" common
-    &lt;IfModule logio_module&gt;
-      LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
-    &lt;/IfModule&gt;
-    CustomLog "logs/access_log" common
-&lt;/IfModule&gt;
-
-&lt;IfModule alias_module&gt;
-    ScriptAlias /cgi-bin/ "/usr/local/httpd-2.4.41/cgi-bin/"
-&lt;/IfModule&gt;
-&lt;IfModule cgid_module&gt;
-&lt;/IfModule&gt;
-&lt;Directory "/usr/local/httpd-2.4.41/cgi-bin"&gt;
-    AllowOverride None
-    Options None
-    Require all granted
-&lt;/Directory&gt;
-&lt;IfModule headers_module&gt;
-    RequestHeader unset Proxy early
-&lt;/IfModule&gt;
-&lt;IfModule mime_module&gt;
-    TypesConfig conf/mime.types
-    AddType application/x-compress .Z
-    AddType application/x-gzip .gz .tgz
-    AddType application/x-httpd-php .php
-&lt;/IfModule&gt;
-
-# 引入外部配置
-# 1. 引入mpm的配置
-Include conf/extra/httpd-mpm.conf
-# 2. 引入虚拟主机配置
-Include conf/site-enabled/*.conf
-
-&lt;IfModule proxy_html_module&gt;
-Include conf/extra/proxy-html.conf
-&lt;/IfModule&gt;
-
-# 在启用mod_ssl模块的情况下，再来监听443
-# ssl_module和mod_ssl是一样效果的
-# &lt;IfModule mod_ssl.c&gt;
-# Listen 443
-# &lt;/IfModule&gt;
-&lt;IfModule ssl_module&gt;
-Listen 443
-SSLRandomSeed startup builtin
-SSLRandomSeed connect builtin
-&lt;/IfModule&gt;</code></pre>
-<h3>3. VirtualHost常见配置</h3>
-
-<pre><code>&lt;VirtualHost *:80&gt;
-    # ServerName指定一个唯一的值，来和其他的虚拟主机区分
-    ServerName example.com
-    # ServerAlias来扩展监听多个域名
-    ServerAlias www.example.com *.example.com
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-error_log"
-    CustomLog "logs/example-access_log" common
-&lt;/VirtualHost&gt;
-
-&lt;VirtualHost *:443&gt;
-    ServerName example-ssl.com
-    ServerAlias www.example-ssl.com *.example-ssl.com
-    SSLEngine on
-    SSLCertificateFile "/path/to/www.example.com.cert"
-    SSLCertificateKeyFile "/path/to/www.example.com.key"
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-ssl-error_log"
-    CustomLog "logs/example-ssl-access_log" common
-&lt;/VirtualHost&gt;</code></pre>
-<h3>4. 如何同时监听80和443</h3>
-<p>apache是无法和nginx一样，同时监听80和443的，但是可以用下面的方式来达到节省配置项的效果
-<code>example.conf</code></p>
-
-<pre><code>&lt;VirtualHost *:80&gt;
-    Include conf/site-enabled/example.include
-&lt;/VirtualHost&gt;
-
-&lt;VirtualHost *:443&gt;
-    SSLEngine on
-    Include conf/site-enabled/example.include
-&lt;/VirtualHost&gt;</code></pre>
-<p><code>example.include</code></p>
-
-<pre><code>    ServerName example-ssl.com
-    ServerAlias www.example-ssl.com *.example-ssl.com
-    SSLCertificateFile "/path/to/www.example.com.cert"
-    SSLCertificateKeyFile "/path/to/www.example.com.key"
-    DocumentRoot "/data/html"
-    DirectoryIndex index.html index.php
-    ErrorLog  "logs/example-ssl-error_log"
-    CustomLog "logs/example-ssl-access_log" common</code></pre>
-<h3>5. 关于apache使用的php.ini文件位置</h3>
-<p>如果想查看现在的php.ini位置，可以编写info.php文件，将其放置在DocumentRoot中，并在浏览器中访问查看。</p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
-  <span class="nb">phpinfo</span><span class="p">();</span>
+<span class="c1"># 重启iptables</span>
+service iptables start
 </pre></div>
-<p>如果想自定义修改php.ini的位置，可以在httpd.conf中做如下配置</p>
-
-<pre><code>PHPINIDir /usr/local/php/etc/apache2/</code></pre>
-<blockquote><p>按照以上配置，apache会调用<code>/usr/local/php/etc/apache2/php.ini</code></p>
-</blockquote>
-<h3>6. 目录权限设定</h3>
-
-<pre><code>## 默认根目录，设置为拒绝
-&lt;Directory /&gt;
-    AllowOverride none
-    Require all denied
-&lt;/Directory&gt;
-
-## 放开你希望用户可以访问的目录
-&lt;Directory "/usr/local/apache2/htdocs"&gt;
-    Options Indexes FollowSymLinks
-    AllowOverride None
-    Require all granted
-&lt;/Directory&gt;</code></pre>
+<hr>
+<h3>2. 配置selinux</h3>
+<div class="highlight"><pre><span></span>semanage fcontext -a -t httpd_sys_content_t <span class="s1">&#39;/usr/local/apache2/htdocs(/.*)?&#39;</span>
+restorecon -vFR /usr/local/apache2/htdocs
+</pre></div>
+<hr>
+<h3>3. 检查结果</h3>
+<div class="highlight"><pre><span></span><span class="c1"># vim /usr/local/apache2/htdocs/index.php</span>
+************************************
+&lt;?php
+phpinfo<span class="o">()</span>
+?&gt;
+************************************
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
