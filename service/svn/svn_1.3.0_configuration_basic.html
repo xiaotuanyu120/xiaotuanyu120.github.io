@@ -201,162 +201,49 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>kafka 1.1.0 quick start</h3>
+      <div class="col-lg-12"><h3>svn: 1.3.0 svn-配置基础</h3>
 <hr>
-<h3>1. kafka installation</h3>
-<div class="highlight"><pre><span></span><span class="c1"># step 1. download kafka</span>
-wget http://www-eu.apache.org/dist/kafka/2.0.0/kafka_2.11-2.0.0.tgz
-tar -xzf kafka_2.11-2.0.0.tgz
-mv kafka_2.11-2.0.0 /usr/local/
-
-<span class="c1"># step 2. prepare kafka systemd unit files</span>
-<span class="nb">echo</span> <span class="s1">&#39;[Unit]</span>
-<span class="s1">Description=Apache Zookeeper server (Kafka)</span>
-<span class="s1">Documentation=http://zookeeper.apache.org</span>
-<span class="s1">Requires=network.target</span>
-<span class="s1">After=network.target</span>
-
-<span class="s1">[Service]</span>
-<span class="s1">Type=simple</span>
-<span class="s1">User=root</span>
-<span class="s1">Group=root</span>
-<span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144</span>
-<span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.11-2.0.0/config/zookeeper.properties</span>
-<span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-stop.sh</span>
-
-<span class="s1">[Install]</span>
-<span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka-zookeeper.service
-
-<span class="nb">echo</span> <span class="s1">&#39;[Unit]</span>
-<span class="s1">Description=Apache Kafka server (broker)</span>
-<span class="s1">Documentation=http://kafka.apache.org/documentation.html</span>
-<span class="s1">Requires=network.target</span>
-<span class="s1">After=network.target kafka-zookeeper.service</span>
-
-<span class="s1">[Service]</span>
-<span class="s1">Type=simple</span>
-<span class="s1">User=root</span>
-<span class="s1">Group=root</span>
-<span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144</span>
-<span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-start.sh /usr/local/kafka_2.11-2.0.0/config/server.properties</span>
-<span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-stop.sh</span>
-
-<span class="s1">[Install]</span>
-<span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka.service
-
-<span class="c1"># step 3. reload systemd unit files</span>
-systemctl daemon-reload
+<h3>0. svn安装</h3>
+<p>详细过程见<a href="http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html">源码安装svn</a></p>
+<hr>
+<h3>1. svn主配文件</h3>
+<p><code>conf/svnserve.conf</code></p>
+<div class="highlight"><pre><span></span><span class="o">[</span>general<span class="o">]</span>
+<span class="c1"># 配置匿名用户权限read，write，none</span>
+anon-access <span class="o">=</span> none
+<span class="c1"># 配置svn用户权限read，write，none</span>
+auth-access <span class="o">=</span> write
+<span class="c1"># 配置账号密码文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
+password-db <span class="o">=</span> passwd
+<span class="c1"># 配置权限控制文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
+authz-db <span class="o">=</span> authz
 </pre></div>
-<h3>2. kafka configuration</h3>
-<p><code>config/zookeeper.properties</code>部分配置</p>
-<div class="highlight"><pre><span></span><span class="c"># the directory where the snapshot is stored.</span>
-<span class="na">dataDir</span><span class="o">=</span><span class="s">/tmp/zookeeper</span>
-</pre></div>
-<p><code>config/server.properties</code>部分配置</p>
-<div class="highlight"><pre><span></span><span class="c"># The id of the broker. This must be set to a unique integer for each broker.</span>
-<span class="na">broker.id</span><span class="o">=</span><span class="s">0</span>
-
-<span class="c"># The address the socket server listens on. It will get the value returned from </span>
-<span class="c"># java.net.InetAddress.getCanonicalHostName() if not configured.</span>
-<span class="na">listeners</span><span class="o">=</span><span class="s">PLAINTEXT://:9092</span>
-
-<span class="c"># The number of threads that the server uses for receiving requests from the network and sending responses to the network</span>
-<span class="na">num.network.threads</span><span class="o">=</span><span class="s">3</span>
-
-<span class="c"># The number of threads that the server uses for processing requests, which may include disk I/O</span>
-<span class="na">num.io.threads</span><span class="o">=</span><span class="s">8</span>
-
-<span class="c"># The send buffer (SO_SNDBUF) used by the socket server</span>
-<span class="na">socket.send.buffer.bytes</span><span class="o">=</span><span class="s">102400</span>
-
-<span class="c"># The receive buffer (SO_RCVBUF) used by the socket server</span>
-<span class="na">socket.receive.buffer.bytes</span><span class="o">=</span><span class="s">102400</span>
-
-<span class="c"># The maximum size of a request that the socket server will accept (protection against OOM)</span>
-<span class="na">socket.request.max.bytes</span><span class="o">=</span><span class="s">104857600</span>
-
-<span class="c"># A comma separated list of directories under which to store log files</span>
-<span class="na">log.dirs</span><span class="o">=</span><span class="s">/tmp/kafka-logs</span>
-
-<span class="c"># The default number of log partitions per topic. More partitions allow greater</span>
-<span class="c"># parallelism for consumption, but this will also result in more files across</span>
-<span class="c"># the brokers.</span>
-<span class="na">num.partitions</span><span class="o">=</span><span class="s">1</span>
-</pre></div>
-<blockquote><p>此处只是部分配置，详细可以参照官方文档查看所有配置信息</p>
+<blockquote><p>详细配置说明及未介绍的sasl认证见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.svnserve.html#svn.serverconfig.svnserve.auth">文档</a></p>
 </blockquote>
-<h3>3. kafka start</h3>
-<div class="highlight"><pre><span></span>systemctl start kafka-zookeeper.service
-systemctl start kafka.service
+<hr>
+<h3>2. 账号密码文件</h3>
+<div class="highlight"><pre><span></span><span class="o">[</span>users<span class="o">]</span>
+<span class="nv">harry</span> <span class="o">=</span> foopassword
+<span class="nv">sally</span> <span class="o">=</span> barpassword
 </pre></div>
-<h3>4. Create a topic</h3>
-<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">1</span> --partitions <span class="m">1</span> --topic <span class="nb">test</span>
-Created topic <span class="s2">&quot;test&quot;</span>.
+<hr>
+<h3>3. 权限控制文件</h3>
+<div class="highlight"><pre><span></span><span class="o">[</span>groups<span class="o">]</span>
+<span class="nv">harry_and_sally</span> <span class="o">=</span> harry,sally
 
-bin/kafka-topics.sh --list --zookeeper localhost:2181
-<span class="nb">test</span>
+<span class="c1"># 纯使用路径的话，回去在所有repo中匹配</span>
+<span class="o">[</span>/foo/bar<span class="o">]</span>
+<span class="nv">harry</span> <span class="o">=</span> rw
+* <span class="o">=</span>
 
-<span class="c1"># alter partition numbers</span>
-bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions <span class="m">2</span> --topic <span class="nb">test</span>
-WARNING: If partitions are increased <span class="k">for</span> a topic that has a key, the partition logic or ordering of the messages will be affected
-Adding partitions succeeded!
+<span class="c1"># 使用repo_name:路径的话，只在repo_name中匹配路径</span>
+<span class="o">[</span>repository:/baz/fuz<span class="o">]</span>
+<span class="c1">#组名前面需要增加@</span>
+@harry_and_sally <span class="o">=</span> rw
+* <span class="o">=</span> r
 </pre></div>
-<h3>5. 生产和消费数据</h3>
-<div class="highlight"><pre><span></span>bin/kafka-console-producer.sh --broker-list <span class="m">192</span>.168.33.10:9092 --topic <span class="nb">test</span>
-<span class="nb">test</span>
-test2
-quit
-
-bin/kafka-console-consumer.sh --bootstrap-server <span class="m">192</span>.168.33.10:9092 --topic <span class="nb">test</span> --from-beginning
-<span class="nb">test</span>
-quit
-test2
-</pre></div>
-<h3>6. 设置一个多broker的集群</h3>
-<p>配置和启动集群</p>
-<div class="highlight"><pre><span></span><span class="c1"># step 1. 准备其他两个节点的配置文件</span>
-cp config/server.properties config/server-1.properties
-cp config/server.properties config/server-2.properties
-
-<span class="c1"># config/server-1.properties</span>
-broker.id<span class="o">=</span><span class="m">1</span>
-<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9093
-log.dirs<span class="o">=</span>/tmp/kafka-logs-1
-
-<span class="c1"># config/server-2.properties:</span>
-broker.id<span class="o">=</span><span class="m">2</span>
-<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9094
-log.dirs<span class="o">=</span>/tmp/kafka-logs-2
-
-<span class="c1"># step 2. 准备systemd unit file</span>
-<span class="c1"># - 复制/usr/lib/systemd/system/kafka.service为/usr/lib/systemd/system/kafka-1.service和/usr/lib/systemd/system/kafka-2.service</span>
-<span class="c1"># - 修改ExecStart中指向的配置文件为对应的配置文件（上面准备的）</span>
-
-
-<span class="c1"># step 3. 启动集群</span>
-systemct daemon-reload
-systemctl start kafka-1
-systemctl start kafka-2
-</pre></div>
-<p>设定多factor单分区的topic</p>
-<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">1</span> --topic my-replicated-topic
-Created topic <span class="s2">&quot;my-replicated-topic&quot;</span>.
-
-bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
-Topic:my-replicated-topic   PartitionCount:1    ReplicationFactor:3 Configs:
-    Topic: my-replicated-topic  Partition: <span class="m">0</span>    Leader: <span class="m">1</span>   Replicas: <span class="m">1</span>,0,2 Isr: <span class="m">1</span>,0,2
-</pre></div>
-<p>设定多factor多分区的topic</p>
-<div class="highlight"><pre><span></span>bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">4</span> --topic my-replicated-topic-4
-Created topic <span class="s2">&quot;my-replicated-topic-4&quot;</span>.
-
-bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic-4
-Topic:my-replicated-topic-4 PartitionCount:4    ReplicationFactor:3 Configs:
-    Topic: my-replicated-topic-4    Partition: <span class="m">0</span>    Leader: <span class="m">2</span>   Replicas: <span class="m">2</span>,1,0 Isr: <span class="m">2</span>,1,0
-    Topic: my-replicated-topic-4    Partition: <span class="m">1</span>    Leader: <span class="m">0</span>   Replicas: <span class="m">0</span>,2,1 Isr: <span class="m">0</span>,2,1
-    Topic: my-replicated-topic-4    Partition: <span class="m">2</span>    Leader: <span class="m">1</span>   Replicas: <span class="m">1</span>,0,2 Isr: <span class="m">1</span>,0,2
-    Topic: my-replicated-topic-4    Partition: <span class="m">3</span>    Leader: <span class="m">2</span>   Replicas: <span class="m">2</span>,0,1 Isr: <span class="m">2</span>,0,1
-</pre></div>
+<blockquote><p>权限控制文件详细说明见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.pathbasedauthz.html">文档</a></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -463,163 +350,131 @@ Topic:my-replicated-topic-4 PartitionCount:4    ReplicationFactor:3 Configs:
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/service/jira">
+              jira
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
+            <a class="reference internal" href="/service/svn">
+              svn
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
-                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
-                WIKI: 1.2.0 moinmoin基本设置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
-                ffmpeg 1.1.0 compile install(centos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
-                fluentd 1.0.0 读“fluentd官方文档”笔记
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
-                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
-                inotify: 1.1.0 初识inotify
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
-                inotify: 2.1.0 inotify+rsync实现实时文件同步
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
-                inotify: 3.1.0 inotify实现代码回滚(设想)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
-                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
-                kafka 1.1.0 quick start
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
-                keepalive 1.1.0 nginx高可用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
-                ldap 1.0.0: installation
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.2_openvpn_installment.html">
-                openvpn: 1.1.2 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.3_pptpd_installment.html">
-                pptpd: 1.1.3 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
+              <a class="reference internal" href="/service/svn/svn_1.1.0_centos6_yum_install.html">
                 svn: 1.1.0 centos6下yum安装
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
+              <a class="reference internal" href="/service/svn/svn_1.2.0_centos6_compile_install.html">
                 svn: 1.2.0 centos6下源码安装svn1.6.19
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
+              <a class="reference internal" href="/service/svn/svn_1.2.1_compile_install_svn_tools.html">
                 svn: 1.2.1 svn-tools
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
+              <a class="reference internal" href="/service/svn/svn_1.3.0_configuration_basic.html">
                 svn: 1.3.0 配置svn
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
+              <a class="reference internal" href="/service/svn/svn_1.4.0_tags_vs_git_tag.html">
                 svn: 1.4.0 svn tags vs git tags
               </a>
              </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
-                vnc: 1.1.0 centos 7 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
-                zookeeper 1.1.0 standalone 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
-                zookeeper 1.2.0 replicated 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
-                zookeeper 1.3.0 zookeeper 数据清理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
-                zookeeper 1.4.0 管理（启动脚本）
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
+            <a class="reference internal" href="/service/php">
               php
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
             </a>
             <ul>
             </ul>

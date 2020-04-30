@@ -201,125 +201,90 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>pureftpd: 1.1.1 安装</h3>
+<hr>
+<h3>1. 编译安装pure-ftpd</h3>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> /usr/local/src
+wget http://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-1.0.36.tar.gz
+tar -zxvf pure-ftpd-1.0.36.tar.gz
+<span class="nb">cd</span> pure-ftpd-1.0.36
+./configure <span class="se">\</span>
+    --prefix<span class="o">=</span>/usr/local/pureftpd --without-inetd <span class="se">\</span>
+    --with-altlog --with-puredb --with-throttling <span class="se">\</span>
+    --with-peruserlimits --with-tls
+make
+make install
+</pre></div>
+<hr>
+<h3>2. 准备配置文件与启动命令脚本</h3>
+<div class="highlight"><pre><span></span><span class="nb">cd</span> configuration-file
+cp pure-ftpd.conf /usr/local/pureftpd/etc/pure-ftpd.conf
+cp pure-config.pl /usr/local/pureftpd/sbin/pure-config.pl
+chmod <span class="m">755</span> /usr/local/pureftpd/sbin/pure-config.pl
+</pre></div>
+<hr>
+<h3>3. 编辑配置文件</h3>
+<div class="highlight"><pre><span></span>vim /usr/local/pureftpd/etc/pure-ftpd.conf
+<span class="o">============================================================================</span>
+ChrootEveryone              yes
+BrokenClientsCompatibility  no
+MaxClientsNumber            <span class="m">50</span>
+Daemonize                   yes
+MaxClientsPerIP             <span class="m">8</span>
+VerboseLog                  no
+DisplayDotFiles             yes
+AnonymousOnly               no
+NoAnonymous                 no
+SyslogFacility              ftp
+DontResolve                 yes
+MaxIdleTime                 <span class="m">15</span>
+PureDB                        /usr/local/pureftpd/etc/pureftpd.pdb
+<span class="c1"># 这个就是pure-pw mkdb生成的文件</span>
+LimitRecursion              <span class="m">3136</span> <span class="m">8</span>
+AnonymousCanCreateDirs      no
+MaxLoad                     <span class="m">4</span>
+AntiWarez                   yes
+Umask                       <span class="m">133</span>:022
+MinUID                      <span class="m">100</span>
+AllowUserFXP                no
+AllowAnonymousFXP           no
+ProhibitDotFilesWrite       no
+ProhibitDotFilesRead        no
+AutoRename                  no
+AnonymousCantUpload         no
+PIDFile                     /usr/local/pureftpd/var/run/pure-ftpd.pid
+MaxDiskUsage               <span class="m">99</span>
+CustomerProof              <span class="nv">yes</span>
+<span class="o">============================================================================</span>
+</pre></div>
+<hr>
+<h3>4. 系统环境准备</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 创建ftp目录</span>
+mkdir /data/ftp
+
+<span class="c1"># ftp依赖的系统用户</span>
+useradd pureftp -s /sbin/nologin
+
+<span class="c1"># ftp的虚拟登录用户及其密码数据库</span>
+/usr/local/pureftpd/bin/pure-pw useradd ftp01 -u pureftp -d /data/ftp
+Password:
+Enter it again:
+<span class="c1"># 此命令生成的文件在/usr/local/pureftpd/etc/pureftpd.passwd</span>
+
+<span class="c1"># 生成密码库文件</span>
+/usr/local/pureftpd/bin/pure-pw mkdb
+/usr/local/pureftpd/bin/pure-pw list
+ftp01               /data/ftp/./
+
+<span class="c1"># 删除用户</span>
+/usr/local/pureftpd/bin/pure-pw userdel ftp02
+</pre></div>
+<hr>
+<h3>5. 启动pure-ftpd</h3>
+<div class="highlight"><pre><span></span>/usr/local/pureftpd/sbin/pure-config.pl /usr/local/pureftpd/etc/pure-ftpd.conf
+Running: /usr/local/pureftpd/sbin/pure-ftpd -A -c50 -B -C8 -D -fftp -H -I15 -lpuredb:/usr/local/pureftpd/etc/pureftpd.pdb -L3136:8 -m4 -s -U133:022 -u100 -g/usr/local/pureftpd/var/run/pure-ftpd.pid -k99 -Z
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -485,11 +450,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -525,6 +485,41 @@
               ftp
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.0.0_whats_ftp.html">
+                ftp: 1.0.0 ftp是什么？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.0_docker_compose.html">
+                ftp: 1.1.0 docker-compose with nginx
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.1.0_client.html">
+                ftp: 1.1.0 客户端lftp
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.1_installation.html">
+                pureftpd: 1.1.1 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.0_installation.html">
+                vsftp 1.1.0: vsftp 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">
+                vsftp error: 1.1.0 530 login incorrect
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.1_installation_centos6.html">
+                vsftp: 1.1.1 安装(centos6)
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">

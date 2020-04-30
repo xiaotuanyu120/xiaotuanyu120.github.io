@@ -201,78 +201,30 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>svn: 1.2.0 centos6下源码安装svn1.6.19</h3>
+      <div class="col-lg-12"><h3>svn: 1.2.1 svn-tools</h3>
 <hr>
-<h3>0. svn的安装</h3>
-<p>公司的svn是使用源码安装，使用svnserve命令启动，和我以前使用httpd+svn的方式有所不同，重新搞一次加深印象</p>
+<h3>0. svn tools</h3>
+<p>公司安装svn后，使用svnserve启动，使用authz文件认证，但是由于authz被人不小心改动了，检查错误废了半天劲。<br>
+后来查到有个svn的tools叫做svnauthz-validate命令，可以检查authz文件的语法错误。但是由于此命令当初编译的时候没有编译上所以需要重新编译安装上这个工具</p>
 <hr>
-<h3>1. 环境准备</h3>
-<div class="highlight"><pre><span></span>yum install epel-release -y
-yum groupinstall base <span class="s2">&quot;Development tools&quot;</span> -y
-<span class="c1"># 为了解决&quot;/usr/bin/ld: cannot find -lexpat&quot;问题</span>
-yum install expat-devel
+<h3>1. 编译安装svntools</h3>
+<p>主要就是最后一句<code>make install-tools</code></p>
+<div class="highlight"><pre><span></span>./configure
+make
+make install
+make install-tools
 </pre></div>
+<blockquote><p>./configure命令处需要增加很多选项，这里主要是演示<code>make install-tools</code>所以就简写了，详细参阅上(一篇文章)[<a href="http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html">http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html</a>]</p>
+</blockquote>
 <hr>
-<h3>2. 安装apr</h3>
-<p>版本号会更新，要根据安装时间来定</p>
-<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-1.5.2.tar.gz
-tar zxf apr-1.5.2.tar.gz
-<span class="nb">cd</span> apr-1.5.2
-./configure --prefix<span class="o">=</span>/usr/local/apr
-make <span class="o">&amp;&amp;</span> make install
+<h3>2. 测试svnauthz-validate</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 故意将authz文件中一个存在的组(ssc_manage)注释掉</span>
+svnauthz-validate authz
+svnauthz-validate: An authz rule refers to group <span class="s1">&#39;@ssc_manage&#39;</span>, which is undefined
 </pre></div>
-<hr>
-<h3>3. 安装apr-iconv</h3>
-<p>版本号会更新，要根据安装时间来定</p>
-<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-iconv-1.2.1.tar.gz
-tar zxf apr-iconv-1.2.1.tar.gz
-<span class="nb">cd</span> apr-iconv-1.2.1
-./configure --prefix<span class="o">=</span>/usr/local/apr-iconv --with-apr<span class="o">=</span>/usr/local/apr
-make <span class="o">&amp;&amp;</span> make install
-</pre></div>
-<hr>
-<h3>4. 安装apr-util</h3>
-<p>版本号会更新，要根据安装时间来定</p>
-<div class="highlight"><pre><span></span>wget http://mirror.rise.ph/apache//apr/apr-util-1.5.4.tar.gz
-tar zxf apr-util-1.5.4.tar.gz
-<span class="nb">cd</span> ../apr-util-1.5.4
-./configure --prefix<span class="o">=</span>/usr/local/apr-util --with-apr<span class="o">=</span>/usr/local/apr --with-apr-iconv<span class="o">=</span>/usr/local/apr-iconv/bin/apriconv
-make <span class="o">&amp;&amp;</span> make install
-</pre></div>
-<hr>
-<h3>5. 安装zlib</h3>
-<div class="highlight"><pre><span></span>wget http://nchc.dl.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz
-tar zxf zlib-1.2.8.tar.gz
-<span class="nb">cd</span> zlib-1.2.8
-./configure --prefix<span class="o">=</span>/usr/local/zlib
-make <span class="o">&amp;&amp;</span> make install
-</pre></div>
-<hr>
-<h3>6. 拷贝sqlite3.c文件</h3>
-<div class="highlight"><pre><span></span><span class="c1"># 为了解决sqlite3缺少的问题，提前拷贝sqlite3.c到svn源码中</span>
-wget http://www.sqlite.org/2016/sqlite-amalgamation-3150000.zip
-wget http://archive.apache.org/dist/subversion/subversion-1.6.19.tar.gz
-unzip sqlite-amalgamation-3150000.zip
-tar zxf subversion-1.6.19.tar.gz
-mkdir subversion-1.6.19/sqlite-amalgamation
-cp sqlite-amalgamation-3150000/sqlite3.c subversion-1.6.19/sqlite-amalgamation
-</pre></div>
-<hr>
-<h3>7. 安装svn1.6.19</h3>
-<div class="highlight"><pre><span></span><span class="nb">cd</span> subversion-1.6.19
-./configure --prefix<span class="o">=</span>/usr/local/svn --with-apr<span class="o">=</span>/usr/local/apr --with-apr-util<span class="o">=</span>/usr/local/apr-util --with-zlib<span class="o">=</span>/usr/local/zlib
-make <span class="o">&amp;&amp;</span> make install
-</pre></div>
-<hr>
-<h3>8. svn的相关配置文件</h3>
-<h4>1) 创建项目目录命令</h4>
-<div class="highlight"><pre><span></span>svnadmin create svndata
-</pre></div>
-<h4>2) 启动SVN命令</h4>
-<div class="highlight"><pre><span></span>svnserve -d -r /var/svn/repos
-</pre></div>
-<h4>3) svn配置说明</h4>
-<p>执行创建项目命令之后，会在svndata(举例项目目录为svndata)中产生初始化的相应文件，配置说明见<a href="http://linux.xiao5tech.com/linux/service/svn_1.3.0_configuration_basic.html">配置svn</a></p>
+<blockquote><p>由于ssc_manage组未定义，但是下面却给这个组分配权限，这种语法错误就被检查出来了<br>
+在svn1.8版本以后svnauthz-validate命令改名为svnauthz</p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -379,163 +331,131 @@ make <span class="o">&amp;&amp;</span> make install
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/service/jira">
+              jira
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
+            <a class="reference internal" href="/service/svn">
+              svn
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
-                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
-                WIKI: 1.2.0 moinmoin基本设置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
-                ffmpeg 1.1.0 compile install(centos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
-                fluentd 1.0.0 读“fluentd官方文档”笔记
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
-                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
-                inotify: 1.1.0 初识inotify
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
-                inotify: 2.1.0 inotify+rsync实现实时文件同步
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
-                inotify: 3.1.0 inotify实现代码回滚(设想)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
-                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
-                kafka 1.1.0 quick start
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
-                keepalive 1.1.0 nginx高可用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
-                ldap 1.0.0: installation
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.2_openvpn_installment.html">
-                openvpn: 1.1.2 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.3_pptpd_installment.html">
-                pptpd: 1.1.3 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
+              <a class="reference internal" href="/service/svn/svn_1.1.0_centos6_yum_install.html">
                 svn: 1.1.0 centos6下yum安装
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
+              <a class="reference internal" href="/service/svn/svn_1.2.0_centos6_compile_install.html">
                 svn: 1.2.0 centos6下源码安装svn1.6.19
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
+              <a class="reference internal" href="/service/svn/svn_1.2.1_compile_install_svn_tools.html">
                 svn: 1.2.1 svn-tools
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
+              <a class="reference internal" href="/service/svn/svn_1.3.0_configuration_basic.html">
                 svn: 1.3.0 配置svn
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
+              <a class="reference internal" href="/service/svn/svn_1.4.0_tags_vs_git_tag.html">
                 svn: 1.4.0 svn tags vs git tags
               </a>
              </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
-                vnc: 1.1.0 centos 7 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
-                zookeeper 1.1.0 standalone 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
-                zookeeper 1.2.0 replicated 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
-                zookeeper 1.3.0 zookeeper 数据清理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
-                zookeeper 1.4.0 管理（启动脚本）
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
+            <a class="reference internal" href="/service/php">
               php
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
             </a>
             <ul>
             </ul>

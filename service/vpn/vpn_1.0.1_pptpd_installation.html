@@ -201,125 +201,55 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>pptpd: 1.0.1 openvpn安装(centos7)</h3>
+<div class="highlight"><pre><span></span><span class="c1">## step 0. preparation</span>
+<span class="c1"># check env</span>
+
+<span class="c1"># 检查内核是否支持pptp vpn</span>
+modprobe ppp-compress-18 <span class="o">&amp;&amp;</span> <span class="nb">echo</span> success
+<span class="c1"># 输出success</span>
+
+<span class="c1"># 检查是否开启tun/tap</span>
+cat /dev/net/tun
+<span class="c1"># 输出cat: /dev/net/tun: File descriptor in bad state</span>
+
+<span class="c1"># 检查是否开启ppp</span>
+cat /dev/ppp
+<span class="c1"># 输出cat: /dev/ppp: No such device or address</span>
+
+<span class="c1">## step 1. installment</span>
+yum install epel-release -y
+yum install ppp pptpd net-tools iptables-services -y
+
+<span class="c1">## step 2. configuration</span>
+
+sed -i <span class="s1">&#39;s|^#localip 192.168.0.1.*$|localip 10.0.10.1|g&#39;</span> /etc/pptpd.conf
+sed -i <span class="s1">&#39;s|^#remoteip 192.168.0.234-238,192.168.0.245.*$|remoteip 10.0.10.2-254|g&#39;</span> /etc/pptpd.conf
+
+sed -i <span class="s1">&#39;s|^#ms-dns 10.0.0.1.*$|ms-dns 8.8.8.8|g&#39;</span> /etc/ppp/options.pptpd
+sed -i <span class="s1">&#39;s|^#ms-dns 10.0.0.2.*$|ms-dns 8.8.4.4|g&#39;</span> /etc/ppp/options.pptpd
+
+<span class="nb">echo</span> <span class="s2">&quot;user_test1       pptpd   123456             *&quot;</span> &gt;&gt; /etc/ppp/chap-secrets
+
+<span class="c1">## step 3. kernel optimize</span>
+<span class="nb">echo</span> net.ipv4.ip_forward <span class="o">=</span> <span class="m">1</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p
+
+<span class="c1">## step 4. iptables</span>
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl <span class="nb">enable</span> iptables
+iptables -F
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables-save &gt; /etc/sysconfig/iptables
+
+<span class="c1">## step 5. vpn start</span>
+systemctl start pptpd
+systemctl enalbe pptpd
+</pre></div>
+<blockquote><p><a href="https://cloud.tencent.com/developer/article/1446826">参照文档： 腾讯云文章</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -485,11 +415,6 @@
               lnmp
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/lnmp/lanmp_check_compile_args.html">
-                LANMP: 查看编译参数
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -532,6 +457,16 @@
               vpn
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/vpn/vpn_1.0.0_openvpn_installation.html">
+                openvpn: 1.0.0 openvpn安装(centos7)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/vpn/vpn_1.0.1_pptpd_installation.html">
+                pptpd: 1.0.1 openvpn安装(centos7)
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>

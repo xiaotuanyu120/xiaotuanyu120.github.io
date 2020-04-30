@@ -201,50 +201,125 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>svn: 1.3.0 svn-配置基础</h3>
-<hr>
-<h3>0. svn安装</h3>
-<p>详细过程见<a href="http://linux.xiao5tech.com/linux/service/svn_1.2.0_centos6_compile_install.html">源码安装svn</a></p>
-<hr>
-<h3>1. svn主配文件</h3>
-<p><code>conf/svnserve.conf</code></p>
-<div class="highlight"><pre><span></span><span class="o">[</span>general<span class="o">]</span>
-<span class="c1"># 配置匿名用户权限read，write，none</span>
-anon-access <span class="o">=</span> none
-<span class="c1"># 配置svn用户权限read，write，none</span>
-auth-access <span class="o">=</span> write
-<span class="c1"># 配置账号密码文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
-password-db <span class="o">=</span> passwd
-<span class="c1"># 配置权限控制文件，可配置相对路径（相对于svnserve.con）或者绝对路径</span>
-authz-db <span class="o">=</span> authz
-</pre></div>
-<blockquote><p>详细配置说明及未介绍的sasl认证见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.svnserve.html#svn.serverconfig.svnserve.auth">文档</a></p>
-</blockquote>
-<hr>
-<h3>2. 账号密码文件</h3>
-<div class="highlight"><pre><span></span><span class="o">[</span>users<span class="o">]</span>
-<span class="nv">harry</span> <span class="o">=</span> foopassword
-<span class="nv">sally</span> <span class="o">=</span> barpassword
-</pre></div>
-<hr>
-<h3>3. 权限控制文件</h3>
-<div class="highlight"><pre><span></span><span class="o">[</span>groups<span class="o">]</span>
-<span class="nv">harry_and_sally</span> <span class="o">=</span> harry,sally
-
-<span class="c1"># 纯使用路径的话，回去在所有repo中匹配</span>
-<span class="o">[</span>/foo/bar<span class="o">]</span>
-<span class="nv">harry</span> <span class="o">=</span> rw
-* <span class="o">=</span>
-
-<span class="c1"># 使用repo_name:路径的话，只在repo_name中匹配路径</span>
-<span class="o">[</span>repository:/baz/fuz<span class="o">]</span>
-<span class="c1">#组名前面需要增加@</span>
-@harry_and_sally <span class="o">=</span> rw
-* <span class="o">=</span> r
-</pre></div>
-<blockquote><p>权限控制文件详细说明见<a href="http://svnbook.red-bean.com/en/1.7/svn.serverconfig.pathbasedauthz.html">文档</a></p>
-</blockquote>
-      </div>
+      <div class="col-lg-12">       <div class="docs-body">
+        <div class="section" id="kolla-ansible-deployment-guide">
+         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
+         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
+         <div class="toctree-wrapper compound">
+          <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/jira">
+              jira
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/svn">
+              svn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/php">
+              php
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/keepalived/keepalived_1.1.0_nginx_ha.html">
+                keepalive 1.1.0 nginx高可用
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
+            </a>
+            <ul>
+            </ul>
+           </li>          </ul>
+         </div>
+        </div>
+       </div>      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -350,163 +425,111 @@ authz-db <span class="o">=</span> authz
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
+            <a class="reference internal" href="/service/jira">
+              jira
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
+            <a class="reference internal" href="/service/svn">
+              svn
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
+            <a class="reference internal" href="/service/php">
+              php
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">
-                WIKI: 1.1.0 nginx+uwsgi部署moinmoin
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">
-                WIKI: 1.2.0 moinmoin基本设置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ffmpeg_1.1.0_compile_install.html">
-                ffmpeg 1.1.0 compile install(centos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.0.0_fluentd_docs_note.html">
-                fluentd 1.0.0 读“fluentd官方文档”笔记
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/fluentd_1.1.0_efk_docker.html">
-                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_1.1.0_intro.html">
-                inotify: 1.1.0 初识inotify
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_2.1.0_rsync.html">
-                inotify: 2.1.0 inotify+rsync实现实时文件同步
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_3.1.0_rollback.html">
-                inotify: 3.1.0 inotify实现代码回滚(设想)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/inotify_4.1.0_sersync.html">
-                inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/kafka_1.1.0_quick_start.html">
-                kafka 1.1.0 quick start
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/keepalived_1.1.0_nginx_ha.html">
+              <a class="reference internal" href="/service/keepalived/keepalived_1.1.0_nginx_ha.html">
                 keepalive 1.1.0 nginx高可用
               </a>
              </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/ldap_1.1.0_installation.html">
-                ldap 1.0.0: installation
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.2_openvpn_installment.html">
-                openvpn: 1.1.2 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vpn_1.1.3_pptpd_installment.html">
-                pptpd: 1.1.3 openvpn安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.1.0_centos6_yum_install.html">
-                svn: 1.1.0 centos6下yum安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.0_centos6_compile_install.html">
-                svn: 1.2.0 centos6下源码安装svn1.6.19
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.2.1_compile_install_svn_tools.html">
-                svn: 1.2.1 svn-tools
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.3.0_configuration_basic.html">
-                svn: 1.3.0 配置svn
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/svn_1.4.0_tags_vs_git_tag.html">
-                svn: 1.4.0 svn tags vs git tags
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/vnc_1.1.0_installation.html">
-                vnc: 1.1.0 centos 7 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.1.0_standlone.html">
-                zookeeper 1.1.0 standalone 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.2.0_replicated.html">
-                zookeeper 1.2.0 replicated 安装部署
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.3.0_auto_purge.html">
-                zookeeper 1.3.0 zookeeper 数据清理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/service/zookeeper_1.4.0_management.html">
-                zookeeper 1.4.0 管理（启动脚本）
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
+            <a class="reference internal" href="/service/kafka">
+              kafka
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
-              php
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
             </a>
             <ul>
             </ul>
