@@ -1,10 +1,10 @@
 ---
-title: 21.1.0: LAMP-MySQL安装
+title: mysql 1.0.0: 安装教程
 date: 2015-01-07 05:32:00
-categories: linux/basic
+categories: database/mysql
 tags: [lamp,mysql]
 ---
-### 21.1.0: LAMP-MySQL安装
+### mysql 1.0.0: 安装教程
 
 ---
 
@@ -160,4 +160,5 @@ pid_file - 指定mysql的pid文件路径
 ### 4. mysql服务版本查看
 ``` bash
 /usr/local/mysql/bin/mysql -V
-/usr/local/mysql/bin/mysql  Ver 14.14 Distrib 5.5.49, for Linux (x86_64) using readline 5.1```
+/usr/local/mysql/bin/mysql  Ver 14.14 Distrib 5.5.49, for Linux (x86_64) using readline 5.1
+```

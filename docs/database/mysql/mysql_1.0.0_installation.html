@@ -201,286 +201,151 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/database/oracle">
-              oracle
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.0.0_silent_installation_env.html">
-                1.0.0 silent模式安装oracle 11G R2 之 环境准备
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.1.0_silent_installation_oracle_install.html">
-                1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.2.0_silent_installation_netca_listen.html">
-                1.2.0 silent模式安装oracle 11G R2 之 netca监听
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">
-                1.3.0 silent模式安装oracle 11G R2 之 安装database实例
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.4.0_silent_installation_error.html">
-                1.4.0 silent模式安装oracle 11G R2 之 安装错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">
-                1.5.0 silent安装之cvuqdisk
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/1.6.0_OUI_installation_error.html">
-                1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/2.1.0_oracle_sql_statement.html">
-                2.1.0 oracle sql语句之表备份实例
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/2.2.0_oracle_sql_drop_database.html">
-                2.2.0 oracle sql语句之删除数据库
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">
-                3.1.0 RAC-架构预览
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">
-                3.2.0 RAC-配置主机名和网络
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">
-                3.3.0 RAC-配置ntp服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">
-                3.4.0 RAC-系统配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">
-                3.5.0 RAC-配置用户和组
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">
-                3.6.0 RAC-存储配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">
-                3.7.0 RAC-安装oracle grid infrastructure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">
-                3.8.0 RAC-安装oracle 11g r2软件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">
-                3.9.0 RAC-通过ASMCA创建ASM硬盘组
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.10.0_rac_dbca_create_database.html">
-                3.10.0 RAC-通过DBCA创建数据库
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/3.11.0_rac_management.html">
-                3.11.0 RAC-管理命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">
-                4.1.0 oracle error之ORA-01034
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/4.2.0_oracle_error_display.html">
-                4.2.0 oracle error之图形安装DISPLAY错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">
-                5.1.0 oracle dataguard 11g r2 搭建
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">
-                5.1.1 oracle dataguard 11g r2 rman恢复错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">
-                5.2.0 oracle dataguard 11g r2 一主多备搭建
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">
-                6.2.0 ora-28001 the password has expired
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/database/redis">
-              redis
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_cluster_1.1.0_install.html">
-                redis-cluster: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.1.0_install.html">
-                redis: 1.1.0 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">
-                redis: 1.1.1 redis replication(sentinel集群)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">
-                redis: 1.1.2 redis-py(sentinel)获取master信息
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.2.0_basic_cmd.html">
-                redis: 1.2.0 基本管理命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">
-                redis: 1.2.1 将redis执行结果输出到文件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.2.2_security_disable_command.html">
-                redis: 1.2.2 安全性(CONFIG重命名)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_1.2.3_production_tunning.html">
-                redis: 1.2.3 性能优化
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_3.1.0_consistent.html">
-                redis: 3.1.0 持久化、备份及恢复
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_4.1.0_replication.html">
-                redis: 4.1.0 主从配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">
-                redis: 4.2.0 主从遇到的问题
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">
-                redis: 5.1.0 错误-降级后启动报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/redis/redis_6.1.0_debug_method.html">
-                redis: 6.1.0 DEBUG方法
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/database/mysql">
-              mysql
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_sql_basic.html">
-                MYSQL-sql语句：常用操作
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_manage_backup_recovery.html">
-                MYSQL-管理：备份及恢复
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_manage_reset_root_password.html">
-                MYSQL-管理：忘记root密码
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_config_basic.html">
-                MYSQL-配置：常用基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_config_optimize.html">
-                MYSQL-配置：调优
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/error_1.0_force_close_of_thread.html">
-                MYSQL-错误: 1.0 force close of thread xxx user: 'someuser'
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/error_1.1_cant_connect_mysql_remotely.html">
-                MYSQL-错误: 1.1 DNS查询优化和Host缓存
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_error_start_login.html">
-                MYSQL-错误：启动/登录报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/error_innodb_init.html">
-                MYSQL-错误：无法启动排障
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_1.0.0_installation.html">
-                mysql 1.0.0: 安装教程
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_docker_compose.html">
-                mysql: docker-compose(单实例和主从)
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>mysql 1.0.0: 安装教程</h3>
+<hr>
+<h3>0. 脚本源码及安装包</h3>
+<p>github源码链接：<a href="https://github.com/xiaotuanyu120/install-lnmp">https://github.com/xiaotuanyu120/install-lnmp</a></p>
+<hr>
+<h3>1. MySQL 5.1.72/5.1.73安装脚本</h3>
+<div class="highlight"><pre><span></span>cat installmysql5172.sh
+*********************************************************
+<span class="c1">#!/bin/bash</span>
+
+<span class="c1">## env setting</span>
+<span class="nv">BASEDIR</span><span class="o">=</span>/usr/local/mysql
+<span class="nv">DATADIR</span><span class="o">=</span>/data/mysql
+<span class="nv">PASSWORD</span><span class="o">=</span>adminmysql
+<span class="nv">PIDFILE</span><span class="o">=</span>/usr/local/mysql/mysql.pid
+
+<span class="c1">## mysql base env install</span>
+yum install gcc gcc-c++ cmake ncurses-devel -y
+yum groupinstall base <span class="s2">&quot;Development Tools&quot;</span> -y
+
+<span class="c1">## create user</span>
+groupadd mysql
+useradd -r -g mysql mysql
+
+<span class="c1">## source package unzip</span>
+<span class="o">[[</span> -d mysql <span class="o">]]</span> <span class="o">||</span> mkdir mysql <span class="o">&amp;&amp;</span> rm -rf mysql <span class="o">&amp;&amp;</span> mkdir mysql
+tar zxvf mysql-5.1.72.tar.gz -C mysql
+mv ./mysql/mysql-5.1.72/* ./mysql/
+<span class="nb">cd</span> mysql
+
+<span class="c1">## mysql install</span>
+./configure --prefix<span class="o">=</span><span class="nv">$BASEDIR</span> --datadir<span class="o">=</span><span class="nv">$DATADIR</span> <span class="se">\</span>
+--with-mysqld-user<span class="o">=</span>mysql --with-charset<span class="o">=</span>utf8 --with-extra-charsets<span class="o">=</span>all
+make
+make install
+
+mkdir -p <span class="nv">$DATADIR</span>
+chown -R mysql:mysql <span class="nv">$BASEDIR</span>
+chown -R mysql:mysql <span class="nv">$DATADIR</span>
+
+<span class="c1">## mysql initial</span>
+./scripts/mysql_install_db --datadir<span class="o">=</span><span class="nv">$DATADIR</span> --user<span class="o">=</span>mysql
+cp ./support-files/mysql.server /etc/init.d/mysqld
+rm -f /etc/my.cnf
+cp support-files/my-large.cnf /etc/my.cnf
+chmod <span class="m">755</span> /etc/init.d/mysqld
+
+sed -inr <span class="s2">&quot;s#^basedir=#basedir=</span><span class="nv">$BASEDIR</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+sed -inr <span class="s2">&quot;s#^datadir=#datadir=</span><span class="nv">$DATADIR</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+sed -inr <span class="s2">&quot;s#^pid_file=#pid_file=</span><span class="nv">$PIDFILE</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+
+sed -i <span class="s2">&quot;/\[mysqld\]/abasedir=</span><span class="nv">$BASEDIR</span><span class="s2">&quot;</span> /etc/my.cnf
+sed -i <span class="s2">&quot;/\[mysqld\]/adatadir=</span><span class="nv">$DATADIR</span><span class="s2">&quot;</span> /etc/my.cnf
+sed -i <span class="s2">&quot;/\[mysqld\]/apid_file=</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span> /etc/my.cnf
+
+<span class="c1">## service start and enanble</span>
+chkconfig mysqld on
+/etc/init.d/mysqld start
+<span class="nv">$BASEDIR</span>/bin/mysqladmin -u root password <span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span>
+*********************************************************
+</pre></div>
+<hr>
+<h3>2. MySQL 5.5.49/5.6.30安装脚本</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 不同之处只是版本号和配置文件，其他都一样</span>
+cat installmysql5630.sh
+*********************************************************
+<span class="c1">#!/bin/bash</span>
+
+<span class="c1">## env setting</span>
+<span class="nv">BASEDIR</span><span class="o">=</span>/usr/local/mysql
+<span class="nv">DATADIR</span><span class="o">=</span>/data/mysql
+<span class="nv">PASSWORD</span><span class="o">=</span>adminmysql
+<span class="nv">PIDFILE</span><span class="o">=</span>/usr/local/mysql/mysql.pid
+
+<span class="c1">## mysql base packages installation</span>
+yum install cmake gcc gcc-c++ ncurses-devel -y
+yum groupinstall base <span class="s2">&quot;Development Tools&quot;</span> -y
+
+<span class="c1">## create user</span>
+groupadd mysql
+useradd -r -g mysql mysql
+
+<span class="c1">## unzip source package</span>
+<span class="o">[[</span> -d mysql <span class="o">]]</span> <span class="o">||</span> mkdir mysql <span class="o">&amp;&amp;</span> rm -rf ./mysql <span class="o">&amp;&amp;</span> mkdir mysql
+tar zxvf mysql-5.6.30.tar.gz -C mysql
+mv ./mysql/mysql-5.6.30/* ./mysql/
+<span class="nb">cd</span> mysql
+
+<span class="c1">## mysql install</span>
+cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr/local/mysql <span class="se">\</span>
+-DMYSQL_DATADIR<span class="o">=</span>/data/mysql -DMYSQL_USER<span class="o">=</span>mysql -DMYSQL_TCP_PORT<span class="o">=</span><span class="m">3306</span> <span class="se">\</span>
+-DWITH_MYISAM_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> -DWITH_INNOBASE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+-DWITH_MEMORY_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> -DWITH_READLINE<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+-DENABLED_LOCAL_INFILE<span class="o">=</span><span class="m">1</span> -DWITH_EXTRA_CHARSETS<span class="o">=</span>all <span class="se">\</span>
+-DDEFAULT_CHARSET<span class="o">=</span>utf8 -DDEFAULT_COLLATION<span class="o">=</span>utf8_general_ci
+make
+make install
+
+mkdir -p <span class="nv">$DATADIR</span>
+chown -R mysql:mysql <span class="nv">$BASEDIR</span>
+chown -R mysql:mysql <span class="nv">$DATADIR</span>
+
+<span class="c1">## initialize database</span>
+<span class="nb">cd</span> <span class="nv">$BASEDIR</span>
+./scripts/mysql_install_db --datadir<span class="o">=</span><span class="nv">$DATADIR</span> --user<span class="o">=</span>mysql
+cp ./support-files/mysql.server /etc/init.d/mysqld
+rm -f /etc/my.cnf
+
+<span class="c1">## 5.6.30是my-default.cnf，不同于5.5.49</span>
+cp ./support-files/my-large.cnf /etc/my.cnf
+chmod <span class="m">755</span> /etc/init.d/mysqld
+
+sed -inr <span class="s2">&quot;s#^basedir=#basedir=</span><span class="nv">$BASEDIR</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+sed -inr <span class="s2">&quot;s#^datadir=#datadir=</span><span class="nv">$DATADIR</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+sed -inr <span class="s2">&quot;s#^pid_file=#pid_file=</span><span class="nv">$PIDFILE</span><span class="s2">#g&quot;</span> /etc/init.d/mysqld
+
+sed -i <span class="s2">&quot;/\[mysqld\]/abasedir=</span><span class="nv">$BASEDIR</span><span class="s2">&quot;</span> /etc/my.cnf
+sed -i <span class="s2">&quot;/\[mysqld\]/adatadir=</span><span class="nv">$DATADIR</span><span class="s2">&quot;</span> /etc/my.cnf
+sed -i <span class="s2">&quot;/\[mysqld\]/apid_file=</span><span class="nv">$PIDFILE</span><span class="s2">&quot;</span> /etc/my.cnf
+
+<span class="c1">## service start and enable</span>
+chkconfig mysqld on
+service mysqld start
+<span class="nv">$BASEDIR</span>/bin/mysqladmin -u root password <span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span>
+*********************************************************
+</pre></div>
+<hr>
+<h3>3. 脚本中MySQL配置说明</h3>
+<div class="highlight"><pre><span></span><span class="c1">## 脚本中配置项及其说明</span>
+<span class="c1">## 启动脚本/etc/init.d/mysqld配置</span>
+basedir - 指定mysql目录
+datadir - 指定mysql的数据目录
+pid_file - 指定mysql的pid文件路径
+
+<span class="c1">## 配置文件/etc/my.cnf配置</span>
+basedir - 指定mysql目录
+datadir - 指定mysql的数据目录
+pid_file - 指定mysql的pid文件路径
+</pre></div>
+<hr>
+<h3>4. mysql服务版本查看</h3>
+<div class="highlight"><pre><span></span>/usr/local/mysql/bin/mysql -V
+/usr/local/mysql/bin/mysql  Ver <span class="m">14</span>.14 Distrib <span class="m">5</span>.5.49, <span class="k">for</span> Linux <span class="o">(</span>x86_64<span class="o">)</span> using readline <span class="m">5</span>.1
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -604,6 +469,61 @@
               mysql
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_sql_basic.html">
+                MYSQL-sql语句：常用操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_manage_backup_recovery.html">
+                MYSQL-管理：备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_manage_reset_root_password.html">
+                MYSQL-管理：忘记root密码
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_config_basic.html">
+                MYSQL-配置：常用基本配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_config_optimize.html">
+                MYSQL-配置：调优
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/error_1.0_force_close_of_thread.html">
+                MYSQL-错误: 1.0 force close of thread xxx user: 'someuser'
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/error_1.1_cant_connect_mysql_remotely.html">
+                MYSQL-错误: 1.1 DNS查询优化和Host缓存
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_error_start_login.html">
+                MYSQL-错误：启动/登录报错
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/error_innodb_init.html">
+                MYSQL-错误：无法启动排障
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_1.0.0_installation.html">
+                mysql 1.0.0: 安装教程
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_docker_compose.html">
+                mysql: docker-compose(单实例和主从)
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>
