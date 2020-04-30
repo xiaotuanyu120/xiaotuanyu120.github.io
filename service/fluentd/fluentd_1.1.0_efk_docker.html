@@ -201,105 +201,142 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>fluentd 1.1.0 efk(elasticsearch+kibana) + docker</h3>
+<hr>
+<h3>0. 安装docker</h3>
+<p>安装可参照<a href="http://linux.xiao5tech.com/virtualization/docker/docker_1.1.0_installation_centos7.html">docker yum安装</a>和<a href="http://linux.xiao5tech.com/virtualization/docker/docker_1.1.1_installation_binary.html">docker 二进制安装</a>，也可以使用发行版自己安装的docker版本(只要不是太旧)。</p>
+<blockquote><p>二进制安装方法里面开启了selinux，这里需要关闭</p>
+</blockquote>
+<hr>
+<h3>1. 启动 fluentd + elasticsearch + kibana 容器</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 创建fluentd编译目录及配置目录</span>
+mkdir -p fluentd/conf
+
+<span class="c1"># 创建fluentd Dockerfile</span>
+cat &gt; fluentd/Dockerfile <span class="s">&lt;&lt; EOF</span>
+<span class="s">FROM fluent/fluentd:v0.12-debian</span>
+<span class="s">RUN [&quot;gem&quot;, &quot;install&quot;, &quot;fluent-plugin-elasticsearch&quot;, &quot;--no-rdoc&quot;, &quot;--no-ri&quot;, &quot;--version&quot;, &quot;1.9.2&quot;]</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 创建fluentd配置文件</span>
+cat &gt; fluentd/conf/fluent.conf <span class="s">&lt;&lt; EOF</span>
+<span class="s">&lt;source&gt;</span>
+<span class="s">  @type forward</span>
+<span class="s">  port 24224</span>
+<span class="s">  bind 0.0.0.0</span>
+<span class="s">&lt;/source&gt;</span>
+<span class="s">&lt;match *.**&gt;</span>
+<span class="s">  @type copy</span>
+<span class="s">  &lt;store&gt;</span>
+<span class="s">    @type elasticsearch</span>
+<span class="s">    host elasticsearch</span>
+<span class="s">    port 9200</span>
+<span class="s">    logstash_format true</span>
+<span class="s">    logstash_prefix fluentd</span>
+<span class="s">    logstash_dateformat %Y%m%d</span>
+<span class="s">    include_tag_key true</span>
+<span class="s">    type_name access_log</span>
+<span class="s">    tag_key @log_name</span>
+<span class="s">    flush_interval 1s</span>
+<span class="s">  &lt;/store&gt;</span>
+<span class="s">  &lt;store&gt;</span>
+<span class="s">    @type stdout</span>
+<span class="s">  &lt;/store&gt;</span>
+<span class="s">&lt;/match&gt;</span>
+<span class="s">EOF</span>
+<span class="c1"># 当使用out_copy时，可指定多个输出源</span>
+<span class="c1"># logstash_format为true时，意味着kibana可以搜索使用es中的数据</span>
+
+<span class="c1"># 创建docker-compose.yml文件，编译新的fluentd镜像，其他两个使用官方镜像</span>
+cat &gt; docker-compose.yml <span class="s">&lt;&lt; EOF</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  fluentd:</span>
+<span class="s">    build: ./fluentd</span>
+<span class="s">    volumes:</span>
+<span class="s">      - ./fluentd/conf:/fluentd/etc</span>
+<span class="s">    links:</span>
+<span class="s">      - &quot;elasticsearch&quot;</span>
+<span class="s">    ports:</span>
+<span class="s">      - &quot;24224:24224&quot;</span>
+<span class="s">      - &quot;24224:24224/udp&quot;</span>
+
+<span class="s">  elasticsearch:</span>
+<span class="s">    image: elasticsearch</span>
+<span class="s">    expose:</span>
+<span class="s">      - 9200</span>
+<span class="s">    ports:</span>
+<span class="s">      - &quot;9200:9200&quot;</span>
+
+<span class="s">  kibana:</span>
+<span class="s">    image: kibana</span>
+<span class="s">    links:</span>
+<span class="s">      - &quot;elasticsearch&quot;</span>
+<span class="s">    ports:</span>
+<span class="s">      - &quot;5601:5601&quot;</span>
+<span class="s">EOF</span>
+
+docker-compose up -d
+</pre></div>
+<blockquote><p>此处不过多介绍elasticsearch和kibana，感兴趣的参照以下文档</p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html">elasticsearch 6.0 官方文档</a></li>
+<li><a href="https://www.elastic.co/guide/en/kibana/6.0/setup.html">kibana 6.0 官方文档</a></li>
+</ul>
+</blockquote>
+<hr>
+<h3>2. 启动fluentd采集tomcat日志</h3>
+<div class="highlight"><pre><span></span>mkdir -p fluentd/conf
+cat &gt; fluentd/Dockerfile <span class="s">&lt;&lt; EOF</span>
+<span class="s">FROM fluent/fluentd:v0.12-debian</span>
+<span class="s">RUN [&quot;gem&quot;, &quot;install&quot;, &quot;fluent-plugin-elasticsearch&quot;, &quot;--no-rdoc&quot;, &quot;--no-ri&quot;, &quot;--version&quot;, &quot;1.9.2&quot;]</span>
+<span class="s">EOF</span>
+
+cat &gt; fluentd/conf/fluent.conf <span class="s">&lt;&lt; EOF</span>
+<span class="s">&lt;source&gt;</span>
+<span class="s">  @type tail</span>
+<span class="s">  path /usr/local/tomcat/logs/catalina.out</span>
+<span class="s">  pos_file /usr/local/tomcat/logs/catalina.out.pos</span>
+<span class="s">  tag tomcat.*</span>
+<span class="s">  format none</span>
+<span class="s">&lt;/source&gt;</span>
+<span class="s">&lt;match tomcat.**&gt;</span>
+<span class="s">  @type forward</span>
+<span class="s">  &lt;server&gt;</span>
+<span class="s">    host 113.10.193.68</span>
+<span class="s">    port 24224</span>
+<span class="s">  &lt;/server&gt;</span>
+<span class="s">&lt;/match&gt;</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 创建docker-compose.yml文件，启动fluentd客户端</span>
+cat &gt; docker-compose.yml <span class="s">&lt;&lt; EOF</span>
+<span class="s">version: &#39;2&#39;</span>
+<span class="s">services:</span>
+<span class="s">  fluentd:</span>
+<span class="s">    image: fluent/fluentd</span>
+<span class="s">    volumes:</span>
+<span class="s">      - ./fluentd/conf:/fluentd/etc</span>
+<span class="s">      - /usr/local/tomcat:/usr/local/tomcat</span>
+<span class="s">    ports:</span>
+<span class="s">      - &quot;24224:24224&quot;</span>
+<span class="s">      - &quot;24224:24224/udp&quot;</span>
+<span class="s">EOF</span>
+
+docker-compose up -d
+</pre></div>
+<blockquote><p>当使用tail时，tag配置成tomcat.*，其中*会自动将path变量的内容扩展到tag中，并且使用“.”代替“/”，此处实际tag为tomcat.usr.local.tomcat.logs.catalina.out</p>
+<p>官方文档</p>
+<ul>
+<li><a href="https://docs.fluentd.org/v0.12/articles/in_tail">type tail文档</a></li>
+<li><a href="https://docs.fluentd.org/v0.12/articles/parser_multiline">format multiline文档</a></li>
+</ul>
+</blockquote>
+<p>精品文章：</p>
+<ul>
+<li><a href="http://270142877.blog.51cto.com/12869137/1951159">Tomcat容器日志收集方案fluentd+elasticsearch+kilbana</a></li>
+</ul>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -430,26 +467,6 @@
               product_issues
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -457,6 +474,16 @@
               fluentd
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/fluentd/fluentd_1.0.0_fluentd_docs_note.html">
+                fluentd 1.0.0 读“fluentd官方文档”笔记
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/fluentd/fluentd_1.1.0_efk_docker.html">
+                fluentd 1.1.0 efk(elasticsearch+kibana) + docker
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
