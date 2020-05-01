@@ -38,6 +38,7 @@ cache:
 
 **EXAMPLE: CACHE MAVEN LOCAL REPOSITORY**
 - 然后在.gitlab-ci.yml中配置
+
 ``` yaml
 variables:
   MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2
