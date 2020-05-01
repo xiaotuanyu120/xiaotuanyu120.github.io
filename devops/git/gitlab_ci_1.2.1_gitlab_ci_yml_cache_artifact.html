@@ -231,33 +231,28 @@
 </blockquote>
 <p><strong>EXAMPLE: CACHE MAVEN LOCAL REPOSITORY</strong></p>
 <ul>
-<li>然后在.gitlab-ci.yml中配置
-``` yaml
-variables:
-MAVEN_OPTS: -Dmaven.repo.local=${CI_PROJECT_DIR}/.m2</li>
+<li>然后在.gitlab-ci.yml中配置</li>
 </ul>
-<p>cache:
-  paths:</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">variables</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">MAVEN_OPTS</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2</span>
 
-<pre><code>- ${CI_PROJECT_DIR}/.m2
+<span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">${CI_PROJECT_DIR}/.m2</span>
 
-</code></pre>
-<p>script:</p>
-
-<pre><code>- mvn clean install -Dmaven.test.skip=true ${MAVEN_OPTS}
-</code></pre>
-
-<pre><code>
-&gt; [stackoverflow: change local m2 dir](https://stackoverflow.com/questions/16591080/maven-alternative-m2-directory)
-
-#### artifacts
-``` yaml
-deploy:
-  ...
-  artifacts:
-    paths:
-    - target
-    expire_in: 1 day</code></pre>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mvn clean install -Dmaven.test.skip=true ${MAVEN_OPTS}</span>
+</pre></div>
+<blockquote><p><a href="https://stackoverflow.com/questions/16591080/maven-alternative-m2-directory">stackoverflow: change local m2 dir</a></p>
+</blockquote>
+<h4>artifacts</h4>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">deploy</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">...</span>
+  <span class="l l-Scalar l-Scalar-Plain">artifacts</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span>
+    <span class="l l-Scalar l-Scalar-Plain">expire_in</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1 day</span>
+</pre></div>
 <blockquote><p>erro: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
 <a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a></p>
 <ol>
