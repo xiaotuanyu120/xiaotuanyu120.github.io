@@ -1,10 +1,10 @@
 ---
-title: php 1.3.0: PHP配置 - 安全配置
+title: php 1.2.1: PHP配置 - 安全配置
 date: 2015-01-12 05:47:00
 categories: service/php
 tags: [php]
 ---
-### php 1.3.0: PHP配置 - 安全配置
+### php 1.2.1: PHP配置 - 安全配置
 
 ---
 

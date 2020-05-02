@@ -1,13 +1,11 @@
-Install Skype 4.3 on Fedora 24/23, CentOS/RHEL/SL 7.2/6.8
-2016年8月17日
-9:12
- 
 ---
 title: Install Skype 4.3 on Fedora 24/23, CentOS/RHEL/SL 7.2/6.8
 date: 2016-08-17 11:23:00
 categories: linux
 tags: [linux,skype,fedora]
 ---
+### Install Skype 4.3 on Fedora 24/23, CentOS/RHEL/SL 7.2/6.8
+
 LINK: [原文章](https://www.if-not-true-then-false.com/2012/install-skype-on-fedora-centos-red-hat-rhel-scientific-linux-sl/)
  
 This is guide, howto **install Skype 4.3 on Fedora 24/23/22/21/20/19/18/17/16 on CentOS/Red Hat (RHEL)/Scientific Linux (SL) 7.2/6.8**. This is actually easy process, but I won't use Skype own RPM package, which works only with Fedora 16+. Skype package also doesn't care about any needed dependencies on 64-bit (x86_64) systems nor 32-bit (i686) systems. This guide uses Skype dynamic package and all dependencies are installed manually. 

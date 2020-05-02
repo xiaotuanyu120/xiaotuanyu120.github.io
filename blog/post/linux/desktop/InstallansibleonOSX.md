@@ -1,13 +1,11 @@
-Install ansible on OS X
-Wednesday, 17 August 2016
-9:10 PM
- 
 ---
 title: Install Ansible on OS X
 date: 2016-08-17 21:30:00
 categories: ansible
 tags: [mac,ansible]
 ---
+### Install Ansible on OS X
+
 **Install ansible on OS X**
 ``` bash
 # 切换到root用户

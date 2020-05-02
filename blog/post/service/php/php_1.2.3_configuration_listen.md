@@ -1,10 +1,10 @@
 ---
-title: php 1.6.0: PHP配置 - listen
+title: php 1.2.3: PHP配置 - listen
 date: 2016-01-14 14:34:00
 categories: service/php
 tags: [php]
 ---
-### php 1.6.0: PHP配置 - listen
+### php 1.2.3: PHP配置 - listen
 
 ---
 
