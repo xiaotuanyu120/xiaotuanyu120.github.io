@@ -1,7 +1,7 @@
 ---
 title: zookeeper 1.4.0 管理（启动脚本）
 date: 2017-09-26 14:33:00
-categories: linux/service
+categories: service/zookeeper
 tags: [zookeeper]
 ---
 ### zookeeper 1.4.0 管理（启动脚本）

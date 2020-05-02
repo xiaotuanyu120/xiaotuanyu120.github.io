@@ -1,10 +1,10 @@
 ---
 title: zookeeper 1.3.0 zookeeper 数据清理
 date: 2017-09-15 13:46:00
-categories: linux/service
+categories: service/zookeeper
 tags: [zookeeper]
 ---
-### zookeeper 1.2.0 replicated 安装部署
+### zookeeper 1.3.0 zookeeper 数据清理
 
 ---
 
