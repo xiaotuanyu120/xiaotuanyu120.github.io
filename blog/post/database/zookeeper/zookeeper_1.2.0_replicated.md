@@ -1,7 +1,7 @@
 ---
 title: zookeeper 1.2.0 replicated 安装部署
 date: 2017-03-06 16:09:00
-categories: service/zookeeper
+categories: database/zookeeper
 tags: [zookeeper]
 ---
 ### zookeeper 1.2.0 replicated 安装部署

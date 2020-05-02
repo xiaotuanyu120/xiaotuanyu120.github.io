@@ -1,7 +1,7 @@
 ---
 title: zookeeper 1.3.0 zookeeper 数据清理
 date: 2017-09-15 13:46:00
-categories: service/zookeeper
+categories: database/zookeeper
 tags: [zookeeper]
 ---
 ### zookeeper 1.3.0 zookeeper 数据清理
