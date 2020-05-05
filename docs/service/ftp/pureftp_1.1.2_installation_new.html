@@ -206,180 +206,125 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.0.0_installation.html">
-                php 1.0.0: 安装教程
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
-                php 1.1.0: 查看环境信息
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
-                php 1.2.0: PHP配置 - access,slow,error 日志
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
-                php 1.2.1: PHP配置 - 安全配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
-                php 1.2.2: PHP配置 - 进程数调整
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
-                php 1.2.3: PHP配置 - listen
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
-                php 1.3.0: 性能调优 - backlog
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
-                php error: 不间断502问题
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_compile_process.html">
-                php error: 编译过程中的错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
-                php extensions: 编译时增加mysql驱动模块
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
-                php: 安装zend guard loader
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>pureftpd: 1.1.1 安装(2020新版) - 1.0.49</h3>
+<hr>
+<h3>1. 准备工作</h3>
+<div class="highlight"><pre><span></span><span class="c1"># env var</span>
+<span class="nv">PURE_FTPD_UID</span><span class="o">=</span><span class="m">1000</span>
+<span class="nv">PURE_FTPD_GID</span><span class="o">=</span><span class="m">1000</span>
+<span class="nv">PURE_FTPD_USER</span><span class="o">=</span>pureftpd
+<span class="nv">PURE_FTPD_GROUP</span><span class="o">=</span>pureftpd
+<span class="nv">PURE_FTPD_HOMEDIR</span><span class="o">=</span>/var/www/html
+
+<span class="nv">PURE_FTPD_VER</span><span class="o">=</span><span class="m">1</span>.0.49
+<span class="nv">PURE_FTPD_DIR</span><span class="o">=</span>/usr/local/pure-ftpd-<span class="si">${</span><span class="nv">PURE_FTPD_VER</span><span class="si">}</span>
+
+<span class="c1"># install base packages</span>
+yum install gcc make wget openssl-devel -y
+
+<span class="c1"># prepare pure-ftpd&#39;s process running user</span>
+mkdir -p <span class="si">${</span><span class="nv">PURE_FTPD_HOMEDIR</span><span class="p">%/*</span><span class="si">}</span>
+groupadd -g <span class="si">${</span><span class="nv">PURE_FTPD_GID</span><span class="si">}</span> <span class="si">${</span><span class="nv">PURE_FTPD_GROUP</span><span class="si">}</span>
+useradd -g <span class="si">${</span><span class="nv">PURE_FTPD_GROUP</span><span class="si">}</span> -u <span class="si">${</span><span class="nv">PURE_FTPD_UID</span><span class="si">}</span> -d <span class="si">${</span><span class="nv">PURE_FTPD_HOMEDIR</span><span class="si">}</span> -s /sbin/nologin <span class="si">${</span><span class="nv">PURE_FTPD_USER</span><span class="si">}</span>
+</pre></div>
+<h3>2. 编译安装</h3>
+<div class="highlight"><pre><span></span><span class="c1"># download, compile and install</span>
+wget https://download.pureftpd.org/pub/pure-ftpd/releases/pure-ftpd-<span class="si">${</span><span class="nv">PURE_FTPD_VER</span><span class="si">}</span>.tar.gz
+tar zxf pure-ftpd-<span class="si">${</span><span class="nv">PURE_FTPD_VER</span><span class="si">}</span>.tar.gz
+<span class="nb">cd</span> pure-ftpd-<span class="si">${</span><span class="nv">PURE_FTPD_VER</span><span class="si">}</span>
+./configure --prefix<span class="o">=</span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span> <span class="se">\</span>
+  --with-tls --with-puredb <span class="se">\</span>
+  --with-certfile<span class="o">=</span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/pure-ftpd.pem <span class="se">\</span>
+  --with-keyfile<span class="o">=</span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/pure-ftpd.pem
+make install-strip
+
+<span class="c1"># prepare runtime env</span>
+ln -s <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="p">%/*</span><span class="si">}</span>/pure-ftpd
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/sbin
+</pre></div>
+<h3>3. 一般配置</h3>
+<div class="highlight"><pre><span></span><span class="c1"># env vars</span>
+<span class="nv">MAX_CLIENT_NUM</span><span class="o">=</span><span class="m">50</span>
+<span class="nv">MAX_CLIENT_PER_IP</span><span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># 禁止匿名用户访问</span>
+sed -i -r <span class="s2">&quot;s|^NoAnonymous +no ?+</span>$<span class="s2">|NoAnonymous yes|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+<span class="c1"># 启用虚拟用户配置</span>
+sed -i -r <span class="s2">&quot;s|^# ?+PureDB +/etc/pureftpd.pdb ?+</span>$<span class="s2">|PureDB </span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span><span class="s2">/etc/pureftpd.pdb|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+<span class="c1"># 关闭pam认证</span>
+sed -i -r <span class="s2">&quot;s|^# ?+PAMAuthentication +yes ?+</span>$<span class="s2">|# PAMAuthentication yes|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+<span class="c1"># 设定最大用户数</span>
+sed -i -r <span class="s2">&quot;s|^#?+ ?+MaxClientsNumber +[[:digit:]]+ ?+</span>$<span class="s2">|MaxClientsNumber </span><span class="si">${</span><span class="nv">MAX_CLIENT_NUM</span><span class="si">}</span><span class="s2">|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+<span class="c1"># 设定每个ip最大用户数</span>
+sed -i -r <span class="s2">&quot;s|^#?+ ?+MaxClientsPerIP +[[:digit:]]+ ?+</span>$<span class="s2">|MaxClientsPerIP </span><span class="si">${</span><span class="nv">MAX_CLIENT_PER_IP</span><span class="si">}</span><span class="s2">|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+</pre></div>
+<h3>4. ssl key生成和配置</h3>
+<div class="highlight"><pre><span></span><span class="c1"># ssl key generate</span>
+mkdir -p <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private
+openssl dhparam -out <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/pure-ftpd-dhparams.pem <span class="m">2048</span>
+openssl req -x509 -nodes -newkey rsa:2048 -sha256 <span class="se">\</span>
+  -keyout <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/pure-ftpd.pem <span class="se">\</span>
+  -out <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/pure-ftpd.pem
+<span class="c1"># -----</span>
+<span class="c1"># You are about to be asked to enter information that will be incorporated</span>
+<span class="c1"># into your certificate request.</span>
+<span class="c1"># What you are about to enter is what is called a Distinguished Name or a DN.</span>
+<span class="c1"># There are quite a few fields but you can leave some blank</span>
+<span class="c1"># For some fields there will be a default value,</span>
+<span class="c1"># If you enter &#39;.&#39;, the field will be left blank.</span>
+<span class="c1"># -----</span>
+<span class="c1"># Country Name (2 letter code) [XX]:CN</span>
+<span class="c1"># State or Province Name (full name) []:ShangHai</span>
+<span class="c1"># Locality Name (eg, city) [Default City]:Shanghai      </span>
+<span class="c1"># Organization Name (eg, company) [Default Company Ltd]:test</span>
+<span class="c1"># Organizational Unit Name (eg, section) []:IT</span>
+<span class="c1"># Common Name (eg, your name or your server&#39;s hostname) []:localhost</span>
+<span class="c1"># Email Address []:test@localhost.com</span>
+
+chmod <span class="m">600</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/ssl/private/*.pem
+
+<span class="c1"># ssl configuration</span>
+sed -i -r <span class="s2">&quot;s|^# ?+TLS +[[:digit:]] ?+</span>$<span class="s2">|TLS 1|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+sed -i -r <span class="s2">&quot;s|^# ?+TLSCipherSuite +HIGH ?+</span>$<span class="s2">|TLSCipherSuite HIGH:MEDIUM:+TLSv1:\!SSLv2:\!SSLv3|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+sed -i -r <span class="s2">&quot;s|^# ?+CertFile +/etc/ssl/private/pure-ftpd.pem ?+</span>$<span class="s2">|CertFile </span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span><span class="s2">/etc/ssl/private/pure-ftpd.pem|g&quot;</span> <span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pure-ftpd.conf
+</pre></div>
+<h3>5. 配置虚拟用户</h3>
+<div class="highlight"><pre><span></span><span class="nv">PURE_FTPD_LOGIN</span><span class="o">=</span>ftpuser01
+<span class="nv">PURE_FTPD_LOGIN_PASS</span><span class="o">=</span><span class="m">123456</span>
+<span class="nv">PURE_FTPD_PASSFILE</span><span class="o">=</span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pureftpd.passwd
+<span class="nv">PURE_FTPD_DB</span><span class="o">=</span><span class="si">${</span><span class="nv">PURE_FTPD_DIR</span><span class="si">}</span>/etc/pureftpd.pdb
+
+mkdir -p <span class="si">${</span><span class="nv">PURE_FTPD_HOMEDIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PURE_FTPD_LOGIN</span><span class="si">}</span>
+chown -R <span class="si">${</span><span class="nv">PURE_FTPD_UID</span><span class="si">}</span>.<span class="si">${</span><span class="nv">PURE_FTPD_GID</span><span class="si">}</span> <span class="si">${</span><span class="nv">PURE_FTPD_HOMEDIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PURE_FTPD_LOGIN</span><span class="si">}</span>
+
+<span class="nv">TMP_PASSFILE</span><span class="o">=</span><span class="k">$(</span>mktemp<span class="k">)</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="si">${</span><span class="nv">PURE_FTPD_LOGIN_PASS</span><span class="si">}</span><span class="s2">\n</span><span class="si">${</span><span class="nv">PURE_FTPD_LOGIN_PASS</span><span class="si">}</span><span class="s2">&quot;</span> &gt; <span class="si">${</span><span class="nv">TMP_PASSFILE</span><span class="si">}</span>
+pure-pw useradd <span class="si">${</span><span class="nv">PURE_FTPD_LOGIN</span><span class="si">}</span> -f <span class="si">${</span><span class="nv">PURE_FTPD_PASSFILE</span><span class="si">}</span> -u <span class="si">${</span><span class="nv">PURE_FTPD_UID</span><span class="si">}</span> -g <span class="si">${</span><span class="nv">PURE_FTPD_GID</span><span class="si">}</span> -d <span class="si">${</span><span class="nv">PURE_FTPD_HOMEDIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PURE_FTPD_LOGIN</span><span class="si">}</span> &lt; <span class="si">${</span><span class="nv">TMP_PASSFILE</span><span class="si">}</span>
+
+pure-pw mkdb <span class="si">${</span><span class="nv">PURE_FTPD_DB</span><span class="si">}</span> -f <span class="si">${</span><span class="nv">PURE_FTPD_PASSFILE</span><span class="si">}</span>
+</pre></div>
+<h3>6. 启动pure-ftpd</h3>
+<div class="highlight"><pre><span></span><span class="c1"># prepare systemd unit file </span>
+cat <span class="s">&lt;&lt; EOF &gt; /usr/lib/systemd/system/pure-ftpd.service</span>
+<span class="s"># pure-ftpd binary startup for DirectAdmin servers</span>
+<span class="s"># To reload systemd daemon after changes to this file:</span>
+<span class="s"># systemctl --system daemon-reload</span>
+<span class="s">[Unit]</span>
+<span class="s">Description=Pure-FTPd FTP server</span>
+<span class="s">After=syslog.target network.target</span>
+
+<span class="s">[Service]</span>
+<span class="s">Type=forking</span>
+<span class="s">ExecStart=${PURE_FTPD_DIR}/sbin/pure-ftpd ${PURE_FTPD_DIR}/etc/pure-ftpd.conf</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="s">EOF</span>
+
+systemctl daemon-reload
+systemctl restart pure-ftpd
+</pre></div>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -508,66 +453,6 @@
               php
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.0.0_installation.html">
-                php 1.0.0: 安装教程
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
-                php 1.1.0: 查看环境信息
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
-                php 1.2.0: PHP配置 - access,slow,error 日志
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
-                php 1.2.1: PHP配置 - 安全配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
-                php 1.2.2: PHP配置 - 进程数调整
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
-                php 1.2.3: PHP配置 - listen
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
-                php 1.3.0: 性能调优 - backlog
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
-                php error: 不间断502问题
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_compile_process.html">
-                php error: 编译过程中的错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
-                php extensions: 编译时增加mysql驱动模块
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
-                php: 安装zend guard loader
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -589,6 +474,46 @@
               ftp
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.0.0_whats_ftp.html">
+                ftp: 1.0.0 ftp是什么？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.0_docker_compose.html">
+                ftp: 1.1.0 docker-compose with nginx
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.1.0_client.html">
+                ftp: 1.1.0 客户端lftp
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.1_installation.html">
+                pureftpd: 1.1.1 安装 - 1.0.36
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.2_installation_new.html">
+                pureftpd: 1.1.2 安装(2020新版) - 1.0.49
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.0_installation.html">
+                vsftp 1.1.0: vsftp 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">
+                vsftp error: 1.1.0 530 login incorrect
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.1_installation_centos6.html">
+                vsftp: 1.1.1 安装(centos6)
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">

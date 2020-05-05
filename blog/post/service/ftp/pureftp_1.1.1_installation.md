@@ -1,10 +1,10 @@
 ---
-title: pureftpd: 1.1.1 安装
+title: pureftpd: 1.1.1 安装 - 1.0.36
 date: 2015-01-22 02:54:00
 categories: service/ftp
 tags: [ftp]
 ---
-### pureftpd: 1.1.1 安装
+### pureftpd: 1.1.1 安装 - 1.0.36
 
 ---
 
