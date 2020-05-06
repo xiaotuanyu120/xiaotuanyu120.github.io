@@ -97,6 +97,11 @@
         <li class="divider" role="presentation">
         </li>
             <li role="presentation">
+             <a href="/serivce" role="menuitem" tabindex="-1">
+              serivce
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
              </a>
@@ -201,37 +206,9 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>ftp: 1.1.0 docker-compose with nginx</h3>
+      <div class="col-lg-12"><h3>pure-ftpd: 1.1.0 docker-compose with nginx</h3>
 <hr>
-<h3>1. ftp</h3>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3.1&#39;</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">ftp</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">stilliard/pure-ftpd:latest</span>
-    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ftp</span>
-    <span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
-      <span class="l l-Scalar l-Scalar-Plain">PUBLICHOST</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_NAME</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftpuser&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_PASS</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftppass&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_HOME</span><span class="p p-Indicator">:</span> <span class="s">&quot;/var/www/html&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_UID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_GID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_PASSIVE_PORTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;30000:30050&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_MAX_CONNECTIONS</span><span class="p p-Indicator">:</span> <span class="s">&quot;20&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_MAC_CLIENTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;10&quot;</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/data/ftp/html:/var/www/html</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/data/docker/runtime/ftp/userdata:/etc/pure-ftpd/passwd</span>
-    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&quot;21:21&quot;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&quot;30000-30050:30000-30050&quot;</span>
-
-<span class="c1"># networks:</span>
-<span class="c1">#   default:</span>
-<span class="c1">#     external:</span>
-<span class="c1">#       name: production</span>
-</pre></div>
-<h3>2. ftp+nginx</h3>
+<h3>1. docker-compose of pure-ftpd</h3>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3.1&#39;</span>
 
 <span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
@@ -255,8 +232,6 @@
       <span class="l l-Scalar l-Scalar-Plain">FTP_USER_NAME</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftpuser&quot;</span>
       <span class="l l-Scalar l-Scalar-Plain">FTP_USER_PASS</span><span class="p p-Indicator">:</span> <span class="s">&quot;ftppass&quot;</span>
       <span class="l l-Scalar l-Scalar-Plain">FTP_USER_HOME</span><span class="p p-Indicator">:</span> <span class="s">&quot;/var/www/html&quot;</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_UID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
-      <span class="l l-Scalar l-Scalar-Plain">FTP_USER_GID</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">33</span>
       <span class="l l-Scalar l-Scalar-Plain">FTP_PASSIVE_PORTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;30000:30050&quot;</span>
       <span class="l l-Scalar l-Scalar-Plain">FTP_MAX_CONNECTIONS</span><span class="p p-Indicator">:</span> <span class="s">&quot;20&quot;</span>
       <span class="l l-Scalar l-Scalar-Plain">FTP_MAC_CLIENTS</span><span class="p p-Indicator">:</span> <span class="s">&quot;10&quot;</span>
@@ -271,6 +246,80 @@
 <span class="c1">#   default:</span>
 <span class="c1">#     external:</span>
 <span class="c1">#       name: production</span>
+</pre></div>
+<blockquote><p>此镜像的环境变量说明(详细的请查看<a href="https://github.com/stilliard/docker-pure-ftpd">源码</a>)</p>
+<ul>
+<li><code>PUBLICHOST</code>: 对应的是<code>-P</code>，可配置ip或者域名，含义是在回应客户端<code>PASV/EPSV/SPSV</code>命令时返回哪个ip。如果是nat环境，可以设定为nat环境的公网出口ip。</li>
+<li><code>FTP_USER_UID</code>: 对应的是<code>pure-pw</code>里面的<code>-u</code>，如果不指定，默认的就是ftpuser（镜像作者设定的），uid是1000</li>
+<li><code>FTP_USER_GID</code>: 对应的是<code>pure-pw</code>里面的<code>-g</code>，如果不指定，默认的就是ftpgroup，gid是1000</li>
+<li><code>FTP_USER_NAME</code>,<code>FTP_USER_PASS</code>,<code>FTP_USER_HOME</code>，包括上面的<code>FTP_USER_UID</code>和<code>FTP_USER_GID</code>，其实对应的都是<code>pure-pw</code>创建虚拟用户时用到的信息。</li>
+<li><code>FTP_MAX_CONNECTIONS</code>: 对应的是<code>-C</code>，含义是每个ip的最大连接的客户端数目</li>
+<li><code>FTP_MAX_CLIENTS</code>: 对应的是<code>-c</code>，含义是最大连接的客户端数目(所以说，端口数目设定为和这个数字一样多就好了)</li>
+</ul>
+<p>docker镜像里面的环境变量选项是镜像作者自定义的，详细的说明还是要参照<a href="https://download.pureftpd.org/pub/pure-ftpd/doc/README">pure-ftpd选项说明</a></p>
+<p>挂载的ftp数据目录，需要设定uid和gid为<code>FTP_USER_UID</code>和<code>FTP_USER_GID</code>，默认是<code>ftpuser</code>和<code>ftpgroup</code>的<code>1000</code>和<code>1000</code></p>
+</blockquote>
+<h3>2. enable tls</h3>
+<p>首先我们要明确，我们要搞得是ftps(tls+ftp)，而不是sftp(过ssh通道)</p>
+<p>pure-ftpd开启tls有几个条件</p>
+<ul>
+<li>编译时有<code>--with-tls</code>选项，其实就是把openssl的库编译进去</li>
+<li>自生成或者买一个pem的秘钥（crt和key内容可分开为两个文件，也可合并为一个文件，一般选择合并在一起的pem。我们的例子也选用合并在一起的pem）</li>
+<li>pure-ftpd启动时增加<code>--tls 1/2</code>的选项（1是mixed安全和非安全两种模式，2是强制全部是安全模式）</li>
+</ul>
+<p>此处的镜像是用这样的逻辑来开启tls的</p>
+<ul>
+<li>如果你映射了pem证书到容器<code>/etc/ssl/private/pure-ftpd.pem</code>，它会自动给你添加<code>--tls 1</code>选项</li>
+<li>如果你指定了<code>--tls 1/2</code>选项，且<code>/etc/ssl/private/pure-ftpd.pem</code>不存在，它会自动生成一个证书文件</li>
+</ul>
+<p>我个人倾向于自己生成，然后挂载进去</p>
+<div class="highlight"><pre><span></span><span class="c1"># ssl key generate</span>
+mkdir -p /path/to/private
+openssl dhparam -out /path/to/private/pure-ftpd-dhparams.pem <span class="m">2048</span>
+openssl req -x509 -nodes -newkey rsa:2048 -sha256 <span class="se">\</span>
+  -keyout /path/to/private/pure-ftpd.pem <span class="se">\</span>
+  -out /path/to/private/pure-ftpd.pem
+<span class="c1"># -----</span>
+<span class="c1"># You are about to be asked to enter information that will be incorporated</span>
+<span class="c1"># into your certificate request.</span>
+<span class="c1"># What you are about to enter is what is called a Distinguished Name or a DN.</span>
+<span class="c1"># There are quite a few fields but you can leave some blank</span>
+<span class="c1"># For some fields there will be a default value,</span>
+<span class="c1"># If you enter &#39;.&#39;, the field will be left blank.</span>
+<span class="c1"># -----</span>
+<span class="c1"># Country Name (2 letter code) [XX]:CN</span>
+<span class="c1"># State or Province Name (full name) []:ShangHai</span>
+<span class="c1"># Locality Name (eg, city) [Default City]:Shanghai      </span>
+<span class="c1"># Organization Name (eg, company) [Default Company Ltd]:test</span>
+<span class="c1"># Organizational Unit Name (eg, section) []:IT</span>
+<span class="c1"># Common Name (eg, your name or your server&#39;s hostname) []:localhost</span>
+<span class="c1"># Email Address []:test@localhost.com</span>
+
+chmod <span class="m">600</span> /path/to/private/*.pem
+</pre></div>
+<blockquote><p>所有选项不要空着，不然有可能遇到docker的252 exit code错误
+手动去容器里面排查了一下，提示的是“421 证书文件不存在啥的”，但是查看了pure-ftpd的源码，发现不是文件不存在，而是openssl的库解析证书的时候报错了。猜测是因为生成证书的时候，有的选项空着没填内容有关，而且国家那里必须是两位字母。</p>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">tls_load_cert_file</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">cert_file</span><span class="p">,</span>
+                               <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">key_file</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SSL_CTX_use_certificate_chain_file</span><span class="p">(</span><span class="n">tls_ctx</span><span class="p">,</span> <span class="n">cert_file</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">die</span><span class="p">(</span><span class="mi">421</span><span class="p">,</span> <span class="n">LOG_ERR</span><span class="p">,</span>
+            <span class="n">MSG_FILE_DOESNT_EXIST</span> <span class="s">&quot;: [%s]&quot;</span><span class="p">,</span> <span class="n">cert_file</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SSL_CTX_use_PrivateKey_file</span><span class="p">(</span><span class="n">tls_ctx</span><span class="p">,</span> <span class="n">key_file</span><span class="p">,</span>
+                                    <span class="n">SSL_FILETYPE_PEM</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">die</span><span class="p">(</span><span class="mi">421</span><span class="p">,</span> <span class="n">LOG_ERR</span><span class="p">,</span>
+            <span class="n">MSG_FILE_DOESNT_EXIST</span> <span class="s">&quot;: [%s]&quot;</span><span class="p">,</span> <span class="n">key_file</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SSL_CTX_check_private_key</span><span class="p">(</span><span class="n">tls_ctx</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tls_error</span><span class="p">(</span><span class="n">LINE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</blockquote>
+<p>docker-compose的yaml文件需要增加内容</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/path/to/private:/etc/ssl/private</span>
 </pre></div>
       </div>
      </div>
@@ -295,6 +344,11 @@
        <li role="presentation" class="dropdown-header">
         完整文档分类
        </li>
+            <li role="presentation">
+             <a href="/serivce" role="menuitem" tabindex="-1">
+              serivce
+             </a>
+            </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -413,10 +467,50 @@
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
+            <a class="reference internal" href="/service/ftp">
+              ftp
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.0.0_whats_ftp.html">
+                ftp: 1.0.0 ftp是什么？
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/ftp_1.1.0_client.html">
+                ftp: 1.1.0 客户端lftp
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.0_docker_compose.html">
+                pure-ftpd: 1.1.0 docker-compose with nginx
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.1_installation.html">
+                pureftpd: 1.1.1 安装 - 1.0.36
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/pureftp_1.1.2_installation_new.html">
+                pureftpd: 1.1.2 安装(2020新版) - 1.0.49
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.0_installation.html">
+                vsftp 1.1.0: vsftp 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">
+                vsftp error: 1.1.0 530 login incorrect
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/ftp/vsftp_1.1.1_installation_centos6.html">
+                vsftp: 1.1.1 安装(centos6)
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -469,50 +563,15 @@
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
+            <a class="reference internal" href="/service/vpn">
+              vpn
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/ftp_1.0.0_whats_ftp.html">
-                ftp: 1.0.0 ftp是什么？
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/pureftp_1.1.0_docker_compose.html">
-                ftp: 1.1.0 docker-compose with nginx
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/ftp_1.1.0_client.html">
-                ftp: 1.1.0 客户端lftp
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/pureftp_1.1.1_installation.html">
-                pureftpd: 1.1.1 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/vsftp_1.1.0_installation.html">
-                vsftp 1.1.0: vsftp 安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">
-                vsftp error: 1.1.0 530 login incorrect
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/ftp/vsftp_1.1.1_installation_centos6.html">
-                vsftp: 1.1.1 安装(centos6)
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
             </a>
             <ul>
             </ul>
