@@ -1,7 +1,7 @@
 ---
 title: php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
 date: 2015-04-02 13:59:00
-categories: serivce/php
+categories: service/php
 tags: [php,cgi,fastcgi,php-fpm,spawn-fcgi]
 ---
 ### php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
