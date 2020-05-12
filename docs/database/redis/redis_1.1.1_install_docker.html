@@ -187,83 +187,65 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>redis: 1.1.1 docker-redis</h3>
+<hr>
+<h3>1. docker-compose yaml</h3>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;3&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redis:3.2.12</span>
+    <span class="l l-Scalar l-Scalar-Plain">container_name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">redis</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;redis-server&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;/usr/local/etc/redis/redis.conf&quot;</span><span class="p p-Indicator">]</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;/path/to/redis/data:/data&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;/path/to/redis/log:/var/log/redis&quot;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;/path/to/reids/redis.conf:/usr/local/etc/redis/redis.conf&quot;</span>
+</pre></div>
+<h3>2. 配置注意点</h3>
+<ul>
+<li><code>bind 0.0.0.0</code>，保证其他容器可以访问</li>
+<li><code>logfile /var/log/redis/redis_6379.log</code>，日志路径和上面挂载的日志volumes<code>/var/log/redis</code>要统一</li>
+<li><code>daemonize no</code>，不能后台daemon执行，docker需要<code>command: ["redis-server", "/usr/local/etc/redis/redis.conf"]</code>一直前台执行</li>
+<li><code>dir /data</code>，需要和数据volumes<code>/data</code>保持一致</li>
+<li><code>requirepass redispass</code>，redis官方容器默认是关闭了protechtion模式，所以推荐设定密码保证安全性</li>
+</ul>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -338,118 +320,113 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="database/mysql/mysql_1.0.1_docker_compose.html">
-        mysql 1.0.1: docker-compose(单实例和主从)
-       </a><br>
-
-       <a href="service/ftp/pureftp_1.1.0_docker_compose.html">
-        pure-ftpd: 1.1.0 docker-compose with nginx
-       </a><br>
-
-       <a href="database/redis/redis_1.1.1_install_docker.html">
-        redis: 1.1.1 docker-redis
-       </a><br>
-
-       <a href="android/operation/android_1.1.1_ci_example.html">
-        android 1.1.1 android compile CI
-       </a><br>
-
-       <a href="linux/advance/curl_1.1.0_post_usage.html">
-        curl 1.1.0 POST usage
-       </a><br>
-
-       <a href="service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-        php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-       </a><br>
-
-       <a href="android/operation/android_1.1.0_install_sdk.html">
-        android 1.1.0 安装 android SDK（命令行工具）
-       </a><br>
-
-       <a href="devops/git/gitlab_ci_1.1.1_gitlab_runner_configuration.html">
-        gitlab-ci: 1.1.1 gitlab-runner(docker)配置
-       </a><br>
-
-       <a href="virtualization/docker/docker_2.2.5_Dockerfile_example.html">
-        1.2.5 dockerfile 示例
-       </a><br>
-
-       <a href="virtualization/docker/docker_3.4.0_example_error_alphine_java_not_found.html">
-        3.4.0 alpine oracle java no such file or directory error
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/zookeeper">
+              zookeeper
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/redis">
+              redis
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_cluster_1.1.0_install.html">
+                redis-cluster: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.0_install.html">
+                redis: 1.1.0 安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.1_install_docker.html">
+                redis: 1.1.1 docker-redis
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">
+                redis: 1.1.1 redis replication(sentinel集群)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">
+                redis: 1.1.2 redis-py(sentinel)获取master信息
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.0_basic_cmd.html">
+                redis: 1.2.0 基本管理命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">
+                redis: 1.2.1 将redis执行结果输出到文件
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.2_security_disable_command.html">
+                redis: 1.2.2 安全性(CONFIG重命名)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_1.2.3_production_tunning.html">
+                redis: 1.2.3 性能优化
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_3.1.0_consistent.html">
+                redis: 3.1.0 持久化、备份及恢复
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.1.0_replication.html">
+                redis: 4.1.0 主从配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">
+                redis: 4.2.0 主从遇到的问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">
+                redis: 5.1.0 错误-降级后启动报错
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/redis/redis_6.1.0_debug_method.html">
+                redis: 6.1.0 DEBUG方法
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/mysql">
+              mysql
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
