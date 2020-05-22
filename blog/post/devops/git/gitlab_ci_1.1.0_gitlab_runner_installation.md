@@ -181,15 +181,15 @@ PANIC: Failed to register this runner. Perhaps you are having network problems
 
 检查和排除过的可能问题所在
 - 确认自建gitlab的域名解析正确；
-- 确认自建gitlab域名的http协议正确；
-- 确认token输入正确（setting - CI/CD - RUNNER）
-- 确认curl和telnet测试，gitlab-runner可以通过域名调用gitlab
-- 确认gitlab-runner版本和gitlab版本一致
+- 确认自建gitlab域名的http协议正确(http还是https不能搞错，若是https，还要解决证书问题)；
+- 确认token输入正确(gitlab网页端，在project页面点击setting - CI/CD - RUNNER);
+- 确认经过curl和telnet两个工具测试，gitlab-runner所在服务器可以通过域名调用gitlab服务;
+- 确认gitlab-runner版本和gitlab版本一致;
 
-然而我网上搜索错误的关键字，大部分说的都是上面的原因。于是经过一番“大海捞针”，终于找到了一个解决办法，“将docker运行的register容器，网络模式改为host”
+然而我网上搜索错误的关键字，大部分说的都是上面的原因。于是经过一番“大海捞针”，终于找到了一个解决办法:“将docker运行的register容器，网络模式改为host”
 ``` bash
 # 增加了--network host
 docker run --rm --network host -v ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner gitlab/gitlab-runner register \
 ...
 ```
-> [gitlab org issues](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4082)
+> 参考链接：[gitlab org issues](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4082)
