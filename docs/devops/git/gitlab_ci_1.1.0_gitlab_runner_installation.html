@@ -355,6 +355,29 @@ cat <span class="s">&lt;&lt; EOF &gt; docker-compose-gitlab-runner.yml</span>
 
 docker-compose -f docker-compose-gitlab-runner.yml up -d
 </pre></div>
+<h3>3. gitlab-runner register 报错</h3>
+<p>在亚马逊云上申请了一台机器，部署gitlab-runner，register时报错</p>
+
+<pre><code>Runtime platform                                    arch=amd64 os=linux pid=6 revision=c5874a4b version=12.10.2
+Running in system-mode.                            
+
+ERROR: Registering runner... forbidden (check registration token)  runner=&lt;mytoken&gt;
+PANIC: Failed to register this runner. Perhaps you are having network problems</code></pre>
+<p>检查和排除过的可能问题所在</p>
+<ul>
+<li>确认自建gitlab的域名解析正确；</li>
+<li>确认自建gitlab域名的http协议正确；</li>
+<li>确认token输入正确（setting - CI/CD - RUNNER）</li>
+<li>确认curl和telnet测试，gitlab-runner可以通过域名调用gitlab</li>
+<li>确认gitlab-runner版本和gitlab版本一致</li>
+</ul>
+<p>然而我网上搜索错误的关键字，大部分说的都是上面的原因。于是经过一番“大海捞针”，终于找到了一个解决办法，“将docker运行的register容器，网络模式改为host”</p>
+<div class="highlight"><pre><span></span><span class="c1"># 增加了--network host</span>
+docker run --rm --network host -v <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF_DIR</span><span class="si">}</span>:/etc/gitlab-runner gitlab/gitlab-runner register <span class="se">\</span>
+...
+</pre></div>
+<blockquote><p><a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4082">gitlab org issues</a></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -536,8 +559,18 @@ docker-compose -f docker-compose-gitlab-runner.yml up -d
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml.html">
-                gitlab-ci: 1.2.0 .gitlab-ci.yml
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.1.1_gitlab_runner_configuration.html">
+                gitlab-ci: 1.1.1 gitlab-runner(docker)配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.0_gitlab_ci_yml_basic.html">
+                gitlab-ci: 1.2.0 .gitlab-ci.yml 基础
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.1_gitlab_ci_yml_cache_artifact.html">
+                gitlab-ci: 1.2.1 .gitlab-ci.yml - cache and artifact
               </a>
              </li>
              <li class="toctree-l2">

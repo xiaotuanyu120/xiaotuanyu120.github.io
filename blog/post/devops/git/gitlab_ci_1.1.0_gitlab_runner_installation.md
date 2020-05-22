@@ -168,3 +168,28 @@ EOF
 
 docker-compose -f docker-compose-gitlab-runner.yml up -d
 ```
+
+### 3. gitlab-runner register 报错
+在亚马逊云上申请了一台机器，部署gitlab-runner，register时报错
+```
+Runtime platform                                    arch=amd64 os=linux pid=6 revision=c5874a4b version=12.10.2
+Running in system-mode.                            
+                                                              
+ERROR: Registering runner... forbidden (check registration token)  runner=<mytoken>
+PANIC: Failed to register this runner. Perhaps you are having network problems
+```
+
+检查和排除过的可能问题所在
+- 确认自建gitlab的域名解析正确；
+- 确认自建gitlab域名的http协议正确；
+- 确认token输入正确（setting - CI/CD - RUNNER）
+- 确认curl和telnet测试，gitlab-runner可以通过域名调用gitlab
+- 确认gitlab-runner版本和gitlab版本一致
+
+然而我网上搜索错误的关键字，大部分说的都是上面的原因。于是经过一番“大海捞针”，终于找到了一个解决办法，“将docker运行的register容器，网络模式改为host”
+``` bash
+# 增加了--network host
+docker run --rm --network host -v ${GITLAB_RUNNER_CONF_DIR}:/etc/gitlab-runner gitlab/gitlab-runner register \
+...
+```
+> [gitlab org issues](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4082)
