@@ -62,6 +62,7 @@ keytool -keystore cacerts -importcert \
 > 浏览器获取证书的方法，请查看[获取证书方法](/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html)
 
 > 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
+
 ``` bash
 JAVA_HOME=/usr/local/jdk1.7.0_79
 # 获取域名证书
@@ -76,6 +77,7 @@ ${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -import
   -alias ${domain} \
   -file ${domain}.crt
 ```
+
 > 给jdk增加ssl证书可以参照[microsoft java add certificate](https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store)
 
 ### 3. 查看keystore信息

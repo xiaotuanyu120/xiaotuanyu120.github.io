@@ -248,26 +248,26 @@ keytool -keystore cacerts -importcert <span class="se">\</span>
 </pre></div>
 <blockquote><p>cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
 <p>浏览器获取证书的方法，请查看<a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">获取证书方法</a></p>
-<p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
-``` bash
-JAVA_HOME=/usr/local/jdk1.7.0_79</p>
-<h1>获取域名证书</h1>
-<p>domain=www.example.com
-echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
-  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt; ${domain}.crt</p>
+<p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上</p>
 </blockquote>
-<p>${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert \
-  -storepass changeit \
-  -noprompt \
-  -trustcacerts \
-  -alias ${domain} \
-  -file ${domain}.crt</p>
+<div class="highlight"><pre><span></span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk1.7.0_79
+<span class="c1"># 获取域名证书</span>
+<span class="nv">domain</span><span class="o">=</span>www.example.com
+echo<span class="p">|</span>openssl s_client -servername <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> -connect <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>:443<span class="p">|</span><span class="se">\</span>
+  sed -ne <span class="s1">&#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39;</span> &gt; <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
 
-<pre><code>&gt; 给jdk增加ssl证书可以参照[microsoft java add certificate](https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store)
-
-### 3. 查看keystore信息
-``` bash
-keytool -list -keystore cacerts</code></pre>
+<span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/bin/keytool -keystore <span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre/lib/security/cacerts -importcert <span class="se">\</span>
+  -storepass changeit <span class="se">\</span>
+  -noprompt <span class="se">\</span>
+  -trustcacerts <span class="se">\</span>
+  -alias <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> <span class="se">\</span>
+  -file <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
+</pre></div>
+<blockquote><p>给jdk增加ssl证书可以参照<a href="https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store">microsoft java add certificate</a></p>
+</blockquote>
+<h3>3. 查看keystore信息</h3>
+<div class="highlight"><pre><span></span>keytool -list -keystore cacerts
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -379,13 +379,18 @@ keytool -list -keystore cacerts</code></pre>
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/java/security/jce_1.1.0_ulimited_policy.html">
+              <a class="reference internal" href="/java/security/jce_1.1.0_unlimited_policy.html">
                 jce 1.1.0 无限制策略
               </a>
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/java/security/keytool_1.1.0_usage.html">
                 keytool 1.1.0 命令使用说明
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/security/ssl_error_1.1.0_handshake_failure_and_unable_to_find_valid_certification_path.html">
+                ssl error 1.1.0 handshake_failure and unable to find valid certification path
               </a>
              </li>
             </ul>
