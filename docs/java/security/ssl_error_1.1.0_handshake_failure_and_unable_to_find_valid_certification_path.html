@@ -201,96 +201,28 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>error 1.0.0 SSLHandshakeException handshake_failure</h3>
+      <div class="col-lg-12"><h3>ssl error 1.1.0 handshake_failure and unable to find valid certification path</h3>
 <hr>
-<h3>1. 错误信息</h3>
-<p>错误信息1：</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="n">ERROR</span><span class="o">]</span><span class="n">_2018</span><span class="o">-</span><span class="mo">03</span><span class="o">-</span><span class="mi">08</span> <span class="mi">16</span><span class="o">:</span><span class="mi">31</span><span class="o">:</span><span class="mi">10</span> <span class="mi">990</span> <span class="o">:</span> <span class="o">[</span><span class="n">http</span><span class="o">-</span><span class="n">apr</span><span class="o">-</span><span class="mi">8580</span><span class="o">-</span><span class="n">exec</span><span class="o">-</span><span class="mi">81</span><span class="o">]</span> <span class="err">\</span>
-<span class="n">getHttpContentByBtParam</span> <span class="n">请求调用异常</span><span class="err">：</span>
-<span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">Received</span> <span class="n">fatal</span> <span class="n">alert</span><span class="o">:</span> <span class="n">handshake_failure</span>
+<h3>1. handshake_failure</h3>
+<h4>错误信息</h4>
+<div class="highlight"><pre><span></span><span class="o">[</span>ERROR<span class="o">]</span>_2018-03-08 <span class="m">16</span>:31:10 <span class="m">990</span> : <span class="o">[</span>http-apr-8580-exec-81<span class="o">]</span> <span class="se">\</span>
+getHttpContentByBtParam 请求调用异常：
+javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
 </pre></div>
-<p>错误信息2</p>
+<h4>解决办法：应用JCE的unlimited policy文件</h4>
+<p>原因：据参照文档中的文档所述，这个错误是因为代码的加密方法使用的是256位，而jdk默认的limited policy限制是128位。</p>
+<p>解决思路：参照<a href="/java/security/jce_1.1.0_unlimited_policy.html">JCE unlimited policy应用文档</a>应用对应版本的方法即可。</p>
+<blockquote><p>参照文档：<a href="https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure">stackoverflow answer</a></p>
+</blockquote>
+<h3>2. unable to find valid certification path to requested target</h3>
+<h4>错误信息</h4>
 <div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">validator</span><span class="o">.</span><span class="na">ValidatorException</span><span class="o">:</span> <span class="n">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="n">failed</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">certpath</span><span class="o">.</span><span class="na">SunCertPathBuilderException</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span>
 </pre></div>
-<h3>2. 解决办法</h3>
-<h4>1) 解决方案一，增加证书到受信任列表中</h4>
-<p>问题的原因，是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。<br>
-这样的解决思路就来到了如何将需要连接的域名的ssl证书增加到受信任列表中，java程序是跑在jvm虚拟机里面，默认是用的是<code>&lt;java-home&gt;/lib/security/cacerts</code>。
-给jvm增加ssl证书可以参照<a href="https://docs.microsoft.com/en-us/azure/java-add-certificate-ca-store">microsoft java add certificate</a></p>
-<div class="highlight"><pre><span></span><span class="c1"># 获取域名证书</span>
-<span class="nv">domain</span><span class="o">=</span>www.example.com
-echo<span class="p">|</span>openssl s_client -servername <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> -connect <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>:443<span class="p">|</span><span class="se">\</span>
-    sed -ne <span class="s1">&#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39;</span> &gt; <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
-
-<span class="c1"># list all certificate</span>
-keytool -list -keystore cacerts
-
-<span class="c1"># example to add equifaxsecureca</span>
-keytool -keystore cacerts -importcert <span class="se">\</span>
-  -storepass changeit <span class="se">\</span>
-  -noprompt <span class="se">\</span>
-  -trustcacerts <span class="se">\</span>
-  -alias <span class="si">${</span><span class="nv">domain</span><span class="si">}</span> <span class="se">\</span>
-  -file <span class="si">${</span><span class="nv">domain</span><span class="si">}</span>.crt
-</pre></div>
-<blockquote><p>cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）</p>
-<p>浏览器获取证书的方法，请查看<a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">获取证书方法</a></p>
-<p>如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
-``` bash
-JAVA_HOME=/usr/local/jdk1.7.0_79</p>
-<h1>获取域名证书</h1>
-<p>domain=www.example.com
-echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
-  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt; ${domain}.crt</p>
+<h4>解决办法：增加证书到受信任列表中</h4>
+<p>原因：是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。</p>
+<p>解决思路: 按照<a href="/java/security/keytool_1.1.0_usage.html">keytool使用方法</a>中介绍的方法，将需要连接的域名的ssl证书增加到受信任列表中即可</p>
+<blockquote><p>jdk默认的truststore(也是keystore格式，专做信任证书用途)路径是<code>&lt;java-home&gt;/jre/lib/security/cacerts</code>。</p>
 </blockquote>
-<p>${JAVA_HOME}/bin/keytool -keystore ${JAVA_HOME}/jre/lib/security/cacerts -importcert \
-  -storepass changeit \
-  -noprompt \
-  -trustcacerts \
-  -alias ${domain} \
-  -file ${domain}.crt</p>
-
-<pre><code>
-
-#### 2) 解决方案二，关掉jdk的ssl证书白名单限制
-**jdk7 - 替换无限制策略文件**
-上面的方法之外，还有一种粗暴的解决办法，是直接下载oracle的一种无限制的策略文件到jdk中，来关闭ssl证书白名单限制。
-[stackoverflow answer](https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure)  
-
-**jdk8 - 修改配置**
-在[stackoverflow提问中](https://stackoverflow.com/questions/37741142/how-to-install-unlimited-strength-jce-for-java-8-in-os-x)，找到了jdk8的处理办法。
-jdk8在update 151中加入了一个配置，用以打开和关闭无限制策略。而在update 161中，默认是启用了无限制策略。如果需要确认，可以查看以下配置
-``` bash
-vim $JAVA_HOME/jre/lib/security/java.security
-******************************
-crypto.policy=unlimited
-******************************
-
-# 1.  If the Security property "crypto.policy" has been defined,
-#     then the following mechanism is used:
-#
-#     The policy files are stored as jar files in subdirectories of
-# &lt;java-home&gt;/lib/security/policy.  Each directory contains a complete
-# set of policy files.
-#
-#     The "crypto.policy" Security property controls the directory
-#     selection, and thus the effective cryptographic policy.
-#
-# The default set of directories is:
-#
-#     limited | unlimited
-#
-# 2.  If the "crypto.policy" property is not set and the traditional
-#     US_export_policy.jar and local_policy.jar files
-#     (e.g. limited/unlimited) are found in the legacy
-#     &lt;java-home&gt;/lib/security directory, then the rules embedded within
-#     those jar files will be used. This helps preserve compatibility
-# for users upgrading from an older installation.
-#
-# 3.  If the jar files are not present in the legacy location
-#     and the "crypto.policy" Security property is not defined,
-#     then the JDK will use the unlimited settings (equivalent to
-#     crypto.policy=unlimited)</code></pre>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -397,126 +329,30 @@ crypto.policy=unlimited
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
+            <a class="reference internal" href="/java/security">
+              security
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.0.0_handshake_failure.html">
-                error 1.0.0 SSLHandshakeException handshake_failure
+              <a class="reference internal" href="/java/security/jce_1.1.0_ulimited_policy.html">
+                jce 1.1.0 无限制策略
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/error_1.1.0_EPR_Operation_not_found_WSA_Action.html">
-                error 1.1.0 EPR ... Operation not found ... WSA Action =
+              <a class="reference internal" href="/java/security/keytool_1.1.0_usage.html">
+                keytool 1.1.0 命令使用说明
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/log4j_1.1.0_appender_v1.2.html">
-                log4j 1.1.0 log4j.properties appender配置说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/product_issues/nexus_1.1.0_installation.html">
-                nexus: 1.1.0 installation
+              <a class="reference internal" href="/java/security/ssl_error_1.1.0_handshake_failure_and_unable_to_find_valid_certification_path.html">
+                ssl error 1.1.0 handshake_failure and unable to find valid certification path
               </a>
              </li>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
+            <a class="reference internal" href="/java/jvm">
+              jvm
             </a>
             <ul>
             </ul>

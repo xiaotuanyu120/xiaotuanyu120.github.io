@@ -1,10 +1,10 @@
 ---
 title: ssl error 1.1.0 handshake_failure and unable to find valid certification path
 date: 2018-03-10 10:02:00
-categories: service/product_issues
-tags: [linux, java_env, ssl, handshake_failure]
+categories: java/security
+tags: [ssl, handshake_failure]
 ---
-### ssl error 1.0.0 SSLHandshakeException handshake_failure
+### ssl error 1.1.0 handshake_failure and unable to find valid certification path
 
 ---
 
