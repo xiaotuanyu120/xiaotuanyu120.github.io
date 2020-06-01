@@ -216,13 +216,21 @@ javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
 </blockquote>
 <h3>2. unable to find valid certification path to requested target</h3>
 <h4>错误信息</h4>
-<div class="highlight"><pre><span></span><span class="n">javax</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">ssl</span><span class="o">.</span><span class="na">SSLHandshakeException</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">validator</span><span class="o">.</span><span class="na">ValidatorException</span><span class="o">:</span> <span class="n">PKIX</span> <span class="n">path</span> <span class="n">building</span> <span class="n">failed</span><span class="o">:</span> <span class="n">sun</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">certpath</span><span class="o">.</span><span class="na">SunCertPathBuilderException</span><span class="o">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">find</span> <span class="n">valid</span> <span class="n">certification</span> <span class="n">path</span> <span class="n">to</span> <span class="n">requested</span> <span class="n">target</span>
-</pre></div>
+
+<pre><code>javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</code></pre>
 <h4>解决办法：增加证书到受信任列表中</h4>
 <p>原因：是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。</p>
 <p>解决思路: 按照<a href="/java/security/keytool_1.1.0_usage.html">keytool使用方法</a>中介绍的方法，将需要连接的域名的ssl证书增加到受信任列表中即可</p>
 <blockquote><p>jdk默认的truststore(也是keystore格式，专做信任证书用途)路径是<code>&lt;java-home&gt;/jre/lib/security/cacerts</code>。</p>
 </blockquote>
+<h3>3. timestamp check failed</h3>
+<h3>错误信息</h3>
+
+<pre><code>Exception: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: timestamp check failed</code></pre>
+<p>生产环境很多接口用的域名，突然一起报错。域名可以在浏览器中访问。</p>
+<h4>解决办法：【增加证书到受信任列表中】 或者 【重新申请新证书】</h4>
+<p>原因：原来是<a href="https://www.racent.com/blog/about-sectigo-addtrust-root-expiration">sectigo根证书过期</a>，如果域名是浏览器访问，因为浏览器内置的根证书肯定是更新过，而我们java程序使用的truststore文件中的根证书并没有及时更新，所以才造成了这个问题</p>
+<p>解决思路：因为根证书失效，所以根证书来认证域名证书失效；所以我们最好是手动将域名证书加到我们jdk的truststore中，或者干脆给域名申请一个新的证书。</p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -334,7 +342,7 @@ javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
             </a>
             <ul>
              <li class="toctree-l2">
-              <a class="reference internal" href="/java/security/jce_1.1.0_ulimited_policy.html">
+              <a class="reference internal" href="/java/security/jce_1.1.0_unlimited_policy.html">
                 jce 1.1.0 无限制策略
               </a>
              </li>
