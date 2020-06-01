@@ -187,83 +187,78 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>jce 1.1.0 无限制策略</h3>
+<hr>
+<h3>0. 什么是jce？</h3>
+<p>jca，Java Cryptography Architecture，顾名思义，是用来提供加密的基础架构。</p>
+<p>而jce，Java Cryptography Extension，很明显，是jca的一个部分。</p>
+<p>JCE 提供了一个关于加密、密钥生成、密钥同意和Message Authentication Code (MAC) 算法的框架和实现。</p>
+<h3>1. unlimited policy有啥用？</h3>
+<p>因为如果使用limited policy，官方限制了加密的强度。看文档是针对不同加密方法限制了位数最高是64和128不等。</p>
+<blockquote><p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">oracle官方说明文档 - 请查看limited 和 unlimited部分</a></p>
+</blockquote>
+<h3>2. 取消limited限制，启用unlimited</h3>
+<h4>各版本关于jce unlimited policy的说明</h4>
+<ul>
+<li>jdk9及以后版本，默认启用unlimited</li>
+<li>jdk8u161、7u171和6u16之前版本的，需要单独下载unlimited policy文件</li>
+<li>jdk8u161、7u171和6u16及以后版本的，unlimited policy文件已经在jdk中包含，但是默认未启用</li>
+</ul>
+<blockquote><p><a href="https://www.oracle.com/java/technologies/javase-jce-all-downloads.html">jce unlimited policy file download page</a></p>
+</blockquote>
+<h4>启用unlimited</h4>
+<p>JDK 8u161、7u171和6u181及之后版本，都会在<java_home>/jre/lib/security/下面包含一个policy目录，里面包含limited和unlimited两个目录，这两个目录中分别包含了各自的policy文件（可以看到，其实就是相当于把unlimited的policy文件下载下来，帮我们放在了policy/unlimited目录中）</p>
+<p>关于jdk采用哪个policy的策略，配置和说明如下：</p>
+
+<pre><code>The JDK determines the policy configuration to use as follows:
+
+If the crypto.policy Security Property is defined, then the JDK uses the policy configuration specified by this Security Property.
+If the crypto.policy Security Property is not set, and the traditional US_export_policy.jar and local_policy.jar files (which correspond to strong but limited cryptographic strength and unlimited cryptographic strength, respectively) are found in the legacy &lt;java_home&gt;/lib/security directory, then the JDK uses the policy configuration specified in these JAR files. This helps preserve compatibility for users upgrading from an older version of the JDK.
+If the crypto.policy Security Property is not set, and the US_export_policy.jar and local_policy.jar files don't exist in the &lt;java_home&gt;/lib/security directory, then the JDK uses unlimited cryptographic strength, which is equivalent to cryto.policy=unlimited.</code></pre>
+<p>所以，综上所述</p>
+<ul>
+<li>如果是用新版本的jdk，直接在<java_home>/jre/lib/security/java.security中配置cryto.policy=unlimited即可</li>
+<li>如果是老版本的jdk，直接下载对应版本的unlimited policy文件，然后解压到<java_home>/jre/lib/security即可</li>
+</ul>
+<blockquote><p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">oracle官方说明文档 - 请查看启用unlimited部分</a></p>
+</blockquote>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -338,118 +333,39 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="linux/advance/what_is_sni.html">
-        what is SNI?
-       </a><br>
-
-       <a href="java/security/jce_1.1.0_ulimited_policy.html">
-        jce 1.1.0 无限制策略
-       </a><br>
-
-       <a href="virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">
-        podman knowledge 1.0.1 为何podman比docker安全
-       </a><br>
-
-       <a href="virtualization/docker/docker_knowledge_1.1.0_security.html">
-        docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
-       </a><br>
-
-       <a href="cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">
-        openssl 1.3.0 获取证书
-       </a><br>
-
-       <a href="service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-        php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-       </a><br>
-
-       <a href="devops/git/gitlab_ci_1.1.1_gitlab_runner_configuration.html">
-        gitlab-ci: 1.1.1 gitlab-runner(docker)配置
-       </a><br>
-
-       <a href="database/redis/redis_1.1.1_install_docker.html">
-        redis: 1.1.1 docker-redis
-       </a><br>
-
-       <a href="java/security/keytool_1.1.0_usage.html">
-        keytool 1.1.0 命令使用说明
-       </a><br>
-
-       <a href="virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">
-        container 1.0.1 linux kernel - user namespaces
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/security">
+              security
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/security/jce_1.1.0_ulimited_policy.html">
+                jce 1.1.0 无限制策略
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/security/keytool_1.1.0_usage.html">
+                keytool 1.1.0 命令使用说明
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/java/jvm">
+              jvm
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
