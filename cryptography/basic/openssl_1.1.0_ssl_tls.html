@@ -187,83 +187,81 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>openssl 1.1.0 证书相关名词含义</h3>
+<hr>
+<h3>0. 参考链接</h3>
+<ul>
+<li><a href="http://how2ssl.com/articles/working_with_pem_files/">pem文件介绍</a></li>
+<li><a href="http://how2ssl.com/articles/openssl_commands_and_tips/">openssl命令文档</a></li>
+<li><code>man req</code></li>
+<li><a href="https://en.wikipedia.org/wiki/X.509">x.509 wiki</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">ssl &amp; tls wiki</a></li>
+<li><a href="https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them">ssl support</a></li>
+<li><a href="https://www.digicert.com/ssl.htm">证书的工作原理</a></li>
+</ul>
+<hr>
+<h3>1. SSL相关概念含义介绍</h3>
+<h4>1) SSL</h4>
+<p>SSL(Secure Sockets Layer)是一种加密协议，在SSL发展到SSL v3.0之后，使用TLS(Transport Layer Security)代替了SSL v4.0的叫法，但是因为SSL已经广泛流传，所以有些还是沿用SSL的叫法。</p>
+<h4>2) TLS</h4>
+<p>见第一条</p>
+<h4>3) X.509</h4>
+<p>X.509是密码学中的一种公钥认证标准。很多协议使用了X.509标准，包括TLS/SSL，基于此才实现了HTTPS。</p>
+<h4>4) DER</h4>
+<p>DER是一种编码规则，也用做扩展名。很多加密标准使用了ASN.1来定义数据结构，然后用DER来序列化那些数据结构。但是DER的编码规则产出的是二进制格式的文件，但有些软件只支持ASCII码，所以pem就出现了。</p>
+<h4>5) pem</h4>
+<ul>
+<li><p>pem是一种用于存储加密的key、证书和其他数据常用的文件格式。使用base64对DER编码的二进制数据进行编码得到了pem格式的文件</p>
+</li>
+<li><p>文件格式</p>
+
+<pre><code>-----BEGIN CERTIFICATE-----
+编码过的信息
+-----END CERTIFICATE-----</code></pre>
+</li>
+<li><p>后缀名<br>
+pem可以保存为".pem",".crt",".cer"后缀的文件中(为了认证)，也可以保存在".key"后缀文件中(为了储存私钥)。其实我们可以保存pem信息为任意后缀名称，因为系统对pem文件的识别是通过开头和结尾的label而不是后缀名。将其保存在各种特定的后缀中主要是为了对人和软件的友好。</p>
+</li>
+<li><p>pem文件可以包含多个pem信息段</p>
+</li>
+</ul>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -338,118 +336,74 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="linux/advance/what_is_sni.html">
-        what is SNI?
-       </a><br>
-
-       <a href="service/ftp/pureftp_1.1.0_docker_compose.html">
-        pure-ftpd: 1.1.0 docker-compose with nginx
-       </a><br>
-
-       <a href="cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">
-        openssl 1.3.0 获取证书
-       </a><br>
-
-       <a href="virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">
-        podman knowledge 1.0.1 为何podman比docker安全
-       </a><br>
-
-       <a href="database/redis/redis_1.1.1_install_docker.html">
-        redis: 1.1.1 docker-redis
-       </a><br>
-
-       <a href="service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-        php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-       </a><br>
-
-       <a href="devops/git/gitlab_ci_1.1.1_gitlab_runner_configuration.html">
-        gitlab-ci: 1.1.1 gitlab-runner(docker)配置
-       </a><br>
-
-       <a href="virtualization/docker/docker_2.2.5_Dockerfile_example.html">
-        1.2.5 dockerfile 示例
-       </a><br>
-
-       <a href="virtualization/docker/docker_knowledge_1.1.0_security.html">
-        docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
-       </a><br>
-
-       <a href="virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">
-        container 1.0.1 linux kernel - user namespaces
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/cryptography/example">
+              example
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/cryptography/basic">
+              basic
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/openssl_1.1.0_ssl_tls.html">
+                openssl 1.1.0 证书相关名词含义
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/openssl_1.2.0_pem.html">
+                openssl 1.2.0 pem基本操作
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">
+                openssl 1.3.0 获取证书
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.0.0_crytography_intro.html">
+                密码学: 1.0.0 简要介绍（转载）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.1.0_hash_algorithm.html">
+                密码学: 1.1.0 hash算法介绍（转载）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.2.0_algorithm.html">
+                密码学: 1.2.0 加解密算法（转载）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.3.0_signature.html">
+                密码学: 1.3.0 数字签名（转载）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.4.0_certification.html">
+                密码学: 1.4.0 数字证书（转载）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/cryptography/basic/1.5.0_pki.html">
+                密码学: 1.5.0 PKI认证体系（转载）
+              </a>
+             </li>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
