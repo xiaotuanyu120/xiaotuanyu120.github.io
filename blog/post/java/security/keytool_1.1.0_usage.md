@@ -61,7 +61,7 @@ keytool -keystore cacerts -importcert \
 
 > 浏览器获取证书的方法，请查看[获取证书方法](/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html)
 
-> 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
+#### 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
 
 ``` bash
 JAVA_HOME=/usr/local/jdk1.7.0_79
