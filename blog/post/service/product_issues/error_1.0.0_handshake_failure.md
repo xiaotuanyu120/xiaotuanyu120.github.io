@@ -45,16 +45,7 @@ keytool -keystore cacerts -importcert \
 ```
 > cacerts的密码，默认密码是changeit（如果你没有改动过jdk的密码的话）
 
-> 如何通过浏览器获得证书（Equifax_Secure_Certificate_Authority.cer）
-> - 通过浏览器访问接口url
-> - 点击url框左边小绿锁
-> - 点击“certificate”
-> - 点击“详细信息”的tab
-> - 点击“公钥”字段
-> - 点击右下角“复制到文件”那个按钮
-> - 弹出的窗口选择“下一步”
-> - 弹出的窗口选择“Base64编码X.509(.CER)(S)”
-> - 保存到本地即可，然后用笔记本打开，拷贝内容到服务器上
+> 浏览器获取证书的方法，请查看[获取证书方法](/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html)
 
 > 如果有多个jdk版本，注意要加到你想要增加证书的那个jdk版本上
 ``` bash

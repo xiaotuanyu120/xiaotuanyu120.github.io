@@ -1,7 +1,7 @@
 ---
 title: openssl 1.1.0 证书相关名词含义
 date: 2017-05-26 10:34:00
-categories: linux/advance
+categories: cryptography/basic
 tags: [openssl,pem]
 ---
 ### openssl 1.1.0 证书相关名词含义
