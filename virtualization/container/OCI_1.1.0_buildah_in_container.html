@@ -279,7 +279,7 @@ ERRO <span class="nb">exit</span> status <span class="m">1</span>
 <p>看过工具清单之后，感觉可以从两个方向入手</p>
 <ul>
 <li>centos7 update到最新;kernel update到最新</li>
-<li>基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)</li>
+<li>基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像中的软件和方案本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)</li>
 </ul>
 <h4>第二步，尝试自定义镜像（基于centos7）</h4>
 <p>系统先不升级，尝试自定义镜像</p>
