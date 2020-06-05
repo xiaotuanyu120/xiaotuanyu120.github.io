@@ -183,4 +183,18 @@ echo -e "FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.
 buildah bud -t buildah-compile .
 ```
 
-最终，原因还真有可能是我猜想的，基于fedora的buildah镜像和centos版本的fuse-overlayfs出现问题。换成centos基础的buildah安装的fuse-overlayfs就okay了。暂时先提交给了buildah的源码维护者，等他们排查了。
+最终，原因还真有可能是我猜想的，基于fedora的buildah镜像中的fuse-overlayfs和centos内核配合出现问题。换成centos基础的buildah安装的fuse-overlayfs搭配centos版本的内核就okay了。暂时先提交给了buildah的源码维护者，等他们排查了。
+
+这里补充一下两个镜像中的fuse-overlayfs的版本
+``` bash
+podman run -it --rm --device /dev/fuse -v ./storage:/var/lib/containers quay.io/buildah/stable fuse-overlayfs --version
+fuse-overlayfs: version 1.0.0
+FUSE library version 3.9.1
+using FUSE kernel interface version 7.31
+fusermount3 version: 3.9.1
+
+podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z buildah-centos7 fuse-overlayfs --version
+fuse-overlayfs: version 0.7.2
+FUSE library version 3.6.1
+using FUSE kernel interface version 7.29
+```

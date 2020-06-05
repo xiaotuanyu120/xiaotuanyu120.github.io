@@ -368,7 +368,19 @@ podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z bui
 <span class="nb">echo</span> -e <span class="s2">&quot;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&quot;</span> &gt; Dockerfile
 buildah bud -t buildah-compile .
 </pre></div>
-<p>最终，原因还真有可能是我猜想的，基于fedora的buildah镜像和centos版本的fuse-overlayfs出现问题。换成centos基础的buildah安装的fuse-overlayfs就okay了。暂时先提交给了buildah的源码维护者，等他们排查了。</p>
+<p>最终，原因还真有可能是我猜想的，基于fedora的buildah镜像中的fuse-overlayfs和centos内核配合出现问题。换成centos基础的buildah安装的fuse-overlayfs搭配centos版本的内核就okay了。暂时先提交给了buildah的源码维护者，等他们排查了。</p>
+<p>这里补充一下两个镜像中的fuse-overlayfs的版本</p>
+<div class="highlight"><pre><span></span>podman run -it --rm --device /dev/fuse -v ./storage:/var/lib/containers quay.io/buildah/stable fuse-overlayfs --version
+fuse-overlayfs: version <span class="m">1</span>.0.0
+FUSE library version <span class="m">3</span>.9.1
+using FUSE kernel interface version <span class="m">7</span>.31
+fusermount3 version: <span class="m">3</span>.9.1
+
+podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z buildah-centos7 fuse-overlayfs --version
+fuse-overlayfs: version <span class="m">0</span>.7.2
+FUSE library version <span class="m">3</span>.6.1
+using FUSE kernel interface version <span class="m">7</span>.29
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
