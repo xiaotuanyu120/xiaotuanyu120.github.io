@@ -88,8 +88,7 @@ ERRO exit status 1
 - fuse-overlayfs
 
 看过工具清单之后，感觉可以从两个方向入手
-- centos7 update到最新
-- kernel update到最新
+- centos7 update到最新;kernel update到最新
 - 基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)
 
 #### 第二步，尝试自定义镜像（基于centos7）
