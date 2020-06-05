@@ -76,6 +76,7 @@ ERRO exit status 1
 这里我是很疑惑的，查了很多资料，很多人提到了各式各样的问题，总之就集中在两点：
 1. /dev/fuse设备，host内核中启用fuse模块`yum install fuse3 fuse3-devel;modprobe fuse; lsmod |grep fuse`
 2. 挂载host目录到/var/lib/containers
+
 可是这两点我都做了，还是依旧不可以。而且，我也不是用rootless的方式启动podman，没理由不可以的。既然网上查不到，只能github提交issue来解决了。关于这个[issue](https://github.com/containers/buildah/issues/2393)，我是从那个user namespace的错误提交的，是因为我要确认下，为啥buildah明确不用user namespace，还提示那个要启用user namespace的提示。得到无论是否使用user namespace都需要启用内核功能之后，后续聊到了之后的报错，源码的维护者还是坚持在我已经关注过的两点上指点我进行尝试。
 
 最后无果后，只能自力更生来尝试复盘。用到的所有工具
