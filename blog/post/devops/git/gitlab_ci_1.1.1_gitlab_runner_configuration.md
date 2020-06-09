@@ -63,8 +63,8 @@ check_interval = 0
 ```
   [runners.docker]
     disable_cache = false
-    cache_dir = "/data/docker/data/gitlab-runner/cache"
-    volumes = ["/data/docker/data/gitlab-runner/cache"]
+    cache_dir = "/cache"
+    volumes = ["/data/docker/data/gitlab-runner/cache:/cache"]
 ```
 - cache_dir: 指定cache功能的本地缓存数据目录，如果是用docker-executor，那么同时要在volumes里面增加此目录
 
