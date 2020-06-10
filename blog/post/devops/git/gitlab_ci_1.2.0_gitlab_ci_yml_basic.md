@@ -66,11 +66,20 @@ docker-build:
 ### 2. 关于curl的用法
 ``` yaml
   script: >-
-    curl -X post -H "Content-Type:application/json" -H "Authorization: 认证字符串" -d "{\"extra_vars\": {\"role\": \"test_role\",\"project\": {\"version\": \"${CI_COMMIT_SHA:0:6}\",\"name\": \"project_name\"},\"host\": \"project_host\"}}" http://awx_domain/api/v2/job_templates/deploy_test/launch/
+    curl -X POST -H "Content-Type:application/json" -H "Authorization: 认证字符串" -d "{\"extra_vars\": {\"role\": \"test_role\",\"project\": {\"version\": \"${CI_COMMIT_SHA:0:6}\",\"name\": \"project_name\"},\"host\": \"project_host\"}}" http://awx_domain/api/v2/job_templates/deploy_test/launch/
 ```
 > 别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
 > [gitlab issues](https://gitlab.com/gitlab-org/gitlab-foss/issues/59726)
 > [stackoverflow](https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973)
+
+另外一种简单方法
+``` yaml
+  script:
+    - msg='{"extra_vars": {"role": "test_role","project": {"version": "'${CI_COMMIT_SHA:0:6}'","name": "project_name"},"host":"project_host"}}'
+    - >
+      curl -X POST -H "Content-Type:application/json" -H "Authorization: 认证字符串" -d ${msg} http://awx_domain/api/v2/job_templates/deploy_test/launch/
+```
+> 注意msg变量不能用空格，curl命令的json格式里面都不要有空格
 
 ### 3. 关于for循环中多行代码的写法
 ``` yaml

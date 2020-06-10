@@ -261,11 +261,19 @@
 </ul>
 <h3>2. 关于curl的用法</h3>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">&gt;-</span>
-    <span class="no">curl -X post -H &quot;Content-Type:application/json&quot; -H &quot;Authorization: 认证字符串&quot; -d &quot;{\&quot;extra_vars\&quot;: {\&quot;role\&quot;: \&quot;test_role\&quot;,\&quot;project\&quot;: {\&quot;version\&quot;: \&quot;${CI_COMMIT_SHA:0:6}\&quot;,\&quot;name\&quot;: \&quot;project_name\&quot;},\&quot;host\&quot;: \&quot;project_host\&quot;}}&quot; http://awx_domain/api/v2/job_templates/deploy_test/launch/</span>
+    <span class="no">curl -X POST -H &quot;Content-Type:application/json&quot; -H &quot;Authorization: 认证字符串&quot; -d &quot;{\&quot;extra_vars\&quot;: {\&quot;role\&quot;: \&quot;test_role\&quot;,\&quot;project\&quot;: {\&quot;version\&quot;: \&quot;${CI_COMMIT_SHA:0:6}\&quot;,\&quot;name\&quot;: \&quot;project_name\&quot;},\&quot;host\&quot;: \&quot;project_host\&quot;}}&quot; http://awx_domain/api/v2/job_templates/deploy_test/launch/</span>
 </pre></div>
 <blockquote><p>别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
 <a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/59726">gitlab issues</a>
 <a href="https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973">stackoverflow</a></p>
+</blockquote>
+<p>另外一种简单方法</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">msg=&#39;{&quot;extra_vars&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="s">&quot;role&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;test_role&quot;</span><span class="p p-Indicator">,</span><span class="s">&quot;project&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">{</span><span class="s">&quot;version&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;&#39;${CI_COMMIT_SHA:0:6}&#39;&quot;</span><span class="p p-Indicator">,</span><span class="s">&quot;name&quot;</span><span class="p p-Indicator">:</span> <span class="s">&quot;project_name&quot;</span><span class="p p-Indicator">},</span><span class="s">&quot;host&quot;</span><span class="p p-Indicator">:</span><span class="s">&quot;project_host&quot;</span><span class="p p-Indicator">}</span><span class="err">}</span><span class="s">&#39;</span>
+    <span class="s">-</span><span class="nv"> </span><span class="s">&gt;</span>
+      <span class="s">curl</span><span class="nv"> </span><span class="s">-X</span><span class="nv"> </span><span class="s">POST</span><span class="nv"> </span><span class="s">-H</span><span class="nv"> </span><span class="s">&quot;Content-Type:application/json&quot;</span><span class="nv"> </span><span class="s">-H</span><span class="nv"> </span><span class="s">&quot;Authorization:</span><span class="nv"> </span><span class="s">认证字符串&quot;</span><span class="nv"> </span><span class="s">-d</span><span class="nv"> </span><span class="s">${msg}</span><span class="nv"> </span><span class="s">http://awx_domain/api/v2/job_templates/deploy_test/launch/</span>
+</pre></div>
+<blockquote><p>注意msg变量不能用空格，curl命令的json格式里面都不要有空格</p>
 </blockquote>
 <h3>3. 关于for循环中多行代码的写法</h3>
 <div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
