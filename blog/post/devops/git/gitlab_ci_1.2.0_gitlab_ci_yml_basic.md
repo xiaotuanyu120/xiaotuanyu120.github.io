@@ -82,7 +82,7 @@ docker-build:
             --password-file=./rsyncpass
             --exclude="properties" --exclude="config.properties"
             --exclude="ftp.properties" --exclude="log4j.properties"
-            ./dc-api/dc-api-preferential/target/dc-api-preferential/* leo@${ip}::${RSYNC_DEST_MOD_PREF};
+            ./demo/target/demo/* rsync@<ip>::<RSYNC_DEST_MOD_PREF>;
         done
 ```
 > 失败的尝试是在rsync的多行命令末尾增加`\`
