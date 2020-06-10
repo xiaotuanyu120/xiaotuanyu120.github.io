@@ -71,3 +71,18 @@ docker-build:
 > 别问我为啥，我是尝试了很多形式才成功的，最终这样成功了
 > [gitlab issues](https://gitlab.com/gitlab-org/gitlab-foss/issues/59726)
 > [stackoverflow](https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973)
+
+### 3. 关于for循环中多行代码的写法
+``` yaml
+  script:
+    - echo ${rsyncpass} > ./rsyncpass && chmod 600 ./rsyncpass
+    - for ip in ${rsync_dest_all};
+        do
+          rsync -auvz --progress --no-o --no-g --no-p --delete
+            --password-file=./rsyncpass
+            --exclude="properties" --exclude="config.properties"
+            --exclude="ftp.properties" --exclude="log4j.properties"
+            ./dc-api/dc-api-preferential/target/dc-api-preferential/* leo@${ip}::${RSYNC_DEST_MOD_PREF};
+        done
+```
+> 失败的尝试是在rsync的多行命令末尾增加`\`

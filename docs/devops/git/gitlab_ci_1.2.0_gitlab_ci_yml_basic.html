@@ -267,6 +267,20 @@
 <a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/59726">gitlab issues</a>
 <a href="https://stackoverflow.com/questions/43223992/escape-curl-command-in-yaml-which-contains-quotes-and-apostrophes/43224973">stackoverflow</a></p>
 </blockquote>
+<h3>3. 关于for循环中多行代码的写法</h3>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo ${rsyncpass} &gt; ./rsyncpass &amp;&amp; chmod 600 ./rsyncpass</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">for ip in ${rsync_dest_all};</span>
+        <span class="l l-Scalar l-Scalar-Plain">do</span>
+          <span class="l l-Scalar l-Scalar-Plain">rsync -auvz --progress --no-o --no-g --no-p --delete</span>
+            <span class="l l-Scalar l-Scalar-Plain">--password-file=./rsyncpass</span>
+            <span class="l l-Scalar l-Scalar-Plain">--exclude=&quot;properties&quot; --exclude=&quot;config.properties&quot;</span>
+            <span class="l l-Scalar l-Scalar-Plain">--exclude=&quot;ftp.properties&quot; --exclude=&quot;log4j.properties&quot;</span>
+            <span class="l l-Scalar l-Scalar-Plain">./dc-api/dc-api-preferential/target/dc-api-preferential/* leo@${ip}::${RSYNC_DEST_MOD_PREF};</span>
+        <span class="l l-Scalar l-Scalar-Plain">done</span>
+</pre></div>
+<blockquote><p>失败的尝试是在rsync的多行命令末尾增加<code>\</code></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">

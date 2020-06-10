@@ -378,6 +378,13 @@ docker run --rm --network host -v <span class="si">${</span><span class="nv">GIT
 </pre></div>
 <blockquote><p>参考链接：<a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/4082">gitlab org issues</a></p>
 </blockquote>
+<h3>4. delete unused gitlab runner</h3>
+<p>第一步是在gitlab各个project上，disable不用的runner</p>
+<p>第二步是执行下面命令</p>
+<div class="highlight"><pre><span></span>curl -S --header <span class="s2">&quot;PRIVATE-TOKEN:ksxC-9hvF79K1eg5Z-5p&quot;</span> <span class="s2">&quot;http://git.easydevops.net/api/v4/runners/all&quot;</span> <span class="p">|</span> jq <span class="s1">&#39;.[] | select(.status == &quot;paused&quot;) | .id&#39;</span> <span class="p">|</span> xargs -I runner_id curl -S --request DELETE --header <span class="s2">&quot;PRIVATE-TOKEN:ksxC-9hvF79K1eg5Z-5p&quot;</span> <span class="s2">&quot;http://git.easydevops.net/api/v4/runners/runner_id&quot;</span>
+</pre></div>
+<blockquote><p>原理就是筛选出处于paused状态的runner的id，然后删掉它们。</p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">

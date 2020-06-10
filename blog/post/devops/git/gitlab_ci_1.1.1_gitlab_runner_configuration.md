@@ -66,7 +66,7 @@ check_interval = 0
     cache_dir = "/cache"
     volumes = ["/data/docker/data/gitlab-runner/cache:/cache"]
 ```
-- cache_dir: 指定cache功能的本地缓存数据目录，如果是用docker-executor，那么同时要在volumes里面增加此目录
+- cache_dir: 指定cache功能的本地缓存数据目录，如果是用docker-executor，那么同时要在volumes里面增加此目录的映射
 
 > 参考链接
 > - [whats the cache_dir of the docker executor](https://forum.gitlab.com/t/what-is-the-cache-dir-of-the-docker-executor/4697)
