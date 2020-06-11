@@ -76,3 +76,6 @@ yaml的注意点：
 - curl POST的payload data字符串里面，不要有`空格`
 - while和if这种多语句代码块，单独的命令后面要加上`;`，另外换行不需要`\`来转义，直接换行即可
 - `[ "${var}" == "string" ]`判断逻辑中，变量要用`"`包裹
+
+其他关键点：
+- `curl http://domain.com|jq -r '.json字段'`，可以方便的通过api来获取自己想要的数据。例如，gitlab官方现在没有给tag的message内容提供内置变量，我只能手动来通过拥有read_api权限的token获取了。
