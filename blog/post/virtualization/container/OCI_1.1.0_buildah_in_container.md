@@ -137,7 +137,7 @@ FROM centos:7
 # remove --exclude container-selinux
 RUN useradd build; yum -y update; yum -y reinstall shadow-utils; yum -y install buildah fuse-overlayfs ; rm -rf /var/cache /var/log/dnf* /var/log/yum.*;
 
-RUN echo -e '[engine]\ncgroup_manager = "cgroupfs"' /etc/containers/containers.conf
+RUN echo -e '[engine]\ncgroup_manager = "cgroupfs"' > /etc/containers/containers.conf
 
 # Adjust storage.conf to enable Fuse storage.
 RUN chmod 644 /etc/containers/containers.conf; sed -i -e '/size = ""/amount_program = "/usr/bin/fuse-overlayfs"' -e '/additionalimage.*/a "/var/lib/shared",' -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' /etc/containers/storage.conf
@@ -147,9 +147,6 @@ RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers; touc
 # instructions and "buildah run".
 ENV BUILDAH_ISOLATION=chroot
 EOF
-
-echo '[engine]
-cgroup_manager = "cgroupfs"' > containers.conf
 
 # note of the changes of customized image:
 # 1. change fedora:latest to centos:7

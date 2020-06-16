@@ -325,7 +325,7 @@ cat &gt; Dockerfile <span class="s">&lt;&lt; EOF</span>
 <span class="s"># remove --exclude container-selinux</span>
 <span class="s">RUN useradd build; yum -y update; yum -y reinstall shadow-utils; yum -y install buildah fuse-overlayfs ; rm -rf /var/cache /var/log/dnf* /var/log/yum.*;</span>
 
-<span class="s">RUN echo -e &#39;[engine]\ncgroup_manager = &quot;cgroupfs&quot;&#39; /etc/containers/containers.conf</span>
+<span class="s">RUN echo -e &#39;[engine]\ncgroup_manager = &quot;cgroupfs&quot;&#39; &gt; /etc/containers/containers.conf</span>
 
 <span class="s"># Adjust storage.conf to enable Fuse storage.</span>
 <span class="s">RUN chmod 644 /etc/containers/containers.conf; sed -i -e &#39;/size = &quot;&quot;/amount_program = &quot;/usr/bin/fuse-overlayfs&quot;&#39; -e &#39;/additionalimage.*/a &quot;/var/lib/shared&quot;,&#39; -e &#39;s|^mountopt[[:space:]]*=.*$|mountopt = &quot;nodev,fsync=0&quot;|g&#39; /etc/containers/storage.conf</span>
@@ -335,9 +335,6 @@ cat &gt; Dockerfile <span class="s">&lt;&lt; EOF</span>
 <span class="s"># instructions and &quot;buildah run&quot;.</span>
 <span class="s">ENV BUILDAH_ISOLATION=chroot</span>
 <span class="s">EOF</span>
-
-<span class="nb">echo</span> <span class="s1">&#39;[engine]</span>
-<span class="s1">cgroup_manager = &quot;cgroupfs&quot;&#39;</span> &gt; containers.conf
 
 <span class="c1"># note of the changes of customized image:</span>
 <span class="c1"># 1. change fedora:latest to centos:7</span>
