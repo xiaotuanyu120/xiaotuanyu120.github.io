@@ -259,6 +259,29 @@ docker image remove &lt;your-domain&gt;/my-ubuntu
   -v /mnt/registry:/var/lib/registry <span class="se">\</span>
   registry:2
 </pre></div>
+<h4>4) 清理tag和未被引用数据</h4>
+<div class="highlight"><pre><span></span><span class="c1"># step 1. 系统环境准备</span>
+sudo mkdir cleanup<span class="p">;</span> sudo sh -c <span class="s2">&quot;chown -R username.username reg-cleanup&quot;</span><span class="p">;</span> <span class="nb">cd</span> reg-cleanup
+wget https://bootstrap.pypa.io/get-pip.py<span class="p">;</span> python get-pip.py
+pip install virtualenv
+
+<span class="c1"># step 2. 清理脚本环境准备</span>
+<span class="c1"># 下载清理脚本</span>
+wget https://raw.githubusercontent.com/andrey-pohilko/registry-cli/master/registry.py
+<span class="c1"># 创建python环境，安装清理脚本需要的依赖库</span>
+virtualenv venv<span class="p">;</span> <span class="nb">source</span> venv/bin/activate
+pip install requests
+pip install www_authenticate
+pip install datautil
+
+<span class="c1"># step 3. 执行清理</span>
+<span class="c1"># 两个命令，第一个是清理最近10个tag之外的tag，第二个是清除未被引用的垃圾数据</span>
+<span class="nb">echo</span> <span class="s1">&#39;# 清理tag</span>
+<span class="s1">python /data/docker/yml/reg-cleanup/registry.py -l reg_user01:VOtern93 -r http://reg.easydevops.net --delete --num 10</span>
+<span class="s1"># 执行garbage-collect</span>
+<span class="s1">sudo docker exec reg registry garbage-collect /etc/docker/registry/config.yml&#39;</span> &gt; cleanup.sh
+sh cleanup.sh
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -502,13 +525,8 @@ docker image remove &lt;your-domain&gt;/my-ubuntu
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_example_1.1.0_mysql.html">
-                docker example 1.1.0 mysql
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_example_1.2.0_ftp.html">
-                docker example 1.2.0 ftp
+              <a class="reference internal" href="/virtualization/docker/docker_knowledge_1.1.0_security.html">
+                docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
               </a>
              </li>
              <li class="toctree-l2">
