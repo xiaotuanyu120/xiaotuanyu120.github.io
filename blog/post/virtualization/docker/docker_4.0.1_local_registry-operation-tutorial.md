@@ -78,3 +78,28 @@ docker run -d \
   -v /mnt/registry:/var/lib/registry \
   registry:2
 ```
+
+#### 4) 清理tag和未被引用数据
+``` bash
+# step 1. 系统环境准备
+sudo mkdir cleanup; sudo sh -c "chown -R username.username reg-cleanup"; cd reg-cleanup
+wget https://bootstrap.pypa.io/get-pip.py; python get-pip.py
+pip install virtualenv
+
+# step 2. 清理脚本环境准备
+# 下载清理脚本
+wget https://raw.githubusercontent.com/andrey-pohilko/registry-cli/master/registry.py
+# 创建python环境，安装清理脚本需要的依赖库
+virtualenv venv; source venv/bin/activate
+pip install requests
+pip install www_authenticate
+pip install datautil
+
+# step 3. 执行清理
+# 两个命令，第一个是清理最近10个tag之外的tag，第二个是清除未被引用的垃圾数据
+echo '# 清理tag
+python /data/docker/yml/reg-cleanup/registry.py -l reg_user01:VOtern93 -r http://reg.easydevops.net --delete --num 10
+# 执行garbage-collect
+sudo docker exec reg registry garbage-collect /etc/docker/registry/config.yml' > cleanup.sh
+sh cleanup.sh
+```
