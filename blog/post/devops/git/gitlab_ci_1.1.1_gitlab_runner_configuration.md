@@ -91,3 +91,15 @@ docker inspect containerid
 > 参考链接
 > - [whats the cache_dir of the docker executor](https://forum.gitlab.com/t/what-is-the-cache-dir-of-the-docker-executor/4697)
 > - [gitlab-runner advance configuration - runner-docker](https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-runnersdocker-section)
+
+> 关于`[[runners]] - cache_dir`和`[runners.docker] - cache_dir`，官方文档的说明如下
+> **`[[runners]] - cache_dir`**
+> ```
+> Absolute path to a directory where build caches will be stored in context of selected executor (locally, Docker, SSH). If the docker executor is used, this directory needs to be included in its volumes parameter.
+> ```
+> **`[runners.docker] - cache_dir`**
+> ```
+> Specify where Docker caches should be stored (this can be absolute or relative to current working directory). See disable_cache for more information.
+> ```
+> **误区**
+> 区别就在于前者是build cache，后者是docker cache，build cache是job的cache，docker cache是docker运行中使用的cache，其实就是job运行时的workdir(默认是/builds)，自己没仔细看人家文档，还以为人家瞎写文档乱配置，汗颜。不过这两个配置不明确是认真的。
