@@ -254,13 +254,31 @@ check_interval = 0
       "net.ipv4.ip_forward" = "1"</code></pre>
 <h3>1. 配置cache目录</h3>
 
-<pre><code>  [runners.docker]
+<pre><code>[[runners]]
+  cache_dir = "/mycache"
+  [runners.docker]
     disable_cache = false
-    cache_dir = "/cache"
-    volumes = ["/data/docker/data/gitlab-runner/cache:/cache"]</code></pre>
+    cache_dir = "/data/docker/data/gitlab-runner/builds"
+    volumes = ["/data/docker/data/gitlab-runner/cache:/mycache"]</code></pre>
 <ul>
-<li>cache_dir: 指定cache功能的本地缓存数据目录，如果是用docker-executor，那么同时要在volumes里面增加此目录的映射</li>
+<li>cache_dir([[runners]])：
+指定的是执行job的容器中，缓存目录位置</li>
+<li>cache_dir([runners.docker]): 
+指定的是缓存容器中/builds的本地目录</li>
+<li>volumes如上面的配置，是手动挂载本地目录到cache目录，如果只是写"/mycache"，docker会自动创建一个volume，然后挂载过去</li>
 </ul>
+<div class="highlight"><pre><span></span><span class="c1"># 按照上面的配置，查看某个job的容器信息可以看到</span>
+docker inspect containerid
+...
+<span class="s2">&quot;Binds&quot;</span>: <span class="o">[</span>
+                <span class="s2">&quot;/data/docker/data/gitlab-runner/cache:/mycache&quot;</span>,
+                <span class="s2">&quot;/data/docker/data/gitlab-runner/builds/runner-f6drxvp-project-150-concurrent-0/c33bcaa1fd2c77edfc3893b41966cea8:/builds&quot;</span>
+            <span class="o">]</span>
+...
+<span class="c1"># 其中挂载了两个目录</span>
+<span class="c1"># 一个是我们显示指定的/mycache目录</span>
+<span class="c1"># 另外一个是[runners.docker]中cache_dir的配置作为根目录，挂载了子目录到容器的/builds目录</span>
+</pre></div>
 <blockquote><p>参考链接</p>
 <ul>
 <li><a href="https://forum.gitlab.com/t/what-is-the-cache-dir-of-the-docker-executor/4697">whats the cache_dir of the docker executor</a></li>
@@ -460,6 +478,11 @@ check_interval = 0
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/gitlab_ci_1.2.1_gitlab_ci_yml_cache_artifact.html">
                 gitlab-ci: 1.2.1 .gitlab-ci.yml - cache and artifact
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.2_gitlab_ci_yml_example.html">
+                gitlab-ci: 1.2.2 .gitlab-ci.yml 复杂示例 - 包含get gitlab tag message
               </a>
              </li>
              <li class="toctree-l2">
