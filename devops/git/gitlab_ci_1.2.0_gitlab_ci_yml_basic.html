@@ -289,6 +289,15 @@
 </pre></div>
 <blockquote><p>失败的尝试是在rsync的多行命令末尾增加<code>\</code></p>
 </blockquote>
+<h3>4. git strategy</h3>
+<p>通过设定GIT_STRATEGY，我们可以来给job设定不同的git策略</p>
+<ul>
+<li>clone，最慢的选项，会重新下载代码，保证本地代码总是最原始状态</li>
+<li>fetch，会使用本地的代码为基础，然后拉取最新的commit，来加速拉取代码的速度</li>
+<li>none，会直接使用本地的代码<blockquote><p><a href="https://docs.gitlab.com/ee/ci/yaml/#git-strategy">gitlab docs about git strategy</a></p>
+</blockquote>
+</li>
+</ul>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -482,6 +491,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/gitlab_ci_1.2.1_gitlab_ci_yml_cache_artifact.html">
                 gitlab-ci: 1.2.1 .gitlab-ci.yml - cache and artifact
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.2_gitlab_ci_yml_example.html">
+                gitlab-ci: 1.2.2 .gitlab-ci.yml 复杂示例 - 包含get gitlab tag message
               </a>
              </li>
              <li class="toctree-l2">
