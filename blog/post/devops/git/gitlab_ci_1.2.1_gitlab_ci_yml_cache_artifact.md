@@ -66,3 +66,6 @@ deploy:
 > [解决方法](https://gitlab.com/gitlab-org/gitlab-foss/issues/14841)
 > 1. gitlab启动参数增加nginx的`client_max_body_size`
 > 2. gitlab的admin的CICD设置中，调大artifacts的上限大小
+
+> 如何在用不到artifact的job中禁用artifact的下载，用以加速job的运行
+> 使用[`dependencis: []`](https://docs.gitlab.com/ee/ci/yaml/#dependencies)

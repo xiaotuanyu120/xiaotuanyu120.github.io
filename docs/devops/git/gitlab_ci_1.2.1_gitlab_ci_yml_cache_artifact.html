@@ -259,6 +259,8 @@
 <li>gitlab启动参数增加nginx的<code>client_max_body_size</code></li>
 <li>gitlab的admin的CICD设置中，调大artifacts的上限大小</li>
 </ol>
+<p>如何在用不到artifact的job中禁用artifact的下载，用以加速job的运行
+使用<a href="https://docs.gitlab.com/ee/ci/yaml/#dependencies"><code>dependencis: []</code></a></p>
 </blockquote>
       </div>
      </div>
@@ -453,6 +455,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/git/gitlab_ci_1.2.1_gitlab_ci_yml_cache_artifact.html">
                 gitlab-ci: 1.2.1 .gitlab-ci.yml - cache and artifact
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/devops/git/gitlab_ci_1.2.2_gitlab_ci_yml_example.html">
+                gitlab-ci: 1.2.2 .gitlab-ci.yml 复杂示例 - 包含get gitlab tag message
               </a>
              </li>
              <li class="toctree-l2">

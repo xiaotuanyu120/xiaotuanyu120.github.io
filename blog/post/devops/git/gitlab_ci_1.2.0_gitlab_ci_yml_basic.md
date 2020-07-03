@@ -95,3 +95,10 @@ docker-build:
         done
 ```
 > 失败的尝试是在rsync的多行命令末尾增加`\`
+
+### 4. git strategy
+通过设定GIT_STRATEGY，我们可以来给job设定不同的git策略
+- clone，最慢的选项，会重新下载代码，保证本地代码总是最原始状态
+- fetch，会使用本地的代码为基础，然后拉取最新的commit，来加速拉取代码的速度
+- none，会直接使用本地的代码
+> [gitlab docs about git strategy](https://docs.gitlab.com/ee/ci/yaml/#git-strategy)
