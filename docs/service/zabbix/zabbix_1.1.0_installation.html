@@ -233,7 +233,6 @@ cp zabbix-docker/docker-compose_v3_centos_mysql_latest.yaml zabbix/zabbix.yml
 <span class="c1"># 根据安装策略删除无用的service</span>
 sed -i <span class="s1">&#39;/zabbix-proxy-sqlite3:/,/^$/d&#39;</span> zabbix/zabbix.yml
 sed -i <span class="s1">&#39;/zabbix-web-apache-mysql:/,/^$/d&#39;</span> zabbix/zabbix.yml
-sed -i <span class="s1">&#39;/deploy:/,/^$/d&#39;</span> zabbix/zabbix.yml
 
 <span class="c1"># 解决&quot;mbind: Operation not permitted&quot;错误</span>
 <span class="c1"># add the content below to mysql-server</span>
