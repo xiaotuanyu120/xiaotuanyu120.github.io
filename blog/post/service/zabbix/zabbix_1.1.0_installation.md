@@ -49,3 +49,12 @@ docker-compose -f zabbix.yml up -d
 > 容器会在zabbix目录下自动创建zbx_env目录来挂载
 
 > [how to solve "mbind: Operation not permitted" error](https://github.com/docker-library/mysql/issues/303#issuecomment-643154859)
+
+### 2. Zabbix server的主机监控
+安装完毕并启动后，可以通过`ip:8081`来访问zabbix，默认的账号密码是`Admin:zabbix`。
+
+登录后，会发现有个提示，默认创建的Zabbix server主机监控未收集到数据。查看zabbix-agent的容器日志，发现如下错误
+```
+no active checks on server [zabbix-server:10051]: host [3148636f1f4e] not found
+```
+这个显然是主机的名称配置问题，去web界面上，将Zabbix server的主机连接地址，改为`zabbix-agent`（因为zabbix-agent的容器service名称，即代表了zabbix-server机器）即可。
