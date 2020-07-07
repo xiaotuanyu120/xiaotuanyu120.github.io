@@ -201,192 +201,51 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/jira">
-              jira
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/svn">
-              svn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.0.0_installation.html">
-                php 1.0.0: 安装教程
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
-                php 1.1.0: 查看环境信息
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
-                php 1.2.0: PHP配置 - access,slow,error 日志
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
-                php 1.2.1: PHP配置 - 安全配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
-                php 1.2.2: PHP配置 - 进程数调整
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
-                php 1.2.3: PHP配置 - listen
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
-                php 1.3.0: 性能调优 - backlog
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
-                php error: 不间断502问题
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_compile_process.html">
-                php error: 编译过程中的错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
-                php extensions: 编译时增加mysql驱动模块
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.1_history_of_cgi_fastcgi_php-cgi_php-fpm_spawn-fcgi.html">
-                php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
-                php: 安装zend guard loader
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/squid">
-              squid
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/keepalived">
-              keepalived
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/kafka">
-              kafka
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/zabbix">
-              zabbix
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/vpn">
-              vpn
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/fluentd">
-              fluentd
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>zabbix: 1.1.0 install by docker-compose</h3>
+<hr>
+<h3>1. zabbix installation</h3>
+<p>安装策略:</p>
+<ul>
+<li>选择官方latest版本，而不是根据本地目录local进行编译</li>
+<li>zabbix-proxy选择mysql做数据库</li>
+<li>zabbix-server选择mysql做数据库</li>
+<li>选择zabbix-web-nginx-mysql做web interface</li>
+</ul>
+<div class="highlight"><pre><span></span>git clone https://github.com/zabbix/zabbix-docker.git
+mkdir zabbix
+
+<span class="c1"># 根据安装策略拷贝相应的env文件</span>
+cp zabbix-docker/.env_srv zabbix
+cp zabbix-docker/.env_db_mysql zabbix
+cp zabbix-docker/.env_db_mysql_proxy zabbix
+cp zabbix-docker/.env_prx zabbix
+cp zabbix-docker/.env_prx_mysql zabbix
+cp zabbix-docker/.env_web zabbix
+cp zabbix-docker/.env_agent zabbix
+cp zabbix-docker/.env_java zabbix
+cp zabbix-docker/.MYSQL_PASSWORD zabbix
+cp zabbix-docker/.MYSQL_ROOT_PASSWORD zabbix
+cp zabbix-docker/.MYSQL_USER zabbix
+
+<span class="c1"># 根据安装策略，拷贝官方latest镜像版本的yaml文件</span>
+cp zabbix-docker/docker-compose_v3_centos_mysql_latest.yaml zabbix/zabbix.yml
+
+<span class="c1"># 根据安装策略删除无用的service</span>
+sed -i <span class="s1">&#39;/zabbix-proxy-sqlite3:/,/^$/d&#39;</span> zabbix/zabbix.yml
+sed -i <span class="s1">&#39;/zabbix-web-apache-mysql:/,/^$/d&#39;</span> zabbix/zabbix.yml
+sed -i <span class="s1">&#39;/deploy:/,/^$/d&#39;</span> zabbix/zabbix.yml
+
+<span class="c1"># 解决&quot;mbind: Operation not permitted&quot;错误</span>
+<span class="c1"># add the content below to mysql-server</span>
+<span class="c1">#   cap_add: [ SYS_NICE ]</span>
+
+<span class="nb">cd</span> zabbix
+docker-compose -f zabbix.yml up -d
+</pre></div>
+<blockquote><p>容器会在zabbix目录下自动创建zbx_env目录来挂载</p>
+<p><a href="https://github.com/docker-library/mysql/issues/303#issuecomment-643154859">how to solve "mbind: Operation not permitted" error</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -510,71 +369,6 @@
               php
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.0.0_installation.html">
-                php 1.0.0: 安装教程
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
-                php 1.1.0: 查看环境信息
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
-                php 1.2.0: PHP配置 - access,slow,error 日志
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
-                php 1.2.1: PHP配置 - 安全配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
-                php 1.2.2: PHP配置 - 进程数调整
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
-                php 1.2.3: PHP配置 - listen
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
-                php 1.3.0: 性能调优 - backlog
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
-                php error: 不间断502问题
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_error_compile_process.html">
-                php error: 编译过程中的错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
-                php extensions: 编译时增加mysql驱动模块
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
-                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.1.1_history_of_cgi_fastcgi_php-cgi_php-fpm_spawn-fcgi.html">
-                php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
-                php: 安装zend guard loader
-              </a>
-             </li>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -638,6 +432,11 @@
               zabbix
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/zabbix/zabbix_1.1.0_installation.html">
+                zabbix: 1.1.0 install by docker-compose
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
