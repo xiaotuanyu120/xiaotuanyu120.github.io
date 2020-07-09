@@ -298,6 +298,54 @@
 </blockquote>
 </li>
 </ul>
+<h3>5. anchors</h3>
+<p>如果遇到需要复用的部分，可以使用anchors</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">.job_template</span><span class="p p-Indicator">:</span> <span class="nl">&amp;java-project</span>
+  <span class="l l-Scalar l-Scalar-Plain">cache</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">${PROJECT_CACHE}</span>
+  <span class="l l-Scalar l-Scalar-Plain">artifacts</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">${PROJECT_ARTIFACTS}</span>
+
+<span class="l l-Scalar l-Scalar-Plain">javaproject01</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">&lt;&lt;</span><span class="p p-Indicator">:</span> <span class="nv">*java-project</span>
+  <span class="l l-Scalar l-Scalar-Plain">varibles</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">PROJECT_CACHE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.m2</span>
+    <span class="l l-Scalar l-Scalar-Plain">PROJECT_ARTIFACTS</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">./target</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test1 project</span>
+
+<span class="l l-Scalar l-Scalar-Plain">javaproject02</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">&lt;&lt;</span><span class="p p-Indicator">:</span> <span class="nv">*java-project</span>
+  <span class="l l-Scalar l-Scalar-Plain">varibles</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">PROJECT_CACHE</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.m2</span>
+    <span class="l l-Scalar l-Scalar-Plain">PROJECT_ARTIFACTS</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">./target</span>
+  <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test2 project</span>
+</pre></div>
+<blockquote><p><a href="https://docs.gitlab.com/ee/ci/yaml/#anchors">gitlab ci yaml anchors</a></p>
+</blockquote>
+<h3>6. include</h3>
+<p>如果遇到多个project复用的部分逻辑，可以使用include</p>
+<div class="highlight"><pre><span></span><span class="c1"># 多个project都需要同样的before_script</span>
+<span class="c1"># put it in https://gitlab.com/awesome-project/raw/master/.before-script-template.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">before_script</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apt-get update -qq &amp;&amp; apt-get install -y -qq sqlite3 libsqlite3-dev nodejs</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">gem install bundler --no-document</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bundle install --jobs $(nproc)  &quot;${FLAGS[@]}&quot;</span>
+
+<span class="c1"># 在另外一个.gitlab-ci.yml中</span>
+<span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;https://gitlab.com/awesome-project/raw/master/.before-script-template.yml&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;/templates/.after-script-template.yml&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Auto-DevOps.gitlab-ci.yml</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">project</span><span class="p p-Indicator">:</span> <span class="s">&#39;my-group/my-project&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ref</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">master</span>
+    <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span> <span class="s">&#39;/templates/.gitlab-ci-template.yml&#39;</span>
+</pre></div>
+<blockquote><p><a href="https://docs.gitlab.com/ee/ci/yaml/includes.html">gitlab ci yaml include</a></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
