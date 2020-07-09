@@ -102,3 +102,53 @@ docker-build:
 - fetch，会使用本地的代码为基础，然后拉取最新的commit，来加速拉取代码的速度
 - none，会直接使用本地的代码
 > [gitlab docs about git strategy](https://docs.gitlab.com/ee/ci/yaml/#git-strategy)
+
+### 5. anchors
+如果遇到需要复用的部分，可以使用anchors
+``` yaml
+.job_template: &java-project
+  cache:
+    paths:
+      - ${PROJECT_CACHE}
+  artifacts:
+    paths:
+      - ${PROJECT_ARTIFACTS}
+
+javaproject01:
+  <<: *java-project
+  varibles:
+    PROJECT_CACHE: .m2
+    PROJECT_ARTIFACTS: ./target
+  script:
+    - test1 project
+
+javaproject02:
+  <<: *java-project
+  varibles:
+    PROJECT_CACHE: .m2
+    PROJECT_ARTIFACTS: ./target
+  script:
+    - test2 project
+```
+> [gitlab ci yaml anchors](https://docs.gitlab.com/ee/ci/yaml/#anchors)
+
+### 6. include
+如果遇到多个project复用的部分逻辑，可以使用include
+``` yaml
+# 多个project都需要同样的before_script
+# put it in https://gitlab.com/awesome-project/raw/master/.before-script-template.yml
+before_script:
+  - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
+  - gem install bundler --no-document
+  - bundle install --jobs $(nproc)  "${FLAGS[@]}"
+
+# 在另外一个.gitlab-ci.yml中
+include:
+  - 'https://gitlab.com/awesome-project/raw/master/.before-script-template.yml'
+  - '/templates/.after-script-template.yml'
+  - template: Auto-DevOps.gitlab-ci.yml
+  - project: 'my-group/my-project'
+    ref: master
+    file: '/templates/.gitlab-ci-template.yml'
+```
+> [gitlab ci yaml include](https://docs.gitlab.com/ee/ci/yaml/includes.html)
