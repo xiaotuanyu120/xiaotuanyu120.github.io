@@ -1,7 +1,12 @@
-backlog：内核listen()中的参数
-2015年12月10日 星期四
-16:06
- 
+---
+title: 内核参数: 1.1.3 内核listen()中的参数 backlog
+date: 2015-12-10 16:06:00
+categories: linux/advance
+tags: [linux,kernel]
+---
+### 内核参数: 1.1.3 内核listen()中的参数 backlog
+
+
 listen man文档中的description：
 '''
 listen() marks the socket referred to by sockfd as a passive socket, that is, as a socket that will be used to accept incoming connection requests using accept(2).

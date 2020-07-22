@@ -1,7 +1,12 @@
-TCP queue 的一些问题
-2015年12月11日 星期五
-10:14
- 
+---
+title: network: tcp queue(转载)
+date: 2015-12-11 10:14:00
+categories: linux/advance
+tags: [linux,tcp]
+---
+### network: tcp queue
+
+
 先来回顾下三次握手里面涉及到的问题:
 1. 当 client 通过 connect 向 server 发出 SYN 包时，client 会维护一个 socket 等待队列，而 server 会维护一个 SYN 队列
 2. 此时进入半链接的状态，如果 socket 等待队列满了，server 则会丢弃，而 client 也会由此返回 connection time out；只要是 client 没有收到 SYN+ACK，3s 之后，client 会再次发送，如果依然没有收到，9s 之后会继续发送
