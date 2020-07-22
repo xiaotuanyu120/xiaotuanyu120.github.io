@@ -201,81 +201,88 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多</h3>
+      <div class="col-lg-12"><h3>优化nf_conntrack表来解决tcp包被drop的问题</h3>
 <hr>
-<h3>1. 关于TIME_WAIT</h3>
-<h4>1) 什么是TIME_WAIT?</h4>
-<p>TIME_WAIT是TCP连接中的一个状态，每一个TCP连接都会在内存中维护一个控制块TCB(Transmission Control Block），用来记录TCP连接的IP和端口等信息。TIME_WAIT状态会维持一小段时间(最大分段使用期的2倍，2MSL)，以确保这段时间内不会有相同的IP和端口号的新连接，目的是为了预防，上一个连接的分组包延迟到达，而被新的连接接受而导致TCP流被破坏。<br>
-但是处于TIME_WAIT状态的TCP连接过多也会造成性能问题，比如我们的可用源端口只有60000个，而在2MSL(Maximum Segment Lifetime, 时间根据不同系统不一样，大概2分钟左右)内是无法被重用的，也就是说我们的tcp连接率就限制在了在60000/120 = 500次/秒。<br>
-即使没有遇到端口耗尽的问题，在有大量TCP连接及TCB占用内存比例过大时，也会严重影响系统的性能。</p>
-<h4>2) TIME_WAIT的用处</h4>
-<ul>
-<li>避免延迟的tcp片段被新的不相干的tcp连接接收，由此新的tcp连接遭到破坏</li>
-<li>保证TCP四次挥手中的最后一个ACK能顺利到达，若最后一个ACK丢失，当再次使用同一个端口上发起SYN时，则对方的LAST_ACK状态会返回RST。</li>
-</ul>
-<h3>2. 计算TCP并发数</h3>
-<p>因为每一个tcp连接是由<local-ip>:<local-port> <remote-ip>:<remote-port>确定的，此处限定<local-ip>,<remote-ip>,<remote-port>三项不变，只有<local-port>一个变量的情况下的tcp并发计算方法</p>
-<div class="highlight"><pre><span></span><span class="c1"># 查看可用端口数目</span>
-cat /proc/sys/net/ipv4/ip_local_port_range
-<span class="m">32768</span>   <span class="m">60999</span>
+<h3>1. 问题背景?</h3>
+<p>机房某台服务器上的redis突然无法被访问，机房switch的监控检查该服务器有流量，但是zabbix上显示该服务器流量全部断掉，服务排查了正常。检查<code>/var/log/message</code>日志发现有大量的报错如下：</p>
 
-<span class="c1"># TIME_WAIT状态tcp存活时间，默认是2倍的MSL，在linux内核源码中，这个值是个常量TCP_TIMEWAIT_LEN=60s，是不可以改变的。</span>
-
-<span class="c1"># 计算tcp并发数</span>
-<span class="nb">echo</span> <span class="s2">&quot;(60999-32768)/60&quot;</span><span class="p">|</span>bc
-<span class="m">470</span>
-</pre></div>
-<h3>3. TCP针对TIME_WAIT过多可以进行的优化</h3>
-<h4>1) 增加可用的端口范围</h4>
-<p>根据上面的tcp并发算法能看出来，针对于同一个服务端口，tcp并发随着可用的端口范围的增加而增加。</p>
-<h4>2) 使用不同的服务端口来提供服务</h4>
-<p>所谓tcp连接，是由<local-ip>:<local-port> <remote-ip>:<remote-port>四段确定的一个tcp连接，在不考虑其他三段的情况下，监听一个80和同时监听80和81，能提供的tcp并发理论上直接是相差了一倍</p>
-<h4>3) 对tcp进行优化(做这些优化前，确认知道这些优化的含义)</h4>
+<pre><code>kernel: nf_conntrack: table full, dropping packet.</code></pre>
+<p>通过排查错误才知道，原来是linux会维护一个连接跟踪的表，上面的报错是因为内核默认的值无法满足目前redis的访问能力。</p>
+<p><a href="https://www.kernel.org/doc/Documentation/networking/nf_conntrack-sysctl.txt">参考文档资料</a></p>
+<hr>
+<h3>2. TCP优化</h3>
 <div class="highlight"><pre><span></span>vim /etc/sysctl.conf
 ***************************************
-<span class="c1"># 启用tcp的时间戳配置，只有启用这个，下面reuse和recycle才生效。</span>
-net.ipv4.tcp_timestamps <span class="o">=</span> <span class="m">1</span>
-
-<span class="c1"># 允许TIME_WAIT SOCKETS重新用于新的TCP连接，依赖开启tcp优化中的tcp_timestamp</span>
-<span class="c1"># tcp_tw_reuse - INTEGER</span>
-<span class="c1">#     Enable reuse of TIME-WAIT sockets for new connections when it is</span>
-<span class="c1">#     safe from protocol viewpoint.</span>
-<span class="c1">#     0 - disable</span>
-<span class="c1">#     1 - global enable</span>
-<span class="c1">#     2 - enable for loopback traffic only</span>
-<span class="c1">#     It should not be changed without advice/request of technical</span>
-<span class="c1">#     experts.</span>
-<span class="c1">#     Default: 2</span>
-net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
-
-<span class="c1"># ！！！网上很多人转载这个，但是这个配置不要用于nat网络里面，详情可以自己谷歌此配置和nat关键字！！！</span>
-<span class="c1"># 开启TCP连接中的TIME_WAIT SOCKETS快速回收，依赖开启tcp优化中的tcp_timestamp</span>
-net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
-<span class="c1"># ！！！nat网络下不建议开！！！</span>
-
-<span class="c1"># 修改FIN_WAIT2状态tcp的超时时间为30s，默认等于TCP_TIMEWAIT_LEN，是60s</span>
-<span class="c1"># tcp_fin_timeout - INTEGER</span>
-<span class="c1">#     The length of time an orphaned (no longer referenced by any</span>
-<span class="c1">#     application) connection will remain in the FIN_WAIT_2 state</span>
-<span class="c1">#     before it is aborted at the local end.  While a perfectly</span>
-<span class="c1">#     valid &quot;receive only&quot; state for an un-orphaned connection, an</span>
-<span class="c1">#     orphaned connection in FIN_WAIT_2 state could otherwise wait</span>
-<span class="c1">#     forever for the remote to close its end of the connection.</span>
-<span class="c1">#     Cf. tcp_max_orphans</span>
-<span class="c1">#     Default: 60 seconds</span>
-net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+<span class="c1"># 调整nf_conntrack表最大上限</span>
+net.netfilter.nf_conntrack_max<span class="o">=</span><span class="m">1048576</span>
 ***************************************
 
 <span class="c1"># 使配置立即生效</span>
 sysctl -p
 </pre></div>
-<h3>3. 扩展连接</h3>
-<ul>
-<li><a href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">sysctl configuration in linux kernel docs</a>，这里面可以查看sysctl每一项优化的官方文档说明</li>
-<li><a href="https://tools.ietf.org/html/rfc793">RFC 793: TCP</a>，这里可以查看TCP的相关原理说明</li>
-<li><a href="https://tools.ietf.org/html/rfc6191#page-3">RFC 6191: 采用tcp timestamp来降低TIME_WAIT的设计说明</a></li>
-<li><a href="https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#fn-outgoing">TIMEWAIT精品文章 - 强烈推荐</a></li>
-</ul>
+<p><strong>其他nf_conntrack参数</strong></p>
+<div class="highlight"><pre><span></span>sysctl -a<span class="p">|</span>grep nf_conntrack
+
+net.netfilter.nf_conntrack_acct <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_buckets <span class="o">=</span> <span class="m">16384</span>
+net.netfilter.nf_conntrack_checksum <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_count <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_dccp_loose <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_dccp_timeout_closereq <span class="o">=</span> <span class="m">64</span>
+net.netfilter.nf_conntrack_dccp_timeout_closing <span class="o">=</span> <span class="m">64</span>
+net.netfilter.nf_conntrack_dccp_timeout_open <span class="o">=</span> <span class="m">43200</span>
+net.netfilter.nf_conntrack_dccp_timeout_partopen <span class="o">=</span> <span class="m">480</span>
+net.netfilter.nf_conntrack_dccp_timeout_request <span class="o">=</span> <span class="m">240</span>
+net.netfilter.nf_conntrack_dccp_timeout_respond <span class="o">=</span> <span class="m">480</span>
+net.netfilter.nf_conntrack_dccp_timeout_timewait <span class="o">=</span> <span class="m">240</span>
+net.netfilter.nf_conntrack_events <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_expect_max <span class="o">=</span> <span class="m">256</span>
+net.netfilter.nf_conntrack_frag6_high_thresh <span class="o">=</span> <span class="m">4194304</span>
+net.netfilter.nf_conntrack_frag6_low_thresh <span class="o">=</span> <span class="m">3145728</span>
+net.netfilter.nf_conntrack_frag6_timeout <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_generic_timeout <span class="o">=</span> <span class="m">600</span>
+net.netfilter.nf_conntrack_helper <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_icmp_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_icmpv6_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_log_invalid <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_max <span class="o">=</span> <span class="m">65536</span>
+net.netfilter.nf_conntrack_sctp_timeout_closed <span class="o">=</span> <span class="m">10</span>
+net.netfilter.nf_conntrack_sctp_timeout_cookie_echoed <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_cookie_wait <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_established <span class="o">=</span> <span class="m">432000</span>
+net.netfilter.nf_conntrack_sctp_timeout_heartbeat_acked <span class="o">=</span> <span class="m">210</span>
+net.netfilter.nf_conntrack_sctp_timeout_heartbeat_sent <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_ack_sent <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_recd <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_sctp_timeout_shutdown_sent <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_tcp_be_liberal <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_tcp_loose <span class="o">=</span> <span class="m">1</span>
+net.netfilter.nf_conntrack_tcp_max_retrans <span class="o">=</span> <span class="m">3</span>
+net.netfilter.nf_conntrack_tcp_timeout_close <span class="o">=</span> <span class="m">10</span>
+net.netfilter.nf_conntrack_tcp_timeout_close_wait <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_tcp_timeout_established <span class="o">=</span> <span class="m">432000</span>
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_last_ack <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_tcp_timeout_max_retrans <span class="o">=</span> <span class="m">300</span>
+net.netfilter.nf_conntrack_tcp_timeout_syn_recv <span class="o">=</span> <span class="m">60</span>
+net.netfilter.nf_conntrack_tcp_timeout_syn_sent <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_time_wait <span class="o">=</span> <span class="m">120</span>
+net.netfilter.nf_conntrack_tcp_timeout_unacknowledged <span class="o">=</span> <span class="m">300</span>
+net.netfilter.nf_conntrack_timestamp <span class="o">=</span> <span class="m">0</span>
+net.netfilter.nf_conntrack_udp_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_udp_timeout_stream <span class="o">=</span> <span class="m">180</span>
+net.netfilter.nf_conntrack_udplite_timeout <span class="o">=</span> <span class="m">30</span>
+net.netfilter.nf_conntrack_udplite_timeout_stream <span class="o">=</span> <span class="m">180</span>
+</pre></div>
+<h3>3. 后续问题</h3>
+<p>后面又再次出现这个问题，就深入研究了一下。iptables是基于netfilter的，所以原因是因为启用了iptables，开启了tcp包的追踪。追踪文件是在/proc/net/nf_conntrack，里面会跟踪每个tcp连接的状态。</p>
+<p>解决这个问题有几个方案</p>
+<ol>
+<li>提高netfilter跟踪tcp表的max值</li>
+<li>优化程序，降低短连接的数量</li>
+<li>iptables里面使用<code>-j notrace</code>关闭tcp包的追踪</li>
+</ol>
+<p>详情见<a href="http://www.10tiao.com/html/488/201701/2247484116/1.html">这篇博客</a>或者深入搜索netfilter里面的nf_conntrack这个东西的原理，目前我们是通过第三个方案，禁用tcp追踪来解决的。</p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -382,10 +389,22 @@ sysctl -p
        </a>
        <ul>
            <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/linux/advance">
               advance
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/bash_1.1.0_.bashrc_vs_.bash_profile.html">
+                bash 1.1.0 .bashrc vs .bash_profile
+              </a>
+             </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/centos6_booted_services_optimize.html">
                 centos6 开机服务优化
@@ -452,6 +471,11 @@ sysctl -p
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_tcp_queue.html">
+                network: tcp queue(转载)
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_tcp_alive_time_check.html">
                 network: tcp 连接存活时间查询方法
               </a>
@@ -469,16 +493,6 @@ sysctl -p
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/nginx_log_combined.html">
                 nginx: log_format combined?
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.1.0_ssl_tls.html">
-                openssl 1.1.0 证书相关名词含义
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.2.0_pem.html">
-                openssl 1.2.0 pem基本操作
               </a>
              </li>
              <li class="toctree-l2">
@@ -537,17 +551,27 @@ sysctl -p
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
+              <a class="reference internal" href="/linux/advance/what_is_sni.html">
+                what is SNI?
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.3_listen_backlog.html">
+                内核参数: 1.1.3 内核listen()中的参数 backlog
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.0_tcp_time_wait.html">
                 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.1_kernel_nf_conntrack_table.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.1_nf_conntrack_table.html">
                 内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.2_kernel_tcp_time_wait_len_vs_fin_timeout.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.2_tcp_time_wait_len_vs_fin_timeout.html">
                 内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
               </a>
              </li>
@@ -590,20 +614,6 @@ sysctl -p
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/desktop">
               desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
-              php
             </a>
             <ul>
             </ul>
