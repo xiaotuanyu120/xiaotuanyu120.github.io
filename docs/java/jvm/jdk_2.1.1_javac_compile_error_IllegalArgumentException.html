@@ -201,94 +201,26 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/security">
-              security
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/security/jce_1.1.0_unlimited_policy.html">
-                jce 1.1.0 无限制策略
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/security/keytool_1.1.0_usage.html">
-                keytool 1.1.0 命令使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/security/ssl_error_1.1.0_handshake_failure_and_unable_to_find_valid_certification_path.html">
-                ssl error 1.1.0 handshake_failure and unable to find valid certification path
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
-                JVM: 1.0.0 运行时数据区域概念
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
-                JVM: 2.0.0 内存区域调优参数
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
-                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
-                JVM: 2.1.0 调优实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
-                JVM: 3.0.0 jvm状态查看命令(JDK自带)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
-                jdk: 1.0.0 jdk简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
-                jdk: 1.1.0 jre1.6安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
-                jdk: 1.1.1 jdk1.8安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
-                jdk: 2.1.0 命令行编译java项目
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">
-                jdk: 2.1.1 javac error IllegalArgumentException
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>jdk: 2.1.1 javac error IllegalArgumentException</h3>
+<hr>
+<h3>0. 报错信息</h3>
+<p>换了编译环境，然后线上原来运行正常的代码报错如下</p>
+<div class="highlight"><pre><span></span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalArgumentException</span><span class="o">:</span> <span class="n">Name</span> <span class="k">for</span> <span class="n">argument</span> <span class="n">type</span> <span class="o">[</span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">String</span><span class="o">]</span>  
+<span class="n">not</span> <span class="n">available</span><span class="o">,</span> <span class="n">and</span> <span class="n">parameter</span> <span class="n">name</span> <span class="n">information</span> <span class="n">not</span> <span class="n">found</span> <span class="n">in</span> <span class="kd">class</span> <span class="nc">file</span> <span class="n">either</span><span class="o">.</span>
+</pre></div>
+<h3>1. 解决方案</h3>
+<p><strong>排查过程</strong></p>
+<ul>
+<li>jdk版本不一致？，排除，开发和运行均为jdk7</li>
+<li>代码问题？，排除，没有新的相关commit</li>
+</ul>
+<p>因为这是由于更换了编译环境后出现的，所以使用老的编译环境编译上线测试，发现使用老的编译环境编译过的代码是对的。于是定位为编译问题，仔细检查了编译环境的区别，发现少了一个使用javac编译的时候，少了一个<code>-g</code>参数。据某博主和某些答主总结（见下面链接），是因为javac没有<code>-g</code>参数的时候会忽略某些spring中的参数，我暂时没有深入研究。留待以后祥查官方文档</p>
+<blockquote><ul>
+<li><a href="https://www.cnblogs.com/mrcharles/p/11879810.html">cnblog博客</a></li>
+<li><a href="https://stackoverflow.com/questions/7484659/usage-of-requestparam-throws-error-in-spring-3">stackoverflow answer</a></li>
+</ul>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -405,6 +337,56 @@
               jvm
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_1.0.0_runtime_data_area.html">
+                JVM: 1.0.0 运行时数据区域概念
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_2.0.0_optimize_params.html">
+                JVM: 2.0.0 内存区域调优参数
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">
+                JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_2.1.0_optimize_example.html">
+                JVM: 2.1.0 调优实践
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">
+                JVM: 3.0.0 jvm状态查看命令(JDK自带)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.0.0_intro.html">
+                jdk: 1.0.0 jdk简介
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.1.0_1.6_installation.html">
+                jdk: 1.1.0 jre1.6安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_1.1.1_1.8_installation.html">
+                jdk: 1.1.1 jdk1.8安装
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_2.1.0_javac_compile.html">
+                jdk: 2.1.0 命令行编译java项目
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">
+                jdk: 2.1.1 javac error IllegalArgumentException
+              </a>
+             </li>
             </ul>
            </li>       </ul>
       </div>

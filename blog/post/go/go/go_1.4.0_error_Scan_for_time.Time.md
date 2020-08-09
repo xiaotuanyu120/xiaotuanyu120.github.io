@@ -1,10 +1,10 @@
 ---
-title: GO 1.4.0 Scan() 支持time.Time
+title: GO 1.4.0 error Scan() 支持time.Time
 date: 2017-06-07 14:34:00
 categories: go/go
 tags: [go,sql]
 ---
-### GO 1.4.0 Scan() 支持time.Time
+### GO 1.4.0 error Scan() 支持time.Time
 
 ---
 
