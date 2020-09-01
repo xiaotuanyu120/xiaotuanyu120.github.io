@@ -187,83 +187,70 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>SHELL: 3.1 function with xargs</h3>
+<hr>
+<h3>0. xargs后执行function</h3>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">function</span> echo_wrap <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nv">$1</span>
+<span class="o">}</span>
+
+ls /tmp <span class="p">|</span> xargs -i echo_wrap <span class="o">{}</span>
+</pre></div>
+<p>执行结果</p>
+<div class="highlight"><pre><span></span>xargs: echo_wrap: No such file or directory
+</pre></div>
+<p>原来xargs之后识别不到function</p>
+<p>那么我们来这样处理一下</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="k">function</span> echo_wrap <span class="o">{</span>
+    <span class="nb">echo</span> <span class="nv">$1</span>
+<span class="o">}</span>
+
+<span class="nb">export</span> -f echo_wrap
+
+ls /tmp <span class="p">|</span> xargs -i bash -c <span class="s2">&quot;echo_wrap {}&quot;</span>
+</pre></div>
+<p>再来执行，就没有问题了</p>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -338,118 +325,120 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="virtualization/container/OCI_1.1.0_buildah_in_container.html">
-        OCI 1.1.0 在容器中运行buildah
-       </a><br>
-
-       <a href="devops/git/gitlab_ci_1.2.2_gitlab_ci_yml_example.html">
-        gitlab-ci: 1.2.2 .gitlab-ci.yml 复杂示例 - 包含get gitlab tag message
-       </a><br>
-
-       <a href="linux/shell/shell_3.1_function_with_xargs.html">
-        SHELL: 3.1 function with xargs
-       </a><br>
-
-       <a href="java/security/jce_1.1.0_unlimited_policy.html">
-        jce 1.1.0 无限制策略
-       </a><br>
-
-       <a href="service/zabbix/zabbix_1.1.0_installation.html">
-        zabbix: 1.1.0 install by docker-compose
-       </a><br>
-
-       <a href="database/sql/sql_1.1.0_example.html">
-        sql: 1.1.0 example
-       </a><br>
-
-       <a href="virtualization/docker/docker-compose_2.2.0_resource_limit.html">
-        docker-compose 2.2.0 resource limit without swarm
-       </a><br>
-
-       <a href="java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">
-        jdk: 2.1.1 javac error IllegalArgumentException
-       </a><br>
-
-       <a href="java/security/keytool_1.1.0_usage.html">
-        keytool 1.1.0 命令使用说明
-       </a><br>
-
-       <a href="go/go/go_1.4.1_error_ld_cannot_find_lstdc++.html">
-        GO 1.4.1 error 编译错误 - ld: cannot find -lstdc++
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/example_1.0_backup_recovery_array_tomcat_log.html">
+                EXAMPLE: 1.0 tomcat日志切割脚本（数组）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/example_2.0_rsync_expect_filter_filesize_filetype.html">
+                EXAMPLE: 2.0 rsync同步ftp(过滤类型,大小)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/example_3.0_multi_tomcat_daemon.html">
+                EXAMPLE: 3.0 多个tomcat管理脚本
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/example_4.0_bak_folder_regular.html">
+                EXAMPLE: 4.0 定期备份目录
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_1.0_variable_advance_process.html">
+                SHELL: 1.0 变量的简单处理(${})
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_1.0.1_variable_builtin.html">
+                SHELL: 1.0.1 变量：内置变量
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_1.0.2_variable_caculate.html">
+                SHELL: 1.0.2 变量：计算
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_1.0.3_variable_dict.html">
+                SHELL: 1.0.3 变量：字典
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_1.1_command_trap.html">
+                SHELL: 1.1 命令：trap
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_2.0_if_statement_with_multiple_conditions.html">
+                SHELL: 2.0 多判断条件的 if 语句和简化写法的 if 语句
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_2.1_if_statement_with_regex_conditions.html">
+                SHELL: 2.1 带有正则语句判断条件的 if 语句
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_2.2_if_statement_check_user_exist.html">
+                SHELL: 2.2 判断用户是否存在
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_3.0_get_abspath.html">
+                SHELL: 3.0 如何获取脚本绝对路径
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/shell/shell_3.1_function_with_xargs.html">
+                SHELL: 3.1 function with xargs
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
