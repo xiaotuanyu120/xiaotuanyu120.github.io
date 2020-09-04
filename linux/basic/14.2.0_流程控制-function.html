@@ -233,6 +233,20 @@ fuction主要是用来代码复用，减少重复代码量</p>
 </pre></div>
 <blockquote><p>其中return代表了返回整个function的返回值</p>
 </blockquote>
+<h3>3. function要使用外部变量</h3>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">global_var1</span><span class="o">=</span><span class="nb">test</span>
+
+<span class="k">function</span> test<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">global_var1</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="c1"># 执行function</span>
+<span class="nb">export</span> <span class="nb">test</span>
+<span class="nb">test</span>
+</pre></div>
+<p>function内部使用外部变量的时候，必须要先export变量为全局变量才可使用</p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -338,34 +352,6 @@ fuction主要是用来代码复用，减少重复代码量</p>
         <h4>Contents</h4>
        </a>
        <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/advance">
-              advance
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/shell">
-              shell
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/service">
-              service
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/desktop">
-              desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/basic">
               basic
@@ -817,41 +803,6 @@ fuction主要是用来代码复用，减少重复代码量</p>
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.1.0_LAMP-MySQL安装.html">
-                21.1.0: LAMP-MySQL安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.2.0_LAMP-APACHE安装.html">
-                21.2.0: LAMP-APACHE安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.3.0_LAMP-APACHE状态查看.html">
-                21.3.0: LAMP-APACHE状态查看
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.4.0_LAMP-PHP安装.html">
-                21.4.0: LAMP-PHP安装
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.5.0_LAMP-APACHE基本配置.html">
-                21.5.0: LAMP-APACHE基本配置
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.6.0_LAMP-配置PHP解析.html">
-                21.6.0: LAMP-配置PHP解析
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/21.7.0_LAMP-iptables_selinux.html">
-                21.7.0: LAMP-iptables/selinux
-              </a>
-             </li>
-             <li class="toctree-l2">
               <a class="reference internal" href="/linux/basic/22.1.0_基本配置-虚拟主机.html">
                 22.1.0: 基本配置-虚拟主机
               </a>
@@ -1037,26 +988,6 @@ fuction主要是用来代码复用，减少重复代码量</p>
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/27.2.0_ftp_intro.html">
-                27.2.0: FTP简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/27.2.1_ftp_pure-ftpd.html">
-                27.2.1: pure-ftpd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/27.2.2_ftp_vsftp.html">
-                27.2.1: vsftp
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/basic/27.2.3_ftp_client.html">
-                27.2.3: FTP客户端lftp
-              </a>
-             </li>
-             <li class="toctree-l2">
               <a class="reference internal" href="/linux/basic/28.1.0_samba-简介.html">
                 28.1.0: samba-简介
               </a>
@@ -1149,8 +1080,29 @@ fuction主要是用来代码复用，减少重复代码量</p>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
-              php
+            <a class="reference internal" href="/linux/advance">
+              advance
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/shell">
+              shell
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/service">
+              service
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/linux/desktop">
+              desktop
             </a>
             <ul>
             </ul>
