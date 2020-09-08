@@ -494,6 +494,14 @@ docker-compose -f <span class="si">${</span><span class="nv">DOCKER_YAML_DIR</sp
 <span class="c1"># 使用之前先认证</span>
 docker login --username <span class="si">${</span><span class="nv">REG_USER</span><span class="si">}</span> --password <span class="si">${</span><span class="nv">REG_PASSWD</span><span class="si">}</span> reg.easydevops.net
 </pre></div>
+<h3>4. 非https协议下的registry使用，docker需要修改的配置</h3>
+<p><code>/etc/docker/daemon.json</code></p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;insecure-registries&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;myregistrydomain.com:5000&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+<blockquote><p><a href="https://docs.docker.com/registry/insecure/#deploy-a-plain-http-registry">deploy a plain http registry</a></p>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -737,18 +745,18 @@ docker login --username <span class="si">${</span><span class="nv">REG_USER</spa
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_example_1.1.0_mysql.html">
-                docker example 1.1.0 mysql
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_example_1.2.0_ftp.html">
-                docker example 1.2.0 ftp
+              <a class="reference internal" href="/virtualization/docker/docker_knowledge_1.1.0_security.html">
+                docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
               </a>
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
                 docker-compose 2.1.0 network
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker-compose_2.2.0_resource_limit.html">
+                docker-compose 2.2.0 resource limit without swarm
               </a>
              </li>
             </ul>
