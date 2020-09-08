@@ -313,3 +313,12 @@ docker-compose -f ${DOCKER_YAML_DIR}/docker-compose-registry.yaml up -d
 # 使用之前先认证
 docker login --username ${REG_USER} --password ${REG_PASSWD} reg.easydevops.net
 ```
+
+### 4. 非https协议下的registry使用，docker需要修改的配置
+`/etc/docker/daemon.json`
+``` json
+{
+  "insecure-registries" : ["myregistrydomain.com:5000"]
+}
+```
+> [deploy a plain http registry](https://docs.docker.com/registry/insecure/#deploy-a-plain-http-registry)
