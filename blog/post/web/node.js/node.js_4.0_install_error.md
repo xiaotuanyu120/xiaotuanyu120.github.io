@@ -46,3 +46,16 @@ fatal: Could not change back to '/root/.npm/_cacache/tmp/git-clone-ef63fcf9': Pe
 sudo sudo PATH=$PATH:/usr/local/node/bin npm install --unsafe-perm --allow-root
 ```
 > `PATH=$PATH:/usr/local/node/bin`，这个是为了解决，有时候执行sudo，而本地env中的变量没有保持到sudo的用户中，从而报：node无法找到的错误
+
+
+### 3. npm install pm2报错
+使用npm4版本安装pm2`npm config set registry https://registry.npm.taobao.org && npm install pm2 -g`的时候报错
+```
+npm ERR! Verification failed shile extracting blessed@0.1.81
+```
+
+解决办法：升级npm到最新版本
+```
+npm install -g npm@latest
+npm config set registry https://registry.npm.taobao.org && npm install pm2 -g
+```
