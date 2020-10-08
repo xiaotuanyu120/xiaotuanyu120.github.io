@@ -206,448 +206,74 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/openstack">
-              openstack
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/openstack/kolla-ansible_openstack_install.html">
-                
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/docker">
-              docker
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
-                1.1.0 安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
-                1.1.0.1 install docker on mac
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
-                1.1.1 二进制文件安装(Centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
-                1.1.2 为docker创建docker0以外的网桥
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
-                1.2.0 基础命令
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
-                1.2.1 Dockerfile
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
-                1.2.2 docker容器时间不准解决方案
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
-                1.2.4 docker容器安装microsoft truetype 字体
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.5_Dockerfile_example.html">
-                1.2.5 dockerfile 示例
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
-                2.1.1 镜像-查找与下载镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
-                2.1.2 镜像-镜像信息的查看与管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
-                2.1.3 镜像-镜像的删除
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
-                2.1.4 镜像-镜像的导入和导出
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
-                2.1.5 镜像-镜像的上传
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
-                2.1.6 镜像-build 镜像
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
-                2.2.3 Dockerfile entrypoint with script
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_2.2.6_Dockerfile_healthcheck.html">
-                2.2.6 Dockerfile healthcheck
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
-                3.1.0 docker封装nginx服务
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
-                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
-                3.3.0 docker nginx with multiple sites
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_3.4.0_example_error_alphine_java_not_found.html">
-                3.4.0 alpine oracle java no such file or directory error
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
-                4.0.0 docker 本地registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
-                4.0.1 docker 本地registry 使用说明
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.0.2_local_registry-error-push-always-retrying.html">
-                4.0.2 docker 本地registry push时一直retrying
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
-                4.1.0 在docker中运行gitlab ce
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
-                5.2.0 网络：docker中的iptables
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker_knowledge_1.1.0_security.html">
-                docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
-                docker-compose 2.1.0 network
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network_container_name_vs_hostname_vs_service_name.html">
-                docker-compose 2.1.1 network: container_name vs hostname vs service name
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/docker/docker-compose_2.2.0_resource_limit.html">
-                docker-compose 2.2.0 resource limit without swarm
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/kvm">
-              kvm
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">
-                KVM 1.1.0 安装(centos7)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">
-                KVM 1.2.0 创建VM(linux)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">
-                KVM 1.2.1 创建VM(vnc-windows)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">
-                KVM 1.2.2 创建VM-脚本复制VM
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">
-                KVM 1.2.3 管理VM-增加网卡
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">
-                KVM 1.3.0 kvm管理-virt-top
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">
-                KVM 1.3.1 kvm管理-basic
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">
-                KVM 1.3.2 kvm管理-advance
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">
-                KVM 1.3.3 kvm管理-克隆
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">
-                KVM 1.3.4 VM-快照
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/kvm/kvm_1.4.0_error.html">
-                KVM 1.4.0 kvm错误汇总
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/virtualization/container">
-              container
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">
-                OCI 1.1.0 在容器中运行buildah
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">
-                OCI 1.1.1 buildah 推送镜像到非https的repository
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">
-                cgroups 1.0.0 什么是cgroups？
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">
-                container 1.0.1 linux kernel - user namespaces
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.1.0_install.html">
-                coreos 1.1.0 系统安装-bare metal
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_1.2.0_vagrant_install.html">
-                coreos 1.2.0 系统安装-vagrant
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.1.0_ignition_intro.html">
-                coreos 2.1.0 ignition简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">
-                coreos 2.2.0 pxe引导coreos启动(cloudinit)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">
-                coreos 2.2.1 pxe引导coreos启动(ignition)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">
-                coreos 2.2.2 pxe引导coreos启动并安装到硬盘
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">
-                coreos 2.3.0 ignition+matchbox安装coreos集群
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">
-                coreos 2.4.0 生成ssl/tls自签名认证证书
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">
-                etcd 1.1.2 etcd install single node(systemd)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">
-                etcd 1.1.3 etcd install static cluster(centos6)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">
-                etcd 1.1.4 etcd install static cluster with ssl/tls
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">
-                etcd 1.1.5 etcd install discovery cluster(coreos)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">
-                etcd 1.1.6 etcd install discovery cluster(coreos)-systemd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.1.0_python_api.html">
-                etcd 2.1.0 etcd-api python-etcd
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/etcd_2.2.0_confd.html">
-                etcd 2.2.0 搭配confd做配置管理
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">
-                flannel 1.1.0 install flannel using binaries（systemd）
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">
-                flannel 1.2.0 configuration ans option
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">
-                helm 1.1.0 安装（centos 7）及使用
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_1.1.1_chartmuseum.html">
-                helm 1.1.1 chartmuseum
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">
-                helm 2.1.0 从零开始创建tomcat的charts
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.1.0_intro.html">
-                kubernetes 1.1.0 简介
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">
-                kubernetes 1.2.0 vagrant+coreos(flannel)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">
-                kubernetes 1.2.1 kubernetes集群安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">
-                kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">
-                kubernetes 1.2.3 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">
-                kubernetes 1.2.4 traefik ingress
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">
-                kubernetes 1.2.5 ingress ssl
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">
-                kubernetes 1.2.6 kube-dns
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.2.7_efk.html">
-                kubernetes 1.2.7 EFK
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">
-                kubernetes 1.3.0 run-stateless-application-deployment
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">
-                kubernetes 1.3.1 guestbook(php frontend with redis cluster)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
-                kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">
-                kubernetes v1.17 1.1.1 pull image from private registry
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">
-                kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">
-                podman knowledge 1.0.1 为何podman比docker安全
-              </a>
-             </li>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>2.2.6 Dockerfile healthcheck</h3>
+<h3>0. Dockerfile healthcheck</h3>
+<p>根据docker关于<a href="https://docs.docker.com/engine/reference/builder/#healthcheck">healthcheck的官方文档</a>。</p>
+<p>healthcheck有两种格式：</p>
+<ol>
+<li><code>HEALTHCHECK [OPTIONS] CMD command</code>，command就是执行健康监测的具体的命令</li>
+<li><code>HEALTHCHECK NONE</code>, 禁止继承底层镜像的任何健康监测</li>
+</ol>
+<p>关于<code>[OPTIONS]</code>，有如下选项</p>
+<ul>
+<li><code>--interval=DURATION</code> (default: 30s)</li>
+<li><code>--timeout=DURATION</code> (default: 30s)</li>
+<li><code>--start-period=DURATION</code> (default: 0s)</li>
+<li><code>--retries=N</code> (default: 3)</li>
+</ul>
+<blockquote><p><code>OPTIONS</code>说明</p>
+<ul>
+<li>超过timeout时间的监测，被认为是<code>failed</code></li>
+<li>容器启动后，经过interval时间后，执行第一次健康监测，后面的健康监测，都是在上一次健康监测执行完毕后的interval时间后执行</li>
+<li>start-period给容器启动设定了一个启动时间，在这个时间内，健康监测<code>failed</code>并不会计算到retries次数内。但一旦健康监测<code>success</code>，则容器被认为启动成功，然后后面的健康监测<code>failed</code>就会记录到retries设定的最大失败次数内。</li>
+</ul>
+<p>健康监测的状态转移：</p>
+<ul>
+<li>初始化状态是<code>starting</code></li>
+<li>无论之前的状态如何，只要有一次健康监测成功，状态转为<code>healthy</code></li>
+<li>当指定次数的健康监测连续失败后，状态转为<code>unhealthy</code></li>
+</ul>
+</blockquote>
+<p>关于CMD之后的command，有两种格式，一种是直接shell格式，<code>HEALTHCHECK CMD /bin/check-running</code>，第二种是和<code>ENTRYPOINT</code>类似的那种exec数组格式，<code>HEALTHCHECK CMD ["executable", "param1", "param2"]</code></p>
+<blockquote><p>command执行的三种exit状态</p>
+<ul>
+<li>0, success</li>
+<li>1, unhealthy</li>
+<li>2, reserved - 不要用这个exitcode
+eg: <code>HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1</code></li>
+</ul>
+</blockquote>
+<h3>1. 为什么要用docker-compose的healthcheck？</h3>
+<p>一句话，不用修改image，无需因为healthcheck给镜像安装额外的工具包，更灵活的修改</p>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&quot;3&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">web</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx:latest</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;80:80&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">restart</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="l l-Scalar l-Scalar-Plain">healthcheck</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">test</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="s">&quot;CMD&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;curl&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;-f&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;http://localhost/api/nonexist&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;||&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;exit&quot;</span><span class="p p-Indicator">,</span> <span class="s">&quot;1&quot;</span><span class="p p-Indicator">]</span>
+      <span class="l l-Scalar l-Scalar-Plain">interval</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1m30s</span>
+      <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3s</span>
+      <span class="l l-Scalar l-Scalar-Plain">retries</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+      <span class="l l-Scalar l-Scalar-Plain">start_period</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20s</span>
+</pre></div>
+<blockquote><p>docker-compose的healthcheck更多信息，查看<a href="https://docs.docker.com/compose/compose-file/#healthcheck">官方文档</a></p>
+</blockquote>
+<h3>2. 拥有检查docker的容器是否healthy的接口，然后呢？</h3>
+<p>目前docker只是提供了检查容器是否healthy的接口，但是并没有给出后续的action。所以目前需要配合各种编排工具来使用。如果是standlone的容器，可能需要自己写脚本来监测容器状态，从而进行后续的动作。</p>
+<p>当然，也可以用下面这个镜像，这是开源出来的一个监测容器运行状态，然后根据状态来重启容器的一个公共镜像</p>
+
+<pre><code>docker run -d --name autoheal \
+  --restart=always \
+  -e AUTOHEAL_CONTAINER_LABEL=all \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  willfarrell/autoheal</code></pre>
+<blockquote><p>详细说明和配置见：<a href="https://hub.docker.com/r/willfarrell/autoheal/">docker-hub: willfarrell/autoheal</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
@@ -769,6 +395,156 @@
               docker
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.0_installation_centos7.html">
+                1.1.0 安装(Centos7)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.0.1_installation_mac.html">
+                1.1.0.1 install docker on mac
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.1_installation_binary.html">
+                1.1.1 二进制文件安装(Centos7)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.1.2_custom_bridge_to_docker.html">
+                1.1.2 为docker创建docker0以外的网桥
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_1.2.0_basic_command.html">
+                1.2.0 基础命令
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.1_Dockerfile.html">
+                1.2.1 Dockerfile
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.2_Dockerfile_date_timezone.html">
+                1.2.2 docker容器时间不准解决方案
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.4_Dockerfile_msttcorefonts_installation.html">
+                1.2.4 docker容器安装microsoft truetype 字体
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.5_Dockerfile_example.html">
+                1.2.5 dockerfile 示例
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.1_image_search_pull.html">
+                2.1.1 镜像-查找与下载镜像
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.2_image_info_manage.html">
+                2.1.2 镜像-镜像信息的查看与管理
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.3_image_delete.html">
+                2.1.3 镜像-镜像的删除
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.4_image_import_outport.html">
+                2.1.4 镜像-镜像的导入和导出
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.5_image_docker_hub.html">
+                2.1.5 镜像-镜像的上传
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.1.6_image_build.html">
+                2.1.6 镜像-build 镜像
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.3_Dockerfile_entrypoint.html">
+                2.2.3 Dockerfile entrypoint with script
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_2.2.6_Dockerfile_healthcheck.html">
+                2.2.6 Dockerfile healthcheck
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.1.0_example_nginx.html">
+                3.1.0 docker封装nginx服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.2.0_example_tomcat_standlone_arg_v.html">
+                3.2.0 tomcat使用-v参数挂载本地代码和日志目录
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.3.0_example_static_file.html">
+                3.3.0 docker nginx with multiple sites
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_3.4.0_example_error_alphine_java_not_found copy.html">
+                3.4.0 alpine oracle java no such file or directory error
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.0_local_registry.html">
+                4.0.0 docker 本地registry
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.1_local_registry-operation-tutorial.html">
+                4.0.1 docker 本地registry 使用说明
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.0.2_local_registry-error-push-always-retrying.html">
+                4.0.2 docker 本地registry push时一直retrying
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_4.1.0_gitlab.html">
+                4.1.0 在docker中运行gitlab ce
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_5.2.0_network_iptables.html">
+                5.2.0 网络：docker中的iptables
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker_knowledge_1.1.0_security.html">
+                docker 理论漫谈 1.1.0 docker存在的安全问题（浅谈）
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network.html">
+                docker-compose 2.1.0 network
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker-compose_2.1.0_network_container_name_vs_hostname_vs_service_name.html">
+                docker-compose 2.1.1 network: container_name vs hostname vs service name
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/docker/docker-compose_2.2.0_resource_limit.html">
+                docker-compose 2.2.0 resource limit without swarm
+              </a>
+             </li>
             </ul>
            </li>
            <li class="toctree-l1">
