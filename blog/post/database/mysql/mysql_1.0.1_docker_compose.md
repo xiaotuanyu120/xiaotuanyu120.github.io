@@ -80,3 +80,28 @@ docker exec -it db-slave bash
 mysql -u root
 mysql > show slave status\G
 ``` 
+
+### 3. 使用自定义的配置文件
+``` bash
+# 主配文件位置：my.cnf
+#     其中包含了两个目录:
+#         - /etc/mysql/conf.d/
+#         - /etc/mysql/mysql.conf.d/
+docker exec mysql-container cat /etc/mysql/my.cnf
+...
+!includedir /etc/mysql/conf.d/
+!includedir /etc/mysql/mysql.conf.d/
+
+# 配置子目录中已经存在部分文件
+docker exec mysql-container ls /etc/mysql/conf.d
+docker.cnf mysql.cnf mysqldump.cnf
+
+docker exec mysql-container ls /etc/mysql.conf.d
+mysqld.cnf
+```
+
+可以将自定义的配置文件挂载进去
+``` yaml
+    volumes:
+      - '/data/docker/runtime/db/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf'
+```

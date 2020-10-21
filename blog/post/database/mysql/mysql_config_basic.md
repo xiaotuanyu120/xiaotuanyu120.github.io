@@ -112,4 +112,5 @@ skip-name-resolve
 
 # 表示空闲的连接超时时间，默认是28800s，这个参数是和interactive_timeout一起使用的，也就是说要想让wait_timeout 生效，必须同时设置interactive_timeout
 wait_timeout  = 8
-interactive_timeout = 8```
+interactive_timeout = 8
+```
