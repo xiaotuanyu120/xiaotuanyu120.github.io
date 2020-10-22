@@ -1,10 +1,10 @@
 ---
-title: MYSQL-sql语句：常用操作
+title: mysql 3.0.0：常用命令
 date: 2015-01-14 19:04:00
 categories: database/mysql
 tags: [database,mysql]
 ---
-### MYSQL-sql语句：常用操作
+### mysql 3.0.0：常用命令
 
 ---
 
@@ -12,25 +12,12 @@ tags: [database,mysql]
 #### 1) 查看所有数据库
 ``` sql
 mysql> show databases \G
-*************************** 1. row ***************************
-Database: information_schema
-...
-Database: test
-*************************** 6. row ***************************
-Database: test1
-6 rows in set (0.00 sec)
 ```
 
 #### 2) 查看某个库的表
 ``` sql
-mysql> use mysql;show tables \G
-Database changed
-*************************** 1. row ***************************
-Tables_in_mysql: columns_priv
-...
-*************************** 23. row ***************************
-Tables_in_mysql: user
-23 rows in set (0.00 sec)
+mysql> use mysql
+mysql> show tables \G
 ```
 
 #### 3) 查看表结构
@@ -178,7 +165,8 @@ Query OK, 0 rows affected (0.03 sec)
 ``` sql
 -- 清空表
 mysql> truncate table test01;
-Query OK, 0 rows affected (0.01 sec)
+-- 会将主键递增记录也清空
+
 -- 修复表
 mysql> repair table tb1 [use frm];
 -- http://dev.mysql.com/doc/refman/5.7/en/repair-table.html
