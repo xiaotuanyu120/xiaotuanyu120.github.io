@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -201,28 +206,15 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>MYSQL-sql语句：常用操作</h3>
+      <div class="col-lg-12"><h3>mysql 3.0.0：常用命令</h3>
 <hr>
 <h3>1. 对数据库进行的操作</h3>
 <h4>1) 查看所有数据库</h4>
 <div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">show</span> <span class="n">databases</span> <span class="err">\</span><span class="k">G</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="k">Database</span><span class="p">:</span> <span class="n">information_schema</span>
-<span class="p">...</span>
-<span class="k">Database</span><span class="p">:</span> <span class="n">test</span>
-<span class="o">***************************</span> <span class="mi">6</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="k">Database</span><span class="p">:</span> <span class="n">test1</span>
-<span class="mi">6</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
 </pre></div>
 <h4>2) 查看某个库的表</h4>
-<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">mysql</span><span class="p">;</span><span class="k">show</span> <span class="n">tables</span> <span class="err">\</span><span class="k">G</span>
-<span class="k">Database</span> <span class="n">changed</span>
-<span class="o">***************************</span> <span class="mi">1</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="n">Tables_in_mysql</span><span class="p">:</span> <span class="n">columns_priv</span>
-<span class="p">...</span>
-<span class="o">***************************</span> <span class="mi">23</span><span class="p">.</span> <span class="k">row</span> <span class="o">***************************</span>
-<span class="n">Tables_in_mysql</span><span class="p">:</span> <span class="k">user</span>
-<span class="mi">23</span> <span class="k">rows</span> <span class="k">in</span> <span class="k">set</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="n">sec</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">mysql</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">show</span> <span class="n">tables</span> <span class="err">\</span><span class="k">G</span>
 </pre></div>
 <h4>3) 查看表结构</h4>
 <div class="highlight"><pre><span></span><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">desc</span> <span class="k">user</span><span class="p">;</span>
@@ -354,7 +346,8 @@
 <h4>10) 清空表、修复表</h4>
 <div class="highlight"><pre><span></span><span class="c1">-- 清空表</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="k">truncate</span> <span class="k">table</span> <span class="n">test01</span><span class="p">;</span>
-<span class="n">Query</span> <span class="n">OK</span><span class="p">,</span> <span class="mi">0</span> <span class="k">rows</span> <span class="n">affected</span> <span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">01</span> <span class="n">sec</span><span class="p">)</span>
+<span class="c1">-- 会将主键递增记录也清空</span>
+
 <span class="c1">-- 修复表</span>
 <span class="n">mysql</span><span class="o">&gt;</span> <span class="n">repair</span> <span class="k">table</span> <span class="n">tb1</span> <span class="p">[</span><span class="n">use</span> <span class="n">frm</span><span class="p">];</span>
 <span class="c1">-- http://dev.mysql.com/doc/refman/5.7/en/repair-table.html</span>
@@ -457,6 +450,11 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -473,6 +471,13 @@
             </ul>
            </li>
            <li class="toctree-l1">
+            <a class="reference internal" href="/database/zookeeper">
+              zookeeper
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/database/redis">
               redis
             </a>
@@ -484,11 +489,6 @@
               mysql
             </a>
             <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/database/mysql/mysql_sql_basic.html">
-                MYSQL-sql语句：常用操作
-              </a>
-             </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/database/mysql/mysql_manage_backup_recovery.html">
                 MYSQL-管理：备份及恢复
@@ -507,6 +507,11 @@
              <li class="toctree-l2">
               <a class="reference internal" href="/database/mysql/mysql_config_optimize.html">
                 MYSQL-配置：调优
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_config_set_character_collation.html">
+                MYSQL-配置：配置字符集为utf8
               </a>
              </li>
              <li class="toctree-l2">
@@ -529,6 +534,28 @@
                 MYSQL-错误：无法启动排障
               </a>
              </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_1.0.0_installation.html">
+                mysql 1.0.0: 安装教程
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_1.0.1_docker_compose.html">
+                mysql 1.0.1: docker-compose(单实例和主从)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/database/mysql/mysql_3.0.0_basic_operation.html">
+                mysql 3.0.0：常用命令
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/sql">
+              sql
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>
