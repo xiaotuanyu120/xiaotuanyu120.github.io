@@ -214,7 +214,16 @@
 <div class="highlight"><pre><span></span>ffmpeg -i path/to/h265-source.mp4 -c copy -c:v libx264 -crf <span class="m">23</span> -preset medium path/to/h264-destination.mp4
 </pre></div>
 <blockquote><ul>
-<li><code>libx264</code>，指定转化为h264</li>
+<li><code>-c:v libx264</code>，video指定转化为h264</li>
+<li><code>-crf 23 -preset medium</code>，和视频质量相关，可选</li>
+</ul>
+</blockquote>
+<h3>2. 转换rmvb为mp4</h3>
+
+<pre><code>ffmpeg -i path/to/source.rmvb -c:a aac -c:v libx264 -crf 23 -preset medium path/to/destination.mp4</code></pre>
+<blockquote><ul>
+<li><code>-c:a acc</code>，audio指定转换为acc</li>
+<li><code>-c:v libx264</code>，video指定转化为h264</li>
 <li><code>-crf 23 -preset medium</code>，和视频质量相关，可选</li>
 </ul>
 </blockquote>
