@@ -28,3 +28,29 @@ SELECT id
  WHERE (type = 'a' AND score <= 80)
     OR (type = 'b' AND score <= 75);
 ```
+
+### 2. 查看表信息
+``` sql
+-- 查看表容量
+SELECT CONCAT(ROUND(SUM(DATA_LENGTH/1024/1024),2), 'MB') AS data
+  FROM information_schema.TABLES
+ WHERE table_schema='your_database_name'
+   AND table_name='your_table_name';
+```
+
+### 3. 创建表
+``` sql
+CREATE TABLE your_table_name [AS] SELECT * FROM ...;
+```
+
+### 4. 表重命名
+``` sql
+ALTER TABLE your_table_name RENAME TO your_table_name_new;
+```
+
+### 5. 索引
+``` sql
+-- 查看索引
+SHOW INDEX FROM your_table_name;
+CREATE INDEX index_name on your_table_name (column1,column2);
+```

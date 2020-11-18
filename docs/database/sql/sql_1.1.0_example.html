@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -222,6 +227,24 @@
   <span class="k">FROM</span> <span class="n">test</span>
  <span class="k">WHERE</span> <span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span> <span class="k">AND</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">80</span><span class="p">)</span>
     <span class="k">OR</span> <span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span> <span class="k">AND</span> <span class="n">score</span> <span class="o">&lt;=</span> <span class="mi">75</span><span class="p">);</span>
+</pre></div>
+<h3>2. 查看表信息</h3>
+<div class="highlight"><pre><span></span><span class="c1">-- 查看表容量</span>
+<span class="k">SELECT</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">DATA_LENGTH</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">),</span><span class="mi">2</span><span class="p">),</span> <span class="s1">&#39;MB&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="k">data</span>
+  <span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
+ <span class="k">WHERE</span> <span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;your_database_name&#39;</span>
+   <span class="k">AND</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;your_table_name&#39;</span><span class="p">;</span>
+</pre></div>
+<h3>3. 创建表</h3>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">your_table_name</span> <span class="p">[</span><span class="k">AS</span><span class="p">]</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">...;</span>
+</pre></div>
+<h3>4. 表重命名</h3>
+<div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">your_table_name</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">your_table_name_new</span><span class="p">;</span>
+</pre></div>
+<h3>5. 索引</h3>
+<div class="highlight"><pre><span></span><span class="c1">-- 查看索引</span>
+<span class="k">SHOW</span> <span class="k">INDEX</span> <span class="k">FROM</span> <span class="n">your_table_name</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="k">on</span> <span class="n">your_table_name</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span><span class="n">column2</span><span class="p">);</span>
 </pre></div>
       </div>
      </div>
@@ -319,6 +342,11 @@
             <li role="presentation">
              <a href="/android" role="menuitem" tabindex="-1">
               android
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
              </a>
             </li>      </ul>
      </div>
