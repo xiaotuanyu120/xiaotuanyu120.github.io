@@ -236,7 +236,11 @@
    <span class="k">AND</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;your_table_name&#39;</span><span class="p">;</span>
 </pre></div>
 <h3>3. 创建表</h3>
-<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">your_table_name</span> <span class="p">[</span><span class="k">AS</span><span class="p">]</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="p">...;</span>
+<div class="highlight"><pre><span></span><span class="c1">-- 复制表的字段属性、数据来创建新表</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="n">EXIST</span> <span class="n">your_table_name_new</span> <span class="p">[</span><span class="k">AS</span><span class="p">]</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">your_table_name_old</span><span class="p">;</span>
+
+<span class="c1">-- 复制表的备注、索引、主键外键、存储引擎等</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="n">EXIST</span> <span class="n">your_table_name_new</span> <span class="p">(</span><span class="k">like</span> <span class="n">your_table_name_old</span><span class="p">)</span>
 </pre></div>
 <h3>4. 表重命名</h3>
 <div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">your_table_name</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">your_table_name_new</span><span class="p">;</span>
