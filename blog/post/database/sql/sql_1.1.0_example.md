@@ -40,7 +40,11 @@ SELECT CONCAT(ROUND(SUM(DATA_LENGTH/1024/1024),2), 'MB') AS data
 
 ### 3. 创建表
 ``` sql
-CREATE TABLE your_table_name [AS] SELECT * FROM ...;
+-- 复制表的字段属性、数据来创建新表
+CREATE TABLE IF NOT EXIST your_table_name_new [AS] SELECT * FROM your_table_name_old;
+
+-- 复制表的备注、索引、主键外键、存储引擎等
+CREATE TABLE IF NOT EXIST your_table_name_new (like your_table_name_old)
 ```
 
 ### 4. 表重命名
