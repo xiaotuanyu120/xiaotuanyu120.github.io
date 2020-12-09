@@ -192,83 +192,65 @@
     <!-- /.navbar-collapse -->
    </div>
    <!-- /.container -->
-  </nav>  <div class="top-docs-wrapper">
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-8 col-md-8 col-sm-8">
-      <h1>
-       欢迎来到 Xiao5tech 文档库
-      </h1>
-      <p>
-       <strong>
-        什么是 Xiao5tech?
-       </strong>
-       Xiao5tech 是一个linux运维知识相关网站，这里汇总了linux，python，devops，容器和虚拟化的一系列知识。
-      </p>
-      <hr/>
-      <h3>
-       接下来可以干点什么?
-      </h3>
-      <a class="overview-btn docs-btn" href="#docs-main-body">
-       查看文档动态
-       <i class="fa fa-arrow-circle-o-down">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="https://github.com/xiaotuanyu120/markdown_build_static_html">
-       访问网站代码github
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <a class="overview-btn docs-btn" href="">
-       联系作者
-       <i class="fa fa-arrow-circle-o-right">
-       </i>
-      </a>
-      <form class="docs-main-search-form">
-         <script type="text/javascript">
-          (function() {
-            var cx = '012343983721360531439:ff68trchadg';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-          })();
-          </script>
-        <!-- <gcse:search as_sitesearch="docs.openstack.org" gname="standard"> -->
-        <gcse:search as_sitesearch="linux.xiao5tech.com" gname="standard">
-        </gcse:search>
-      </form>
+  </nav>  <div class="container docs-book-wrapper">
+   <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-8 col-lg-push-3 col-md-push-4 col-sm-push-4">
+     <div class="row">
+      <div class="col-lg-8">
+       <h2>{{ cat }}'s docs</h2>
+      </div>
      </div>
-     <div class="col-lg-4 col-md-4 col-sm-4 superuser-wrapper">
-      <div id="superuser-img">
+     <div class="row docs-byline">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-lg-12"><h3>php extensions: zip</h3>
+<hr>
+<h3>1. docker在php5.6和php7.4下面安装扩展zip</h3>
+
+<pre><code># php 5.6
+FROM php:5.6-apache
+RUN apt-get update \
+    &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends zlib1g-dev libzip-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/* \
+    &amp;&amp; docker-php-ext-configure zip --with-libzip \
+    &amp;&amp; docker-php-ext-install zip</code></pre>
+
+<pre><code># php 7.4
+FROM php:7.4-apache
+RUN apt-get update \
+    &amp;&amp; DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends zlib1g-dev libzip-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/* \
+    &amp;&amp; docker-php-ext-install zip</code></pre>
+<h3>3. 检查插件状态</h3>
+
+<pre><code># 检查模块
+php -m</code></pre>
+      </div>
+     </div>
+     <div class="row docs-byline bottom">
+      <div class="docs-updated">
+       updated: 2017-04-20 10:25
       </div>
      </div>
     </div>
-   </div>
-   <div class="mid-docs-wrapper" id="docs-main-body">
-    <div class="container">
-     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-9">
-       <h2>
-        文档动态 (2017 - 功能开发中)
-       </h2>
-       <p>
-        这里展示的是文档的最新动态. 如果需要查看完整文档及其分类，请点击右边的蓝色下拉菜单。
-       </p>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3">
-       <div class="dropdown docs-dropdown">
-        <a data-toggle="dropdown" href="">
-         完整文档分类
-         <i class="fa fa-caret-down fa-3">
-         </i>
-        </a>
-        <ul aria-labelledby="dLabel" class="dropdown-menu" role="menu">
-         <li class="dropdown-header" role="presentation">
-          文档分类
-         </li>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-lg-pull-9 col-md-pull-8 col-sm-pull-8 docs-sidebar">
+     <div class="btn-group docs-sidebar-releases">
+      <button onclick="location.href='/{{ cat }}'" class="btn docs-sidebar-home" data-toggle="tooltip" data-placement="top" title="Docs Home">
+       <i class="fa fa-arrow-circle-o-left">
+       </i>
+      </button>
+      <button href="#" type="button" data-toggle="dropdown" class="btn docs-sidebar-release-select">
+       Xiao5tech Docs
+       <i class="fa fa-caret-down">
+       </i>
+      </button>
+      <ul class="dropdown-menu docs-sidebar-dropdown" role="menu" aria-labelledby="dLabel">
+       <li role="presentation" class="dropdown-header">
+        完整文档分类
+       </li>
             <li role="presentation">
              <a href="/web" role="menuitem" tabindex="-1">
               web
@@ -348,118 +330,202 @@
              <a href="/cloud" role="menuitem" tabindex="-1">
               cloud
              </a>
-            </li>        </ul>
-       </div>
-      </div>
+            </li>      </ul>
      </div>
-    </div>
-   </div>
-   <div class="container">
-    <div class="row">
-     <div class="col-lg-12">
-     </div>
-    </div>
-    <div class="row docs-toc">
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="release-notes">
-        <i class="fa fa-refresh">
-        </i>
-        最近发表
-       </h3>
-       <p>
-        最新发布的文档
-       </p>
-       <a href="linux/advance/ffmpeg_1.1.0_convert_h265_to_h264.html">
-        ffmpeg: 1.1.0 转换h265为h264
-       </a><br>
-
-       <a href="virtualization/docker/docker_2.2.6_Dockerfile_healthcheck.html">
-        2.2.6 Dockerfile healthcheck
-       </a><br>
-
-       <a href="database/mysql/mysql_config_set_character_collation.html">
-        MYSQL-配置：配置字符集为utf8
-       </a><br>
-
-       <a href="virtualization/docker/docker-compose_2.1.0_network_container_name_vs_hostname_vs_service_name.html">
-        docker-compose 2.1.1 network: container_name vs hostname vs service name
-       </a><br>
-
-       <a href="service/php/php_ext_zip.html">
-        php extensions: zip
-       </a><br>
-
-       <a href="service/php/php_ext_gd.html">
-        php extensions: GD - graphic draw
-       </a><br>
-
-       <a href="cloud/aws/1.0.0_aws_efs_mount.html">
-        亚马逊云: 1.0.0 挂载EFS
-       </a><br>
-
-       <a href="cloud/aws/1.1.0_aws_rds_character_set_utf8mb4.html">
-        亚马逊云: 1.1.0 rds mysql 修改字符集为utf8mb4
-       </a><br>
-
-       <a href="virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">
-        OCI 1.1.1 buildah 推送镜像到非https的repository
-       </a><br>
-
-       <a href="service/nginx/practice_1.1.0_nginx_movie.html">
-        实践: 1.1.0 使用nginx提供mp4串流服务
-       </a><br>
-
-      </div>
-      <div class="docs-link-sections">
-       <h3 id="install-guides">
-        <i class="fa fa-cogs">
-        </i>
-        最热文档
-       </h3>
-       <p>
-        点击量最高的文档
-       </p>
-       <a href="">
-        这是一篇点击量最高的文档
+      <div class="docs-sidebar-toc">
+      <div class="docs-sidebar-section" id="table-of-contents">
+       <a href="#" class="docs-sidebar-section-title">
+        <h4>Contents</h4>
        </a>
+       <ul>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/jira">
+              jira
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/svn">
+              svn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/php">
+              php
+            </a>
+            <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.0.0_installation.html">
+                php 1.0.0: 安装教程
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.1.0_check_php_env.html">
+                php 1.1.0: 查看环境信息
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.2.0_configuration_of_log.html">
+                php 1.2.0: PHP配置 - access,slow,error 日志
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
+                php 1.2.1: PHP配置 - 安全配置
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
+                php 1.2.2: PHP配置 - 进程数调整
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
+                php 1.2.3: PHP配置 - listen
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
+                php 1.3.0: 性能调优 - backlog
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_error_temporally_502.html">
+                php error: 不间断502问题
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_error_compile_process.html">
+                php error: 编译过程中的错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_ext_gd.html">
+                php extensions: GD - graphic draw
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_ext_zip.html">
+                php extensions: zip
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
+                php extensions: 编译时增加mysql驱动模块
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_fpm_error_1.1.0_permission_dennied_error_in_container_when_enable_slowlog.html">
+                php-fpm error: 1.1.0 容器中开启慢日志后的permission dennied错误
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.1.1_history_of_cgi_fastcgi_php-cgi_php-fpm_spawn-fcgi.html">
+                php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
+                php: 安装zend guard loader
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/zabbix">
+              zabbix
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
+            </ul>
+           </li>       </ul>
       </div>
-     </div>
-     <div class="col-lg-6 col-md-6 col-sm-6">
-      <div class="docs-link-sections">
-       <h3 id="user-guides">
-        <i class="fa fa-cloud">
-        </i>
-        最新留言
-       </h3>
-       <a href="">
-        这是一个被留言的文档
-       </a>
-       <!-- <a href="/user-guide/UserGuide.pdf">
-        [PDF]
-       </a> -->
-       <p>
-        留言内容
-       </p>
-       <a href="">
-        另一篇被留言的文档
-       </a>
-       <p>
-        留言内容
-       </p>
-      </div>
-     </div>
-    </div>
-    <div class="row docs-contribute-wrapper">
-     <div class="col-lg-12">
-      <p>
-       文档内容托管在github上 - 感兴趣?
-      </p>
-      <a class="overview-btn contribute-btn" href="https://github.com/xiaotuanyu120/linux-Operation-and-maintenance-manual">
-       前往文档内容github
-       <i class="fa fa-chevron-right">
-       </i>
-      </a>
      </div>
     </div>
    </div>
