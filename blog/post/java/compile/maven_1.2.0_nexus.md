@@ -37,7 +37,7 @@ docker-compose up -d
 > 访问http://ip:8081，会提示你admin的初始密码保存在`/nexus-data/admin.password`文件中。
 
 ### 3. 配置maven环境 - nexus的账号和密码
-maven的settings.xml分为全局和用户两种配置文件，顾名思义，全局就是所有用户共同的配置，用户就是指定用户特定的配置（默认在~/.m2/settings.xml）。
+maven的settings.xml分为全局和用户两种配置文件，顾名思义，全局就是所有用户共同的配置，用户就是指定用户特定的配置（默认在`~/.m2/settings.xml`）。
 
 这两种配置文件，可以分别使用下面的选项来手动指定
 ``` bash
@@ -131,6 +131,12 @@ mvn deploy:deploy-file -DgroupId=<group-id> \
 ```
 > [apache guide of 3rd-party-jars-remote](https://maven.apache.org/guides/mini/guide-3rd-party-jars-remote.html)
 
-### 5. 常见错误
+### 5. 常见问题
+**常见错误**
 - 405, 有可能url写错了
 - 400, 有可能是不允许重新发布，也有可能是账号密码写错了
+
+**注意事项**
+相应的代码修改之后，原则上要修改version，以保证每个release都是静态的，而不是用同一个version重复发布变更的代码。
+
+将思路放在如何让maven强制更新同一个version重复发布的release是一个**错误的方向**，应该确保每次代码修改后，其version相应的做出改动，其他组件对其的依赖通过version来更新其版本，这样才是正确的思路
