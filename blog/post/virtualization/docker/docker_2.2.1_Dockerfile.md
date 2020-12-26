@@ -88,6 +88,14 @@ ENV myCat fluffy
 ENV myName="John Doe" myDog=Rex\ The\ Dog \
     myCat=fluffy
 ```
+> 在20.10.0版本中，`ENV <key> <value>`[被废弃](https://docs.docker.com/engine/release-notes/#20100)
+
+**PATH指定的方法**
+```
+ENV PATH="$PATH:/usr/local/<service>/bin"
+```
+> `RUN export PATH=$PATH:/usr/local/<service>/bin`这种方法不可用，因为RUN里面的变量，只在当前layer里面有效。
+
 #### 5) ADD & COPY
 ```
 ADD <src>... <dest>
