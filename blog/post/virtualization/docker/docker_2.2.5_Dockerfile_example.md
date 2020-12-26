@@ -61,3 +61,16 @@ RUN apt-get update \
     && ln -s /etc/apache2/mods-available/socache_shmcb.load /etc/apache2/mods-enabled/socache_shmcb.load
 COPY --chown=33:33 . /var/www/html/
 ```
+
+### 4. install mvn 3.6.3 on centos7
+```
+FROM centos:7
+
+COPY apache-maven-3.6.3-bin.tar.gz .
+RUN tar -zxvf apache-maven-3.6.3-bin.tar.gz; \
+    mv apache-maven-3.6.3 /usr/local; \
+    ln -s /usr/local/apache-maven-3.6.3 /usr/local/apache-maven; \
+    rm -rf apache-maven-3.6.3-bin.tar.gz
+
+ENV PATH="$PATH:/usr/local/apache-maven/bin"
+```
