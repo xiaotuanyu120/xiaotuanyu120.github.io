@@ -206,51 +206,123 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/compile">
-              compile
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.0_intro_basic.html">
-                maven 1.1.0 基础介绍
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.1_multi_modules_practice.html">
-                maven 1.1.1 多module工程的版本管理实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.2.0_nexus.html">
-                maven 1.2.0 私有仓库nexus
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/security">
-              security
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>maven 1.1.1 多module工程的版本管理实践</h3>
+<h3>1. 问题点</h3>
+<p>一个java的maven工程，里面有多个modules，然后各个modules之间还有相互依赖关系。在这样的情况下，如何对子模块的version标准管理呢？</p>
+<h3>2. 官方建议方法</h3>
+<p>要点：</p>
+<ul>
+<li>maven版本要在3.5.0以上</li>
+<li>项目version使用变量<code>${revision}</code>、<code>${sha1}</code>和<code>${changelist}</code>（不可变更变量名称）来组合version名称</li>
+<li>子module使用同样的变量组合方式来指定parent version，然后自身并不指定version（继承parent version）</li>
+<li>子module互相之间的依赖，使用<code>${project.version}</code>来标准化，其实内容就是parent的version</li>
+</ul>
+<p><strong>示例:parent-pom.xml</strong></p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>apache<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>18<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;name&gt;</span>First CI Friendly<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  ...
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;revision&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/revision&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>ci-child1<span class="nt">&lt;/module&gt;</span>
+    ..
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre></div>
+<p><strong>示例：child-pom.xml</strong></p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>ci-child1<span class="nt">&lt;/artifactId&gt;</span>
+   ...
+  <span class="nt">&lt;dependencies&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>ci-child2<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre></div>
+<p>关于<code>INSTALL &amp; DEPLOY</code>，官方的原话是</p>
+
+<pre><code>If you like to install or deploy artifacts by using the above setup you have to use the flatten-maven-plugin otherwise you will install/deploy artifacts in your repository which will not be consumable by Maven anymore. Such kind of setup will look like this:</code></pre>
+<div class="highlight"><pre><span></span><span class="nt">&lt;project&gt;</span>
+  <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.apache<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>apache<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>18<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;name&gt;</span>First CI Friendly<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  ...
+  <span class="nt">&lt;properties&gt;</span>
+    <span class="nt">&lt;revision&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/revision&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+
+ <span class="nt">&lt;build&gt;</span>
+  <span class="nt">&lt;plugins&gt;</span>
+    <span class="nt">&lt;plugin&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>flatten-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;configuration&gt;</span>
+        <span class="nt">&lt;updatePomFile&gt;</span>true<span class="nt">&lt;/updatePomFile&gt;</span>
+        <span class="nt">&lt;flattenMode&gt;</span>resolveCiFriendliesOnly<span class="nt">&lt;/flattenMode&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;executions&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+          <span class="nt">&lt;id&gt;</span>flatten<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;phase&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>flatten<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;execution&gt;</span>
+          <span class="nt">&lt;id&gt;</span>flatten.clean<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;phase&gt;</span>clean<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals&gt;</span>
+            <span class="nt">&lt;goal&gt;</span>clean<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+      <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  <span class="nt">&lt;modules&gt;</span>
+    <span class="nt">&lt;module&gt;</span>child1<span class="nt">&lt;/module&gt;</span>
+    ..
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre></div>
+<blockquote><p>大概的意思，我猜，是因为所有的version我们使用了变量，而不是固定的一个值，所以需要一个插件来特别处理，以保证其能在maven库中正确的被别人引用</p>
+</blockquote>
+<p><strong>CI支持</strong>
+至于官方提供了这个方法，其实是为了更好的兼容CI，因为不可能每次编译都手动修改pom，那么在命令行里面来修改version变量的方法就是</p>
+
+<pre><code>mvn -Drevision=1.0.0-SNAPSHOT clean package</code></pre>
+<blockquote><p>实际的CI流程中，肯定是使用变量来替代<code>1.0.0-SNAPSHOT</code>，例如日期字符串，或者commit串等，例如：<code>-Drevision=$(date +%Y%m%d.%H%M%S-${CI_COMMIT_SHA:0:6})</code></p>
+<p><a href="https://maven.apache.org/maven-ci-friendly.html#multi-module-setup">apache官方CI友好文档 - 提及的多模块version管理</a></p>
+</blockquote>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
