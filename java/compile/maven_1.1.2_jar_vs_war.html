@@ -206,61 +206,44 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12">       <div class="docs-body">
-        <div class="section" id="kolla-ansible-deployment-guide">
-         <p>文档中若无特殊说明，均使用的是centos发行版。</p>
-         <p>对于运维，无论是哪个岗位，对linux及主流服务的了解必须要到一定的程度。此处的文档全部是线上运维经验的总结，编写的角度全部假设阅读者有一定的linux基本知识，如果阅读起来有困难，推荐善用搜索工具。</p>
-         <div class="toctree-wrapper compound">
-          <ul>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/compile">
-              compile
-            </a>
-            <ul>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.0_intro_basic.html">
-                maven 1.1.0 基础介绍
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.1_multi_modules_practice.html">
-                maven 1.1.1 多module工程的版本管理实践
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.2_jar_vs_war.html">
-                maven 1.1.2 jar和war的区别
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.1.3_jar_vs_war_ablout_resources.html">
-                maven 1.1.3 jar和war中resources的区别
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/java/compile/maven_1.2.0_nexus.html">
-                maven 1.2.0 私有仓库nexus
-              </a>
-             </li>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/security">
-              security
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/java/jvm">
-              jvm
-            </a>
-            <ul>
-            </ul>
-           </li>          </ul>
-         </div>
-        </div>
-       </div>      </div>
+      <div class="col-lg-12"><h3>maven 1.1.2 jar和war的区别</h3>
+<h3>0. 参考链接</h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/5871053/difference-between-jar-and-war-in-java">stackoverflow: jar vs war</a></li>
+<li><a href="https://web.archive.org/web/20120626012843/http://java.sun.com/developer/Books/javaprogramming/JAR/basics">sun: jar basic</a></li>
+<li><a href="https://web.archive.org/web/20120626020019/http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/WCC3.html">sun: war docs</a></li>
+<li><a href="https://cloud.tencent.com/developer/ask/37456">腾讯云问答：war和jar区别</a></li>
+</ul>
+<h3>1. jar</h3>
+<p><strong>个人理解</strong></p>
+<p>jar是一个类的相关文件存档，包含并不限于以下文件：</p>
+<ul>
+<li>classes：com/example/www/...</li>
+<li>META-INF<ul>
+<li>MANIFEST.MF</li>
+<li>其他信息文件，例如maven</li>
+</ul>
+</li>
+</ul>
+<p>主要用途：一个单独运行的应用程序，或者其他工程依赖的一个单独的模块</p>
+<h3>2. war</h3>
+<p><strong>个人理解</strong></p>
+<p>war是一个web应用文件的存档，包含并不限于以下文件：</p>
+<ul>
+<li>META-INF<ul>
+<li>MANIFEST.MF</li>
+<li>其他信息文件，例如maven</li>
+</ul>
+</li>
+<li>WEB-INF<ul>
+<li>classes：com/example/www/...</li>
+<li>lib: *.jar</li>
+<li>web.xml</li>
+</ul>
+</li>
+</ul>
+<p>主要用途：完整的web应用，包含各种java的classes文件，依赖的jar包，各种静态文件等</p>
+      </div>
      </div>
      <div class="row docs-byline bottom">
       <div class="docs-updated">
