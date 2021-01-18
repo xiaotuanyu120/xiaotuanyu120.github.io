@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -253,7 +258,7 @@
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">target</span>
     <span class="l l-Scalar l-Scalar-Plain">expire_in</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1 day</span>
 </pre></div>
-<blockquote><p>erro: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
+<blockquote><p>error: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
 <a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a></p>
 <ol>
 <li>gitlab启动参数增加nginx的<code>client_max_body_size</code></li>
@@ -261,6 +266,26 @@
 </ol>
 <p>如何在用不到artifact的job中禁用artifact的下载，用以加速job的运行
 使用<a href="https://docs.gitlab.com/ee/ci/yaml/#dependencies"><code>dependencis: []</code></a></p>
+<p>问题：开启了artifact，但是程序并未删除掉expire的artifact，导致磁盘占用空间巨大
+原因：原来是gitlab增加了一个新特性：<a href="https://gitlab.com/gitlab-org/gitlab/-/issues/16267">keep latest artifact for the last successful jobs</a>，这个特性有问题，它导致所有的artifact的expire_in失效。</p>
+<p>解决办法：</p>
+<p>step 1. 临时解决磁盘占用问题：</p>
+<ul>
+<li>删除老旧的artifact(<a href="https://docs.gitlab.com/ee/administration/job_artifacts.html#job-artifacts-using-too-much-disk-space">job artifacts using too much disk space</a>)， 执行<code>gitlab-rails console</code>，然后执行以下命令<div class="highlight"><pre><span></span><span class="n">project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">find_by_full_path</span><span class="p">(</span><span class="s1">&#39;path/to/project&#39;</span><span class="p">)</span>
+<span class="n">builds_with_artifacts</span> <span class="o">=</span>  <span class="n">project</span><span class="o">.</span><span class="n">builds</span><span class="o">.</span><span class="n">with_downloadable_artifacts</span>
+<span class="n">builds_to_clear</span> <span class="o">=</span> <span class="n">builds_with_artifacts</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;finished_at &lt; ?&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+<span class="n">builds_to_clear</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">build</span><span class="o">|</span>
+<span class="n">build</span><span class="o">.</span><span class="n">artifacts_expire_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
+<span class="n">build</span><span class="o">.</span><span class="n">erase_erasable_artifacts!</span>
+<span class="k">end</span>
+</pre></div>
+</li>
+</ul>
+<p>step 2. 禁用这个新特性，执行<code>gitlab-rails console</code>，然后执行以下命令</p>
+<div class="highlight"><pre><span></span><span class="no">Feature</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="ss">:keep_latest_artifacts_for_ref</span><span class="p">)</span>
+<span class="no">Feature</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="ss">:destroy_only_unlocked_expired_artifacts</span><span class="p">)</span>
+</pre></div>
+<p>step 3. 检查不需要artifact的project，然后取消artifact的配置</p>
 </blockquote>
       </div>
      </div>
@@ -358,6 +383,11 @@
             <li role="presentation">
              <a href="/android" role="menuitem" tabindex="-1">
               android
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
              </a>
             </li>      </ul>
      </div>

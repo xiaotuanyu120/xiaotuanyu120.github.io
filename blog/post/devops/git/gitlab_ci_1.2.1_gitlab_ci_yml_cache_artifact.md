@@ -62,10 +62,36 @@ deploy:
     - target
     expire_in: 1 day
 ```
-> erro: `ERROR: Uploading artifacts to coordinator... too large archive`
+> error: `ERROR: Uploading artifacts to coordinator... too large archive`
 > [解决方法](https://gitlab.com/gitlab-org/gitlab-foss/issues/14841)
 > 1. gitlab启动参数增加nginx的`client_max_body_size`
 > 2. gitlab的admin的CICD设置中，调大artifacts的上限大小
 
 > 如何在用不到artifact的job中禁用artifact的下载，用以加速job的运行
 > 使用[`dependencis: []`](https://docs.gitlab.com/ee/ci/yaml/#dependencies)
+
+> 问题：开启了artifact，但是程序并未删除掉expire的artifact，导致磁盘占用空间巨大
+> 原因：原来是gitlab增加了一个新特性：[keep latest artifact for the last successful jobs](https://gitlab.com/gitlab-org/gitlab/-/issues/16267)，这个特性有问题，它导致所有的artifact的expire_in失效。
+
+> 解决办法：
+
+> step 1. 临时解决磁盘占用问题：
+> - 删除老旧的artifact([job artifacts using too much disk space](https://docs.gitlab.com/ee/administration/job_artifacts.html#job-artifacts-using-too-much-disk-space))， 执行`gitlab-rails console`，然后执行以下命令
+> ``` ruby
+> project = Project.find_by_full_path('path/to/project')
+> builds_with_artifacts =  project.builds.with_downloadable_artifacts
+> builds_to_clear = builds_with_artifacts.where("finished_at < ?", 1.week.ago)
+> builds_to_clear.find_each do |build|
+>   build.artifacts_expire_at = Time.now
+>   build.erase_erasable_artifacts!
+> end
+> ```
+
+
+> step 2. 禁用这个新特性，执行`gitlab-rails console`，然后执行以下命令
+``` ruby
+Feature.disable(:keep_latest_artifacts_for_ref)
+Feature.disable(:destroy_only_unlocked_expired_artifacts)
+```
+
+> step 3. 检查不需要artifact的project，然后取消artifact的配置
