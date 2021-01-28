@@ -77,6 +77,18 @@ mvn -gs /path/to/global-settings.xml
       <password>password-for-admin</password>
     </server>
 
+    <repositories>
+      <repository>
+        <id>releases</id>
+        <name>releases</name>
+        <url>http://nexus.example.org/repository/maven-releases</url>
+      </repository>
+      <repository>
+        <id>snapshots</id>
+        <name>snapshots</name>
+        <url>http://nexus.example.org/repository/maven-snapshots</url>
+      </repository>
+    </repositories>
 
     <!-- Another sample, using keys to authenticate.
     <server>
@@ -120,15 +132,7 @@ mvn deploy [-s /path/to/user-settings.xml]
 ```
 
 ### 4.2 手动发布
-``` bash
-mvn deploy:deploy-file -DgroupId=<group-id> \
-  -DartifactId=<artifact-id> \
-  -Dversion=<version> \
-  -Dpackaging=<type-of-packaging> \
-  -Dfile=<path-to-file> \
-  -DrepositoryId=<id-to-map-on-server-section-of-settings.xml> \
-  -Durl=<url-of-the-repository-to-deploy>
-```
+详情见[maven command basic](/java/compile/maven_1.1.4_command_basic.html)
 > [apache guide of 3rd-party-jars-remote](https://maven.apache.org/guides/mini/guide-3rd-party-jars-remote.html)
 
 ### 5. 常见问题

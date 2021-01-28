@@ -208,14 +208,31 @@
      <div class="row">
       <div class="col-lg-12"><h3>maven 1.4.0 命令行基础</h3>
 <h3>1.1 编译子模块</h3>
-
-<pre><code>mvn clean install -pl child-module -am -amd</code></pre>
+<div class="highlight"><pre><span></span>mvn clean install -pl child-module -am -amd
+</pre></div>
 <blockquote><ul>
 <li>pl: 模块名称</li>
 <li>am: 编译指定子模块依赖的模块</li>
 <li>amd: 编译依赖指定子模块的模块 </li>
 </ul>
 </blockquote>
+<h3>1.2 删除本地库中的依赖</h3>
+<div class="highlight"><pre><span></span>mvn dependency:purge-local-repository -DreResolve<span class="o">=</span><span class="nb">false</span> -DmanualInclude<span class="o">=</span><span class="s2">&quot;com.xxx&quot;</span>
+</pre></div>
+<h3>2.1 deploy artifact to local repository</h3>
+<div class="highlight"><pre><span></span>mvn install:install-file -Dfile<span class="o">=</span>test-1.0.jar -DgroupId<span class="o">=</span>org.example -DartifactId<span class="o">=</span><span class="nb">test</span> -Dversion<span class="o">=</span><span class="m">1</span>.0 -Dpackaging<span class="o">=</span>jar
+</pre></div>
+<h3>2.2 deploy artifact to remote repository</h3>
+<div class="highlight"><pre><span></span><span class="c1"># mvn deploy:deploy-file -DgroupId=&lt;group-id&gt; \</span>
+<span class="c1">#   -DartifactId=&lt;artifact-id&gt; \</span>
+<span class="c1">#   -Dversion=&lt;version&gt; \</span>
+<span class="c1">#   -Dpackaging=&lt;type-of-packaging&gt; \</span>
+<span class="c1">#   -Dfile=&lt;path-to-file&gt; \</span>
+<span class="c1">#   -DrepositoryId=&lt;id-to-map-on-server-section-of-settings.xml&gt; \</span>
+<span class="c1">#   -Durl=&lt;url-of-the-repository-to-deploy&gt;</span>
+
+mvn deploy:deploy-file -DgroupId<span class="o">=</span>org.example -DartifactId<span class="o">=</span><span class="nb">test</span> -Dversion<span class="o">=</span><span class="m">1</span>.0-SNAPSHOT -Dfile<span class="o">=</span>test-1.0-SNAPSHOT.jar -Durl<span class="o">=</span>http://nexus.example.org/repository/maven-snapshots/ -DrepositoryId<span class="o">=</span>snapshots
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
