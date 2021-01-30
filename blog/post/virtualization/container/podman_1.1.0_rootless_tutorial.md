@@ -88,5 +88,5 @@ ps aux |grep 2520 |grep -v grep
 contain+    2520  0.0  0.4 1975428 62760 ?       Sl    11:32   0:00 containers-rootlessport
 ```
 > - [question: how to let rootless podman write iptables rule; answer: no](https://www.linode.com/community/questions/20801/rootless-container-in-podman-and-creating-a-private-container-registry-with-lino)
-> [podman issue 5141: its expected](https://github.com/containers/podman/issues/5141#issuecomment-584120613)
-> [podman issue 3981: rootless docker also dont write iptables rules](https://github.com/containers/podman/issues/3981#issuecomment-529950830)
+> - [podman issue 5141: its expected](https://github.com/containers/podman/issues/5141#issuecomment-584120613)
+> - [podman issue 3981: rootless docker also dont write iptables rules](https://github.com/containers/podman/issues/3981#issuecomment-529950830)
