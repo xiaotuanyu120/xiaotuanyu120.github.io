@@ -52,6 +52,9 @@ chown -R container.container /data/container/.config/containers
 
 ### 4. 运行rootless容器
 ``` bash
+# 有些镜像，类似于redis，会使用非root用户运行，那么根据uid map的规则，我们需要修改宿主机映射文件的属主属组
+podman unshare chown -R containeruid.containergid /path/to/dir/on/host/needed/mounted
+
 podman run -it -d -p 80:80 nginx:latest
 ```
 > [Error: writing file `/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/cgroup.subtree_control`: No such file or directory: OCI runtime command not found error](https://github.com/containers/podman/issues/7768)
