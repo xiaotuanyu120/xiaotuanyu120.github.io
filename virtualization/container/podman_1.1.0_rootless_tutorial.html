@@ -248,7 +248,10 @@ chown -R container.container /data/container/.config/containers
 <span class="c1"># 确保cgroup用的是systemd</span>
 </pre></div>
 <h3>4. 运行rootless容器</h3>
-<div class="highlight"><pre><span></span>podman run -it -d -p <span class="m">80</span>:80 nginx:latest
+<div class="highlight"><pre><span></span><span class="c1"># 有些镜像，类似于redis，会使用非root用户运行，那么根据uid map的规则，我们需要修改宿主机映射文件的属主属组</span>
+podman unshare chown -R containeruid.containergid /path/to/dir/on/host/needed/mounted
+
+podman run -it -d -p <span class="m">80</span>:80 nginx:latest
 </pre></div>
 <blockquote><p><a href="https://github.com/containers/podman/issues/7768">Error: writing file <code>/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/cgroup.subtree_control</code>: No such file or directory: OCI runtime command not found error</a></p>
 
