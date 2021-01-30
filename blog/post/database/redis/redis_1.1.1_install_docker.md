@@ -28,3 +28,13 @@ services:
 - `daemonize no`，不能后台daemon执行，docker需要`command: ["redis-server", "/usr/local/etc/redis/redis.conf"]`一直前台执行
 - `dir /data`，需要和数据volumes`/data`保持一致
 - `requirepass redispass`，redis官方容器默认是关闭了protechtion模式，所以推荐设定密码保证安全性
+
+### 3. 容器运行用户
+redis 5.x镜像运行的用户是redis，其属主属组为999.1000
+``` bash
+# root运行时
+chown -R 999.1000 /path/to/dir/on/host/should/mounted/to/container
+
+# rootless运行时
+podman unshare chown -R 999.1000 /path/to/dir/on/host/should/mounted/to/container
+```

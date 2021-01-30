@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -223,6 +228,14 @@
 <li><code>dir /data</code>，需要和数据volumes<code>/data</code>保持一致</li>
 <li><code>requirepass redispass</code>，redis官方容器默认是关闭了protechtion模式，所以推荐设定密码保证安全性</li>
 </ul>
+<h3>3. 容器运行用户</h3>
+<p>redis 5.x镜像运行的用户是redis，其属主属组为999.1000</p>
+<div class="highlight"><pre><span></span><span class="c1"># root运行时</span>
+chown -R <span class="m">999</span>.1000 /path/to/dir/on/host/should/mounted/to/container
+
+<span class="c1"># rootless运行时</span>
+podman unshare chown -R <span class="m">999</span>.1000 /path/to/dir/on/host/should/mounted/to/container
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -320,6 +333,11 @@
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -329,8 +347,8 @@
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/database/oracle">
-              oracle
+            <a class="reference internal" href="/database/mysql">
+              mysql
             </a>
             <ul>
             </ul>
@@ -420,8 +438,22 @@
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/database/mysql">
-              mysql
+            <a class="reference internal" href="/database/sql">
+              sql
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/oracle">
+              oracle
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/rocketmq">
+              rocketmq
             </a>
             <ul>
             </ul>
