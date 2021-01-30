@@ -261,6 +261,30 @@ echo "+pids +memory" &gt;/sys/fs/cgroup/user.slice/user-1001.slice/cgroup.subtre
 <h3>5. 检查rootless状态</h3>
 
 <pre><code>podman unshare cat /proc/self/uid_map</code></pre>
+<h3>6. rootless podman will not write iptables rules</h3>
+<p>rootless podman运行的容器，不会写iptables规则，这就是如此设计的，它会启动一个进程专门来监听容器map的port</p>
+<div class="highlight"><pre><span></span><span class="c1"># 运行rootless podman nginx</span>
+podman run -it -d --rm --name nginx -p <span class="m">80</span>:80 nginx:latest
+
+<span class="c1"># 查看map的端口</span>
+podman port --all
+02ede4d6178f    <span class="m">80</span>/tcp -&gt; <span class="m">0</span>.0.0.0:80
+
+<span class="c1"># 检查监听域名进程pid</span>
+netstat -lnpt
+......
+tcp6      <span class="m">0</span>      <span class="m">0</span> :::80       :::*        LISTEN <span class="m">2520</span>/containers-roo
+
+<span class="c1"># 查看pid</span>
+ps aux <span class="p">|</span>grep <span class="m">2520</span> <span class="p">|</span>grep -v grep 
+contain+    <span class="m">2520</span>  <span class="m">0</span>.0  <span class="m">0</span>.4 <span class="m">1975428</span> <span class="m">62760</span> ?       Sl    <span class="m">11</span>:32   <span class="m">0</span>:00 containers-rootlessport
+</pre></div>
+<blockquote><ul>
+<li><a href="https://www.linode.com/community/questions/20801/rootless-container-in-podman-and-creating-a-private-container-registry-with-lino">question: how to let rootless podman write iptables rule; answer: no</a>
+<a href="https://github.com/containers/podman/issues/5141#issuecomment-584120613">podman issue 5141: its expected</a>
+<a href="https://github.com/containers/podman/issues/3981#issuecomment-529950830">podman issue 3981: rootless docker also dont write iptables rules</a></li>
+</ul>
+</blockquote>
       </div>
      </div>
      <div class="row docs-byline bottom">
