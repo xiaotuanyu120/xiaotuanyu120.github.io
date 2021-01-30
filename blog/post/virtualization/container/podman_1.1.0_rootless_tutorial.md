@@ -67,3 +67,26 @@ echo "+pids +memory" >/sys/fs/cgroup/user.slice/user-1001.slice/cgroup.subtree_c
 ```
 podman unshare cat /proc/self/uid_map
 ```
+
+### 6. rootless podman will not write iptables rules
+rootless podman运行的容器，不会写iptables规则，这就是如此设计的，它会启动一个进程专门来监听容器map的port
+``` bash
+# 运行rootless podman nginx
+podman run -it -d --rm --name nginx -p 80:80 nginx:latest
+
+# 查看map的端口
+podman port --all
+02ede4d6178f    80/tcp -> 0.0.0.0:80
+
+# 检查监听域名进程pid
+netstat -lnpt
+......
+tcp6      0      0 :::80       :::*        LISTEN 2520/containers-roo
+
+# 查看pid
+ps aux |grep 2520 |grep -v grep 
+contain+    2520  0.0  0.4 1975428 62760 ?       Sl    11:32   0:00 containers-rootlessport
+```
+> - [question: how to let rootless podman write iptables rule; answer: no](https://www.linode.com/community/questions/20801/rootless-container-in-podman-and-creating-a-private-container-registry-with-lino)
+> [podman issue 5141: its expected](https://github.com/containers/podman/issues/5141#issuecomment-584120613)
+> [podman issue 3981: rootless docker also dont write iptables rules](https://github.com/containers/podman/issues/3981#issuecomment-529950830)
