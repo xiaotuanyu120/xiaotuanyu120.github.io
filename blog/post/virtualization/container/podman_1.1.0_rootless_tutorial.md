@@ -10,8 +10,7 @@ tags: [podman,rootless,container]
 
 ### 2. 系统环境准备
 ``` bash
-# 关闭selinux
-sed -i "s/^SELINUX=.*/SELINUX=disabled/g" /etc/selinux/config
+# 保持selinux为enforcing状态
 
 # 创建用户
 useradd -d /data/container container
@@ -55,8 +54,12 @@ chown -R container.container /data/container/.config/containers
 # 有些镜像，类似于redis，会使用非root用户运行，那么根据uid map的规则，我们需要修改宿主机映射文件的属主属组
 podman unshare chown -R containeruid.containergid /path/to/dir/on/host/needed/mounted
 
-podman run -it -d -p 80:80 nginx:latest
+podman run -it -d -p 80:80 -v /data/www/html:/var/www/html:Z nginx:latest
 ```
+> `:Z`，含义是让selinux挂载本地目录的时候，重新lable一下，使其符合container环境的读写权限
+> [user namespaces & selinux & rootless container](https://www.redhat.com/sysadmin/user-namespaces-selinux-rootless-containers)
+> [What happens behind the scenes of a rootless Podman container?](https://www.redhat.com/sysadmin/behind-scenes-podman)
+
 > [Error: writing file `/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/cgroup.subtree_control`: No such file or directory: OCI runtime command not found error](https://github.com/containers/podman/issues/7768)
 ```
 echo "+pids +memory" >/sys/fs/cgroup/user.slice/cgroup.subtree_control

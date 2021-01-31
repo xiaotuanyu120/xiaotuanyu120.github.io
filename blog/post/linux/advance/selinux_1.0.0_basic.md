@@ -8,6 +8,9 @@ tags: [selinux]
 
 ---
 
+### 0. selinux
+selinux是一个lable系统，每一个文件，每一个目录，每一个进程，每一个用户，每一个资源都有自己的lable
+
 ### 1. semanage命令安装
 ``` bash
 yum install -y policycoreutils-python
@@ -36,10 +39,20 @@ SELINUX=enforcing
 ---
 
 ### 3. 查看及修改文件selinux上下文
+命令：
+- chcon，变更文件的selinux context（用于临时变更，可被还原）
+- restorecon，还原文件的selinux context默认值（比如/var/www/html下的文件默认就是httpd_sys_content_t）
+- semanage，变更selinux policy
 ``` bash
-# 查看
-ls -Z
+# 查看selinux context的user
+semanage user -l
+
+# 查看文件和目录的selinux context
+ls -lZ /root/anaconda-ks.cfg
 -rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg
+
+# 查看进程的selinux context
+ps auxZ
 
 # 使用semanage永久修改文件上下文(-a add；-t type)
 semanage fcontext -a -t samba_share_t '/common(/.*)?'
@@ -54,3 +67,8 @@ restorecon -vFR /common/
 # 修改端口上下文(给http的tcp协议增加8908端口)
 semanage port -a -t http_port_t -p tcp 8908
 ```
+
+selinux的context保存在
+- selinux将所有目录的context储存在`/etc/selinux/targeted/contexts`
+- 大多数的file和目录的context信息储存在`/etc/selinux/targeted/contexts/fils/files_contexts`
+- 可以将自定义的context添加在`/etc/selinux/targeted/contexts/files/files_contexts.local`
