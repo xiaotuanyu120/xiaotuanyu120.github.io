@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -203,6 +208,8 @@
      <div class="row">
       <div class="col-lg-12"><h3>selinux 1.0.0 basic</h3>
 <hr>
+<h3>0. selinux</h3>
+<p>selinux是一个lable系统，每一个文件，每一个目录，每一个进程，每一个用户，每一个资源都有自己的lable</p>
 <h3>1. semanage命令安装</h3>
 <div class="highlight"><pre><span></span>yum install -y policycoreutils-python
 </pre></div>
@@ -225,23 +232,36 @@ vim /etc/selinux/config
 </pre></div>
 <hr>
 <h3>3. 查看及修改文件selinux上下文</h3>
-<div class="highlight"><pre><span></span><span class="c1"># 查看</span>
-ls -Z
--rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg
-
-<span class="c1"># 使用semanage永久修改文件上下文(-a add；-t type)</span>
-semanage fcontext -a -t samba_share_t <span class="s1">&#39;/common(/.*)?&#39;</span>
-semanage fcontext -a -t httpd_sys_content_t <span class="s1">&#39;/var/www/virtual(/.*)?&#39;</span>
-
-<span class="c1"># 使用chcom临时修改文件上下文</span>
-chcon -u system_u /usr/lib/systemd/system/docker.servcie
-
-<span class="c1"># 重建文件上下文(-v 过程；-F force；-R recursively)</span>
-restorecon -vFR /common/
-
-<span class="c1"># 修改端口上下文(给http的tcp协议增加8908端口)</span>
-semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
-</pre></div>
+<p>命令：</p>
+<ul>
+<li>chcon，变更文件的selinux context（用于临时变更，可被还原）</li>
+<li>restorecon，还原文件的selinux context默认值（比如/var/www/html下的文件默认就是httpd_sys_content_t）</li>
+<li>semanage，变更selinux policy
+``` bash
+# 查看selinux context的user
+semanage user -l</li>
+</ul>
+<h1>查看文件和目录的selinux context</h1>
+<p>ls -lZ /root/anaconda-ks.cfg
+-rw-------. root root system_u:object_r:admin_home_t:s0 anaconda-ks.cfg</p>
+<h1>查看进程的selinux context</h1>
+<p>ps auxZ</p>
+<h1>使用semanage永久修改文件上下文(-a add；-t type)</h1>
+<p>semanage fcontext -a -t samba_share_t '/common(/.<em>)?'
+semanage fcontext -a -t httpd_sys_content_t '/var/www/virtual(/.</em>)?'</p>
+<h1>使用chcom临时修改文件上下文</h1>
+<p>chcon -u system_u /usr/lib/systemd/system/docker.servcie</p>
+<h1>重建文件上下文(-v 过程；-F force；-R recursively)</h1>
+<p>restorecon -vFR /common/</p>
+<h1>修改端口上下文(给http的tcp协议增加8908端口)</h1>
+<p>semanage port -a -t http_port_t -p tcp 8908
+```</p>
+<p>selinux的context保存在</p>
+<ul>
+<li>selinux将所有目录的context储存在<code>/etc/selinux/targeted/contexts</code></li>
+<li>大多数的file和目录的context信息储存在<code>/etc/selinux/targeted/contexts/fils/files_contexts</code></li>
+<li>可以将自定义的context添加在<code>/etc/selinux/targeted/contexts/files/files_contexts.local</code></li>
+</ul>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -339,6 +359,11 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -348,10 +373,22 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
        </a>
        <ul>
            <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/linux/advance">
               advance
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/bash_1.1.0_.bashrc_vs_.bash_profile.html">
+                bash 1.1.0 .bashrc vs .bash_profile
+              </a>
+             </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/centos6_booted_services_optimize.html">
                 centos6 开机服务优化
@@ -360,6 +397,11 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/curl_1.1.0_post_usage.html">
                 curl 1.1.0 POST usage
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/ffmpeg_1.1.0_convert_h265_to_h264.html">
+                ffmpeg: 1.1.0 转换h265为h264
               </a>
              </li>
              <li class="toctree-l2">
@@ -403,6 +445,16 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.4_cgroup.html">
+                linux内核: 1.1.4 cgroup
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.5_enable_module.html">
+                linux内核: 1.1.5 启用模块
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_Centos7_no_nic_device.html">
                 network: Centos7 没有可用的网络设备
               </a>
@@ -415,6 +467,11 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_tcp_keepalive.html">
                 network: tcp keepalive (include versus with http keepalive)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_tcp_queue.html">
+                network: tcp queue(转载)
               </a>
              </li>
              <li class="toctree-l2">
@@ -438,16 +495,6 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.1.0_ssl_tls.html">
-                openssl 1.1.0 证书相关名词含义
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.2.0_pem.html">
-                openssl 1.2.0 pem基本操作
-              </a>
-             </li>
-             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/rsync_1.1.0_max_connections.html">
                 rsync 1.1.0 error: max connections reached
               </a>
@@ -460,6 +507,11 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/selinux_1.0.0_basic.html">
                 selinux 1.0.0 basic
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/selinux_1.0.1_enable_selinux_from_disabled.html">
+                selinux 1.0.1 enable selinux from disabled status
               </a>
              </li>
              <li class="toctree-l2">
@@ -503,17 +555,27 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
+              <a class="reference internal" href="/linux/advance/what_is_sni.html">
+                what is SNI?
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.3_listen_backlog.html">
+                内核参数: 1.1.3 内核listen()中的参数 backlog
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.0_tcp_time_wait.html">
                 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.1_kernel_nf_conntrack_table.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.1_nf_conntrack_table.html">
                 内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.2_kernel_tcp_time_wait_len_vs_fin_timeout.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.2_tcp_time_wait_len_vs_fin_timeout.html">
                 内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
               </a>
              </li>
@@ -556,20 +618,6 @@ semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/desktop">
               desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
-              php
             </a>
             <ul>
             </ul>
