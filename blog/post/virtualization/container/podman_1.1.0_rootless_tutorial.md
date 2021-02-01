@@ -93,3 +93,45 @@ contain+    2520  0.0  0.4 1975428 62760 ?       Sl    11:32   0:00 containers-r
 > - [question: how to let rootless podman write iptables rule; answer: no](https://www.linode.com/community/questions/20801/rootless-container-in-podman-and-creating-a-private-container-registry-with-lino)
 > - [podman issue 5141: its expected](https://github.com/containers/podman/issues/5141#issuecomment-584120613)
 > - [podman issue 3981: rootless docker also dont write iptables rules](https://github.com/containers/podman/issues/3981#issuecomment-529950830)
+
+### 7. podman and systemd
+podman虽然可以通过`podman generate systemd`来创建unit文件，但是这样创建出来的unit文件并不通用，它必须要求容器实现已经创建。
+
+#### systemd unit file 模板
+而很多人的要求可能是想要一个更加灵活和通用的systemd unit file。所以redhat的大神提供了一个下面的模板
+
+```
+[Unit]
+Description=Podman in Systemd
+
+[Service]
+Restart=on-failure
+ExecStartPre=/usr/bin/rm -f /%t/%n-pid /%t/%n-cid
+ExecStart=/usr/bin/podman run --conmon-pidfile  /%t/%n-pid  --cidfile /%t/%n-cid -d busybox:latest top
+ExecStop=/usr/bin/sh -c "/usr/bin/podman rm -f `cat /%t/%n-cid`"
+KillMode=none
+Type=forking
+PIDFile=/%t/%n-pid
+
+[Install]
+WantedBy=multi-user.target
+```
+
+其中重点在于四个点
+- `%t`，容器runtime的根目录`/run/user/$UserID`
+- `%n`，service的名称（就是systemd unit file的文件名称）
+- `--conmon-pidfile`，conmon进程的pid保存文件
+- `--cidfile`，container的id保存文件
+通过以上四个点，我们基本上就可以确定了这个容器的systemd unit file的信息，来保证了用固定一个模板，来在不同服务器上管理容器的灵活性
+> [redhat - byValentin Rothberg: Running containers with Podman and shareable systemd services](https://www.redhat.com/sysadmin/podman-shareable-systemd-services)
+
+#### 通过systemd管理rootless容器
+``` bash
+systemctl --user daemon-reload
+systemctl --user start foo
+systemctl --user restart foo
+
+# 开机启动
+systemctl --user enable foo
+Created symlink /home/container/.config/systemd/user/multi-user.target.wants/foo.service → /home/container/.config/systemd/user/foo.service.
+```
