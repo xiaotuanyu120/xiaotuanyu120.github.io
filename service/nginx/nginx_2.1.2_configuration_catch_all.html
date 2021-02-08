@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -201,7 +206,7 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>nginx: 2.1.1 configuration server<em>name-"</em>"误解</h3>
+      <div class="col-lg-12"><h3>nginx: 2.1.2 2.1.2 configuration catch_all</h3>
 <hr>
 <h3>1. 官方示例</h3>
 <p>官方的catch-all示例</p>
@@ -212,7 +217,7 @@
     return       444;
 }</code></pre>
 <p>之前一直有一个误解就是<code>_</code>代表的是ip地址，但是按照<a href="http://nginx.org/en/docs/http/server_names.html">官方的解释</a>：<br>
-There is nothing special about this name, it is just one of a myriad of invalid domain names which never intersect with any real name. Other invalid names like “--” and “!@#” may equally be used.<br>
+There is nothing special about this name, it is just one of a myriad of invalid domain names which never intersect with any real name. Other invalid names like <code>--</code> and <code>!@#</code> may equally be used.<br>
 这个名称只是一个不与任何我们监听的有效域名有关的其他所有的无效域名，nginx同时通过端口后的default_server来与这个server_name配合，这样我们就可以达到了catch-all的目的。</p>
       </div>
      </div>
@@ -311,6 +316,11 @@ There is nothing special about this name, it is just one of a myriad of invalid 
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -320,8 +330,22 @@ There is nothing special about this name, it is just one of a myriad of invalid 
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
+            <a class="reference internal" href="/service/jira">
+              jira
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/svn">
+              svn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/php">
+              php
             </a>
             <ul>
             </ul>
@@ -334,8 +358,43 @@ There is nothing special about this name, it is just one of a myriad of invalid 
             </ul>
            </li>
            <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/service/lnmp">
               lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
             </a>
             <ul>
             </ul>
@@ -345,6 +404,11 @@ There is nothing special about this name, it is just one of a myriad of invalid 
               nginx
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/nginx/nginx_1.0.1_how_nginx_response_a_request.html">
+                nginx 1.0.1: how nginx response a request
+              </a>
+             </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/service/nginx/nginx_2.1.0_configuration_multi_port_listen.html">
                 nginx: 2.1.0 同时监听http和https
@@ -356,8 +420,8 @@ There is nothing special about this name, it is just one of a myriad of invalid 
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/nginx/nginx_2.1.2_configuration_catch_all_server_name.html">
-                nginx: 2.1.1 configuration server_name-"_"误解
+              <a class="reference internal" href="/service/nginx/nginx_2.1.2_configuration_catch_all.html">
+                nginx: 2.1.2 configuration catch_all
               </a>
              </li>
              <li class="toctree-l2">
@@ -373,6 +437,11 @@ There is nothing special about this name, it is just one of a myriad of invalid 
              <li class="toctree-l2">
               <a class="reference internal" href="/service/nginx/nginx_2.1.5_configuration_proxy_pass_with_URI.html">
                 nginx: 2.1.5 configuration proxy_pass with URI
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/nginx/nginx_2.1.6_configuration_proxy_pass_for_xmpp.html">
+                nginx: 2.1.6 configuration proxy_pass for xmpp
               </a>
              </li>
              <li class="toctree-l2">
@@ -425,6 +494,23 @@ There is nothing special about this name, it is just one of a myriad of invalid 
                 openresty: 1.1.0 在location里面匹配parameters
               </a>
              </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/nginx/practice_1.1.0_nginx_movie.html">
+                实践: 1.1.0 使用nginx提供mp4串流服务
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">
+                实践: 1.1.1 使用nginx提供直播服务
+              </a>
+             </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/zabbix">
+              zabbix
+            </a>
+            <ul>
             </ul>
            </li>
            <li class="toctree-l1">
@@ -442,8 +528,15 @@ There is nothing special about this name, it is just one of a myriad of invalid 
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/php">
-              php
+            <a class="reference internal" href="/service/vpn">
+              vpn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
             </a>
             <ul>
             </ul>
