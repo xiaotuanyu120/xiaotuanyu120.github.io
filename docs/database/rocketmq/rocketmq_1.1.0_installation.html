@@ -250,6 +250,11 @@ chown -R <span class="m">3000</span>.3000 /data/docker/runtime/rocketmq/*
 <span class="c1"># step 4. 启动rocketmq</span>
 docker-compose up -d
 </pre></div>
+<h3>2. 如何手动配置jvm</h3>
+
+<pre><code>environment:
+  - MAX_HEAP_SIZE=8192</code></pre>
+<p><a href="https://github.com/apache/rocketmq-docker/blob/master/image-build/scripts/runbroker-customize.sh">broker customize scripts</a></p>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -377,6 +382,13 @@ docker-compose up -d
            <li class="toctree-l1">
             <a class="reference internal" href="/database/redis">
               redis
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/database/rabbitmq">
+              rabbitmq
             </a>
             <ul>
             </ul>

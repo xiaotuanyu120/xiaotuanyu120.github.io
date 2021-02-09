@@ -50,3 +50,10 @@ chown -R 3000.3000 /data/docker/runtime/rocketmq/*
 # step 4. 启动rocketmq
 docker-compose up -d
 ```
+
+### 2. 如何手动配置jvm
+```
+environment:
+  - MAX_HEAP_SIZE=8192
+```
+[broker customize scripts](https://github.com/apache/rocketmq-docker/blob/master/image-build/scripts/runbroker-customize.sh)
