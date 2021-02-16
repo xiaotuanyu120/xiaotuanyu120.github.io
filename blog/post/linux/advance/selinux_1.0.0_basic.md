@@ -43,6 +43,7 @@ SELINUX=enforcing
 - chcon，变更文件的selinux context（用于临时变更，可被还原）
 - restorecon，还原文件的selinux context默认值（比如/var/www/html下的文件默认就是httpd_sys_content_t）
 - semanage，变更selinux policy
+
 ``` bash
 # 查看selinux context的user
 semanage user -l
