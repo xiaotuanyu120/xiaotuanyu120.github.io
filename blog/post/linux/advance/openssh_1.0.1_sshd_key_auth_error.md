@@ -9,7 +9,7 @@ tags: [openssh,sshd,selinux]
 ---
 
 ### 1. `StrictsModes Yes`影响的原因
-[`StrictsModes`](https://www.freebsd.org/cgi/man.cgi?sshd_config(5\))默认为启用，用来控制sshd是否在处理用户登入之前来检查相关文件和家目录的权限。
+[`StrictsModes`](https://www.freebsd.org/cgi/man.cgi?sshd_config%285%29)默认为启用，用来控制sshd是否在处理用户登入之前来检查相关文件和家目录的权限。
 
 详细规则：
 - 家目录 > 只能用户自己拥有写权限（属主属组是用户，权限是700、755、750等）
