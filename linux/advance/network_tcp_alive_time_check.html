@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -313,6 +318,11 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -322,10 +332,27 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
        </a>
        <ul>
            <li class="toctree-l1">
+            <a class="reference internal" href="/linux/basic">
+              basic
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
             <a class="reference internal" href="/linux/advance">
               advance
             </a>
             <ul>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/auditd_1.0.0_basic.html">
+                auditd: linux 审计
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/bash_1.1.0_.bashrc_vs_.bash_profile.html">
+                bash 1.1.0 .bashrc vs .bash_profile
+              </a>
+             </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/centos6_booted_services_optimize.html">
                 centos6 开机服务优化
@@ -334,6 +361,11 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/curl_1.1.0_post_usage.html">
                 curl 1.1.0 POST usage
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/ffmpeg_1.1.0_convert_h265_to_h264.html">
+                ffmpeg: 1.1.0 转换h265为h264
               </a>
              </li>
              <li class="toctree-l2">
@@ -377,6 +409,16 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.4_cgroup.html">
+                linux内核: 1.1.4 cgroup
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.5_enable_module.html">
+                linux内核: 1.1.5 启用模块
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_Centos7_no_nic_device.html">
                 network: Centos7 没有可用的网络设备
               </a>
@@ -389,6 +431,11 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/network_tcp_keepalive.html">
                 network: tcp keepalive (include versus with http keepalive)
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/network_tcp_tcp_queue.html">
+                network: tcp queue(转载)
               </a>
              </li>
              <li class="toctree-l2">
@@ -412,13 +459,8 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.1.0_ssl_tls.html">
-                openssl 1.1.0 证书相关名词含义
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/openssl_1.2.0_pem.html">
-                openssl 1.2.0 pem基本操作
+              <a class="reference internal" href="/linux/advance/openssh_1.0.1_sshd_key_auth_error.html">
+                openssh 1.0.1 sshd 密钥认证错误原因排查
               </a>
              </li>
              <li class="toctree-l2">
@@ -434,6 +476,16 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/selinux_1.0.0_basic.html">
                 selinux 1.0.0 basic
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/selinux_1.0.1_enable_selinux_from_disabled.html">
+                selinux 1.0.1 enable selinux from disabled status
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/selinux_1.0.2_sshd_public_key_lable.html">
+                selinux 1.0.2 lable sshd public key file
               </a>
              </li>
              <li class="toctree-l2">
@@ -477,17 +529,27 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html">
+              <a class="reference internal" href="/linux/advance/what_is_sni.html">
+                what is SNI?
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.3_listen_backlog.html">
+                内核参数: 1.1.3 内核listen()中的参数 backlog
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.0_tcp_time_wait.html">
                 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.1_kernel_nf_conntrack_table.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.1_nf_conntrack_table.html">
                 内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/linux/advance/optimize_1.1.2_kernel_tcp_time_wait_len_vs_fin_timeout.html">
+              <a class="reference internal" href="/linux/advance/kernel_1.1.2_tcp_time_wait_len_vs_fin_timeout.html">
                 内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
               </a>
              </li>
@@ -530,20 +592,6 @@ lrwx------ <span class="m">1</span> root root <span class="m">64</span> Jun <spa
            <li class="toctree-l1">
             <a class="reference internal" href="/linux/desktop">
               desktop
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/basic">
-              basic
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/linux/php">
-              php
             </a>
             <ul>
             </ul>
