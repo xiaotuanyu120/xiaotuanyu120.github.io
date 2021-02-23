@@ -171,6 +171,11 @@
               android
              </a>
             </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
+            </li>
        </ul>
       </li>
       <li>
@@ -401,6 +406,11 @@ systemctl <span class="nb">enable</span> php-fpm
              <a href="/android" role="menuitem" tabindex="-1">
               android
              </a>
+            </li>
+            <li role="presentation">
+             <a href="/cloud" role="menuitem" tabindex="-1">
+              cloud
+             </a>
             </li>      </ul>
      </div>
       <div class="docs-sidebar-toc">
@@ -410,50 +420,15 @@ systemctl <span class="nb">enable</span> php-fpm
        </a>
        <ul>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/ftp">
-              ftp
+            <a class="reference internal" href="/service/jira">
+              jira
             </a>
             <ul>
             </ul>
            </li>
            <li class="toctree-l1">
-            <a class="reference internal" href="/service/tomcat">
-              tomcat
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/product_issues">
-              product_issues
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/lnmp">
-              lnmp
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/nginx">
-              nginx
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/proxy">
-              proxy
-            </a>
-            <ul>
-            </ul>
-           </li>
-           <li class="toctree-l1">
-            <a class="reference internal" href="/service/apache">
-              apache
+            <a class="reference internal" href="/service/svn">
+              svn
             </a>
             <ul>
             </ul>
@@ -479,23 +454,23 @@ systemctl <span class="nb">enable</span> php-fpm
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.3.0_configuration_security.html">
-                php 1.3.0: PHP配置 - 安全配置
+              <a class="reference internal" href="/service/php/php_1.2.1_configuration_security.html">
+                php 1.2.1: PHP配置 - 安全配置
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.4.0_configuration_concurrent_connection_tunning_with_nginx.html">
-                php 1.4.0: 性能调优
+              <a class="reference internal" href="/service/php/php_1.2.2_configuration_process.html">
+                php 1.2.2: PHP配置 - 进程数调整
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.5.0_configuration_process.html">
-                php 1.5.0: PHP配置 - 进程数调整
+              <a class="reference internal" href="/service/php/php_1.2.3_configuration_listen.html">
+                php 1.2.3: PHP配置 - listen
               </a>
              </li>
              <li class="toctree-l2">
-              <a class="reference internal" href="/service/php/php_1.6.0_configuration_listen.html">
-                php 1.6.0: PHP配置 - listen
+              <a class="reference internal" href="/service/php/php_1.3.0_concurrent_connection_tunning_with_nginx.html">
+                php 1.3.0: 性能调优 - backlog
               </a>
              </li>
              <li class="toctree-l2">
@@ -509,6 +484,16 @@ systemctl <span class="nb">enable</span> php-fpm
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_ext_gd.html">
+                php extensions: GD - graphic draw
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_ext_zip.html">
+                php extensions: zip
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/service/php/php_ext_mysql_driver.html">
                 php extensions: 编译时增加mysql驱动模块
               </a>
@@ -519,10 +504,113 @@ systemctl <span class="nb">enable</span> php-fpm
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/service/php/php_1.1.1_history_of_cgi_fastcgi_php-cgi_php-fpm_spawn-fcgi.html">
+                php: 1.0.0 解析工具 cgi,fastcgi,php-cgi,php-fpm,spawn-fcgi 杂谈
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/service/php/php_security_zendguardloader.html">
                 php: 安装zend guard loader
               </a>
              </li>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/product_issues">
+              product_issues
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/tomcat">
+              tomcat
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/ftp">
+              ftp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/squid">
+              squid
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/keepalived">
+              keepalived
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/lnmp">
+              lnmp
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/jumpserver">
+              jumpserver
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/nginx">
+              nginx
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/zabbix">
+              zabbix
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/proxy">
+              proxy
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/kafka">
+              kafka
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/vpn">
+              vpn
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/apache">
+              apache
+            </a>
+            <ul>
+            </ul>
+           </li>
+           <li class="toctree-l1">
+            <a class="reference internal" href="/service/fluentd">
+              fluentd
+            </a>
+            <ul>
             </ul>
            </li>       </ul>
       </div>
