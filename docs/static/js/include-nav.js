@@ -1,0 +1,117 @@
+document.write('\
+  <!-- Header Navigation -->\
+  <nav class="navbar navbar-default inner" role="navigation">\
+   <div class="container">\
+    <!-- Brand and toggle get grouped for better mobile display -->\
+    <div class="navbar-header">\
+     <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">\
+        <span class="sr-only">\
+         Toggle navigation\
+        </span>\
+        <span class="icon-bar">\
+        </span>\
+        <span class="icon-bar">\
+        </span>\
+        <span class="icon-bar">\
+        </span>\
+     </button>\
+     <div class="brand-wrapper">\
+      <a class="navbar-brand" href="/">\
+      </a>\
+     </div>\
+     <div class="search-icon show">\
+      <i class="fa fa-search">\
+      </i>\
+      Search\
+     </div>\
+    </div>\
+    <!-- Collect the nav links, forms, and other content for toggling -->\
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\
+     <div class="search-container tiny">\
+      <div id="gcse">\
+       <script type="text/javascript">\
+        (function() {\
+          var cx = "012343983721360531439:ff68trchadg";\
+          var gcse = document.createElement("script");\
+          gcse.type = "text/javascript";\
+          gcse.async = true;\
+          gcse.src = "https://cse.google.com/cse.js?cx=" + cx;\
+          var s = document.getElementsByTagName("script")[0];\
+          s.parentNode.insertBefore(gcse, s);\
+        })();\
+        </script>\
+       <gcse:search gname="standard">\
+       </gcse:search>\
+      </div>\
+      <i class="fa fa-times close-search">\
+      </i>\
+     </div>\
+     <ul class="nav navbar-nav navbar-main show">\
+      <li>\
+       <div id="gcse-mobile">\
+        <gcse:search gname="mobile">\
+        </gcse:search>\
+       </div>\
+      </li>\
+      <li>\
+       <a class="drop" href="" id="dropdownMenuLearn" style="pointer-events: none; cursor: default;">\
+        社区\
+        <i class="fa fa-caret-down">\
+        </i>\
+       </a>\
+       <i class="mobile-expand">\
+       </i>\
+       <ul aria-labelledby="dropdownMenuEvents" class="dropdown-menu dropdown-hover" role="menu">\
+        <li role="presentation">\
+         <a href="" role="menuitem" tabindex="-1">\
+          论坛\
+         </a>\
+        </li>\
+        <li role="presentation">\
+         <a href="http://blog.xiao5tech.com/" role="menuitem" tabindex="-1">\
+          博客\
+         </a>\
+        </li>\
+       </ul>\
+      </li>\
+      <li>\
+       <a class="drop" href="" id="dropdownMenuSoftware" style="pointer-events: none; cursor: default;">\
+        文档\
+        <i class="fa fa-caret-down">\
+        </i>\
+      </a>\
+       <i class="mobile-expand">\
+       </i>\
+       <ul aria-labelledby="dropdownMenuSoftware" class="dropdown-menu dropdown-hover" role="menu">\
+        <li role="presentation">\
+         <a href="" role="menuitem" tabindex="-1">\
+          完整文档分类\
+         </a>\
+        </li>\
+        <li class="divider" role="presentation">\
+        </li>\
+        {% for l in TOPIC_DICT.keys() %}\
+        <li role="presentation">\
+         <a href="/{{ l }}" role="menuitem" tabindex="-1">\
+          {{ l }}\
+         </a>\
+        </li>\
+        {% endfor %}\
+       </ul>\
+      </li>\
+      <li>\
+      </li>\
+      <li>\
+      </li>\
+      <li>\
+       <a class="sign-in-btn" href="">\
+        Log In\
+       </a>\
+      </li>\
+     </ul>\
+    </div>\
+    <!-- /.navbar-collapse -->\
+   </div>\
+   <!-- /.container -->\
+  </nav>\
+');
