@@ -209,7 +209,7 @@
       <div class="col-lg-12"><h3>linux: 系统资源限制 - 文件打开数 - ulimit、systemd</h3>
 <hr>
 <h3>0. linux系统资源限制简介</h3>
-<p>linux系统中对系统资源的限制使用<a href="#setrlimit">setrlimit</a>这个系统调用，基于这个系统调用，常见的管理工具有ulimit和systemd。</p>
+<p>linux系统中对系统资源的限制使用<a href="#setrlimit">setrlimit</a>这个系统调用，基于这个系统调用，常见的管理工具有ulimit和systemd（应用于不同场景）。</p>
 <h3>1. 文件打开数信息查看</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 查看linux内核级别的文件描述符上限</span>
 cat /proc/sys/fs/file-max
@@ -231,6 +231,7 @@ cat /proc/sys/fs/file-nr
 <a href="https://stackoverflow.com/questions/6180569/need-to-calculate-optimum-ulimit-and-fs-file-max-values-according-to-my-own-se">如何计算最大文件打开数应该设定多少</a></p>
 </blockquote>
 <h3>1. ulimit工具使用说明</h3>
+<p>针对的是使用pam登录的用户的资源限制，老的init方式启动的进程也会被这个限制。/etc/security/limits.conf是pam_limits这个模块的配置文件，修改此配置文件之后，用户需要重新登录才会生效。</p>
 <p><strong>ulimit命令使用说明</strong></p>
 <div class="highlight"><pre><span></span><span class="c1"># 查看所有信息</span>
 <span class="nb">ulimit</span> -a
@@ -319,6 +320,10 @@ session    required     /lib64/security/pam_limits.so
 </blockquote>
 <h3>2. systemd</h3>
 <p>systemd默认会有一个资源分配值，例如文件打开数的默认值是4096。可以通过修改systemd默认资源分配值或者单个unit文件配置资源分配值这两种方式来修改systemd启动的service的资源限制数值。</p>
+<ul>
+<li><code>/etc/systemd/system.conf</code>：系统进程的默认限制</li>
+<li><code>/etc/systemd/user.conf</code>：用户进程的默认限制</li>
+</ul>
 <h4>1) 修改systemd默认资源分配值</h4>
 <p><strong>systemd默认资源限制配置文件：<code>/etc/systemd/system.conf</code></strong></p>
 
@@ -434,6 +439,16 @@ session    required     /lib64/security/pam_limits.so
 </tbody>
 </table>
 <blockquote><p><a href="https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Process%20Properties">manual for systemd.exec</a></p>
+</blockquote>
+<h3>3. podman（cgroup manager: systemd）</h3>
+<p>使用podman的rootless模式启动容器时，配置文件是<code>~/.config/containers/containers.conf</code></p>
+
+<pre><code>[containers]
+default_ulimits = [
+ "nproc=65535:65535",
+ "nofile=65535:65535",
+]</code></pre>
+<blockquote><p>这里设定的值，不可以高于运行容器普通用户的自身资源限定值</p>
 </blockquote>
 <h2>附录</h2>
 <h3>setrlimit</h3>
@@ -761,6 +776,11 @@ exit(EXIT_FAILURE);
              <li class="toctree-l2">
               <a class="reference internal" href="/linux/advance/curl_1.1.0_post_usage.html">
                 curl 1.1.0 POST usage
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/linux/advance/disk_1.0.1_xfs_undelete_recovery.html">
+                disk: 1.0.1 xfs 硬盘数据恢复
               </a>
              </li>
              <li class="toctree-l2">

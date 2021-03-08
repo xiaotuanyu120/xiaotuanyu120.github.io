@@ -9,7 +9,7 @@ tags: [linux,ulimit,fs-max,systemd]
 ---
 
 ### 0. linux系统资源限制简介
-linux系统中对系统资源的限制使用[setrlimit](#setrlimit)这个系统调用，基于这个系统调用，常见的管理工具有ulimit和systemd。
+linux系统中对系统资源的限制使用[setrlimit](#setrlimit)这个系统调用，基于这个系统调用，常见的管理工具有ulimit和systemd（应用于不同场景）。
 
 ### 1. 文件打开数信息查看
 ``` bash
@@ -34,6 +34,8 @@ cat /proc/sys/fs/file-nr
 [如何计算最大文件打开数应该设定多少](https://stackoverflow.com/questions/6180569/need-to-calculate-optimum-ulimit-and-fs-file-max-values-according-to-my-own-se)
 
 ### 1. ulimit工具使用说明
+针对的是使用pam登录的用户的资源限制，老的init方式启动的进程也会被这个限制。/etc/security/limits.conf是pam_limits这个模块的配置文件，修改此配置文件之后，用户需要重新登录才会生效。
+
 **ulimit命令使用说明**
 ``` bash
 # 查看所有信息
@@ -116,6 +118,8 @@ session    required     /lib64/security/pam_limits.so
 
 ### 2. systemd
 systemd默认会有一个资源分配值，例如文件打开数的默认值是4096。可以通过修改systemd默认资源分配值或者单个unit文件配置资源分配值这两种方式来修改systemd启动的service的资源限制数值。
+- `/etc/systemd/system.conf`：系统进程的默认限制
+- `/etc/systemd/user.conf`：用户进程的默认限制
 
 #### 1) 修改systemd默认资源分配值
 **systemd默认资源限制配置文件：`/etc/systemd/system.conf`**
@@ -166,6 +170,17 @@ systemctl daemon-reexec
 | LimitRTTIME=     | No equivalent     | Microseconds               |
 
 > [manual for systemd.exec](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Process%20Properties)
+
+### 3. podman（cgroup manager: systemd）
+使用podman的rootless模式启动容器时，配置文件是`~/.config/containers/containers.conf`
+```
+[containers]
+default_ulimits = [
+ "nproc=65535:65535",
+ "nofile=65535:65535",
+]
+``` 
+> 这里设定的值，不可以高于运行容器普通用户的自身资源限定值
 
 ## 附录
 ### setrlimit
