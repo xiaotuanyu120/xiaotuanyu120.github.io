@@ -38,3 +38,14 @@ git clone http://your-repo-url/someproject.git --depth 1
 cd somproject
 git fetch --unshallow
 ```
+
+#### step 4 检查服务端
+1. 如果是容器启动的gitlab，优化内核，将超过RST段之外的信息标记为invalid
+`echo 1 > /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal`
+> [forum.gitlab.com large repo fails solved](https://forum.gitlab.com/t/docker-container-cloning-large-repo-fails-solved/6845)
+
+2. 检查nginx配置
+- `client_max_body_size`，默认为1m，需要设定为超过你的repo的最大值
+- `proxy_max_temp_file_size`，默认为1024m，需要设定为超过你的repo的最大值
+  - [gitlab proxy notice: proxy_max_temp_file_size](https://confluence.atlassian.com/bitbucketserverkb/git-clone-fails-fatal-the-remote-end-hung-up-unexpectedly-fatal-early-eof-fatal-index-pack-failed-779171803.html)
+  - [nginx docs: proxy_max_temp_file_size](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size)

@@ -46,7 +46,8 @@ services:
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://<your domain here>'
-        nginx['client_max_body_size'] = '1024m'
+        nginx['client_max_body_size'] = '2048m'
+        nginx['proxy_max_temp_file_size'] = '2048m'
         gitlab_rails['rack_attack_git_basic_auth'] = {
            'enabled' => true,
            'ip_whitelist' => ["127.0.0.1","<your auth ip here>"],

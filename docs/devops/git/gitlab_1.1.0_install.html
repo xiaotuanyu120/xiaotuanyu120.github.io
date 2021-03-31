@@ -152,6 +152,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/[service" role="menuitem" tabindex="-1">
+              [service
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/virtualization" role="menuitem" tabindex="-1">
               virtualization
              </a>
@@ -240,7 +245,8 @@ gitlab-ctl reconfigure
 <span class="s">    environment:</span>
 <span class="s">      GITLAB_OMNIBUS_CONFIG: |</span>
 <span class="s">        external_url &#39;http://&lt;your domain here&gt;&#39;</span>
-<span class="s">        nginx[&#39;client_max_body_size&#39;] = &#39;1024m&#39;</span>
+<span class="s">        nginx[&#39;client_max_body_size&#39;] = &#39;2048m&#39;</span>
+<span class="s">        nginx[&#39;proxy_max_temp_file_size&#39;] = &#39;2048m&#39;</span>
 <span class="s">        gitlab_rails[&#39;rack_attack_git_basic_auth&#39;] = {</span>
 <span class="s">           &#39;enabled&#39; =&gt; true,</span>
 <span class="s">           &#39;ip_whitelist&#39; =&gt; [&quot;127.0.0.1&quot;,&quot;&lt;your auth ip here&gt;&quot;],</span>
@@ -337,6 +343,11 @@ docker-compose -f docker-compose-gitlab.yml up -d
             <li role="presentation">
              <a href="/blog" role="menuitem" tabindex="-1">
               blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/[service" role="menuitem" tabindex="-1">
+              [service
              </a>
             </li>
             <li role="presentation">
