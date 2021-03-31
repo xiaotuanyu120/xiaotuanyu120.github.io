@@ -152,6 +152,11 @@
              </a>
             </li>
             <li role="presentation">
+             <a href="/[service" role="menuitem" tabindex="-1">
+              [service
+             </a>
+            </li>
+            <li role="presentation">
              <a href="/virtualization" role="menuitem" tabindex="-1">
               virtualization
              </a>
@@ -231,6 +236,24 @@ git clone http://your-repo-url/someproject.git --depth <span class="m">1</span>
 <span class="nb">cd</span> somproject
 git fetch --unshallow
 </pre></div>
+<h4>step 4 检查服务端</h4>
+<ol>
+<li><p>如果是容器启动的gitlab，优化内核，将超过RST段之外的信息标记为invalid
+<code>echo 1 &gt; /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal</code></p>
+<blockquote><p><a href="https://forum.gitlab.com/t/docker-container-cloning-large-repo-fails-solved/6845">forum.gitlab.com large repo fails solved</a></p>
+</blockquote>
+</li>
+<li><p>检查nginx配置</p>
+</li>
+</ol>
+<ul>
+<li><code>client_max_body_size</code>，默认为1m，需要设定为超过你的repo的最大值</li>
+<li><code>proxy_max_temp_file_size</code>，默认为1024m，需要设定为超过你的repo的最大值<ul>
+<li><a href="https://confluence.atlassian.com/bitbucketserverkb/git-clone-fails-fatal-the-remote-end-hung-up-unexpectedly-fatal-early-eof-fatal-index-pack-failed-779171803.html">gitlab proxy notice: proxy_max_temp_file_size</a></li>
+<li><a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size">nginx docs: proxy_max_temp_file_size</a></li>
+</ul>
+</li>
+</ul>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -307,6 +330,11 @@ git fetch --unshallow
             <li role="presentation">
              <a href="/blog" role="menuitem" tabindex="-1">
               blog
+             </a>
+            </li>
+            <li role="presentation">
+             <a href="/[service" role="menuitem" tabindex="-1">
+              [service
              </a>
             </li>
             <li role="presentation">
