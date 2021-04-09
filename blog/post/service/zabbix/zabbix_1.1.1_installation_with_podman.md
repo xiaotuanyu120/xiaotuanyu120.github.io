@@ -1,7 +1,7 @@
 ---
 title: zabbix 1.1.1 install with podman
 date: 2021-03-12 11:16:00
-categories: [service/zabbix]
+categories: service/zabbix
 tags: [zabbix,podman]
 ---
 ### zabbix 1.1.1 install with podman

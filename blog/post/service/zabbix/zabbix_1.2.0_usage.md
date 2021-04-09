@@ -1,7 +1,7 @@
 ---
 title: zabbix 1.2.0 usage
 date: 2021-03-17 10:25:00
-categories: [service/zabbix]
+categories: service/zabbix
 tags: [zabbix]
 ---
 ### zabbix 1.2.0 usage
