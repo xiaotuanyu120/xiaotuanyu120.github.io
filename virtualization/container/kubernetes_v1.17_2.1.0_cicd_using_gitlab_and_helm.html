@@ -127,13 +127,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
              </a>
             </li>
             <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -335,7 +335,7 @@ variables:
 
 build:
   stage: build
-  image: reg.easydevops.net/sonarscanner:4.2
+  image: reg.myplatform.net/sonarscanner:4.2
   script:
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
@@ -356,11 +356,11 @@ build:
 
 analysis:
   stage: analysis
-  image: reg.easydevops.net/sonarscanner:4.2
+  image: reg.myplatform.net/sonarscanner:4.2
   script:
   - /app/bin/sonar-scanner
-    -Dsonar.host.url<span class="o">=</span>http://sonarqube.easydevops.net:9000 
-    -Dsonar.projectKey<span class="o">=</span>long8-web 
+    -Dsonar.host.url<span class="o">=</span>http://sonarqube.myplatform.net:9000 
+    -Dsonar.projectKey<span class="o">=</span>web 
     -Dsonar.sources<span class="o">=</span>./src 
     -Dsonar.sourceEncoding<span class="o">=</span>UTF-8
     -Dsonar.java.binaries<span class="o">=</span>./WebRoot/WEB-INF/classes
@@ -370,17 +370,17 @@ analysis:
 
 publish_image:
   stage: publish_image
-  image: reg.easydevops.net/base-dind-build
+  image: reg.myplatform.net/base-dind-build
   before_script:
-  - docker login -u reg_user01 -p VOtern93 reg.easydevops.net
+  - docker login -u admin -p Password reg.myplatform.net
   script:
   - ls WebRoot
   - mv WebRoot CODE
   - tar zcvf CODE.tar.gz CODE
-  - docker build --cache-from reg.easydevops.net/long8-web-test:latest
-    -t reg.easydevops.net/long8-web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
-    -t reg.easydevops.net/long8-web-test:latest .
-  - docker push reg.easydevops.net/long8-web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+  - docker build --cache-from reg.myplatform.net/web-test:latest
+    -t reg.myplatform.net/web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+    -t reg.myplatform.net/web-test:latest .
+  - docker push reg.myplatform.net/web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
   only:
   - master
 </pre></div>
@@ -438,13 +438,13 @@ publish_image:
              </a>
             </li>
             <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
              </a>
             </li>
             <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -696,6 +696,11 @@ publish_image:
               </a>
              </li>
              <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">
+                kubernetes 2.1.0 CRI containerd installation
+              </a>
+             </li>
+             <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">
                 kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)
               </a>
@@ -708,6 +713,11 @@ publish_image:
              <li class="toctree-l2">
               <a class="reference internal" href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">
                 kubernetes v1.17 2.1.0 CI/CD using gitlab and helm
+              </a>
+             </li>
+             <li class="toctree-l2">
+              <a class="reference internal" href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">
+                kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)
               </a>
              </li>
              <li class="toctree-l2">

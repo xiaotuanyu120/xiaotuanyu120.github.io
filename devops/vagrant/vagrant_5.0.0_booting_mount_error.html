@@ -127,13 +127,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
              </a>
             </li>
             <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -206,16 +206,15 @@
       </div>
      </div>
      <div class="row">
-      <div class="col-lg-12"><h3>vagrant: 5.0.0 开机挂载错误</h3>
+      <div class="col-lg-12"><h3>vagrant: 5.0.0 启动错误</h3>
 <hr>
-<h3>1. 错误提示</h3>
+<h3>1.1 启动挂载错误：没有此设备</h3>
 <div class="highlight"><pre><span></span><span class="c1"># 开机时提示</span>
 /sbin/mount.vboxsf: mounting failed with the error: No such device
 </pre></div>
 <blockquote><p>发现登录到虚机里面，/vagrant目录没有内容</p>
 </blockquote>
-<hr>
-<h3>2. 解决办法</h3>
+<h3>1.2 解决办法</h3>
 <div class="highlight"><pre><span></span>yum install gcc make kernel kernel-devel kernel-headers -y
 <span class="nb">cd</span> /opt/VBoxGuestAdditions-*/init
 ./vboxadd setup
@@ -223,6 +222,53 @@
 <blockquote><p>然后在host中执行"vagrant reload"即可</p>
 <p>注意查看kernel版本和kernel-headers、kernel-devel的版本是否匹配，如果非匹配，可以查看新安装的kernel是否和其匹配，如果匹配，重启一下系统再次检查即可。</p>
 </blockquote>
+<hr>
+<h3>2.1 启动挂载错误：mount变成了rsync</h3>
+<p>每次vagrant启动时，默认的挂载Vagrantfile目录到/vagrant的动作，被rsync替代</p>
+<h3>2.2 解决办法</h3>
+<p>参考链接: <a href="https://github.com/hashicorp/vagrant/issues/7157">github issue</a></p>
+<div class="highlight"><pre><span></span><span class="c1"># 增加如下配置到Vagrantfile中</span>
+<span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;virtualbox&quot;</span>
+</pre></div>
+<hr>
+<h3>3.1 plugin错误：虚拟机启动，但是初始化报卸载错误</h3>
+<div class="highlight"><pre><span></span>The following SSH <span class="nb">command</span> responded with a non-zero <span class="nb">exit</span> status.
+Vagrant assumes that this means the <span class="nb">command</span> failed!
+
+umount /mnt
+
+Stdout from the command:
+
+
+
+Stderr from the command:
+
+umount: /mnt: not mounted.
+</pre></div>
+<h3>3.2 plugin的问题，可以调整版本解决</h3>
+<ul>
+<li><a href="https://github.com/hashicorp/vagrant/issues/12084">vagrant github issue：回复说是plugin的问题</a></li>
+<li><a href="https://www.devopsroles.com/vagrant-no-virtualbox-guest-additions-installation-found-fixed/">回退plugin为老版本解决</a>
+``` bash
+# 卸载最新版本
+vagrant plugin uninstall vagrant-vbguest</li>
+</ul>
+<h1>重装老版本</h1>
+<p>vagrant plugin install vagrant-vbguest --plugin-version 0.21</p>
+
+<pre><code>
+### 4.1 启动错误：如下
+按照3.1之中的解决方法，使用centos8镜像的时候，虽然3.1的错误解决了。但又报了另外一个错误，错误的提示是安装的包找不到。最上面有如下这个提示
+``` bash
+No Virtualbox Guest Additions installation found.</code></pre>
+<p>所以猜测应该是找不到虚拟机中的vbguest，所以去自动安装，而0.21版本的插件太老，导致安装的包不对，这个问题的解决需要提升vbguest的版本，但是又因为3.1的问题不能升级vbguest。</p>
+<h3>4.2 解决方案：禁用vbguest的自动安装</h3>
+<p><a href="https://stackoverflow.com/questions/59179637/vagrant-up-causes-guest-additions-to-reinstall-each-time-why">如何禁用vbguest自动安装</a>
+如上所说，既然虚拟机中的vbguest自动安装会引发问题，那么我们就可以禁用这个自动安装的行为，让虚拟机可以启动，然后后面手动解决虚拟机中的vbguest的安装问题</p>
+<div class="highlight"><pre><span></span><span class="k">if</span> Vagrant.has_plugin?<span class="o">(</span><span class="s2">&quot;vagrant-vbguest&quot;</span><span class="o">)</span>
+    config.vbguest.auto_update <span class="o">=</span> <span class="nb">false</span>
+  end
+</pre></div>
       </div>
      </div>
      <div class="row docs-byline bottom">
@@ -277,13 +323,13 @@
              </a>
             </li>
             <li role="presentation">
-             <a href="/ios" role="menuitem" tabindex="-1">
-              ios
+             <a href="/blockchain" role="menuitem" tabindex="-1">
+              blockchain
              </a>
             </li>
             <li role="presentation">
-             <a href="/blockchain" role="menuitem" tabindex="-1">
-              blockchain
+             <a href="/ios" role="menuitem" tabindex="-1">
+              ios
              </a>
             </li>
             <li role="presentation">
@@ -384,17 +430,12 @@
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/vagrant/vagrant_5.0.0_booting_mount_error.html">
-                vagrant: 5.0.0 开机挂载错误
+                vagrant: 5.0.0 启动错误
               </a>
              </li>
              <li class="toctree-l2">
               <a class="reference internal" href="/devops/vagrant/vagrant_5.1.0_virtualbox_guest_additions_error.html">
                 vagrant: 5.1.0 安装virtualbox的guest插件
-              </a>
-             </li>
-             <li class="toctree-l2">
-              <a class="reference internal" href="/devops/vagrant/vagrant_5.2.0_rsync_instead_of_mount.html">
-                vagrant: 5.2.0 using rsync instead of mount
               </a>
              </li>
             </ul>
