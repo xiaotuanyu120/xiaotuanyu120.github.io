@@ -145,7 +145,7 @@ variables:
 
 build:
   stage: build
-  image: reg.easydevops.net/sonarscanner:4.2
+  image: reg.myplatform.net/sonarscanner:4.2
   script:
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
   - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
@@ -166,11 +166,11 @@ build:
 
 analysis:
   stage: analysis
-  image: reg.easydevops.net/sonarscanner:4.2
+  image: reg.myplatform.net/sonarscanner:4.2
   script:
   - /app/bin/sonar-scanner
-    -Dsonar.host.url=http://sonarqube.easydevops.net:9000 
-    -Dsonar.projectKey=long8-web 
+    -Dsonar.host.url=http://sonarqube.myplatform.net:9000 
+    -Dsonar.projectKey=web 
     -Dsonar.sources=./src 
     -Dsonar.sourceEncoding=UTF-8
     -Dsonar.java.binaries=./WebRoot/WEB-INF/classes
@@ -180,17 +180,17 @@ analysis:
 
 publish_image:
   stage: publish_image
-  image: reg.easydevops.net/base-dind-build
+  image: reg.myplatform.net/base-dind-build
   before_script:
-  - docker login -u reg_user01 -p VOtern93 reg.easydevops.net
+  - docker login -u admin -p Password reg.myplatform.net
   script:
   - ls WebRoot
   - mv WebRoot CODE
   - tar zcvf CODE.tar.gz CODE
-  - docker build --cache-from reg.easydevops.net/long8-web-test:latest
-    -t reg.easydevops.net/long8-web-test:${CI_COMMIT_SHA:0:6}
-    -t reg.easydevops.net/long8-web-test:latest .
-  - docker push reg.easydevops.net/long8-web-test:${CI_COMMIT_SHA:0:6}
+  - docker build --cache-from reg.myplatform.net/web-test:latest
+    -t reg.myplatform.net/web-test:${CI_COMMIT_SHA:0:6}
+    -t reg.myplatform.net/web-test:latest .
+  - docker push reg.myplatform.net/web-test:${CI_COMMIT_SHA:0:6}
   only:
   - master
 ```
