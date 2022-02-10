@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                  <ul>
+                    <li><a href="/service/apache/1.0.0_apache_installation.html">apache: 1.0.0 apache安装脚本</a></li>
+                    <li><a href="/service/apache/1.0.1_apache_work_mode.html">apache: 1.0.1 工作模式 prefork和worker</a></li>
+                    <li><a href="/service/apache/1.1.0_apache_config_basic.html">apache: 1.1.0 配置说明</a></li>
+                    <li><a href="/service/apache/1.1.1_apache_config_parse_php.html">apache 1.1.1: 配置PHP解析</a></li>
+                    <li><a href="/service/apache/1.1.2_apache_config_security.html">apache 1.1.2: 安全配置</a></li>
+                    <li><a href="/service/apache/1.2.0_apache_status_check.html">apache 1.2.0: 状态查看</a></li>
+                    <li><a href="/service/apache/1.3.0_apache_iptables_selinux.html">apache 1.3.0: iptables&selinux</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>apache: 1.1.0 配置说明</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Sep 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 配置结构</h3>
+<pre class="chroma">.
+├── extra                                     <span class="c1"># 扩展子配置目录</span>
+│   ├── httpd-autoindex.conf
+│   ├── httpd-dav.conf
+│   ├── httpd-default.conf
+│   ├── httpd-info.conf
+│   ├── httpd-languages.conf
+│   ├── httpd-manual.conf
+│   ├── httpd-mpm.conf
+│   ├── httpd-multilang-errordoc.conf
+│   ├── httpd-ssl.conf
+│   ├── httpd-userdir.conf
+│   ├── httpd-vhosts.conf
+│   └── proxy-html.conf
+├── httpd.conf                                <span class="c1"># 主配置文件(配置入口)</span>
+├── magic                                     <span class="c1"># 和mime相关的，详情见http://httpd.apache.org/docs/current/mod/mod_mime_magic.html#mimemagicfile</span>
+├── mime.types                                <span class="c1"># mime文件，指定文件类型的</span>
+└── original                                  <span class="c1"># 原始配置文件副本</span>
+    ├── extra
+    │   ├── httpd-autoindex.conf
+    │   ├── httpd-dav.conf
+    │   ├── httpd-default.conf
+    │   ├── httpd-info.conf
+    │   ├── httpd-languages.conf
+    │   ├── httpd-manual.conf
+    │   ├── httpd-mpm.conf
+    │   ├── httpd-multilang-errordoc.conf
+    │   ├── httpd-ssl.conf
+    │   ├── httpd-userdir.conf
+    │   ├── httpd-vhosts.conf
+    │   └── proxy-html.conf
+    └── httpd.conf
+
+<span class="m">3</span> directories, <span class="m">29</span> files
+</pre>
+<blockquote>
+<p>重点：httpd.conf是主配文件，也是配置文件的入口，其他配置文件都通过这里Include</p>
+
+<p>PS: 主配文件也可以修改，可以在启动时动态指定，但是一般都是用默认的</p>
+</blockquote>
+
+<h3>2. 配置说明</h3>
+
+<h4>2.1 httpd.conf基本配置</h4>
+<pre class="chroma"># 这里是指定httpd的软件目录
+ServerRoot &#34;/usr/local/httpd-2.4.41&#34;
+# 注意结尾不要加&#34;/&#34;
+
+# 监听的域名可以通过指定多个Listen来监听多个端口
+# 443因为牵扯到要加载mod_ssl模块，所以是需要一定条件来监听
+Listen 80
+
+# 可以通过调整LoadModule配置，来增删加载的模块
+LoadModule authn_file_module modules/mod_authn_file.so
+LoadModule authn_core_module modules/mod_authn_core.so
+LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule authz_groupfile_module modules/mod_authz_groupfile.so
+LoadModule authz_user_module modules/mod_authz_user.so
+LoadModule authz_core_module modules/mod_authz_core.so
+LoadModule access_compat_module modules/mod_access_compat.so
+LoadModule auth_basic_module modules/mod_auth_basic.so
+LoadModule reqtimeout_module modules/mod_reqtimeout.so
+LoadModule filter_module modules/mod_filter.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule log_config_module modules/mod_log_config.so
+LoadModule env_module modules/mod_env.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule setenvif_module modules/mod_setenvif.so
+LoadModule version_module modules/mod_version.so
+LoadModule ssl_module modules/mod_ssl.so
+LoadModule unixd_module modules/mod_unixd.so
+LoadModule status_module modules/mod_status.so
+LoadModule autoindex_module modules/mod_autoindex.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule alias_module modules/mod_alias.so
+
+# php的模块
+LoadModule php5_module        modules/libphp5.so
+
+
+# 这种if的模块，只有在httpd启动或者重启的时候才会执行，一旦条件匹配
+# 将会应用到全局
+&lt;IfModule unixd_module&gt;
+User  www
+Group www
+&lt;/IfModule&gt;
+
+ServerAdmin you@example.com
+
+# 这里是安全配置，避免有人通过某些方式访问整个系统文件
+&lt;Directory /&gt;
+    # 禁用.htaccess
+    AllowOverride none
+	# 全部禁止访问根目录
+    Require all denied
+&lt;/Directory&gt;
+
+# &lt;Directory directory-path&gt; ... &lt;/Directory&gt;
+# directory-path可以加双引号，也可以不加，但是中间有空格的时候，必须加
+# directory-path可以用wildcard匹配，?代表任意字符，*代表任意多个字符
+# 但是/任何情况下不会被匹配，所以/*/html不会匹配/var/www/html，但是会匹配/data/html
+DocumentRoot &#34;/usr/local/httpd-2.4.41/htdocs&#34;
+&lt;Directory &#34;/usr/local/httpd-2.4.41/htdocs&#34;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+
+&lt;IfModule dir_module&gt;
+    DirectoryIndex index.html
+&lt;/IfModule&gt;
+
+# 安全配置，禁止所有人访问.htaccess等文件
+&lt;Files &#34;.ht*&#34;&gt;
+    Require all denied
+&lt;/Files&gt;
+
+ErrorLog &#34;logs/error_log&#34;
+LogLevel warn
+
+# 日志格式配置
+&lt;IfModule log_config_module&gt;
+    LogFormat &#34;%h %l %u %t \&#34;%r\&#34; %&gt;s %b \&#34;%{Referer}i\&#34; \&#34;%{User-Agent}i\&#34;&#34; combined
+    LogFormat &#34;%h %l %u %t \&#34;%r\&#34; %&gt;s %b&#34; common
+    &lt;IfModule logio_module&gt;
+      LogFormat &#34;%h %l %u %t \&#34;%r\&#34; %&gt;s %b \&#34;%{Referer}i\&#34; \&#34;%{User-Agent}i\&#34; %I %O&#34; combinedio
+    &lt;/IfModule&gt;
+    CustomLog &#34;logs/access_log&#34; common
+&lt;/IfModule&gt;
+
+&lt;IfModule alias_module&gt;
+    ScriptAlias /cgi-bin/ &#34;/usr/local/httpd-2.4.41/cgi-bin/&#34;
+&lt;/IfModule&gt;
+&lt;IfModule cgid_module&gt;
+&lt;/IfModule&gt;
+&lt;Directory &#34;/usr/local/httpd-2.4.41/cgi-bin&#34;&gt;
+    AllowOverride None
+    Options None
+    Require all granted
+&lt;/Directory&gt;
+&lt;IfModule headers_module&gt;
+    RequestHeader unset Proxy early
+&lt;/IfModule&gt;
+&lt;IfModule mime_module&gt;
+    TypesConfig conf/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+    AddType application/x-httpd-php .php
+&lt;/IfModule&gt;
+
+# 引入外部配置
+# 1. 引入mpm的配置
+Include conf/extra/httpd-mpm.conf
+# 2. 引入虚拟主机配置
+Include conf/site-enabled/*.conf
+
+&lt;IfModule proxy_html_module&gt;
+Include conf/extra/proxy-html.conf
+&lt;/IfModule&gt;
+
+# 在启用mod_ssl模块的情况下，再来监听443
+# ssl_module和mod_ssl是一样效果的
+# &lt;IfModule mod_ssl.c&gt;
+# Listen 443
+# &lt;/IfModule&gt;
+&lt;IfModule ssl_module&gt;
+Listen 443
+SSLRandomSeed startup builtin
+SSLRandomSeed connect builtin
+&lt;/IfModule&gt;
+</pre>
+<h4>2.2 VirtualHost基本配置</h4>
+<pre class="chroma">&lt;VirtualHost *:80&gt;
+    # ServerName指定一个唯一的值，来和其他的虚拟主机区分
+    ServerName example.com
+	# ServerAlias来扩展监听多个域名
+    ServerAlias www.example.com *.example.com
+	DocumentRoot &#34;/data/html&#34;
+	DirectoryIndex index.html index.php
+    ErrorLog  &#34;logs/example-error_log&#34;
+    CustomLog &#34;logs/example-access_log&#34; common
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:443&gt;
+    ServerName example-ssl.com
+    ServerAlias www.example-ssl.com *.example-ssl.com
+    SSLEngine on
+    SSLCertificateFile &#34;/path/to/www.example.com.cert&#34;
+    SSLCertificateKeyFile &#34;/path/to/www.example.com.key&#34;
+	DocumentRoot &#34;/data/html&#34;
+	DirectoryIndex index.html index.php
+    ErrorLog  &#34;logs/example-ssl-error_log&#34;
+    CustomLog &#34;logs/example-ssl-access_log&#34; common
+&lt;/VirtualHost&gt;
+</pre>
+<h4>2.3 <code>SetEnvIf</code></h4>
+
+<p>描述：基于请求的属性设置环境变量</p>
+
+<p>语法：<code>SetEnvIf attribute regex [!]env-variable[=value] [[!]env-variable[=value]] ...</code></p>
+
+<p>模块：<code>mod_setenvif</code></p>
+
+<p><strong>语法说明</strong><br />
+<code>attribute</code>可以是如下内容：</p>
+
+<ol>
+<li>HTTP请求字段（详情见<a href="https://www.rfc-editor.org/rfc/rfc2616.txt">RFC2616</a>），例如：<code>Host</code>, <code>User-Agent</code>, <code>Referer</code>, and <code>Accept-language</code>。可以用正则表达式来匹配字段。</li>
+<li>以下请求信息：
+
+<ul>
+<li><code>Remote_Host</code>， 发起请求的客户端的hostname（如果能得到的话）</li>
+<li><code>Remote_Addr</code>， 发起请求的客户端的IP</li>
+<li><code>Server_Addr</code>， 服务端的IP（2.0.43版本之后增加）</li>
+<li><code>Request_Method</code>， HTTP请求方法（GET, POST 等）</li>
+<li><code>Request_Protocol</code>，HTTP请求协议版本（&rdquo;HTTP/0.9&rdquo;, &ldquo;HTTP/1.1&rdquo; 等）</li>
+<li><code>Request_URI</code>， HTTP请求的URI，通常是scheme和host之后的，不包含查询字符串部分。</li>
+</ul></li>
+<li>与请求关联的环境变量列表中的环境变量的名称。这允许<code>SetEnvIf</code>来测试前面的<code>SetEnvIf</code>匹配结果。所谓的“前面”意思是，更全局的设定（例如server-side），或相同scope但早于当前设定之前的<code>SetEnvIf</code>。只有当<code>attribute</code>未使用正则表达式并且请求特征之间不匹配时，才会将环境变量纳入考量。</li>
+</ol>
+
+<p><code>regex</code>就是正则表达式(<a href="https://httpd.apache.org/docs/2.4/glossary.html#regex">regex</a>)。如果正则匹配到了，后面的参数部分才会生效。</p>
+
+<p>其他的部分就是变量的设定了，可选的设定模式有
+- varname，设定变量为1
+- !varname，若变量存在，则删除这个变量
+- varname=value，将变量设定为指定的值</p>
+<pre class="chroma"># 若请求的URI为图片格式，则设定object_is_image为对应的格式
+SetEnvIf Request_URI &#34;\.gif$&#34; object_is_image=gif
+SetEnvIf Request_URI &#34;\.jpg$&#34; object_is_image=jpg
+SetEnvIf Request_URI &#34;\.xbm$&#34; object_is_image=xbm
+
+# 若请求是转发自 www.mydomain.example.com ，则设定intra_site_referral为1
+SetEnvIf Referer www\.mydomain\.example\.com intra_site_referral
+
+# 若前面的object_is_image内容是xbm，则设定XBIT_PROCESSING为1
+SetEnvIf object_is_image xbm XBIT_PROCESSING=1
+
+# 若请求的URI包含后缀名，则将其（正则表达式括号内的部分）赋值给EXTENSION
+SetEnvIf Request_URI &#34;\.(.*)$&#34; EXTENSION=$1
+
+# 若请求中任意TS开头的字段存在，且以任意a-z中的字母开头，则设定HAVE_TS为1
+SetEnvIf ^TS  ^[a-z]  HAVE_TS
+</pre>
+<blockquote>
+<p>扩展阅读：<a href="https://httpd.apache.org/docs/2.4/env.html">Apache HTTP 服务器中的环境变量</a></p>
+</blockquote>
+
+<h4>2.4 <code>Alias</code></h4>
+
+<p>语法：<code>Alias [URL-path] file-path|directory-path</code></p>
+
+<p>将url映射到目录，提供了将文档储存在<code>DocumentRoot</code>之外的能力。</p>
+
+<blockquote>
+<p>注意：其中本地目录的路径是区分大小写的，即使在系统不区分大小写的情况下。</p>
+</blockquote>
+<pre class="chroma">Alias &#34;/image&#34; &#34;/ftp/pub/image&#34;
+</pre>
+<p>对<code>http://example.com/image/foo.gif</code>的请求会返回<code>/ftp/pub/image/foo.gif</code>来响应。</p>
+
+<p>只有完整的匹配到Alias的地址才生效，上例中的配置，<code>http://example.com/imagefoo.gif</code>这个请求不会被匹配。如果希望有更复杂的匹配规则，可以研究<a href="https://httpd.apache.org/docs/2.4/mod/mod_alias.html#aliasmatch">AliasMatch</a></p>
+
+<p>需要注意的是，如果在匹配的url字符串末尾增加了<code>/</code>，那么服务器也需要增加<code>/</code>来扩展。</p>
+<pre class="chroma">Alias &#34;/icons/&#34; &#34;/usr/local/apache/icons/&#34;
+</pre>
+<p>使用上面的配置，<code>/icons</code>就不会被匹配，因为它的末尾少了<code>/</code>。同样的，如果前面的url匹配字符串取消了<code>/</code>，后面的文件路径也需要去掉<code>/</code>。</p>
+
+<p>另外需要注意的是，如果Alias配置的目录是在<code>DocumentRoot</code>之外的，需要单独的设定<code>Directory</code>的权限。</p>
+<pre class="chroma">Alias &#34;/image&#34; &#34;/ftp/pub/image&#34;
+&lt;Directory &#34;/ftp/pub/image&#34;&gt;
+    Require all granted
+&lt;/Directory&gt;
+</pre>
+<p>如果在<code>&lt;Location&gt;</code>或<code>&lt;LocationMatch&gt;</code>中使用<code>Alias</code>，可以省略匹配字符串部分，而且目录路径遵循<a href="https://httpd.apache.org/docs/2.4/expr.html">表达式语法</a>。这种语法需要apache版本大于等于2.4.19。</p>
+<pre class="chroma">&lt;Location &#34;/image&#34;&gt;
+    Alias &#34;/ftp/pub/image&#34;
+&lt;/Location&gt;
+&lt;LocationMatch &#34;/error/(?&lt;NUMBER&gt;[0-9]+)&#34;&gt;
+    Alias &#34;/usr/local/apache/errors/%{env:MATCH_NUMBER}.html&#34;
+&lt;/LocationMatch&gt;
+</pre>
+<h4>2.4 <code>ScriptAlias</code></h4>
+
+<p>语法： <code>ScriptAlias [URL-path] file-path|directory-path</code></p>
+
+<p>和<code>Alias</code>一样，其特殊之处在于，<code>ScriptAlias</code>的用途是其指向的目录是用于<code>mod_cgi</code>模块执行的CGI脚本的目录。</p>
+
+<p>以下两种配置等效</p>
+<pre class="chroma">ScriptAlias &#34;/cgi-bin/&#34; &#34;/web/cgi-bin/&#34;
+</pre>
+<p>和</p>
+<pre class="chroma">Alias &#34;/cgi-bin/&#34; &#34;/web/cgi-bin/&#34;
+&lt;Location &#34;/cgi-bin&#34;&gt;
+    SetHandler cgi-script
+    Options +ExecCGI
+&lt;/Location&gt;
+</pre>
+<blockquote>
+<p>将<code>CGI脚本</code>放在<code>DocumentRoot</code>之外会更安全，以免在配置发生更改时意外泄露其源代码。</p>
+</blockquote>
+
+<p>和<code>Alias</code>一样，如果在<code>&lt;Location&gt;</code>或<code>&lt;LocationMatch&gt;</code>中使用<code>ScriptAlias</code>，可以省略匹配字符串部分，而且目录路径遵循<a href="https://httpd.apache.org/docs/2.4/expr.html">表达式语法</a>。这种语法需要apache版本大于等于2.4.19。</p>
+<pre class="chroma">&lt;Location &#34;/cgi-bin&#34;&gt;
+    ScriptAlias &#34;/web/cgi-bin/&#34;
+&lt;/Location&gt;
+&lt;LocationMatch &#34;/cgi-bin/errors/(?&lt;NUMBER&gt;[0-9]+)&#34;&gt;
+    ScriptAlias &#34;/web/cgi-bin/errors/%{env:MATCH_NUMBER}.cgi&#34;
+&lt;/LocationMatch&gt;
+</pre>
+<h3>3. 权限设定</h3>
+
+<h4>3.1 目录权限</h4>
+<pre class="chroma">## 默认根目录，设置为拒绝
+&lt;Directory /&gt;
+    AllowOverride none
+    Require all denied
+&lt;/Directory&gt;
+
+## 放开你希望用户可以访问的目录
+&lt;Directory &#34;/usr/local/apache2/htdocs&#34;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+</pre>
+<h3>4. 如何同时监听80和443</h3>
+
+<p>apache是无法和nginx一样，同时监听80和443的，但是可以用下面的方式来达到节省配置项的效果
+<code>example.conf</code></p>
+<pre class="chroma">&lt;VirtualHost *:80&gt;
+    Include conf/site-enabled/example.include
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:443&gt;
+    SSLEngine on
+    Include conf/site-enabled/example.include
+&lt;/VirtualHost&gt;
+</pre>
+<p><code>example.include</code></p>
+<pre class="chroma">    ServerName example-ssl.com
+    ServerAlias www.example-ssl.com *.example-ssl.com
+    SSLCertificateFile &#34;/path/to/www.example.com.cert&#34;
+    SSLCertificateKeyFile &#34;/path/to/www.example.com.key&#34;
+	DocumentRoot &#34;/data/html&#34;
+	DirectoryIndex index.html index.php
+    ErrorLog  &#34;logs/example-ssl-error_log&#34;
+    CustomLog &#34;logs/example-ssl-access_log&#34; common
+</pre>
+<h3>5. 关于apache使用的php.ini文件位置</h3>
+
+<p>如果想查看现在的php.ini位置，可以编写info.php文件，将其放置在DocumentRoot中，并在浏览器中访问查看。</p>
+<pre class="chroma"><span class="cp">&lt;?php</span>
+  <span class="nx">phpinfo</span><span class="p">();</span>
+</pre>
+<p>如果想自定义修改php.ini的位置，可以在httpd.conf中做如下配置</p>
+<pre class="chroma">PHPINIDir /usr/local/php/etc/apache2/
+</pre>
+<blockquote>
+<p>按照以上配置，apache会调用<code>/usr/local/php/etc/apache2/php.ini</code></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

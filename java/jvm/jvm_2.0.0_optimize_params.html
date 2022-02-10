@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                  <ul>
+                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">jdk: 1.0.0 jdk简介</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JVM查看默认参数</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.0_1.6_installation.html">jdk: 1.1.0 jre1.6安装</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.1_1.8_installation.html">jdk: 1.1.1 jdk1.8安装</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">jdk: 2.1.0 命令行编译java项目</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">jdk: 2.1.1 javac error IllegalArgumentException</a></li>
+                    <li><a href="/java/jvm/jvm_1.0.0_runtime_data_area.html">JVM: 1.0.0 运行时数据区域概念</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.0_optimize_params.html">JVM: 2.0.0 内存区域调优参数</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</a></li>
+                    <li><a href="/java/jvm/jvm_2.1.0_optimize_example.html">JVM: 2.1.0 调优实践</a></li>
+                    <li><a href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">JVM: 3.0.0 jvm状态查看命令(JDK自带)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>JVM: 2.0.0 内存区域调优参数</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Aug 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 前言</h3>
+
+<p>每当执行一个java程序的时候，系统会分配单独的内存区域给jvm。了解一些JVM的内存知识，会有利于做性能优化。</p>
+
+<p><a href="http://blog.csdn.net/chaofanwei/article/details/19418753">深入理解java虚拟机（一）：java内存区域（内存结构划分）</a><br />
+<a href="http://howtodoinjava.com/core-java/garbage-collection/jvm-memory-model-structure-and-components/#pc_register">JVM Memory Model / Structure and Components</a></p>
+
+<hr />
+
+<h3>1. JVM中的内存区域结构</h3>
+
+<p>JVM中一般分为以下几种内存区域
+- 堆内存(Heap area)
+- 方法区(Method area and runtime constant pool)
+- 虚拟机栈(JVM stack)
+- 本地方法栈(Native method stack)
+- 程序计数器(PC registers)</p>
+
+<blockquote>
+<p>其中，堆内存和方法区内存是在JVM启动的时候分配的，在JVM退出时会被销毁，而栈内存、本地方法栈和程序计数器都是随着线程的启动而创建，线程的结束而销毁。</p>
+</blockquote>
+
+<hr />
+
+<h3>2. 各内存区域调优参数</h3>
+
+<h4>1) 堆内存</h4>
+
+<p>堆内存为JVM共享，分配给类实例和数组。</p>
+
+<ul>
+<li><code>-Xms 512m</code>参数设置最小值</li>
+<li><code>-Xmx 512m</code>参数设置最大值
+&gt; 若-Xms=-Xmx，则可避免自动扩展</li>
+</ul>
+
+<blockquote>
+<p>堆内存剩余空间不足以满足分配请求时，JVM抛出OutOfMemoryError</p>
+
+<p>-XX:+HeapDumpOnOutOfMemoryError参数可以让JVM在出现内存溢出时dump出当前的内存堆转储快照</p>
+</blockquote>
+
+<h4>2) 方法区</h4>
+
+<p>方法区内存为JVM共享，别名永久带(Permanent Generation，两者并不等同)，用于存储类信息、常量池、方法数据、方法代码等。</p>
+
+<ul>
+<li><code>-XX:MaxPermSize=512m</code>参数设置永久带上限</li>
+<li><code>-XX:PermSize=512m</code>参数设置永久带最小值</li>
+</ul>
+
+<blockquote>
+<p>方法内存剩余空间不足以满足分配请求时，JVM抛出OutOfMemoryError</p>
+</blockquote>
+
+<h4>3) 栈内存</h4>
+
+<p>栈内存为线程私有，描述的是java方法执行的内存模型：每个方法在执行的同时多会创建一个栈帧用于存储局部变量表、操作数栈、动态链表、方法出口等信息</p>
+
+<ul>
+<li><code>-Xss</code>参数设置栈容量</li>
+</ul>
+
+<h4>4) 本地方法栈</h4>
+
+<p>同栈，只不过此栈会让JVM使用到native方法。sun hotspot虚拟机把本地方法栈和虚拟机栈合二为一，只是在概念上进行区分。</p>
+
+<h4>5) 程序计数器</h4>
+
+<p>线程私有，独立存储。代表当前线程所执行字节码的行号指示器。</p>
+
+<hr />
+
+<h3>3. tomcat调优实战</h3>
+<pre class="chroma">vim appweb02/bin/catalina.sh
+**********************************
+<span class="nv">JAVA_OPTS</span><span class="o">=</span><span class="s2">&#34;-server -Xms1G -Xmx1G -XX:PermSize=128m -XX:MaxPermSize=512m&#34;</span>
+**********************************
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

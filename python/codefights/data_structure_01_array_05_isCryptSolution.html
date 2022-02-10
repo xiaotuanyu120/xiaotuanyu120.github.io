@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/advanced/index.html">advanced</a>
+                </li>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                  <ul>
+                    <li><a href="/python/codefights/data_structure_01_array_01_fistDuplicate.html">array 01: fist duplicate</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_02_firstNotRepeatingCharacter.html">array 02: fist not repeating character</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_03_rotateImage.html">array 03: rotate image(翻转列表，解压参数)</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_04_sudoku2.html">array 04: sudoku(yield,"%","/")</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_05_isCryptSolution.html">array 05: is crypt solution(reduce,map,any,all)</a></li>
+                    <li><a href="/python/codefights/data_structure_02_linked_list_01_removeFromList.html">linked list 01: remove from list</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>array 05: is crypt solution(reduce,map,any,all)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>31 Oct 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 题目</h3>
+
+<p>A cryptarithm is a mathematical puzzle for which the goal is to find the correspondence between letters and digits, such that the given arithmetic equation consisting of letters holds true when the letters are converted to digits.</p>
+
+<p>You have an array of strings <code>crypt</code>, the cryptarithm, and an an array containing the mapping of letters and digits, <code>solution</code>. The array <code>crypt</code> will contain three non-empty strings that follow the structure: <code>[word1, word2, word3]</code>, which should be interpreted as the <code>word1 + word2 = word3</code> cryptarithm.</p>
+
+<p>If <code>crypt</code>, when it is decoded by replacing all of the letters in the cryptarithm with digits using the mapping in <code>solution</code>, becomes a valid arithmetic equation containing no numbers with leading zeroes, the answer is <code>true</code>. If it does not become a valid arithmetic solution, the answer is <code>false</code>.</p>
+
+<p><strong>Example</strong></p>
+
+<ul>
+<li><p>For <code>crypt = [&quot;SEND&quot;, &quot;MORE&quot;, &quot;MONEY&quot;]</code> and</p>
+<pre class="chroma">solution = [[&#39;O&#39;, &#39;0&#39;],
+        [&#39;M&#39;, &#39;1&#39;],
+        [&#39;Y&#39;, &#39;2&#39;],
+        [&#39;E&#39;, &#39;5&#39;],
+        [&#39;N&#39;, &#39;6&#39;],
+        [&#39;D&#39;, &#39;7&#39;],
+        [&#39;R&#39;, &#39;8&#39;],
+        [&#39;S&#39;, &#39;9&#39;]]
+</pre>
+<p>the output should be<br />
+<code>isCryptSolution(crypt, solution) = true</code>;<br />
+When you decrypt <code>&quot;SEND&quot;</code>, <code>&quot;MORE&quot;</code>, and <code>&quot;MONEY&quot;</code> using the mapping given in <code>crypt</code>, you get <code>9567 + 1085 = 10652</code> which is correct and a valid arithmetic equation.</p></li>
+
+<li><p>For <code>crypt = [&quot;TEN&quot;, &quot;TWO&quot;, &quot;ONE&quot;]</code> and</p>
+<pre class="chroma">solution = [[&#39;O&#39;, &#39;1&#39;],
+        [&#39;T&#39;, &#39;0&#39;],
+        [&#39;W&#39;, &#39;9&#39;],
+        [&#39;E&#39;, &#39;5&#39;],
+        [&#39;N&#39;, &#39;4&#39;]]
+</pre>
+<p>the output should be<br />
+<code>isCryptSolution(crypt, solution) = false</code>;<br />
+Even though <code>054 + 091 = 145</code>, <code>054</code> and <code>091</code> both contain leading zeroes, meaning that this is not a valid solution.</p></li>
+</ul>
+
+<p><strong>Input/Output</strong>
+- [time limit] 4000ms (py)</p>
+
+<ul>
+<li><p>[input] array.string crypt<br />
+An array of three non-empty strings containing only uppercase English letters.<br />
+Guaranteed constraints:
+<code>crypt.length = 3</code>,
+<code>1 ≤ crypt[i].length ≤ 14</code>.</p></li>
+
+<li><p>[input] array.array.char solution<br />
+An array consisting of pairs of characters that represent the correspondence between letters and numbers in the cryptarithm. The first character in the pair is an uppercase English letter, and the second one is a digit in the range from 0 to 9.<br />
+Guaranteed constraints:<br />
+<code>solution[i].length = 2</code>,<br />
+<code>'A' ≤ solution[i][0] ≤ 'Z'</code>,<br />
+<code>'0' ≤ solution[i][1] ≤ '9'</code>,<br />
+<code>solution[i][0] ≠ solution[j][0], i ≠ j</code>,<br />
+<code>solution[i][1] ≠ solution[j][1], i ≠ j</code>.<br />
+It is guaranteed that <code>solution</code> only contains entries for the letters present in <code>crypt</code> and that different letters have different values.</p></li>
+
+<li><p>[output] boolean<br />
+Return <code>true</code> if the <code>solution</code> represents the correct solution to the cryptarithm <code>crypt</code>, otherwise return <code>false</code>.</p></li>
+</ul>
+
+<hr />
+
+<h3>2. 解法</h3>
+
+<p><strong>个人解法</strong></p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">isCryptSolution</span><span class="p">(</span><span class="n">crypt</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">wordTransfer</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">sl_dict</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">nums</span> <span class="o">+</span><span class="o">=</span> <span class="n">sl_dict</span><span class="p">[</span><span class="n">char</span><span class="p">]</span>
+        <span class="k">return</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+    <span class="n">sl_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">solution</span><span class="p">}</span>
+    <span class="n">crypt_trans</span> <span class="o">=</span> <span class="p">[</span><span class="n">wordTransfer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sl_dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">crypt</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#34;</span> <span class="ow">in</span> <span class="n">crypt_trans</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">crypt_trans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">crypt_trans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">crypt_trans</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</pre>
+<p><strong>python2精品解法</strong></p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">isCryptSolution</span><span class="p">(</span><span class="n">crypt</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">sl_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">char</span><span class="p">:</span> <span class="n">num</span> <span class="k">for</span> <span class="n">char</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">solution</span><span class="p">}</span>
+    <span class="n">crypt_trans</span> <span class="o">=</span> <span class="p">[</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">sl_dict</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">,</span> <span class="n">word</span><span class="p">)</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">crypt</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">crypt_trans</span><span class="p">)</span> <span class="ow">and</span> \
+        <span class="nb">int</span><span class="p">(</span><span class="n">crypt_trans</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">crypt_trans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">crypt_trans</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">)</span>
+</pre>
+<blockquote>
+<p>python2版本没有精品解法，是根据下面的python3精品解法改编来。<br />
+重点1：在于嵌套的map和reduce函数<br />
+重点2：在于any和all函数</p>
+</blockquote>
+
+<p><strong>python3精品解法</strong></p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">isCryptSolution</span><span class="p">(</span><span class="n">crypt</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">:</span> <span class="n">d</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">solution</span><span class="p">}</span>
+    <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span><span class="p">,</span> <span class="n">crypt</span><span class="p">)</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span> <span class="ow">and</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">0</span><span class="s2">&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span> <span class="ow">and</span> \
+        <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">)</span>
+</pre>
+<blockquote>
+<p>python3 版本，python2不能用，是因为codefights 不支持import操作，如果要完全模仿py3的写法，需要<code>import string</code></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

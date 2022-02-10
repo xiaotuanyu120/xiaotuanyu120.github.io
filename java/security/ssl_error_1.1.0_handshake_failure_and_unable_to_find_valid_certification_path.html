@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                  <ul>
+                    <li><a href="/java/security/jce_1.1.0_unlimited_policy.html">jce 1.1.0 无限制策略</a></li>
+                    <li><a href="/java/security/keytool_1.1.0_usage.html">keytool 1.1.0 命令使用说明</a></li>
+                    <li><a href="/java/security/ssl_error_1.1.0_handshake_failure_and_unable_to_find_valid_certification_path.html">ssl error 1.1.0 handshake_failure and unable to find valid certification path</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>ssl error 1.1.0 handshake_failure and unable to find valid certification path</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>10 Mar 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>ssl error 1.1.0 handshake_failure and unable to find valid certification path</h3>
+
+<hr />
+
+<h3>1. handshake_failure</h3>
+
+<h4>错误信息</h4>
+<pre class="chroma"><span class="o">[</span>ERROR<span class="o">]</span>_2018-03-08 16:31:10 <span class="m">990</span> : <span class="o">[</span>http-apr-8580-exec-81<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>getHttpContentByBtParam 请求调用异常：
+javax.net.ssl.SSLHandshakeException: Received fatal alert: handshake_failure
+</pre>
+<h4>解决办法：应用JCE的unlimited policy文件</h4>
+
+<p>原因：据参照文档中的文档所述，这个错误是因为代码的加密方法使用的是256位，而jdk默认的limited policy限制是128位。</p>
+
+<p>解决思路：参照<a href="/java/security/jce_1.1.0_unlimited_policy.html">JCE unlimited policy应用文档</a>应用对应版本的方法即可。</p>
+
+<blockquote>
+<p>参照文档：<a href="https://stackoverflow.com/questions/38203971/javax-net-ssl-sslhandshakeexception-received-fatal-alert-handshake-failure">stackoverflow answer</a></p>
+</blockquote>
+
+<h3>2. unable to find valid certification path to requested target</h3>
+
+<h4>错误信息</h4>
+<pre class="chroma">javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+</pre>
+<h4>解决办法：增加证书到受信任列表中</h4>
+
+<p>原因：是https使用的ssl证书没有加到信任列表里面，如果是直接用浏览器访问时，浏览器会提示我们不安全，但是依然会显示页面内容。但是因为是java程序连接，所以直接就提示创建连接失败了。</p>
+
+<p>解决思路: 按照<a href="/java/security/keytool_1.1.0_usage.html">keytool使用方法</a>中介绍的方法，将需要连接的域名的ssl证书增加到受信任列表中即可</p>
+
+<blockquote>
+<p>jdk默认的truststore(也是keystore格式，专做信任证书用途)路径是<code>&lt;java-home&gt;/jre/lib/security/cacerts</code>。</p>
+</blockquote>
+
+<h3>3. timestamp check failed</h3>
+
+<h3>错误信息</h3>
+<pre class="chroma">Exception: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: timestamp check failed
+</pre>
+<p>生产环境很多接口用的域名，突然一起报错。域名可以在浏览器中访问。</p>
+
+<h4>解决办法：【增加证书到受信任列表中】 或者 【重新申请新证书】</h4>
+
+<p>原因：原来是<a href="https://www.racent.com/blog/about-sectigo-addtrust-root-expiration">sectigo根证书过期</a>，如果域名是浏览器访问，因为浏览器内置的根证书肯定是更新过，而我们java程序使用的truststore文件中的根证书并没有及时更新，所以才造成了这个问题</p>
+
+<p>解决思路：因为根证书失效，所以根证书来认证域名证书失效；所以我们最好是手动将域名证书加到我们jdk的truststore中，或者干脆给域名申请一个新的证书。</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

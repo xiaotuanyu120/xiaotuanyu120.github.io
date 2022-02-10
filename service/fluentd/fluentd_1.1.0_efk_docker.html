@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                  <ul>
+                    <li><a href="/service/fluentd/fluentd_1.0.0_fluentd_docs_note.html">fluentd 1.0.0 读“fluentd官方文档”笔记</a></li>
+                    <li><a href="/service/fluentd/fluentd_1.1.0_efk_docker.html">fluentd 1.1.0 efk(elasticsearch+kibana) + docker</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>fluentd 1.1.0 efk(elasticsearch+kibana) + docker</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>20 Nov 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 安装docker</h3>
+
+<p>安装可参照<a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">docker yum安装</a>和<a href="/virtualization/docker/docker_1.1.1_installation_binary.html">docker 二进制安装</a>，也可以使用发行版自己安装的docker版本(只要不是太旧)。
+&gt; 二进制安装方法里面开启了selinux，这里需要关闭</p>
+
+<hr />
+
+<h3>1. 启动 fluentd + elasticsearch + kibana 容器</h3>
+<pre class="chroma"><span class="c1"># 创建fluentd编译目录及配置目录</span>
+mkdir -p fluentd/conf
+
+<span class="c1"># 创建fluentd Dockerfile</span>
+cat &gt; fluentd/Dockerfile <span class="s">&lt;&lt; EOF
+</span><span class="s">FROM fluent/fluentd:v0.12-debian
+</span><span class="s">RUN [&#34;gem&#34;, &#34;install&#34;, &#34;fluent-plugin-elasticsearch&#34;, &#34;--no-rdoc&#34;, &#34;--no-ri&#34;, &#34;--version&#34;, &#34;1.9.2&#34;]
+</span><span class="s">EOF</span>
+
+<span class="c1"># 创建fluentd配置文件</span>
+cat &gt; fluentd/conf/fluent.conf <span class="s">&lt;&lt; EOF
+</span><span class="s">&lt;source&gt;
+</span><span class="s">  @type forward
+</span><span class="s">  port 24224
+</span><span class="s">  bind 0.0.0.0
+</span><span class="s">&lt;/source&gt;
+</span><span class="s">&lt;match *.**&gt;
+</span><span class="s">  @type copy
+</span><span class="s">  &lt;store&gt;
+</span><span class="s">    @type elasticsearch
+</span><span class="s">    host elasticsearch
+</span><span class="s">    port 9200
+</span><span class="s">    logstash_format true
+</span><span class="s">    logstash_prefix fluentd
+</span><span class="s">    logstash_dateformat %Y%m%d
+</span><span class="s">    include_tag_key true
+</span><span class="s">    type_name access_log
+</span><span class="s">    tag_key @log_name
+</span><span class="s">    flush_interval 1s
+</span><span class="s">  &lt;/store&gt;
+</span><span class="s">  &lt;store&gt;
+</span><span class="s">    @type stdout
+</span><span class="s">  &lt;/store&gt;
+</span><span class="s">&lt;/match&gt;
+</span><span class="s">EOF</span>
+<span class="c1"># 当使用out_copy时，可指定多个输出源</span>
+<span class="c1"># logstash_format为true时，意味着kibana可以搜索使用es中的数据</span>
+
+<span class="c1"># 创建docker-compose.yml文件，编译新的fluentd镜像，其他两个使用官方镜像</span>
+cat &gt; docker-compose.yml <span class="s">&lt;&lt; EOF
+</span><span class="s">version: &#39;2&#39;
+</span><span class="s">services:
+</span><span class="s">  fluentd:
+</span><span class="s">    build: ./fluentd
+</span><span class="s">    volumes:
+</span><span class="s">      - ./fluentd/conf:/fluentd/etc
+</span><span class="s">    links:
+</span><span class="s">      - &#34;elasticsearch&#34;
+</span><span class="s">    ports:
+</span><span class="s">      - &#34;24224:24224&#34;
+</span><span class="s">      - &#34;24224:24224/udp&#34;
+</span><span class="s">
+</span><span class="s">  elasticsearch:
+</span><span class="s">    image: elasticsearch
+</span><span class="s">    expose:
+</span><span class="s">      - 9200
+</span><span class="s">    ports:
+</span><span class="s">      - &#34;9200:9200&#34;
+</span><span class="s">
+</span><span class="s">  kibana:
+</span><span class="s">    image: kibana
+</span><span class="s">    links:
+</span><span class="s">      - &#34;elasticsearch&#34;
+</span><span class="s">    ports:
+</span><span class="s">      - &#34;5601:5601&#34;
+</span><span class="s">EOF</span>
+
+docker-compose up -d
+</pre>
+<blockquote>
+<p>此处不过多介绍elasticsearch和kibana，感兴趣的参照以下文档
+- <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html">elasticsearch 6.0 官方文档</a>
+- <a href="https://www.elastic.co/guide/en/kibana/6.0/setup.html">kibana 6.0 官方文档</a></p>
+</blockquote>
+
+<hr />
+
+<h3>2. 启动fluentd采集tomcat日志</h3>
+<pre class="chroma">mkdir -p fluentd/conf
+cat &gt; fluentd/Dockerfile <span class="s">&lt;&lt; EOF
+</span><span class="s">FROM fluent/fluentd:v0.12-debian
+</span><span class="s">RUN [&#34;gem&#34;, &#34;install&#34;, &#34;fluent-plugin-elasticsearch&#34;, &#34;--no-rdoc&#34;, &#34;--no-ri&#34;, &#34;--version&#34;, &#34;1.9.2&#34;]
+</span><span class="s">EOF</span>
+
+cat &gt; fluentd/conf/fluent.conf <span class="s">&lt;&lt; EOF
+</span><span class="s">&lt;source&gt;
+</span><span class="s">  @type tail
+</span><span class="s">  path /usr/local/tomcat/logs/catalina.out
+</span><span class="s">  pos_file /usr/local/tomcat/logs/catalina.out.pos
+</span><span class="s">  tag tomcat.*
+</span><span class="s">  format none
+</span><span class="s">&lt;/source&gt;
+</span><span class="s">&lt;match tomcat.**&gt;
+</span><span class="s">  @type forward
+</span><span class="s">  &lt;server&gt;
+</span><span class="s">    host 113.10.193.68
+</span><span class="s">    port 24224
+</span><span class="s">  &lt;/server&gt;
+</span><span class="s">&lt;/match&gt;
+</span><span class="s">EOF</span>
+
+<span class="c1"># 创建docker-compose.yml文件，启动fluentd客户端</span>
+cat &gt; docker-compose.yml <span class="s">&lt;&lt; EOF
+</span><span class="s">version: &#39;2&#39;
+</span><span class="s">services:
+</span><span class="s">  fluentd:
+</span><span class="s">    image: fluent/fluentd
+</span><span class="s">    volumes:
+</span><span class="s">      - ./fluentd/conf:/fluentd/etc
+</span><span class="s">      - /usr/local/tomcat:/usr/local/tomcat
+</span><span class="s">    ports:
+</span><span class="s">      - &#34;24224:24224&#34;
+</span><span class="s">      - &#34;24224:24224/udp&#34;
+</span><span class="s">EOF</span>
+
+docker-compose up -d
+</pre>
+<blockquote>
+<p>当使用tail时，tag配置成tomcat.*，其中*会自动将path变量的内容扩展到tag中，并且使用“.”代替“/”，此处实际tag为tomcat.usr.local.tomcat.logs.catalina.out</p>
+
+<p>官方文档
+- <a href="https://docs.fluentd.org/v0.12/articles/in_tail">type tail文档</a>
+- <a href="https://docs.fluentd.org/v0.12/articles/parser_multiline">format multiline文档</a></p>
+</blockquote>
+
+<p>精品文章：
+- <a href="http://270142877.blog.51cto.com/12869137/1951159">Tomcat容器日志收集方案fluentd+elasticsearch+kilbana</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                  <ul>
+                    <li><a href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">KVM 1.1.0 安装(centos7)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">KVM 1.2.0 创建VM(linux)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">KVM 1.2.1 创建VM(vnc-windows)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">KVM 1.2.2 创建VM-脚本复制VM</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">KVM 1.2.3 管理VM-增加网卡</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">KVM 1.3.0 kvm管理-virt-top</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">KVM 1.3.1 kvm管理-basic</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">KVM 1.3.2 kvm管理-advance</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">KVM 1.3.3 kvm管理-克隆</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">KVM 1.3.4 VM-快照</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.4.0_error.html">KVM 1.4.0 kvm错误汇总</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>KVM 1.3.1 kvm管理-basic</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>29 Mar 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. KVM 管理VM 基础</h3>
+
+<h4>1) 如何进入和退出虚拟机</h4>
+<pre class="chroma"><span class="c1"># 在宿主终端连接虚拟机</span>
+virsh console vm1
+Connected to domain www
+Escape character is ^<span class="o">]</span>
+<span class="c1"># 在Escape character is &#39;^]&#39;.处按下enter键才会出现登陆界面</span>
+
+<span class="c1"># 退出当前虚拟机终端，回到宿主终端</span>
+push Ctrl + <span class="o">]</span>
+</pre>
+<blockquote>
+<p>当然，更方便的是配置vm的网络，然后ssh上去</p>
+</blockquote>
+
+<h4>2) 查看目前虚拟机状态</h4>
+<pre class="chroma"><span class="c1"># 1. 完整写法</span>
+virsh -c qemu:///system list
+ Id    Name                           State
+----------------------------------------------------
+ <span class="m">3</span>     vm1                            running
+<span class="c1"># &#34;-c&#34; 代表connect，qemu:///system代表本机的qemu和kvm虚拟机，如果是连接本机，可以忽略此参数</span>
+
+<span class="c1"># 2. 简写（连接本机的虚拟机）</span>
+virsh list
+ Id    Name                           State
+----------------------------------------------------
+ <span class="m">3</span>     vm1                            running
+
+<span class="c1"># 3. 列出所有主机（事先关闭了vm1）</span>
+virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ -     vm1                            shut off
+</pre>
+<h4>3) 查看虚拟机vnc端口</h4>
+<pre class="chroma">virsh vncdisplay tomcat7
+:103
+</pre>
+<h4>4) 虚拟机开关机和重启</h4>
+
+<p>虚拟机的基础操作需要acpid包的支持</p>
+<pre class="chroma"><span class="c1"># 1. 关机</span>
+<span class="c1"># 用优雅的方式关机，需要等待一段时间，但并不确保能够关机成功</span>
+virsh shutdown vm1
+Domain vm1 is being shutdown
+<span class="c1"># 强制关机，相当于拔电源</span>
+virsh destroy vm1
+
+<span class="c1"># 2. 开机</span>
+virsh start vm1
+
+<span class="c1"># 3. 重启</span>
+virsh reboot vm1
+
+<span class="c1"># 4. 虚拟机挂起与恢复</span>
+<span class="c1"># 虚拟机挂起</span>
+virsh <span class="nb">suspend</span> vm1
+Domain vm1 suspended
+
+virsh list
+ Id    Name                           State
+----------------------------------------------------
+ <span class="m">3</span>     vm1                            paused
+
+<span class="c1"># 虚拟机恢复</span>
+virsh resume vm1
+Domain vm1 resumed
+
+virsh list
+ Id    Name                           State
+----------------------------------------------------
+ <span class="m">3</span>     vm1                            running
+
+<span class="c1"># 5. 连接虚拟机</span>
+virsh console vm1
+<span class="c1"># 如果连接时卡在了escape(Escape character is &#39;^]&#39;.)符号处，按下回车键即可进入登录界面</span>
+
+<span class="c1"># 6. 退出虚拟机console</span>
+<span class="c1"># 同时按下crtl+]</span>
+</pre>
+<h4>5) 删除虚拟机（先强制关机，然后undefine）</h4>
+<pre class="chroma">virsh destroy vm1
+Domain vm1 destroyed
+
+virsh undefine vm1
+Domain vm1 has been undefined
+
+virsh list
+ Id    Name                           State
+----------------------------------------------------
+<span class="c1"># 虚拟机img文件还在，但是虚拟机的xml文件会被删除</span>
+</pre>
+<h4>6) 虚拟机改名</h4>
+<pre class="chroma"><span class="c1"># 1. dump配置文件</span>
+virsh dumpxml myvm &gt; foo.xml
+<span class="c1"># 2. 修改虚拟机名称</span>
+&lt;edit foo.xml, change the name&gt;
+<span class="c1"># 3. 销毁原虚拟机配置文件</span>
+virsh undefine myvm
+<span class="c1"># 4. 加载新的配置文件</span>
+virsh define foo.xml
+</pre>
+<blockquote>
+<p>根据邮件列表中的讨论，目前还不支持虚拟机改名，但是我们可以通过dump配置文件，然后重新define这个配置文件的这种方式来改变虚拟机名称<br />
+<a href="https://www.redhat.com/archives/libvirt-users/2010-October/msg00072.html">kvm虚拟机改名参考文档</a></p>
+</blockquote>
+
+<h4>7) 虚拟机开机启动</h4>
+<pre class="chroma"><span class="c1"># 确保libvirtd服务是开启的</span>
+systemctl <span class="nb">enable</span> libvirtd
+
+<span class="c1"># 配置虚机开机启动</span>
+virsh autostart tomcat7
+Domain tomcat7 marked as autostarted
+
+virsh autostart mysql-zhudan
+Domain mysql-zhudan marked as autostarted
+
+virsh autostart mysql-main
+Domain mysql-main marked as autostarted
+
+<span class="c1"># 查看autostart目录</span>
+ll /etc/libvirt/qemu/autostart/
+total <span class="m">0</span>
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">32</span> May  <span class="m">5</span> 16:05 mysql-main.xml -&gt; /etc/libvirt/qemu/mysql-main.xml
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">34</span> May  <span class="m">5</span> 16:05 mysql-zhudan.xml -&gt; /etc/libvirt/qemu/mysql-zhudan.xml
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">29</span> May  <span class="m">5</span> 16:05 tomcat7.xml -&gt; /etc/libvirt/qemu/tomcat7.xml
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

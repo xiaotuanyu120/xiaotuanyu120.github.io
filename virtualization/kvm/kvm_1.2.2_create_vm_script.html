@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                  <ul>
+                    <li><a href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">KVM 1.1.0 安装(centos7)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">KVM 1.2.0 创建VM(linux)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">KVM 1.2.1 创建VM(vnc-windows)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">KVM 1.2.2 创建VM-脚本复制VM</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">KVM 1.2.3 管理VM-增加网卡</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">KVM 1.3.0 kvm管理-virt-top</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">KVM 1.3.1 kvm管理-basic</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">KVM 1.3.2 kvm管理-advance</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">KVM 1.3.3 kvm管理-克隆</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">KVM 1.3.4 VM-快照</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.4.0_error.html">KVM 1.4.0 kvm错误汇总</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>KVM 1.2.2 创建VM-脚本复制VM</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Apr 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. VM复制-原理</h3>
+
+<p>首先创建模板xml和img文件(就是安装一个模板系统)，然后拷贝配置文件和镜像文件，编辑配置文件后，重新加载它，就实现了vm复制的效果</p>
+
+<h4>1) 拷贝img和xml文件</h4>
+<pre class="chroma">cp /etc/libvirt/qemu/controller.xml /etc/libvirt/qemu/compute-node01.xml
+cp /data/kvm/images/controller.img /data/kvm/images/compute-node01.img
+</pre>
+<h4>2) 编辑xml文件</h4>
+<pre class="chroma">vim compute-node01.xml
+**************************************************************************
+<span class="c1"># 修改名称</span>
+&lt;name&gt;compute-node01&lt;/name&gt;
+
+<span class="c1"># 修改UUID</span>
+  &lt;uuid&gt;3a356102-a046-4cdc-adf2-86a738abf75b&lt;/uuid&gt;
+
+<span class="c1"># 修改img路径</span>
+&lt;<span class="nb">source</span> <span class="nv">file</span><span class="o">=</span><span class="s1">&#39;/data/kvm/images/compute-node01.img&#39;</span>/&gt;
+
+<span class="c1"># 修改外网网卡mac</span>
+&lt;mac <span class="nv">address</span><span class="o">=</span><span class="s1">&#39;fa:95:89:fd:ce:a9&#39;</span>/&gt;
+
+<span class="c1"># 修改内网网卡mac</span>
+&lt;mac <span class="nv">address</span><span class="o">=</span><span class="s1">&#39;52:54:3e:65:38:8a&#39;</span>/&gt;
+
+<span class="c1"># 修改vnc端口</span>
+&lt;graphics <span class="nv">type</span><span class="o">=</span><span class="s1">&#39;vnc&#39;</span> <span class="nv">port</span><span class="o">=</span><span class="s1">&#39;5997&#39;</span> <span class="nv">autoport</span><span class="o">=</span><span class="s1">&#39;no&#39;</span> <span class="nv">listen</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span>&gt;
+*************************************************************************
+</pre>
+<h4>3) 加载并启动虚机</h4>
+<pre class="chroma">virsh define compute-node01.xml
+virsh start compute-node01
+</pre>
+<hr />
+
+<h3>2. VM复制-脚本化</h3>
+
+<h4>1) 脚本形成的基本命令</h4>
+<pre class="chroma"><span class="c1"># 基础语句（基于自己设计的模板，见后面）</span>
+<span class="c1"># VM NAME修改语句</span>
+<span class="nv">NAME</span><span class="o">=</span>controller01
+sed -i <span class="s2">&#34;</span><span class="s2">s#%NAME%#</span><span class="nv">$NAME</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+
+<span class="c1"># UUID修改语句</span>
+<span class="nv">UUID</span><span class="o">=</span><span class="sb">`</span>uuidgen<span class="sb">`</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%UUID%#</span><span class="nv">$UUID</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+
+<span class="c1"># 修改img文件语句</span>
+<span class="nv">IMAGE_PATH</span><span class="o">=</span>/data/kvm/images/controller01.img  
+sed -i <span class="s2">&#34;</span><span class="s2">s#%IMAGE_PATH%#</span><span class="nv">$IMAGE_PATH</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+
+<span class="c1"># 生成mac地址</span>
+<span class="nv">MAC</span><span class="o">=</span>fa:95:<span class="k">$(</span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">count</span><span class="o">=</span><span class="m">1</span> 2&gt;/dev/null <span class="p">|</span>md5sum<span class="p">|</span>sed <span class="s1">&#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;</span><span class="k">)</span>
+<span class="nv">MAC2</span><span class="o">=</span>52:54:<span class="k">$(</span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">count</span><span class="o">=</span><span class="m">1</span> 2&gt;/dev/null <span class="p">|</span>md5sum<span class="p">|</span>sed <span class="s1">&#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;</span><span class="k">)</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%MAC%#</span><span class="nv">$MAC</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+sed -i <span class="s2">&#34;</span><span class="s2">s#%MAC2%#</span><span class="nv">$MAC2</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+<span class="c1"># 内部局域网的MAC地址多以52:54开头</span>
+<span class="c1"># 外部网络桥接的MAC地址多以fa:95开头</span>
+
+<span class="c1"># 修改vnc端口</span>
+<span class="nv">VNC_PORT</span><span class="o">=</span><span class="m">5998</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%VNC_PORT%#</span><span class="nv">$VNC_PORT</span><span class="s2">#g</span><span class="s2">&#34;</span> controller01.xml
+</pre>
+<h4>2) VM复制-模版文件</h4>
+
+<p>template.xml
+- vnc接口
+- br0和br1双网卡
+- selinux关闭</p>
+<pre class="chroma"><span class="nt">&lt;domain</span> <span class="na">type=</span><span class="s">&#39;kvm&#39;</span> <span class="na">id=</span><span class="s">&#39;41&#39;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;name</span><span class="nt">&gt;</span>%NAME%<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;uuid</span><span class="nt">&gt;</span>%UUID%<span class="nt">&lt;/uuid&gt;</span>
+  <span class="nt">&lt;memory</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">&gt;</span>2097152<span class="nt">&lt;/memory&gt;</span>
+  <span class="nt">&lt;currentMemory</span> <span class="na">unit=</span><span class="s">&#39;KiB&#39;</span><span class="nt">&gt;</span>2097152<span class="nt">&lt;/currentMemory&gt;</span>
+  <span class="nt">&lt;vcpu</span> <span class="na">placement=</span><span class="s">&#39;static&#39;</span><span class="nt">&gt;</span>1<span class="nt">&lt;/vcpu&gt;</span>
+  <span class="nt">&lt;resource</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;partition</span><span class="nt">&gt;</span>/machine<span class="nt">&lt;/partition&gt;</span>
+  <span class="nt">&lt;/resource&gt;</span>
+  <span class="nt">&lt;os</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;type</span> <span class="na">arch=</span><span class="s">&#39;x86_64&#39;</span> <span class="na">machine=</span><span class="s">&#39;pc-i440fx-rhel7.0.0&#39;</span><span class="nt">&gt;</span>hvm<span class="nt">&lt;/type&gt;</span>
+    <span class="nt">&lt;boot</span> <span class="na">dev=</span><span class="s">&#39;hd&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/os&gt;</span>
+  <span class="nt">&lt;features</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;acpi</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;apic</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/features&gt;</span>
+  <span class="nt">&lt;cpu</span> <span class="na">mode=</span><span class="s">&#39;custom&#39;</span> <span class="na">match=</span><span class="s">&#39;exact&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;model</span> <span class="na">fallback=</span><span class="s">&#39;allow&#39;</span><span class="nt">&gt;</span>Nehalem<span class="nt">&lt;/model&gt;</span>
+  <span class="nt">&lt;/cpu&gt;</span>
+  <span class="nt">&lt;clock</span> <span class="na">offset=</span><span class="s">&#39;utc&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;timer</span> <span class="na">name=</span><span class="s">&#39;rtc&#39;</span> <span class="na">tickpolicy=</span><span class="s">&#39;catchup&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;timer</span> <span class="na">name=</span><span class="s">&#39;pit&#39;</span> <span class="na">tickpolicy=</span><span class="s">&#39;delay&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;timer</span> <span class="na">name=</span><span class="s">&#39;hpet&#39;</span> <span class="na">present=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/clock&gt;</span>
+  <span class="nt">&lt;on_poweroff</span><span class="nt">&gt;</span>destroy<span class="nt">&lt;/on_poweroff&gt;</span>
+  <span class="nt">&lt;on_reboot</span><span class="nt">&gt;</span>restart<span class="nt">&lt;/on_reboot&gt;</span>
+  <span class="nt">&lt;on_crash</span><span class="nt">&gt;</span>restart<span class="nt">&lt;/on_crash&gt;</span>
+  <span class="nt">&lt;pm</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;suspend-to-mem</span> <span class="na">enabled=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;suspend-to-disk</span> <span class="na">enabled=</span><span class="s">&#39;no&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/pm&gt;</span>
+  <span class="nt">&lt;devices</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;emulator</span><span class="nt">&gt;</span>/usr/libexec/qemu-kvm<span class="nt">&lt;/emulator&gt;</span>
+    <span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;file&#39;</span> <span class="na">device=</span><span class="s">&#39;disk&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;qcow2&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;source</span> <span class="na">file=</span><span class="s">&#39;%IMAGE_FULL_PATH%&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;backingStore</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vda&#39;</span> <span class="na">bus=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;virtio-disk0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x07&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/disk&gt;</span>
+    <span class="nt">&lt;disk</span> <span class="na">type=</span><span class="s">&#39;block&#39;</span> <span class="na">device=</span><span class="s">&#39;cdrom&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;driver</span> <span class="na">name=</span><span class="s">&#39;qemu&#39;</span> <span class="na">type=</span><span class="s">&#39;raw&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;backingStore</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;hda&#39;</span> <span class="na">bus=</span><span class="s">&#39;ide&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;readonly</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;ide0-0-0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;drive&#39;</span> <span class="na">controller=</span><span class="s">&#39;0&#39;</span> <span class="na">bus=</span><span class="s">&#39;0&#39;</span> <span class="na">target=</span><span class="s">&#39;0&#39;</span> <span class="na">unit=</span><span class="s">&#39;0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/disk&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;usb&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span> <span class="na">model=</span><span class="s">&#39;ich9-ehci1&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;usb&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x7&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;usb&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span> <span class="na">model=</span><span class="s">&#39;ich9-uhci1&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;usb&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;master</span> <span class="na">startport=</span><span class="s">&#39;0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span> <span class="na">multifunction=</span><span class="s">&#39;on&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;usb&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span> <span class="na">model=</span><span class="s">&#39;ich9-uhci2&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;usb&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;master</span> <span class="na">startport=</span><span class="s">&#39;2&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x1&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;usb&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span> <span class="na">model=</span><span class="s">&#39;ich9-uhci3&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;usb&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;master</span> <span class="na">startport=</span><span class="s">&#39;4&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x06&#39;</span> <span class="na">function=</span><span class="s">&#39;0x2&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span> <span class="na">model=</span><span class="s">&#39;pci-root&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;pci.0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;ide&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;ide&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x01&#39;</span> <span class="na">function=</span><span class="s">&#39;0x1&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;controller</span> <span class="na">type=</span><span class="s">&#39;virtio-serial&#39;</span> <span class="na">index=</span><span class="s">&#39;0&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;virtio-serial0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x05&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/controller&gt;</span>
+    <span class="nt">&lt;interface</span> <span class="na">type=</span><span class="s">&#39;bridge&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;mac</span> <span class="na">address=</span><span class="s">&#39;%MAC%&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;source</span> <span class="na">bridge=</span><span class="s">&#39;br0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vnet0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;model</span> <span class="na">type=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;net0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x03&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/interface&gt;</span>
+    <span class="nt">&lt;interface</span> <span class="na">type=</span><span class="s">&#39;bridge&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;mac</span> <span class="na">address=</span><span class="s">&#39;%MAC2%&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;source</span> <span class="na">bridge=</span><span class="s">&#39;br1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">dev=</span><span class="s">&#39;vnet1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;model</span> <span class="na">type=</span><span class="s">&#39;virtio&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;net1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x04&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/interface&gt;</span>
+    <span class="nt">&lt;serial</span> <span class="na">type=</span><span class="s">&#39;pty&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;source</span> <span class="na">path=</span><span class="s">&#39;/dev/pts/1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">port=</span><span class="s">&#39;0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;serial0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/serial&gt;</span>
+    <span class="nt">&lt;console</span> <span class="na">type=</span><span class="s">&#39;pty&#39;</span> <span class="na">tty=</span><span class="s">&#39;/dev/pts/1&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;source</span> <span class="na">path=</span><span class="s">&#39;/dev/pts/1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;target</span> <span class="na">type=</span><span class="s">&#39;serial&#39;</span> <span class="na">port=</span><span class="s">&#39;0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;serial0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/console&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;tablet&#39;</span> <span class="na">bus=</span><span class="s">&#39;usb&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;input0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/input&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;mouse&#39;</span> <span class="na">bus=</span><span class="s">&#39;ps2&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;keyboard&#39;</span> <span class="na">bus=</span><span class="s">&#39;ps2&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;graphics</span> <span class="na">type=</span><span class="s">&#39;vnc&#39;</span> <span class="na">port=</span><span class="s">&#39;%VNC_PORT%&#39;</span> <span class="na">autoport=</span><span class="s">&#39;no&#39;</span> <span class="na">listen=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;listen</span> <span class="na">type=</span><span class="s">&#39;address&#39;</span> <span class="na">address=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/graphics&gt;</span>
+    <span class="nt">&lt;video</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;model</span> <span class="na">type=</span><span class="s">&#39;cirrus&#39;</span> <span class="na">vram=</span><span class="s">&#39;16384&#39;</span> <span class="na">heads=</span><span class="s">&#39;1&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;video0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x02&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/video&gt;</span>
+    <span class="nt">&lt;memballoon</span> <span class="na">model=</span><span class="s">&#39;virtio&#39;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">&#39;balloon0&#39;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;address</span> <span class="na">type=</span><span class="s">&#39;pci&#39;</span> <span class="na">domain=</span><span class="s">&#39;0x0000&#39;</span> <span class="na">bus=</span><span class="s">&#39;0x00&#39;</span> <span class="na">slot=</span><span class="s">&#39;0x08&#39;</span> <span class="na">function=</span><span class="s">&#39;0x0&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/memballoon&gt;</span>
+  <span class="nt">&lt;/devices&gt;</span>
+  <span class="nt">&lt;seclabel</span> <span class="na">type=</span><span class="s">&#39;dynamic&#39;</span> <span class="na">model=</span><span class="s">&#39;selinux&#39;</span> <span class="na">relabel=</span><span class="s">&#39;yes&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;label</span><span class="nt">&gt;</span>system_u:system_r:svirt_t:s0:c421,c1001<span class="nt">&lt;/label&gt;</span>
+    <span class="nt">&lt;imagelabel</span><span class="nt">&gt;</span>system_u:object_r:svirt_image_t:s0:c421,c1001<span class="nt">&lt;/imagelabel&gt;</span>
+  <span class="nt">&lt;/seclabel&gt;</span>
+<span class="nt">&lt;/domain&gt;</span>
+</pre>
+<blockquote>
+<p>这里是根据模板系统的xml进行了相应修改，增加了变量标识符：<br />
+%NAME%<br />
+%UUID%<br />
+%IMAGE_FULL_PATH%<br />
+%MAC%<br />
+%MAC2%<br />
+%VNC_PORT%</p>
+</blockquote>
+
+<h4>3) VM复制-脚本</h4>
+
+<ul>
+<li>脚本所在路径包含磁盘镜像template.img</li>
+<li>脚本所在路径包含配置模版template.xml</li>
+</ul>
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">IMAGE_DIR</span><span class="o">=</span>/data/kvm/images
+<span class="nv">XML_DIR</span><span class="o">=</span>/etc/libvirt/qemu
+
+<span class="nv">VMNAME</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">VNC_PORT</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">XML_FILE</span><span class="o">=</span><span class="nv">$VMNAME</span>
+<span class="nv">IMAGE_FILE</span><span class="o">=</span><span class="nv">$VMNAME</span>
+
+<span class="nv">UUID</span><span class="o">=</span><span class="sb">`</span>uuidgen<span class="sb">`</span>
+<span class="nv">XML_FULL_PATH</span><span class="o">=</span><span class="nv">$XML_DIR</span>/<span class="si">${</span><span class="nv">VMNAME</span><span class="si">}</span>.xml
+<span class="nv">IMAGE_FULL_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">IMAGE_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">VMNAME</span><span class="si">}</span>.img
+<span class="nv">MAC</span><span class="o">=</span>fa:95:<span class="k">$(</span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">count</span><span class="o">=</span><span class="m">1</span> 2&gt;/dev/null <span class="p">|</span>md5sum<span class="p">|</span>sed <span class="s1">&#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;</span><span class="k">)</span>
+<span class="nv">MAC2</span><span class="o">=</span>52:54:<span class="k">$(</span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">count</span><span class="o">=</span><span class="m">1</span> 2&gt;/dev/null <span class="p">|</span>md5sum<span class="p">|</span>sed <span class="s1">&#39;s/^\(..\)\(..\)\(..\)\(..\).*$/\1:\2:\3:\4/&#39;</span><span class="k">)</span>
+
+cp -f ./template.xml <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+cp -f ./template.img <span class="si">${</span><span class="nv">IMAGE_FULL_PATH</span><span class="si">}</span>
+
+sed -i <span class="s2">&#34;</span><span class="s2">s#%NAME%#</span><span class="nv">$VMNAME</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%UUID%#</span><span class="nv">$UUID</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%IMAGE_FULL_PATH%#</span><span class="nv">$IMAGE_FULL_PATH</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%MAC%#</span><span class="nv">$MAC</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%MAC2%#</span><span class="nv">$MAC2</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s#%VNC_PORT%#</span><span class="nv">$VNC_PORT</span><span class="s2">#g</span><span class="s2">&#34;</span> <span class="si">${</span><span class="nv">XML_FULL_PATH</span><span class="si">}</span>
+
+virsh define <span class="si">${</span><span class="nv">XML_PATH</span><span class="si">}</span>
+virsh start <span class="nv">$VMNAME</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                  <ul>
+                    <li><a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>dnsmasq基础知识</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>08 Feb 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. dnsmasq是什么？</h3>
+
+<p>dnsmasq是一个轻量级的DHCP和DNS缓存服务器。常用于本地的DNS解析服务器。</p>
+
+<blockquote>
+<p>参考文档：</p>
+
+<ul>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html">dnsmasq man page</a></li>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq.conf.example">dnsmasq config example</a></li>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/setup.html">dnsmasq setup docs</a></li>
+</ul>
+</blockquote>
+
+<h3>1. 如何安装dnsmasq</h3>
+
+<h4>1.1 源码安装</h4>
+
+<p>源码安装的步骤很简单，通常执行下面的命令就足够了</p>
+<pre class="chroma"><span class="c1"># 提前下载好源码，解压，然后进入源码目录，执行以下命令</span>
+make install
+</pre>
+<blockquote>
+<p>二进制文件: <code>/usr/local/sbin/dnsmasq</code></p>
+</blockquote>
+
+<h4>1.2 启动</h4>
+
+<p>启动方式也很简单，直接执行dnsmasq命令即可</p>
+<pre class="chroma">dnsmasq
+</pre>
+<p>进程默认是<code>daemon模式</code>后台运行，并监听53端口</p>
+
+<blockquote>
+<p>可以使用<code>-d, --no-daemon</code>选项来切换<code>daemon模式</code>为<code>debug模式</code></p>
+</blockquote>
+<pre class="chroma">dnsmasq -d
+dnsmasq: started, version 2.86 cachesize <span class="m">150</span>
+dnsmasq: compile <span class="nb">time</span> options: IPv6 GNU-getopt no-DBus no-UBus no-i18n no-IDN DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth no-cryptohash no-DNSSEC loop-detect inotify dumpfile
+dnsmasq: reading /etc/resolv.conf
+dnsmasq: using nameserver 192.168.65.5#53
+dnsmasq: <span class="nb">read</span> /etc/hosts - <span class="m">7</span> addresses
+</pre>
+<p>dnsmasq进程需要使用root身份启动，因为它需要使用特权端口53，启动后进程会抛弃root，使用nobody用户运行进程。</p>
+
+<h3>2. 基本配置</h3>
+
+<p>一般情况下，一台已经使用<code>/etc/resolv.conf</code>和<code>/etc/hosts</code>配置好dns解析的服务器，可以在没有配置文件的情况下，直接启动<code>dnsmasq</code>进程来提供dns服务。</p>
+
+<p>在简单的通过<code>无配置的dnsmasq</code>启动服务的情况下，dnsmasq提供dns服务是通过读取<code>/etc/resolv.conf</code>来获取dns上游服务器，还有通过<code>/etc/hosts</code>获取本地dns解析。</p>
+
+<h4>2.1 DNS上游服务器地址获取 - <code>/etc/resolv.conf</code></h4>
+
+<p>首先，我们需要创建一个<code>新的nameserver文件</code>来替代<code>/etc/resolv.conf</code></p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /etc/dnsmasq.resolv.conf
+</span><span class="s">#DNS UPSTREAM SERVER
+</span><span class="s">nameserver 8.8.8.8
+</span><span class="s">nameserver 4.4.4.4
+</span><span class="s">EOF</span>
+</pre>
+<p>然后创建dnsmasq启动时加载的配置文件</p>
+<pre class="chroma"><span class="c1"># Change this line if you want dns to get its upstream servers from</span>
+<span class="c1"># somewhere other that /etc/resolv.conf</span>
+resolv-file<span class="o">=</span>/etc/dnsmasq.resolv.conf
+</pre>
+<blockquote>
+<p>dnsmasq默认加载的配置文件是<code>/etc/dnsmasq.conf</code>，如果需要加载其他位置的配置文件，启动<code>dnsmasq</code>时需要使用<code>--conf-file=/path/to/dnsmasq.conf</code></p>
+</blockquote>
+
+<p>重新启动<code>dnsmasq</code>即可</p>
+
+<h4>2.2 本地DNS解析信息获取 - <code>/etc/hosts</code></h4>
+
+<p>可以禁用本地DNS解析，取消对<code>/etc/hosts</code>的加载</p>
+<pre class="chroma"><span class="c1"># If you don&#39;t want dnsmasq to read /etc/hosts, uncomment the</span>
+<span class="c1"># following line.</span>
+no-hosts
+</pre>
+<p>或者需要从<code>/etc/hosts</code>之外的文件来读取本地DNS解析记录</p>
+<pre class="chroma"><span class="c1"># or if you want it to read another file, as well as /etc/hosts, use</span>
+<span class="c1"># this.</span>
+addn-hosts<span class="o">=</span>/etc/dnsmasq.hosts
+</pre>
+<p><strong>值得注意的是</strong>，hosts记录修改后，需要重启dnsmasq才会生效。如果希望热加载hosts文件，需要在启动dnsmasq时增加如下选项。增加下面的选项后，dnsmasq会加载该目录下的所有hosts文件，新增文件或者修改原有文件会触发hosts的重新加载</p>
+<pre class="chroma"><span class="c1"># Read all the hosts files contained in the directory. New or changed files are read automatically. See --dhcp-hostsdir for details.</span>
+dnsmasq --hostsdir<span class="o">=</span>&lt;path/to/hosts-file-dir&gt;
+</pre>
+<h4>2.3 指定部分域名使用固定的DNS上游服务器</h4>
+
+<p>将所有对<code>*.yourhostname.com</code>的dns解析请求发送到<code>114.114.114.114</code></p>
+<pre class="chroma"><span class="nv">server</span><span class="o">=</span>/.yourhostname.com/114.114.114.114
+</pre>
+<h4>2.4 指定部分域名解析记录</h4>
+
+<p>将所有<code>*.yourhostname.com</code>的请求，解析到<code>127.0.0.1</code></p>
+<pre class="chroma"><span class="c1"># Add domains which you want to force to an IP address here.</span>
+<span class="c1"># The example below send any host in double-click.net to a local</span>
+<span class="c1"># web-server.</span>
+<span class="nv">address</span><span class="o">=</span>/double-click.net/127.0.0.1
+</pre>
+<h3>3. 使用dnsmasq作为dns解析服务器</h3>
+
+<p>只需要将<code>/etc/resolv.conf</code>中原有配置删除，增加如下内容即可</p>
+<pre class="chroma">nameserver &lt;ip-of-dnsmasq-listen&gt;
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

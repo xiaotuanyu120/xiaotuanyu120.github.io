@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                  <ul>
+                    <li><a href="/linux/service/ffmpeg_1.1.0_compile_install.html">ffmpeg 1.1.0 compile install(centos)</a></li>
+                    <li><a href="/linux/service/inotify_1.1.0_intro.html">inotify: 1.1.0 初识inotify</a></li>
+                    <li><a href="/linux/service/inotify_2.1.0_rsync.html">inotify: 2.1.0 inotify+rsync实现实时文件同步</a></li>
+                    <li><a href="/linux/service/inotify_3.1.0_rollback.html">inotify: 3.1.0 inotify实现代码回滚(设想)</a></li>
+                    <li><a href="/linux/service/inotify_4.1.0_sersync.html">inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具</a></li>
+                    <li><a href="/linux/service/ldap_1.1.0_installation.html">ldap 1.0.0: installation</a></li>
+                    <li><a href="/linux/service/vnc_1.1.0_installation.html">vnc: 1.1.0 centos 7 安装</a></li>
+                    <li><a href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">WIKI: 1.1.0 nginx+uwsgi部署moinmoin</a></li>
+                    <li><a href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">WIKI: 1.2.0 moinmoin基本设置</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>inotify: 3.1.0 inotify实现代码回滚(设想)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>08 Nov 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 需求背景</h3>
+
+<p>目前公司实际情况：
+1. 开发团队更新时段09:00 - 18:00
+2. 更新流程为：
+svn提交 -&gt; svn仓库中基于rsync的shell同步脚本 -&gt; 线上机器(重启tomcat)</p>
+
+<p>目前面临的问题：
+开发负责更新流程的svn提交和shell同步脚本的执行，运维只负责重启，所以无法控制备份时间，增加了实现按更新备份策略的难度</p>
+
+<p>因为代码回滚的核心就在于是否可以按照更新的频率去提前备份代码，所以基于上面的困难，就产生了此文的需求，如何实现按更新频率备份代码</p>
+
+<hr />
+
+<h3>2. 设想解决方案</h3>
+
+<h4>1) 前提</h4>
+
+<p>公司不想使用svn、git等版本控制来控制代码回滚，而我们通常用inotify+rsync来实现实时同步，但那并不能实现按照版本备份代码。</p>
+
+<h4>2) 方案</h4>
+
+<p>但是我们可以转变一下思路：
+1. 在每天09:00之前备份一次，作为每日的固定备份
+2. 使用inotify+rsync，在inotify检测到文件系统最后一次更新行为后的一段时间内，若没有更新则代表此次更新结束，做一次更新</p>
+
+<p>这样就可以实现，每日早上一次原始备份，在每次开发的更新行为之后进行一次实时备份，若开发更新频繁，则可控制保留最近的n次更新</p>
+
+<hr />
+
+<h3>3. 备份脚本</h3>
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">src</span><span class="o">=</span><span class="s1">&#39;/tmp/src1/&#39;</span>
+<span class="nv">dest</span><span class="o">=</span><span class="s1">&#39;/tmp/dest1&#39;</span>
+<span class="nv">start_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+
+<span class="k">while</span> <span class="nb">true</span>
+<span class="k">do</span>
+  <span class="nv">changed</span><span class="o">=</span><span class="sb">`</span>inotifywait -rqt <span class="m">10</span> -e modify,attrib,moved_to,moved_from,move,move_self,create,delete,delete_self <span class="nv">$src</span><span class="sb">`</span>
+  <span class="nv">node_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+  <span class="nv">process_time</span><span class="o">=</span><span class="k">$((</span><span class="nv">$node_time</span><span class="o">-</span><span class="nv">$start_time</span><span class="k">))</span>
+  <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$changed</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+    <span class="o">[</span> <span class="nv">$process_time</span> -gt <span class="m">20</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+      <span class="nv">backdir</span><span class="o">=</span><span class="nv">$dest</span>/<span class="sb">`</span>date +%m%d-%H%M<span class="sb">`</span>
+      mkdir -p <span class="nv">$backdir</span>
+      rsync -av --delete <span class="nv">$src</span> <span class="nv">$backdir</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="k">done</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

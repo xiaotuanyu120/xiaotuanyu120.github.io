@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+              <ul>
+                <li>
+                  <a href="/bigdata/cloudera/index.html">cloudera</a>
+                </li>
+                <li>
+                  <a href="/bigdata/elk/index.html">elk</a>
+                  <ul>
+                    <li><a href="/bigdata/elk/elasticsearch_1.1.0_docker_installation.html">elasticsearch 1.1.0: docker installation</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.0_elasticsearch_concept.html">elk 1.0.0: elasticsearch concept</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.1_elasticsearch_removal_of_mapping_types.html">elk 1.0.1: elasticsearch removal of mapping types</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.2_after_installation_explore_your_cluster.html">elk 1.10.2: explore you cluster</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.3_after_installation_modify_your_data.html">elk 1.0.3: modify your data</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.4_after_installation_explore_your_data.html">elk 1.0.4: explore your data</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.5_elasticsearch_index_templates.html">elk 1.0.5: elasticsearch index templates</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.6_elasticsearch_mapping.html">elk 1.0.6: elasticsearch mapping</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.7.a_elasticsearch_cluster_api_cluster_setting.html">elk 1.0.7.a: elasticsearch cluster api - cluster setting</a></li>
+                    <li><a href="/bigdata/elk/elk_1.0.8.a_elasticsearch_modules_snapshot_and_restore.html">elk 1.0.8.a: elasticsearch modules - snapshot and restore</a></li>
+                    <li><a href="/bigdata/elk/elk_1.1.0_production_installation.html">elk 1.1.0: production installation</a></li>
+                    <li><a href="/bigdata/elk/elk_1.1.1_production_installation_add_xpack.html">elk 1.1.1: production installation add xpack</a></li>
+                    <li><a href="/bigdata/elk/elk_1.2.0_elasticsearch_upgrade_from_6.2.4_to_6.4.2.html">elk 1.2.0: elasticsearch upgrade from 6.2.4 to 6.4.2</a></li>
+                    <li><a href="/bigdata/elk/elk_2.1.0_conf_logstash_index_name_date.html">elk 2.1.0 logstash config index name with current date</a></li>
+                    <li><a href="/bigdata/elk/elk_2.2.0_conf_filebeat_logstash_kafka.html">elk 2.2.0 config kafka with filebeat and logstash</a></li>
+                    <li><a href="/bigdata/elk/elk_2.2.1_error_filebeat_kafka_waiting_for_space.html">elk 2.2.1 config kafka with filebeat and logstash</a></li>
+                    <li><a href="/bigdata/elk/elk_3.1.0_logstash_plugin_grok.html">elk 3.1.0 logstash plugin grok</a></li>
+                    <li><a href="/bigdata/elk/elk_3.2.0_logstash_plugin_geoip_and_kibana_visualize.html">elk 3.2.0 logstash plugin geoip and kibana visualize</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>elk 1.1.0: production installation</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>14 May 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 组件介绍</h3>
+
+<p>详细的组件说明可参照官方文档，此处只列出基于生产环境的标准考量采用的组件。
+- <code>filebeat</code>, log collector
+- <code>redis</code>, message queue
+- <code>logstash</code>, log analysis &amp; filter
+- <code>elasticsearch</code>, storage &amp; search
+- <code>kibana</code>, web UI</p>
+
+<p>服务分布架构</p>
+
+<table>
+<thead>
+<tr>
+<th>服务器ip</th>
+<th>角色</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>192.168.86.24</td>
+<td>tomcat &amp; filebeat</td>
+<td>6.2.4</td>
+</tr>
+
+<tr>
+<td>192.168.86.105</td>
+<td>tomcat &amp; filebeat</td>
+<td>6.2.4</td>
+</tr>
+
+<tr>
+<td>192.168.86.138</td>
+<td>redis</td>
+<td>3.2.4</td>
+</tr>
+
+<tr>
+<td>192.168.86.130</td>
+<td>logstash</td>
+<td>6.2.4</td>
+</tr>
+
+<tr>
+<td>192.168.100.68</td>
+<td>elasticsearch</td>
+<td>6.2.4</td>
+</tr>
+
+<tr>
+<td>192.168.100.68</td>
+<td>kibana</td>
+<td>6.2.4</td>
+</tr>
+</tbody>
+</table>
+
+<h3>1. 安装及配置</h3>
+
+<h4>1) elasticsearch</h4>
+
+<p><em>在elasticsearch节点机器上执行以下命令</em></p>
+
+<p><strong>系统调优</strong></p>
+<pre class="chroma"><span class="c1"># 关闭swap</span>
+sudo swapoff -a
+<span class="c1"># 永久关闭需要打开/etc/fstab，注释包含swap关键字那行</span>
+
+<span class="c1"># 虚拟内存</span>
+sysctl -w vm.max_map_count<span class="o">=</span><span class="m">262144</span>
+<span class="c1"># 也可以在/etc/sysctl.conf中设置vm.max_map_count算</span>
+</pre>
+<p>如果使用的是systemd来host服务，以下ulimit的三个选项可以在systemd的unitfile里面配置</p>
+<pre class="chroma"><span class="c1"># 增大文件句柄</span>
+<span class="nb">ulimit</span> -n <span class="m">65536</span>
+<span class="c1"># 或者打开/etc/security/limits.conf，把nofile设置成65536</span>
+
+<span class="c1"># 线程数量</span>
+<span class="nb">ulimit</span> -u <span class="m">4096</span>
+<span class="c1"># 或者打开/etc/security/limits.conf，把nproc设定为4096</span>
+
+<span class="c1"># 内存锁定容量</span>
+<span class="nb">ulimit</span> -l unlimited
+<span class="c1"># 或者打开/etc/security/limits.conf，把memlock设定为unlimited</span>
+</pre>
+<p><strong>用户</strong></p>
+<pre class="chroma">groupadd elasticsearch
+useradd -g elasticsearch elasticsearch
+</pre>
+<p><strong>安装</strong></p>
+<pre class="chroma"><span class="nb">cd</span> /usr/local/src
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.tar.gz
+tar zxvf elasticsearch-6.2.4.tar.gz
+mv elasticsearch-6.2.4 /usr/local/elasticsearch
+mkdir /usr/local/elasticsearch/var
+chown -R elasticsearch.elasticsearch /usr/local/elasticsearch
+</pre>
+<p><strong>配置systemd文件</strong></p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Elasticsearch
+</span><span class="s1">Documentation=http://www.elastic.co
+</span><span class="s1">Wants=network-online.target
+</span><span class="s1">After=network-online.target
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">RuntimeDirectory=elasticsearch
+</span><span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144
+</span><span class="s1">Environment=JRE_HOME=/usr/java/jdk1.8.0_144/jre
+</span><span class="s1">Environment=ES_HOME=/usr/local/elasticsearch
+</span><span class="s1">Environment=ES_PATH_CONF=/usr/local/elasticsearch/config
+</span><span class="s1">Environment=PID_DIR=/usr/local/elasticsearch/var
+</span><span class="s1">EnvironmentFile=-/usr/local/elasticsearch/config/default/elasticsearch
+</span><span class="s1">
+</span><span class="s1">WorkingDirectory=/usr/local/elasticsearch
+</span><span class="s1">
+</span><span class="s1">User=elasticsearch
+</span><span class="s1">Group=elasticsearch
+</span><span class="s1">
+</span><span class="s1">ExecStart=/usr/local/elasticsearch/bin/elasticsearch -p ${PID_DIR}/elasticsearch.pid --quiet
+</span><span class="s1">
+</span><span class="s1"># StandardOutput is configured to redirect to journalctl since
+</span><span class="s1"># some error messages may be logged in standard output before
+</span><span class="s1"># elasticsearch logging system is initialized. Elasticsearch
+</span><span class="s1"># stores its logs in /var/log/elasticsearch and does not use
+</span><span class="s1"># journalctl by default. If you also want to enable journalctl
+</span><span class="s1"># logging, you can simply remove the &#34;quiet&#34; option from ExecStart.
+</span><span class="s1">StandardOutput=journal
+</span><span class="s1">StandardError=inherit
+</span><span class="s1">
+</span><span class="s1"># Specifies the maximum file descriptor number that can be opened by this process
+</span><span class="s1">LimitNOFILE=65536
+</span><span class="s1">
+</span><span class="s1"># Specifies the maximum number of processes
+</span><span class="s1">LimitNPROC=4096
+</span><span class="s1">
+</span><span class="s1"># Specifies the maximum number of memory_lock
+</span><span class="s1">LimitMEMLOCK=infinity
+</span><span class="s1">
+</span><span class="s1"># Specifies the maximum size of virtual memory
+</span><span class="s1">LimitAS=infinity
+</span><span class="s1">
+</span><span class="s1"># Specifies the maximum file size
+</span><span class="s1">LimitFSIZE=infinity
+</span><span class="s1">
+</span><span class="s1"># Disable timeout logic and wait until process is stopped
+</span><span class="s1">TimeoutStopSec=0
+</span><span class="s1">
+</span><span class="s1"># SIGTERM signal is used to stop the Java process
+</span><span class="s1">KillSignal=SIGTERM
+</span><span class="s1">
+</span><span class="s1"># Send the signal only to the JVM rather than its control group
+</span><span class="s1">KillMode=process
+</span><span class="s1">
+</span><span class="s1"># Java process is never killed
+</span><span class="s1">SendSIGKILL=no
+</span><span class="s1">
+</span><span class="s1"># When a JVM receives a SIGTERM signal it exits with code 143
+</span><span class="s1">SuccessExitStatus=143
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target
+</span><span class="s1">
+</span><span class="s1"># Built for ${project.name}-${project.version} (${project.name})&#39;</span> &gt; /usr/lib/systemd/system/elasticsearch.service
+
+systemctl daemon-reload
+</pre>
+<blockquote>
+<p>启动脚本：
+- <a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/rpm/init.d/elasticsearch">SysV init file</a><br />
+- <a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/common/systemd/elasticsearch.service">elasticsearch systemd unit file</a></p>
+
+<p>注意JAVA_HOME换成本地生效的版本，不要照抄。</p>
+</blockquote>
+
+<p><strong>配置elasticsearch.yml</strong></p>
+<pre class="chroma"><span class="k">cluster.name</span><span class="p">:</span><span class="w"> </span>dc-es<span class="w">
+</span><span class="w"></span><span class="k">node.name</span><span class="p">:</span><span class="w"> </span>node<span class="m">-1</span><span class="w">
+</span><span class="w"></span><span class="k">path.data</span><span class="p">:</span><span class="w"> </span>/home/es-data/data<span class="w">
+</span><span class="w"></span><span class="k">path.logs</span><span class="p">:</span><span class="w"> </span>/home/es-data/logs<span class="w">
+</span><span class="w"></span><span class="k">bootstrap.memory_lock</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span><span class="k">network.host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168</span><span class="m">.100</span><span class="m">.68</span><span class="w">
+</span><span class="w"></span><span class="k">http.port</span><span class="p">:</span><span class="w"> </span><span class="m">9200</span><span class="w">
+</span></pre>
+<blockquote>
+<p>当设定bootstrap.memory_lock: true锁定内存地址之后，容易出现错误：<code>memory locking requested for elasticsearch process but memory is not locked</code>，解决办法是在<code>/etc/security/limits.conf</code>中配置如下<code>* soft memlock unlimited</code>和<code>* hard memlock unlimited</code></p>
+
+<p><code>network.host</code>尽量配置成确定的ip，不要用0.0.0.0</p>
+
+<p>data和log目录设定好以后，要记得创建并授权给elasticsearch</p>
+<pre class="chroma">mkdir -p /home/es-data/<span class="o">{</span>data,logs<span class="o">}</span>
+chown -R elasticsearch.elasticsearch /home/es-data
+</pre></blockquote>
+
+<p><strong>配置jvm.options</strong></p>
+<pre class="chroma">-Xms16g
+-Xmx16g
+</pre>
+<h4>3) 安装kibana</h4>
+
+<p><em>以下命令在kibana节点服务器上执行</em></p>
+
+<p><strong>用户</strong></p>
+<pre class="chroma">groupadd kibana
+useradd -g kibana kibana
+</pre>
+<p><strong>安装</strong></p>
+<pre class="chroma"><span class="nb">cd</span> /usr/local/src
+wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-linux-x86_64.tar.gz
+tar -xzf kibana-6.2.4-linux-x86_64.tar.gz
+mv kibana-6.2.4-linux-x86_64 /usr/local/kibana
+chown -R kibana.kibana /usr/local/kibana
+</pre>
+<p><strong>配置systemd</strong></p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kibana 6
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=simple
+</span><span class="s1">User=kibana
+</span><span class="s1">Environment=KIBANA_HOME=/usr/local/kibana
+</span><span class="s1">Environment=CONFIG_PATH=/usr/local/kibana/kibana.yml
+</span><span class="s1">Environment=NODE_ENV=production
+</span><span class="s1">ExecStart=/usr/local/kibana/bin/kibana
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kibana.service
+
+systemctl daemon-reload
+</pre>
+<p><strong>配置kibana.yml</strong></p>
+<pre class="chroma"><span class="k">server.port</span><span class="p">:</span><span class="w"> </span><span class="m">5601</span><span class="w">
+</span><span class="w"></span><span class="k">server.host</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;0.0.0.0&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">elasticsearch.url</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;http://127.0.0.1:9200&#34;</span><span class="w">
+</span></pre>
+<blockquote>
+<p>注意<code>server.host</code>改成指定ip，<code>elasticsearch.url</code>指定elasticsearch的服务ip。</p>
+</blockquote>
+
+<h4>5) 安装logstash</h4>
+
+<p><em>以下命令在logstash节点服务器上执行</em></p>
+
+<p><strong>用户</strong></p>
+<pre class="chroma">groupadd logstash
+useradd -g logstash logstash
+</pre>
+<p><strong>安装</strong></p>
+<pre class="chroma"><span class="nb">cd</span> /usr/local/src
+wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.4.tar.gz
+tar zxvf logstash-6.2.4.tar.gz
+mv logstash-6.2.4 /usr/local/logstash
+chown -R logstash.logstash /usr/local/logstash
+
+mkdir /home/logstash/logs
+mkdir /home/logstash/data
+chown -R logstash.logstash /home/logstash
+</pre>
+<p><strong>配置systemd</strong></p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Logstash
+</span><span class="s1">Documentation=https://www.elastic.co/products/logstash
+</span><span class="s1">After=network.target
+</span><span class="s1">#ConditionPathExists=/etc/logstash.conf
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144
+</span><span class="s1">Environment=JRE_HOME=${JAVA_HOME}/jre
+</span><span class="s1">Environment=HOME=/usr/local/logstash
+</span><span class="s1">ExecStart=/usr/local/logstash/bin/logstash
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/logstash.service
+
+systemctl daemon-reload
+</pre>
+<blockquote>
+<p>HOME变量是为了解决一个<a href="https://github.com/awesome-print/awesome_print/issues/316">dotfile变量不存在问题</a></p>
+</blockquote>
+
+<p><strong>配置startup.options</strong></p>
+<pre class="chroma"># Override Java location
+#JAVACMD=/usr/bin/java
+
+# Set a home directory
+LS_HOME=/usr/local/logstash
+HOME=${LS_HOME}
+
+# logstash settings directory, the path which contains logstash.yml
+LS_SETTINGS_DIR=&#34;${LS_HOME}/config&#34;
+
+# Arguments to pass to logstash
+LS_OPTS=&#34;--path.settings ${LS_SETTINGS_DIR}&#34;
+
+# Arguments to pass to java
+LS_JAVA_OPTS=&#34;&#34;
+
+# pidfiles are not used the same way for upstart and systemd; this is for sysv users.
+LS_PIDFILE=/var/run/logstash.pid
+
+# user and group id to be invoked as
+LS_USER=logstash
+LS_GROUP=logstash
+
+# Enable GC logging by uncommenting the appropriate lines in the GC logging
+# section in jvm.options
+LS_GC_LOG_FILE=/var/log/logstash/gc.log
+
+# Open file limit
+LS_OPEN_FILES=16384
+
+# Nice level
+LS_NICE=19
+
+# Change these to have the init script named and described differently
+# This is useful when running multiple instances of Logstash on the same
+# physical box or vm
+SERVICE_NAME=&#34;logstash&#34;
+SERVICE_DESCRIPTION=&#34;logstash&#34;
+</pre>
+<blockquote>
+<p>这个文件仅用于$LS_HOME/bin/system-install去生成启动脚本用，如果使用的是systemd，那就不需要用这个文件了</p>
+</blockquote>
+
+<p><strong>配置jvm.options</strong></p>
+<pre class="chroma">-Xms16g
+-Xmx16g
+</pre>
+<p><strong>配置logstash.yml</strong></p>
+<pre class="chroma"><span class="c"># ------------ Data path ------------------</span><span class="w">
+</span><span class="w"></span><span class="k">path.data</span><span class="p">:</span><span class="w"> </span>/home/logstash/data<span class="w">
+</span><span class="w"></span><span class="c"># ------------ Pipeline Settings --------------</span><span class="w">
+</span><span class="w"></span><span class="c"># pipeline.id: main</span><span class="w">
+</span><span class="w"></span><span class="c"># pipeline.batch.size: 125</span><span class="w">
+</span><span class="w"></span><span class="c"># path.config: /usr/local/logstash/config/redis-pipelines.conf</span><span class="w">
+</span><span class="w"></span><span class="c"># ------------ Pipeline Configuration Settings --------------</span><span class="w">
+</span><span class="w"></span><span class="c"># config.test_and_exit: true</span><span class="w">
+</span><span class="w"></span><span class="k">config.reload.automatic</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span><span class="k">config.reload.interval</span><span class="p">:</span><span class="w"> </span>3s<span class="w">
+</span><span class="w"></span><span class="c"># ------------ Debugging Settings --------------</span><span class="w">
+</span><span class="w"></span><span class="k">log.level</span><span class="p">:</span><span class="w"> </span>info<span class="w">
+</span><span class="w"></span><span class="k">path.logs</span><span class="p">:</span><span class="w"> </span>/home/logstash/logs<span class="w">
+</span></pre>
+<blockquote>
+<p>此配置主要是配置logstash的启动选项，在command line指定的选项会覆盖此配置文件中的配置</p>
+</blockquote>
+
+<p><strong>配置pipeline.yml</strong></p>
+<pre class="chroma">- <span class="k">pipeline.id</span><span class="p">:</span><span class="w"> </span>redis-pipe<span class="w">
+</span><span class="w">  </span><span class="k">queue.type</span><span class="p">:</span><span class="w"> </span>persisted<span class="w">
+</span><span class="w">  </span><span class="k">path.config</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/usr/local/logstash/config/redis-pipelines.conf&#34;</span><span class="w">
+</span></pre>
+<blockquote>
+<p>默认的pipeline配置的主文件</p>
+</blockquote>
+
+<p><strong>配置redis-pipelines.conf</strong></p>
+<pre class="chroma">input {
+    redis {
+        data_type =&gt; &#34;list&#34;
+        key =&gt; &#34;filebeat-midd&#34;
+        host =&gt; &#34;192.168.86.138&#34;
+        port =&gt; 6379
+        threads =&gt; 5
+        password =&gt; &#34;my_password&#34;
+    }
+}
+filter {
+
+}
+output {
+  elasticsearch {
+    hosts =&gt; [&#34;192.168.100.68:9200&#34;]
+    index =&gt; &#34;%{[fields][service]}&#34;
+  }
+}
+</pre>
+<blockquote>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-inputs-redis.html">input redis docs</a></li>
+<li><a href="https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/input/redis.html">input redis example</a></li>
+</ul>
+
+<p><code>&quot;%{[fields][service]}&quot;</code>是filebeat中的一个field，<a href="https://discuss.elastic.co/t/how-to-use-filebeat-fields-name-value-in-logstash-config/79791/3">如何在logstash中使用filebeat的field</a></p>
+
+<p>logstash中的input部分，redis的key是不可以模糊匹配的，只能写唯一值。 但是比较奇怪的是，好多中文甚至是英文文档里面，他们的配置举例里面都是带wildcard的类似于<code>test-*</code>这种写法，针对这种情况，我在elasticsearch的官方讨论区里面找到了一个elasticsearch团队的成员的确切回答，这边只能写唯一值(warkolm
+Mark Walkom Elastic Team Member May 24:I believe you can only input a single key there.)，链接在<a href="https://discuss.elastic.co/t/redis-input-wildcard-key-seems-not-working/132962">这里:elasticsearch的讨论区</a>，还有<a href="https://groups.google.com/forum/#!msg/logstash-users/GWNx5OFd5XQ/tTHrAmjshRgJ">这里:谷歌讨论组</a></p>
+</blockquote>
+
+<h4>7) 安装filebeat</h4>
+
+<p><strong>安装</strong></p>
+<pre class="chroma"><span class="nb">cd</span> /usr/local/src
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.4-x86_64.rpm
+rpm -vi filebeat-6.2.4-x86_64.rpm
+</pre>
+<p><strong>配置文件：/etc/filebeat/filebeat.yml</strong></p>
+<pre class="chroma"><span class="c">#=========================== Filebeat prospectors =============================</span><span class="w">
+</span><span class="w"></span><span class="k">filebeat.prospectors</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="k">type</span><span class="p">:</span><span class="w"> </span>log<span class="w">
+</span><span class="w">  </span><span class="k">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="k">tail_files</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">  </span><span class="k">paths</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span>- /home/middleservice/blog_midd/logs/catalina.out<span class="w">
+</span><span class="w">  </span><span class="k">fields</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">service</span><span class="p">:</span><span class="w"> </span>blog_midd<span class="w">
+</span><span class="w">  </span><span class="k">multiline.pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;^[[:space:]]+(at|\.{3})\b|^Caused by:&#39;</span><span class="w">
+</span><span class="w">  </span><span class="k">multiline.negate</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w">  </span><span class="k">multiline.match</span><span class="p">:</span><span class="w"> </span>after<span class="w">
+</span><span class="w"></span><span class="c">#============================= Filebeat modules ===============================</span><span class="w">
+</span><span class="w"></span><span class="k">filebeat.config.modules</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">path</span><span class="p">:</span><span class="w"> </span>${path.config}/modules.d/<span class="cp">*.yml</span><span class="w">
+</span><span class="w">  </span><span class="k">reload.enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="w"></span><span class="c">#==================== Elasticsearch template setting ==========================</span><span class="w">
+</span><span class="w"></span><span class="k">setup.template.settings</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">index.number_of_shards</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w"></span><span class="c">#================================ General =====================================</span><span class="w">
+</span><span class="w"></span><span class="k">name</span><span class="p">:</span><span class="w"> </span><span class="m">86.24</span><span class="w">
+</span><span class="w"></span><span class="k">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;middleservice&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;service&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w"></span><span class="c">#================================ Outputs =====================================</span><span class="w">
+</span><span class="w"></span><span class="k">output.redis</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;192.168.86.138&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">  </span><span class="k">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;my_password&#34;</span><span class="w">
+</span><span class="w">  </span><span class="k">bulk_max_size</span><span class="p">:</span><span class="w"> </span><span class="m">1024</span><span class="w">
+</span><span class="w">  </span><span class="k">key</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;filebeat-midd&#34;</span><span class="w">
+</span><span class="w">  </span><span class="k">db</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">  </span><span class="k">timeout</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></pre>
+<blockquote>
+<ul>
+<li><a href="http://blog.51cto.com/kexiaoke/2092029">fileds替换document_type</a></li>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/master/_examples_of_multiline_configuration.html">filebeat multiline example</a></li>
+<li><code>filebeat modules list</code>, 可查看启用的<a href="https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-modules.html">modules</a></li>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/current/configuration-general-options.html">general config docs</a></li>
+<li>redis的<a href="https://www.elastic.co/guide/en/beats/filebeat/current/redis-output.html#_literal_datatype_literal">datatype配置</a>默认是list</li>
+<li><a href="https://discuss.elastic.co/t/filebeat-error-err-failed-to-publish-events-caused-by-read-tcp-i-o-timeout/68023">Failed to RPUSH to redis list with write tcp i/o timeout错误解决</a></li>
+<li>filebeat默认从日志文件开头开始收集日志，如果希望filebeat从文件末尾开始收集日志，需要在日志源处配置<code>tail_files: true</code>。同时，filebeat会维护一个registry文件，来记录filebeat读取日志的位置，如果是中途增加了<code>tail_files: true</code>配置，需要关闭filebeat服务，删除这个registry文件，然后重新打开filebeat服务才可以。 rpm格式安装的filebeat的registry文件位于:<code>/var/lib/filebeat/registry</code>。 详细日志可以参考：<a href="https://www.elastic.co/guide/en/beats/filebeat/master/migration-registry-file.html">Update the registry file</a></li>
+</ul>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

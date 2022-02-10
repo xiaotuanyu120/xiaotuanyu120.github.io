@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/advanced/index.html">advanced</a>
+                </li>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                  <ul>
+                    <li><a href="/python/fluent_py/1.1__getitem__len__.html">1.1 magic method: __getitem__ __len__</a></li>
+                    <li><a href="/python/fluent_py/1.2.2__repr__str__.html">1.2.2 magic method: __repr__</a></li>
+                    <li><a href="/python/fluent_py/1.2.3__add__mul__sub__div__.html">1.2.3 magic method: 运算</a></li>
+                    <li><a href="/python/fluent_py/3.3_dict_setdefault_defaultdict__missing__.html">3.3 检查dict中key是否存在</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>1.1 magic method: __getitem__ __len__</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>26 Jun 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 什么是魔术方法？</h3>
+
+<p>魔术方法（magic method）是特殊方法的昵称。例如，len(collection)背后是collection.<strong>len</strong>()，而obj[key]背后是obj.<strong>getitem</strong>(key)。</p>
+
+<p>关于数据模型和魔法方法，书中的描述是：</p>
+<pre class="chroma">数据模型其实是对 Python 框架的描述，它规范了这门语言自身构建模块
+的接口，这些模块包括但不限于序列、迭代器、函数、类和上下文管理
+器。
+不管在哪种框架下写程序，都会花费大量时间去实现那些会被框架本身
+调用的方法， Python 也不例外。Python 解释器碰到特殊的句法时，会使
+用特殊方法去激活一些基本的对象操作，这些特殊方法的名字以两个下
+划线开头，以两个下划线结尾（例如 __getitem__）。比如 obj[key]
+的背后就是 __getitem__ 方法，为了能求得 my_collection[key] 的
+值，解释器实际上会调用 my_collection.__getitem__(key)。
+
+这些特殊方法名能让你自己的对象实现和支持以下的语言构架，并与之交互：
+- 迭代
+- 集合类
+- 属性访问
+- 运算符重载
+- 函数和方法的调用
+- 对象的创建和销毁
+- 字符串表示形式和格式化
+- 管理上下文（即 with 块）
+</pre>
+<p>个人对它的理解就是，python提供了一种一致性，无论是原生的数据类型，还是我们自定义的数据类型，<br />
+只要在对象中实现了相应的魔法方法（也称为特殊方法），我们就可以使自定义的对象拥有和原生数据类型一样的属性，例如，可迭代，可测量长度等。
+&gt; <a href="https://docs.python.org/2/reference/datamodel.html">https://docs.python.org/2/reference/datamodel.html</a></p>
+
+<hr />
+
+<h3>1. <code>__getitem__</code>,<code>__len__</code></h3>
+
+<p>首先我们先创建一个基础的类，没有<code>__getitem__</code>,<code>__len__</code></p>
+<pre class="chroma"><span class="k">class</span> <span class="nc">ChineseFistName</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChineseFistName</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfn</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">zhao</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">qian</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">sun</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">li</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">zhou</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wu</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">zheng</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wang</span><span class="s1">&#39;</span><span class="p">]</span>
+
+<span class="n">cfn</span> <span class="o">=</span> <span class="n">ChineseFistName</span><span class="p">(</span><span class="p">)</span>
+
+<span class="c1"># test __getitem__</span>
+<span class="k">for</span> <span class="n">first_n</span> <span class="ow">in</span> <span class="n">cfn</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">first_n</span>
+<span class="c1"># Traceback (most recent call last):</span>
+<span class="c1">#   File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;</span>
+<span class="c1"># TypeError: &#39;ChineseFistName&#39; object is not iterable</span>
+
+<span class="c1"># test __len__</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">cfn</span><span class="p">)</span>
+<span class="c1"># Traceback (most recent call last):</span>
+<span class="c1">#   File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;</span>
+<span class="c1"># TypeError: object of type &#39;ChineseFistName&#39; has no len()</span>
+</pre>
+<p>我们可以看到python抛出了类型错误，而这正是因为我们自定义的类型ChineseFistName没有<code>__getitem__</code>,<code>__len__</code>这两个特殊方法。</p>
+
+<p>增加<code>__getitem__</code>,<code>__len__</code>，再次测试</p>
+<pre class="chroma"><span class="k">class</span> <span class="nc">ChineseFistName</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChineseFistName</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cfn</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">zhao</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">qian</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">sun</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">li</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">zhou</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wu</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">zheng</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wang</span><span class="s1">&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfn</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cfn</span><span class="p">)</span>
+
+<span class="n">cfn</span> <span class="o">=</span> <span class="n">ChineseFistName</span><span class="p">(</span><span class="p">)</span>
+
+<span class="c1"># test __getitem__</span>
+<span class="k">for</span> <span class="n">first_n</span> <span class="ow">in</span> <span class="n">cfn</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">first_n</span>
+<span class="n">zhao</span>
+<span class="n">qian</span>
+<span class="n">sun</span>
+<span class="n">li</span>
+<span class="n">zhou</span>
+<span class="n">wu</span>
+<span class="n">zheng</span>
+<span class="n">wang</span>
+
+<span class="c1"># test __len__</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">cfn</span><span class="p">)</span>
+<span class="mi">8</span>
+</pre>
+<blockquote>
+<p>魔法方法是被python解释器调用的，我们只能使用<code>len(obj)</code>，而不能使用<code>obj.__len__(obj)</code></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

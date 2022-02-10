@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                  <ul>
+                    <li><a href="/service/lnmp/lanmp_check_compile_args.html">LANMP: 查看编译参数</a></li>
+                    <li><a href="/service/lnmp/lnmp_install.html">LNMP: 安装+配置+启动脚本</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>LNMP: 安装+配置+启动脚本</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>30 Nov 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1、MYSQL安装</h2>
+
+<h3>１、INSTALL PACKAGE NEEDED</h3>
+<pre class="chroma">yum install gcc gcc-c++ cmake ncurses-devel -y
+yum groupinstall base <span class="s2">&#34;Development Tools&#34;</span> -y
+</pre>
+<h3>2、USER</h3>
+<pre class="chroma"><span class="c1"># 创建组及用户（系统用户）</span>
+groupadd mysql
+useradd -r -g mysql mysql
+ 
+<span class="c1"># -r参数代表的是mysql用户是一个系统用户，uid小于500</span>
+id mysql
+<span class="nv">uid</span><span class="o">=</span>498<span class="o">(</span>mysql<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span>500<span class="o">(</span>mysql<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span>500<span class="o">(</span>mysql<span class="o">)</span>
+</pre>
+<h3>3、COMPILE</h3>
+<pre class="chroma"><span class="c1"># 下载源码(版本使用的是和上面环境中相同或相近的版本)</span>
+wget http://cdn.mysql.com/archives/mysql-5.1/mysql-5.1.72.tar.gz
+tar zxvf mysql-5.1.72.tar.gz
+ 
+<span class="c1"># 源码编译</span>
+<span class="nb">cd</span> mysql-5.1.72
+./configure --prefix<span class="o">=</span>/data/server/mysql --with-mysqld-user<span class="o">=</span>mysql --with-charset<span class="o">=</span>utf8 --with-extra-charsets<span class="o">=</span>all
+make
+make install
+</pre>
+<blockquote>
+<p>编译参数详解
+- &ndash;prefix，指定软件目录
+- &ndash;with-mysqld-user，指定启动脚本mysqld的执行用户
+- &ndash;with-charset，指定默认的编码格式
+- &ndash;with-extra-charset，指定其他的编码格式</p>
+</blockquote>
+
+<h3>4、BASEDIR &amp; DATADIR</h3>
+<pre class="chroma"><span class="c1"># 修改目录属主属组</span>
+mkdir /data/mysql-data
+chown -R mysql:mysql /data/server/mysql/
+chown -R mysql:mysql /data/mysql-data/
+</pre>
+<h3>5、INITIALIZE DATABASE</h3>
+<pre class="chroma"><span class="c1"># 初始化数据库</span>
+scripts/mysql_install_db --datadir<span class="o">=</span>/data/mysql-data/ --basedir<span class="o">=</span>/data/server/mysql/ --user<span class="o">=</span>mysql
+</pre>
+<h3>6、DAEMON &amp; CONFIGURATION</h3>
+<pre class="chroma"><span class="c1"># 拷贝标准启动脚本&amp;配置文件</span>
+cp support-files/mysql.server /etc/init.d/mysqld
+mv /etc/my.cnf /etc/my.cnf.old
+cp support-files/my-medium.cnf /etc/my.cnf
+chmod <span class="m">755</span> /etc/init.d/mysqld
+ 
+<span class="c1"># 配置启动脚本</span>
+sed -i <span class="s2">&#34;</span><span class="s2">s|^basedir=.*</span>$<span class="s2">|basedir=/data/server/mysql|g</span><span class="s2">&#34;</span> /etc/init.d/mysqld
+sed -i <span class="s2">&#34;</span><span class="s2">s|^datadir=.*</span>$<span class="s2">|datadir=/data/mysql-data|g</span><span class="s2">&#34;</span> /etc/init.d/mysqld
+</pre>
+<h3>7、ENABLE &amp; START SERVICE</h3>
+<pre class="chroma"><span class="c1"># 设置mysql服务开机启动并启动mysql</span>
+chkconfig mysqld on
+service mysqld start
+</pre>
+<h3>8、SET MYSQL PASSWORD</h3>
+<pre class="chroma">/data/server/mysql/bin/mysqladmin -u root password <span class="s1">&#39;examplemysql&#39;</span>
+</pre>
+<h2>2、PHP安装</h2>
+
+<h3>0、准备用户及编译环境</h3>
+<pre class="chroma">useradd -r -s /sbin/nologin php-fpm
+yum install libxml2-devel libcurl-devel libjpeg-turbo-devel libpng-devel freetype-devel libmcrypt-devel epel-release libevent-devel -y
+<span class="c1"># 只要基础包+php版本+下面编译参数跟此文档一致，就不会编译错误</span>
+ 
+<span class="c1"># 库文件做软连接</span>
+ln -s /usr/lib64/libjpeg.so /usr/lib/libjpeg.so  
+ln -s /usr/lib64/libpng.so /usr/lib/libpng.so
+<span class="sb">`</span><span class="sb">`</span><span class="sb">`</span> 
+
+<span class="c1">### 1、源码编译5.3.3</span>
+<span class="sb">`</span><span class="sb">`</span><span class="sb">`</span> bash
+<span class="c1"># 下载php源码</span>
+wget http://museum.php.net/php5/php-5.3.3.tar.gz
+tar zxvf php-5.3.3.tar.gz
+
+<span class="c1"># tarball安装php</span>
+<span class="nb">cd</span> php-5.3.3
+./configure --prefix<span class="o">=</span>/data/server/php --with-config-file-path<span class="o">=</span>/data/server/php/etc --enable-fpm --with-fpm-user<span class="o">=</span>php-fpm --with-fpm-group<span class="o">=</span>php-fpm --with-mysql<span class="o">=</span>/data/server/mysql --with-mysql-sock<span class="o">=</span>/tmp/mysql.sock --with-libxml-dir --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-zlib-dir --with-mcrypt --enable-soap --enable-gd-native-ttf --enable-ftp --enable-mbstring --enable-exif --disable-ipv6 --with-curl --with-mysqli<span class="o">=</span>/data/server/mysql/bin/mysql_config
+make <span class="nb">test</span>
+make install
+ 
+<span class="c1"># 拷贝php配置文件及php-fpm配置文件</span>
+mkdir /data/server/php/etc
+cp php.ini-production /data/server/php/etc/php.ini
+cp /data/server/php/etc/php-fpm.conf.default /data/server/php/etc/php-fpm.conf
+<span class="c1"># 拷贝php-fpm启动文件</span>
+cp ./sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+chmod <span class="m">755</span> /etc/init.d/php-fpm
+<span class="c1"># 制作php配置文件软连接</span>
+mkdir /etc/php
+ln -s /data/server/php/etc/php.ini /etc/php/php.ini
+ln -s /data/server/php/etc/php-fpm.conf /etc/php/php-fpm.conf
+
+<span class="c1"># 服务开机启动</span>
+chkconfig --add php-fpm
+chkconfig php-fpm on
+</pre>
+<h2>3、nginx安装</h2>
+
+<h3>1、用户及环境准备</h3>
+<pre class="chroma">groupadd nginx
+useradd -g nginx nginx
+yum install -y pcre-devel openssl openssl-devel
+<span class="sb">`</span><span class="sb">`</span><span class="sb">`</span> 
+
+<span class="c1">### 2、下载源码安装</span>
+<span class="sb">`</span><span class="sb">`</span><span class="sb">`</span> bash
+wget http://nginx.org/download/nginx-1.8.0.tar.gz
+tar zxvf nginx-1.8.0.tar.gz
+<span class="nb">cd</span> nginx-1.8.0
+./configure --user<span class="o">=</span>nginx --group<span class="o">=</span>nginx --prefix<span class="o">=</span>/data/server/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre  --with-http_realip_module
+make
+make install
+</pre>
+<h3>3、启动脚本</h3>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;#!/bin/bash
+</span><span class="s1"># chkconfig: - 30 21
+</span><span class="s1"># description: http service.
+</span><span class="s1"> 
+</span><span class="s1"># Source Function Library
+</span><span class="s1">. /etc/init.d/functions
+</span><span class="s1"> 
+</span><span class="s1"># Nginx Settings
+</span><span class="s1">NGINX_SBIN=&#34;/data/server/nginx/sbin/nginx&#34;
+</span><span class="s1">NGINX_CONF=&#34;/data/server/nginx/conf/nginx.conf&#34;
+</span><span class="s1">NGINX_PID=&#34;/data/server/nginx/logs/nginx.pid&#34;
+</span><span class="s1">RETVAL=0
+</span><span class="s1">prog=&#34;Nginx&#34;
+</span><span class="s1"> 
+</span><span class="s1">start() {
+</span><span class="s1">         echo -n $&#34;Starting $prog: &#34;
+</span><span class="s1">         mkdir -p /dev/shm/nginx_temp
+</span><span class="s1">         daemon $NGINX_SBIN -c $NGINX_CONF
+</span><span class="s1">         RETVAL=$?
+</span><span class="s1">         echo
+</span><span class="s1">         return $RETVAL
+</span><span class="s1">}
+</span><span class="s1"> 
+</span><span class="s1">stop() {
+</span><span class="s1">         echo -n $&#34;Stopping $prog: &#34;
+</span><span class="s1">         killproc -p $NGINX_PID $NGINX_SBIN -TERM
+</span><span class="s1">         rm -rf /dev/shm/nginx_temp
+</span><span class="s1">         RETVAL=$?
+</span><span class="s1">         echo
+</span><span class="s1">         return $RETVAL
+</span><span class="s1">}
+</span><span class="s1"> 
+</span><span class="s1">reload(){
+</span><span class="s1">         echo -n $&#34;Reloading $prog: &#34;
+</span><span class="s1">         killproc -p $NGINX_PID $NGINX_SBIN -HUP
+</span><span class="s1">         RETVAL=$?
+</span><span class="s1">         echo
+</span><span class="s1">         return $RETVAL
+</span><span class="s1">}
+</span><span class="s1"> 
+</span><span class="s1">restart(){
+</span><span class="s1">         stop
+</span><span class="s1">         start
+</span><span class="s1">}
+</span><span class="s1"> 
+</span><span class="s1">configtest(){
+</span><span class="s1">     $NGINX_SBIN -c $NGINX_CONF -t
+</span><span class="s1">     return 0
+</span><span class="s1">}
+</span><span class="s1">case &#34;$1&#34; in    
+</span><span class="s1">   start)
+</span><span class="s1">         start
+</span><span class="s1">         ;;
+</span><span class="s1">   stop)
+</span><span class="s1">         stop
+</span><span class="s1">         ;;
+</span><span class="s1">   reload)
+</span><span class="s1">         reload
+</span><span class="s1">         ;;
+</span><span class="s1">   restart)
+</span><span class="s1">         restart
+</span><span class="s1">         ;;
+</span><span class="s1">   configtest)
+</span><span class="s1">         configtest
+</span><span class="s1">         ;;
+</span><span class="s1">   *)
+</span><span class="s1">         echo $&#34;Usage: $0 {start|stop|reload|restart|configtest}&#34;
+</span><span class="s1">         RETVAL=1
+</span><span class="s1">esac
+</span><span class="s1"> 
+</span><span class="s1">exit $RETVAL&#39;</span> &gt; /etc/init.d/nginxd
+
+chmod <span class="m">755</span> /etc/init.d/nginxd
+chkconfig --add nginxd
+chkconfig nginxd on
+</pre>
+<h2>4. 源码编译5.2.6的失败经历记录</h2>
+
+<h3>1. 源码编译安装5.2.6(最后的php-fpm启动脚本有点问题，推荐直接使用5.3.3及以上版本)</h3>
+<pre class="chroma"><span class="c1"># 下载php源码</span>
+wget http://museum.php.net/php5/php-5.2.6.tar.gz
+tar zxvf php-5.2.6.tar.gz
+
+<span class="c1"># 下载php-fpm源码（5.3.3以后会集成，之前的版本需要自己下载）</span>
+wget http://php-fpm.org/downloads/php-5.2.6-fpm-0.5.9.diff.gz
+
+<span class="c1"># 安装patch命令，把php-fpm包patch到php中去</span>
+yum install patch -y
+gzip -cd php-5.2.6-fpm-0.5.9.diff.gz <span class="p">|</span> patch -d php-5.2.6 -p1
+
+<span class="c1"># tarball安装php</span>
+<span class="nb">cd</span> php-5.2.6
+./configure --prefix<span class="o">=</span>/data/server/php --with-config-file-path<span class="o">=</span>/data/server/php/conf --enable-fpm --with-fpm-user<span class="o">=</span>php-fpm --with-fpm-group<span class="o">=</span>php-fpm --with-mysql<span class="o">=</span>/data/server/mysql --with-mysql-sock<span class="o">=</span>/tmp/mysql.sock --with-libxml-dir --with-gd --with-jpeg-dir --with-png-dir --with-freetype-dir --with-iconv-dir --with-zlib-dir --with-mcrypt --enable-soap  --enable-gd-native-ttf   --enable-ftp  --enable-mbstring  --enable-exif    --disable-ipv6     --with-curl
+make
+make install
+
+<span class="c1"># 拷贝php配置文件及php-fpm配置文件</span>
+cp php.ini-recommended /data/server/php/etc/php.ini
+cp ./sapi/cgi/fpm/conf/php-fpm.conf.in /data/server/php/etc/php-fpm.conf
+<span class="c1"># 拷贝php-fpm启动文件</span>
+cp ./sapi/cgi/fpm/init.d/php-fpm.in /etc/init.d/php-fpm
+chmod <span class="m">755</span> /etc/init.d/php-fpm
+<span class="c1"># 制作php配置文件软连接</span>
+ln -s /data/server/php/etc/php.ini /etc/php/php.ini
+ln -s /data/server/php/etc/php-fpm.conf /etc/php/php-fpm.conf
+</pre>
+<h3>2. FAILURE &amp; WARN</h3>
+
+<p>1）错误libjpeg
+错误信息：configure: error: libjpeg.(a|so) not found.
+解决方案：# ln -s /usr/lib64/libjpeg.so /usr/lib/</p>
+
+<p>2）错误libpng
+错误信息：configure: error: libpng.(a|so) not found.
+解决方案：# ln -s /usr/lib64/libpng.so /usr/lib/</p>
+
+<p>3）重点报警
+warn信息：
+Notice: Following unknown configure options were used:</p>
+
+<p>&ndash;enable-fpm
+&ndash;with-fpm-user=php-fpm
+&ndash;with-fpm-group=php-fpm
+warn原因：
+查阅官方文档，在&rdquo;FastCGI Process Manager (FPM)&ldquo;中会找到答案。
+原来只有在php5.3.3中，php才把php-fpm集成到sapi中，以前版本的php是没有集成php-fpm的。</p>
+
+<p>详细链接：
+<a href="http://php.net/manual/en/install.fpm.php">http://php.net/manual/en/install.fpm.php</a></p>
+
+<p>4）make错误
+报错信息：
+/usr/bin/ld: cannot find -lltdl
+collect2: ld returned 1 exit status
+make: *** [sapi/cgi/php-cgi] Error 1
+解决方案：</p>
+
+<h1>yum install libtool-ltdl-devel -y</h1>
+
+<p>扩展1、如何找到哪个包来安装patch命令</p>
+
+<h1>yum provides /usr/bin/patch</h1>
+
+<p>patch-2.6-6.el6.x86_64 : Utility for modifying/upgrading files
+Repo        : base
+Matched from:
+Filename    : /usr/bin/patch</p>
+
+<h2>在不知道一个命令是什么包里的工具时，除了百度还可以用yum provides命令。</h2>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

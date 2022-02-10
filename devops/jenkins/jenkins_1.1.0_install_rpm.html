@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                  <ul>
+                    <li><a href="/devops/jenkins/jenkins_1.0.0_install_war.html">jenkins: 1.0.0 使用war包启动jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">jenkins: 1.1.0 使用二进制文件安装jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_1.2.0_install_docker.html">jenkins: 1.2.0 在docker中运行jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.0.0_config_basic.html">jenkins: 2.0.0 基本配置</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">jenkins: 2.1.0 git+maven+jdk</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">jenkins: 2.2.0 配置JENKINS_HOME</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">jenkins: 2.3.0 修改slave节点的环境变量</a></li>
+                    <li><a href="/devops/jenkins/jenkins_3.1.0_management_master_and_slave.html">jenkins: 3.1.0 管理slave节点</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jenkins: 1.1.0 使用二进制文件安装jenkins</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>12 Aug 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1.  rpm版本</h3>
+
+<h4>1) rpm版本安装</h4>
+<pre class="chroma"><span class="c1"># 安装jenkins稳定版的源和key</span>
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+<span class="c1"># 安装jenkins</span>
+yum install jenkins
+yum install java-1.8.0-openjdk
+</pre>
+<h4>2) apache安装与配置</h4>
+
+<p><strong>安装httpd2.2</strong></p>
+<pre class="chroma">yum install httpd
+</pre>
+<p><strong>配置httpd</strong></p>
+<pre class="chroma"><span class="c1"># 主配文件，配置</span>
+vim /etc/httpd/conf/httpd.conf
+**********************************
+<span class="c1"># 确保下列proxy模块被加载</span>
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
+LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+...
+
+<span class="c1"># 确保主配文件包含了虚拟主机配置目录</span>
+Include conf.d/*.conf
+**********************************
+
+<span class="c1"># 创建虚拟主机文件</span>
+vim /etc/httpd/conf.d/jenkins.conf
+**********************************
+&lt;VirtualHost *:80&gt;
+    ServerName demo.jenkins.com
+    ProxyRequests Off
+    &lt;Proxy *&gt;
+        Order deny,allow
+        Allow from all
+    &lt;/Proxy&gt;
+    ProxyPreserveHost on
+    ProxyPass / http://127.0.0.1:8080/
+&lt;/VirtualHost&gt;
+<span class="c1"># 注意&#34;http://127.0.0.1:8080/&#34;要写全，最开始写成&#34;http://127.0.0.1:8080&#34;报错</span>
+**********************************
+</pre>
+<p><strong>重启httpd服务</strong></p>
+<pre class="chroma">service httpd restart
+</pre>
+<blockquote>
+<p>注意检查报错信息，做出相应修改</p>
+</blockquote>
+
+<h3>jenkins配置</h3>
+<pre class="chroma"><span class="c1"># 配置jenkins只监听本机ip</span>
+vim /etc/sysconfig/jenkins
+**********************************
+<span class="nv">JENKINS_LISTEN_ADDRESS</span><span class="o">=</span><span class="s2">&#34;127.0.0.1&#34;</span>
+**********************************
+
+<span class="c1"># 重启jenkins</span>
+service jenkins restart
+</pre>
+<hr />
+
+<h3>2. 访问测试</h3>
+
+<ul>
+<li>修改本机的hosts文件，&rdquo;10.10.180.11 demo.jenkins.com&rdquo;，来本机解析测试域名</li>
+<li>web浏览器访问&rdquo;demo.jenkins.com&rdquo;</li>
+<li>按照提示找到默认密码，并记得登录后修改它
+<code>bash
+cat /var/lib/jenkins/secrets/initialAdminPassword
+4506575e41914f5791dafac528dff1b5
+</code></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

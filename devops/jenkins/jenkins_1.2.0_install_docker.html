@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                  <ul>
+                    <li><a href="/devops/jenkins/jenkins_1.0.0_install_war.html">jenkins: 1.0.0 使用war包启动jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_1.1.0_install_rpm.html">jenkins: 1.1.0 使用二进制文件安装jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_1.2.0_install_docker.html">jenkins: 1.2.0 在docker中运行jenkins</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.0.0_config_basic.html">jenkins: 2.0.0 基本配置</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.1.0_config_git_maven_jdk.html">jenkins: 2.1.0 git+maven+jdk</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.2.0_config_JENKINS_HOME.html">jenkins: 2.2.0 配置JENKINS_HOME</a></li>
+                    <li><a href="/devops/jenkins/jenkins_2.3.0_config_env_on_slave.html">jenkins: 2.3.0 修改slave节点的环境变量</a></li>
+                    <li><a href="/devops/jenkins/jenkins_3.1.0_management_master_and_slave.html">jenkins: 3.1.0 管理slave节点</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jenkins: 1.2.0 在docker中运行jenkins</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Jan 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 环境</h3>
+
+<p>安装docker和docker-compose肯定是必备环境，这里会使用docker-compose来启动一个nginx和一个jenkins，link在一起提供服务<br />
+<a href="https://github.com/jenkinsci/docker/blob/master/README.md">run jenkins in container</a><br />
+<a href="https://hub.docker.com/r/jenkins/jenkins/">jenkins image on docker hub</a></p>
+
+<hr />
+
+<h3>1. 准备文件</h3>
+
+<p>准备文件目录结构</p>
+<pre class="chroma">mkdir -p /data/docker/nginx
+</pre>
+<p>nginx 文件准备</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;FROM nginx:stable
+</span><span class="s1">RUN rm /etc/nginx/conf.d/default.conf
+</span><span class="s1">ADD nginx.conf /etc/nginx/conf.d/&#39;</span> &gt; /data/docker/nginx/Dockerfile
+
+<span class="nb">echo</span> <span class="s1">&#39;# Configuration for the server
+</span><span class="s1">server {
+</span><span class="s1">    charset utf-8;
+</span><span class="s1">    listen 80;
+</span><span class="s1">    location / {
+</span><span class="s1">        proxy_pass       http://jenkins:8080;
+</span><span class="s1">        proxy_redirect   off;
+</span><span class="s1">        proxy_set_header Host $host;
+</span><span class="s1">        proxy_set_header X-Real-IP $remote_addr;
+</span><span class="s1">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span><span class="s1">        proxy_set_header X-Forwarded-Host $server_name;
+</span><span class="s1">        }
+</span><span class="s1">    }&#39;</span> &gt; /data/docker/nginx/nginx.conf
+</pre>
+<p>docker-compose文件准备</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s2">&#34;# nginx:80 --&gt; jenkins:8080
+</span><span class="s2">version: &#39;2&#39;
+</span><span class="s2">services:
+</span><span class="s2">  nginx:
+</span><span class="s2">    container_name: nginx
+</span><span class="s2">    build: nginx
+</span><span class="s2">    restart: always
+</span><span class="s2">    ports:
+</span><span class="s2">      - &#34;</span>80:80<span class="s2">&#34;
+</span><span class="s2">      - &#34;</span>443:443<span class="s2">&#34;
+</span><span class="s2">    links:
+</span><span class="s2">      - jenkins
+</span><span class="s2">  jenkins:
+</span><span class="s2">    image: &#39;jenkins/jenkins:lts&#39;
+</span><span class="s2">    container_name: jenkins
+</span><span class="s2">    restart: always
+</span><span class="s2">    volumes:
+</span><span class="s2">      - &#39;/data/jenkins_home:/var/jenkins_home&#39;
+</span><span class="s2">    environment:
+</span><span class="s2">      - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai&#34;</span> &gt; /data/docker/docker-compose-nginx-jenkins.yaml
+</pre>
+<h3>2. 运行jenkins</h3>
+<pre class="chroma"><span class="c1"># 创建jenkins数据目录</span>
+mkdir -p /data/jenkins_home
+
+<span class="c1"># 因为jenkins在container中的属主属组是jenkins，uid是1000，需要提前设定好属主属组，不然会报错</span>
+chown -R 1000:1000 /data/jenkins_home
+
+<span class="c1"># 使用docker-compose启动jenkins</span>
+docker-compose -f /data/docker/docker-compose-nginx-jenkins.yaml up -d
+</pre>
+<h3>3. 用以上方式启动jenkins的问题，及解决方案</h3>
+
+<p>使用以上方式启动jenkins，有几个问题</p>
+
+<h4>1) 缺少组件</h4>
+
+<ul>
+<li>没有git</li>
+<li>没有jdk</li>
+<li>没有mvn
+google搜索了解决方案
+<code>bash
+mkdir jenkins
+cd jenkins
+cat &lt;&lt; EOF &gt; Dockerfile
+FROM jenkins/jenkins:lts
+USER root
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone ;\
+echo &quot;jenkins ALL=NOPASSWD: ALL&quot; &gt;&gt; /etc/sudoers
+RUN apt-get update \
+  &amp;&amp; apt-get install -y git maven sudo libltdl7 rsync \
+  &amp;&amp; rm -rf /var/lib/apt/lists/*
+USER jenkins
+ADD jdk-8u221-linux-x64.tar.gz /usr/local/
+ADD jdk-7u80-linux-x64.tar.gz /usr/local/
+RUN export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+EOF
+</code>
+&gt; apt 安装 git maven rsync
+&gt; jenkins的时区设置为东八区
+&gt; PATH中去掉openjdk的路径，避免jenkins中误操作使用了自带的openjdk编译
+#### 2) 如何在jenkins(docker)中编译docker镜像
+jenkins本身就是docker中运行的，怎么在它里面完成编译docker镜像的任务呢，难道我需要在里面继续安装一个docker？<br />
+显然那样太low，网上参考google文档，找到了一种解决方案，就是通过mountdocker文件和socket文件去docker容器中，使jenkins可以调用host的docker命令和socket文件，来达到编译镜像的目的
+<code>yaml
+version: '2'
+services:
+jenkins:
+#image: 'jenkins/jenkins:lts'
+image: 'jenkins/jenkins:myjks'
+container_name: jenkins
+restart: always
+volumes:
+  - /data/jenkins_home:/var/jenkins_home
+  - /var/run/docker.sock:/var/run/docker.sock
+  - /usr/bin/docker:/usr/bin/docker
+environment:
+  - JAVA_ARGS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai
+</code></li>
+</ul>
+
+<blockquote>
+<p>jenkins/jenkins:myjks，是我按照上面的Dockerfile自己编译的docker镜像</p>
+
+<p>注意如果jenkins里面配置unix:///var/run/docker.sock时提示找不到，或者权限不足，可以改一下docker.sock的文件权限来解决</p>
+
+<p>注：<a href="https://renzedevries.wordpress.com/2016/06/30/building-containers-with-docker-in-docker-and-jenkins/">参考链接</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

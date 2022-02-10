@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                  <ul>
+                    <li><a href="/database/oracle/1.0.0_silent_installation_env.html">1.0.0 silent模式安装oracle 11G R2 之 环境准备</a></li>
+                    <li><a href="/database/oracle/1.1.0_silent_installation_oracle_install.html">1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装</a></li>
+                    <li><a href="/database/oracle/1.2.0_silent_installation_netca_listen.html">1.2.0 silent模式安装oracle 11G R2 之 netca监听</a></li>
+                    <li><a href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">1.3.0 silent模式安装oracle 11G R2 之 安装database实例</a></li>
+                    <li><a href="/database/oracle/1.4.0_silent_installation_error.html">1.4.0 silent模式安装oracle 11G R2 之 安装错误</a></li>
+                    <li><a href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">1.5.0 silent安装之cvuqdisk</a></li>
+                    <li><a href="/database/oracle/1.6.0_OUI_installation_error.html">1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合</a></li>
+                    <li><a href="/database/oracle/2.1.0_oracle_sql_statement.html">2.1.0 oracle sql语句之表备份实例</a></li>
+                    <li><a href="/database/oracle/2.2.0_oracle_sql_drop_database.html">2.2.0 oracle sql语句之删除数据库</a></li>
+                    <li><a href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">3.1.0 RAC-架构预览</a></li>
+                    <li><a href="/database/oracle/3.10.0_rac_dbca_create_database.html">3.10.0 RAC-通过DBCA创建数据库</a></li>
+                    <li><a href="/database/oracle/3.11.0_rac_management.html">3.11.0 RAC-管理命令</a></li>
+                    <li><a href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">3.2.0 RAC-配置主机名和网络</a></li>
+                    <li><a href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">3.3.0 RAC-配置ntp服务</a></li>
+                    <li><a href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">3.4.0 RAC-系统配置</a></li>
+                    <li><a href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">3.5.0 RAC-配置用户和组</a></li>
+                    <li><a href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">3.6.0 RAC-存储配置</a></li>
+                    <li><a href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">3.7.0 RAC-安装oracle grid infrastructure</a></li>
+                    <li><a href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">3.8.0 RAC-安装oracle 11g r2软件</a></li>
+                    <li><a href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">3.9.0 RAC-通过ASMCA创建ASM硬盘组</a></li>
+                    <li><a href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">4.1.0 oracle error之ORA-01034</a></li>
+                    <li><a href="/database/oracle/4.2.0_oracle_error_display.html">4.2.0 oracle error之图形安装DISPLAY错误</a></li>
+                    <li><a href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">5.1.0 oracle dataguard 11g r2 搭建</a></li>
+                    <li><a href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">5.1.1 oracle dataguard 11g r2 rman恢复错误</a></li>
+                    <li><a href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">5.2.0 oracle dataguard 11g r2 一主多备搭建</a></li>
+                    <li><a href="/database/oracle/5.3.0_dataguard_oracle_11gr2_manage.html">5.3.0 oracle dataguard 11g r2 管理命令</a></li>
+                    <li><a href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">6.2.0 ora-28001 the password has expired</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>3.2.0 RAC-配置主机名和网络</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>23 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 配置hostname</h3>
+
+<p>在rac集群中，所有的节点都必须有唯一的hostname</p>
+<pre class="chroma">hostname db-oracle-node1
+
+cat /etc/sysconfig/network
+<span class="nv">NETWORKING</span><span class="o">=</span>yes
+<span class="nv">HOSTNAME</span><span class="o">=</span>db-oracle-node1
+</pre>
+<hr />
+
+<h3>2. 配置网络</h3>
+
+<p>节点网卡名称：eth1-4，对应架构图中的em1-4</p>
+
+<p>规划的网段：
+- public：192.168.33.0/24(eth1,eth2)
+- private：172.16.44.0/24(eth3)
+- private：172.16.48.0/24(eth4)</p>
+
+<p>网络配置主要关注正确设置public和private网络接口以及Single Client Access Name(SCAN)的DNS配置。 public网络bond网卡来提供高可用性。 High Availability Internet Protocol (HAIP)为private网络接口提供故障迁移和负载均衡。 SCAN为Oracle RAC database 11g r2提供了一个唯一的名称，可供集群中的任一客户端访问Oracle数据库时使用。</p>
+
+<h4>1) 基于DNS配置vip和SCAN</h4>
+
+<p><a href="https://oracle-base.com/articles/linux/dns-configuration-for-scan#var_named">oracle dns 文档</a></p>
+
+<p>step 1 由于测试机器有限，dns在node1上安装，安装dns</p>
+<pre class="chroma"><span class="c1"># node1上执行此命令</span>
+yum install bind-libs <span class="nb">bind</span> bind-utils
+</pre>
+<p>step 2 配置dns</p>
+<pre class="chroma"><span class="c1"># 主配文件</span>
+vim /etc/named.conf
+******************************************************
+options <span class="o">{</span>
+        <span class="c1"># 配置dns服务监听的端口和ip</span>
+        listen-on port <span class="m">53</span> <span class="o">{</span> 127.0.0.1<span class="p">;</span> 192.168.33.103<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+        ...
+        <span class="c1"># zone配置所在目录(保持默认)</span>
+        directory       <span class="s2">&#34;/var/named&#34;</span><span class="p">;</span>
+        ...
+        <span class="c1"># 允许使用dns服务的ip及ip段</span>
+        allow-query     <span class="o">{</span> localhost<span class="p">;</span> 127.0.0.1<span class="p">;</span> 192.168.33.0/24<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+        ...
+        <span class="c1"># 此dns无法解析的，去哪里继续查询，这里指定局域网的公用dns</span>
+        forwarders <span class="o">{</span>192.168.33.1<span class="p">;</span> 10.0.0.4<span class="p">;</span><span class="o">}</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="c1"># 增加正向解析规则，localdomain是我的测试环境，需要更新到正式环境所在的域</span>
+zone <span class="s2">&#34;localdomain.&#34;</span> IN <span class="o">{</span>
+        <span class="nb">type</span> master<span class="p">;</span>
+        file <span class="s2">&#34;localdomain.zone&#34;</span><span class="p">;</span>
+        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+<span class="c1"># 增加反向解析规则</span>
+zone <span class="s2">&#34;33.168.192.in-addr.arpa.&#34;</span> IN <span class="o">{</span>
+        <span class="nb">type</span> master<span class="p">;</span>
+        file <span class="s2">&#34;33.168.192.in-addr.arpa&#34;</span><span class="p">;</span>
+        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
+<span class="o">}</span><span class="p">;</span>
+
+******************************************************
+
+<span class="c1"># 创建和上面配置域名称对应的zone文件，放在directory的配置目录中</span>
+vim /var/named/localdomain.zone
+******************************************************
+<span class="nv">$TTL</span>    <span class="m">86400</span>
+@               IN SOA  localhost root.localhost <span class="o">(</span>
+                                        <span class="m">42</span>              <span class="p">;</span> serial <span class="o">(</span>d. adams<span class="o">)</span>
+                                        3H              <span class="p">;</span> refresh
+                                        15M             <span class="p">;</span> retry
+                                        1W              <span class="p">;</span> expiry
+                                        1D <span class="o">)</span>            <span class="p">;</span> minimum
+                IN NS           localhost
+localhost       IN A            127.0.0.1
+db-oracle-node1            IN A    192.168.33.103
+db-oracle-node2            IN A    192.168.33.104
+db-oracle-node1-vip        IN A    192.168.33.111
+db-oracle-node2-vip        IN A    192.168.33.112
+db-oracle-scan        IN A    192.168.33.120
+db-oracle-scan        IN A    192.168.33.121
+db-oracle-scan        IN A    192.168.33.122
+******************************************************
+
+vim /var/named/33.168.192.in-addr.arpa
+******************************************************
+<span class="nv">$ORIGIN</span> 33.168.192.in-addr.arpa.
+<span class="nv">$TTL</span> 1H
+@       IN      SOA     db-oracle-node1.localdomain.     root.db-oracle-node1.localdomain. <span class="o">(</span>      <span class="m">2</span>
+                                                3H
+                                                1H
+                                                1W
+                                                1H <span class="o">)</span>
+33.168.192.in-addr.arpa.         IN NS      db-oracle-node1.localdomain.
+
+<span class="m">103</span>     IN PTR  db-oracle-node1.localdomain.
+<span class="m">104</span>     IN PTR  db-oracle-node2.localdomain.
+<span class="m">111</span>     IN PTR  db-oracle-node1-vip.localdomain.
+<span class="m">112</span>     IN PTR  db-oracle-node2-vip.localdomain.
+<span class="m">120</span>     IN PTR  db-oracle-node-scan.localdomain.
+<span class="m">121</span>     IN PTR  db-oracle-node-scan.localdomain.
+<span class="m">122</span>     IN PTR  db-oracle-node-scan.localdomain.
+******************************************************
+<span class="c1">## A记录和PTR记录</span>
+<span class="c1"># A记录是将domain解析成ip</span>
+<span class="c1"># PTR是将ip反解析成domain</span>
+</pre>
+<p>step 3 启动dns服务</p>
+<pre class="chroma">service named start
+chkconfig named on
+</pre>
+<p>step 4 配置节点的dns</p>
+<pre class="chroma"><span class="c1"># 节点上配置dns</span>
+vim /etc/resolv.conf
+******************************************************
+search localdomain
+nameserver 192.168.33.103
+******************************************************
+</pre>
+<p>step 5 检测oracle SCAN的解析</p>
+<pre class="chroma"><span class="c1">## host命令解析db-oracle-scan</span>
+host db-oracle-scan
+db-oracle-scan.localdomain has address 192.168.33.120
+db-oracle-scan.localdomain has address 192.168.33.121
+db-oracle-scan.localdomain has address 192.168.33.122
+
+<span class="c1">## 检测SCAN的三个ip轮询</span>
+<span class="c1"># 第一次请求</span>
+nslookup db-oracle-scan
+Server:         192.168.33.103
+Address:        192.168.33.103#53
+
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.120
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.121
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.122
+
+<span class="c1"># 第二次请求</span>
+nslookup db-oracle-scan
+Server:         192.168.33.103
+Address:        192.168.33.103#53
+
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.121
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.122
+Name:   db-oracle-scan.localdomain
+Address: 192.168.33.120
+</pre>
+<p>step 6 检测每个节点的vip</p>
+<pre class="chroma"><span class="c1"># 检测node1的vip</span>
+host db-oracle-node1-vip
+db-oracle-node1-vip.localdomain has address 192.168.33.111
+nslookup db-oracle-node1-vip
+Server:         192.168.33.103
+Address:        192.168.33.103#53
+
+Name:   db-oracle-node1-vip.localdomain
+Address: 192.168.33.111
+
+<span class="c1"># 检测node2的vip</span>
+host db-oracle-node2-vip
+db-oracle-node2-vip.localdomain has address 192.168.33.112
+
+nslookup db-oracle-node2-vip
+Server:         192.168.33.103
+Address:        192.168.33.103#53
+
+Name:   db-oracle-node2-vip.localdomain
+Address: 192.168.33.112
+</pre>
+<p>step 7 检测反向解析</p>
+<pre class="chroma"><span class="c1">## 检测反向解析</span>
+dig -x 192.168.33.120
+
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.8.2rc1-RedHat-9.8.2-0.47.rc1.el6_8.3 &lt;&lt;&gt;&gt; -x 192.168.33.120
+<span class="p">;</span><span class="p">;</span> global options: +cmd
+<span class="p">;</span><span class="p">;</span> Got answer:
+<span class="p">;</span><span class="p">;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">48957</span>
+<span class="p">;</span><span class="p">;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;</span><span class="p">;</span> QUESTION SECTION:
+<span class="p">;</span>120.33.168.192.in-addr.arpa.   IN      PTR
+
+<span class="p">;</span><span class="p">;</span> ANSWER SECTION:
+120.33.168.192.in-addr.arpa. <span class="m">3600</span> IN    PTR     db-oracle-node-scan.localdomain.
+
+<span class="p">;</span><span class="p">;</span> AUTHORITY SECTION:
+33.168.192.in-addr.arpa. <span class="m">3600</span>   IN      NS      db-oracle-node1.localdomain.
+
+<span class="p">;</span><span class="p">;</span> ADDITIONAL SECTION:
+db-oracle-node1.localdomain. <span class="m">86400</span> IN   A       192.168.33.103
+
+<span class="p">;</span><span class="p">;</span> Query time: <span class="m">0</span> msec
+<span class="p">;</span><span class="p">;</span> SERVER: 192.168.33.103#53<span class="o">(</span>192.168.33.103<span class="o">)</span>
+<span class="p">;</span><span class="p">;</span> WHEN: Fri Dec <span class="m">23</span> 02:39:47 <span class="m">2016</span>
+<span class="p">;</span><span class="p">;</span> MSG SIZE  rcvd: <span class="m">136</span>
+</pre>
+<p>至此，我们提供了以下项目的ip解析</p>
+
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>hostname</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>192.168.33.120</td>
+<td>db-oracle-node-scan</td>
+</tr>
+
+<tr>
+<td>192.168.33.121</td>
+<td>db-oracle-node-scan</td>
+</tr>
+
+<tr>
+<td>192.168.33.122</td>
+<td>db-oracle-node-scan</td>
+</tr>
+
+<tr>
+<td>192.168.33.103</td>
+<td>db-oracle-node1</td>
+</tr>
+
+<tr>
+<td>192.168.33.104</td>
+<td>db-oracle-node2</td>
+</tr>
+
+<tr>
+<td>192.168.33.111</td>
+<td>db-oracle-node1-vip</td>
+</tr>
+
+<tr>
+<td>192.168.33.112</td>
+<td>db-oracle-node2-vip</td>
+</tr>
+</tbody>
+</table>
+
+<h4>2) Public Network 配置</h4>
+
+<p>public网络包含两个网卡eth1和eth2，这两个网卡会做绑定配置以达到高可用的效果。<br />
+step 1 关闭NetworkManager(各节点)</p>
+<pre class="chroma">service NetworkManager stop
+chkconfig NetworkManager off
+</pre>
+<p>step 2 配置eth1和eth2的bond</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s2">&#34;alias bond0 bonding&#34;</span> &gt; /etc/modprobe.d/bonding.conf
+cp /etc/sysconfig/network-scripts/ifcfg-eth1 /etc/sysconfig/network-scripts/ifcfg-eth1.bak
+cp /etc/sysconfig/network-scripts/ifcfg-eth2 /etc/sysconfig/network-scripts/ifcfg-eth2.bak
+
+vim /etc/sysconfig/network-scripts/ifcfg-bond0
+******************************************************
+<span class="nv">DEVICE</span><span class="o">=</span><span class="s2">&#34;bond0&#34;</span>
+<span class="nv">BONDING_OPTS</span><span class="o">=</span><span class="s2">&#34;mode=1 miimon=100 primary=eth1&#34;</span>
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span><span class="s2">&#34;no&#34;</span>
+<span class="nv">IPADDR</span><span class="o">=</span><span class="s2">&#34;192.168.33.103&#34;</span>
+<span class="nv">NETMASK</span><span class="o">=</span><span class="s2">&#34;255.255.255.0&#34;</span>
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="s2">&#34;yes&#34;</span>
+******************************************************
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth1
+******************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>eth1
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">IPV6INIT</span><span class="o">=</span>no
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">SLAVE</span><span class="o">=</span>yes
+<span class="nv">MASTER</span><span class="o">=</span>bond0
+******************************************************
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth2
+******************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>eth2
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">IPV6INIT</span><span class="o">=</span>no
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">SLAVE</span><span class="o">=</span>yes
+<span class="nv">MASTER</span><span class="o">=</span>bond0
+******************************************************
+</pre>
+<p>step 3 重启network服务</p>
+<pre class="chroma">service network restart
+</pre>
+<p>step 4 检查bond0状态</p>
+<pre class="chroma">ifconfig bond0
+bond0     Link encap:Ethernet  HWaddr 08:00:27:C6:FD:B7
+          inet addr:192.168.33.103  Bcast:192.168.33.255  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fec6:fdb7/64 Scope:Link
+          UP BROADCAST RUNNING MASTER MULTICAST  MTU:1500  Metric:1
+          RX packets:1009 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:464 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:95221 <span class="o">(</span>92.9 KiB<span class="o">)</span>  TX bytes:74759 <span class="o">(</span>73.0 KiB<span class="o">)</span>
+
+ifconfig eth1
+eth1      Link encap:Ethernet  HWaddr 08:00:27:C6:FD:B7
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:5243 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2573 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:514986 <span class="o">(</span>502.9 KiB<span class="o">)</span>  TX bytes:406781 <span class="o">(</span>397.2 KiB<span class="o">)</span>
+
+ifconfig eth2
+eth2      Link encap:Ethernet  HWaddr 08:00:27:C6:FD:B7
+          UP BROADCAST RUNNING SLAVE MULTICAST  MTU:1500  Metric:1
+          RX packets:1177 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:17 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:142004 <span class="o">(</span>138.6 KiB<span class="o">)</span>  TX bytes:1276 <span class="o">(</span>1.2 KiB<span class="o">)</span>
+</pre>
+<p>step 5 检查public状态</p>
+<pre class="chroma"><span class="c1"># db-oracle-node1上</span>
+ping db-oracle-node2
+PING db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>1.53 ms
+<span class="m">64</span> bytes from db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.619 ms
+...
+<span class="c1"># db-oracle-node2上</span>
+ping db-oracle-node2
+PING db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.011 ms
+<span class="m">64</span> bytes from db-oracle-node2.localdomain <span class="o">(</span>192.168.33.104<span class="o">)</span>: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.038 ms
+...
+</pre>
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>hostname</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>192.168.33.103</td>
+<td>db-oracle-node1</td>
+</tr>
+
+<tr>
+<td>193.168.33.104</td>
+<td>db-oracle-node2</td>
+</tr>
+</tbody>
+</table>
+
+<h4>3) private network 配置</h4>
+
+<p>private网络包含两个网卡eth3和eth4，提供集群节点的内部通信。通过oracle的Highly Available Internet Protocol (HAIP)，我们可以使得Oracle Grid Infrastructure可以在多达4个网卡上进行负载均衡。
+step 1 配置文件修改</p>
+<pre class="chroma">cp /etc/sysconfig/network-scripts/ifcfg-eth3 /etc/sysconfig/network-scripts/ifcfg-eth3.bak
+cp /etc/sysconfig/network-scripts/ifcfg-eth4 /etc/sysconfig/network-scripts/ifcfg-eth4.bak
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth3
+******************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>eth3
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">IPV6INIT</span><span class="o">=</span>no
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">IPADDR</span><span class="o">=</span>172.16.44.103
+<span class="nv">NETMASK</span><span class="o">=</span>255.255.255.0
+<span class="nv">PEERDNS</span><span class="o">=</span>no
+<span class="nv">MTU</span><span class="o">=</span><span class="m">9000</span>
+******************************************************
+
+vim /etc/sysconfig/network-scripts/ifcfg-eth4
+******************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>eth4
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">IPV6INIT</span><span class="o">=</span>no
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">IPADDR</span><span class="o">=</span>172.16.48.103
+<span class="nv">NETMASK</span><span class="o">=</span>255.255.255.0
+<span class="nv">PEERDNS</span><span class="o">=</span>no
+<span class="nv">MTU</span><span class="o">=</span><span class="m">9000</span>
+******************************************************
+</pre>
+<blockquote>
+<p>要确保同一个节点的eth3和eth4不在同一个subnet中，否则若连接丢失的情况下会导致节点重启</p>
+</blockquote>
+
+<p>step 2 检查private网络状态</p>
+<pre class="chroma"><span class="c1"># db-oracle-node1</span>
+ping 172.16.44.104
+PING 172.16.44.104 <span class="o">(</span>172.16.44.104<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 172.16.44.104: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.343 ms
+<span class="m">64</span> bytes from 172.16.44.104: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.577 ms
+...
+
+ping 172.16.48.104
+PING 172.16.48.104 <span class="o">(</span>172.16.48.104<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 172.16.48.104: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.207 ms
+<span class="m">64</span> bytes from 172.16.48.104: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.588 ms
+...
+
+<span class="c1"># db-oracle-node2</span>
+ping 172.16.44.103
+PING 172.16.44.103 <span class="o">(</span>172.16.44.103<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 172.16.44.103: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>1.65 ms
+<span class="m">64</span> bytes from 172.16.44.103: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.431 ms
+
+ping 172.16.48.103
+PING 172.16.48.103 <span class="o">(</span>172.16.48.103<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 172.16.48.103: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.721 ms
+<span class="m">64</span> bytes from 172.16.48.103: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.556 ms
+...
+</pre>
+<table>
+<thead>
+<tr>
+<th>IP</th>
+<th>Ethernet Interface</th>
+<th>Host</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>172.16.44.103</td>
+<td>eth3</td>
+<td>db-oracle-node1</td>
+</tr>
+
+<tr>
+<td>172.16.48.103</td>
+<td>eth4</td>
+<td>db-oracle-node1</td>
+</tr>
+
+<tr>
+<td>172.16.44.104</td>
+<td>eth3</td>
+<td>db-oracle-node2</td>
+</tr>
+
+<tr>
+<td>172.16.48.104</td>
+<td>eth4</td>
+<td>db-oracle-node2</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                  <ul>
+                    <li><a href="/service/jumpserver/jumpserver_1.0.1_install_with_podman.html">jumpserver 1.0.1 install with podman</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jumpserver 1.0.1 install with podman</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>18 Feb 2021</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. jumpserver简介</h3>
+
+<p>jumpserver是一个开源堡垒机。</p>
+
+<p>组件包含：
+- core &gt;&gt; 核心组件
+- koko &gt;&gt; 字符协议的connector
+- <del>guacamole</del> &gt;&gt; 图形协议的connector（主要是win的vnc、rdp、ssh，此教程中取消安装这个组件）
+- lina &gt;&gt; 前端界面
+- <del>luna</del> &gt;&gt; web terminal（此教程中取消安装这个组件）
+- task &gt;&gt; celery，执行批量任务的（代码和core是一套）</p>
+
+<h3>1. 安装jumpserver</h3>
+
+<p>需要说明的点：
+- 使用podman rootless运行容器(普通用户container)
+- 在selinux enforcing状态运行</p>
+
+<p>使用root身份，准备启动环境</p>
+<pre class="chroma"><span class="c1"># create podman running user</span>
+useradd -d /data/container container
+
+<span class="c1"># runtime var</span>
+<span class="nv">VERSION</span><span class="o">=</span>v2.7.1
+<span class="nv">JUMP_DATA_DIR</span><span class="o">=</span>/data/container/data
+<span class="nv">JUMP_RUNTIME_DIR</span><span class="o">=</span>/data/container/runtime
+<span class="nv">JUMP_SCRIPT_DIR</span><span class="o">=</span>/data/container/jms_script
+<span class="nv">JUMP_CONF_FILE</span><span class="o">=</span><span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/config.txt
+
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>
+mkdir -p <span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>
+
+<span class="c1"># jumpserver running var</span>
+<span class="nv">secret_key</span><span class="o">=</span><span class="k">$(</span>ip a<span class="p">|</span>tail -10<span class="p">|</span>base64<span class="p">|</span>head -c 16<span class="k">)</span>
+<span class="nv">bootstrap_token</span><span class="o">=</span><span class="k">$(</span>ip a<span class="p">|</span>tail -10<span class="p">|</span>base64<span class="p">|</span>head -c 46<span class="k">)</span>
+<span class="nv">db_name</span><span class="o">=</span>jumpserver
+<span class="nv">db_user</span><span class="o">=</span>jumpserver
+<span class="nv">db_password</span><span class="o">=</span><span class="k">$(</span>ip a<span class="p">|</span>tail -11<span class="p">|</span>base64<span class="p">|</span>head -c 16<span class="k">)</span>
+<span class="nv">db_root_password</span><span class="o">=</span><span class="k">$(</span>ip a<span class="p">|</span>tail -12<span class="p">|</span>base64<span class="p">|</span>head -c 16<span class="k">)</span>
+<span class="nv">redis_password</span><span class="o">=</span><span class="k">$(</span>ip a<span class="p">|</span>tail -12<span class="p">|</span>base64<span class="p">|</span>head -c 32<span class="p">|</span>tail -c 16<span class="k">)</span>
+
+<span class="c1"># prepare var env for container user</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/env.sh
+</span><span class="s">secret_key=${secret_key}
+</span><span class="s">bootstrap_token=${bootstrap_token}
+</span><span class="s">db_name=${db_name}
+</span><span class="s">db_user=${db_user}
+</span><span class="s">db_password=${db_password}
+</span><span class="s">db_root_password=${db_root_password}
+</span><span class="s">redis_password=${redis_password}
+</span><span class="s">VERSION=${VERSION}
+</span><span class="s">JUMP_DATA_DIR=${JUMP_DATA_DIR}
+</span><span class="s">JUMP_RUNTIME_DIR=${JUMP_RUNTIME_DIR}
+</span><span class="s">JUMP_SCRIPT_DIR=${JUMP_SCRIPT_DIR}
+</span><span class="s">JUMP_CONF_FILE=${JUMP_CONF_FILE}
+</span><span class="s">EOF</span>
+chmod <span class="m">600</span> <span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/env.sh
+
+<span class="c1"># prepare config file (for guacamole only)</span> 
+mkdir /opt
+<span class="nb">cd</span> /opt
+wget https://github.com/jumpserver/installer/releases/download/<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>/jumpserver-installer-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>.tar.gz
+tar -xf jumpserver-installer-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>.tar.gz
+<span class="nb">cd</span> jumpserver-installer-<span class="si">${</span><span class="nv">VERSION</span><span class="si">}</span>
+cp config-example.txt <span class="si">${</span><span class="nv">JUMP_CONF_FILE</span><span class="si">}</span>
+
+<span class="c1"># last step: correct owner &amp; group</span>
+chown -R container.container /data/container
+</pre>
+<h4>下面的操作都是用container用户执行（不要用su切换到container用户，那样env加载不全，podman执行会有问题）</h4>
+
+<p>加载启动环境变量文件</p>
+<pre class="chroma"><span class="nb">source</span> ~/jms_script/env.sh
+</pre>
+<p>准备POD创建和启动脚本</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/jms_pod_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman pod stop jms
+</span><span class="s">podman pod rm jms
+</span><span class="s">
+</span><span class="s">podman pod create -p 80:80 -p 443:443 -p 6635:6635 --name jms
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<ul>
+<li>80 &gt; nginx</li>
+<li>443 &gt; nginx</li>
+<li>6635 &gt; koko-ssh</li>
+</ul>
+</blockquote>
+
+<p>MYSQL 环境准备</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>/mysql/data
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/mysql/<span class="o">{</span>pass,conf.d<span class="o">}</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">db_root_password</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/mysql/pass/root.pass
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">db_password</span><span class="si">}</span> &gt; <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/mysql/pass/jumpserver.pass
+chmod <span class="m">600</span> <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/mysql/pass/*
+<span class="nb">echo</span> <span class="s1">&#39;[mysqld]
+</span><span class="s1">basedir    		= /usr/
+</span><span class="s1">datadir    		= /var/lib/mysql
+</span><span class="s1">pid-file  		= /var/run/mysqld/mysqld.pid
+</span><span class="s1">socket     		= /var/run/mysqld/mysqld.sock
+</span><span class="s1">port       		= 3306
+</span><span class="s1">user       		= mysql
+</span><span class="s1">
+</span><span class="s1">log_error              	= /var/lib/mysql/mysql-error.log
+</span><span class="s1">slow-query-log-file    	= /var/lib/mysql/mysql-slow.log
+</span><span class="s1">log_bin                	= /var/lib/mysql/mysql-bin.log
+</span><span class="s1">relay-log              	= /var/lib/mysql/mysql-relay-bin
+</span><span class="s1">
+</span><span class="s1">server-id              	= 1
+</span><span class="s1">#read_only 		= 1
+</span><span class="s1">innodb_buffer_pool_size = 1024M
+</span><span class="s1">innodb_log_buffer_size  = 16M
+</span><span class="s1">#key_buffer_size         = 64M
+</span><span class="s1">key_buffer_size         = 128M
+</span><span class="s1">query_cache_size        = 256M
+</span><span class="s1">tmp_table_size          = 128M
+</span><span class="s1">
+</span><span class="s1">#lower_case_table_names = 1
+</span><span class="s1">binlog_format          = mixed
+</span><span class="s1">#binlog_format          	= statement
+</span><span class="s1">skip-external-locking
+</span><span class="s1">skip-name-resolve
+</span><span class="s1">character-set-server 	= utf8
+</span><span class="s1">collation-server 	= utf8_bin
+</span><span class="s1">#collation-server 	= utf8_general_ci
+</span><span class="s1">max_allowed_packet      = 16M
+</span><span class="s1">thread_cache_size       = 256
+</span><span class="s1">table_open_cache 	= 4096
+</span><span class="s1">back_log                = 1024
+</span><span class="s1">max_connect_errors      = 100000
+</span><span class="s1">#wait_timeout            = 864000
+</span><span class="s1">
+</span><span class="s1">interactive_timeout  =  1800
+</span><span class="s1">wait_timeout  = 1800
+</span><span class="s1">
+</span><span class="s1">max_connections         = 2048
+</span><span class="s1">sort_buffer_size        = 16M
+</span><span class="s1">join_buffer_size        = 4M
+</span><span class="s1">read_buffer_size        = 4M
+</span><span class="s1">#read_rnd_buffer_size    = 8M
+</span><span class="s1">read_rnd_buffer_size    = 16M
+</span><span class="s1">binlog_cache_size       = 2M
+</span><span class="s1">thread_stack            = 192K
+</span><span class="s1">
+</span><span class="s1">max_heap_table_size     = 128M
+</span><span class="s1">myisam_sort_buffer_size = 128M
+</span><span class="s1">bulk_insert_buffer_size = 256M
+</span><span class="s1">open_files_limit        = 65535
+</span><span class="s1">query_cache_limit       = 2M
+</span><span class="s1">slow-query-log
+</span><span class="s1">long_query_time        	= 2
+</span><span class="s1">
+</span><span class="s1">expire_logs_days	= 3
+</span><span class="s1">max_binlog_size        	= 1000M
+</span><span class="s1">slave_parallel_workers 	= 4
+</span><span class="s1">log-slave-updates
+</span><span class="s1">#slave-skip-errors	=1062,1053,1146,1032
+</span><span class="s1">
+</span><span class="s1">binlog_ignore_db       	= mysql
+</span><span class="s1">replicate_wild_ignore_table = mysql.%
+</span><span class="s1">sync_binlog = 1
+</span><span class="s1">
+</span><span class="s1">innodb_file_per_table 	= 1
+</span><span class="s1">innodb_flush_method 	= O_DIRECT
+</span><span class="s1">innodb_buffer_pool_instances = 4
+</span><span class="s1">innodb_log_file_size    = 512M
+</span><span class="s1">innodb_log_files_in_group = 3
+</span><span class="s1">innodb_open_files 	= 4000
+</span><span class="s1">innodb_read_io_threads 	= 8
+</span><span class="s1">innodb_write_io_threads = 8
+</span><span class="s1">innodb_thread_concurrency = 8
+</span><span class="s1">innodb_io_capacity 	= 2000
+</span><span class="s1">innodb_io_capacity_max	= 6000
+</span><span class="s1">innodb_lru_scan_depth	= 2000
+</span><span class="s1">innodb_max_dirty_pages_pct = 85
+</span><span class="s1">innodb_flush_log_at_trx_commit = 2
+</span><span class="s1">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+</span><span class="s1">
+</span><span class="s1">
+</span><span class="s1">[mysqldump]
+</span><span class="s1">quick
+</span><span class="s1">quote-names
+</span><span class="s1">max_allowed_packet      = 16M
+</span><span class="s1">
+</span><span class="s1">[client]
+</span><span class="s1">default-character-set 	= utf8
+</span><span class="s1">[mysql]
+</span><span class="s1">default-character-set 	= utf8
+</span><span class="s1">
+</span><span class="s1">[isamchk]
+</span><span class="s1">key_buffer       	= 128M
+</span><span class="s1">sort_buffer_size 	= 4M
+</span><span class="s1">read_buffer      	= 2M
+</span><span class="s1">write_buffer     	= 2M
+</span><span class="s1">
+</span><span class="s1">[myisamchk]
+</span><span class="s1">key_buffer       	= 128M
+</span><span class="s1">sort_buffer_size 	= 4M
+</span><span class="s1">read_buffer      	= 2M
+</span><span class="s1">write_buffer     	= 2M&#39;</span> &gt; <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/mysql/conf.d/my.cnf
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/mysql_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop mysql
+</span><span class="s">podman rm mysql
+</span><span class="s">
+</span><span class="s">podman unshare chown -R 999.999 ${JUMP_DATA_DIR}/mysql
+</span><span class="s">podman unshare chown -R 999.999 ${JUMP_RUNTIME_DIR}/mysql
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name mysql \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/mysql/conf.d:/etc/mysql/conf.d:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/mysql/data:/var/lib/mysql:Z \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/mysql/pass/root.pass:/etc/mysql/pass/root.pass:Z \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/mysql/pass/jumpserver.pass:/etc/mysql/pass/jumpserver.pass:Z \\
+</span><span class="s">  -e MYSQL_ROOT_PASSWORD_FILE=/etc/mysql/pass/root.pass \\
+</span><span class="s">  -e MYSQL_DATABASE=${db_name} \\
+</span><span class="s">  -e MYSQL_USER=${db_user} \\
+</span><span class="s">  -e MYSQL_PASSWORD_FILE=/etc/mysql/pass/jumpserver.pass \\
+</span><span class="s">  -e TZ=Asia/Shanghai \\
+</span><span class="s">  --health-cmd=&#34;mysql -uroot -h127.0.0.1 -p\$\$MYSQL_ROOT_PASSWORD -e &#39;SHOW DATABASES;&#39;&#34; \\
+</span><span class="s">  --health-interval=10s \\
+</span><span class="s">  --health-timeout=5s \\
+</span><span class="s">  --health-retries=10 \\
+</span><span class="s">  mysql:5.7.33 \\
+</span><span class="s">  --character-set-server=utf8 --collation-server=utf8_bin 
+</span><span class="s">EOF</span>
+</pre>
+<p>redis 环境准备</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>/redis/<span class="o">{</span>data,log<span class="o">}</span>
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/redis
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/redis/redis.conf
+</span><span class="s">daemonize no
+</span><span class="s">#bind 127.0.0.1
+</span><span class="s">port 6379
+</span><span class="s">timeout 300
+</span><span class="s">loglevel notice
+</span><span class="s">logfile /var/log/redis/redis_6379.log
+</span><span class="s">databases 16
+</span><span class="s">save 900 1
+</span><span class="s">save 300 10
+</span><span class="s">save 60 10000
+</span><span class="s">dbfilename dump.rdb
+</span><span class="s">rdbcompression yes
+</span><span class="s">dir /data
+</span><span class="s"># slaveof &lt;masterip&gt; &lt;masterport&gt;
+</span><span class="s"># masterauth &lt;master-password&gt;
+</span><span class="s">maxclients 20480
+</span><span class="s">maxmemory 2g
+</span><span class="s">maxmemory-policy allkeys-lru
+</span><span class="s">appendonly no
+</span><span class="s">#appendfilename
+</span><span class="s"># appendfsync always
+</span><span class="s"># appendfsync everysec
+</span><span class="s">appendfsync no
+</span><span class="s">requirepass ${redis_password}
+</span><span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/redis_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop redis
+</span><span class="s">podman rm redis
+</span><span class="s">
+</span><span class="s">podman unshare chown -R 999.1000 ${JUMP_DATA_DIR}/redis
+</span><span class="s">podman unshare chown -R 999.1000 ${JUMP_RUNTIME_DIR}/redis
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name redis \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/redis/redis.conf:/usr/local/etc/redis/redis.conf:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/redis/data:/data:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/redis/log:/var/log/redis:Z \\
+</span><span class="s">  -e TZ=Asia/Shanghai \\
+</span><span class="s">  redis:6.0.10-alpine \\
+</span><span class="s">  redis-server /usr/local/etc/redis/redis.conf
+</span><span class="s">EOF</span>
+</pre>
+<p>core 环境准备</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>/core/<span class="o">{</span>data,logs<span class="o">}</span>
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/core
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/core/config.yml
+</span><span class="s">SECRET_KEY: ${secret_key}
+</span><span class="s">BOOTSTRAP_TOKEN: ${bootstrap_token}
+</span><span class="s"># Mysql连接配置
+</span><span class="s">DB_ENGINE: mysql
+</span><span class="s">DB_HOST: 127.0.0.1
+</span><span class="s">DB_PORT: 3306
+</span><span class="s">DB_USER: ${db_user}
+</span><span class="s">DB_PASSWORD: ${db_password}
+</span><span class="s">DB_NAME: ${db_name}
+</span><span class="s"># 运行时绑定端口
+</span><span class="s">HTTP_BIND_HOST: 0.0.0.0
+</span><span class="s">HTTP_LISTEN_PORT: 8080
+</span><span class="s">WS_LISTEN_PORT: 8070
+</span><span class="s"># redis连接
+</span><span class="s">REDIS_HOST: 127.0.0.1
+</span><span class="s">REDIS_PORT: 6379
+</span><span class="s">REDIS_PASSWORD: ${redis_password}
+</span><span class="s">EOF</span>
+
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/core_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop core
+</span><span class="s">podman rm core
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name core \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/core/config.yml:/opt/jumpserver/config.yml:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/core/data:/opt/jumpserver/data:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/core/logs:/opt/jumpserver/logs:Z \\
+</span><span class="s">  --health-cmd=&#34;curl -f http://localhost:8080/api/health/&#34; \\
+</span><span class="s">  --health-interval=10s \\
+</span><span class="s">  --health-timeout=5s \\
+</span><span class="s">  --health-retries=10 \\
+</span><span class="s">  jumpserver/core:${VERSION} \\
+</span><span class="s">  start web
+</span><span class="s">EOF</span>
+</pre>
+<p>koko是ssh/wss(web terminal)的转发器</p>
+
+<p>koko 环境准备</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>/koko/data
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/koko
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/koko/config.yml
+</span><span class="s">CORE_HOST: http://127.0.0.1:8080
+</span><span class="s">BOOTSTRAP_TOKEN: ${bootstrap_token}
+</span><span class="s">SSHD_PORT: 2222
+</span><span class="s">HTTPD_PORT: 5000
+</span><span class="s">REDIS_HOST: 127.0.0.1
+</span><span class="s">REDIS_PORT: 6379
+</span><span class="s">REDIS_PASSWORD: ${redis_password}
+</span><span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/koko_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop koko
+</span><span class="s">podman rm koko
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name koko \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/koko/config.yml:/opt/koko/config.yml:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/koko/data:/opt/koko/data:Z \\
+</span><span class="s">  -e CORE_HOST=http://127.0.0.1:8080 \\
+</span><span class="s">  --health-cmd=&#34;ps axu | grep &#39;koko&#39;&#34; \\
+</span><span class="s">  --health-interval=10s \\
+</span><span class="s">  --health-timeout=5s \\
+</span><span class="s">  --health-retries=3 \\
+</span><span class="s">  jumpserver/koko:${VERSION}
+</span><span class="s">EOF</span>
+</pre>
+<p>task环境准备</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/task_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop task
+</span><span class="s">podman rm task
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name task \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/core/config.yml:/opt/jumpserver/config.yml:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/core/data:/opt/jumpserver/data:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/core/logs:/opt/jumpserver/logs:Z \\
+</span><span class="s">  -t \\
+</span><span class="s">  -e SERVER_HOSTNAME=${HOSTNAME} \\
+</span><span class="s">  --health-cmd=&#34;cd /opt/jumpserver/apps &amp;&amp; python manage.py check_celery&#34; \\
+</span><span class="s">  --health-interval=30s \\
+</span><span class="s">  --health-timeout=20s \\
+</span><span class="s">  --health-retries=3 \\
+</span><span class="s">  jumpserver/core:${VERSION} \\
+</span><span class="s">  start task
+</span><span class="s">EOF</span>
+</pre>
+<p><del>guacamole环境准备（本教程不启用，图形用到的情况少）</del></p>
+<pre class="chroma"><span class="c1">############################################################################</span>
+<span class="c1"># windows vpn和rdp的服务，可以不启动</span>
+<span class="c1">############################################################################</span>
+<span class="c1"># 全局配置（官方提供的，将所有容器的变量放在同一个变量文件中）</span>
+<span class="c1">#sed -i &#34;s|^CORE_HOST=.*$|CORE_HOST=127.0.0.1|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^JUMPSERVER_SERVER=.*$|JUMPSERVER_SERVER=http://127.0.0.1:8080|g&#34; ${JUMP_CONF_FILE}</span>
+#
+<span class="c1">#sed -i &#34;s|^SECRET_KEY=.*$|SECRET_KEY=$secret_key|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^BOOTSTRAP_TOKEN=.*$|BOOTSTRAP_TOKEN=$bootstrap_token|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_ENGINE=.*$|DB_ENGINE=mysql|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_HOST=.*$|DB_HOST=127.0.0.1|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_PORT=.*$|DB_PORT=3306|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_USER=.*$|DB_USER=$db_user|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_PASSWORD=.*$|DB_PASSWORD=$db_password|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^DB_NAME=.*$|DB_NAME=$db_name|g&#34; ${JUMP_CONF_FILE}</span>
+#
+<span class="c1">#sed -i &#34;s|^REDIS_HOST=.*$|REDIS_HOST=127.0.0.1|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^REDIS_PORT=.*$|REDIS_PORT=6379|g&#34; ${JUMP_CONF_FILE}</span>
+<span class="c1">#sed -i &#34;s|^REDIS_PASSWORD=.*$|REDIS_PASSWORD=$redis_password|g&#34; ${JUMP_CONF_FILE}</span>
+#
+<span class="c1">#podman run -it -d --pod jms --restart=always --name guacamole \</span>
+<span class="c1">#  --env-file ${JUMP_CONF_FILE} \</span>
+<span class="c1">#  --health-cmd=&#34;curl http://localhost:8080&#34; \</span>
+<span class="c1">#  --health-interval=10s \</span>
+<span class="c1">#  --health-timeout=5s \</span>
+<span class="c1">#  --health-retries=3 \</span>
+<span class="c1">#  jumpserver/guacamole:${VERSION}</span>
+</pre>
+<p>前端环境准备(包含nginx、lina、luna)</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">JUMP_DATA_DIR</span><span class="si">}</span>/nginx/logs
+mkdir -p <span class="si">${</span><span class="nv">JUMP_RUNTIME_DIR</span><span class="si">}</span>/nginx/<span class="o">{</span>conf.d,stream.d<span class="o">}</span>
+</pre>
+<p><del>luna环境准备（本教程不启用，用不到web terminal）</del></p>
+<pre class="chroma"><span class="c1">############################################################################</span>
+<span class="c1"># web terminal 项目，如不需要可以不用（同时将nginx里面的luna配置注释掉）</span>
+<span class="c1">############################################################################</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/luna_deploy.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">rm -rf ${JUMP_DATA_DIR}/nginx/luna
+</span><span class="s">podman run -it --rm --name luna \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/nginx:/opt/luna_dest:Z \\
+</span><span class="s">  jumpserver/luna:${VERSION} \\
+</span><span class="s">  cp -r /opt/luna /opt/luna_dest
+</span><span class="s">EOF</span>
+<span class="c1">#只作为更新luna前端代码脚本使用</span>
+</pre>
+<p>前端界面lina环境准备</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/lina_deploy.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">rm -rf ${JUMP_DATA_DIR}/nginx/lina
+</span><span class="s">podman run -it --rm --name lina \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/nginx:/opt/lina_dest:Z \\
+</span><span class="s">  jumpserver/lina:${VERSION} \\
+</span><span class="s">  cp -r /opt/lina /opt/lina_dest
+</span><span class="s">EOF</span>
+<span class="c1">#只作为更新lina前端代码脚本使用</span>
+</pre>
+<p>nginx环境准备(用作前端转发各种请求)</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/nginx/nginx.conf
+</span><span class="s">user  nginx;
+</span><span class="s">worker_processes auto;
+</span><span class="s">
+</span><span class="s">error_log  /var/log/nginx/error.log warn;
+</span><span class="s">pid        /var/run/nginx.pid;
+</span><span class="s">
+</span><span class="s">
+</span><span class="s">events {
+</span><span class="s">    use epoll;
+</span><span class="s">    worker_connections  4096;
+</span><span class="s">}
+</span><span class="s">
+</span><span class="s">
+</span><span class="s">http {
+</span><span class="s">    include       /etc/nginx/mime.types;
+</span><span class="s">    default_type  application/octet-stream;
+</span><span class="s">    log_format  main  &#39;\$remote_addr - \$remote_user [\$time_local] &#34;\$request&#34; &#39;
+</span><span class="s">                      &#39;\$status \$body_bytes_sent &#34;\$http_referer&#34; &#39;
+</span><span class="s">                      &#39;&#34;\$http_user_agent&#34; &#34;\$http_x_forwarded_for&#34;&#39;;
+</span><span class="s">    access_log  /var/log/nginx/access.log  main;
+</span><span class="s">    sendfile        on;
+</span><span class="s">    keepalive_timeout  65;
+</span><span class="s">    gzip  on;
+</span><span class="s">    include /etc/nginx/conf.d/*.conf;
+</span><span class="s">}
+</span><span class="s">
+</span><span class="s">
+</span><span class="s">stream {
+</span><span class="s">    include /etc/nginx/stream.d/*.conf;
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/nginx/conf.d/http_server.conf
+</span><span class="s">server {
+</span><span class="s">  listen 80;
+</span><span class="s">  #listen 443 ssl;
+</span><span class="s">  server_tokens off;
+</span><span class="s">  #ssl_certificate cert/server.crt;
+</span><span class="s">  #ssl_certificate_key cert/server.key;
+</span><span class="s">  #ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+</span><span class="s">  #
+</span><span class="s">  #ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4:!DH:!DHE;
+</span><span class="s">  #add_header Strict-Transport-Security &#34;max-age=31536000&#34;;
+</span><span class="s">
+</span><span class="s">  client_max_body_size 5000m;
+</span><span class="s">
+</span><span class="s">  #若luna（web terminal）不需要使用，则保持注释状态
+</span><span class="s">  ## Luna 配置
+</span><span class="s">  #location /luna/ {
+</span><span class="s">  #  try_files $uri / /index.html;
+</span><span class="s">  #  alias /opt/luna/;
+</span><span class="s">  #}
+</span><span class="s">
+</span><span class="s">  # 挂载在本地的配置
+</span><span class="s">  location /media/replay/ {
+</span><span class="s">    add_header Content-Encoding gzip;
+</span><span class="s">    root /data/;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  location /media/ {
+</span><span class="s">    root /data/;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  location /static/ {
+</span><span class="s">    root /data/;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  # 这里使用的是koko的默认wss端口5000
+</span><span class="s">  # Koko 配置
+</span><span class="s">  location /koko/ {
+</span><span class="s">    proxy_pass       http://127.0.0.1:5000;
+</span><span class="s">    proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">    proxy_set_header Host \$host;
+</span><span class="s">    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">
+</span><span class="s">    proxy_http_version 1.1;
+</span><span class="s">    proxy_buffering off;
+</span><span class="s">    proxy_set_header Upgrade \$http_upgrade;
+</span><span class="s">    proxy_set_header Connection &#34;upgrade&#34;;
+</span><span class="s">  }
+</span><span class="s">  
+</span><span class="s">  #若guacamole（vnc、rdp for windows）不需要使用，则保持注释状态
+</span><span class="s">  ## Guacamole 配置
+</span><span class="s">  #location /guacamole/ {
+</span><span class="s">  #  proxy_pass http://guacamole:8080/;
+</span><span class="s">
+</span><span class="s">  #  proxy_buffering off;
+</span><span class="s">  #  proxy_http_version 1.1;
+</span><span class="s">  #  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">  #  proxy_set_header Upgrade \$http_upgrade;
+</span><span class="s">  #  proxy_set_header Connection \$http_connection;
+</span><span class="s">
+</span><span class="s">  #  proxy_ignore_client_abort on;
+</span><span class="s">  #  proxy_connect_timeout 600;
+</span><span class="s">  #  proxy_send_timeout 600;
+</span><span class="s">  #  proxy_read_timeout 600;
+</span><span class="s">  #  send_timeout 6000;
+</span><span class="s">  #}
+</span><span class="s">
+</span><span class="s">  ## OmniDB 配置
+</span><span class="s">  #location /omnidb/ws {
+</span><span class="s">  #  resolver 127.0.0.11 valid=30s;
+</span><span class="s">  #  set $upstream http://omnidb:8071;
+</span><span class="s">  #  proxy_pass       \$upstream\$request_uri;
+</span><span class="s">  #  proxy_http_version 1.1;
+</span><span class="s">  #  proxy_buffering off;
+</span><span class="s">  #  proxy_set_header Upgrade \$http_upgrade;
+</span><span class="s">  #  proxy_set_header Connection &#34;upgrade&#34;;
+</span><span class="s">  #  proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">  #  proxy_set_header Host \$host;
+</span><span class="s">  #  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">  #  access_log off;
+</span><span class="s">  #}
+</span><span class="s">
+</span><span class="s">  #location /omnidb/ {
+</span><span class="s">  #  resolver 127.0.0.11 valid=30s;
+</span><span class="s">  #  set $upstream http://omnidb:8082;
+</span><span class="s">  #  proxy_pass       \$upstream\$request_uri;
+</span><span class="s">  #  proxy_buffering off;
+</span><span class="s">  #  proxy_http_version 1.1;
+</span><span class="s">  #  proxy_set_header Upgrade \$http_upgrade;
+</span><span class="s">  #  proxy_set_header Connection \$http_connection;
+</span><span class="s">  #  proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">  #  proxy_set_header Host \$host;
+</span><span class="s">  #  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">  #  access_log off;
+</span><span class="s">  #}
+</span><span class="s">
+</span><span class="s">  # Core 配置
+</span><span class="s">  location /ws/ {
+</span><span class="s">    proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">    proxy_set_header Host \$host;
+</span><span class="s">    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">    proxy_pass http://127.0.0.1:8070;
+</span><span class="s">
+</span><span class="s">    proxy_http_version 1.1;
+</span><span class="s">    proxy_buffering off;
+</span><span class="s">    proxy_set_header Upgrade \$http_upgrade;
+</span><span class="s">    proxy_set_header Connection &#34;upgrade&#34;;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  location /api/ {
+</span><span class="s">    proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">    proxy_set_header Host \$host;
+</span><span class="s">    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">    proxy_pass http://127.0.0.1:8080;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  location /core/ {
+</span><span class="s">    proxy_set_header X-Real-IP \$remote_addr;
+</span><span class="s">    proxy_set_header Host \$host;
+</span><span class="s">    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+</span><span class="s">    proxy_pass http://127.0.0.1:8080;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  # 前端 Lina
+</span><span class="s">  location /ui/ {
+</span><span class="s">    try_files \$uri / /ui/index.html;
+</span><span class="s">    alias /opt/lina/;
+</span><span class="s">  }
+</span><span class="s">
+</span><span class="s">  location / {
+</span><span class="s">    rewrite ^/(.*)\$ /ui/\$1 last;
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_RUNTIME_DIR}/nginx/stream.d/kokossh.conf
+</span><span class="s">log_format  proxy  &#39;\$remote_addr [\$time_local] &#39;
+</span><span class="s">                   &#39;\$protocol \$status \$bytes_sent \$bytes_received &#39;
+</span><span class="s">                   &#39;\$session_time &#34;\$upstream_addr&#34; &#39;
+</span><span class="s">                   &#39;&#34;\$upstream_bytes_sent&#34; &#34;\$upstream_bytes_received&#34; &#34;\$upstream_connect_time&#34;&#39;;
+</span><span class="s">
+</span><span class="s">access_log /var/log/nginx/kokossh-tcp-access.log proxy;
+</span><span class="s">open_log_file_cache off;
+</span><span class="s">
+</span><span class="s">upstream kokossh {
+</span><span class="s">    server 127.0.0.1:2222;
+</span><span class="s">    least_conn;
+</span><span class="s">}
+</span><span class="s">
+</span><span class="s">server {
+</span><span class="s">    listen 6635;
+</span><span class="s">    proxy_pass kokossh;
+</span><span class="s">    proxy_protocol on;
+</span><span class="s">    proxy_connect_timeout 1s;
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+
+cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/nginx_create_run.sh
+</span><span class="s">#!/usr/bin/env bash
+</span><span class="s">
+</span><span class="s">podman stop nginx
+</span><span class="s">podman rm nginx
+</span><span class="s">
+</span><span class="s">podman unshare chown -R 101.101 ${JUMP_DATA_DIR}/nginx
+</span><span class="s">podman unshare chown -R 101.101 ${JUMP_RUNTIME_DIR}/nginx
+</span><span class="s">
+</span><span class="s">podman run -it -d --pod jms --restart=always --name nginx \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/nginx/nginx.conf:/etc/nginx/nginx.conf:Z \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/nginx/conf.d:/etc/nginx/conf.d:Z \\
+</span><span class="s">  -v ${JUMP_RUNTIME_DIR}/nginx/stream.d:/etc/nginx/stream.d:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/core/data:/data:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/nginx/lina:/opt/lina:Z \\
+</span><span class="s">  -v ${JUMP_DATA_DIR}/nginx/logs:/var/log/nginx:Z \\
+</span><span class="s">  -e TZ=Asia/Shanghai \\
+</span><span class="s">  --health-cmd=&#34;test -f /var/run/nginx.pid&#34; \\
+</span><span class="s">  --health-interval=10s \\
+</span><span class="s">  --health-timeout=5s \\
+</span><span class="s">  --health-retries=2 \\
+</span><span class="s">  nginx:1.18.0-alpine
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<p>如果希望用到luna(web terminal)，增加下面的内容
+- <code>-v ${JUMP_DATA_DIR}/nginx/luna:/opt/luna:Z \\</code></p>
+</blockquote>
+
+<p>启动jumpserver</p>
+<pre class="chroma">chmod a+x <span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/*.sh
+
+<span class="c1"># 先创建pod，映射端口</span>
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/jms_pod_create_run.sh
+
+<span class="c1"># 启动数据层</span>
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/mysql_create_run.sh
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/redis_create_run.sh
+
+<span class="c1"># 启动核心组件</span>
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/core_create_run.sh
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/koko_create_run.sh
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/task_create_run.sh
+
+<span class="c1"># 准备前端代码</span>
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/lina_deploy.sh
+<span class="c1">#若luna（web terminal）不需要使用，则保持注释状态</span>
+<span class="c1">#${JUMP_SCRIPT_DIR}/luna_deploy.sh</span>
+
+<span class="c1"># 启动前端nginx</span>
+<span class="si">${</span><span class="nv">JUMP_SCRIPT_DIR</span><span class="si">}</span>/nginx_create_run.sh
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

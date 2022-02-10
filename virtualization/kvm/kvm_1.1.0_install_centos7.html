@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                  <ul>
+                    <li><a href="/virtualization/kvm/kvm_1.1.0_install_centos7.html">KVM 1.1.0 安装(centos7)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.0_create_vm_linux.html">KVM 1.2.0 创建VM(linux)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.1_create_vm_windows.html">KVM 1.2.1 创建VM(vnc-windows)</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.2_create_vm_script.html">KVM 1.2.2 创建VM-脚本复制VM</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.2.3_manage_vm_add_NIC.html">KVM 1.2.3 管理VM-增加网卡</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.0_operatation_virt-top.html">KVM 1.3.0 kvm管理-virt-top</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.1_operation_basic.html">KVM 1.3.1 kvm管理-basic</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.2_operation_advance.html">KVM 1.3.2 kvm管理-advance</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.3_operation_clone.html">KVM 1.3.3 kvm管理-克隆</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.3.4_operation_snapshot.html">KVM 1.3.4 VM-快照</a></li>
+                    <li><a href="/virtualization/kvm/kvm_1.4.0_error.html">KVM 1.4.0 kvm错误汇总</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>KVM 1.1.0 安装(centos7)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Mar 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 理论知识</h3>
+
+<table>
+<thead>
+<tr>
+<th>安装包</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>qemu-kvm</td>
+<td>模拟处理器的自由软件,和kvm搭配使用</td>
+</tr>
+
+<tr>
+<td>python-virtinst</td>
+<td>创建虚拟机所需要的命令行工具和程序库</td>
+</tr>
+
+<tr>
+<td>virt-manager</td>
+<td>GUI虚拟机管理工具</td>
+</tr>
+
+<tr>
+<td>virt-top</td>
+<td>虚拟机统计命令</td>
+</tr>
+
+<tr>
+<td>virt-viewer</td>
+<td>GUI连接程序，连接到已配置好的虚拟机</td>
+</tr>
+
+<tr>
+<td>libvirt</td>
+<td>C语言工具包，提供libvirt服务</td>
+</tr>
+
+<tr>
+<td>libvirt-client</td>
+<td>为虚拟客户机提供的C语言工具包</td>
+</tr>
+
+<tr>
+<td>virt-install</td>
+<td>基于libvirt服务的虚拟机创建命令</td>
+</tr>
+
+<tr>
+<td>bridge-utils</td>
+<td>创建和管理桥接设备的工具</td>
+</tr>
+</tbody>
+</table>
+<p>扩展资料：
+- <a href="http://wiki.centos.org/zh/HowTos/KVM">centos kvm wiki</a><br />
+- <a href="http://techlinux.net/2014/09/kvm-centos-7/">techlinux kvm centos7文档</a><br />
+- <a href="http://www.server-world.info/en/note?os=CentOS_7&amp;p=kvm&amp;f=2">server world centos7 kvm文档</a></p>
+
+<hr />
+
+<h3>1. 安装kvm模块</h3>
+<pre class="chroma"><span class="c1"># 安装基础包</span>
+yum groupinstall base <span class="s2">&#34;Development tools&#34;</span>
+yum install qemu-kvm libvirt virt-install bridge-utils
+<span class="c1"># 如果提示没有qemu-kvm，可能是因为并不是64位系统</span>
+
+<span class="c1"># 安装acpid来支持virsh shutdown等操作命令，因为它们都是基于acpi信号</span>
+yum install acpid -y
+systemctl start acpid
+systemctl <span class="nb">enable</span> acpid
+
+
+<span class="c1"># 查看是否加载kvm模块</span>
+lsmod <span class="p">|</span> grep kvm
+kvm_intel             <span class="m">148081</span>  <span class="m">3</span>
+kvm                   <span class="m">461126</span>  <span class="m">1</span> kvm_intel
+<span class="c1"># 如果没有这两条，可以用&#34;modprobe kvm&#34;加载；</span>
+<span class="c1"># 相关命令&#34;insmod;rmmod;modinfo&#34;</span>
+
+<span class="c1"># 启动libvirtd</span>
+systemctl start libvirtd
+systemctl <span class="nb">enable</span> libvirtd
+
+<span class="c1"># 检查服务开机启动配置</span>
+systemctl list-unit-files <span class="p">|</span> grep libvirtd
+libvirtd.service                            enabled
+</pre>
+<hr />
+
+<h3>2. 网络配置</h3>
+<pre class="chroma"><span class="c1"># 关闭NetworkManager(简称NM)服务：</span>
+systemctl stop NetworkManager
+systemctl mask NetworkManager
+<span class="c1"># 当你手动修改了网卡文件后，需要重启NM服务来重新接管网络配置</span>
+<span class="c1"># 网卡配置文件和NM配置冲突时解决方案:｛1、重启NM;2、关闭NM｝</span>
+<span class="c1"># 这里我们不适用NM服务，我们选择手动配置</span>
+
+<span class="c1"># 修改原网卡文件</span>
+<span class="nb">cd</span> /etc/sysconfig/network-scripts/
+vim ifcfg-enp2s0f0  
+*************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>enp2s0f0
+<span class="nv">TYPE</span><span class="o">=</span>Ethernet
+<span class="nv">BOOTPROTO</span><span class="o">=</span>static
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">BRIDGE</span><span class="o">=</span>br0
+*************************************************
+<span class="c1"># 这里不需要配ip</span>
+
+
+<span class="c1"># 新建网桥文件ifcfg-br0(网桥名称）</span>
+vi ifcfg-br0
+*************************************************
+<span class="nv">DEVICE</span><span class="o">=</span>br0
+<span class="nv">TYPE</span><span class="o">=</span>Bridge
+<span class="nv">ONBOOT</span><span class="o">=</span>yes
+<span class="nv">BOOTPROTO</span><span class="o">=</span>static
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span>no
+<span class="nv">DELAY</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">STP</span><span class="o">=</span>yes
+<span class="nv">IPADDR</span><span class="o">=</span>172.16.2.111
+<span class="nv">NETMASK</span><span class="o">=</span>255.255.255.0
+<span class="nv">GATEWAY</span><span class="o">=</span>172.16.2.1
+<span class="c1"># 大小写敏感，所以必须是Bridge</span>
+<span class="c1"># STP是生成树协议</span>
+*************************************************
+
+<span class="c1"># 重启network服务：</span>
+systemctl restart network
+
+<span class="c1"># 查看桥接网络状态</span>
+ip addr show br0
+3: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP
+    link/ether c0:3f:d5:f3:f1:d9 brd ff:ff:ff:ff:ff:ff
+    inet 172.16.2.111/24 brd 172.16.2.255 scope global br0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::c23f:d5ff:fef3:f1d9/64 scope link
+       valid_lft forever preferred_lft forever
+
+<span class="c1"># 查看网桥连接</span>
+brctl show
+bridge name     bridge id               STP enabled     interfaces
+br0             8000.c03fd5f3f1d9       yes             enp2s0f0
+</pre>
+<hr />
+
+<h3>3. SELINUX &amp; iptables 配置</h3>
+<pre class="chroma"><span class="c1"># 可以选择关闭selinux，也可以如下面一样配置selinux</span>
+setenforce <span class="m">0</span>
+vi /etc/selinux/config
+******************************************
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+******************************************
+
+<span class="c1"># 查看默认目录的上下文信息</span>
+ls -Zd /var/lib/libvirt/images/
+drwx--x--x. root root system_u:object_r:virt_image_t:s0 /var/lib/libvirt/images/
+
+<span class="c1"># 拷贝默认目录的上下文信息到自定义的images目录</span>
+chcon --reference /var/lib/libvirt/images /data/kvm/images
+ls -Zd /data/kvm/images/
+drwxr-xr-x. root root system_u:object_r:virt_image_t:s0 /data/kvm/images/
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

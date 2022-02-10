@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>30 Jan 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>本文档背景介绍</h2>
+
+<h3>1. 思路背景</h3>
+
+<p>虽然gitlab提供了和kubernetes的integration，但是在我看来有几个缺点：
+1. 太复杂，试图增加很多功能，但是我只需要ci/cd流里面的功能
+2. gitlab社区版有很多功能限制
+所以，这边研究一下如何自定义环境变量在gitlab-runner上来使用helm和k8s交互，以达到CI/CD的目的。</p>
+
+<h3>2. 提供kubernetes访问资源</h3>
+
+<h4>变量环境</h4>
+<pre class="chroma"><span class="nv">DEPLOY_DIR</span><span class="o">=</span>/root/k8s
+<span class="o">[</span><span class="o">[</span> -d <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes <span class="o">]</span><span class="o">]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+<span class="o">[</span><span class="o">[</span> -d <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig <span class="o">]</span><span class="o">]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+</pre>
+<h4>生成gitlab-runner访问证书</h4>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+
+<span class="c1"># 指定用户和用户组</span>
+<span class="c1"># CN: gitlab</span>
+<span class="c1"># O: devops</span>
+<span class="c1"># 名称可以随便写，后面授权的时候和此处设定的保持一致即可</span>
+cat &gt; gitlab-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;gitlab&#34;,
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;your-gitlab-runner-ip01&#34;,
+</span><span class="s">    &#34;your-gitlab-runner-ip02&#34;
+</span><span class="s">  ],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;devops&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 使用k8s集群的ca给证书签名</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client gitlab-csr.json <span class="p">|</span> cfssljson -bare gitlab
+<span class="c1"># 生成证书使用的如下文件，需要自己去获得，如果不是你自己创建的集群，请找kubernetes管理员要以下信息</span>
+<span class="c1"># ca.pem ca-key.pem 是kubernetes集群创建的时候生成的ca</span>
+<span class="c1"># ca-config.json 是kubernetes集群创建的时候生成的签名用的配置文件，里面保存了各种profile（server,client等）</span>
+</pre>
+<h4>生成kubeconfig</h4>
+<pre class="chroma"><span class="nb">export</span> <span class="nv">KUBE_APISERVER</span><span class="o">=</span><span class="s2">&#34;https://&lt;your-kubernetes-api-external-ip&gt;:443&#34;</span>
+
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+
+<span class="c1"># step 1. 生成 kubeconfig</span>
+kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --server<span class="o">=</span><span class="si">${</span><span class="nv">KUBE_APISERVER</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 2. 设定认证信息</span>
+kubectl config set-credentials gitlab <span class="se">\
+</span><span class="se"></span>  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/gitlab.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/gitlab-key.pem <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 3. 设定上下文（用户、集群）</span>
+kubectl config set-context kubernetes <span class="se">\
+</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>  --user<span class="o">=</span>gitlab <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 4. 设定当前上下文</span>
+kubectl config use-context kubernetes --kubeconfig<span class="o">=</span>gitlab.conf
+
+<span class="c1"># step 5. 将文件进行base64加密</span>
+cat gitlab.conf <span class="p">|</span> base64
+<span class="c1"># 可以通过base64命令给解析出内容来</span>
+<span class="c1"># cat gitlab.conf | base64|base64 -d</span>
+</pre>
+<h4>kubernetes集群给上面用户授权</h4>
+
+<p>这里以测试环境举例</p>
+<pre class="chroma"><span class="c1"># 创建测试环境的namespace</span>
+kubectl create namespace env-test
+
+<span class="c1"># 授权kubernetes内置的edit角色给用户</span>
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1
+</span><span class="s">kind: RoleBinding
+</span><span class="s">metadata:
+</span><span class="s">  name: devops-edit
+</span><span class="s">  namespace: env-test
+</span><span class="s">roleRef:
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">  kind: ClusterRole
+</span><span class="s">  name: edit
+</span><span class="s">subjects:
+</span><span class="s">- apiGroup: rbac.authorization.k8s.io
+</span><span class="s">  kind: Group
+</span><span class="s">  name: devops
+</span><span class="s">EOF</span>
+<span class="c1"># 之所以授权给组不是授权给用户，是因为有可能后面再增加其他用户</span>
+</pre>
+<h3>3. gitlab创建CI/CD文件</h3>
+
+<h4>Dockerfile</h4>
+<pre class="chroma">FROM my-tomcat:7-jdk8-openjdk
+RUN rm -rf /usr/local/tomcat/webapps/*
+ADD CODE.tar.gz /usr/local/tomcat/webapps
+CMD <span class="o">[</span><span class="s2">&#34;catalina.sh&#34;</span>, <span class="s2">&#34;start&#34;</span>, <span class="s2">&#34;&amp;&amp;&#34;</span>, <span class="s2">&#34;tail&#34;</span>, <span class="s2">&#34;-f&#34;</span>, <span class="s2">&#34;/usr/local/tomcat/logs/catalina.out&#34;</span><span class="o">]</span>
+</pre>
+<blockquote>
+<p>CODE.tar.gz 是代码编译后的CODE目录（my-tomcat是自定义的镜像，server.xml中配置webapps/CODE为代码目录）</p>
+</blockquote>
+
+<h4>.gitlab-ci.yml</h4>
+<pre class="chroma">stages:
+  - build
+  - analysis
+  - publish_image
+
+variables:
+  DOCKER_HOST: unix:///var/run/docker.sock
+  DOCKER_DRIVER: overlay2
+
+build:
+  stage: build
+  image: reg.myplatform.net/sonarscanner:4.2
+  script:
+  - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-jsp-api/7.0.96/tomcat-jsp-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/jsp-api.jar
+  - wget https://repo1.maven.org/maven2/org/apache/tomcat/tomcat-servlet-api/7.0.96/tomcat-servlet-api-7.0.96.jar -O ./WebRoot/WEB-INF/lib/servlet-api.jar
+  - <span class="nb">echo</span> &gt; javafile.txt
+  - find src/ -name *.java &gt;&gt; javafile.txt
+  - <span class="nv">jarfiles</span><span class="o">=</span><span class="o">(</span><span class="o">)</span>
+  - <span class="k">for</span> jar in <span class="k">$(</span>find WebRoot/WEB-INF/lib -name *.jar<span class="k">)</span><span class="p">;</span><span class="k">do</span> <span class="nv">jarfiles</span><span class="o">=</span><span class="o">(</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">jarfiles</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="nv">$jar</span><span class="o">)</span><span class="p">;</span><span class="k">done</span>
+  - <span class="nv">classfile</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+  - <span class="k">for</span> cf in <span class="si">${</span><span class="nv">jarfiles</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span><span class="k">do</span> <span class="nv">classfile</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">classfile</span><span class="si">}</span><span class="s2">:</span><span class="si">${</span><span class="nv">cf</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span><span class="k">done</span>
+  - /bin/mkdir -p WebRoot/WEB-INF/classes
+  - /usr/lib/jvm/java-1.7-openjdk/bin/javac -d WebRoot/WEB-INF/classes -sourcepath src -cp <span class="nv">$classfile</span> @javafile.txt
+  artifacts:
+    paths:
+    - WebRoot
+    expire_in: <span class="m">1</span> day
+  only:
+  - master
+
+analysis:
+  stage: analysis
+  image: reg.myplatform.net/sonarscanner:4.2
+  script:
+  - /app/bin/sonar-scanner
+    -Dsonar.host.url<span class="o">=</span>http://sonarqube.myplatform.net:9000 
+    -Dsonar.projectKey<span class="o">=</span>web 
+    -Dsonar.sources<span class="o">=</span>./src 
+    -Dsonar.sourceEncoding<span class="o">=</span>UTF-8
+    -Dsonar.java.binaries<span class="o">=</span>./WebRoot/WEB-INF/classes
+    -Dsonar.java.libraries<span class="o">=</span>./WebRoot/WEB-INF/**/*.jar
+  only:
+  - master
+
+publish_image:
+  stage: publish_image
+  image: reg.myplatform.net/base-dind-build
+  before_script:
+  - docker login -u admin -p Password reg.myplatform.net
+  script:
+  - ls WebRoot
+  - mv WebRoot CODE
+  - tar zcvf CODE.tar.gz CODE
+  - docker build --cache-from reg.myplatform.net/web-test:latest
+    -t reg.myplatform.net/web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+    -t reg.myplatform.net/web-test:latest .
+  - docker push reg.myplatform.net/web-test:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">6</span><span class="si">}</span>
+  only:
+  - master
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

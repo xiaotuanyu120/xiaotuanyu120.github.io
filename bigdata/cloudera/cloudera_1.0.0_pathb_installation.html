@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+              <ul>
+                <li>
+                  <a href="/bigdata/cloudera/index.html">cloudera</a>
+                  <ul>
+                    <li><a href="/bigdata/cloudera/cloudera_1.0.0_pathb_installation.html">cloudera 1.0.0 pathB(生产环境-package) 安装</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.0_6.x_intro_and_requirements.html">cloudera 1.1.0 简介和安装要求说明</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.1_6.x_installation.html">cloudera 1.1.1 生产环境安装实践</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/bigdata/elk/index.html">elk</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>cloudera 1.0.0 pathB(生产环境-package) 安装</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Jun 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 安装之前</h3>
+
+<h4>1) 什么是cloudera？</h4>
+
+<p>cloudera是一家hadoop的商业公司，提供hadoop的商业产品CDH(Cloudera Distribution including Apache Hadoop)。同时cloudera也是apache软件基金会的赞助商。</p>
+
+<h4>2) 主机环境</h4>
+
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>hostname</th>
+<th>os</th>
+<th>memory</th>
+<th>cpu</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>192.168.33.60</td>
+<td>cloudera-m</td>
+<td>centos6.5</td>
+<td>4096</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>192.168.33.61</td>
+<td>cloudera-n1</td>
+<td>centos6.5</td>
+<td>2048</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>192.168.33.62</td>
+<td>cloudera-n2</td>
+<td>centos6.5</td>
+<td>2048</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<h4>3) 系统配置(所有节点操作)</h4>
+
+<ul>
+<li>关闭防火墙</li>
+<li>关闭selinux</li>
+<li>将集群所有节点<code>hostname ip</code>写在各节点的<code>/etc/hosts</code>中，如下
+<code>
+192.168.33.60 cloudera-m
+192.168.33.61 cloudera-n1
+192.168.33.62 cloudera-n2
+</code></li>
+<li>解决透明大页问题：
+<code>bash
+echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+</code>
+- 降低虚拟内存需求率：
+<code>bash
+echo &quot;vm.swappiness = 0&quot; &gt; /etc/sysctl.conf;sysctl -p
+</code></li>
+</ul>
+
+<blockquote>
+<p>以下操作过程，如果没有特别注明，都是在cloudera-m节点上操作</p>
+</blockquote>
+
+<hr />
+
+<h3>1. 安装cloudera manager之前的准备</h3>
+
+<h4>1) 配置单用户模式(可选)</h4>
+
+<p>此模式是针对那些不能用root登录的系统的，因为我们用的centos6可以使用root登录，跳过。</p>
+
+<h4>2) centos5和RHEL5，安装py2.<sup>6</sup>&frasl;<sub>2</sub>.7和psycopg2供Hue使用(可选)</h4>
+
+<p>此步骤是针对于centos5和RHEL5的，因为它们自带的python版本太低</p>
+
+<h4>3) 安装配置数据库</h4>
+
+<p><strong>安装mysql</strong></p>
+<pre class="chroma"><span class="c1"># 下载mysql5.7 repo的rpm包</span>
+wget http://repo.mysql.com/mysql57-community-release-el6.rpm
+<span class="c1"># 安装后，会在/etc/yum.repos.d/下面发现多了mysql5.7的repo文件</span>
+yum install mysql57-community-release-el6.rpm
+
+<span class="c1"># 安装mysql5.7社区版</span>
+yum install mysql-community-server
+</pre>
+<p><strong>配置mysql</strong></p>
+<pre class="chroma">vi /etc/my.cnf
+******************************************
+<span class="o">[</span>mysqld<span class="o">]</span>
+transaction-isolation <span class="o">=</span> READ-COMMITTED
+<span class="c1"># Disabling symbolic-links is recommended to prevent assorted security risks;</span>
+<span class="c1"># to do so, uncomment this line:</span>
+<span class="c1"># symbolic-links = 0</span>
+
+<span class="nv">key_buffer_size</span> <span class="o">=</span> 32M
+<span class="nv">max_allowed_packet</span> <span class="o">=</span> 32M
+<span class="nv">thread_stack</span> <span class="o">=</span> 256K
+<span class="nv">thread_cache_size</span> <span class="o">=</span> <span class="m">64</span>
+<span class="nv">query_cache_limit</span> <span class="o">=</span> 8M
+<span class="nv">query_cache_size</span> <span class="o">=</span> 64M
+<span class="nv">query_cache_type</span> <span class="o">=</span> <span class="m">1</span>
+
+<span class="nv">max_connections</span> <span class="o">=</span> <span class="m">550</span>
+<span class="c1">#expire_logs_days = 10</span>
+<span class="c1">#max_binlog_size = 100M</span>
+
+<span class="c1">#log_bin should be on a disk with enough free space. Replace &#39;/var/lib/mysql/mysql_binary_log&#39; with an appropriate path for your system</span>
+<span class="c1">#and chown the specified folder to the mysql user.</span>
+<span class="nv">log_bin</span><span class="o">=</span>/var/lib/mysql/mysql_binary_log
+
+<span class="c1"># For MySQL version 5.1.8 or later. For older versions, reference MySQL documentation for configuration help.</span>
+<span class="nv">binlog_format</span> <span class="o">=</span> mixed
+server-id <span class="o">=</span> <span class="m">0</span>
+<span class="nv">read_buffer_size</span> <span class="o">=</span> 2M
+<span class="nv">read_rnd_buffer_size</span> <span class="o">=</span> 16M
+<span class="nv">sort_buffer_size</span> <span class="o">=</span> 8M
+<span class="nv">join_buffer_size</span> <span class="o">=</span> 8M
+
+<span class="c1"># InnoDB settings</span>
+<span class="nv">innodb_file_per_table</span> <span class="o">=</span> <span class="m">1</span>
+<span class="nv">innodb_flush_log_at_trx_commit</span>  <span class="o">=</span> <span class="m">2</span>
+<span class="nv">innodb_log_buffer_size</span> <span class="o">=</span> 64M
+<span class="nv">innodb_buffer_pool_size</span> <span class="o">=</span> 4G
+<span class="nv">innodb_thread_concurrency</span> <span class="o">=</span> <span class="m">8</span>
+<span class="nv">innodb_flush_method</span> <span class="o">=</span> O_DIRECT
+<span class="nv">innodb_log_file_size</span> <span class="o">=</span> 512M
+
+<span class="o">[</span>mysqld_safe<span class="o">]</span>
+log-error<span class="o">=</span>/var/log/mysqld.log
+pid-file<span class="o">=</span>/var/run/mysqld/mysqld.pid
+
+<span class="nv">sql_mode</span><span class="o">=</span>STRICT_ALL_TABLES
+******************************************
+</pre>
+<blockquote>
+<p>配置要点：
+- 配置isolation级别为READ-COMMITTED，避免死锁
+- 配置引擎为InnoDB，Cloudera Manager只能使用InnoDB
+- 配置innodb_flush_method为O_DIRECT，Cloudera Manager需要高吞吐量
+- 根据cluster数量来配置数据库的max_connections
+- binlog不是必须要配置的</p>
+</blockquote>
+
+<p><strong>启动mysql</strong></p>
+<pre class="chroma">chkconfig mysqld on
+service mysqld start
+</pre>
+<blockquote>
+<p>第一次的启动日志中会生成一个临时访问密码<code>A temporary password is generated for root@localhost: xf3U(yevIHfG</code></p>
+</blockquote>
+
+<p><strong>配置root密码</strong></p>
+<pre class="chroma">mysql_secure_installation
+step <span class="m">1</span> 输入临时root密码
+step <span class="m">2</span> 设定新的root密码<span class="o">(</span>例如：<span class="s2">&#34;Abc123!@#&#34;</span><span class="o">)</span>
+step <span class="m">3</span> 移除匿名用户
+step <span class="m">4</span> 是否允许root远程访问
+step <span class="m">5</span> 是否删除test库
+step <span class="m">6</span> 是否现在重载权限
+</pre>
+<p><strong>安装mysql jdbc driver</strong><br />
+凡是需要连接数据的组件所在的服务器都需要安装，所以推荐把所有需要连接数据库的组件安装在同一台服务器上</p>
+<pre class="chroma">wget https://cdn.mysql.com//Downloads/Connector-J/mysql-connector-java-5.1.42.tar.gz
+tar zxvf mysql-connector-java-5.1.42.tar.gz
+mkdir /usr/share/java -p
+cp mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar /usr/share/java/mysql-connector-java.jar
+</pre>
+<blockquote>
+<p>不要使用yum安装，因为yum安装的是openjdk的版本</p>
+</blockquote>
+
+<p><strong>创建Cloudera Manager使用的数据库</strong></p>
+<pre class="chroma"><span class="k">create</span> <span class="k">database</span> <span class="n">cmf</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">cmf</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">cmf</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s2">&#34;</span><span class="s2">cmf</span><span class="s2">&#34;</span><span class="o">@</span><span class="s2">&#34;</span><span class="s2">%</span><span class="s2">&#34;</span> <span class="n">identified</span> <span class="k">by</span> <span class="s2">&#34;</span><span class="s2">Cmf5111!@#</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</pre>
+<hr />
+
+<h3>2. Cloudera Manager</h3>
+
+<h4>1) 下载repo文件</h4>
+<pre class="chroma"><span class="c1"># 下载cm5版本的repo文件，默认采用cm5最新版本的源</span>
+wget -O /etc/yum.repos.d/cloudera-manager.repo https://archive.cloudera.com/cm5/redhat/6/x86_64/cm/cloudera-manager.repo
+
+<span class="c1"># 如果有需要的话，可以自定义子版本</span>
+vim /etc/yum.repos.d/cloudera-manager.repo
+******************************************
+<span class="o">[</span>cloudera-manager<span class="o">]</span>
+<span class="c1"># Packages for Cloudera Manager, Version 5, on RedHat or CentOS 6 x86_64</span>           	  
+<span class="nv">name</span><span class="o">=</span>Cloudera Manager
+<span class="nv">baseurl</span><span class="o">=</span>https://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/
+<span class="nv">gpgkey</span> <span class="o">=</span>https://archive.cloudera.com/cm5/redhat/6/x86_64/cm/RPM-GPG-KEY-cloudera    
+<span class="nv">gpgcheck</span> <span class="o">=</span> <span class="m">1</span>
+******************************************
+</pre>
+<h4>2) 安装Cloudera Manager</h4>
+<pre class="chroma">yum install oracle-j2sdk1.7
+yum install cloudera-manager-daemons cloudera-manager-server
+</pre>
+<blockquote>
+<p>或者可以使用非生产环境下的手动安装(pathA)
+- 下载<a href="http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装">http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装</a>
+- 下载<a href="http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装">http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装</a><br />
+会自动创建postgresql数据库</p>
+</blockquote>
+
+<h4>3) 配置数据库连接</h4>
+
+<p><code>vim /etc/cloudera-scm-server/db.properties</code></p>
+<pre class="chroma"># Copyright (c) 2012 Cloudera, Inc. All rights reserved.
+#
+# This file describes the database connection.
+#
+
+# The database type
+# Currently &#39;mysql&#39;, &#39;postgresql&#39; and &#39;oracle&#39; are valid databases.
+com.cloudera.cmf.db.type=mysql
+
+# The database host
+# If a non standard port is needed, use &#39;hostname:port&#39;
+com.cloudera.cmf.db.host=localhost
+
+# The database name
+com.cloudera.cmf.db.name=cmf
+
+# The database user
+com.cloudera.cmf.db.user=cmf
+
+# The database user&#39;s password
+com.cloudera.cmf.db.password=Cmf5111!@#
+
+# The db setup type
+# By default, it is set to INIT
+# If scm-server uses Embedded DB then it is set to EMBEDDED
+# If scm-server uses External DB then it is set to EXTERNAL
+com.cloudera.cmf.db.setupType=EXTERNAL
+</pre>
+<h4>4) 启动Cloudera Manager</h4>
+<pre class="chroma">service cloudera-scm-server start
+</pre>
+<blockquote>
+<p>启动需要一定时间，日志可查看/var/log/cloudera-scm-server/cloudera-scm-server.log</p>
+</blockquote>
+
+<hr />
+
+<h3>3. CDH集群安装</h3>
+
+<h4>1) 离线准备parcel文件(可选)</h4>
+
+<p>因为parcel文件很大，所以避免网络延迟，我们可以提前下载parcel文件在本地，然后再进行安装。<br />
+我们需要安装5.11.1版本，所以我们访问<a href="http://archive.cloudera.com/cdh5/parcels/5.11.1/">http://archive.cloudera.com/cdh5/parcels/5.11.1/</a></p>
+
+<p>这里需要下载以下三个文件
+- CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel
+- CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1(需要更名)
+- manifest.json</p>
+<pre class="chroma"><span class="nb">cd</span> /opt/cloudera/parcel-repo/
+wget http://archive.cloudera.com/cdh5/parcels/5.11.1/CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel
+wget -O CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha http://archive.cloudera.com/cdh5/parcels/5.11.1/CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1
+wget http://archive.cloudera.com/cdh5/parcels/5.11.1/manifest.json
+
+ls /opt/cloudera/parcel-repo/
+CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel  CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha  manifest.json
+</pre>
+<blockquote>
+<p>更名CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1为CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha</p>
+</blockquote>
+
+<h4>2) 访问Cloudera Manager</h4>
+
+<ul>
+<li>URL: <a href="http://192.168.33.60:7180">http://192.168.33.60:7180</a></li>
+<li>默认用户: admin</li>
+<li>默认密码: admin</li>
+</ul>
+
+<h4>3) 集群开始安装</h4>
+
+<ol>
+<li><p>选择Cloudera版本<br />
+Cloudera Express或Cloudera Enterprise Data Hub试用版(60天)</p></li>
+
+<li><p>SSH授权配置<br />
+通过查询cluster的ip和指定ssh端口增加cluster节点主机</p></li>
+
+<li><p>群集安装</p>
+
+<ul>
+<li>step 1 选择Parcel包安装和CDH版本（本例中是5.11.1）</li>
+<li>step 2 是否安装oracle-jdk（本例中安装）</li>
+<li>step 3 是否启动单用户模式（本例中不启用）</li>
+<li>step 4 填写CDH集群中节点主机的root帐号和密码-cloudera manager自动管理ssh</li>
+<li>step 5 等待安装cloudera manager agent、jdk完毕</li>
+<li>step 6 等待parcel安装CDH</li>
+<li>step 7 等待检查主机正确性</li>
+</ul></li>
+
+<li><p>群集设置</p>
+
+<ul>
+<li>step 1 选择需要安装的CDH5服务</li>
+<li>step 2 自定义角色配置</li>
+<li>step 3 数据库设置（提前给各角色创建好不同数据库-详情见<a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_mysql.html">mysql安装配置官文</a>）</li>
+<li>step 4 审核更改</li>
+<li>step 5 首次运行各服务</li>
+<li>step 6</li>
+</ul></li>
+</ol>
+
+<hr />
+
+<h3>4. 参考文档</h3>
+
+<h4>1) 官方英文文档</h4>
+
+<ul>
+<li><a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_install_path_b.html#cmig_topic_6_6_1">主要参考的官文 pathB</a></li>
+<li><a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_mysql.html">mysql 安装配置官文</a></li>
+</ul>
+
+<h4>2) 其他文档</h4>
+
+<ul>
+<li><a href="http://www.jianshu.com/p/57179e03795f">CDH5安装指南-图文</a></li>
+<li><a href="http://www.thebigdata.cn/Hadoop/29063.html">中国大数据cloudera</a></li>
+<li><a href="http://cmdschool.blog.51cto.com/2420395/1775398">老谭linux cloudera</a></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

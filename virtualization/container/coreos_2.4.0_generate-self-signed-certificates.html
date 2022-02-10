@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>coreos 2.4.0 生成ssl/tls自签名认证证书</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>11 Aug 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 生成ssl/tls认证证书之前</h3>
+
+<p>本文参照的是coreos官网的文档<a href="https://github.com/coreos/docs/blob/master/os/generate-self-signed-certificates.md">生成自签名认证证书</a>，coreos推荐使用的工具是cfssl:，这是CloudFlare公司开源的PKI/TLS瑞士军刀，详细可参照其<a href="https://github.com/cloudflare/cfssl">开源项目地址</a>。
+&gt; 除了cfssl，还有easyrsa和openssl也是生成认证证书的工具</p>
+
+<hr />
+
+<h3>1. 安装cfssl工具</h3>
+<pre class="chroma"><span class="c1"># 下载cfssl</span>
+mkdir ~/bin
+curl -s -L -o ~/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+curl -s -L -o ~/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+chmod +x ~/bin/<span class="o">{</span>cfssl,cfssljson<span class="o">}</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:~/bin
+</pre>
+<blockquote>
+<p>cfssl是一个go语言工具，所谓的安装就是下载二进制文件</p>
+</blockquote>
+
+<hr />
+
+<h3>2. 生成CA文件</h3>
+
+<h4>1) 生成默认的CA选项文件</h4>
+<pre class="chroma">mkdir ~/cfssl
+<span class="nb">cd</span> ~/cfssl
+cfssl print-defaults config &gt; ca-config.json
+cfssl print-defaults csr &gt; ca-csr.json
+</pre>
+<blockquote>
+<p>默认的选项中只有<code>www</code>和<code>client</code>，我们需要进行自定义修改</p>
+</blockquote>
+
+<h4>2) 自定义CA选项文件</h4>
+<pre class="chroma"><span class="c1"># 必选修改，增加profile内容，修改认证文件有效时间</span>
+cat <span class="s">&lt;&lt; EOF &gt; ca-config.json
+</span><span class="s">{
+</span><span class="s">    &#34;signing&#34;: {
+</span><span class="s">        &#34;default&#34;: {
+</span><span class="s">            &#34;expiry&#34;: &#34;43800h&#34;
+</span><span class="s">        },
+</span><span class="s">        &#34;profiles&#34;: {
+</span><span class="s">            &#34;server&#34;: {
+</span><span class="s">                &#34;expiry&#34;: &#34;43800h&#34;,
+</span><span class="s">                &#34;usages&#34;: [
+</span><span class="s">                    &#34;signing&#34;,
+</span><span class="s">                    &#34;key encipherment&#34;,
+</span><span class="s">                    &#34;server auth&#34;
+</span><span class="s">                ]
+</span><span class="s">            },
+</span><span class="s">            &#34;client&#34;: {
+</span><span class="s">                &#34;expiry&#34;: &#34;43800h&#34;,
+</span><span class="s">                &#34;usages&#34;: [
+</span><span class="s">                    &#34;signing&#34;,
+</span><span class="s">                    &#34;key encipherment&#34;,
+</span><span class="s">                    &#34;client auth&#34;
+</span><span class="s">                ]
+</span><span class="s">            },
+</span><span class="s">            &#34;peer&#34;: {
+</span><span class="s">                &#34;expiry&#34;: &#34;43800h&#34;,
+</span><span class="s">                &#34;usages&#34;: [
+</span><span class="s">                    &#34;signing&#34;,
+</span><span class="s">                    &#34;key encipherment&#34;,
+</span><span class="s">                    &#34;server auth&#34;,
+</span><span class="s">                    &#34;client auth&#34;
+</span><span class="s">                ]
+</span><span class="s">            }
+</span><span class="s">        }
+</span><span class="s">    }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 可选修改内容，主要是认证机构信息</span>
+cat <span class="s">&lt;&lt; EOF &gt; ca-csr.json
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;My own CA&#34;,
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">        &#34;size&#34;: 2048
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;US&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;CA&#34;,
+</span><span class="s">            &#34;O&#34;: &#34;My Company Name&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;San Francisco&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;Org Unit 1&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;Org Unit 2&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<p>增加了server，client和peer认证profile，时间调整为43800h。
+证书类型介绍：<br />
+- client certificate 由客户端使用，服务器用其验证客户端身份。例如etcdctl，etcd proxy，fleetctl或docker客户端。
+- server certificate 由服务端使用，客户端用其验证服务器身份。例如docker服务器或kube-apiserver。
+- peer certificate 由etcd集群成员使用，供它们彼此之间通信使用。</p>
+</blockquote>
+
+<h4>3) 生成CA文件</h4>
+<pre class="chroma">cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca -
+</pre>
+<blockquote>
+<p>会生成三个文件<code>ca.csr  ca-key.pem  ca.pem</code>
+<code>ca-key.pem</code>一定要保证它的安全，用其可随意生成认证文件</p>
+</blockquote>
+
+<hr />
+
+<h3>3. 生成服务端认证文件</h3>
+<pre class="chroma"><span class="c1"># 生成默认的server选项文件</span>
+cfssl print-defaults csr &gt; server.json
+
+<span class="c1"># 自定义server选项文件</span>
+<span class="c1">#最重要的是&#34;CN&#34;和&#34;hosts&#34;</span>
+cat <span class="s">&lt;&lt; EOF &gt; server.json
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;server1&#34;,
+</span><span class="s">    &#34;hosts&#34;: [
+</span><span class="s">        &#34;server1.local&#34;,
+</span><span class="s">        &#34;www.example.net&#34;,
+</span><span class="s">        &#34;192.168.0.100&#34;
+</span><span class="s">    ],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;ecdsa&#34;,
+</span><span class="s">        &#34;size&#34;: 256
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;US&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;CA&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;San Francisco&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 生成server端认证文件</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>server server.json <span class="p">|</span> cfssljson -bare server
+</pre>
+<blockquote>
+<p>会生成三个文件<code>server.csr  server-key.pem  server.pem</code></p>
+</blockquote>
+
+<hr />
+
+<h3>4. 生成集群节点认证文件</h3>
+<pre class="chroma"><span class="c1"># 生成默认的peer选项文件</span>
+cfssl print-defaults csr &gt; member1.json
+
+<span class="c1"># 自定义peer选项文件</span>
+cat <span class="s">&lt;&lt; EOF &gt; member1.json
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;member1&#34;,
+</span><span class="s">    &#34;hosts&#34;: [
+</span><span class="s">        &#34;192.168.122.101&#34;,
+</span><span class="s">        &#34;ext.example.com&#34;,
+</span><span class="s">        &#34;member1.local&#34;,
+</span><span class="s">        &#34;member1&#34;
+</span><span class="s">    ],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;ecdsa&#34;,
+</span><span class="s">        &#34;size&#34;: 256
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;US&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;CA&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;San Francisco&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 生成peer端认证文件</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>peer member1.json <span class="p">|</span> cfssljson -bare member1
+</pre>
+<blockquote>
+<p>会生成三个文件<code>member1.csr  member1-key.pem  member1.pem</code><br />
+有多少个节点就生成多少个</p>
+</blockquote>
+
+<hr />
+
+<h3>5. 生成客户端认证文件</h3>
+<pre class="chroma"><span class="c1"># 生成默认的client选项文件</span>
+cfssl print-defaults csr &gt; client.json
+
+<span class="c1"># 自定义client选项文件</span>
+<span class="c1">#hosts可留空</span>
+cat <span class="s">&lt;&lt; EOF &gt; client.json
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;client&#34;,
+</span><span class="s">    &#34;hosts&#34;: [&#34;&#34;],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;ecdsa&#34;,
+</span><span class="s">        &#34;size&#34;: 256
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;US&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;CA&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;San Francisco&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 生成client端认证文件</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client client.json <span class="p">|</span> cfssljson -bare client
+</pre>
+<blockquote>
+<p>会生成三个文件<code>client.csr  client-key.pem  client.pem</code></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

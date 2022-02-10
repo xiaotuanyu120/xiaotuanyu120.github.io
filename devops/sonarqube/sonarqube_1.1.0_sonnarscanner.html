@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                  <ul>
+                    <li><a href="/devops/sonarqube/sonarqube_1.0.0_installation.html">sonarqube: 1.0.0 installation - docker</a></li>
+                    <li><a href="/devops/sonarqube/sonarqube_1.1.0_sonnarscanner.html">sonarqube: 1.1.0 sonarscanner扫描java代码</a></li>
+                    <li><a href="/devops/sonarqube/sonarqube_1.2.0_sonnarscanner_nodejs.html">sonarqube: 1.2.0 sonarscanner扫描js代码</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>sonarqube: 1.1.0 sonarscanner扫描java代码</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>12 Dec 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. sonarscanner简介</h3>
+
+<p>参考链接：<a href="https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/">sonarscanner官方文档</a></p>
+
+<p>其实sonarscanner只是sonarqube的一种代码扫描的方式，比较通用的方式。如果你用的是maven、gradle啥的，可以用对应的工具。恰好我就遇到了这样的project。所以只能使用最通用的方式，sonarscanner。</p>
+
+<p>sonarscanner就是你没有特定的scanner时，使用的一个代码的scanner。</p>
+
+<h3>2. sonnarscanner使用</h3>
+<pre class="chroma"><span class="c1"># 例子</span>
+sonar-scanner <span class="se">\
+</span><span class="se"></span>  -Dsonar.host.url<span class="o">=</span>http://sonarqube-domain:9000 <span class="se">\
+</span><span class="se"></span>  -Dsonar.projectKey<span class="o">=</span>project-name <span class="se">\
+</span><span class="se"></span>  -Dsonar.sources<span class="o">=</span>./src <span class="se">\
+</span><span class="se"></span>  -Dsonar.sourceEncoding<span class="o">=</span>UTF-8 <span class="se">\
+</span><span class="se"></span>  -Dsonar.java.binaries<span class="o">=</span>./path/to/classes <span class="se">\
+</span><span class="se"></span>  -Dsonar.java.libraries<span class="o">=</span>./path/to/**/*.jar
+</pre>
+<blockquote>
+<p>重点：
+- java代码必须编译过后，使用sonar.java.binaries指向编译后的classes目录，然后sonar.sources指向源码目录，才可以正常检测
+- 有些教程让我们指定sonar.languages，这个选项已经废弃了，sonar会自己检测源码是什么类型</p>
+</blockquote>
+
+<h3>3. <code>ERROR: Error during SonarQube Scanner execution java.lang.IllegalStateException: No files nor directories matching</code></h3>
+
+<p>这个错误。。。其实就是因为没有提前编译java代码，所以classes目录不存在，导致报错。提前编译好java代码即可</p>
+
+<h3>4. 在docker中运行sonnarscanner</h3>
+
+<p>参考链接：
+- <a href="https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2">alpine镜像里面java找不到的报错解决方案</a>
+- <a href="https://www.javatt.com/p/66709">修改sonarscanner文件，配置使用系统的java环境</a></p>
+<pre class="chroma"><span class="c1"># 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java</span>
+sed -ir <span class="s1">&#39;s/^use_embedded_jre=.*$/use_embedded_jre=false/g&#39;</span> bin/sonar-scanner
+<span class="c1"># 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz</span>
+tar zcvf sonar-scanner-4.2.0.1873-linux.tar.gz bin conf jre lib
+
+<span class="c1"># 准备Dockerfile</span>
+<span class="c1"># 安装jre8运行sonnarscanner</span>
+<span class="c1"># 安装jdk7用于编译java工程（这个要依据你的java工程使用的jdk来定）</span>
+cat <span class="s">&lt;&lt; EOF &gt; Dockerfile
+</span><span class="s">FROM alpine:latest
+</span><span class="s">WORKDIR /app
+</span><span class="s">ADD sonar-scanner-4.2.0.1873-linux.tar.gz /app
+</span><span class="s">RUN apk update &amp;&amp; apk upgrade &amp;&amp; \
+</span><span class="s">    apk add --no-cache bash git openssh openjdk8 openjdk7 maven &amp;&amp; \
+</span><span class="s">    echo &#34;export JAVA_HOME=/usr/lib/jvm/default-jvm&#34; &gt;&gt; /etc/profile
+</span><span class="s">ADD settings.xml /usr/share/java/maven-3/conf/settings.xml
+</span><span class="s">EOF</span>
+
+<span class="c1"># 准备Dockerfile所需要的文件</span>
+cat <span class="s">&lt;&lt; EOF &gt; settings.xml
+</span><span class="s">&lt;settings&gt;
+</span><span class="s">    &lt;pluginGroups&gt;
+</span><span class="s">        &lt;pluginGroup&gt;org.sonarsource.scanner.maven&lt;/pluginGroup&gt;
+</span><span class="s">    &lt;/pluginGroups&gt;
+</span><span class="s">    &lt;profiles&gt;
+</span><span class="s">        &lt;profile&gt;
+</span><span class="s">            &lt;id&gt;sonar&lt;/id&gt;
+</span><span class="s">            &lt;activation&gt;
+</span><span class="s">                &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+</span><span class="s">            &lt;/activation&gt;
+</span><span class="s">            &lt;properties&gt;
+</span><span class="s">                &lt;sonar.host.url&gt;
+</span><span class="s">                  http://sonarqube.example.net:9000
+</span><span class="s">                &lt;/sonar.host.url&gt;
+</span><span class="s">            &lt;/properties&gt;
+</span><span class="s">        &lt;/profile&gt;
+</span><span class="s">     &lt;/profiles&gt;
+</span><span class="s">&lt;/settings&gt;
+</span><span class="s">EOF</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

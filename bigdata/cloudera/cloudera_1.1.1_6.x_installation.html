@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+              <ul>
+                <li>
+                  <a href="/bigdata/cloudera/index.html">cloudera</a>
+                  <ul>
+                    <li><a href="/bigdata/cloudera/cloudera_1.0.0_pathb_installation.html">cloudera 1.0.0 pathB(生产环境-package) 安装</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.0_6.x_intro_and_requirements.html">cloudera 1.1.0 简介和安装要求说明</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.1_6.x_installation.html">cloudera 1.1.1 生产环境安装实践</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/bigdata/elk/index.html">elk</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>cloudera 1.1.1 生产环境安装实践</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>25 Sep 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>step 0: 准备工作</h3>
+
+<h4>1) 主机分布</h4>
+
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>角色</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>172.23.2.87</td>
+<td>clouderamanager.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.88</td>
+<td>masterhost01.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.89</td>
+<td>masterhost02.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.201</td>
+<td>workerhost01.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.202</td>
+<td>workerhost02.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.203</td>
+<td>workerhost03.cdh.com</td>
+</tr>
+
+<tr>
+<td>172.23.2.204</td>
+<td>workerhost04.cdh.com</td>
+</tr>
+</tbody>
+</table>
+
+<h4>2) 设定hosts文件</h4>
+
+<p>集群里面所有机器此文件一致</p>
+<pre class="chroma">cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+172.23.2.87  clouderamanager.localcdh.com clouderamanager
+172.23.2.88  masterhost01.localcdh.com    masterhost01
+172.23.2.89  masterhost02.localcdh.com    masterhost02
+172.23.2.201 workerhost01.localcdh.com    workerhost01
+172.23.2.202 workerhost02.localcdh.com    workerhost02
+172.23.2.203 workerhost03.localcdh.com    workerhost03
+172.23.2.204 workerhost04.localcdh.com    workerhost04
+</pre>
+<h4>3) 设定hostname</h4>
+<pre class="chroma">hostname set-hostname &lt;对应主机名&gt;
+
+vim /etc/sysconfig/network
+************************************
+<span class="nv">HOSTNAME</span><span class="o">=</span>&lt;对应主机名&gt;
+************************************
+</pre>
+<h4>4) 设定swap</h4>
+<pre class="chroma">sudo <span class="nb">echo</span> <span class="s1">&#39;vm.swappiness=1&#39;</span> &gt;&gt; /etc/sysctl.conf
+sudo sysctl -p
+
+cat /proc/sys/vm/swappiness
+</pre>
+<blockquote>
+<p>之前cloudera推荐将swap关闭，但是这样在新版本内核中会有OOM的影响，所以现在推荐将swap设定为0-10，详情参照<a href="https://www.cloudera.com/documentation/enterprise/latest/topics/cdh_admin_performance.html">cloudera关于swap的文档</a></p>
+</blockquote>
+
+<h4>5) 大页透明问题</h4>
+
+<p>已启用透明大页面压缩，可能会导致重大性能问题。请运行“echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag”和“echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled”以禁用此设置</p>
+<pre class="chroma"><span class="nb">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+<span class="nb">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/enabled
+
+<span class="nb">echo</span> <span class="sb">`</span><span class="nb">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/defrag
+<span class="nb">echo</span> never &gt; /sys/kernel/mm/transparent_hugepage/enabled<span class="sb">`</span> &gt;&gt; /etc/rc.local
+</pre>
+<h4>6) psycopg2 -&gt; 2.5.4 安装</h4>
+
+<p>CDH 6 中的hue依赖psycopg2连接PostgreSQL，需要版本高于2.5.4，一般cm安装agent的时候会默认安装这个包，但是通常版本都会比较低。</p>
+<pre class="chroma">sudo yum install python-pip
+sudo pip install psycopg2==2.7.5 --ignore-installed
+</pre>
+<p>本文主要参照的文档：<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/installation.html">cloudera 6.x 安装指引</a></p>
+
+<h3>Step 1: Configure a Repository</h3>
+
+<blockquote>
+<p>在clouderamanager.cdh.com上执行</p>
+</blockquote>
+<pre class="chroma"><span class="c1"># 下载cloudera 软件源仓库文件</span>
+sudo wget https://archive.cloudera.com/cm6/6.0.0/redhat7/yum/cloudera-manager.repo -P /etc/yum.repos.d/
+
+<span class="c1"># 安装仓库文件的GPG key</span>
+sudo rpm --import https://archive.cloudera.com/cm6/6.0.0/redhat7/yum/RPM-GPG-KEY-cloudera
+</pre>
+<h3>Step 2: Install JDK</h3>
+
+<blockquote>
+<p>在clouderamanager.cdh.com上执行</p>
+</blockquote>
+
+<p>可以通过CM来托管安装，也可以手动安装oracle JDK</p>
+
+<p>安装要求：
+- JDK必须是64位
+- 集群里面的JDK必须版本一致
+- JDK安装目录必须是/usr/java/jdk-version</p>
+<pre class="chroma">sudo yum install oracle-j2sdk1.8
+</pre>
+<h3>Step 3: Install Cloudera Manager Server</h3>
+
+<blockquote>
+<p>在clouderamanager.cdh.com上执行</p>
+</blockquote>
+
+<p><strong>安装CM</strong></p>
+<pre class="chroma">sudo yum install cloudera-manager-daemons cloudera-manager-agent cloudera-manager-server
+</pre>
+<p><strong>(Recommended) Enable Auto-TLS</strong><br />
+Auto-TLS极大地简化了在群集上启用和管理TLS加密的过程。 它可以自动创建内部证书颁发机构（CA）并在所有群集主机上部署证书。 它还可以自动分发现有证书，例如由公共CA签名的证书。 将新的群集主机或服务添加到启用了自动TLS的群集会自动创建和部署所需的证书。<br />
+但是Auto-TLS仅在最新安装的时候支持。必须在给CM添加主机之前开启这个功能。</p>
+<pre class="chroma"><span class="c1"># 启用Auto-TLS</span>
+sudo <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/jdk1.8.0_141-cloudera /opt/cloudera/cm-agent/bin/certmanager setup --configure-services
+INFO:root:Logging to /var/log/cloudera-scm-agent/certmanager.log
+
+<span class="c1"># 启用过程日志查看</span>
+cat /var/log/cloudera-scm-agent/certmanager.log
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread cert         INFO     SCM Certificate Manager
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager None None 0o755
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/private cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/trust-store cloudera-scm cloudera-scm 0o755
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/hosts-key-store cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/CMCA cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/CMCA/ca-db cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/CMCA/private cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:24 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/CMCA/ca-db/newcerts cloudera-scm cloudera-scm 0o700
+<span class="o">[</span>27/Sep/2018 18:15:25 +0000<span class="o">]</span> <span class="m">2519</span> MainThread os_ops       INFO     Created directory /var/lib/cloudera-scm-server/certmanager/hosts-key-store/localhost.localdomain cloudera-scm cloudera-scm 0o755
+</pre>
+<blockquote>
+<p>推荐不开启，开启之后，server日志里面有报错，说没有企业版的license，所以没有自动注册证书什么的。然后又引起了安装CDH的错误 - <code>Installation failed. Failed to receive heartbeat from agent.</code>，排查了好久，网上都说hostname、hosts文件格式、tmpfs挂载、ntp时间同步和7182端口配置错误什么鬼的，结果没启用tls就安装成功了。<br />
+以下是两个关于tmpfs错误的说明，感兴趣的可以了解一下
+- <a href="https://community.cloudera.com/t5/Cloudera-Manager-Installation/Cloudera-Manager-Agent-cannot-connect-with-supervisor-Failed/td-p/58522">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 1</a>
+- <a href="http://community.cloudera.com/t5/Cloudera-Manager-Installation/CDH-5-12-0-clouder-manager-agent-can-not-start/td-p/58654">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 2</a></p>
+</blockquote>
+
+<h3>Step 4: Install Databases</h3>
+
+<blockquote>
+<p>在clouderamanager.cdh.com上执行，如果条件允许，可以有一台单独的数据库服务器</p>
+</blockquote>
+
+<h4>1) 安装mysql</h4>
+<pre class="chroma"><span class="c1"># 1. 安装mysql</span>
+sudo wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+sudo yum update
+sudo yum install mysql-server
+
+<span class="c1"># 2. 配置mysql</span>
+<span class="nb">echo</span> <span class="s1">&#39;[mysqld]
+</span><span class="s1">datadir=/var/lib/mysql
+</span><span class="s1">socket=/var/lib/mysql/mysql.sock
+</span><span class="s1">transaction-isolation = READ-COMMITTED
+</span><span class="s1"># Disabling symbolic-links is recommended to prevent assorted security risks;
+</span><span class="s1"># to do so, uncomment this line:
+</span><span class="s1">symbolic-links = 0
+</span><span class="s1">
+</span><span class="s1">key_buffer_size = 32M
+</span><span class="s1">max_allowed_packet = 32M
+</span><span class="s1">thread_stack = 256K
+</span><span class="s1">thread_cache_size = 64
+</span><span class="s1">query_cache_limit = 8M
+</span><span class="s1">query_cache_size = 64M
+</span><span class="s1">query_cache_type = 1
+</span><span class="s1">
+</span><span class="s1">max_connections = 550
+</span><span class="s1">#expire_logs_days = 10
+</span><span class="s1">#max_binlog_size = 100M
+</span><span class="s1">
+</span><span class="s1">#log_bin should be on a disk with enough free space.
+</span><span class="s1">#Replace &#39;</span>/var/lib/mysql/mysql_binary_log<span class="s1">&#39; with an appropriate path for your
+</span><span class="s1">#system and chown the specified folder to the mysql user.
+</span><span class="s1">log_bin=/var/lib/mysql/mysql_binary_log
+</span><span class="s1">
+</span><span class="s1">#In later versions of MySQL, if you enable the binary log and do not set
+</span><span class="s1">#a server_id, MySQL will not start. The server_id must be unique within
+</span><span class="s1">#the replicating group.
+</span><span class="s1">server_id=1
+</span><span class="s1">
+</span><span class="s1">binlog_format = mixed
+</span><span class="s1">
+</span><span class="s1">read_buffer_size = 2M
+</span><span class="s1">read_rnd_buffer_size = 16M
+</span><span class="s1">sort_buffer_size = 8M
+</span><span class="s1">join_buffer_size = 8M
+</span><span class="s1">
+</span><span class="s1"># InnoDB settings
+</span><span class="s1">innodb_file_per_table = 1
+</span><span class="s1">innodb_flush_log_at_trx_commit  = 2
+</span><span class="s1">innodb_log_buffer_size = 64M
+</span><span class="s1">innodb_buffer_pool_size = 4G
+</span><span class="s1">innodb_thread_concurrency = 8
+</span><span class="s1">innodb_flush_method = O_DIRECT
+</span><span class="s1">innodb_log_file_size = 512M
+</span><span class="s1">
+</span><span class="s1">[mysqld_safe]
+</span><span class="s1">log-error=/var/log/mysqld.log
+</span><span class="s1">pid-file=/var/run/mysqld/mysqld.pid
+</span><span class="s1">
+</span><span class="s1">sql_mode=STRICT_ALL_TABLES&#39;</span> &gt; /etc/my.cnf
+
+<span class="c1"># 3. 启动mysql</span>
+sudo systemctl <span class="nb">enable</span> mysqld
+sudo systemctl start mysqld
+
+<span class="c1"># 4. 初始化mysql</span>
+sudo /usr/bin/mysql_secure_installation
+<span class="c1"># 默认root密码为空</span>
+<span class="o">[</span>...<span class="o">]</span>
+Enter current password <span class="k">for</span> root <span class="o">(</span>enter <span class="k">for</span> none<span class="o">)</span>:
+OK, successfully used password, moving on...
+<span class="o">[</span>...<span class="o">]</span>
+Set root password? <span class="o">[</span>Y/n<span class="o">]</span> Y
+New password:
+Re-enter new password:
+Remove anonymous users? <span class="o">[</span>Y/n<span class="o">]</span> Y
+<span class="o">[</span>...<span class="o">]</span>
+Disallow root login remotely? <span class="o">[</span>Y/n<span class="o">]</span> N
+<span class="o">[</span>...<span class="o">]</span>
+Remove <span class="nb">test</span> database and access to it <span class="o">[</span>Y/n<span class="o">]</span> Y
+<span class="o">[</span>...<span class="o">]</span>
+Reload privilege tables now? <span class="o">[</span>Y/n<span class="o">]</span> Y
+All <span class="k">done</span>!
+</pre>
+<h4>2) Installing the MySQL JDBC Driver</h4>
+<pre class="chroma">wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.46.tar.gz
+tar zxvf mysql-connector-java-5.1.46.tar.gz
+sudo mkdir -p /usr/share/java/
+<span class="nb">cd</span> mysql-connector-java-5.1.46
+sudo cp mysql-connector-java-5.1.46-bin.jar /usr/share/java/mysql-connector-java.jar
+</pre>
+<h4>3) Creating Databases for Cloudera Software</h4>
+
+<p>给此表中的信息创建库和用户</p>
+
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Database</th>
+<th>User</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Cloudera Manager Server</td>
+<td>scm</td>
+<td>scm</td>
+</tr>
+
+<tr>
+<td>Activity Monitor</td>
+<td>amon</td>
+<td>amon</td>
+</tr>
+
+<tr>
+<td>Reports Manager</td>
+<td>rman</td>
+<td>rman</td>
+</tr>
+
+<tr>
+<td>Hue</td>
+<td>hue</td>
+<td>hue</td>
+</tr>
+
+<tr>
+<td>Hive Metastore Server</td>
+<td>metastore</td>
+<td>hive</td>
+</tr>
+
+<tr>
+<td>Sentry Server</td>
+<td>sentry</td>
+<td>sentry</td>
+</tr>
+
+<tr>
+<td>Cloudera Navigator Audit Server</td>
+<td>nav</td>
+<td>nav</td>
+</tr>
+
+<tr>
+<td>Cloudera Navigator Metadata Server</td>
+<td>navms</td>
+<td>navms</td>
+</tr>
+
+<tr>
+<td>Oozie</td>
+<td>oozie</td>
+<td>oozie</td>
+</tr>
+</tbody>
+</table>
+<pre class="chroma"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span> <span class="k">DEFAULT</span> <span class="nb">CHARACTER</span> <span class="k">SET</span> <span class="n">utf8</span> <span class="k">DEFAULT</span> <span class="k">COLLATE</span> <span class="n">utf8_general_ci</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="o">&lt;</span><span class="k">database</span><span class="o">&gt;</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;</span><span class="s1">&lt;user&gt;</span><span class="s1">&#39;</span><span class="o">@</span><span class="s1">&#39;</span><span class="s1">%</span><span class="s1">&#39;</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;</span><span class="s1">&lt;password&gt;</span><span class="s1">&#39;</span><span class="p">;</span>
+</pre>
+<p>可以通过以下sql命令确认上面的操作</p>
+<pre class="chroma"><span class="k">SHOW</span> <span class="n">DATABASES</span><span class="p">;</span>
+<span class="k">SHOW</span> <span class="n">GRANTS</span> <span class="k">FOR</span> <span class="s1">&#39;</span><span class="s1">&lt;user&gt;</span><span class="s1">&#39;</span><span class="o">@</span><span class="s1">&#39;</span><span class="s1">%</span><span class="s1">&#39;</span><span class="p">;</span>
+</pre>
+<h3>Step 5: Set up the Cloudera Manager Database</h3>
+
+<blockquote>
+<p>在clouderamanager.cdh.com上执行，如果条件允许，可以有一台单独的数据库服务器</p>
+</blockquote>
+
+<p>CM提供了一个脚本(scm_prepare_database.sh)来创建和配置CM的数据库，这个脚本可以作如下事情：
+- 创建Cloudera Manager Server数据库配置文件
+- 为Cloudera Manager Server创建和配置数据库(MariaDB, MySQL, and PostgreSQL)
+- 为Cloudera Manager Server创建和配置用户(MariaDB, MySQL, and PostgreSQL)</p>
+
+<h4>1) Syntax for scm_prepare_database.sh</h4>
+
+<p><code>/opt/cloudera/cm/schema/scm_prepare_database.sh [options] &lt;databaseType&gt; &lt;databaseName&gt; &lt;databaseUser&gt; &lt;password&gt;</code>
+- <code>&lt;databaseType&gt;</code>:
+    - MariaDB: mysql
+    - MySQL: mysql
+    - Oracle: oracle
+    - PostgreSQL: postgresql
+- <code>&lt;databaseName&gt;</code>, 对MySQL, MariaDB, and PostgreSQL来说，如果指定<code>-u</code>和<code>-p</code>选项，则脚本会创建指定的数据库，否则只会配置它。
+- <code>&lt;databaseUser&gt;</code>, 数据库用户名。
+- <code>&lt;password&gt;</code>, 数据库用户名密码，如果不想显式的暴露密码，可以忽略，然后在交互中输入密码。</p>
+
+<blockquote>
+<p>如果在第四步中已经创建过数据库和用户授权，不需要执行此脚本时增加<code>-u</code>和<code>-p</code>选项</p>
+</blockquote>
+
+<h4>2) Preparing the Cloudera Manager Server Database</h4>
+
+<p>使用第四步中使用的数据库名称、数据库用户和数据库密码，来执行scm_prepare_database.sh脚本</p>
+<pre class="chroma">sudo /opt/cloudera/cm/schema/scm_prepare_database.sh mysql &lt;databaseName&gt; &lt;databaseUser&gt;
+
+
+<span class="c1"># example</span>
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm
+Enter SCM password:
+<span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/jdk1.8.0_141-cloudera
+Verifying that we can write to /etc/cloudera-scm-server
+Creating SCM configuration file in /etc/cloudera-scm-server
+Executing:  /usr/java/jdk1.8.0_141-cloudera/bin/java -cp /usr/share/java/mysql-connector-java.jar:/usr/share/java/oracle-connector-java.jar:/usr/share/java/postgresql-connector-java.jar:/opt/cloudera/cm/schema/../lib/* com.cloudera.enterprise.dbutil.DbCommandExecutor /etc/cloudera-scm-server/db.properties com.cloudera.cmf.db.
+<span class="o">[</span>                          main<span class="o">]</span> DbCommandExecutor              INFO  Successfully connected to database.
+All <span class="k">done</span>, your SCM database is configured correctly!
+</pre>
+<blockquote>
+<p>此处只针对cm和mysql安装在同一台上的用法，其他情况，可参照文章最开头的官方文档的链接</p>
+</blockquote>
+
+<h3>Step 6: Install CDH and Other Software</h3>
+
+<h4>1) 启动Cloudera Manager Server</h4>
+<pre class="chroma">sudo systemctl start cloudera-scm-server
+</pre>
+<h4>2) 确定Cloudera Manager Server服务启动完毕</h4>
+<pre class="chroma">sudo tail -f /var/log/cloudera-scm-server/cloudera-scm-server.log
+...
+INFO WebServerImpl:com.cloudera.server.cmf.WebServerImpl: Started Jetty server.
+<span class="c1"># 当看到上面信息的时候，服务已经启动完毕</span>
+</pre>
+<blockquote>
+<p>错误说明
+- 现象描述: 在群集安装界面，每次都是安装失败，失败的原因是在<code>正在检测 Cloudera Manager Server...</code>部分里面，执行的是<code>BEGIN host -t PTR localhost.localdomain</code>，每一台都是。</p>
+
+<ul>
+<li><p>问题分析: 最初以为是cm会动态分析hostname，获得cm server的hostname，然后在各个cluster节点上使用/etc/hosts文件解析出来真正的ip。所以一直都在排查hosts文件，但其实不是这里的问题。</p></li>
+
+<li><p>真实原因: cm并不会动态分析hostname，而是在初始化的时候生成一个这样的初始化文件<code>/var/lib/cloudera-scm-server/certmanager/cm_init.txt</code>，里面很多初始化信息，后面cm再重启就不会变了，会一直用这个文件里面获取的信息。结果我遇到的坑就是，我先启动的cm然后又修改的hostname，结果web界面初始化的时候，死活识别不了真正的hostname，手动修改一下这个文件里面的hostname，然后重启一下cm，问题解决。</p></li>
+</ul>
+</blockquote>
+
+<h4>3) 离线准备parcel文件(可选)</h4>
+
+<p>因为parcel文件很大，所以避免网络延迟，我们可以提前下载parcel文件在本地，然后再进行安装。<br />
+我们需要安装5.11.1版本，所以我们访问<a href="https://archive.cloudera.com/cdh6/6.0.0/parcels/">https://archive.cloudera.com/cdh6/6.0.0/parcels/</a></p>
+
+<p>这里需要下载以下三个文件
+- CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel
+- CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha256(需要更名)
+- manifest.json</p>
+
+<blockquote>
+<p>重点注意，此处下载的文件，后来实测发现用不上，还是会在线下载，原因未查明。</p>
+</blockquote>
+<pre class="chroma"><span class="nb">cd</span> /opt/cloudera/parcel-repo/
+wget https://archive.cloudera.com/cdh6/6.0.0/parcels/CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel
+wget -O CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha https://archive.cloudera.com/cdh6/6.0.0/parcels/CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha256
+wget https://archive.cloudera.com/cdh6/6.0.0/parcels/manifest.json
+
+ls
+CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel  CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha  manifest.json
+</pre>
+<h4>4) 浏览器访问</h4>
+
+<p><code>http://&lt;server_host&gt;:7180</code>
+&gt; 如果开启了Auto-TLS，会跳转到<code>https://&lt;server_host&gt;:7183</code></p>
+
+<h4>5) 登陆Cloudera Manager Admin Console</h4>
+
+<p>默认账号密码是<code>admin</code>:<code>admin</code></p>
+
+<h3>Step 7: Set Up a Cluster</h3>
+
+<h4>1) 群集安装</h4>
+
+<p>会在web界面经过以下操作步骤：
+- 欢迎
+- Specify Hosts，示例格式<code>clouderamanager.localcdh.com,masterhost0[1-2].localcdh.com,workerhost0[1-4].localcdh.com</code>
+- 选择存储库, 选择公共库就好，暂时个人还没有碰到私有库的需求。如果界面上没有CDH6的选项，可以点击<code>选择parcel</code>旁边的更多选项，把最新版本的parcel url输入进去就可以了，例如，我希望安装CDH6，但是发现没有，我就增加一个<code>https://archive.cloudera.com/cdh6/6.0.0/parcels/</code>，即可。 如果需要安装sqoop，在这边需要勾选，不然后面没法选了。
+- JDK 安装选项， 选择oracle jdk安装，另外可以勾选无限什么的那个选项，估计就是jdk的证书白名单。
+- 提供 SSH 登录凭据，推荐用root的sshkey或者密码，这样权限足够，不会有乱七八糟问题。
+- Install Agents，容易出现<code>安装失败。 无法接收 Agent 发出的检测信号。</code>错误，就跟上面auto-tls注释里面说明的一样，注意那几项肯定能成功。
+- 正在安装选定 Parcel，顾名思义。
+- Inspect Hosts，检测部分参数，根据参数提示调整即可</p>
+
+<h4>2) 群集配置</h4>
+
+<p>会在web界面经过以下操作步骤：
+- Select Services，有打包好的方案选择，也有自定义服务选择，通常是自定义，方便看到安装了什么服务。
+- 自定义角色分配，可以参照<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_host_allocations.html#host_role_assignments">官网推荐</a>
+- 数据库设置，这边就是第四步里面创建的数据库
+- 审核更改，审核上面的配置
+- 命令详细信息，执行命令
+- Summary，结束</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

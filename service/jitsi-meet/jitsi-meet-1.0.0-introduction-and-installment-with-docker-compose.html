@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                  <ul>
+                    <li><a href="/service/jitsi-meet/jitsi-meet-1.0.0-introduction-and-installment-with-docker-compose.html">jitsi meet: 1.0.0 introduction and installation with docker compose</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jitsi meet: 1.0.0 introduction and installation with docker compose</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Apr 2021</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 介绍</h2>
+
+<p>jitsi 是一套开源代码的合集，用于提供视频会议，类似于zoom。</p>
+
+<h3>1.1 组件介绍</h3>
+
+<ul>
+<li>jitsi meet：是一个WebRTC兼容的JavaScript前端程序，使用Jitsi Videobridge提供高质量、可扩展的视频会议。</li>
+<li>jitsi videobridge（JVB）：WebRTC兼容服务器，旨在在会议参与者之间路由视频流。</li>
+<li>jitsi conference focus（jicofo）：Jitsi Meet会议中使用的服务端focus组件，用于管理媒体会话，并充当每个参与者和video bridge之间的负载平衡器。</li>
+<li>jitsi gateway to SIP（jigasi）：服务器端应用程序，允许常规SIP客户端加入Jitsi Meet会议</li>
+<li>Jitsi Broadcasting Infrastructure (jibri) ：用于录制或者steam jitsi meet会议的一组工具，通过启动在虚拟帧缓冲区中渲染的Chrome实例，并使用ffmpeg捕获和编码输出。</li>
+<li>外部组件
+
+<ul>
+<li>prosody：xmpp服务器</li>
+</ul></li>
+</ul>
+
+<h3>1.2 架构图</h3>
+
+<p><img src="/static/images/docs/service/jitsi-meet/jitsiMeetArchitectureDiagram.png" alt="" /></p>
+
+<h2>2. docker-compose启动jitsi meet</h2>
+
+<h3>2.1 <a href="https://github.com/jitsi/docker-jitsi-meet/releases">下载jitsi meet</a></h3>
+<pre class="chroma">wget https://github.com/jitsi/docker-jitsi-meet/archive/refs/tags/stable-5390-3.tar.gz
+tar zxf stable-5390-3.tar.gz
+<span class="nb">cd</span> docker-jitsi-meet-stable-5390-3
+</pre>
+<h3>2.2 创建并调整<code>.env</code>配置文件</h3>
+<pre class="chroma">cp env.example .env
+
+
+<span class="c1">## 修改密码配置</span>
+./gen-passwords.sh
+<span class="c1"># 运行密码生成脚本，会生成四个密码，并替换.env文件中的密码配置</span>
+<span class="c1">#- JICOFO_COMPONENT_SECRET=${JICOFO_COMPONENT_SECRET}</span>
+<span class="c1">#- JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD</span>
+<span class="c1">#- JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD}</span>
+<span class="c1">#- JIGASI_XMPP_PASSWORD=${JIGASI_XMPP_PASSWORD}</span>
+<span class="c1">#- JIBRI_RECORDER_PASSWORD=${JIBRI_RECORDER_PASSWORD}</span>
+<span class="c1">#- JIBRI_XMPP_PASSWORD=${JIBRI_XMPP_PASSWORD}</span>
+
+
+<span class="c1">## 修改生成的配置文件储存目录</span>
+<span class="c1"># Directory where all configuration will be stored</span>
+<span class="c1"># 组件的配置文件生成目录配置：CONFIG=~/.jitsi-meet-cfg</span>
+mkdir -p ~/.jitsi-meet-cfg/<span class="o">{</span>web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri<span class="o">}</span>
+
+
+<span class="c1">## 修改常规配置</span>
+<span class="c1"># Exposed HTTP port</span>
+<span class="nv">HTTP_PORT</span><span class="o">=</span><span class="m">8000</span>
+
+<span class="c1"># Exposed HTTPS port</span>
+<span class="nv">HTTPS_PORT</span><span class="o">=</span><span class="m">8443</span>
+
+<span class="c1"># System time zone</span>
+<span class="nv">TZ</span><span class="o">=</span>Aisa/Shanghai
+
+<span class="c1"># Public URL for the web service (required)</span>
+<span class="nv">PUBLIC_URL</span><span class="o">=</span>https://meet.example.com:8443
+
+<span class="c1"># IP address of the Docker host</span>
+<span class="c1"># See the &#34;Running behind NAT or on a LAN environment&#34; section in the Handbook:</span>
+<span class="c1"># https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker#running-behind-nat-or-on-a-lan-environment</span>
+<span class="nv">DOCKER_HOST_ADDRESS</span><span class="o">=</span>192.168.1.1
+</pre>
+<h3>2.3 启动程序</h3>
+<pre class="chroma">docker-compose up -d
+</pre>
+<h3>2.4 开放以下端口的防火墙</h3>
+
+<ul>
+<li>8000/tcp for Web UI HTTP (really just to redirect, after uncommenting ENABLE_HTTP_REDIRECT=1 in .env)</li>
+<li>8443/tcp for Web UI HTTPS</li>
+<li>4443/tcp for RTP media over TCP</li>
+<li>10000/udp for RTP media over UDP</li>
+</ul>
+
+<h3>2.5 访问</h3>
+
+<p><a href="https://meet.example.com:8443">https://meet.example.com:8443</a></p>
+
+<blockquote>
+<p><a href="https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker">参考安装文档</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

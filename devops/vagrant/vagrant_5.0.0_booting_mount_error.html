@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                  <ul>
+                    <li><a href="/devops/vagrant/vagrant_1.0.0_安装.html">vagrant: 1.0.0 多平台安装</a></li>
+                    <li><a href="/devops/vagrant/vagrant_2.0.0_初识.html">vagrant: 2.0.0 初识</a></li>
+                    <li><a href="/devops/vagrant/vagrant_3.1.0_basic_command.html">vagrant: 3.1.0 基础操作命令</a></li>
+                    <li><a href="/devops/vagrant/vagrant_3.2.0_basic_config.html">vagrant: 3.2.0 基本配置</a></li>
+                    <li><a href="/devops/vagrant/vagrant_3.3.0_multiple_vms.html">vagrant: 3.3.0 在一个目录中创建多主机</a></li>
+                    <li><a href="/devops/vagrant/vagrant_4.0.0_snapshot.html">vagrant: 4.0.0 快照</a></li>
+                    <li><a href="/devops/vagrant/vagrant_5.0.0_booting_mount_error.html">vagrant: 5.0.0 启动错误</a></li>
+                    <li><a href="/devops/vagrant/vagrant_5.1.0_virtualbox_guest_additions_error.html">vagrant: 5.1.0 安装virtualbox的guest插件</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>vagrant: 5.0.0 启动错误</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>03 Oct 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1.1 启动挂载错误：没有此设备</h3>
+<pre class="chroma"><span class="c1"># 开机时提示</span>
+/sbin/mount.vboxsf: mounting failed with the error: No such device
+</pre>
+<blockquote>
+<p>发现登录到虚机里面，/vagrant目录没有内容</p>
+</blockquote>
+
+<h3>1.2 解决办法</h3>
+<pre class="chroma">yum install gcc make kernel kernel-devel kernel-headers -y
+<span class="nb">cd</span> /opt/VBoxGuestAdditions-*/init
+./vboxadd setup
+</pre>
+<blockquote>
+<p>然后在host中执行&rdquo;vagrant reload&rdquo;即可</p>
+
+<p>注意查看kernel版本和kernel-headers、kernel-devel的版本是否匹配，如果非匹配，可以查看新安装的kernel是否和其匹配，如果匹配，重启一下系统再次检查即可。</p>
+</blockquote>
+
+<hr />
+
+<h3>2.1 启动挂载错误：mount变成了rsync</h3>
+
+<p>每次vagrant启动时，默认的挂载Vagrantfile目录到/vagrant的动作，被rsync替代</p>
+
+<h3>2.2 解决办法</h3>
+
+<p>参考链接: <a href="https://github.com/hashicorp/vagrant/issues/7157">github issue</a></p>
+<pre class="chroma"><span class="c1"># 增加如下配置到Vagrantfile中</span>
+<span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">synced_folder</span> <span class="s2">&#34;</span><span class="s2">.</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="s2">/vagrant</span><span class="s2">&#34;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&#34;</span><span class="s2">virtualbox</span><span class="s2">&#34;</span>
+</pre>
+<hr />
+
+<h3>3.1 plugin错误：虚拟机启动，但是初始化报卸载错误</h3>
+<pre class="chroma">The following SSH <span class="nb">command</span> responded with a non-zero <span class="nb">exit</span> status.
+Vagrant assumes that this means the <span class="nb">command</span> failed!
+
+umount /mnt
+
+Stdout from the command:
+
+
+
+Stderr from the command:
+
+umount: /mnt: not mounted.
+</pre>
+<h3>3.2 plugin的问题，可以调整版本解决</h3>
+
+<ul>
+<li><p><a href="https://github.com/hashicorp/vagrant/issues/12084">vagrant github issue：回复说是plugin的问题</a></p></li>
+
+<li><p><a href="https://www.devopsroles.com/vagrant-no-virtualbox-guest-additions-installation-found-fixed/">回退plugin为老版本解决</a>
+&ldquo;` bash</p>
+
+<h1>卸载最新版本</h1>
+
+<p>vagrant plugin uninstall vagrant-vbguest</p></li>
+</ul>
+
+<h1>重装老版本</h1>
+
+<p>vagrant plugin install vagrant-vbguest &ndash;plugin-version 0.21</p>
+<pre class="chroma">
+### 4.1 启动错误：如下
+按照3.1之中的解决方法，使用centos8镜像的时候，虽然3.1的错误解决了。但又报了另外一个错误，错误的提示是安装的包找不到。最上面有如下这个提示
+``` bash
+No Virtualbox Guest Additions installation found.
+</pre>
+<p>所以猜测应该是找不到虚拟机中的vbguest，所以去自动安装，而0.21版本的插件太老，导致安装的包不对，这个问题的解决需要提升vbguest的版本，但是又因为3.1的问题不能升级vbguest。</p>
+
+<h3>4.2 解决方案：禁用vbguest的自动安装</h3>
+
+<p><a href="https://stackoverflow.com/questions/59179637/vagrant-up-causes-guest-additions-to-reinstall-each-time-why">如何禁用vbguest自动安装</a>
+如上所说，既然虚拟机中的vbguest自动安装会引发问题，那么我们就可以禁用这个自动安装的行为，让虚拟机可以启动，然后后面手动解决虚拟机中的vbguest的安装问题</p>
+<pre class="chroma">  <span class="k">if</span> Vagrant.has_plugin?<span class="o">(</span><span class="s2">&#34;vagrant-vbguest&#34;</span><span class="o">)</span>
+    config.vbguest.auto_update <span class="o">=</span> <span class="nb">false</span>
+  end
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

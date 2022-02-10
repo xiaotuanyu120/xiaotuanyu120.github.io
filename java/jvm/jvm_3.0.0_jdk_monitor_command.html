@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                  <ul>
+                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">jdk: 1.0.0 jdk简介</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JVM查看默认参数</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.0_1.6_installation.html">jdk: 1.1.0 jre1.6安装</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.1_1.8_installation.html">jdk: 1.1.1 jdk1.8安装</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">jdk: 2.1.0 命令行编译java项目</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">jdk: 2.1.1 javac error IllegalArgumentException</a></li>
+                    <li><a href="/java/jvm/jvm_1.0.0_runtime_data_area.html">JVM: 1.0.0 运行时数据区域概念</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.0_optimize_params.html">JVM: 2.0.0 内存区域调优参数</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</a></li>
+                    <li><a href="/java/jvm/jvm_2.1.0_optimize_example.html">JVM: 2.1.0 调优实践</a></li>
+                    <li><a href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">JVM: 3.0.0 jvm状态查看命令(JDK自带)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>JVM: 3.0.0 jvm状态查看命令(JDK自带)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<p>以下为jdk1.6中的命令</p>
+
+<h3>1. jinfo</h3>
+
+<p>简介：jinfo - Configuration Info
+语法：
+- <code>jinfo [ option ] pid</code>
+- <code>jinfo [ option ] executable core</code>
+- <code>jinfo [ option ] [server-id@]remote-hostname-or-IP</code></p>
+
+<p>常用用法:</p>
+<pre class="chroma"><span class="c1"># 查看永久代最大可用内存</span>
+jinfo -flag MaxPermSize <span class="m">14391</span>
+-XX:MaxPermSize<span class="o">=</span><span class="m">85983232</span>
+
+<span class="c1"># 查看永久代初始化内存</span>
+jinfo -flag PermSize <span class="m">14391</span>
+-XX:PermSize<span class="o">=</span><span class="m">21757952</span>
+
+<span class="c1"># 查看堆内存初始化大小</span>
+jinfo -flag InitialHeapSize <span class="m">14391</span>
+-XX:InitialHeapSize<span class="o">=</span><span class="m">8031104</span>
+
+<span class="c1"># 查看堆内存最大空间大小</span>
+jinfo -flag MaxHeapSize <span class="m">14391</span>
+-XX:MaxHeapSize<span class="o">=</span><span class="m">132120576</span>
+
+<span class="c1"># 查看线程堆栈大小(Kb)</span>
+jinfo -flag ThreadStackSize <span class="m">14391</span>
+-XX:ThreadStackSize<span class="o">=</span><span class="m">1024</span>
+</pre>
+<p><a href="http://jvm-options.tech.xebia.fr/">flag list and intro</a></p>
+
+<h3>2. jstat</h3>
+
+<p>简介：jstat - Java Virtual Machine Statistics Monitoring Tool<br />
+语法：<code>jstat [ generalOption | outputOptions vmid [interval[s|ms] [count]] ]</code>
+参数：
+- generalOption
+  - help
+  - options
+- outputOptions
+  - stat option
+    - class, 用于查看类加载情况的统计
+    - compiler, 用于查看HotSpot中即时编译器编译情况的统计
+    - gc, 用于查看JVM中堆的垃圾收集情况的统计
+    - gccapacity, 用于查看新生代、老生代及持久代的存储容量情况
+    - gccause, 用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它还会显示最后一次及当前正在发生垃圾收集的原因。
+    - gcnew, 用于查看新生代垃圾收集的情况
+    - gcnewcapacity, 用于查看新生代的存储容量情况
+    - gcold, 	用于查看老生代及持久代发生GC的情况
+    - gcoldcapacity, 用于查看老生代的容量
+    - gcpermcapacity, 用于查看持久代的容量
+    - gcutil, 用于查看新生代、老生代及持代垃圾收集的情况
+    - printcompilation, HotSpot编译方法的统计
+  - other option
+    - h n, 用于指定每隔几行就输出列头，如果不指定，默认是只在第一行出现列头。
+    - t n, 用于在输出内容的第一列显示时间戳，这个时间戳代表的是JVM开始启动到现在的时间。
+    - JjavaOption, 用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。</p>
+
+<p>各选项输出内容含义：</p>
+
+<table>
+<thead>
+<tr>
+<th>-class</th>
+<th>类加载情况的统计</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>Loaded</td>
+<td>加载了的类的数量</td>
+</tr>
+
+<tr>
+<td>Bytes</td>
+<td>加载了的类的大小，单为Kb</td>
+</tr>
+
+<tr>
+<td>Unloaded</td>
+<td>卸载了的类的数量</td>
+</tr>
+
+<tr>
+<td>Bytes</td>
+<td>卸载了的类的大小，单为Kb</td>
+</tr>
+
+<tr>
+<td>Time</td>
+<td>花在类的加载及卸载的时间</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-compiler</th>
+<th>HotSpot中即时编译器编译情况的统计</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>Compiled</td>
+<td>编译任务执行的次数</td>
+</tr>
+
+<tr>
+<td>Failed</td>
+<td>编译任务执行失败的次数</td>
+</tr>
+
+<tr>
+<td>Invalid</td>
+<td>编译任务非法执行的次数</td>
+</tr>
+
+<tr>
+<td>Time</td>
+<td>执行编译花费的时间</td>
+</tr>
+
+<tr>
+<td>FailedType</td>
+<td>最后一次编译失败的编译类型</td>
+</tr>
+
+<tr>
+<td>FailedMethod</td>
+<td>最后一次编译失败的类名及方法名</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gc</th>
+<th>JVM中堆的垃圾收集情况的统计</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>S0C</td>
+<td>新生代中Survivor space中S0当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1C</td>
+<td>新生代中Survivor space中S1当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>S0U</td>
+<td>新生代中Survivor space中S0容量使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1U</td>
+<td>新生代中Survivor space中S1容量使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>EC</td>
+<td>Eden space当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>EU</td>
+<td>Eden space容量使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>OC</td>
+<td>Old space当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>OU</td>
+<td>Old space使用容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>PC</td>
+<td>Permanent space当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>PU</td>
+<td>Permanent space使用容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>YGCT</td>
+<td>从应用程序启动到采样时 Young GC 所用的时间(秒)</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGCT</td>
+<td>从应用程序启动到采样时 Full GC 所用的时间(秒)</td>
+</tr>
+
+<tr>
+<td>GCT</td>
+<td>从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gccapacity</th>
+<th>新生代、老生代及持久代的存储容量情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>NGCMN</td>
+<td>新生代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>NGCMX</td>
+<td>新生代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>NGC</td>
+<td>当前新生代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S0C</td>
+<td>当前新生代中survivor space 0的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1C</td>
+<td>当前新生代中survivor space 1的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>EC</td>
+<td>Eden space当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>OGCMN</td>
+<td>老生代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OGCMX</td>
+<td>老生代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OGC</td>
+<td>当前老生代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OC</td>
+<td>当前老生代的空间容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PGCMN</td>
+<td>持久代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PGCMX</td>
+<td>持久代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PGC</td>
+<td>当前持久代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PC</td>
+<td>当前持久代的空间容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gccause</th>
+<th>这个选项用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它还会显示最后一次及当前正在发生垃圾收集的原因，它比-gcutil会多出最后一次垃圾收集原因以及当前正在发生的垃圾收集的原因。用于查看垃圾收集的统计情况，包括最近发生垃圾的原因</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>LGCC</td>
+<td>最后一次垃圾收集的原因，可能为“unknown GCCause”、“System.gc()”等</td>
+</tr>
+
+<tr>
+<td>GCC</td>
+<td>当前垃圾收集的原因</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcnew</th>
+<th>新生代垃圾收集的情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>S0C</td>
+<td>当前新生代中survivor space 0的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1C</td>
+<td>当前新生代中survivor space 1的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S0U</td>
+<td>S0已经使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1U</td>
+<td>S1已经使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>TT</td>
+<td>Tenuring threshold，要了解这个参数，我们需要了解一点Java内存对象的结构，在Sun JVM中，（除了数组之外的）对象都有两个机器字（words）的头部。第一个字中包含这个对象的标示哈希码以及其他一些类似锁状态和等标识信息，第二个字中包含一个指向对象的类的引用，其中第二个字节就会被垃圾收集算法使用到。在新生代中做垃圾收集的时候，每次复制一个对象后，将增加这个对象的收集计数，当一个对象在新生代中被复制了一定次数后，该算法即判定该对象是长周期的对象，把他移动到老生代，这个阈值叫着tenuring threshold。这个阈值用于表示某个/些在执行批定次数youngGC后还活着的对象，即使此时新生的的Survior没有满，也同样被认为是长周期对象，将会被移到老生代中。</td>
+</tr>
+
+<tr>
+<td>MTT</td>
+<td>Maximum tenuring threshold，用于表示TT的最大值。</td>
+</tr>
+
+<tr>
+<td>DSS</td>
+<td>Desired survivor size (KB).可以参与这里：<a href="http://blog.csdn.net/yangjun2/article/details/6542357">http://blog.csdn.net/yangjun2/article/details/6542357</a></td>
+</tr>
+
+<tr>
+<td>EC</td>
+<td>Eden space当前容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>EU</td>
+<td>Eden space已经使用的大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>YGCT</td>
+<td>从应用程序启动到采样时 Young GC 所用的时间(单位秒)</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcnewcapacity</th>
+<th>新生代的存储容量情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>NGCMN</td>
+<td>新生代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>NGCMX</td>
+<td>新生代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>NGC</td>
+<td>当前新生代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S0CMX</td>
+<td>新生代中SO的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S0C</td>
+<td>当前新生代中SO的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1CMX</td>
+<td>新生代中S1的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>S1C</td>
+<td>当前新生代中S1的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>ECMX</td>
+<td>新生代中Eden的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>EC</td>
+<td>当前新生代中Eden的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcold</th>
+<th>老生代及持久代发生GC的情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>PC</td>
+<td>当前持久代容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>PU</td>
+<td>持久代使用容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>OC</td>
+<td>当前老年代容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>OU</td>
+<td>老年代使用容量的大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGCT</td>
+<td>从应用程序启动到采样时 Full GC 所用的时间(单位秒)</td>
+</tr>
+
+<tr>
+<td>GCT</td>
+<td>从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcoldcapacity</th>
+<th>老生代的存储容量情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>OGCMN</td>
+<td>老生代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OGCMX</td>
+<td>老生代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OGC</td>
+<td>当前老生代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>OC</td>
+<td>当前新生代的空间容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGCT</td>
+<td>从应用程序启动到采样时 Full GC 所用的时间(单位秒)</td>
+</tr>
+
+<tr>
+<td>GCT</td>
+<td>从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcpermcapacity</th>
+<th>从应用程序启动到采样时发生 Full GC 的次数，持久代的存储容量情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>PGCMN</td>
+<td>持久代的最小容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PGCMX</td>
+<td>持久代的最大容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PGC</td>
+<td>当前持久代的容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>PC</td>
+<td>当前持久代的空间容量大小（KB）</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGCT</td>
+<td>从应用程序启动到采样时 Full GC 所用的时间(单位秒)</td>
+</tr>
+
+<tr>
+<td>GCT</td>
+<td>从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-gcutil</th>
+<th>新生代、老生代及持代垃圾收集的情况</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>S0</td>
+<td>Heap上的 Survivor space 0 区已使用空间的百分比</td>
+</tr>
+
+<tr>
+<td>S1</td>
+<td>Heap上的 Survivor space 1 区已使用空间的百分比</td>
+</tr>
+
+<tr>
+<td>E</td>
+<td>Heap上的 Eden space 区已使用空间的百分比</td>
+</tr>
+
+<tr>
+<td>O</td>
+<td>Heap上的 Old space 区已使用空间的百分比</td>
+</tr>
+
+<tr>
+<td>P</td>
+<td>Perm space 区已使用空间的百分比</td>
+</tr>
+
+<tr>
+<td>YGC</td>
+<td>从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+
+<tr>
+<td>YGCT</td>
+<td>从应用程序启动到采样时 Young GC 所用的时间(单位秒)</td>
+</tr>
+
+<tr>
+<td>FGC</td>
+<td>从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+
+<tr>
+<td>FGCT</td>
+<td>从应用程序启动到采样时 Full GC 所用的时间(单位秒)</td>
+</tr>
+
+<tr>
+<td>GCT</td>
+<td>从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>-printcompilation</th>
+<th>HotSpot编译方法的统计</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>列名</td>
+<td>说明</td>
+</tr>
+
+<tr>
+<td>Compiled</td>
+<td>编译任务执行的次数</td>
+</tr>
+
+<tr>
+<td>Size</td>
+<td>方法的字节码所占的字节数</td>
+</tr>
+
+<tr>
+<td>Type</td>
+<td>编译类型</td>
+</tr>
+
+<tr>
+<td>Method</td>
+<td>指定确定被编译方法的类名及方法名，类名中使名“/”而不是“.”做为命名分隔符，方法名是被指定的类中的方法，这两个字段的格式是由HotSpot中的“-XX:+PrintComplation”选项确定的。</td>
+</tr>
+</tbody>
+</table>
+<p>常用用法：<br />
+<code>generalOption</code></p>
+<pre class="chroma">jstat -options
+-class
+-compiler
+-gc
+-gccapacity
+-gccause
+-gcnew
+-gcnewcapacity
+-gcold
+-gcoldcapacity
+-gcpermcapacity
+-gcutil
+-printcompilation
+</pre>
+<p><code>outputOptions</code></p>
+<pre class="chroma"><span class="c1"># 查看pid为13772的类占用的内存</span>
+jstat -class <span class="m">13772</span>
+Loaded  Bytes  Unloaded  Bytes     Time
+  <span class="m">1850</span>  3905.6        <span class="m">0</span>     0.0       1.22
+</pre>
+<p>补充实例</p>
+<pre class="chroma"><span class="c1"># jstat -gc vmid interval count</span>
+<span class="c1"># 查看16009进程的各内存区域占用及gc情况，250ms一次，收集20次</span>
+jstat -gc <span class="m">16009</span> <span class="m">250</span> <span class="m">20</span>
+ S0C    S1C    S0U    S1U      EC       EU        OC         OU       PC     PU    YGC     YGCT    FGC    FGCT     GCT   
+2560.0 2560.0  0.0   992.0  1393152.0 1094959.8 2796544.0   191228.2  262144.0 61116.1     <span class="m">95</span>    1.107   <span class="m">0</span>      0.000    1.107
+2560.0 2560.0 1028.6  0.0   1393152.0 203113.7 2796544.0   192084.2  262144.0 61116.1     <span class="m">96</span>    1.112   <span class="m">0</span>      0.000    1.112
+2560.0 2560.0 1028.6  0.0   1393152.0 938118.6 2796544.0   192084.2  262144.0 61116.1     <span class="m">96</span>    1.112   <span class="m">0</span>      0.000    1.112
+2048.0 2560.0  0.0   928.0  1393152.0 240085.7 2796544.0   192976.8  262144.0 61116.1     <span class="m">97</span>    1.117   <span class="m">0</span>      0.000    1.117
+2048.0 2560.0  0.0   928.0  1393152.0 910266.8 2796544.0   192976.8  262144.0 61134.0     <span class="m">97</span>    1.117   <span class="m">0</span>      0.000    1.117
+2048.0 2048.0 1280.0  0.0   1394176.0 215747.2 2796544.0   193880.8  262144.0 61134.0     <span class="m">98</span>    1.124   <span class="m">0</span>      0.000    1.124
+2048.0 2048.0 1280.0  0.0   1394176.0 853633.4 2796544.0   193880.8  262144.0 61134.2     <span class="m">98</span>    1.124   <span class="m">0</span>      0.000    1.124
+2048.0 2048.0  0.0   1376.0 1394176.0 212152.5 2796544.0   194864.8  262144.0 61134.2     <span class="m">99</span>    1.130   <span class="m">0</span>      0.000    1.130
+2048.0 2048.0  0.0   1376.0 1394176.0 887074.4 2796544.0   194864.8  262144.0 61134.2     <span class="m">99</span>    1.130   <span class="m">0</span>      0.000    1.130
+2048.0 2048.0 1120.0  0.0   1394176.0 182373.2 2796544.0   195912.4  262144.0 61134.2    <span class="m">100</span>    1.136   <span class="m">0</span>      0.000    1.136
+2048.0 2048.0 1120.0  0.0   1394176.0 990471.3 2796544.0   195912.4  262144.0 61134.2    <span class="m">100</span>    1.136   <span class="m">0</span>      0.000    1.136
+2048.0 2048.0  0.0   1216.0 1394176.0 362706.0 2796544.0   196952.4  262144.0 61134.2    <span class="m">101</span>    1.141   <span class="m">0</span>      0.000    1.141
+2048.0 2048.0  0.0   1216.0 1394176.0 1191005.5 2796544.0   196952.4  262144.0 61134.2    <span class="m">101</span>    1.141   <span class="m">0</span>      0.000    1.141
+2048.0 2048.0 1344.0  0.0   1394176.0 598462.7 2796544.0   198056.4  262144.0 61134.2    <span class="m">102</span>    1.148   <span class="m">0</span>      0.000    1.148
+2048.0 2048.0  0.0   1536.0 1394176.0   0.0    2796544.0   199256.4  262144.0 61134.2    <span class="m">103</span>    1.155   <span class="m">0</span>      0.000    1.155
+2048.0 2048.0  0.0   1536.0 1394176.0 837905.3 2796544.0   199256.4  262144.0 61134.2    <span class="m">103</span>    1.155   <span class="m">0</span>      0.000    1.155
+2048.0 6144.0 2033.4  0.0   1385984.0 210755.4 2796544.0   209344.4  262144.0 61134.3    <span class="m">104</span>    1.174   <span class="m">0</span>      0.000    1.174
+2048.0 6144.0 2033.4  0.0   1385984.0 1042116.2 2796544.0   209344.4  262144.0 61134.3    <span class="m">104</span>    1.174   <span class="m">0</span>      0.000    1.174
+6144.0 6144.0  0.0   1686.9 1385984.0 476307.6 2796544.0   209560.4  262144.0 61134.3    <span class="m">105</span>    1.182   <span class="m">0</span>      0.000    1.182
+6144.0 5632.0 1792.0  0.0   1386496.0   0.0    2796544.0   211119.4  262144.0 61134.3    <span class="m">106</span>    1.187   <span class="m">0</span>      0.000    1.187
+
+<span class="c1"># jstat -gc vmid interval count</span>
+<span class="c1"># 查看16009进程的各内存区域占用及gc情况，内存区域占用使用百分比形式输出结果，250ms一次，收集20次</span>
+jstat -gcutil <span class="m">16009</span> <span class="m">250</span> <span class="m">20</span>
+  S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT   
+  0.00  21.88  33.34   8.95  23.50    <span class="m">133</span>    1.347     <span class="m">0</span>    0.000    1.347
+ 22.66   0.00  15.33   8.98  23.50    <span class="m">134</span>    1.352     <span class="m">0</span>    0.000    1.352
+  0.00  31.70   0.00   9.00  23.53    <span class="m">135</span>    1.357     <span class="m">0</span>    0.000    1.357
+  0.00  31.70  81.63   9.00  23.53    <span class="m">135</span>    1.357     <span class="m">0</span>    0.000    1.357
+ 23.00   0.00  62.31   9.03  23.53    <span class="m">136</span>    1.366     <span class="m">0</span>    0.000    1.366
+  0.00  25.00  44.33   9.06  23.53    <span class="m">137</span>    1.370     <span class="m">0</span>    0.000    1.370
+ 29.17   0.00  26.56   9.08  23.53    <span class="m">138</span>    1.375     <span class="m">0</span>    0.000    1.375
+  0.00  32.29   8.65   9.11  23.53    <span class="m">139</span>    1.381     <span class="m">0</span>    0.000    1.381
+  0.00  32.29  91.95   9.11  23.53    <span class="m">139</span>    1.381     <span class="m">0</span>    0.000    1.381
+ 31.25   0.00  73.50   9.14  23.53    <span class="m">140</span>    1.386     <span class="m">0</span>    0.000    1.386
+  0.00  36.25  56.07   9.17  23.53    <span class="m">141</span>    1.390     <span class="m">0</span>    0.000    1.390
+ 62.33   0.00  37.90   9.19  24.07    <span class="m">142</span>    1.396     <span class="m">0</span>    0.000    1.396
+  0.00  99.04  15.60   9.25  24.36    <span class="m">143</span>    1.402     <span class="m">0</span>    0.000    1.402
+  0.00  99.04  93.77   9.25  24.36    <span class="m">144</span>    1.402     <span class="m">0</span>    0.000    1.402
+ 36.25   0.00  70.03   9.30  24.36    <span class="m">144</span>    1.408     <span class="m">0</span>    0.000    1.408
+  0.00  35.84  50.60   9.34  24.37    <span class="m">145</span>    1.415     <span class="m">0</span>    0.000    1.415
+ 34.38   0.00  30.86   9.37  24.37    <span class="m">146</span>    1.419     <span class="m">0</span>    0.000    1.419
+  0.00  34.38  12.22   9.40  24.37    <span class="m">147</span>    1.426     <span class="m">0</span>    0.000    1.426
+ 33.33   0.00   0.00   9.44  24.37    <span class="m">148</span>    1.431     <span class="m">0</span>    0.000    1.431
+ 33.33   0.00  77.94   9.44  24.37    <span class="m">148</span>    1.431     <span class="m">0</span>    0.000    1.431
+</pre>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/31010463/java-8-find-out-size-of-metaspace-at-runtime">-gc 输出的结果单位是KB</a></p>
+</blockquote>
+
+<hr />
+
+<h3>3. jps</h3>
+
+<p>简介：jps - Java Virtual Machine Process Status Tool
+语法：<code>jps [ options ] [ hostid ]</code>
+&gt; - options<br />
+Command-line options.
+&gt; - hostid<br />
+The host identifier of the host for which the process report should be generated. The hostid may include optional components that indicate. the communications protocol, port number, and other implementation specific data.</p>
+
+<p>常用用法：</p>
+<pre class="chroma"><span class="c1"># 标准用法</span>
+jps
+<span class="m">14826</span> Jps
+<span class="m">14391</span> Bootstrap
+<span class="c1"># 可使用jps -v查看详细信息</span>
+
+<span class="c1"># 仅查看pid</span>
+jps -q
+<span class="m">14391</span>
+<span class="m">14836</span>
+
+<span class="c1"># 查看完整类</span>
+jps -l
+<span class="m">14900</span> sun.tools.jps.Jps
+<span class="m">14391</span> org.apache.catalina.startup.Bootstrap
+
+<span class="c1"># 查看传递给类的参数</span>
+jps -m
+<span class="m">14391</span> Bootstrap start
+<span class="m">14981</span> Jps -m
+</pre>
+<hr />
+
+<h3>4. jstack</h3>
+<pre class="chroma">jstack <span class="m">1534</span>
+2017-01-03 06:49:28
+Full thread dump Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>20.45-b01 mixed mode<span class="o">)</span>:
+
+<span class="s2">&#34;Attach Listener&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0a0006800 <span class="nv">nid</span><span class="o">=</span>0x262c runnable <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;ajp-8009-Acceptor-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc2ad000 <span class="nv">nid</span><span class="o">=</span>0xb4f runnable <span class="o">[</span>0x00007fb0c0e63000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+        at org.apache.tomcat.jni.Socket.accept<span class="o">(</span>Native Method<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Acceptor</span>.run<span class="o">(</span>AprEndpoint.java:1345<span class="o">)</span>
+
+<span class="s2">&#34;ajp-8009-CometPoller-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc300800 <span class="nv">nid</span><span class="o">=</span>0xb4e in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1054000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5ed17b0&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span>.run<span class="o">(</span>AprEndpoint.java:1528<span class="o">)</span>
+        - locked &lt;0x00000000f5ed17b0&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+
+<span class="s2">&#34;ajp-8009-Poller-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc318800 <span class="nv">nid</span><span class="o">=</span>0xb4d in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1155000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5ed1848&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span>.run<span class="o">(</span>AprEndpoint.java:1528<span class="o">)</span>
+        - locked &lt;0x00000000f5ed1848&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+
+<span class="s2">&#34;http-8080-Acceptor-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc0d4000 <span class="nv">nid</span><span class="o">=</span>0xb4c runnable <span class="o">[</span>0x00007fb0c1256000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+        at org.apache.tomcat.jni.Socket.accept<span class="o">(</span>Native Method<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Acceptor</span>.run<span class="o">(</span>AprEndpoint.java:1345<span class="o">)</span>
+
+<span class="s2">&#34;http-8080-Sendfile-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc052000 <span class="nv">nid</span><span class="o">=</span>0xb4b in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1446000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5e665e8&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Sendfile</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Sendfile</span>.run<span class="o">(</span>AprEndpoint.java:2002<span class="o">)</span>
+        - locked &lt;0x00000000f5e665e8&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Sendfile</span><span class="o">)</span>
+
+<span class="s2">&#34;http-8080-CometPoller-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc2a3800 <span class="nv">nid</span><span class="o">=</span>0xb4a in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1547000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5e66680&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span>.run<span class="o">(</span>AprEndpoint.java:1528<span class="o">)</span>
+        - locked &lt;0x00000000f5e66680&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+
+<span class="s2">&#34;http-8080-Poller-0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc2b8000 <span class="nv">nid</span><span class="o">=</span>0xb49 in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1648000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5e66718&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span>.run<span class="o">(</span>AprEndpoint.java:1528<span class="o">)</span>
+        - locked &lt;0x00000000f5e66718&gt; <span class="o">(</span>a org.apache.tomcat.util.net.AprEndpoint<span class="nv">$Poller</span><span class="o">)</span>
+
+<span class="s2">&#34;ContainerBackgroundProcessor[StandardEngine[Catalina]]&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc2b3000 <span class="nv">nid</span><span class="o">=</span>0xb48 waiting on condition <span class="o">[</span>0x00007fb0c1749000<span class="o">]</span>
+   java.lang.Thread.State: TIMED_WAITING <span class="o">(</span>sleeping<span class="o">)</span>
+        at java.lang.Thread.sleep<span class="o">(</span>Native Method<span class="o">)</span>
+        at org.apache.catalina.core.ContainerBase<span class="nv">$ContainerBackgroundProcessor</span>.run<span class="o">(</span>ContainerBase.java:1635<span class="o">)</span>
+        at java.lang.Thread.run<span class="o">(</span>Thread.java:662<span class="o">)</span>
+
+<span class="s2">&#34;GC Daemon&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc267800 <span class="nv">nid</span><span class="o">=</span>0xa21 in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c1854000<span class="o">]</span>
+   java.lang.Thread.State: TIMED_WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5b93108&gt; <span class="o">(</span>a sun.misc.GC<span class="nv">$LatencyLock</span><span class="o">)</span>
+        at sun.misc.GC<span class="nv">$Daemon</span>.run<span class="o">(</span>GC.java:100<span class="o">)</span>
+        - locked &lt;0x00000000f5b93108&gt; <span class="o">(</span>a sun.misc.GC<span class="nv">$LatencyLock</span><span class="o">)</span>
+
+<span class="s2">&#34;Low Memory Detector&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc088000 <span class="nv">nid</span><span class="o">=</span>0x698 runnable <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;C2 CompilerThread1&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc085800 <span class="nv">nid</span><span class="o">=</span>0x697 waiting on condition <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;C2 CompilerThread0&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc083000 <span class="nv">nid</span><span class="o">=</span>0x696 waiting on condition <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;Signal Dispatcher&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc081000 <span class="nv">nid</span><span class="o">=</span>0x695 runnable <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;Finalizer&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc065000 <span class="nv">nid</span><span class="o">=</span>0x65b in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c2613000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5a354e8&gt; <span class="o">(</span>a java.lang.ref.ReferenceQueue<span class="nv">$Lock</span><span class="o">)</span>
+        at java.lang.ref.ReferenceQueue.remove<span class="o">(</span>ReferenceQueue.java:118<span class="o">)</span>
+        - locked &lt;0x00000000f5a354e8&gt; <span class="o">(</span>a java.lang.ref.ReferenceQueue<span class="nv">$Lock</span><span class="o">)</span>
+        at java.lang.ref.ReferenceQueue.remove<span class="o">(</span>ReferenceQueue.java:134<span class="o">)</span>
+        at java.lang.ref.Finalizer<span class="nv">$FinalizerThread</span>.run<span class="o">(</span>Finalizer.java:171<span class="o">)</span>
+
+<span class="s2">&#34;Reference Handler&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc063000 <span class="nv">nid</span><span class="o">=</span>0x65a in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007fb0c2714000<span class="o">]</span>
+   java.lang.Thread.State: WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+        - waiting on &lt;0x00000000f5a35588&gt; <span class="o">(</span>a java.lang.ref.Reference<span class="nv">$Lock</span><span class="o">)</span>
+        at java.lang.Object.wait<span class="o">(</span>Object.java:485<span class="o">)</span>
+        at java.lang.ref.Reference<span class="nv">$ReferenceHandler</span>.run<span class="o">(</span>Reference.java:116<span class="o">)</span>
+        - locked &lt;0x00000000f5a35588&gt; <span class="o">(</span>a java.lang.ref.Reference<span class="nv">$Lock</span><span class="o">)</span>
+
+<span class="s2">&#34;main&#34;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc007000 <span class="nv">nid</span><span class="o">=</span>0x60f runnable <span class="o">[</span>0x00007fb0c340a000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+        at java.net.PlainSocketImpl.socketAccept<span class="o">(</span>Native Method<span class="o">)</span>
+        at java.net.PlainSocketImpl.accept<span class="o">(</span>PlainSocketImpl.java:408<span class="o">)</span>
+        - locked &lt;0x00000000f5ed1910&gt; <span class="o">(</span>a java.net.SocksSocketImpl<span class="o">)</span>
+        at java.net.ServerSocket.implAccept<span class="o">(</span>ServerSocket.java:462<span class="o">)</span>
+        at java.net.ServerSocket.accept<span class="o">(</span>ServerSocket.java:430<span class="o">)</span>
+        at org.apache.catalina.core.StandardServer.await<span class="o">(</span>StandardServer.java:430<span class="o">)</span>
+        at org.apache.catalina.startup.Catalina.await<span class="o">(</span>Catalina.java:676<span class="o">)</span>
+        at org.apache.catalina.startup.Catalina.start<span class="o">(</span>Catalina.java:628<span class="o">)</span>
+        at sun.reflect.NativeMethodAccessorImpl.invoke0<span class="o">(</span>Native Method<span class="o">)</span>
+        at sun.reflect.NativeMethodAccessorImpl.invoke<span class="o">(</span>NativeMethodAccessorImpl.java:39<span class="o">)</span>
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke<span class="o">(</span>DelegatingMethodAccessorImpl.java:25<span class="o">)</span>
+        at java.lang.reflect.Method.invoke<span class="o">(</span>Method.java:597<span class="o">)</span>
+        at org.apache.catalina.startup.Bootstrap.start<span class="o">(</span>Bootstrap.java:289<span class="o">)</span>
+        at org.apache.catalina.startup.Bootstrap.main<span class="o">(</span>Bootstrap.java:414<span class="o">)</span>
+
+<span class="s2">&#34;VM Thread&#34;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc05c000 <span class="nv">nid</span><span class="o">=</span>0x62e runnable
+
+<span class="s2">&#34;VM Periodic Task Thread&#34;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007fb0bc08b000 <span class="nv">nid</span><span class="o">=</span>0x699 waiting on condition
+
+JNI global references: <span class="m">950</span>
+</pre>
+<hr />
+
+<h3>5. jmap</h3>
+
+<p>简介： memory map for java，用于生成堆转储快照（heapdump文件）。
+用法： jmap <options> vmid</p>
+
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-dump</td>
+<td>生成java堆转储快照，格式为<code>jmap -dump:[live,]format=b,file=&lt;filename&gt;</code>，其中live参数说明是否只输出存活的对象</td>
+</tr>
+
+<tr>
+<td>-finalizerinfo</td>
+<td>显示在F-Queue中等待Finalizer线程执行finalize方法的对象。</td>
+</tr>
+
+<tr>
+<td>-heap</td>
+<td>显示java堆详细信息，如使用哪种回收器、参数设置、分代情况等。</td>
+</tr>
+
+<tr>
+<td>-histo</td>
+<td>显示堆中对象统计信息，包括类、实例数量、合计容量</td>
+</tr>
+
+<tr>
+<td>-permstat</td>
+<td>以ClassLoader为统计口径显示永久代内存状态。</td>
+</tr>
+
+<tr>
+<td>-F</td>
+<td>当虚拟机进程对-dump选项没有响应时，可使用这个选项强制生成dump快照。</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>-dump和-histo是全平台，其他参数仅限linux/solaris系统。</p>
+</blockquote>
+<pre class="chroma">jmap -dump:format<span class="o">=</span>b,file<span class="o">=</span>heapdumpfile.bin <span class="m">16009</span>
+Dumping heap to /home/heapdumpfile.bin ...
+Heap dump file created
+
+
+jmap -histo 16009<span class="p">|</span>head -20
+
+ num     <span class="c1">#instances         #bytes  class name</span>
+----------------------------------------------
+   1:       <span class="m">6485424</span>     <span class="m">3125102320</span>  <span class="o">[</span>C
+   2:       <span class="m">6230469</span>      <span class="m">149531256</span>  java.lang.String
+   3:       <span class="m">3567271</span>      <span class="m">114152672</span>  java.util.HashMap<span class="nv">$Entry</span>
+   4:         <span class="m">92458</span>       <span class="m">69903496</span>  <span class="o">[</span>B
+   5:        <span class="m">133276</span>       <span class="m">53990712</span>  <span class="o">[</span>I
+   6:       <span class="m">2163744</span>       <span class="m">51929856</span>  org.apache.commons.collections.map.ListOrderedMap<span class="nv">$ListOrderedMapEntry</span>
+   7:        <span class="m">471105</span>       <span class="m">36863656</span>  <span class="o">[</span>Ljava.lang.Object<span class="p">;</span>
+   8:        <span class="m">244953</span>       <span class="m">32186352</span>  <span class="o">[</span>Ljava.util.HashMap<span class="nv">$Entry</span><span class="p">;</span>
+   9:        <span class="m">415533</span>       <span class="m">19945584</span>  java.util.HashMap
+  10:        <span class="m">121023</span>       <span class="m">18848400</span>  &lt;constMethodKlass&gt;
+  11:        <span class="m">121023</span>       <span class="m">15503984</span>  &lt;methodKlass&gt;
+  12:         <span class="m">10602</span>       <span class="m">12984640</span>  &lt;constantPoolKlass&gt;
+  13:         <span class="m">10602</span>        <span class="m">7703360</span>  &lt;instanceKlassKlass&gt;
+  14:          <span class="m">8776</span>        <span class="m">7223168</span>  &lt;constantPoolCacheKlass&gt;
+  15:        <span class="m">297742</span>        <span class="m">7145808</span>  java.util.ArrayList
+  16:         <span class="m">89105</span>        <span class="m">7128400</span>  java.lang.reflect.Method
+  17:        <span class="m">135237</span>        <span class="m">5409480</span>  java.util.TreeMap<span class="nv">$Entry</span>
+</pre>
+<blockquote>
+<p>dump出来的文件可以通过jhat工具分析，并以html格式查阅，但是一般很少直接在服务器上耗费资源来执行分析工具，一般都是拷贝出来，使用更人性化的第三方工具分析。比如说VisualVM，Eclipse Memory Analyzer，IBM HeapAnalyzer等工具。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_网络配置.html">2.1.0: 网络配置</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_YUM源配置.html">2.2.0: yum本地源配置</a></li>
+                    <li><a href="/linux/basic/02.2.1_yum-epel源.html">2.2.1: yum epel源</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/04.1.0_基础命令-目录_文档.html">4.1.0: 基础命令-目录/文档</a></li>
+                    <li><a href="/linux/basic/04.2.0_基础命令-文档属性_权限.html">4.2.0: 基础命令-文档属性/权限</a></li>
+                    <li><a href="/linux/basic/04.3.0_基础命令-shell相关.html">4.3.0: 基础命令-shell相关</a></li>
+                    <li><a href="/linux/basic/05.1.0_基础命令-特殊权限.html">5.1.0: 基础命令-特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_特殊权限-sbit实践研究.html">5.1.1: 特殊权限-sbit实践研究</a></li>
+                    <li><a href="/linux/basic/05.2.0_基础命令-文件查找_类型查看.html">5.2.0: 基础命令-文件查找/类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command_find_argName_error.html">5.2.1: 基础命令-find -name报错</a></li>
+                    <li><a href="/linux/basic/05.3.0_基础命令-软硬连接.html">5.3.0: 基础命令-软硬连接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
+                    <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_脚本基础-变量及计算.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_脚本基础-随机数生成.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/14.1.0_流程控制-条件判断.html">14.1.0: 流程控制-条件判断</a></li>
+                    <li><a href="/linux/basic/14.2.0_流程控制-function.html">14.2.0: 流程控制-function</a></li>
+                    <li><a href="/linux/basic/14.4.0_流程控制-练习题.html">14.4.0: 流程控制-练习题</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_网络抓包-抓包工具.html">18.1.0: 网络抓包-抓包工具</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/22.2.0_访问控制-htpasswd.html">22.2.0: 访问控制-htpasswd</a></li>
+                    <li><a href="/linux/basic/22.3.0_访问控制-rewrite.html">22.3.0: 访问控制-rewrite</a></li>
+                    <li><a href="/linux/basic/22.4.0_访问控制-SetEnvIf.html">22.4.0: 访问控制-SetEnvIf</a></li>
+                    <li><a href="/linux/basic/22.5.0_访问控制-防盗链.html">22.5.0: 访问控制-防盗链</a></li>
+                    <li><a href="/linux/basic/22.5.1_访问控制-防盗链无效.html">22.5.1: 访问控制-防盗链无效</a></li>
+                    <li><a href="/linux/basic/22.6.0_访问控制-目录文件限制.html">22.6.0: 访问控制-目录文件限制</a></li>
+                    <li><a href="/linux/basic/22.8.0_web实例-discuz论坛.html">22.8.0: web实例-discuz论坛</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP-cmake安装.html">25.1.0: LNMP-cmake安装</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>7.4.0: 磁盘管理-挂载</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>24 Nov 2014</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h4>1、磁盘挂载</h4>
+
+<p>1.1 mount<br />
+作用：挂载文件系统<br />
+语法：
+- <code>mount [参数] 分区 挂载目录</code>
+- <code>mount [参数] UUID='' 挂载目录</code> (推荐)
+- <code>mount -a</code>
+- <code>mount -l</code></p>
+
+<p>挂载原则：
+- 单一分区不要重复挂载到不同目录
+- 单一目录不要重复挂载不同分区
+- 挂载目录理论上需要是空目录</p>
+
+<p>参数：
+- -t 指定分区格式，如果分区格式不匹配则报错
+- -a 按照/etc/fstab里面的配置，将没有挂载上来的文件系统全部挂载
+- -o（选项可以放在/etc/fstab里的挂载选项里）
+ - async/sync 非同步写入还是同步写入<br />
+(async原理：当资料从硬盘载入到内存中后，假设该资料未改变，状态为clean，若资料在内存中改变，则内存中标记该资料为dirty，async挂载时系统会不定时的将dirty的资料写入到硬盘中，保证资料在内存与硬盘中同步)
+ - auto\noauto 是否可被<code>&quot;mount -a&quot;</code>自动挂载
+ - dev\nodev 在此分区上是否允许建立设备档案
+ - remount 重新挂载
+ - ro &ldquo;read-only&rdquo;以只读模式挂载
+ - usrquota\grquota 用户&rdquo;\&ldquo;分组的磁盘配额，随着目前大硬件的普及，越来越少用到
+ - default（rw suid exec auto nouser async dev）</p>
+
+<p>用法举例：</p>
+<pre class="chroma"><span class="c1"># 挂载xfs格式的sdb3，默认是读写模式</span>
+mount -t xfs /dev/sdb3 /mnt/m1
+mount -l <span class="p">|</span> grep xfs
+/dev/sdb3 on /mnt/m1 <span class="nb">type</span> xfs <span class="o">(</span>rw<span class="o">)</span>
+
+<span class="c1"># 重新以只读模式挂载sdb3</span>
+mount -o remount,ro -t xfs /dev/sdb3 /mnt/m1
+mount -l <span class="p">|</span> grep xfs
+/dev/sdb3 on /mnt/m1 <span class="nb">type</span> xfs <span class="o">(</span>ro<span class="o">)</span>
+
+<span class="c1"># 挂载光盘</span>
+mkdir /data/cdrom
+mount /dev/sr0 /data/cdrom
+
+<span class="c1"># 挂载光盘镜像</span>
+mount -o loop /data/iso/CentOS-7-x86_64-DVD-1503-01.iso /mnt
+mount -l <span class="p">|</span>grep CentOS
+/data/iso/CentOS-7-x86_64-DVD-1503-01.iso on /mnt <span class="nb">type</span> iso9660 <span class="o">(</span>ro,relatime<span class="o">)</span> <span class="o">[</span>CentOS <span class="m">7</span> x86_64<span class="o">]</span>
+
+
+<span class="c1"># 挂载vfat格式的U盘(centos7上测试)</span>
+blkid <span class="p">|</span> grep vfat
+/dev/sdd1: <span class="nv">LABEL</span><span class="o">=</span><span class="s2">&#34;MY_DRIVE&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;vfat&#34;</span>
+mkdir /mnt/usb
+mount -o <span class="nv">codepage</span><span class="o">=</span>950,iocharset<span class="o">=</span>utf8 /dev/sdd1 /mnt/usb
+mount -l <span class="p">|</span> grep sdd1
+/dev/sdd1 on /mnt/usb <span class="nb">type</span> vfat <span class="o">(</span>rw,relatime,fmask<span class="o">=</span>0022,dmask<span class="o">=</span>0022,codepage<span class="o">=</span>950,iocharset<span class="o">=</span>utf8,shortname<span class="o">=</span>mixed,errors<span class="o">=</span>remount-ro<span class="o">)</span> <span class="o">[</span>MY_DRIVE<span class="o">]</span>
+
+<span class="c1"># 挂载NTFS格式的硬盘</span>
+<span class="c1"># 工具ntfs-3g可以挂载ntfs格式</span>
+</pre>
+<p>奇葩挂载研究</p>
+<pre class="chroma">1、挂载时如果处于挂载目录，需要退出此目录一次，才可以查看到挂载分区的内容
+<span class="nb">pwd</span> <span class="p">;</span> ls
+/mnt/ss
+ss.txt
+mount /dev/sdb1 /mnt/ss
+ls
+ss.txt
+<span class="nb">cd</span> ..
+ls ./ss
+lost+found  test1  test2             
+<span class="c1"># ss.txt只是被隐藏，umount掉sdb1以后，就会恢复</span>
+
+2、可以将分区挂载到不同的目录，但不推荐
+mount /dev/sdb1 /mnt/m1
+mount /dev/sdb1 /mnt/m2
+mount<span class="p">|</span>grep sdb1
+/dev/sdb1 on /mnt/m1 <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+/dev/sdb1 on /mnt/m2 <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+
+3、多个分区可同时挂载到同一个目录，仅供满足个人好奇心，强烈不推荐，且没有任何意义
+<span class="c1"># 同时挂载sdb1和sdb2到ss1目录</span>
+mount /dev/sdb2 /mnt/ss1
+mount /dev/sdb1 /mnt/ss1
+mount <span class="p">|</span> grep /mnt/ss1
+/dev/sdb2 on /mnt/ss1 <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+/dev/sdb1 on /mnt/ss1 <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+
+<span class="c1"># 通过目录内容推测最后挂载的sdb1目前生效</span>
+ls /mnt/ss1
+lost+found  test1  test2
+
+<span class="c1"># 创建新文件lor2，以供接下来的测试</span>
+touch /mnt/ss1/1or2
+
+<span class="c1"># 相继卸载掉sdb1和sdb2，重新单独挂载sdb1，检查lor2文件</span>
+umount /dev/sdb1
+umount /dev/sdb2
+mount /dev/sdb1 /mnt/ss1
+ls /mnt/ss1
+1or2  lost+found  test1  test2
+
+<span class="c1"># 按照与上次相反的顺序，即先挂sdb1后挂sdb2的方式</span>
+<span class="c1"># 发现是否生效与挂载顺序有关</span>
+mount /dev/sdb2 /mnt/ss1
+ls /mnt/ss1
+lost+found
+
+<span class="c1"># 卸载顺序需要与挂载顺序相反，否则会报错</span>
+umount /dev/sdb1
+umount: cannot umount /dev/sdb1 -- <span class="se">\
+</span><span class="se"></span>/dev/sdb2 is mounted over it on the same point.
+umount /dev/sdb2
+umount /dev/sdb1
+</pre>
+<p>总结：<br />
+若两个文件系统挂载到同一个目录下，后挂载的文件系统生效<br />
+卸载的顺序和挂载的顺序必须相反，即只能先卸载挂载生效的分区。<br />
+最后，这样挂载毫无意义，强烈不推荐这样操作</p>
+
+<p>bind模式挂载</p>
+<pre class="chroma">mount --bind /etc /mnt/m1
+ll /mnt/m1/passwd
+-rw-r--r--. <span class="m">1</span> root root <span class="m">934</span> Apr <span class="m">28</span> 00:35 /mnt/m1/passwd
+mount -l <span class="p">|</span>grep /etc
+/etc on /mnt/m1 <span class="nb">type</span> none <span class="o">(</span>rw,bind<span class="o">)</span>
+</pre>
+<p>1.2 umount
+作用：卸载文件系统
+语法：
+- umount 文件系统名称
+- umount 挂载点</p>
+
+<p>参数:
+-l lazy模式，立即卸载设备，在文件系统不繁忙的时候清除所有的索引
+用法举例：</p>
+<pre class="chroma"><span class="c1">## xfs格式的sdb3挂载到了/mnt/m1上</span>
+<span class="c1"># mount -l | grep xfs</span>
+/dev/sdb3 on /mnt/m1 <span class="nb">type</span> xfs <span class="o">(</span>ro<span class="o">)</span>
+
+<span class="c1">## 进入到挂载目录下，常规卸载报错</span>
+<span class="c1"># cd /mnt/m1</span>
+<span class="c1"># umount /mnt/m1</span>
+umount: /mnt/m1: device is busy.
+        <span class="o">(</span>In some cases useful info about processes that use
+         the device is found by lsof<span class="o">(</span>8<span class="o">)</span> or fuser<span class="o">(</span>1<span class="o">)</span><span class="o">)</span>
+
+<span class="c1">## 用lazy模式卸载</span>
+<span class="c1"># umount -l /mnt/m1</span>
+<span class="c1"># mount -l |grep /mnt/m1</span>
+</pre>
+<h4>2、挂载相关文件</h4>
+
+<p>2.1 /etc/filesystems<br />
+配置内容：记录了当前系统支持的磁盘格式<br />
+文件内容：</p>
+<pre class="chroma">cat /etc/filesystems
+ext4
+ext3
+ext2
+nodev proc
+nodev devpts
+iso9660
+vfat
+hfs
+hfsplus
+</pre>
+<blockquote>
+<p>PS：
+此配置文件中不支持的文件格式可通过其他特殊工具来支持，例如工具ntfs-3g可以挂载ntfs格式</p>
+</blockquote>
+
+<p>2.2 /etc/fstab<br />
+配置内容：开机挂载的文件系统和&rdquo;mount -a&rdquo;参考的如何挂载文件系统都写在这里<br />
+文件内容：</p>
+<pre class="chroma"><span class="c1"># cat /etc/fstab</span>
+
+#
+<span class="c1"># /etc/fstab</span>
+<span class="c1"># Created by anaconda on Wed Jan 13 05:53:59 2016</span>
+#
+<span class="c1"># Accessible filesystems, by reference, are maintained under &#39;/dev/disk&#39;</span>
+<span class="c1"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span>
+#
+<span class="nv">UUID</span><span class="o">=</span>f354fcc9-2144-4b51-b55b-0727570e2450 /                       ext4    defaults        <span class="m">1</span> <span class="m">1</span>
+<span class="nv">UUID</span><span class="o">=</span>619a84a7-7fb2-4ad0-9d8d-5860d14610a1 /boot                   ext4    defaults        <span class="m">1</span> <span class="m">2</span>
+<span class="nv">UUID</span><span class="o">=</span>864ecee1-bb51-42f8-bb77-4ec3f86e09b0 /data                   ext4    defaults        <span class="m">1</span> <span class="m">2</span>
+<span class="nv">UUID</span><span class="o">=</span>2022d4bf-6e4a-4e94-a67b-112389296afa swap                    swap    defaults        <span class="m">0</span> <span class="m">0</span>
+tmpfs                   /dev/shm                tmpfs   defaults        <span class="m">0</span> <span class="m">0</span>
+devpts                  /dev/pts                devpts  <span class="nv">gid</span><span class="o">=</span>5,mode<span class="o">=</span><span class="m">620</span>  <span class="m">0</span> <span class="m">0</span>
+sysfs                   /sys                    sysfs   defaults        <span class="m">0</span> <span class="m">0</span>
+proc                    /proc                   proc    defaults        <span class="m">0</span> <span class="m">0</span>
+</pre>
+<blockquote>
+<p>每一段的含义如下<br />
+&ldquo;设备/uuid&rdquo;  &ldquo;挂载点&rdquo;  &ldquo;格式&rdquo;  &ldquo;挂载选项&rdquo;  &ldquo;dump&rdquo;  &ldquo;fsck&rdquo;</p>
+
+<p>dump：<br />
+1可备份，0相反</p>
+
+<p>fsck：<br />
+开机检测级别，0不检测，剩下的数字越小优先级越高，也就是说，先检测1，然后是2</p>
+
+<p>mount option<br />
+用&rsquo;,&lsquo;来分隔多个选项<br />
+noatime - 挂载时不用update普通文件的atime<br />
+nodiratime - 挂载时不用update目录的atime<br />
+nobarrier - 对于没有写缓存或者使用电池备份写缓存的设备，请增加此参数禁用它</p>
+</blockquote>
+
+<p>扩展：<a href="https://wiki.archlinux.org/index.php/fstab">https://wiki.archlinux.org/index.php/fstab</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

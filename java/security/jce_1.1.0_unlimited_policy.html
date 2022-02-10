@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                  <ul>
+                    <li><a href="/java/security/jce_1.1.0_unlimited_policy.html">jce 1.1.0 无限制策略</a></li>
+                    <li><a href="/java/security/keytool_1.1.0_usage.html">keytool 1.1.0 命令使用说明</a></li>
+                    <li><a href="/java/security/ssl_error_1.1.0_handshake_failure_and_unable_to_find_valid_certification_path.html">ssl error 1.1.0 handshake_failure and unable to find valid certification path</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jce 1.1.0 无限制策略</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>01 Jun 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>jce 1.1.0 无限制策略</h3>
+
+<hr />
+
+<h3>0. 什么是jce？</h3>
+
+<p>jca，Java Cryptography Architecture，顾名思义，是用来提供加密的基础架构。</p>
+
+<p>而jce，Java Cryptography Extension，很明显，是jca的一个部分。</p>
+
+<p>JCE 提供了一个关于加密、密钥生成、密钥同意和Message Authentication Code (MAC) 算法的框架和实现。</p>
+
+<h3>1. unlimited policy有啥用？</h3>
+
+<p>因为如果使用limited policy，官方限制了加密的强度。看文档是针对不同加密方法限制了位数最高是64和128不等。</p>
+
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">oracle官方说明文档 - 请查看limited 和 unlimited部分</a></p>
+</blockquote>
+
+<h3>2. 取消limited限制，启用unlimited</h3>
+
+<h4>各版本关于jce unlimited policy的说明</h4>
+
+<ul>
+<li>jdk9及以后版本，默认启用unlimited</li>
+<li>jdk8u161、7u171和6u16之前版本的，需要单独下载unlimited policy文件</li>
+<li>jdk8u161、7u171和6u16及以后版本的，unlimited policy文件已经在jdk中包含，但是默认未启用</li>
+</ul>
+
+<blockquote>
+<p><a href="https://www.oracle.com/java/technologies/javase-jce-all-downloads.html">jce unlimited policy file download page</a></p>
+</blockquote>
+
+<h4>启用unlimited</h4>
+
+<p>JDK 8u161、7u171和6u181及之后版本，都会在<java_home>/jre/lib/security/下面包含一个policy目录，里面包含limited和unlimited两个目录，这两个目录中分别包含了各自的policy文件（可以看到，其实就是相当于把unlimited的policy文件下载下来，帮我们放在了policy/unlimited目录中）</p>
+
+<p>关于jdk采用哪个policy的策略，配置和说明如下：</p>
+<pre class="chroma">The JDK determines the policy configuration to use as follows:
+
+If the crypto.policy Security Property is defined, then the JDK uses the policy configuration specified by this Security Property.
+If the crypto.policy Security Property is not set, and the traditional US_export_policy.jar and local_policy.jar files (which correspond to strong but limited cryptographic strength and unlimited cryptographic strength, respectively) are found in the legacy &lt;java_home&gt;/lib/security directory, then the JDK uses the policy configuration specified in these JAR files. This helps preserve compatibility for users upgrading from an older version of the JDK.
+If the crypto.policy Security Property is not set, and the US_export_policy.jar and local_policy.jar files don&#39;t exist in the &lt;java_home&gt;/lib/security directory, then the JDK uses unlimited cryptographic strength, which is equivalent to cryto.policy=unlimited.
+</pre>
+<p>所以，综上所述
+- 如果是用新版本的jdk，直接在<java_home>/jre/lib/security/java.security中配置cryto.policy=unlimited即可
+- 如果是老版本的jdk，直接下载对应版本的unlimited policy文件，然后解压到<java_home>/jre/lib/security即可</p>
+
+<blockquote>
+<p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">oracle官方说明文档 - 请查看启用unlimited部分</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

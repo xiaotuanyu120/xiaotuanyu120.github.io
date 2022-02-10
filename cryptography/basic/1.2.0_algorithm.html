@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/cryptography/basic/1.0.0_crytography_intro.html">密码学: 1.0.0 简要介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.1.0_hash_algorithm.html">密码学: 1.1.0 hash算法介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.2.0_algorithm.html">密码学: 1.2.0 加解密算法（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.3.0_signature.html">密码学: 1.3.0 数字签名（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.4.0_certification.html">密码学: 1.4.0 数字证书（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.5.0_pki.html">密码学: 1.5.0 PKI认证体系（转载）</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.1.0_ssl_tls.html">openssl 1.1.0 证书相关名词含义</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.2.0_pem.html">openssl 1.2.0 pem基本操作</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">openssl 1.3.0 获取证书</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>密码学: 1.2.0 加解密算法（转载）</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>15 Dec 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<p>转载地址：<a href="https://yeasy.gitbooks.io/blockchain_guide/content/crypto/algorithm.html">yeasy gitbooks</a></p>
+
+<h2>加解密算法</h2>
+
+<table>
+<thead>
+<tr>
+<th>算法类型</th>
+<th>特点</th>
+<th>优势</th>
+<th>缺陷</th>
+<th>代表算法</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>对称加密</td>
+<td>加解密密钥相同或可推算</td>
+<td>计算效率高，加密强度高</td>
+<td>需提前共享密钥；易泄露</td>
+<td>DES、3DES、AES、IDEA</td>
+</tr>
+
+<tr>
+<td>非对称加密</td>
+<td>加解密密钥不相关</td>
+<td>无需提前共享密钥</td>
+<td>计算效率低，仍存在中间人攻击可能</td>
+<td>RSA、ElGamal、椭圆曲线系列算法</td>
+</tr>
+</tbody>
+</table>
+
+<h3>算法体系</h3>
+
+<p>现代加密算法的典型组件包括：加解密算法、加密密钥、解密密钥。其中，加解密算法自身是固定不变的，一般是公开可见的；密钥则往往每次不同，并且需要保护起来，一般来说，对同一种算法，密钥长度越长，则加密强度越大。。</p>
+
+<p>加密过程中，通过加密算法和加密密钥，对明文进行加密，获得密文。</p>
+
+<p>解密过程中，通过解密算法和解密密钥，对密文进行解密，获得明文。</p>
+
+<p>根据加解密的密钥是否相同，算法可以分为对称加密（symmetric cryptography，又称公共密钥加密，common-key cryptography）和非对称加密(asymmetric cryptography，又称公钥加密，public-key cryptography)。两种模式适用于不同的需求，恰好形成互补，很多时候也可以组合使用，形成混合加密机制。</p>
+
+<p>并非所有加密算法的强度都可以从数学上进行证明。公认的高强度加密算法是在经过长时间各方面实践论证后，被大家所认可，不代表其不存在漏洞。但任何时候，自行发明加密算法都是一种不太明智的行为。</p>
+
+<h3>对称加密</h3>
+
+<p>顾名思义，加解密的密钥是相同的。</p>
+
+<p>优点是加解密效率高（速度快，空间占用小），加密强度高。</p>
+
+<p>缺点是参与多方都需要持有密钥，一旦有人泄露则安全性被破坏；另外如何在不安全通道下分发密钥也是个问题。</p>
+
+<p>对称密码从实现原理上可以分为两种：分组密码和序列密码。前者将明文切分为定长数据块作为加密单位，应用最为广泛。后者则只对一个字节进行加密，且密码不断变化，只用在一些特定领域，如数字媒介的加密等。</p>
+
+<p>代表算法包括 DES、3DES、AES、IDEA 等。</p>
+
+<ul>
+<li>DES（Data Encryption Standard）：经典的分组加密算法，1977 年由美国联邦信息处理标准（FIPS）所采用 FIPS-46-3，将 64 位明文加密为 64 位的密文，其密钥长度为 56 位 + 8 位校验。现在已经很容易被暴力破解。</li>
+<li>3DES：三重 DES 操作：加密 &ndash;&gt; 解密 &ndash;&gt; 加密，处理过程和加密强度优于 DES，但现在也被认为不够安全。</li>
+<li>AES（Advanced Encryption Standard）：美国国家标准研究所（NIST）采用取代 DES 成为对称加密实现的标准，1997~2000 年 NIST 从 15 个候选算法中评选 Rijndael 算法（由比利时密码学家 Joan Daemon 和 Vincent Rijmen 发明）作为 AES，标准为 FIPS-197。AES 也是分组算法，分组长度为 128、192、256 位三种。AES 的优势在于处理速度快，整个过程可以数学化描述，目前尚未有有效的破解手段。
+适用于大量数据的加解密；不能用于签名场景；需要提前分发密钥。</li>
+</ul>
+
+<p>注：分组加密每次只能处理固定长度的明文，因此过长的内容需要采用一定模式进行加密，《实用密码学》中推荐使用 密文分组链接（Cipher Block Chain，CBC）、计数器（Counter，CTR）模式。</p>
+
+<h3>非对称加密</h3>
+
+<p>非对称加密是现代密码学历史上最为伟大的发明，可以很好的解决对称加密需要的提前分发密钥问题。</p>
+
+<p>顾名思义，加密密钥和解密密钥是不同的，分别称为公钥和私钥。</p>
+
+<p>公钥一般是公开的，人人可获取的，私钥一般是个人自己持有，不能被他人获取。</p>
+
+<p>优点是公私钥分开，不安全通道也可使用。</p>
+
+<p>缺点是加解密速度慢，一般比对称加解密算法慢两到三个数量级；同时加密强度相比对称加密要差。</p>
+
+<p>非对称加密算法的安全性往往需要基于数学问题来保障，目前主要有基于大数质因子分解、离散对数、椭圆曲线等几种思路。</p>
+
+<p>代表算法包括：RSA、ElGamal、椭圆曲线（Elliptic Curve Crytosystems，ECC）系列算法。</p>
+
+<ul>
+<li>RSA：经典的公钥算法，1978 年由 Ron Rivest、Adi Shamir、Leonard Adleman 共同提出，三人于 2002 年获得图灵奖。算法利用了对大数进行质因子分解困难的特性，但目前还没有数学证明两者难度等价，或许存在未知算法在不进行大数分解的前提下解密。</li>
+<li>Diffie-Hellman 密钥交换：基于离散对数无法快速求解，可以在不安全的通道上，双方协商一个公共密钥。</li>
+<li>ElGamal：由 Taher ElGamal 设计，利用了模运算下求离散对数困难的特性。被应用在 PGP 等安全工具中。</li>
+<li>椭圆曲线算法（Elliptic curve cryptography，ECC）：现代备受关注的算法系列，基于对椭圆曲线上特定点进行特殊乘法逆运算难以计算的特性。最早在 1985 年由 Neal Koblitz 和 Victor Miller 分别独立提出。ECC 系列算法一般被认为具备较高的安全性，但加解密计算过程往往比较费时。
+一般适用于签名场景或密钥协商，不适于大量数据的加解密。</li>
+</ul>
+
+<p>RSA 算法等已被认为不够安全，一般推荐采用椭圆曲线系列算法。</p>
+
+<h3>混合加密机制</h3>
+
+<p>即先用计算复杂度高的非对称加密协商一个临时的对称加密密钥（会话密钥，一般相对内容来说要短的多），然后双方再通过对称加密对传递的大量数据进行加解密处理。</p>
+
+<p>典型的场景是现在大家常用的 HTTPS 机制。HTTPS 实际上是利用了 Transport Layer Security/Secure Socket Layer（TLS/SSL）来实现可靠的传输。TLS 为 SSL 的升级版本，目前广泛应用的为 TLS 1.0，对应到 SSL 3.1 版本。</p>
+
+<p>建立安全连接的具体步骤如下：</p>
+
+<ul>
+<li>客户端浏览器发送信息到服务器，包括随机数 R1，支持的加密算法类型、协议版本、压缩算法等。注意该过程为明文。</li>
+<li>服务端返回信息，包括随机数 R2、选定加密算法类型、协议版本，以及服务器证书。注意该过程为明文。</li>
+<li>浏览器检查带有该网站公钥的证书。该证书需要由第三方 CA 来签发，浏览器和操作系统会预置权威 CA 的根证书。如果证书被篡改作假（中间人攻击），很容易通过 CA 的证书验证出来。</li>
+<li>如果证书没问题，则用证书中公钥加密随机数 R3，发送给服务器。此时，只有客户端和服务器都拥有 R1、R2 和 R3 信息，基于 R1、R2 和 R3，生成对称的会话密钥（如 AES 算法）。后续通信都通过对称加密进行保护。</li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

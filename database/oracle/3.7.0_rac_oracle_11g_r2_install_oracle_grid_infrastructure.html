@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                  <ul>
+                    <li><a href="/database/oracle/1.0.0_silent_installation_env.html">1.0.0 silent模式安装oracle 11G R2 之 环境准备</a></li>
+                    <li><a href="/database/oracle/1.1.0_silent_installation_oracle_install.html">1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装</a></li>
+                    <li><a href="/database/oracle/1.2.0_silent_installation_netca_listen.html">1.2.0 silent模式安装oracle 11G R2 之 netca监听</a></li>
+                    <li><a href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">1.3.0 silent模式安装oracle 11G R2 之 安装database实例</a></li>
+                    <li><a href="/database/oracle/1.4.0_silent_installation_error.html">1.4.0 silent模式安装oracle 11G R2 之 安装错误</a></li>
+                    <li><a href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">1.5.0 silent安装之cvuqdisk</a></li>
+                    <li><a href="/database/oracle/1.6.0_OUI_installation_error.html">1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合</a></li>
+                    <li><a href="/database/oracle/2.1.0_oracle_sql_statement.html">2.1.0 oracle sql语句之表备份实例</a></li>
+                    <li><a href="/database/oracle/2.2.0_oracle_sql_drop_database.html">2.2.0 oracle sql语句之删除数据库</a></li>
+                    <li><a href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">3.1.0 RAC-架构预览</a></li>
+                    <li><a href="/database/oracle/3.10.0_rac_dbca_create_database.html">3.10.0 RAC-通过DBCA创建数据库</a></li>
+                    <li><a href="/database/oracle/3.11.0_rac_management.html">3.11.0 RAC-管理命令</a></li>
+                    <li><a href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">3.2.0 RAC-配置主机名和网络</a></li>
+                    <li><a href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">3.3.0 RAC-配置ntp服务</a></li>
+                    <li><a href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">3.4.0 RAC-系统配置</a></li>
+                    <li><a href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">3.5.0 RAC-配置用户和组</a></li>
+                    <li><a href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">3.6.0 RAC-存储配置</a></li>
+                    <li><a href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">3.7.0 RAC-安装oracle grid infrastructure</a></li>
+                    <li><a href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">3.8.0 RAC-安装oracle 11g r2软件</a></li>
+                    <li><a href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">3.9.0 RAC-通过ASMCA创建ASM硬盘组</a></li>
+                    <li><a href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">4.1.0 oracle error之ORA-01034</a></li>
+                    <li><a href="/database/oracle/4.2.0_oracle_error_display.html">4.2.0 oracle error之图形安装DISPLAY错误</a></li>
+                    <li><a href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">5.1.0 oracle dataguard 11g r2 搭建</a></li>
+                    <li><a href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">5.1.1 oracle dataguard 11g r2 rman恢复错误</a></li>
+                    <li><a href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">5.2.0 oracle dataguard 11g r2 一主多备搭建</a></li>
+                    <li><a href="/database/oracle/5.3.0_dataguard_oracle_11gr2_manage.html">5.3.0 oracle dataguard 11g r2 管理命令</a></li>
+                    <li><a href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">6.2.0 ora-28001 the password has expired</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>3.7.0 RAC-安装oracle grid infrastructure</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. oracle grid infrastructure</h3>
+
+<h4>1) 准备</h4>
+
+<p>如果要使用oracle ASM，需要安装oracle grid infrastructure.安装oracle grid infrastructure之前，需要满足之前对于系统环境的所有要求。</p>
+
+<h4>2) 创建grid base目录，并分配适当权限</h4>
+
+<p>使用root身份，在各节点执行以下步骤</p>
+<pre class="chroma"><span class="c1"># 产垫grid base目录</span>
+mkdir -p /u01/app/grid
+
+<span class="c1"># 属主属组是grid和oinstall</span>
+chown -R grid.oinstall /u01/
+</pre>
+<hr />
+
+<p><strong>接下来的操作只在oracle rac集群的节点1上执行</strong></p>
+
+<h4>3) 下载oracle grid infrastructure 11g rlease 2.0.3</h4>
+
+<p>11.2.0.3版本需要在oracle 支持网站中的最新补丁集中才能找到，需要oracle的客户支持账号，文件名称是
+- p10404530_112030_Linux-x86-64_1of7.zip
+- p10404530_112030_Linux-x86-64_2of7.zip
+- p10404530_112030_Linux-x86-64_3of7.zip
+- p10404530_112030_Linux-x86-64_4of7.zip
+- p10404530_112030_Linux-x86-64_5of7.zip
+- p10404530_112030_Linux-x86-64_6of7.zip
+- p10404530_112030_Linux-x86-64_7of7.zip</p>
+
+<h4>4) 解压oracle grid infrastructure软件</h4>
+<pre class="chroma"><span class="c1"># 以grid身份执行</span>
+sudo su grid
+mkdir /u01/app/grid/grid-software
+mv p10404530_112030_Linux-x86-64_3of7.zip /u01/app/grid/grid-software/
+
+<span class="c1"># 以root身份执行</span>
+sudo su root
+chown grid.oinstall /u01/app/grid/grid-software/p10404530_112030_Linux-x86-64_3of7.zip
+
+<span class="c1"># 以grid身份执行</span>
+sudo su grid
+<span class="nb">cd</span> /u01/app/grid/grid-software
+unzip p10404530_112030_Linux-x86-64_3of7.zip
+</pre>
+<h4>5) 确保grid安装文件中的系统版本为oel6</h4>
+<pre class="chroma"><span class="c1"># 以grid身份执行</span>
+vim /u01/app/grid/grid-software/grid/stage/cvu/cv/admin/cvu_config
+***************************************
+<span class="nv">CV_ASSUME_DISTID</span><span class="o">=</span>OEL6
+***************************************
+</pre>
+<h4>6) 配置reponse file</h4>
+<pre class="chroma"><span class="c1"># 以grid身份执行</span>
+<span class="nb">cd</span> /u01/app/grid/grid-software/grid/response/
+cp grid_install.rsp grid_install.rsp.bak
+vim grid_install.rsp
+***************************************
+<span class="c1"># 指定hostname而不是使用系统配置的hostname，适用于多个网卡和多个hostnames的情况</span>
+<span class="nv">ORACLE_HOSTNAME</span><span class="o">=</span>db-oracle-node1
+
+<span class="c1"># 配置inventory路径</span>
+<span class="nv">INVENTORY_LOCATION</span><span class="o">=</span>/u01/app/oraInventory
+
+<span class="c1"># 设定安装语言</span>
+<span class="nv">SELECTED_LANGUAGES</span><span class="o">=</span>en
+
+<span class="c1"># 设定安装cluster集群</span>
+oracle.install.option<span class="o">=</span>CRS_CONFIG
+
+<span class="c1"># 指定安装base</span>
+<span class="nv">ORACLE_BASE</span><span class="o">=</span>/u01/app/grid
+
+<span class="c1"># 制定oracle home</span>
+<span class="nv">ORACLE_HOME</span><span class="o">=</span>/u01/app/11.2.0/grid
+
+<span class="c1"># 指定三个组</span>
+oracle.install.asm.OSDBA<span class="o">=</span>asmdba
+oracle.install.asm.OSOPER<span class="o">=</span>asmoper
+oracle.install.asm.OSASM<span class="o">=</span>asmadmin
+
+<span class="c1"># 指定scan名称，和dns中配置的需要一致</span>
+oracle.install.crs.config.gpnp.scanName<span class="o">=</span>db-oracle-scan.localdomain
+
+<span class="c1"># 指定监听端口</span>
+oracle.install.crs.config.gpnp.scanPort<span class="o">=</span><span class="m">1521</span>
+
+<span class="c1"># 指定集群名称，名称不可以太长</span>
+oracle.install.crs.config.clusterName<span class="o">=</span>db-ora-cluster
+
+<span class="c1"># 指定集群节点</span>
+oracle.install.crs.config.clusterNodes<span class="o">=</span>db-oracle-node1:db-oracle-node1-vip,db-oracle-node2:db-oracle-node2-vip
+
+<span class="c1"># 指定public和private网址</span>
+oracle.install.crs.config.networkInterfaceList<span class="o">=</span>bond0:192.168.33.0:1,eth3:172.16.44.0:2,eth4:172.16.48.0:2
+
+<span class="c1"># 指定使用asm</span>
+oracle.install.crs.config.storageOption<span class="o">=</span>ASM_STORAGE
+
+<span class="c1"># 设置一个密码，密码规则是大写小写字母和数字最少都有一个</span>
+oracle.install.asm.SYSASMPassword<span class="o">=</span>oracle_ASM66
+
+<span class="c1"># 指定asm硬盘组名称</span>
+oracle.install.asm.diskGroup.name<span class="o">=</span>OCRVOTE
+
+<span class="c1"># 设定AU size为1</span>
+oracle.install.asm.diskGroup.AUSize<span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># 指定asm硬盘组的磁盘</span>
+oracle.install.asm.diskGroup.disks<span class="o">=</span>/dev/mapper/ocrvote1p1,/dev/mapper/ocrvote2p1,/dev/mapper/ocrvote3p1
+
+<span class="c1"># 指定磁盘发现字符串</span>
+oracle.install.asm.diskGroup.diskDiscoveryString<span class="o">=</span>/dev/mapper/*
+
+<span class="c1"># 设定一个密码</span>
+oracle.install.asm.monitorPassword<span class="o">=</span>oracle_ASM66
+
+<span class="c1"># 跳过更新</span>
+oracle.installer.autoupdates.option<span class="o">=</span>SKIP_UPDATES
+***************************************
+</pre>
+<h4>7) 检查环境</h4>
+<pre class="chroma"><span class="c1"># 关闭防火墙</span>
+service iptables stop
+
+<span class="c1"># 在oracle rac cluster各节点之间执行以下命令做ssh互信</span>
+sudo su - grid
+ssh-keygen
+<span class="c1"># 值得注意的是每个节点自身需要和自身做ssh互信，也就是说在节点1上要做到节点1的ssh互信</span>
+ssh-copy-id db-oracle-node1
+ssh-copy-id db-oracle-node2
+
+<span class="c1">## 安装cvuqdisk</span>
+<span class="c1"># 以root身份执行</span>
+rpm -ivh /u01/app/grid/grid-software/grid/rpm/cvuqdisk-1.0.9-1.rpm
+<span class="c1"># 拷贝此文件去其他节点，并在其他节点安装</span>
+</pre>
+<h4>8) silent模式安装oracle grid infrastructure</h4>
+<pre class="chroma">sudo su grid
+<span class="nb">cd</span> /u01/app/grid/grid-software/grid
+<span class="c1"># 可以关注-ignorePrereq，但此处不需要添加，因为我们确实需要检查环境是否满足</span>
+./runInstaller -responseFile /u01/app/grid/grid-software/grid/response/grid_install.rsp -silent
+Starting Oracle Universal Installer...
+
+Checking Temp space: must be greater than <span class="m">120</span> MB.   Actual <span class="m">33743</span> MB    Passed
+Checking swap space: must be greater than <span class="m">150</span> MB.   Actual <span class="m">991</span> MB    Passed
+Preparing to launch Oracle Universal Installer from /tmp/OraInstall2016-12-28_06-16-56AM. Please <span class="nb">wait</span> ...<span class="o">[</span>grid@db-oracle-node1 grid<span class="o">]</span>$ You can find the log of this install session at:
+ /u01/app/oraInventory/logs/installActions2016-12-28_06-16-56AM.log
+The installation of Oracle Grid Infrastructure was successful.
+Please check <span class="s1">&#39;/u01/app/oraInventory/logs/silentInstall2016-12-28_06-16-56AM.log&#39;</span> <span class="k">for</span> more details.
+
+As a root user, execute the following script<span class="o">(</span>s<span class="o">)</span>:
+        1. /u01/app/oraInventory/orainstRoot.sh
+        2. /u01/app/11.2.0/grid/root.sh
+
+Execute /u01/app/oraInventory/orainstRoot.sh on the following nodes:
+<span class="o">[</span>db-oracle-node1, db-oracle-node2<span class="o">]</span>
+Execute /u01/app/11.2.0/grid/root.sh on the following nodes:
+<span class="o">[</span>db-oracle-node1, db-oracle-node2<span class="o">]</span>
+
+As install user, execute the following script to <span class="nb">complete</span> the configuration.
+        1. /u01/app/11.2.0/grid/cfgtoollogs/configToolAllCommands
+
+        Note:
+        1. This script must be run on the same system from where installer was run.
+        2. This script needs a small password properties file <span class="k">for</span> configuration assistants that require passwords <span class="o">(</span>refer to install guide documentation<span class="o">)</span>.
+
+
+Successfully Setup Software.
+
+
+<span class="c1">## 此时按照提示，保持目前的terminal不动，打开一个新的ssh连接，使用root登陆，然后执行提示中的脚本</span>
+<span class="c1">## db-oracle-node1上,使用root执行</span>
+sh /u01/app/oraInventory/orainstRoot.sh
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions <span class="k">for</span> group.
+Removing read,write,execute permissions <span class="k">for</span> world.
+
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+
+sh /u01/app/11.2.0/grid/root.sh
+Check /u01/app/11.2.0/grid/install/root_db-oracle-node1_2016-12-27_08-42-35.log <span class="k">for</span> the output of root script
+<span class="c1"># 检查log，看是否成功执行</span>
+<span class="c1"># 最后一句是</span>
+<span class="c1"># &#34;Configure Oracle Grid Infrastructure for a Cluster ... succeeded&#34;</span>
+
+<span class="c1">## db-oracle-node2上,使用root执行</span>
+sh /u01/app/oraInventory/orainstRoot.sh
+Changing permissions of /u01/app/oraInventory.
+Adding read,write permissions <span class="k">for</span> group.
+Removing read,write,execute permissions <span class="k">for</span> world.
+
+Changing groupname of /u01/app/oraInventory to oinstall.
+The execution of the script is complete.
+
+Configure Oracle Grid Infrastructure <span class="k">for</span> a Cluster ... succeeded
+
+sh /u01/app/11.2.0/grid/root.sh
+Check /u01/app/11.2.0/grid/install/root_db-oracle-node2_2016-12-28_06-36-36.log <span class="k">for</span> the output of root script
+<span class="c1"># 检查log，看是否成功执行</span>
+<span class="c1"># 最后一句是</span>
+<span class="c1"># &#34;Configure Oracle Grid Infrastructure for a Cluster ... succeeded&#34;</span>
+
+<span class="c1">## db-oracle-node1上，使用grid执行</span>
+sh /u01/app/11.2.0/grid/cfgtoollogs/configToolAllCommands
+Setting the invPtrLoc to /u01/app/11.2.0/grid/oraInst.loc
+
+perform - mode is starting <span class="k">for</span> action: configure
+
+
+perform - mode finished <span class="k">for</span> action: configure
+
+You can see the log file: /u01/app/11.2.0/grid/cfgtoollogs/oui/configActions2016-12-28_06-43-23-AM.log
+
+
+<span class="c1">## 执行完毕后回来按下enter键</span>
+</pre>
+<blockquote>
+<p>执行完毕后，会发现在db-oracle-node2节点上也在同路径下安装了grid</p>
+</blockquote>
+
+<p>错误及解决方法</p>
+<pre class="chroma"><span class="c1">## 错误1</span>
+<span class="c1"># SEVERE: [FATAL] [INS-40904] ORACLE_HOSTNAME does not resolve to a valid host name.</span>
+<span class="c1">#    CAUSE: The value provided for ORACLE_HOSTNAME does not resolve to a valid host name.</span>
+<span class="c1">#    ACTION: Provide a valid host name for ORACLE_HOSTNAME, and restart the installer.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 检查ORACLE_HOSTNAME设定是否正确</span>
+<span class="c1"># 2. 在/etc/hosts中增加&#34;publicip ORACLE_HOSTNAME&#34;</span>
+
+
+<span class="c1">## 错误2</span>
+<span class="c1"># SEVERE: [FATAL] [INS-06006] Passwordless SSH connectivity not set up between the following node(s): [db-oracle-node2].</span>
+<span class="c1">#    CAUSE: Either passwordless SSH connectivity is not setup between specified node(s) or they are not reachable. Refer to the logs for more details.</span>
+<span class="c1">#    ACTION: Refer to the logs for more details or contact Oracle Support Services.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 使用grid身份登陆各node</span>
+<span class="c1"># 2. 生成ssh key</span>
+<span class="c1"># 3. 各node之间互相做信任</span>
+
+
+<span class="c1">## 错误3</span>
+<span class="c1"># SEVERE: [FATAL] [INS-40925] One or more nodes have interfaces not configured with a subnet that is common across all cluster nodes.</span>
+<span class="c1">#   CAUSE: Not all nodes have network interfaces that are configured on subnets that are common to all nodes in the cluster.</span>
+<span class="c1">#   ACTION: Ensure all cluster nodes have a public interface defined with the same subnet accessible by all nodes in the cluster.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 将oracle.install.crs.config.privateInterconnects=bond0:192.168.33.103:2,eth3:172.16.44.103:1,eth4:172.16.48.103:1</span>
+<span class="c1"># 修改为oracle.install.crs.config.privateInterconnects=bond0:192.168.33.0:1,eth3:172.16.44.0:2,eth4:172.16.48.0:2</span>
+
+<span class="c1"># 原因：</span>
+<span class="c1"># 1. 不能使用ip，需要使用网段，既把最后一段ip改为0</span>
+<span class="c1"># 2. 文档中说1代表private，2代表public，其实是错的，应该要反过来</span>
+
+
+<span class="c1">## 警告4</span>
+<span class="c1"># WARNING: [WARNING] [INS-30011] The password entered does not conform to the Oracle recommended standards.</span>
+<span class="c1">#    CAUSE: Oracle recommends that the SYS password entered should be at least 8 characters in length, contain at least 1 uppercase character, 1 lower case character and 1 digit [0-9].</span>
+<span class="c1">#    ACTION: Provide a password that conforms to the Oracle recommended standards.</span>
+<span class="c1"># SEVERE: [FATAL] [INS-30001] The ASMSNMP password is empty.</span>
+<span class="c1">#    CAUSE: The ASMSNMP password should not be empty.</span>
+<span class="c1">#    ACTION: Provide a non-empty password.</span>
+
+<span class="c1"># 解决方案：</span>
+<span class="c1"># 1. 修改SYSASM的password，使其符合规则(最少1个大写字母，1个小写字母，1个数字)</span>
+<span class="c1"># 2. 增加ASMSNMP的password，密码规则(最少1个大写字母，1个小写字母，1个数字)</span>
+
+<span class="c1">## 错误5</span>
+<span class="c1"># 因为同时在node1和node2上执行root.sh，造成root.sh执行失败</span>
+<span class="c1"># 官方文档解决办法</span>
+<span class="c1"># C. GI Cluster Deconfigure and Reconfigure</span>
+#
+<span class="c1"># Identify cause of root.sh failure by reviewing logs in $GRID_HOME/cfgtoollogs/crsconfig and $GRID_HOME/log, once cause is identified and problem is fixed, deconfigure and reconfigure with steps below - keep in mind that you will need wait till each step finishes successfully before move to next one:</span>
+#
+<span class="c1"># Step 0: For 11.2.0.2 and above, root.sh is restartable.</span>
+#
+<span class="c1"># Once cause is identified and the problem is fixed, root.sh can be executed again on the failed node. If it succeeds, continue with your planned installation procedure; otherwise as root sequentially execute &#34;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force&#34; and $GRID_HOME/root.sh on local node, if it succeeds, continue with your planned installation procedure, otherwise proceed to next step (Step 1) of the note.</span>
+#
+<span class="c1"># Step 1: As root, run &#34;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force&#34; on all nodes, except the last one.</span>
+#
+<span class="c1"># Step 2: As root, run &#34;$GRID_HOME/crs/install/rootcrs.pl -verbose -deconfig -force -lastnode&#34; on last node. This command will zero out OCR, Voting Disk and the ASM diskgroup for OCR and Voting Disk</span>
+#
+#
+<span class="c1">#     Note:</span>
+#
+<span class="c1">#     a. Step1 and 2 can be skipped on node(s) where root.sh haven&#39;t been executed this time.</span>
+#
+<span class="c1">#     b. Step1 and 2 should remove checkpoint file. To verify:</span>
+#
+<span class="c1">#           ls -l $ORACLE_BASE/Clusterware/ckptGridHA_.xml</span>
+#
+<span class="c1">#     If it&#39;s still there, please remove it manually with &#34;rm&#34; command on all nodes</span>
+#
+<span class="c1">#     c. If GPNP profile is different between nodes/setup, clean it up on all nodes as grid user</span>
+#
+<span class="c1">#           $ find &lt;GRID_HOME&gt;/gpnp/* -type f -exec rm -rf {} \;</span>          
+#
+<span class="c1">#     The profile needs to be cleaned up:</span>
+#
+<span class="c1">#         c1. If root.sh is executed concurrently - one should not execute root.sh on any other nodes before it finishes on first node.</span>
+#
+<span class="c1">#         c2. If network info, location of OCR or Voting Disk etc changed after Grid is installed - rare</span>
+#
+#
+<span class="c1"># Step 3: As root, run $GRID_HOME/root.sh on first node</span>
+#
+<span class="c1"># Step 4: As root, run $GRID_HOME/root.sh on all other node(s), except last one.</span>
+#
+<span class="c1"># Step 5: As root, run $GRID_HOME/root.sh on last node.</span>
+</pre>
+<h4>9) 检查结果</h4>
+<pre class="chroma">/u01/app/11.2.0/grid/bin/crs_stat -t
+Name           Type           Target    State     Host
+------------------------------------------------------------
+ora....ER.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N1.lsnr ora....er.type ONLINE    ONLINE    db-o...ode2
+ora....N2.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N3.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora.OCRVOTE.dg ora....up.type ONLINE    ONLINE    db-o...ode1
+ora.asm        ora.asm.type   ONLINE    ONLINE    db-o...ode1
+ora.cvu        ora.cvu.type   ONLINE    ONLINE    db-o...ode1
+ora....SM1.asm application    ONLINE    ONLINE    db-o...ode1
+ora....E1.lsnr application    ONLINE    ONLINE    db-o...ode1
+ora....de1.gsd application    OFFLINE   OFFLINE
+ora....de1.ons application    ONLINE    ONLINE    db-o...ode1
+ora....de1.vip ora....t1.type ONLINE    ONLINE    db-o...ode1
+ora....SM2.asm application    ONLINE    ONLINE    db-o...ode2
+ora....E2.lsnr application    ONLINE    ONLINE    db-o...ode2
+ora....de2.gsd application    OFFLINE   OFFLINE
+ora....de2.ons application    ONLINE    ONLINE    db-o...ode2
+ora....de2.vip ora....t1.type ONLINE    ONLINE    db-o...ode2
+ora.gsd        ora.gsd.type   OFFLINE   OFFLINE
+ora....network ora....rk.type ONLINE    ONLINE    db-o...ode1
+ora.oc4j       ora.oc4j.type  ONLINE    ONLINE    db-o...ode1
+ora.ons        ora.ons.type   ONLINE    ONLINE    db-o...ode1
+ora.scan1.vip  ora....ip.type ONLINE    ONLINE    db-o...ode2
+ora.scan2.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+ora.scan3.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+<span class="c1"># 所有的name对应一个target，并且state应该是online，除了以&#34;.gsd&#34;结尾的。</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

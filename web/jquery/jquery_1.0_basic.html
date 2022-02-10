@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+              <ul>
+                <li>
+                  <a href="/web/css/index.html">css</a>
+                </li>
+                <li>
+                  <a href="/web/jquery/index.html">jquery</a>
+                  <ul>
+                    <li><a href="/web/jquery/jquery_1.0_basic.html">jquery: 1.0 基础知识</a></li>
+                    <li><a href="/web/jquery/jquery_1.1_getElementBy_basic.html">jquery: 1.1 基础知识-getElementBy*</a></li>
+                    <li><a href="/web/jquery/jquery_2.0_dynamic_active.html">jquery: 2.0 动态active</a></li>
+                    <li><a href="/web/jquery/jquery_3.0_ajax.html">jquery: 3.0 ajax</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/web/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/web/node.js/index.html">node.js</a>
+                </li>
+                <li>
+                  <a href="/web/vue.js/index.html">vue.js</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jquery: 1.0 基础知识</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>16 Nov 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. jquery</h3>
+
+<h4>1) 等待全部页面元素加载完毕才执行js</h4>
+<pre class="chroma"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  <span class="nx">some_action</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span>
+
+<span class="c1">//或者
+</span><span class="c1"></span>
+<span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  <span class="nx">some_action</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span>
+</pre>
+<h4>2) 获取某class的元素值</h4>
+<pre class="chroma"><span class="c1">//html
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">select</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;form-control&#34;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;selbrand&#34;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;selbrand&#34;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">option</span><span class="o">&gt;</span><span class="nx">商品1</span><span class="o">&lt;</span><span class="err">/</span><span class="err">o</span><span class="err">p</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span><span class="err">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">option</span><span class="o">&gt;</span><span class="nx">商品2</span><span class="o">&lt;</span><span class="err">/</span><span class="err">o</span><span class="err">p</span><span class="err">t</span><span class="err">i</span><span class="err">o</span><span class="err">n</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">e</span><span class="err">l</span><span class="err">e</span><span class="err">c</span><span class="err">t</span><span class="err">&gt;</span>
+
+<span class="c1">//jquery
+</span><span class="c1"></span><span class="nx">selbrand</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#selbrand&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<h4>3) 删除和增加属性</h4>
+<pre class="chroma"><span class="c1">//增加属性
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&#34;attr_name&#34;</span><span class="p">,</span> <span class="s2">&#34;attr_value&#34;</span><span class="p">)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&#34;attr_name&#34;</span><span class="p">)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&#34;attr_name&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+
+<span class="c1">//删除属性
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s2">&#34;attr_name&#34;</span><span class="p">)</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&#34;attr_name&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+</pre>
+<h4>4) 选择元素</h4>
+<pre class="chroma"><span class="c1">//选择id
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some_id&#34;</span><span class="p">)</span>
+
+<span class="c1">//选择类
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;.some_class&#34;</span><span class="p">)</span>
+
+<span class="c1">//选择当前元素
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+
+<span class="c1">//选择多个元素
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;selection1, selection2, selection3 ...&#34;</span><span class="p">)</span>
+</pre>
+<h4>5) 传递django的变量值给jquery</h4>
+<pre class="chroma"><span class="c1">//html content
+</span><span class="c1"></span><span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&#34;submit&#34;</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;btn btn-primary&#34;</span> <span class="nx">value</span><span class="o">=</span><span class="s1">&#39;Click&#39;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;btn2&#34;</span> <span class="nx">user</span><span class="o">=</span><span class="err">\</span><span class="p">{</span><span class="err">\</span><span class="p">{</span> <span class="nx">request</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">username</span> <span class="err">\</span><span class="p">}</span><span class="err">\</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">test</span><span class="o">&lt;</span><span class="err">/</span><span class="err">b</span><span class="err">u</span><span class="err">t</span><span class="err">t</span><span class="err">o</span><span class="err">n</span><span class="err">&gt;</span>
+
+<span class="c1">//javascript
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#btn2&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&#34;user&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<h4>6) 显示和隐藏元素</h4>
+<pre class="chroma"><span class="c1">//隐藏
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">hide</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">//指定隐藏过程时间
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">hide</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">//显示
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">//指定显示过程时间
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre>
+<h4>7) form元素的reset</h4>
+<pre class="chroma"><span class="c1">//会将from中的元素都reset成初始化的状态
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someformid&#34;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">.</span><span class="nx">reset</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<h4>8) append方法</h4>
+<pre class="chroma"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">somelist</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="c1">//输入源为somelist
+</span><span class="c1"></span><span class="c1">//将list中的值换行增加到someid的html内容中
+</span></pre>
+<h4>9) for循环</h4>
+<pre class="chroma"><span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">somelist</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#someid&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">somelist</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

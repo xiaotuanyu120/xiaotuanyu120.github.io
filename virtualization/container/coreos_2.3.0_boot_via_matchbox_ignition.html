@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>coreos 2.3.0 ignition+matchbox安装coreos集群</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Apr 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 环境及文档</h3>
+
+<p>实验目的是搭建多节点的coreos，教程是baremetal，这里使用vagrant+virtualbox虚拟机模拟baremetal</p>
+
+<table>
+<thead>
+<tr>
+<th>items</th>
+<th>name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>虚拟机</td>
+<td>virtualbox</td>
+</tr>
+
+<tr>
+<td>虚拟机管理工具</td>
+<td>vagrant</td>
+</tr>
+
+<tr>
+<td>OS</td>
+<td>coreos</td>
+</tr>
+</tbody>
+</table>
+<p>安装大体上是按照<a href="https://coreos.com/matchbox/docs/latest/getting-started.html">参考文档</a>，但是根据我自己的环境进行了相应调整。</p>
+
+<hr />
+
+<h3>0. 安装准备与介绍</h3>
+
+<ol>
+<li>coreos版本需要大于等于CoreOS version 962.0.0</li>
+<li>此教程使用flannel来管理pod网络(当然，也可以使用calico)</li>
+<li>使用matchbox来启动和配置coreos集群</li>
+</ol>
+
+<hr />
+
+<h3>1. 安装matchbox</h3>
+
+<h4>1) 安装provisioner主机(CoreOS for matchbox use)</h4>
+
+<p>安装过程参照<a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">CoreOS+vagrant安装教程</a>
+&gt; 默认对core用户做了sshkey认证，可以将pub key拷贝到root下，以下操作都是使用root操作</p>
+
+<h4>2) matchbox安装配置</h4>
+<pre class="chroma"><span class="c1"># 下载</span>
+wget https://github.com/coreos/matchbox/releases/download/v0.6.0/matchbox-v0.6.0-linux-amd64.tar.gz
+
+<span class="c1"># 解包</span>
+tar zxvf matchbox-v0.6.0-linux-amd64.tar.gz
+
+<span class="c1"># 拷贝systemcd unit文件去系统</span>
+<span class="nb">cd</span> matchbox-v0.6.0-linux-amd64
+cp contrib/systemd/matchbox-on-coreos.service /etc/systemd/system/matchbox.service
+<span class="c1"># 文件的内容如下</span>
+<span class="c1"># ***********************************************************</span>
+<span class="c1"># [Unit]</span>
+<span class="c1"># Description=CoreOS matchbox Server</span>
+<span class="c1"># Documentation=https://github.com/coreos/matchbox</span>
+#
+<span class="c1"># [Service]</span>
+<span class="c1"># Environment=&#34;IMAGE=quay.io/coreos/matchbox&#34;</span>
+<span class="c1"># Environment=&#34;VERSION=v0.6.0&#34;</span>
+<span class="c1"># Environment=&#34;MATCHBOX_ADDRESS=0.0.0.0:8080&#34;</span>
+<span class="c1"># ExecStartPre=/usr/bin/mkdir -p /etc/matchbox</span>
+<span class="c1"># ExecStartPre=/usr/bin/mkdir -p /var/lib/matchbox/assets</span>
+<span class="c1"># ExecStart=/usr/bin/rkt run \</span>
+<span class="c1">#   --net=host \</span>
+<span class="c1">#   --inherit-env \</span>
+<span class="c1">#   --trust-keys-from-https \</span>
+<span class="c1">#   --mount volume=data,target=/var/lib/matchbox \</span>
+<span class="c1">#   --mount volume=config,target=/etc/matchbox \</span>
+<span class="c1">#   --volume data,kind=host,source=/var/lib/matchbox \</span>
+<span class="c1">#   --volume config,kind=host,source=/etc/matchbox \</span>
+<span class="c1">#   ${IMAGE}:${VERSION}</span>
+#
+<span class="c1"># [Install]</span>
+<span class="c1"># WantedBy=multi-user.target</span>
+<span class="c1"># ***********************************************************</span>
+#
+<span class="c1"># 这里我们只使用http提供服务，其实还可以通过gRPC提供服务，那个需要配置证书，详情可见上面的教程链接</span>
+
+<span class="c1"># 自定义systemd units，增加gRPC协议</span>
+mkdir /etc/systemd/system/matchbox.service.d
+vim /etc/systemd/system/matchbox.service.d/override.conf
+***********************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;MATCHBOX_ADDRESS=0.0.0.0:8080&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;MATCHBOX_RPC_ADDRESS=0.0.0.0:8081&#34;</span>
+***********************************************************
+<span class="nb">cd</span> scripts/tls/
+<span class="nb">export</span> <span class="nv">SAN</span><span class="o">=</span>DNS.1:matchbox.example.com,IP.1:172.17.8.101
+./cert-gen
+mkdir -p /etc/matchbox
+cp ca.crt server.crt server.key /etc/matchbox
+
+<span class="c1"># 启动服务</span>
+sudo systemctl daemon-reload
+sudo systemctl start matchbox
+sudo systemctl <span class="nb">enable</span> matchbox
+</pre>
+<h4>3) 下载coreos镜像</h4>
+
+<p>下载coreos镜像，之后pxe安装的时候能快些</p>
+<pre class="chroma"><span class="c1"># 下载最新的stable版本</span>
+<span class="nb">cd</span> /root/matchbox-v0.6.0-linux-amd64
+./scripts/get-coreos stable 1353.7.0 .
+<span class="c1"># 别忘记最后的&#34;.&#34;</span>
+
+<span class="c1"># 拷贝coreos到/var/lib/matchbox/assets</span>
+cp -r coreos /var/lib/matchbox/assets
+<span class="c1"># 检测服务</span>
+curl http://172.17.8.101:8080/assets/coreos/1353.7.0/
+&lt;pre&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;CoreOS_Image_Signing_Key.asc&#34;</span>&gt;CoreOS_Image_Signing_Key.asc&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_image.bin.bz2&#34;</span>&gt;coreos_production_image.bin.bz2&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_image.bin.bz2.sig&#34;</span>&gt;coreos_production_image.bin.bz2.sig&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_pxe.vmlinuz&#34;</span>&gt;coreos_production_pxe.vmlinuz&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_pxe.vmlinuz.sig&#34;</span>&gt;coreos_production_pxe.vmlinuz.sig&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_pxe_image.cpio.gz&#34;</span>&gt;coreos_production_pxe_image.cpio.gz&lt;/a&gt;
+&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;coreos_production_pxe_image.cpio.gz.sig&#34;</span>&gt;coreos_production_pxe_image.cpio.gz.sig&lt;/a&gt;
+&lt;/pre&gt;
+</pre>
+<h4>4) 配置DHCP,TFTP和DNS</h4>
+
+<p>coreos提供dnsmasq这样一个镜像来提供DHCP,TFTP和DNS服务，可以使用rkt或者docker启动这个镜像</p>
+<pre class="chroma"><span class="c1"># 使用rkt</span>
+sudo rkt run --net<span class="o">=</span>host quay.io/coreos/dnsmasq <span class="se">\
+</span><span class="se"></span>  --caps-retain<span class="o">=</span>CAP_NET_ADMIN,CAP_NET_BIND_SERVICE,CAP_SETGID,CAP_SETUID,CAP_NET_RAW <span class="se">\
+</span><span class="se"></span>  -- -d -q <span class="se">\
+</span><span class="se"></span>  --dhcp-range<span class="o">=</span>172.17.8.102,172.17.8.110 <span class="se">\
+</span><span class="se"></span>  --enable-tftp <span class="se">\
+</span><span class="se"></span>  --tftp-root<span class="o">=</span>/var/lib/tftpboot <span class="se">\
+</span><span class="se"></span>  --dhcp-userclass<span class="o">=</span>set:ipxe,iPXE <span class="se">\
+</span><span class="se"></span>  --dhcp-boot<span class="o">=</span>tag:#ipxe,undionly.kpxe <span class="se">\
+</span><span class="se"></span>  --dhcp-boot<span class="o">=</span>tag:ipxe,http://172.17.8.101:8080/boot.ipxe <span class="se">\
+</span><span class="se"></span>  --address<span class="o">=</span>/matchbox.example.com/172.17.8.101 <span class="se">\
+</span><span class="se"></span>  --log-queries <span class="se">\
+</span><span class="se"></span>  --log-dhcp
+
+<span class="c1"># 或者使用docker</span>
+docker run --rm --cap-add<span class="o">=</span>NET_ADMIN --net<span class="o">=</span>host quay.io/coreos/dnsmasq <span class="se">\
+</span><span class="se"></span>  -d -q <span class="se">\
+</span><span class="se"></span>  --dhcp-range<span class="o">=</span>172.17.8.102,172.17.8.110 <span class="se">\
+</span><span class="se"></span>  --enable-tftp --tftp-root<span class="o">=</span>/var/lib/tftpboot <span class="se">\
+</span><span class="se"></span>  --dhcp-userclass<span class="o">=</span>set:ipxe,iPXE <span class="se">\
+</span><span class="se"></span>  --dhcp-boot<span class="o">=</span>tag:#ipxe,undionly.kpxe <span class="se">\
+</span><span class="se"></span>  --dhcp-boot<span class="o">=</span>tag:ipxe,http://172.17.8.101:8080/boot.ipxe <span class="se">\
+</span><span class="se"></span>  --address<span class="o">=</span>/matchbox.example/172.17.8.101 <span class="se">\
+</span><span class="se"></span>  --log-queries <span class="se">\
+</span><span class="se"></span>  --log-dhcp
+</pre>
+<blockquote>
+<p>参考链接：<br />
+<a href="https://github.com/coreos/matchbox/tree/master/contrib/dnsmasq">https://github.com/coreos/matchbox/tree/master/contrib/dnsmasq</a></p>
+</blockquote>
+
+<hr />
+
+<h3>3. terraform</h3>
+
+<h4>1) 安装terraform</h4>
+<pre class="chroma">wget https://releases.hashicorp.com/terraform/0.9.4/terraform_0.9.4_linux_amd64.zip
+unzip terraform_0.9.4_linux_amd64.zip
+./terraform version
+Terraform v0.9.4
+
+wget https://github.com/coreos/terraform-provider-matchbox/releases/download/v0.1.0/terraform-provider-matchbox-v0.1.0-linux-amd64.tar.gz
+tar zxvf terraform-provider-matchbox-v0.1.0-linux-amd64.tar.gz
+
+vim ~/.terraformrc
+**********************************************************
+providers <span class="o">{</span>
+  <span class="nv">matchbox</span> <span class="o">=</span> <span class="s2">&#34;/root/terraform-provider-matchbox-v0.1.0-linux-amd64/terraform-provider-matchbox&#34;</span>
+<span class="o">}</span>
+**********************************************************
+</pre>
+<h4>2) 使用terraform提供matchbox资源</h4>
+<pre class="chroma">mkdir ~/.matchbox
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/ca.crt ~/.matchbox/
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/client.crt ~/.matchbox/
+cp ~/matchbox-v0.6.0-linux-amd64/scripts/tls/client.key ~/.matchbox/
+
+git clone https://github.com/coreos/matchbox.git
+<span class="nb">cd</span> matchbox/examples/terraform
+<span class="nb">cd</span> simple-install
+cp terraform.tfvars.example terraform.tfvars
+
+vim terraform.tfvars
+**********************************************************
+<span class="nv">matchbox_http_endpoint</span> <span class="o">=</span> <span class="s2">&#34;http://172.17.8.101:8080&#34;</span>
+<span class="nv">matchbox_rpc_endpoint</span> <span class="o">=</span> <span class="s2">&#34;172.17.8.101:8081&#34;</span>
+<span class="nv">ssh_authorized_key</span> <span class="o">=</span> <span class="s2">&#34;ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAv7 ... == root@myvagrant&#34;</span>
+**********************************************************
+
+vim profiles.tf
+**********************************************************
+// Create a CoreOS-install profile
+resource <span class="s2">&#34;matchbox_profile&#34;</span> <span class="s2">&#34;coreos-install&#34;</span> <span class="o">{</span>
+  <span class="nv">name</span> <span class="o">=</span> <span class="s2">&#34;coreos-install&#34;</span>
+  <span class="nv">kernel</span> <span class="o">=</span> <span class="s2">&#34;http://172.17.8.101:8080/assets/coreos/1353.7.0/coreos_production_pxe.vmlinuz&#34;</span>
+  <span class="nv">initrd</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&#34;http://172.17.8.101:8080/assets/coreos/1353.7.0/coreos_production_pxe_image.cpio.gz&#34;</span>
+  <span class="o">]</span>
+  <span class="nv">args</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&#34;</span><span class="s2">coreos.config.url=</span><span class="si">${</span><span class="nv">var</span><span class="p">.matchbox_http_endpoint</span><span class="si">}</span><span class="s2">/ignition?uuid=</span><span class="nv">$$</span><span class="s2">{uuid}&amp;mac=</span><span class="nv">$$</span><span class="s2">{mac:hexhyp}</span><span class="s2">&#34;</span>,
+    <span class="s2">&#34;coreos.first_boot=yes&#34;</span>,
+    <span class="s2">&#34;console=tty0&#34;</span>,
+    <span class="s2">&#34;console=ttyS0&#34;</span>,
+  <span class="o">]</span>
+  <span class="nv">container_linux_config</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">file</span><span class="p">(</span><span class="s2">&#34;./cl/coreos-install.yaml.tmpl&#34;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+
+// Create a simple profile which just sets an SSH authorized_key
+resource <span class="s2">&#34;matchbox_profile&#34;</span> <span class="s2">&#34;simple&#34;</span> <span class="o">{</span>
+  <span class="nv">name</span> <span class="o">=</span> <span class="s2">&#34;simple&#34;</span>
+  <span class="nv">container_linux_config</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">file</span><span class="p">(</span><span class="s2">&#34;./cl/simple.yaml.tmpl&#34;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+**********************************************************
+
+~/terraform plan
+~/terraform apply
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

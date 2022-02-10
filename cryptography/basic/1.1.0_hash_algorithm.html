@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/cryptography/basic/1.0.0_crytography_intro.html">密码学: 1.0.0 简要介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.1.0_hash_algorithm.html">密码学: 1.1.0 hash算法介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.2.0_algorithm.html">密码学: 1.2.0 加解密算法（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.3.0_signature.html">密码学: 1.3.0 数字签名（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.4.0_certification.html">密码学: 1.4.0 数字证书（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.5.0_pki.html">密码学: 1.5.0 PKI认证体系（转载）</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.1.0_ssl_tls.html">openssl 1.1.0 证书相关名词含义</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.2.0_pem.html">openssl 1.2.0 pem基本操作</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">openssl 1.3.0 获取证书</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>密码学: 1.1.0 hash算法介绍（转载）</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>15 Dec 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<p>转载地址：<a href="https://yeasy.gitbooks.io/blockchain_guide/content/crypto/hash.html">yeasy gitbooks</a></p>
+
+<h2>Hash 算法</h2>
+
+<h3>定义</h3>
+
+<p>Hash （哈希或散列）算法是信息技术领域非常基础也非常重要的技术。它能任意长度的二进制值（明文）映射为较短的固定长度的二进制值（Hash 值），并且不同的明文很难映射为相同的 Hash 值。</p>
+
+<p>例如计算一段话“hello blockchain world, this is yeasy@github”的 MD5 hash 值为 <code>89242549883a2ef85dc81b90fb606046</code>。</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s2">&#34;hello blockchain world, this is yeasy@github&#34;</span><span class="p">|</span>md5
+89242549883a2ef85dc81b90fb606046
+</pre>
+<p>这意味着我们只要对某文件进行 MD5 Hash 计算，得到结果为 <code>89242549883a2ef85dc81b90fb606046</code>，这就说明文件内容极大概率上就是 “hello blockchain world, this is yeasy@github”。可见，Hash 的核心思想十分类似于基于内容的编址或命名。</p>
+
+<blockquote>
+<p>注：hash 值在应用中又被称为指纹（fingerprint）、摘要（digest）。</p>
+
+<p>注：MD5 是一个经典的 hash 算法，其和 SHA-1 算法都已被 证明 安全性不足应用于商业场景。</p>
+</blockquote>
+
+<p>一个优秀的 hash 算法，将能实现：</p>
+
+<ul>
+<li>正向快速：给定明文和 hash 算法，在有限时间和有限资源内能计算出 hash 值。</li>
+<li>逆向困难：给定（若干） hash 值，在有限时间内很难（基本不可能）逆推出明文。</li>
+<li>输入敏感：原始输入信息修改一点信息，产生的 hash 值看起来应该都有很大不同。</li>
+<li>冲突避免：很难找到两段内容不同的明文，使得它们的 hash 值一致（发生冲突）。<br />
+冲突避免有时候又被称为“抗碰撞性”。如果给定一个明文前提下，无法找到碰撞的另一个明文，称为“弱抗碰撞性”；如果无法找到任意两个明文，发生碰撞，则称算法具有“强抗碰撞性”。</li>
+</ul>
+
+<p>很多场景下，也要求对于任意长的输入内容，输出定长的 hash 结果。</p>
+
+<h3>流行的算法</h3>
+
+<p>目前流行的 Hash 算法包括 MD5、SHA-1 和 SHA-2。</p>
+
+<p>MD4（RFC 1320）是 MIT 的 Ronald L. Rivest 在 1990 年设计的，MD 是 Message Digest 的缩写。其输出为 128 位。MD4 已证明不够安全。</p>
+
+<p>MD5（RFC 1321）是 Rivest 于1991年对 MD4 的改进版本。它对输入仍以 512 位分组，其输出是 128 位。MD5 比 MD4 复杂，并且计算速度要慢一点，更安全一些。MD5 已被证明不具备“强抗碰撞性”。</p>
+
+<p>SHA （Secure Hash Algorithm）是一个 Hash 函数族，由 NIST（National Institute of Standards and Technology）于 1993 年发布第一个算法。目前知名的 SHA-1 在 1995 年面世，它的输出为长度 160 位的 hash 值，因此抗穷举性更好。SHA-1 设计时基于和 MD4 相同原理，并且模仿了该算法。SHA-1 已被证明不具备“强抗碰撞性”。</p>
+
+<p>为了提高安全性，NIST 还设计出了 SHA-224、SHA-256、SHA-384，和 SHA-512 算法（统称为 SHA-2），跟 SHA-1 算法原理类似。SHA-3 相关算法也已被提出。</p>
+
+<p>目前，一般认为 MD5 和 SHA1 已经不够安全，推荐至少使用 SHA2-256 算法。</p>
+
+<h3>性能</h3>
+
+<p>一般的，Hash 算法都是算力敏感型，意味着计算资源是瓶颈，主频越高的 CPU 进行 Hash 的速度也越快。</p>
+
+<p>也有一些 Hash 算法不是算力敏感的，例如 scrypt，需要大量的内存资源，节点不能通过简单的增加更多 CPU 来获得 hash 性能的提升。</p>
+
+<h3>数字摘要</h3>
+
+<p>顾名思义，数字摘要是对数字内容进行 Hash 运算，获取唯一的摘要值来指代原始数字内容。</p>
+
+<p>数字摘要是解决确保内容没被篡改过的问题（利用 Hash 函数的抗碰撞性特点）。</p>
+
+<p>数字摘要是 Hash 算法最重要的一个用途。在网络上下载软件或文件时，往往同时会提供一个数字摘要值，用户下载下来原始文件可以自行进行计算，并同提供的摘要值进行比对，以确保内容没有被修改过。</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

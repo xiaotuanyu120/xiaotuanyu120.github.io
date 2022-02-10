@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/advanced/index.html">advanced</a>
+                </li>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                  <ul>
+                    <li><a href="/python/codefights/data_structure_01_array_01_fistDuplicate.html">array 01: fist duplicate</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_02_firstNotRepeatingCharacter.html">array 02: fist not repeating character</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_03_rotateImage.html">array 03: rotate image(翻转列表，解压参数)</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_04_sudoku2.html">array 04: sudoku(yield,"%","/")</a></li>
+                    <li><a href="/python/codefights/data_structure_01_array_05_isCryptSolution.html">array 05: is crypt solution(reduce,map,any,all)</a></li>
+                    <li><a href="/python/codefights/data_structure_02_linked_list_01_removeFromList.html">linked list 01: remove from list</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>array 04: sudoku(yield,"%","/")</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>31 Oct 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 题目</h3>
+
+<p>Sudoku is a number-placement puzzle. The objective is to fill a <code>9 × 9</code> grid with numbers in such a way that each column, each row, and each of the nine <code>3 × 3</code> sub-grids that compose the grid all contain all of the numbers from <code>1</code> to <code>9</code> one time.</p>
+
+<p>Implement an algorithm that will check whether the given <code>grid</code> of numbers represents a valid Sudoku puzzle according to the layout rules described above. Note that the puzzle represented by <code>grid</code> does not have to be solvable.</p>
+
+<p><strong>Example</strong></p>
+
+<ul>
+<li><p>For</p>
+<pre class="chroma">grid = [[&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;1&#39;, &#39;4&#39;, &#39;.&#39;, &#39;.&#39;, &#39;2&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;6&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;1&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;6&#39;, &#39;7&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;9&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;8&#39;, &#39;1&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;3&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;6&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;7&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;5&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;7&#39;, &#39;.&#39;]]
+</pre>
+<p>the output should be<br />
+<code>sudoku2(grid) = true</code>;</p></li>
+
+<li><p>For</p>
+<pre class="chroma">grid = [[&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;2&#39;, &#39;.&#39;, &#39;.&#39;, &#39;9&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;6&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;7&#39;, &#39;1&#39;, &#39;.&#39;, &#39;.&#39;, &#39;7&#39;, &#39;5&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;7&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;8&#39;, &#39;3&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;8&#39;, &#39;.&#39;, &#39;.&#39;, &#39;7&#39;, &#39;.&#39;, &#39;6&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;2&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;1&#39;, &#39;.&#39;, &#39;2&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;],
+    [&#39;.&#39;, &#39;2&#39;, &#39;.&#39;, &#39;.&#39;, &#39;3&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;, &#39;.&#39;]]
+</pre>
+<p>the output should be<br />
+<code>sudoku2(grid) = false</code>;<br />
+The given <code>grid</code> is not correct because there are two 1s in the second column. Each column, each row, and each <code>3 × 3</code> subgrid can only contain the numbers <code>1</code> through <code>9</code> one time.</p></li>
+</ul>
+
+<p><strong>Input/Output</strong>
+- [time limit] 4000ms (py)</p>
+
+<ul>
+<li><p>[input] array.array.char grid<br />
+A <code>9 × 9</code> array of characters, in which each character is either a digit from <code>'1'</code> to <code>'9'</code> or a period <code>'.'</code>.</p></li>
+
+<li><p>[output] boolean<br />
+Return <code>true</code> if <code>grid</code> represents a valid Sudoku puzzle, otherwise return <code>false</code>.</p></li>
+</ul>
+
+<hr />
+
+<h3>2. 解法</h3>
+
+<p><strong>个人解法</strong></p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">sudoku2</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="p">:</span>
+    <span class="c1"># rows check</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sudoku2_check</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c1"># columns check</span>
+    <span class="n">columns_grid</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">grid</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_grid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sudoku2_check</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="c1"># square check</span>
+    <span class="n">squares_grid</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">squares_grid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">grid</span><span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="p">]</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="n">y</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sqr</span> <span class="ow">in</span> <span class="n">squares_grid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">sudoku2_check</span><span class="p">(</span><span class="n">sqr</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+<span class="k">def</span> <span class="nf">sudoku2_check</span><span class="p">(</span><span class="n">grid_unit</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">grid_unit</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">.</span><span class="s2">&#34;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="k">else</span> <span class="bp">False</span>
+</pre>
+<blockquote>
+<p>square check部分参考了精品解法</p>
+</blockquote>
+
+<p><strong>精品解法</strong></p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">sudoku2</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">unique</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">G</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.</span><span class="s1">&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">G</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">groups</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">A</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">A</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="n">B</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">v</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span> <span class="n">r</span><span class="p">]</span><span class="p">[</span><span class="n">v</span><span class="o">%</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span> <span class="o">+</span><span class="n">c</span><span class="p">]</span>
+                   <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">grp</span><span class="p">)</span> <span class="k">for</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="p">)</span>
+</pre>
+<blockquote>
+<p><code>unique()</code>负责给每一个检查单元筛选数字，然后判断是否有重复的数字<br />
+<code>groups()</code>负责将array grid分解，一次轮询，迭代输出三个分组元素（行分组、列分组和3x3分组）<br />
+<code>[A[v/3*3 + r][v%3*3 +c] for r in xrange(3) for c in xrange(3)]</code>利用了取整和求模的数学运算矩阵轮询，这是重点。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

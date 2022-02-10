@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+              <ul>
+                <li>
+                  <a href="/web/css/index.html">css</a>
+                </li>
+                <li>
+                  <a href="/web/jquery/index.html">jquery</a>
+                  <ul>
+                    <li><a href="/web/jquery/jquery_1.0_basic.html">jquery: 1.0 基础知识</a></li>
+                    <li><a href="/web/jquery/jquery_1.1_getElementBy_basic.html">jquery: 1.1 基础知识-getElementBy*</a></li>
+                    <li><a href="/web/jquery/jquery_2.0_dynamic_active.html">jquery: 2.0 动态active</a></li>
+                    <li><a href="/web/jquery/jquery_3.0_ajax.html">jquery: 3.0 ajax</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/web/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/web/node.js/index.html">node.js</a>
+                </li>
+                <li>
+                  <a href="/web/vue.js/index.html">vue.js</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>jquery: 3.0 ajax</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>16 Nov 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. $.ajaxSetup()</h3>
+
+<p>可用于设定$.ajax()默认值，语法:<code>jQuery.ajaxSetup( options )</code></p>
+<pre class="chroma"><span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSetup</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">url</span><span class="o">:</span> <span class="s2">&#34;ping.php&#34;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// url not set here; uses ping.php
+</span><span class="c1"></span>  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;Dan&#34;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>ajaxSetup用于设定ajax的设定的默认值，可用于在编写多个ajax代码时缩短代码长度。</p>
+
+<p>参照jquery的<a href="http://api.jquery.com/jQuery.ajaxSetup/">ajaxSetup文档</a></p>
+</blockquote>
+
+<hr />
+
+<h3>2. $.ajax()</h3>
+
+<p>执行异步HTTP（Ajax）请求，语法：<code>jQuery.ajax( url [, settings ] )</code>
+&gt; 必备的参数是url，其他参数可选，详细参见<a href="http://api.jquery.com/jQuery.ajax/">ajax文档</a>。</p>
+
+<hr />
+
+<h3>3. ajax与django的csrf</h3>
+<pre class="chroma"><span class="c1">//使用beforeSend，在ajax发送之前，获得csrf的认证
+</span><span class="c1"></span><span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSetup</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">beforeSend</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">,</span> <span class="nx">settings</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">getCookie</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">cookieValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">cookies</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">cookies</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">cookie</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="nx">cookies</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+          <span class="c1">// Does this cookie string begin with the name we want?
+</span><span class="c1"></span>          <span class="k">if</span> <span class="p">(</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;=&#39;</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">cookieValue</span> <span class="o">=</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">cookie</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="nx">cookieValue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="sr">/^http:.*/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span> <span class="o">||</span> <span class="sr">/^https:.*/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">settings</span><span class="p">.</span><span class="nx">url</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Only send the token to relative URLs i.e. locally.
+</span><span class="c1"></span>      <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&#34;X-CSRFToken&#34;</span><span class="p">,</span> <span class="nx">getCookie</span><span class="p">(</span><span class="s1">&#39;csrftoken&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>详细信息参照<a href="https://docs.djangoproject.com/en/1.11/ref/csrf/#ajax">django-csrf-ajax文档</a>。</p>
+</blockquote>
+
+<h4>2) ajax执行</h4>
+<pre class="chroma"><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#btn1&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">selbrand</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#selbrand&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+            <span class="nx">sertype</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#sertype&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+            <span class="nx">user</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&#34;user&#34;</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">}</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="p">{</span>
+      <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;/run/&#39;</span><span class="p">,</span>
+      <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+      <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span>
+      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">redata</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">redata</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#terminal-output&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">redata</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="c1">//可以在ajax发送完成之后，无论成功还是失败，执行一些动作
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">)</span><span class="p">.</span><span class="nx">ajaxComplete</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">request</span><span class="p">,</span> <span class="nx">settings</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#some&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&#34;hidden&#34;</span><span class="p">,</span> <span class="s2">&#34;True&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

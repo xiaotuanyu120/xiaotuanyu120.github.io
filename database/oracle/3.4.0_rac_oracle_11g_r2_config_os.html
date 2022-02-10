@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                  <ul>
+                    <li><a href="/database/oracle/1.0.0_silent_installation_env.html">1.0.0 silent模式安装oracle 11G R2 之 环境准备</a></li>
+                    <li><a href="/database/oracle/1.1.0_silent_installation_oracle_install.html">1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装</a></li>
+                    <li><a href="/database/oracle/1.2.0_silent_installation_netca_listen.html">1.2.0 silent模式安装oracle 11G R2 之 netca监听</a></li>
+                    <li><a href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">1.3.0 silent模式安装oracle 11G R2 之 安装database实例</a></li>
+                    <li><a href="/database/oracle/1.4.0_silent_installation_error.html">1.4.0 silent模式安装oracle 11G R2 之 安装错误</a></li>
+                    <li><a href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">1.5.0 silent安装之cvuqdisk</a></li>
+                    <li><a href="/database/oracle/1.6.0_OUI_installation_error.html">1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合</a></li>
+                    <li><a href="/database/oracle/2.1.0_oracle_sql_statement.html">2.1.0 oracle sql语句之表备份实例</a></li>
+                    <li><a href="/database/oracle/2.2.0_oracle_sql_drop_database.html">2.2.0 oracle sql语句之删除数据库</a></li>
+                    <li><a href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">3.1.0 RAC-架构预览</a></li>
+                    <li><a href="/database/oracle/3.10.0_rac_dbca_create_database.html">3.10.0 RAC-通过DBCA创建数据库</a></li>
+                    <li><a href="/database/oracle/3.11.0_rac_management.html">3.11.0 RAC-管理命令</a></li>
+                    <li><a href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">3.2.0 RAC-配置主机名和网络</a></li>
+                    <li><a href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">3.3.0 RAC-配置ntp服务</a></li>
+                    <li><a href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">3.4.0 RAC-系统配置</a></li>
+                    <li><a href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">3.5.0 RAC-配置用户和组</a></li>
+                    <li><a href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">3.6.0 RAC-存储配置</a></li>
+                    <li><a href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">3.7.0 RAC-安装oracle grid infrastructure</a></li>
+                    <li><a href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">3.8.0 RAC-安装oracle 11g r2软件</a></li>
+                    <li><a href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">3.9.0 RAC-通过ASMCA创建ASM硬盘组</a></li>
+                    <li><a href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">4.1.0 oracle error之ORA-01034</a></li>
+                    <li><a href="/database/oracle/4.2.0_oracle_error_display.html">4.2.0 oracle error之图形安装DISPLAY错误</a></li>
+                    <li><a href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">5.1.0 oracle dataguard 11g r2 搭建</a></li>
+                    <li><a href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">5.1.1 oracle dataguard 11g r2 rman恢复错误</a></li>
+                    <li><a href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">5.2.0 oracle dataguard 11g r2 一主多备搭建</a></li>
+                    <li><a href="/database/oracle/5.3.0_dataguard_oracle_11gr2_manage.html">5.3.0 oracle dataguard 11g r2 管理命令</a></li>
+                    <li><a href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">6.2.0 ora-28001 the password has expired</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>3.4.0 RAC-系统配置</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>26 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 系统配置</h3>
+
+<h4>1) oracle rac database 11g r2 需要的环境包</h4>
+<pre class="chroma">yum groupinstall base core -y
+yum install -y cloog-ppl libXxf86misc compat-libcap1 libXxf86vm compat-libstdc++-33 libaio-devel cpp libdmx gcc libstdc++-devel gcc-c++ mpfr glibc-devel make glibc-headers ppl kernel-headers xorg-x11-utils libXmu xorg-x11-xauth libXt libXv ksh libXxf86dga
+</pre>
+<h4>2) 关闭selinux</h4>
+<pre class="chroma">setenforce <span class="m">0</span>
+vim /etc/selinux/config
+******************************************************
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+******************************************************
+</pre>
+<h4>3) 防火墙配置</h4>
+<pre class="chroma">vim /etc/sysconfig/iptables
+******************************************************
+<span class="c1"># Generated by iptables-save v1.4.7 on Fri Dec 23 09:17:06 2016</span>
+*filter
+:INPUT ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
+:FORWARD ACCEPT <span class="o">[</span>0:0<span class="o">]</span>
+:OUTPUT ACCEPT <span class="o">[</span>25:2660<span class="o">]</span>
+<span class="c1"># 允许public网络每个节点的ip通过bond0连接</span>
+-A INPUT -s 172.168.33.103/32 -i bond0 -j ACCEPT
+-A INPUT -s 172.168.33.104/32 -i bond0 -j ACCEPT
+<span class="c1"># 允许private网络每个节点的网卡设备的所有连接</span>
+-A INPUT -i eth3 -j ACCEPT
+-A INPUT -i eth4 -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+<span class="c1"># 允许private网段到Oracle&#39;s Multicast address IPs: 230.0.1.0 and 224.0.0.251的连接</span>
+-A INPUT -s 172.16.44.0/24 -d 230.0.1.0 -j ACCEPT
+-A INPUT -s 172.16.48.0/24 -d 224.0.0.251 -j ACCEPT
+-A INPUT -s 172.16.44.0/24 -d 230.0.1.0 -j ACCEPT
+-A INPUT -s 172.16.48.0/24 -d 224.0.0.251 -j ACCEPT
+<span class="c1"># 允许bond0到Oracle&#39;s Multicast address IPs: 230.0.1.0 and 224.0.0.251的连接</span>
+-A INPUT -i bond0 -d 230.0.1.0 -j ACCEPT
+-A INPUT -i bond0 -d 224.0.0.251 -j ACCEPT
+<span class="c1"># 允许ssh/https端口</span>
+-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">22</span> -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">443</span> -j ACCEPT
+<span class="c1"># Enable Oracle SCAN Listener Port 1521 for Oracle DB client access</span>
+-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.33.121 --dport <span class="m">1521</span> -j ACCEPT
+<span class="c1"># Enable Oracle Enterprise Manager 11g Port 1158 for Oracle DB client access</span>
+-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.33.121 --dport <span class="m">1158</span> -j ACCEPT
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT
+******************************************************
+</pre>
+<p><a href="https://docs.oracle.com/cd/E13222_01/wls/docs81/ConsoleHelp/domain_cluster_config_multicast.html">ORACLE MULTICAST ADDRESS DOC</a></p>
+
+<h4>4) 设置虚拟内存</h4>
+
+<p>需要调节内核的5个参数来调优虚拟内存，虚拟内存被用于oracle rac集群内部。特别需要注意的是，以下推荐的值只是调优的一个起点。</p>
+
+<p>以下是虚拟内存调优参数的简单介绍和建议值：
+- SWAPPINESS，值范围在0-100，代表了系统的swaps级别，高值，倾向于系统性能，会在内存不活动时主动的将其传输出物理内存暂存起来。低值，倾向于交互性，会尽可能的延长数据在内存中的时间，来降低访问的延时。默认值是60，oracle推荐设置为0
+- DIRTY DATA，代表了已经被修改，为了性能保存在页缓存中的数据，一旦此数据被写入硬盘中，转换为clean data。
+- DIRTY_RATIO，包含占系统总内存的百分比，即生成磁盘写入的进程它会开始写出脏数据的页面数。 默认值为20，推荐值为80。
+- DIRTY_BACKGROUND_RATIO，包含占系统总内存的百分比，即后台写回服务它会开始写出脏数据的页面数。 推荐值为3。
+- DIRTY_EXPIRE_CENTISECS，定义脏数据在内存中保持多久后有资格被写出的时间，默认是3000，单位是百分之一秒。oracle推荐为500.
+- DIRTY_WRITEBACK_CENTISECS，定义脏数据被写出内存到磁盘间的间隔时间，默认是500，单位是百分之一秒。oracle推荐为100.</p>
+<pre class="chroma"><span class="c1">## 集群中各节点上执行</span>
+<span class="c1"># 备份原配置文件</span>
+cp /etc/sysctl.conf /etc/sysctl.conf.bak
+
+<span class="c1"># 修改配置优化虚拟内存设置</span>
+vim /etc/sysctl.conf
+******************************************************
+vm.swappiness <span class="o">=</span> <span class="m">0</span>
+vm.dirty_background_ratio <span class="o">=</span> <span class="m">3</span>
+vm.dirty_ratio <span class="o">=</span> <span class="m">80</span>
+vm.dirty_expire_centisecs <span class="o">=</span> <span class="m">500</span>
+vm.dirty_writeback_centisecs <span class="o">=</span> <span class="m">100</span>
+******************************************************
+
+<span class="c1"># 使配置立即生效</span>
+sysctl -p
+</pre>
+<h4>5) 设置共享内存</h4>
+
+<p>共享内存允许进程间通过将内存区域放置到内存段中来彼此通信。在oracle这里，共享内存被System Global Area (SGA)拿来存储输入数据和控制信息。Oracle SGA的大小影响要在系统中设置的共享内存页和共享内存段的数量。默认情况下，RHEL6会提供一个很大的共享内存页数和共享内存段数，然而，一个系统在此方面合适的分配数量还是取决于RAM的大小。为了在oracle集群节点上分配合适的共享内存，我们需要优化以下三个参数。
+- SHMALL，全部共享内存页的页数最大值
+- SHMMAX，一个单独共享内存段容量的最大值，单位是bytes
+- SHMMNI，全部共享内存段的段数最大值</p>
+
+<p>在oracle集群的节点中，为了在每个系统的内存页容量(bytes)中决定共享内页的数量，以下这个命令会帮助我们获得系统的内存页数量。</p>
+<pre class="chroma">getconf PAGE_SIZE
+<span class="m">4096</span>
+</pre>
+<p>接下来我们计算三个参数的值</p>
+<pre class="chroma"><span class="c1"># 计算SHMALL公式：TOTAL RAM IN BYTES / PAGE_SIZE</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">`cat /proc/meminfo |awk &#39;/MemTotal/{print </span><span class="nv">$2</span><span class="s2">}&#39;` * 1024 / `getconf PAGE_SIZE`</span><span class="s2">&#34;</span> <span class="p">|</span> bc
+<span class="m">125486</span>
+
+<span class="c1"># 计算SHMMAX公式：HALF OF TOTAL RAM IN BYTES</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">`cat /proc/meminfo |awk &#39;/MemTotal/{print </span><span class="nv">$2</span><span class="s2">}&#39;` * 1024 / 2</span><span class="s2">&#34;</span> <span class="p">|</span> bc
+<span class="m">256995328</span>
+
+<span class="c1"># 至于SHMMNI, Oracle 推荐设置 SHMMNI 为 4096.</span>
+</pre>
+<blockquote>
+<p>特别需要注意的是，如果你发现<code>/etc/sysctl.conf</code>中的值大于自己计算的值，请不要改动此项参数。</p>
+</blockquote>
+
+<p>最终，发现系统配置的<code>shmall</code>和<code>shmmax</code>都要比自己计算的大，于是不改动这两个参数，只需要添加<code>shmmni</code>即可</p>
+<pre class="chroma"><span class="c1"># 最终编辑参数为</span>
+vim /etc/sysctl.conf
+******************************************************
+kernel.shmmax <span class="o">=</span> <span class="m">68719476736</span>
+kernel.shmall <span class="o">=</span> <span class="m">4294967296</span>
+kernel.shmmni <span class="o">=</span> <span class="m">4096</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<h4>6) 设置信号量</h4>
+
+<p>RHEL6 提供了semaphores(信号量)用于在进程间同步信息。内核参数<code>sem</code>由以下4个部分组成
+- SEMMSL，每个信号量集合的最大信号量数
+- SEMMNI，系统的信号量集合的最大数目
+- SEMMNS，系统的最大信号量数，等于SHMMNI * SHMMSL
+- SEMOPM，每个semop系统调用执行的信号量操作的总数</p>
+
+<p>设置以下的参数来确保oracle集群节点拥有足够的信号量</p>
+<pre class="chroma"><span class="c1"># 在/etc/sysctl.conf中配置</span>
+vim /etc/sysctl.conf
+******************************************************
+kernel.sem <span class="o">=</span> <span class="m">250</span> <span class="m">32000</span> <span class="m">100</span> <span class="m">128</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<h4>7) 设置短期端口使用范围</h4>
+
+<p>oracle推荐设置此项来确保oracle和其他应用默认的端口被避开，推荐设置为</p>
+<pre class="chroma"><span class="c1"># 在 /etc/sysctl.conf 中增加</span>
+vim /etc/sysctl.conf
+******************************************************
+net.ipv4.ip_local_port_range <span class="o">=</span> <span class="m">9000</span> <span class="m">65500</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<h4>8) 优化网络设置</h4>
+
+<p>oracle通过设定<code>RMEM</code>和<code>WMEM</code>，来优化应用程序sockets的缓存默认值和缓存最大值。
+- RMEM，receive buffer size
+- WMEM，send buffer size</p>
+
+<p>oracle做如下推荐</p>
+<pre class="chroma"><span class="c1"># /etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+net.core.rmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.rmem_max <span class="o">=</span> <span class="m">4194304</span>
+net.core.wmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.wmem_max <span class="o">=</span> <span class="m">1048576</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<h4>9) 提升异步I/O请求</h4>
+
+<p>内核参数<code>FS.AIO-MAX-NR</code>设定当前异步I/O请求的最大数量。<br />
+oracle推荐如下设置</p>
+<pre class="chroma"><span class="c1"># /etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+fs.aio-max-nr <span class="o">=</span> <span class="m">1048576</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<h4>10) 提升文件句柄</h4>
+
+<p>内核参数FS.FILE-MAX设置分配给Red Hat Enterprise Linux 6操作系统的打开文件句柄的最大数目，oracle推荐在RHEL6操作系统已分配的数目之外，额外增加<code>512 * PROCESSES</code>，数据库实例中的PROCESSES指的是Oracle用户可以并发连接到Oracle RAC数据库的最大进程数。PROCESSES默认值是150.</p>
+<pre class="chroma"><span class="c1"># 如何获取当前的最大文件打开数</span>
+cat /proc/sys/fs/file-max
+<span class="m">46892</span>
+
+<span class="c1"># 参考每个服务器拥有一个oracle database instance，两个服务器就是150 * 2</span>
+<span class="c1"># 计算FS.FILE-MAX</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">`cat /proc/sys/fs/file-max` + </span>$<span class="s2">[512*300]</span><span class="s2">&#34;</span> <span class="p">|</span> bc
+<span class="m">200492</span>
+</pre>
+<blockquote>
+<p>需要注意的是，因为目前还没有创建oracle rac database cluster，可以暂时使用150 PROCESSES，可以在增加oracle database instance之后再行调整。</p>
+</blockquote>
+
+<p>然而，FS.FILE-MAX的值，oracle推荐不低于6815744，因为我们计算的值小于此值，所以最终，我们将其设置为6815744</p>
+<pre class="chroma"><span class="c1"># 修改内核配置文件/etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+fs.file-max <span class="o">=</span> <span class="m">6815744</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+<blockquote>
+<p>需要注意的是，oracle ASMLib不是根据每个设备来打开文件描述符，而是为每个oracle进程来打开文件描述符。在oracle rac database cluster安装期间，FS.FILE-MAX内核参数最小设置为6815744</p>
+
+<p>当我们因为oracle RAC database instances增加而增加PROCESSES的值时，需要重新调整FS.FILE-MAX的值</p>
+</blockquote>
+
+<h4>11) 设置反向路径过滤</h4>
+
+<p>RHEL6默认使用严格的反向路径过滤。之所以默认使用严格模式是因为预防DDOS的ip欺骗攻击。然而，开启此模式有时会引起互联通信的中断。所以推荐设置RP_FILTER将严格模式切换到松散模式。不需要太多的关注切换到松散模式所带来的安全问题，因为独立的private网络只能在oralce cluster节点之间通信。</p>
+<pre class="chroma"><span class="c1"># 编辑/etc/sysctl.conf</span>
+vim /etc/sysctl.conf
+******************************************************
+net.ipv4.conf.eth3.rp_filter <span class="o">=</span> <span class="m">2</span>
+net.ipv4.conf.eth4.rp_filter <span class="o">=</span> <span class="m">2</span>
+******************************************************
+
+<span class="c1"># 使其立即生效</span>
+sysctl -p
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

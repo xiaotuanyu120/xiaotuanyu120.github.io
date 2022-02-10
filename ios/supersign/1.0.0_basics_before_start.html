@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+              <ul>
+                <li>
+                  <a href="/ios/supersign/index.html">supersign</a>
+                  <ul>
+                    <li><a href="/ios/supersign/1.0.0_basics_before_start.html">超级签：开始之前需要知道的基本概念</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>超级签：开始之前需要知道的基本概念</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>06 Sep 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 什么是plist?</h3>
+
+<p><em>.plist是一个软件的首选项文件(preference file)，里面可能记录了用户的信息或者软件的配置。举例说明，假如你有一个邮件APP，你使用这个邮件APP，登陆了某些账户，如果此时你删除这个软件的</em>.plist文件，再打开邮件APP，就和你第一次打开它时是一样的。
+plist文件在ios和macos上皆有应用。</p>
+
+<h3>2. 什么是.mobileconfig文件？</h3>
+
+<p>.mobileconfig是一个配置文件，用于运行ios、macos、tvos和watchos的设备。它包含了设备的安装信息，例如，密码策略、访问权限和代理连接信息，例如vpn、邮件和日历设置。MOBILECONFIG通常用于在企业和学校网络中部署和注册苹果设备配置。
+MOBILECONFIG文件通常是被远程配置服务托管，该服务与苹果设备通讯来配置和注册该苹果设备。当被发出后，MOBILECONFIG会被数字签名，所以信息会被安全的发送。
+MOBILECONFIG可用于管理大量的设备。它可以用苹果配置工具(iphone configuration utility)生成，macos和windows平台都有此工具。</p>
+
+<h3>3. 什么是UDID？</h3>
+
+<p>UDID是Unique Device Identifier的缩写，中文翻译是唯一设备标识符。是一个计算字符串，用于标识设备以进行应用程序安装、注册和MDM注册。</p>
+
+<h3>4. 如何增加新的IOS设备称为开发测试设备？</h3>
+
+<p>ios开发者程序开发的应用只能在应用的provisioning profile中指定的设备上运行。应用开发人员需要在构建.ipa文件以进行分发之前将设备添加到profile中。开发者也可以后续再增加新设备，并使用更新过的provisioning profile来重新构建应用。你必须使用苹果会员中心网站来注册设备。</p>
+
+<h4>1. 增加设备到你的开发者账号里</h4>
+
+<ul>
+<li><p>获取设备UDID</p></li>
+
+<li><p>打开<a href="developer.apple.com/ios/manage/devices/index.action">苹果会员中心</a>网站，然后使用苹果开发者账号登入</p></li>
+
+<li><p>在会员中心(Member Center)界面，点击证书、标识符和配置(Certificates,Identifiers&amp;Profiles)，然后点击设备(Device)&gt;所有(All)</p></li>
+
+<li><p>点击右上角的“+”</p></li>
+
+<li><p>点击注册设备(Register Device)</p></li>
+
+<li><p>输入UDID</p></li>
+
+<li><p>点击继续(Continue)和注册(Register)</p>
+
+<h4>2. 增加设备到应用的provisioning profile中</h4></li>
+
+<li><p>在会员中心(Member Center)的左侧栏中，选择Provisioning profile</p></li>
+
+<li><p>选择你希望增加设备到其中的profile，然后点击编辑(Edit)</p></li>
+
+<li><p>在设备列表中，选择所有你希望测试应用的设备</p></li>
+
+<li><p>点击生成(Generate)来保存所有改动</p></li>
+
+<li><p>下载更新后的provisioning profile</p>
+
+<h4>3. 使用新的provisioning profile来重新构建应用</h4></li>
+</ul>
+
+<blockquote>
+<p><a href="https://support.smartbear.com/testcomplete/docs/app-testing/mobile/ios/preparing/registering-devices.html">如何为ios应用增加新的测试设备</a></p>
+</blockquote>
+
+<h3>5. 什么是spaceship？</h3>
+
+<p><a href="https://github.com/fastlane/fastlane/tree/master/spaceship">spaceship</a>就是帮我们自动化完成第四步的，它公开了苹果开发者中心和苹果商店的API，能够支持所有在浏览器中完成的操作。
+spaceship是fastlane中的一部分(spaceship源码就在fastlane源码的spaceship目录中)，使用ruby编写的。
+<a href="https://github.com/fastlane/fastlane/tree/master/sigh">sigh</a>可以创建、更新、下载和修复profile(使用一个命令)。它支持App Store、Ad Hoc、开发和企业配置文件，并支持很好的功能，例如自动添加所有测试设备。sigh使用了spaceship来和苹果的网站进行交互。</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                  <ul>
+                    <li><a href="/cryptography/example/internal_pki_infrastructure.html">自建内部PKI体系-cfssl</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>自建内部PKI体系-cfssl</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Jan 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>准备环境</h2>
+
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>ip</th>
+<th>角色</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>node01</td>
+<td>192.168.33.101</td>
+<td>ca server</td>
+</tr>
+
+<tr>
+<td>node02</td>
+<td>192.168.33.102</td>
+<td>ca client</td>
+</tr>
+</tbody>
+</table>
+
+<h2>一、PKI CA服务端</h2>
+
+<h3>1. 证书包含了什么内容？</h3>
+
+<p>证书包含了拥有者的部分信息，公钥，CA签名。
+&gt; 每一个公钥和一个私钥联系在一起，私钥是owner自己保存，私钥的签名，公钥可以打开。</p>
+
+<h3>2. 自建pki的关键</h3>
+
+<ul>
+<li>一个合格的pki工具，这里我们用cfssl</li>
+<li>保证做ca用的私钥的绝对安全，任何拥有这个key的人可以做一个ca和处理认证请求。（可以保存在 Hardware Security Modules (HSMs)确保私钥安全.）</li>
+</ul>
+
+<h3>3. 安装cfssl</h3>
+<pre class="chroma">curl -s -L -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+curl -s -L -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+chmod +x /usr/local/bin/<span class="o">{</span>cfssl,cfssljson<span class="o">}</span>
+</pre>
+<h3>4. 准备CA private key 和 certificate</h3>
+
+<p>创建ca-csr.json模板文件</p>
+<pre class="chroma">cfssl print-defaults csr &gt; ca-csr.json
+</pre>
+<p>此时我们得到的模板文件内容</p>
+<pre class="chroma"><span class="p">{</span>
+    <span class="nt">&#34;CN&#34;</span><span class="p">:</span> <span class="s2">&#34;example.net&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;hosts&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&#34;example.net&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;www.example.net&#34;</span>
+    <span class="p">]</span><span class="p">,</span>
+    <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;algo&#34;</span><span class="p">:</span> <span class="s2">&#34;ecdsa&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">256</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nt">&#34;names&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;C&#34;</span><span class="p">:</span> <span class="s2">&#34;US&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;L&#34;</span><span class="p">:</span> <span class="s2">&#34;CA&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;ST&#34;</span><span class="p">:</span> <span class="s2">&#34;San Francisco&#34;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+<blockquote>
+<p>ecdsa是椭圆曲线加密算法</p>
+</blockquote>
+
+<p>修改相应内容为</p>
+<pre class="chroma"><span class="p">{</span>
+    <span class="nt">&#34;CN&#34;</span><span class="p">:</span> <span class="s2">&#34;commanname-domain.net&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;algo&#34;</span><span class="p">:</span> <span class="s2">&#34;rsa&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">2048</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nt">&#34;names&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;C&#34;</span><span class="p">:</span> <span class="s2">&#34;country&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;L&#34;</span><span class="p">:</span> <span class="s2">&#34;location&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;O&#34;</span><span class="p">:</span> <span class="s2">&#34;organization&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;OU&#34;</span><span class="p">:</span> <span class="s2">&#34;organization unit&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;ST&#34;</span><span class="p">:</span> <span class="s2">&#34;state&#34;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+<p>生成ca文件</p>
+<pre class="chroma">cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> generating a new CA key and certificate from CSR
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> generate received request
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> received CSR
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> generating key: rsa-2048
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> encoded CSR
+2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> signed certificate with serial number <span class="m">469763942862609470040121325446284354430448261745</span>
+</pre>
+<blockquote>
+<p>生成了以下三个文件：
+- ca.csr: CERTIFICATE REQUEST(是用来让另外的CA来签名的)
+- ca-key.pem: RSA PRIVATE KEY
+- ca.pem: CERTIFICATE</p>
+
+<p>运行一个CA服务端最少需要private key 和 certificate</p>
+</blockquote>
+
+<h3>5. 签名配置文件config_ca.json</h3>
+
+<p>创建config_ca.json模板文件</p>
+<pre class="chroma">cfssl print-defaults config &gt; ca-config.json
+</pre>
+<p>此时我们得到的模板文件内容</p>
+<pre class="chroma"><span class="p">{</span>
+    <span class="nt">&#34;signing&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;expiry&#34;</span><span class="p">:</span> <span class="s2">&#34;168h&#34;</span>
+        <span class="p">}</span><span class="p">,</span>
+        <span class="nt">&#34;profiles&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;www&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;expiry&#34;</span><span class="p">:</span> <span class="s2">&#34;8760h&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;usages&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;signing&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;key encipherment&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;server auth&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span><span class="p">,</span>
+            <span class="nt">&#34;client&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;expiry&#34;</span><span class="p">:</span> <span class="s2">&#34;8760h&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;usages&#34;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="s2">&#34;signing&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;key encipherment&#34;</span><span class="p">,</span>
+                    <span class="s2">&#34;client auth&#34;</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>生成hex key</p>
+<pre class="chroma">hexdump -n <span class="m">16</span> -e <span class="s1">&#39;4/4 &#34;%08X&#34; 1 &#34;\n&#34;&#39;</span> /dev/random
+</pre>
+<p>修改模板文件为</p>
+<pre class="chroma"><span class="p">{</span>
+  <span class="nt">&#34;signing&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;auth_key&#34;</span><span class="p">:</span> <span class="s2">&#34;key1&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;expiry&#34;</span><span class="p">:</span> <span class="s2">&#34;8760h&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;usages&#34;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="s2">&#34;signing&#34;</span><span class="p">,</span>
+         <span class="s2">&#34;key encipherment&#34;</span><span class="p">,</span>
+         <span class="s2">&#34;server auth&#34;</span>
+       <span class="p">]</span>
+     <span class="p">}</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nt">&#34;auth_keys&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;key1&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;your hex 16 digit key&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<h3>6. 运行ca服务</h3>
+<pre class="chroma">cfssl serve -ca-key ca-key.pem -ca ca.pem -config ca-config.json -address<span class="o">=</span>0.0.0.0 -port<span class="o">=</span><span class="m">8888</span>
+</pre>
+<h2>二、PKI CA 客户端</h2>
+
+<h3>1. 处理认证请求</h3>
+
+<p>客户端通过certificate signing request(CSR)和CA中心交互来获得认证。<br />
+每个CSR包含：
+- 发起认证请求的org信息
+- 公钥
+- 请求者的私钥</p>
+
+<p>给定CSR，证书颁发机构（CA）可以创建一个证书。首先验证请求者是否拥有对相关私钥的控制权。它通过检查CSR的签名来做到这一点。然后，CA将检查请求方是否应该获得证书以及应该对哪个域名/IP有效。这可以通过数据库查询或通过注册机构完成。如果一切都检查无误，CA使用其私钥来创建并签署证书并发回给请求者。</p>
+
+<h3>2. 发起证书请求</h3>
+
+<p><strong>以下操作在客户端上进行操作</strong><br />
+主要用到了cfssl的两个命令<code>gencert</code>,<code>sign</code>。<br />
+<code>gencert</code>命令将自动处理整个证书生成过程。它将创建您的私钥，生成CSR，将CSR发送给CA进行签名并返回您的签名证书。</p>
+
+<p>此处，我们需要两个文件，一个是<code>csr_client.json</code>，它储存了org的基本信息，来填充到证书申请的CSR请求中。</p>
+<pre class="chroma"><span class="p">{</span>
+  <span class="nt">&#34;hosts&#34;</span><span class="p">:</span> <span class="p">[</span>
+    	<span class="s2">&#34;db1.mysite.com&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;192.168.33.102&#34;</span>
+  <span class="p">]</span><span class="p">,</span>
+  <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;algo&#34;</span><span class="p">:</span> <span class="s2">&#34;rsa&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">2048</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nt">&#34;names&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;C&#34;</span><span class="p">:</span> <span class="s2">&#34;some country&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;L&#34;</span><span class="p">:</span> <span class="s2">&#34;some city&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;O&#34;</span><span class="p">:</span> <span class="s2">&#34;some company&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;OU&#34;</span><span class="p">:</span> <span class="s2">&#34;some organization units&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;ST&#34;</span><span class="p">:</span> <span class="s2">&#34;some state&#34;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre>
+<p>另外，我们需要一个ca的客户端配置文件<code>config_client.json</code>，用来告诉ca服务器在哪里</p>
+<pre class="chroma"><span class="p">{</span>
+  <span class="nt">&#34;signing&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;auth_remote&#34;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;auth_key&#34;</span><span class="p">:</span> <span class="s2">&#34;key1&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;remote&#34;</span><span class="p">:</span> <span class="s2">&#34;caserver&#34;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nt">&#34;auth_keys&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;key1&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;16 byte hex API key here&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;standard&#34;</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nt">&#34;remotes&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;caserver&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.33.101:8888&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>发起请求</p>
+<pre class="chroma">cfssl gencert -config config_client.json csr_client.json <span class="p">|</span> cfssljson -bare client
+</pre>
+<p>此时我们获取到了三个文件</p>
+<pre class="chroma">client.csr  client-key.pem  client.pem
+</pre>
+<p>CSR可以重新提交给CA，在任何时候用sign命令重新签名</p>
+<pre class="chroma">cfssl sign -config config_client.json client.csr <span class="p">|</span> cfssljson -bare client-new
+</pre>
+<p>此时会生成两个文件</p>
+<pre class="chroma">client-new.csr client-new.pem
+</pre>
+<blockquote>
+<p>client-new.csr和原来的client.csr一样</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

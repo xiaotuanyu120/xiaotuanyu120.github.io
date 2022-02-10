@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>10 Feb 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>问题背景</h3>
+
+<p>调用路径：<code>service --&gt; public-proxy(nginx) --&gt; public world</code></p>
+
+<p>service通过nginx代理访问外网API A域名，A域名解析的IP有两个(RS1 和 RS2)，且都有防火墙白名单限制。A域名的防火墙已经给nginx代理服务器的IP加白。</p>
+
+<p>遇到的问题是，nginx访问A域名时，有报错说connection timeout，进一步查看，发现A域名解析出来的IP并不是RS1 和RS2。</p>
+
+<h3>初步排查</h3>
+
+<p>通过排查，发现服务器使用dnsmasq做了DNS缓存。<code>/etc/resolv.conf</code>中配置了dns server为本机的<code>dnsmasq</code>，而<code>dnsmasq</code>通过<code>resolv-file=***</code>指向特定的resolv配置文件，配置使用了四个DNS上游服务器IP地址。使用<code>dig</code>指定DNS服务器地址逐个解析排查，将解析结果和RS1 RS2比对，发现是其中两个DNS服务器返回的解析结果和RS1 RS2不匹配。</p>
+
+<p><strong>找到了问题的直接原因（关于这两台DNS服务器返回的解析结果为什么突然不一致的问题这里先不做讨论），最快的解决方式是修改<code>/etc/hosts</code>来固定域名的解析地址。为了尽快恢复故障，于是采用了这个方案。</strong></p>
+
+<h3>问题</h3>
+
+<p><strong>但是，写了<code>/etc/hosts</code>后，业务反馈错误量并未下降，并且使用<code>nslookup</code>解析出来的结果并不是<code>/etc/hosts</code>里面本地DNS记录。</strong></p>
+
+<p><del>基于对<code>nslookup</code>结果的信任，这里判断<code>/etc/hosts</code>中的DNS记录并未生效。</del></p>
+
+<p>于是产生以下几个疑问</p>
+
+<ul>
+<li><code>dnsmasq</code>在这个过程中扮演了什么角色，影响了dns解析中的哪些因素？</li>
+<li>linux中的进程是如何进行dns解析过程的？</li>
+</ul>
+
+<h4>首先是第一个问题，dnsmasq在这个过程中扮演了什么角色，影响了无dnsmasq中的哪些因素？</h4>
+
+<p>大概看了一下dnsmasq，简短一点介绍，它是一个dns缓存器。</p>
+
+<p>启动的时候加载了<code>/etc/resolv.conf</code>（获取dns upstream server）和<code>/etc/hosts</code>（获取本地dns记录，其实应该叫主机名解析记录，不过也可以用作dns劫持用，而且这里讨论的是dns解析问题，所以这里就以dns记录来表述）。</p>
+
+<p>了解到这里，就意识到，<code>/etc/hosts</code>是否是热加载的呢？<strong>会不会是因为不是热加载导致了<code>/etc/hosts</code>的修改并没有在<code>dnsmasq</code>中生效？</strong></p>
+
+<p>于是查看了一下文档，发现确实<code>dnsmasq</code>对<code>/etc/hosts</code>默认不是热加载，如果需要热加载，需要增加启动选项<code>--hostsdir</code>指向一个单独的hosts文件所在的目录。并且<code>dnsmasq</code>的<code>no-hosts</code>选项可以控制<code>dnsmasq</code>是否加载hosts文件。</p>
+
+<p>看到这里就去nginx服务器上确认了一下，发现并没有禁止hosts文件加载，并且也没有指向其他的hosts热加载目录</p>
+
+<p>分析到这里，按照逻辑来讲，可能就是上面说的原因。</p>
+
+<p>但是，还有一个问题。前面的假设是所有的dns解析请求是通过<code>dnsmasq</code>，因为<code>/etc/resolv.conf</code>中指向了本机的<code>dnsmasq</code>，那么按照上面的原因推断的话，这台服务器上所有的程序（不仅仅是nginx）访问A域名都会是同样的解析现象。<strong>但是实际情况是，使用<code>ping</code>命令来测试A域名的解析时，就是<code>/etc/hosts</code>中的结果。</strong></p>
+
+<p>那么现在就到了第一个问题了，linux中的进程在进行dns解析时，<code>dnsmasq</code>、<code>/etc/hosts</code>和<code>/etc/resolv.conf</code>在里面到底是按照什么逻辑来生效和互相影响的？</p>
+
+<h4>第二个问题，linux中的进程是如何进行dns解析过程的？</h4>
+
+<p>详细的内容见<a href="/linux/advance/dns_00_how_dns_work_in_linux.html">linux中的dns解析是如何工作的</a>。</p>
+
+<p>简短的介绍就是，使用C库中<code>gethostbyname</code>和其相关functions来做DNS解析时，是按照<code>NSS(/etc/nsswitch.conf)</code>中配置的<code>hosts: files dns</code>来确定本地DNS解析记录(<code>/etc/hosts</code>)和DNS服务器(<code>/etc/resolv.conf</code>和<code>dnsmasq</code>)的生效顺序，且只要优先度高的解析方式获取到了记录，剩下的解析方式就不会执行。</p>
+
+<blockquote>
+<p>这就是为什么<code>ping</code>可以解析<code>/etc/hosts</code>的DNS记录，但是<code>nslookup</code>无法解析<code>/etc/hosts</code>的DNS记录的原因，也是因为这个原因，导致了上面的误判(通过<code>nslookup</code>来检测域名解析，推断<code>/etc/hosts</code>的修改未生效)。其实不止<code>nslookup</code>，<code>host</code>和<code>dig</code>都是直接向DNS服务器发请求，而不会解析<code>/etc/hosts</code>中的记录。</p>
+</blockquote>
+
+<p>那么问题就很明了了，nginx服务器上的NSS配置是<code>hosts: files dns myhostname</code>，那么理论上当使用<code>gethostbyname</code>和其他相关functions的程序做DNS解析时候，<code>/etc/hosts</code>是第一顺位的解析方式。</p>
+
+<p>如果以上的推导和求证没问题的话，到这里就出现了矛盾：<strong>nginx的DNS解析，理论上<code>/etc/hosts</code>应该生效，但是实际上没有生效</strong></p>
+
+<p>此时就有两个可能：
+- 还有其他影响DNS解析的因素未被考虑进来
+- nginx和<code>nslookup</code>类似，无法解析/etc/hosts中的记录（但这个可能性太小，以前做过很多hosts解析，如果这个假设成立，那么我早就发现这个问题了）</p>
+
+<p>于是先排查第一个可能，仔细检查了nginx的配置，发现了这样的一个配置</p>
+<pre class="chroma">resolver 127.0.0.1 ipv6=off valid=300s;
+</pre>
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">nginx docs: resolver</a></p>
+</blockquote>
+
+<p><strong>破案了，之所以修改了<code>/etc/hosts</code>的方案未生效（service通过nginx代理访问A域名依旧有问题），是因为nginx的这个配置跳过了<code>/etc/hosts</code>而直接使用了DNS服务器(dnsmasq)来做dns解析。</strong></p>
+
+<h3>总结</h3>
+
+<p>三个需要注意的点：
+- 需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS
+- 需要了解<code>nslookup</code>、<code>dig</code>、<code>hosts</code>无法解析<code>/etc/hosts</code>中的本地DNS记录，可以用<code>ping</code>或者<code>getent hosts</code>
+- 需要了解<code>dnsmasq</code>的基本配置</p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>10 Feb 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>1. <code>/etc/hosts</code>中配置了域名本地解析记录，但是<code>dig</code>、<code>nslookup</code>、<code>host</code>无法识别</h3>
+
+<p>在<code>/etc/hosts</code>中配置一个本地解析记录</p>
+<pre class="chroma">cat /etc/hosts <span class="p">|</span> grep <span class="s2">&#34;test.localnet&#34;</span>
+127.0.0.1 test.localnet
+</pre>
+<p>使用ping测试是可以成功解析的</p>
+<pre class="chroma">ping test.localnet -c <span class="m">1</span>
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#PING test.localnet (127.0.0.1) 56(84) bytes of data.</span>
+<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.042 ms</span>
+#
+<span class="c1">#--- test.localnet ping statistics ---</span>
+<span class="c1">#1 packets transmitted, 1 received, 0% packet loss, time 0ms</span>
+<span class="c1">#rtt min/avg/max/mdev = 0.042/0.042/0.042/0.000 ms</span>
+</pre>
+<p>但是使用<code>host</code>、<code>nslookup</code>、<code>dig</code>却无法找到这个解析</p>
+<pre class="chroma">host test.localnet
+<span class="c1"># OUTPUT:</span> 
+<span class="c1">#Host test.localnet not found: 3(NXDOMAIN)</span>
+
+dig test.localnet
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#; &lt;&lt;&gt;&gt; DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.8 &lt;&lt;&gt;&gt; test.localnet</span>
+<span class="c1">#;; global options: +cmd</span>
+<span class="c1">#;; Got answer:</span>
+<span class="c1">#;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 7913</span>
+<span class="c1">#;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0</span>
+#
+<span class="c1">#;; QUESTION SECTION:</span>
+<span class="c1">#;test.localnet.			IN	A</span>
+#
+<span class="c1">#;; Query time: 3 msec</span>
+<span class="c1">#;; SERVER: 192.168.65.5#53(192.168.65.5)</span>
+<span class="c1">#;; WHEN: Thu Feb 10 06:11:10 UTC 2022</span>
+<span class="c1">#;; MSG SIZE  rcvd: 31</span>
+
+nslookup test.localnet
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#Server:		192.168.65.5</span>
+<span class="c1">#Address:	192.168.65.5#53</span>
+#
+<span class="c1">#** server can&#39;t find test.localnet: NXDOMAIN</span>
+</pre>
+<p>google之后发现，host、dig、nslookup直接对DNS服务器来请求dns解析，而其他使用<a href="https://man7.org/linux/man-pages/man3/gethostbyname.3.html">gethostbyname</a>的程序，都是会按照<code>nsswitch.conf</code>中配置的host的读取顺序来解析域名或主机名，而默认的nsswitch是将<code>/etc/hosts</code>放在第一顺位，所以使用ping可以获取<code>/etc/hosts</code>中的dns记录。</p>
+
+<blockquote>
+<p><a href="https://serverfault.com/questions/498500/why-does-the-host-command-not-resolve-entries-in-etc-hosts">stackoverflow: Why does the host command not resolve entries in /etc/hosts?</a></p>
+</blockquote>
+
+<p>但是接着又出现一个问题，<code>nsswitch.conf</code>是做什么用的？为什么它会影响域名的解析？</p>
+
+<h3>2. <code>nsswitch.conf</code></h3>
+
+<h4>2.1 <code>nsswitch.conf</code>是什么？它是做什么用的？</h4>
+
+<p><a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">nsswitch.conf</a>是NSS(Name Service Switch)的配置文件，用于给GNU C语言库和某些其他的程序来确定从哪里和以什么顺序来获取名字服务信息（不仅仅包含主机名和域名）。</p>
+
+<h4>2.2 <code>nsswitch.conf</code>对于DNS解析有什么影响？</h4>
+
+<p>NSS(Name Service Switch)不只是配置主机名和域名的解析来源和顺序，它是一个综合的名字解析来源和顺序配置服务，详细可见<a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">man文档</a>。</p>
+
+<p>对于主机名和域名的解析，是合并到了一个<code>hosts</code>的配置中，举个例子</p>
+<pre class="chroma">hosts:      files dns myhostname
+</pre>
+<p>上面的配置含义是<code>files</code>(就是/etc/hosts)是第一顺位，<code>dns</code>(就是/etc/resolv.conf配置的dns服务器地址)是第二顺位。</p>
+
+<p>让我们来调换<code>dns</code>和<code>files</code>配置的顺序使用ping来验证一下</p>
+<pre class="chroma"><span class="c1"># 增加google.com的本地解析记录</span>
+cat /etc/hosts <span class="p">|</span> grep google.com
+<span class="c1"># OUTPUT:</span> 
+<span class="c1">#127.0.0.1 google.com</span>
+
+
+<span class="c1"># &#34;hosts:      files dns myhostname&#34;的情况下，ping的结果是127.0.0.1</span>
+ping google.com -c <span class="m">2</span>
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#PING google.com (127.0.0.1) 56(84) bytes of data.</span>
+<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.025 ms</span>
+<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.067 ms</span>
+#
+<span class="c1">#--- google.com ping statistics ---</span>
+<span class="c1">#2 packets transmitted, 2 received, 0% packet loss, time 1040ms</span>
+<span class="c1">#rtt min/avg/max/mdev = 0.025/0.046/0.067/0.021 ms</span>
+
+
+<span class="c1"># &#34;hosts:      dns files myhostname&#34;的情况下，ping的结果是dns服务器返回的结果</span>
+ping google.com -c <span class="m">2</span>
+<span class="c1"># OUTPUT:</span>
+<span class="c1">#PING google.com (142.251.12.102) 56(84) bytes of data.</span>
+<span class="c1">#64 bytes from se-in-f102.1e100.net (142.251.12.102): icmp_seq=1 ttl=37 time=6.03 ms</span>
+<span class="c1">#64 bytes from se-in-f102.1e100.net (142.251.12.102): icmp_seq=2 ttl=37 time=6.55 ms</span>
+#
+<span class="c1">#--- google.com ping statistics ---</span>
+<span class="c1">#2 packets transmitted, 2 received, 0% packet loss, time 1005ms</span>
+<span class="c1">#rtt min/avg/max/mdev = 6.038/6.298/6.559/0.272 ms</span>
+</pre>
+<h4>2.3 <code>nsswitch.conf</code>的应用对象是？</h4>
+
+<p>在<a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">nsswitch.conf的man文档</a>中可以查到以下说明</p>
+<pre class="chroma">hosts  Host names and numbers, used by gethostbyname(3) and
+              related functions.
+</pre>
+<p>含义是NSS会被gethostbyname或者相关的functions使用，基本上使用了C语言的这些函数来做名字解析的，都会按照NSS中的<code>hosts</code>的配置来解析域名。</p>
+
+<h3>3. 其他会影响DNS的因素</h3>
+
+<ul>
+<li><a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq的简要介绍</a></li>
+</ul>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>08 Feb 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. dnsmasq是什么？</h3>
+
+<p>dnsmasq是一个轻量级的DHCP和DNS缓存服务器。常用于本地的DNS解析服务器。</p>
+
+<blockquote>
+<p>参考文档：</p>
+
+<ul>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html">dnsmasq man page</a></li>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq.conf.example">dnsmasq config example</a></li>
+<li><a href="https://thekelleys.org.uk/dnsmasq/docs/setup.html">dnsmasq setup docs</a></li>
+</ul>
+</blockquote>
+
+<h3>1. 如何安装dnsmasq</h3>
+
+<h4>1.1 源码安装</h4>
+
+<p>源码安装的步骤很简单，通常执行下面的命令就足够了</p>
+<pre class="chroma"><span class="c1"># 提前下载好源码，解压，然后进入源码目录，执行以下命令</span>
+make install
+</pre>
+<blockquote>
+<p>二进制文件: <code>/usr/local/sbin/dnsmasq</code></p>
+</blockquote>
+
+<h4>1.2 启动</h4>
+
+<p>启动方式也很简单，直接执行dnsmasq命令即可</p>
+<pre class="chroma">dnsmasq
+</pre>
+<p>进程默认是<code>daemon模式</code>后台运行，并监听53端口</p>
+
+<blockquote>
+<p>可以使用<code>-d, --no-daemon</code>选项来切换<code>daemon模式</code>为<code>debug模式</code></p>
+</blockquote>
+<pre class="chroma">dnsmasq -d
+dnsmasq: started, version 2.86 cachesize <span class="m">150</span>
+dnsmasq: compile <span class="nb">time</span> options: IPv6 GNU-getopt no-DBus no-UBus no-i18n no-IDN DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth no-cryptohash no-DNSSEC loop-detect inotify dumpfile
+dnsmasq: reading /etc/resolv.conf
+dnsmasq: using nameserver 192.168.65.5#53
+dnsmasq: <span class="nb">read</span> /etc/hosts - <span class="m">7</span> addresses
+</pre>
+<p>dnsmasq进程需要使用root身份启动，因为它需要使用特权端口53，启动后进程会抛弃root，使用nobody用户运行进程。</p>
+
+<h3>2. 基本配置</h3>
+
+<p>一般情况下，一台已经使用<code>/etc/resolv.conf</code>和<code>/etc/hosts</code>配置好dns解析的服务器，可以在没有配置文件的情况下，直接启动<code>dnsmasq</code>进程来提供dns服务。</p>
+
+<p>在简单的通过<code>无配置的dnsmasq</code>启动服务的情况下，dnsmasq提供dns服务是通过读取<code>/etc/resolv.conf</code>来获取dns上游服务器，还有通过<code>/etc/hosts</code>获取本地dns解析。</p>
+
+<h4>2.1 DNS上游服务器地址获取 - <code>/etc/resolv.conf</code></h4>
+
+<p>首先，我们需要创建一个<code>新的nameserver文件</code>来替代<code>/etc/resolv.conf</code></p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /etc/dnsmasq.resolv.conf
+</span><span class="s">#DNS UPSTREAM SERVER
+</span><span class="s">nameserver 8.8.8.8
+</span><span class="s">nameserver 4.4.4.4
+</span><span class="s">EOF</span>
+</pre>
+<p>然后创建dnsmasq启动时加载的配置文件</p>
+<pre class="chroma"><span class="c1"># Change this line if you want dns to get its upstream servers from</span>
+<span class="c1"># somewhere other that /etc/resolv.conf</span>
+resolv-file<span class="o">=</span>/etc/dnsmasq.resolv.conf
+</pre>
+<blockquote>
+<p>dnsmasq默认加载的配置文件是<code>/etc/dnsmasq.conf</code>，如果需要加载其他位置的配置文件，启动<code>dnsmasq</code>时需要使用<code>--conf-file=/path/to/dnsmasq.conf</code></p>
+</blockquote>
+
+<p>重新启动<code>dnsmasq</code>即可</p>
+
+<h4>2.2 本地DNS解析信息获取 - <code>/etc/hosts</code></h4>
+
+<p>可以禁用本地DNS解析，取消对<code>/etc/hosts</code>的加载</p>
+<pre class="chroma"><span class="c1"># If you don&#39;t want dnsmasq to read /etc/hosts, uncomment the</span>
+<span class="c1"># following line.</span>
+no-hosts
+</pre>
+<p>或者需要从<code>/etc/hosts</code>之外的文件来读取本地DNS解析记录</p>
+<pre class="chroma"><span class="c1"># or if you want it to read another file, as well as /etc/hosts, use</span>
+<span class="c1"># this.</span>
+addn-hosts<span class="o">=</span>/etc/dnsmasq.hosts
+</pre>
+<p><strong>值得注意的是</strong>，hosts记录修改后，需要重启dnsmasq才会生效。如果希望热加载hosts文件，需要在启动dnsmasq时增加如下选项。增加下面的选项后，dnsmasq会加载该目录下的所有hosts文件，新增文件或者修改原有文件会触发hosts的重新加载</p>
+<pre class="chroma"><span class="c1"># Read all the hosts files contained in the directory. New or changed files are read automatically. See --dhcp-hostsdir for details.</span>
+dnsmasq --hostsdir<span class="o">=</span>&lt;path/to/hosts-file-dir&gt;
+</pre>
+<h4>2.3 指定部分域名使用固定的DNS上游服务器</h4>
+
+<p>将所有对<code>*.yourhostname.com</code>的dns解析请求发送到<code>114.114.114.114</code></p>
+<pre class="chroma"><span class="nv">server</span><span class="o">=</span>/.yourhostname.com/114.114.114.114
+</pre>
+<h4>2.4 指定部分域名解析记录</h4>
+
+<p>将所有<code>*.yourhostname.com</code>的请求，解析到<code>127.0.0.1</code></p>
+<pre class="chroma"><span class="c1"># Add domains which you want to force to an IP address here.</span>
+<span class="c1"># The example below send any host in double-click.net to a local</span>
+<span class="c1"># web-server.</span>
+<span class="nv">address</span><span class="o">=</span>/double-click.net/127.0.0.1
+</pre>
+<h3>3. 使用dnsmasq作为dns解析服务器</h3>
+
+<p>只需要将<code>/etc/resolv.conf</code>中原有配置删除，增加如下内容即可</p>
+<pre class="chroma">nameserver &lt;ip-of-dnsmasq-listen&gt;
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>29 Jan 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. 文章背景</h3>
+
+<p>记录这篇文章的目的是为了linux的性能调优，所以并不会记录详细的理论细节，只会将必要的过程进行个人语言的简单概要。</p>
+
+<h3>1. 内存映射</h3>
+
+<p>linux中，只有内核可以直接访问物理内存。进程无法直接访问物理内存，linux内核给每个进程都分配了一个独立的虚拟内存地址空间。这样进程就可以通过访问虚拟内存来达到使用内存的目的。</p>
+
+<p>虚拟内存地址空间分为两部分，内核空间和地址空间。如果我们把内存地址由高到低排列，那么以64位系统举例，低位的128T被分配为用户空间，而高位的128T被分配为内核空间，高位和低位中间的部分，为未定义的部分。</p>
+
+<p>进程在用户态时，只能访问用户空间内存；只有进入内核态后，才可以访问内核空间内存。虽然每个进程的地址空间都包含了内核空间，但这些内核空间，其实关联的都是相同的物理内存。</p>
+
+<p>系统为每一个进程都分配了这么大的地址空间，那么所有进程的虚拟内存加起来，会比实际的物理内存大特别多。所以，并不是所有的虚拟空间都会分配到实际的物理内存，只有被实际使用的虚拟内存才会分配到物理内存。这个过程是通过内存映射管理的。</p>
+
+<p>所谓内存映射，其实就是虚拟内存地址映射到物理内存地址。内核会为每一个进程维护一张页表，记录虚拟内存地址和物理内存地址的映射关系。这些页表实际上存储在CPU的内存管理单元MMU中，CPU就可以直接通过硬件，找出要访问的内存。</p>
+
+<blockquote>
+<p><code>缺页异常</code>，指的是进程访问的虚拟地址在页表中查不到其与物理地址的映射，进而进入内核空间分配物理内存给这个虚拟地址，然后更新进程页表，最后再返回用户空间，恢复进程的运行。</p>
+
+<p><code>MMU</code>的单位是<code>页</code>，页的大小通常为4KB大小。如果每个页是4KB，那么会导致页表非常巨大。为了解决这个问题，linux提供了两种机制，<code>多级页表</code>和<code>大页</code>。多级页表就是把内存分成区块管理；大页就是比普通也更大的内存块，常见的大小有2MB和1GB。大页通常用在使用大量内存的进程上，比如Oracle等</p>
+</blockquote>
+
+<h3>2. 虚拟内存空间分布</h3>
+
+<p>虚拟内存空间地址由高到低顺序排布，由上至下分别为内核空间、栈、文件映射、堆、数据段、只读段。</p>
+
+<ol>
+<li>只读段，包括代码和常量等</li>
+<li>数据段，包括全局变量等</li>
+<li>堆，包括动态分配的内存，从低位地址开始向上增长</li>
+<li>文件映射段，包括动态库、共享内存等，从高位地址开始向下增长</li>
+<li>栈，包括局部变量和函数调用的上下文等。栈的大小是固定的，一般是8MB</li>
+</ol>
+
+<p>上面五个内存段中，堆和文件映射段的内存是动态分布的。C标准库中的malloc()或者mmap()，就分别可以在堆和文件映射段中动态分配内存</p>
+
+<h3>3.1 内存分配</h3>
+
+<p>malloc()是C标准库提供的内存分配函数，对应到系统调用上，有两种方式，即brk()和mmap()。</p>
+
+<p>对小块内存（小于128K），会使用系统调用blk()，通过移动堆顶的方式在堆上分配。这些内存释放后并不会立刻归还系统，而是被缓存起来，这样可以重复利用。</p>
+
+<p>对于大块内存（大于128K），会使用内存映射mmap()在文件映射段分配空闲内存。</p>
+
+<blockquote>
+<p>通过mmap()的参数，在文件关联性和映射区域是否共享两个维度</p>
+
+<p>分为以下四种类型：</p>
+
+<ul>
+<li>私有匿名映射，常用于内存分配</li>
+<li>私有文件映射，常用于加载动态库</li>
+<li>共享匿名映射，常用于进程间共享内存</li>
+<li>共享文件映射，常用于内存映射IO，进程间通信</li>
+</ul>
+
+<p>可通过<code>fd=-1</code> 和 <code>flags=MAP_ANONYMOUS | MAP_PRIVATE</code>来分配私有匿名内存</p>
+
+<p>可通过<code>fd=-1</code> 和 <code>flags=MAP_ANONYMOUS | MAP_SHARED</code> 来分配共享匿名内存</p>
+</blockquote>
+
+<p>以上两种方式各有优缺点，brk()方式的缓存，可以减少缺页异常的发生，提高内存访问率。不过由于内存并未归还系统，在内存工作繁忙时，频繁的内存分配和释放会造成内存碎片。而mmap()方式分配的内存，会在释放的时候直接归还系统，所以每次mmap必然会发生缺页异常。在内存工作繁忙时，频繁的内存分配和释放会导致大量的缺页异常，使内核的管理负担增大。这也是malloc()只对大块内存使用mmap()的原因。</p>
+
+<p>此外，需要注意的是，当两种调用发生后，并未真正的分配内存。只有在内存被首次访问时，才会通过触发缺页异常进入内核中，再由内核真正的分配内存。</p>
+
+<blockquote>
+<p><strong>如果遇到比页更小的对象，比如不到1K的时候，该怎么分配内存呢？</strong></p>
+
+<p>实际系统运行中，确实有大量比页还小的对象，如果为它们分配单独的页，那么就存在大量的系统浪费。所以在<code>用户空间</code>，malloc()通过brk()分配的内存，在释放时并不立即归还系统，而是缓存起来重复利用。在<code>内核空间</code>，linux则通过slab分配器来管理小内存，其主要作用就是分配并释放内核中的小对象。</p>
+</blockquote>
+
+<h3>3.2 内存回收</h3>
+
+<p>对内存来说，如果一直分配却不释放，就会造成内存泄漏，甚至会耗尽系统内存。所以，在进程用完内存后，需要调用free()或unmap()来释放不用的内存。</p>
+
+<p>当然，系统也不会任由某个进程用完所有的内存。在发现内存紧张时，系统就会通过一系列机制来回收内存，比如：</p>
+
+<ol>
+<li><p>回收缓存，比如使用LRU（Least Recently Used）算法，回收最近使用最少的内存页；</p></li>
+
+<li><p>回收不常访问的内存，把不常用的内存通过交换分区直接写到磁盘中。也就是使用所谓的swap(交换分区)，swap其实就是把一块磁盘空间当做内存来用，可以把暂时用不到的内存数据存入到磁盘中（swap out），当进程需要访问这部分数据时，再将数据从磁盘读取到内存中（swap in）。使用swap分区，虽然可以增大系统的可用内存，但是会造成严重的性能问题，因为磁盘的读写速度远低于内存的写入速度。</p></li>
+
+<li><p>杀死进程，内存紧张时系统还会通过OOM（Out of Memory），直接杀掉占用大量内存的进程。这是内核的一种保护机制，它监控各个进程的内存使用情况，并且使用oom_score为每个进程的内存使用情况进行评分，评分的规则如下:</p>
+
+<ul>
+<li>进程消耗的内存越大，oom_score就越大</li>
+<li>进程占用的cpu越多，oom_score就越小
+这样，进程的oom_score越大，就越容易被内核通过OOM杀死，从而可以更好的保证系统的运行</li>
+</ul></li>
+</ol>
+
+<blockquote>
+<p>可以通过<code>/proc/&lt;pid&gt;/oom_adj</code>来手动调整OOM，取值范围为[-17,15]，数值越大，表示越容易被OOM杀死，其中-17代表禁止OOM。</p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>19 Nov 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. 背景</h3>
+
+<p>数据库中的一个字段，业务开发计划将其改为自增，由DBA执行后，发现原本字段中为NULL的记录，全都按照自增规则给重新赋了值。这不符合初衷啊，是为什么呢？</p>
+
+<h3>1. 重现场景</h3>
+
+<h4>1) 准备环境</h4>
+<pre class="chroma">docker run -it -d --name mysql -e <span class="nv">MYSQL_EMPTY_PASSWORD</span><span class="o">=</span><span class="nb">true</span> mysql:5.7
+</pre>
+<h4>2) 模拟线上场景</h4>
+
+<p><strong>创建测试表test2</strong></p>
+<pre class="chroma"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test2</span> <span class="p">(</span>
+    <span class="n">id</span>    <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">score</span> <span class="nb">INT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="p">,</span>
+    <span class="k">INDEX</span> <span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="p">)</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>score字段，允许为NULL，用来测试；之所以给score增加索引，是因为这是增加AUTO_INCREMENT的前提。</p>
+</blockquote>
+
+<p><strong>准备测试数据</strong></p>
+<pre class="chroma"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test2</span> <span class="k">VALUES</span>
+    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>测试数据涵盖范围：
+- 正数
+- NULL
+- 0
+- 负数</p>
+</blockquote>
+
+<p><strong>查看当前的现存记录</strong></p>
+<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>输出：</p>
+<pre class="chroma">&gt; +----+-------+
+&gt; | id | score |
+&gt; +----+-------+
+&gt; |  1 |  NULL |
+&gt; |  2 |   200 |
+&gt; |  3 |  NULL |
+&gt; |  4 |     0 |
+&gt; |  5 |    -2 |
+&gt; +----+-------+
+&gt; 5 rows in set (0.01 sec)
+&gt; ```
+
+**在有现存数据的基础上，设定score字段自增**
+``` sql
+ ALTER TABLE test2 
+MODIFY COLUMN score INT AUTO_INCREMENT;
+</pre></blockquote>
+
+<p><strong>查看修改为自增之后的结果</strong></p>
+<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
+</pre>
+<p>输出：</p>
+<pre class="chroma">+----+-------+
+| id | score |
++----+-------+
+|  1 |     1 |
+|  2 |   200 |
+|  3 |   201 |
+|  4 |   202 |
+|  5 |    -2 |
++----+-------+
+5 rows in set (0.01 sec)
+</pre>
+<h4>3) 总结</h4>
+
+<ul>
+<li>给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</li>
+<li>自增赋值时，会按照之前记录的最大值加1</li>
+<li>负数和正数不会被重新赋值，会保持原记录</li>
+</ul>
+
+<h3>2. 文档解读</h3>
+
+<ul>
+<li>参考文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-auto-increment-handling.html">mysql 5.7 docs: InnoDB引擎下的AUTO_INCREMENT</a></li>
+</ul>
+
+<h4>1) 下面这个文档原文，证实了前面实践出的结论，给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</h4>
+<pre class="chroma">Specifying NULL or 0 for the AUTO_INCREMENT column
+
+In all lock modes (0, 1, and 2), if a user specifies NULL or 0 for the AUTO_INCREMENT column in an INSERT, InnoDB treats the row as if the value was not specified and generates a new value for it.
+</pre>
+<h4>2) innodb_autoinc_lock_mode</h4>
+
+<p>文档中着重介绍了变量<code>innodb_autoinc_lock_mode</code>，这个变量表示了处理AUTO_INCREMENT时的锁的模式，有可能会影响主备情况下并发事务的自增逻辑，牵扯到表锁和行锁，详细信息还是看上面的参考文档链接。</p>
+<pre class="chroma"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s2">&#34;</span><span class="s2">innodb_autoinc_lock_mode</span><span class="s2">&#34;</span><span class="p">;</span>
+</pre>
+<p>输出：</p>
+<pre class="chroma">+--------------------------+-------+
+| Variable_name            | Value |
++--------------------------+-------+
+| innodb_autoinc_lock_mode | 1     |
++--------------------------+-------+
+1 row in set (0.04 sec)
+</pre>
+<h4>3) 其他变量</h4>
+
+<ul>
+<li>auto_increment_increment，代表自增的数值，默认为1</li>
+<li>auto_increment_offset，代表目前自增数字的偏移量，默认为1，取值范围时1-65535</li>
+</ul>
+
+<h3>3. 总结</h3>
+
+<p>表创建好之后，增加自增逻辑，一定要慎重。如果是业务方面的需求，最好是用代码来解决自增问题，而不是依赖数据库的能力。</p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/apache/1.1.2_apache_config_security.html">apache 1.1.2: 安全配置</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>15 Nov 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. 背景</h3>
+
+<p>生产环境中的apache服务器(2.4.x)，需要进行一定的安全配置，来保护服务器的安全，其中就包含以下方面
+- 隐藏服务器类型和版本，Server标头</p>
+
+<h3>1. 隐藏Server版本</h3>
+<pre class="chroma"># 关闭服务器页脚信息，详细用途见下面文档，默认是off
+ServerSignature Off
+
+# 关闭Server版本号的显示
+ServerTokens Prod
+</pre>
+<blockquote>
+<ul>
+<li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#servertokens">ServerTokens</a></li>
+<li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#serversignature">ServerSignature</a></li>
+</ul>
+</blockquote>
+
+<h3>2. 隐藏Server类型</h3>
+
+<p>经过上面的配置，我们依然还可以看到&rdquo;Server: Apache&rdquo;的字符串，此时我们有两种方法来去掉Apache
+- 使用<a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a>
+- 修改源码</p>
+
+<p>关于<code>ModSecurity</code>的解决办法，网上很多演示，这边就不赘述。况且，我也不是太喜欢这种方法，其一是因为这个解决办法有点重，其二是因为引入了一个不可控风险，和我们的目标相悖。所以这里说明以下修改源码的方案。</p>
+
+<p><code>PATH:./include/ap_release.h</code></p>
+<pre class="chroma"><span class="cp">#</span><span class="cp">define AP_SERVER_BASEVENDOR &#34;Apache Software Foundation&#34;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define AP_SERVER_BASEPROJECT &#34;Apache HTTP Server&#34;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define AP_SERVER_BASEPRODUCT &#34;Apache&#34;</span><span class="cp">
+</span></pre>
+<p>将上面的三个变量改成空字符串即可。</p>
+<pre class="chroma">sed -i <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEVENDOR &#34;Apache Software Foundation&#34;|AP_SERVER_BASEVENDOR &#34;Security Server&#34;|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEPROJECT &#34;Apache HTTP Server&#34;|AP_SERVER_BASEPROJECT &#34;Security Server&#34;|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEPRODUCT &#34;Apache&#34;|AP_SERVER_BASEPRODUCT &#34;Security Server&#34;|g&#39;</span> <span class="se">\
+</span><span class="se"></span>    ./include/ap_release.h
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="cryptography/ssl/windows-TLS-version-control.html">SSL: windows tls version and ciphers control</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>11 Nov 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. 背景</h3>
+
+<p>强度不够的ssl版本和ssl加密算法，会影响服务器的安全性，所以需要禁用掉它们。这里专注在windows版本（windows server 2012 R2）。</p>
+
+<h3>1. 禁用windows服务器的SSL/TLS版本</h3>
+
+<p>需要禁掉<code>ssl 2.0,ssl 3.0,tls 1.0,tls 1.1</code>。</p>
+
+<p><strong>Windows Server 2012 R2 对SSL/TLS的支持情况</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Windows OS</th>
+<th>TLS 1.0 Client</th>
+<th>TLS 1.0 Server</th>
+<th>TLS 1.1 Client</th>
+<th>TLS 1.1 Server</th>
+<th>TLS 1.2 Client</th>
+<th>TLS 1.2 Server</th>
+<th>TLS 1.3 Client</th>
+<th>TLS 1.3 Server</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Windows 8.1/Windows Server 2012 R2</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Not supported</td>
+<td>Not supported</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/secauthn/protocols-in-tls-ssl--schannel-ssp-">windows server 2012 R2 TLS version support list</a></p>
+</blockquote>
+
+<p><strong>在注册表设定开启tls 1.2</strong></p>
+<pre class="chroma"># windows server 2012 R2
+# Registry path: HKLM SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL
+# disable ssl 2.0, ssl 3.0, tls 1.0 and tls 1.1
+[SSL 2.0\Client] &#34;Enabled&#34;=dword:00000000
+[SSL 2.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 2.0\Server] &#34;Enabled&#34;=dword:00000000
+[SSL 2.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 3.0\Client] &#34;Enabled&#34;=dword:00000000
+[SSL 3.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 3.0\Server] &#34;Enabled&#34;=dword:00000000
+[SSL 3.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.0\Client] &#34;Enabled&#34;=dword:00000000
+[TLS 1.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.0\Server] &#34;Enabled&#34;=dword:00000000
+[TLS 1.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.1\Client] &#34;Enabled&#34;=dword:00000000
+[TLS 1.1\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.1\Server] &#34;Enabled&#34;=dword:00000000
+[TLS 1.1\Server] &#34;DisabledByDefault&#34;=dword:00000001
+
+# enable tls 1.2
+[TLS 1.2\Client] &#34;Enabled&#34;=dword:00000001
+[TLS 1.2\Client] &#34;DisabledByDefault&#34;=dword:00000000
+[TLS 1.2\Server] &#34;Enabled&#34;=dword:00000001
+[TLS 1.2\Server] &#34;DisabledByDefault&#34;=dword:00000000
+</pre>
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786418(v=ws.11">windows server 2012 R2 SSL/TLS/DTLS registry setting</a>)</p>
+</blockquote>
+
+<h3>2. 禁用windows服务器的SSL ciphers</h3>
+
+<h4>2.1 禁用RC4</h4>
+
+<p><strong>windows server 2012 R2 对ciphers的支持列表</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Operating system version</th>
+<th>Protocol support</th>
+<th>Cipher suite support</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Windows Server 2012 R2 and Windows 8.1</td>
+<td>TLS 1.2</td>
+<td>AES 128</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TLS 1.1</td>
+<td>AES 256</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TLS 1.0</td>
+<td>RC4 <sup>128</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>SSL 3.0</td>
+<td>RC4 <sup>56</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>SSL 2.0</td>
+<td>RC4 <sup>40</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>DTLS 1.0</td>
+<td>Triple DES 168</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>DES 56</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786419(v=ws.11">windows server 2012 R2 ssl ciphers support list</a>#cipher-suite-and-protocol-support)</p>
+
+<p>RC4的都是需要禁用的</p>
+</blockquote>
+
+<p><strong>在注册表设定ciphers关闭RC4</strong></p>
+<pre class="chroma"># windows server 2012 R2
+# Registry path: HKLM SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers
+# disable RC4
+[RC4 40/128] &#34;Enabled&#34;=dword:00000000
+[RC4 56/128] &#34;Enabled&#34;=dword:00000000
+[RC4 128/128] &#34;Enabled&#34;=dword:00000000
+</pre>
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786418(v=ws.11">windows server 2012 R2 ssl ciphers registry setting</a>)</p>
+</blockquote>
+
+<h4>2.2 禁用CBC</h4>
+
+<p><strong>windows server 2012 R2 默认启用的ciphersuites列表</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Cipher suite string</th>
+<th>Allowed by SCH_USE_STRONG_CRYPTO</th>
+<th>TLS/SSL Protocol Versions</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_GCM_SHA384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_GCM_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_256_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_128_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_3DES_EDE_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_RC4_128_SHA</td>
+<td>No</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_RC4_128_MD5</td>
+<td>No</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_NULL_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_NULL_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>SSL_CK_RC4_128_WITH_MD5</td>
+<td>No</td>
+<td>SSL 2.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>SSL_CK_DES_192_EDE3_CBC_WITH_MD5</td>
+<td>Yes</td>
+<td>SSL 2.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/windows/win32/secauthn/tls-cipher-suites-in-windows-8-1">windows server 2012 R2 ssl ciphersuites supporet list</a></p>
+
+<p>可以单个ciphersuit来禁用，但是对CBC的禁用使用这个方法是不生效的，正确的方法见下面。</p>
+</blockquote>
+
+<p>上面只是文档上的体现的ciphers算法列表，<strong>实际环境中的ciphers列表，可以通过以下命令查看</strong></p>
+<pre class="chroma">nmap --script ssl-enum-ciphers -p <span class="m">3389</span> ip_address
+<span class="c1"># 会输出对应IP:PORT下使用的ssl ciphers列表</span>
+</pre>
+<p><strong>通过设定SSP cipher order来限制cipher - CBC</strong></p>
+
+<ul>
+<li><p>step 1. 运行中打开<code>gpedit.msc</code></p></li>
+
+<li><p>step 2. <code>Local Computer Policy</code> &gt; <code>Administrative Template</code> &gt; <code>Network</code> &gt; <code>SSL Configuration setting</code> &gt; <code>SSL Cipher Suite Order</code></p></li>
+
+<li><p>step 3. 在弹出的界面中</p>
+
+<ul>
+<li><p>选中Enable</p></li>
+
+<li><p>编辑tlsv1.2 支持的非CBC的ciphers，拷贝到文本编辑器中，使用&rdquo;,&ldquo;连接这些ciphers字符串
+&gt; 可以按照这个来配置，只启用TLSv1.2的GCM相关的加密算法：
+&gt; <code>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256</code></p></li>
+
+<li><p>删除原有的SSL Cipher Suites内容，将新的ciphers字符串拷贝进去，然后apply</p></li>
+
+<li><p>使用命令应用策略<code>gpupdate /force</code></p></li>
+
+<li><p>重启服务器</p></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p><a href="https://social.technet.microsoft.com/Forums/windowsserver/en-US/a51f9574-73b0-4808-ad5f-4db081d80e6f/disable-cbc-mode-cipher-encryption-and-enable-ctr-or-gcm-cipher-mode-encryption-amp-disable-md5?forum=winserversecurity">how to disable cbc mode cipher encryption in windows server 2012</a></p>
+
+<p>同样适用于windows server 2012 R2：<a href="https://docs.microsoft.com/en-us/windows-server/security/tls/manage-tls">windows server 2016+: Manage Transport Layer Security</a></p>
+
+<p><strong>IMPORTANT</strong>: 一定注意，不要根据<code>SSL Cipher Suite Order</code>打开的界面上的右下角提示框里面的内容作为根据来设定ciphers的列表，而需要使用前面提到的<code>nmap命令</code>来设定。它右下角的提示框里面的内容应该是没有更新的，所以内容不对。</p>
+</blockquote>
+
+<h3>3.  禁用掉ssl版本和ssl cipher（RC4,CBC）之后，RDP无法连接是什么原因？</h3>
+
+<p>本来禁用掉SSL弱版本和SSL cipher（RC4、CBC）之后，还有对应的GCM算法来支持RDP。但是有些情况下，在windows server 2012 R2中采取了上述限制措施之后，使用nmap查看发现3389端口的ciphers列表为空，实际rdp也无法连接到服务器。</p>
+
+<p>这有可能是因为GCM算法缺失造成的，windows server 2012 R2通过KB2919355这个更新包来提供了GCM的支持。安装完KB2919355这个更新包之后，重启服务器再测试就可以看到GCM的算法支持了。</p>
+
+<blockquote>
+<ul>
+<li><p><strong>微软关于增加GCM的官方声明</strong>：
+<a href="https://support.microsoft.com/en-us/topic/update-adds-new-tls-cipher-suites-and-changes-cipher-suite-priorities-in-windows-8-1-and-windows-server-2012-r2-8e395e43-c8ef-27d8-b60c-0fc57d526d94">microsoft support: update add GCM</a></p></li>
+
+<li><p><strong>安装对应更新包的具体方法</strong>：
+在<a href="https://www.microsoft.com/en-us/download/details.aspx?id=42334">kb2919355下载链接</a>下载更新包之后，需要按照这样的顺序来安装：clearcompressionflag.exe, KB2919355, KB2932046, KB2959977, KB2937592, KB2938439, and KB2934018。</p>
+
+<ul>
+<li><strong>安装对应更新包出问题的解决方法</strong>：如果安装的时候遇到了&rdquo;The update is not applicable to your computer&rdquo;这个错误，有可能是因为部分依赖更新包没有安装导致的，请在安装KB2919355之前，提前安装KB2939087和KB2975061两个更新包。然后再尝试安装KB2919355更新包。<a href="https://www.lemonbits.com/kb2919355-update-not-applicable-computer/">参考文档</a></li>
+</ul></li>
+</ul>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/nginx/nginx_2.1.9_configuration_security.html">nginx: 2.1.9 configuration of security</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>10 Nov 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. nginx本身的安全性需要注意的点</h3>
+
+<p>这里仅就nginx本身的安全配置做个小的总结，实际生产环境中，安全还会有其他的诸如代码、网络、主机等方方面面，这里就不涉及到了。</p>
+
+<p>仅就nginx本身的安全性而言，有如下几点需要注意
+- 隐藏nginx版本信息
+- 禁用不安全的SSL版本
+- 禁用不安全的SSL ciphers
+- 配置安全header
+- 隐藏nginx服务类型</p>
+
+<h3>1. 隐藏nginx版本信息</h3>
+
+<p>关闭nginx版本信息，降低被黑客针对性扫描入侵。</p>
+<pre class="chroma">server_tokens off;
+</pre>
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens">nginx core docs: server_tokens</a></p>
+</blockquote>
+
+<h3>2. 禁用不安全的SSL版本</h3>
+
+<p>SSLv2、SSLv3、TLSv1和TLSv1.1，已经被主流浏览器停止支持，目前的主流是TLSv1.2，最新版本是TLSv1.3。</p>
+<pre class="chroma">ssl_protocols TLSv1.2 TLSv1.3;
+</pre>
+<blockquote>
+<p>配置SSL版本的时候，注意openssl的版本依赖，详情见<a href="http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols">nginx http_ssl docs: ssl_protocols</a></p>
+
+<p>安全设定也要参考实际业务的兼容性，有些业务场景必须要支持到很老的操作系统和浏览器，那么就需要综合性评估一下。</p>
+</blockquote>
+
+<h3>3. 禁用不安全的SSL ciphers</h3>
+<pre class="chroma"># 告诉客户端，使用服务端的算法
+ssl_prefer_server_ciphers on;
+
+# 使用高等级算法，带感叹号的是需要在HIGH这个算法组中排除掉的强度不够的算法子组
+ssl_ciphers HIGH:!aNULL:!MD5:!AES128:!SHA1:!SHA256:!SHA384;
+</pre>
+<blockquote>
+<p>详细的算法列表，可以查看<a href="https://www.openssl.org/docs/man1.0.2/man1/ciphers">openssl ciphers string</a></p>
+
+<p>也可以用这个命令<code>openssl ciphers -v '这里是配置的算法串'</code>看实际配置算法的列表内容</p>
+</blockquote>
+
+<h3>4. 配置安全的header</h3>
+
+<p>有一些安全的header还是需要额外增加一下的。
+&gt; - <a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">nginx docs: add_header</a>
+&gt;   - <code>always</code>，意思是无论响应代码如何，都会加上这个header</p>
+
+<h4>1) Strict-Transport-Security</h4>
+
+<p>HTTP Strict-Transport-Security缩写是HSTS，这个响应标头用以告诉浏览器此站点只接受https连接。</p>
+<pre class="chroma">add_header Strict-Transport-Security &#34;&#34; always;
+</pre>
+<blockquote>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security">MDN WEB DOCS: Strict-Transport-Security</a></li>
+</ul>
+</blockquote>
+
+<h4>2) X-Content-Type-Options</h4>
+
+<p>X-Content-Type-Options，这个响应标头用于告诉浏览器应遵循 Content-Type 标头中通告的 MIME 类型，不可以更改它。用以避免MIME 类型嗅探。</p>
+<pre class="chroma">add_header X-Content-Type-Options nosniff always;
+# 严格要求了以下两种MIME类型
+# - 请求“style”类型，但MIME类型不是“text/css”
+# - 请求“script”类型，但MIME类型不是JavaScript MIME type
+#   - application/ecmascript
+#   - application/javascript
+#   - application/x-ecmascript
+#   - application/x-javascript
+#   - text/ecmascript
+#   - text/javascript
+#   - text/javascript1.0
+#   - text/javascript1.1
+#   - text/javascript1.2
+#   - text/javascript1.3
+#   - text/javascript1.4
+#   - text/javascript1.5
+#   - text/jscript
+#   - text/livescript
+#   - text/x-ecmascript
+#   - text/x-javascript
+</pre>
+<blockquote>
+<p>确保配置之前，先去看看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/X-Content-Type-Options">MDN WEB DOCS: X-Content-Type-Options</a> 来了解如何具体配置，避免影响业务。</p>
+</blockquote>
+
+<h4>3) Content-Security-Policy</h4>
+
+<p>Content-Security-Policy，这个响应标头用以控制允许user agent为给定页面加载的资源。除了少数例外情况，设置的政策主要涉及指定服务器的源和脚本结束点。用以避免跨站脚本攻击。</p>
+
+<p>可做的限制举几个例子：
+- javascript可以加载的源地址
+- font可以加载的源地址
+- 可以通过脚本加载的URL
+- 图片加载的源地址
+- 多媒体资源加载的源地址
+- 样式文件加载的源地址
+等等</p>
+<pre class="chroma"># 设定所有来源都是本站
+add_header Content-Security-Policy  &#34;default-src &#39;self&#39;;&#34; always;
+</pre>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">MDN WEB DOCS: Content-Security-Policy</a></p>
+</blockquote>
+
+<h3>5. 隐藏nginx服务类型(nginx 1.20.x)</h3>
+
+<p>在上面虽然隐藏了nginx的服务器版本，但是依然可以被探测是nginx服务器。</p>
+
+<p>若想隐藏这个内容：
+- 一个是购买nginx的商业发行版，通过<code>server_tokens &quot;your string or variable here or empty to disable Server header&quot;</code>来实现；
+- 另外一个安装nginx-extras，但是这个是依赖外部模块，引入了不必要的风险，和我们的目标不一致;
+- 还有一个就是通过修改源码</p>
+<pre class="chroma"># 路径：src/http/ngx_http_header_filter_module.c
+static u_char ngx_http_server_string[] = &#34;Server: nginx&#34; CRLF;
+
+# 路径：src/core/nginx.h
+#define NGINX_VER          &#34;nginx/&#34; NGINX_VERSION
+</pre>
+<h3>6. 总结</h3>
+
+<p>通过减少服务器信息外漏，增强ssl连接安全和限制请求规范（https、mime不许修改和限制源地址）的多重手段，增强nginx的安全性</p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/nginx/nginx_2.1.8_configuration_proxy_pass_customize_header.html">nginx: 2.1.8 nginx proxy的时候会撒谎吗？</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>08 Nov 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. nginx反向代理的时候会撒谎吗？</h3>
+
+<p>这个问题很标题党，这个问题换成nginx在作为反向代理服务器的时候，可以修改传向后端的http请求信息吗，会更贴切一点。</p>
+
+<p>nginx作为一个代理服务器，所有的东西都是它中转给后端服务器的。比如说客户端的ip地址，客户访问的域名、端口等等。那么，nginx是否可以自由的修改这些变量呢？</p>
+
+<p>下面我们就用客户访问的url来测试一下。</p>
+
+<h3>1. 准备环境</h3>
+
+<p>这里使用docker来模拟一个nginx，一个go的web服务器。nginx反向代理到go的web服务器，go的web服务器只是在页面上返回客户访问的域名信息。</p>
+
+<p><strong>准备测试环境</strong></p>
+<pre class="chroma">mkdir -p ~/DevRoot/test-nginx-fake-url
+<span class="nb">cd</span> ~/DevRoot/test-nginx-fake-url
+sudo <span class="nb">echo</span> <span class="s2">&#34;127.0.0.1 example.com&#34;</span> &gt;&gt; /etc/hosts
+</pre>
+<p><strong>nginx配置文件 - nginx/example.conf</strong></p>
+<pre class="chroma">  server {
+    listen       80;
+    server_name  example.com;
+    access_log   /var/log/nginx/example.access.log  main;
+
+    location / {
+      proxy_pass      http://goserver:8080;
+    }
+  }
+</pre>
+<p><strong>golang: 程序文件 - goserver/main.go</strong></p>
+<pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">hello</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Host</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">headers</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">req</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">for</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">headers</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Header</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">h</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">headers</span> <span class="p">{</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;%v: %v\n&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/hello&#34;</span><span class="p">,</span> <span class="nx">hello</span><span class="p">)</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">&#34;/headers&#34;</span><span class="p">,</span> <span class="nx">headers</span><span class="p">)</span>
+
+    <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p><strong>golang: module文件 - goserver/go.mod</strong></p>
+<pre class="chroma"><span class="nx">module</span> <span class="nx">localhost</span><span class="p">.</span><span class="nx">net</span>
+
+<span class="k">go</span> <span class="mf">1.17</span>
+</pre>
+<p><strong>docker文件 - goserver/Dockerfile</strong></p>
+<pre class="chroma"><span class="k">FROM</span><span class="s"> golang:alpine AS builder</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> . .<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> go build -o /app/goserver<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> golang:alpine</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder /app/goserver .<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8080</span><span class="err">
+</span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span> <span class="s2">&#34;/app/goserver&#34;</span> <span class="p">]</span><span class="err">
+</span></pre>
+<p><strong>docker-compose文件： ./docker-compose.yaml</strong></p>
+<pre class="chroma"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.9&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">web</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span>stable<span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">depends_on</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- goserver<span class="w">
+</span><span class="w">    </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="s2">&#34;./nginx/example.conf:/etc/nginx/conf.d/example.conf&#34;</span><span class="w">
+</span><span class="w">  
+</span><span class="w">  </span><span class="k">goserver</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">build</span><span class="p">:</span><span class="w"> </span>./goserver<span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>goserver<span class="w">
+</span></pre>
+<p><strong>启动容器</strong></p>
+<pre class="chroma">docker-compose up -d
+</pre>
+<h3>2. 修改代理配置看效果</h3>
+
+<p><strong>CASE 1. 最简单的proxy，啥也不配</strong></p>
+<pre class="chroma">  server {
+    listen       80;
+    server_name  example.com;
+    access_log   /var/log/nginx/example.access.log  main;
+
+    location / {
+      proxy_pass      http://goserver:8080;
+    }
+  }
+</pre>
+<p><strong>测试效果</strong></p>
+<pre class="chroma">curl example.com/hello
+goserver:8080
+</pre>
+<blockquote>
+<p>你看，这里就假了，它用的是nginx自己upstream配置的url</p>
+</blockquote>
+
+<p><strong>CASE 2. 线上经常使用的配置</strong></p>
+<pre class="chroma">  server {
+    listen       80;
+    server_name  example.com;
+    access_log   /var/log/nginx/example.access.log  main;
+
+    location / {
+      proxy_pass       http://goserver:8080;
+      proxy_set_header Host       $http_host;
+    }
+  }
+</pre>
+<p><strong>测试效果</strong></p>
+<pre class="chroma">docker <span class="nb">exec</span> nginx nginx -s reload
+
+curl example.com/hello
+example.com
+</pre>
+<blockquote>
+<p>$http_host的值就是header里面的Host的内容。</p>
+
+<p>相当于nginx把自己收到的Host的内容，proxy给后端的Host</p>
+</blockquote>
+
+<p><strong>CASE 3. 玩点花的，欺骗goserver</strong></p>
+<pre class="chroma">  server {
+    listen       80;
+    server_name  example.com;
+    access_log   /var/log/nginx/example.access.log  main;
+
+    location / {
+      proxy_pass       http://goserver:8080;
+      proxy_set_header Host       &#34;fake-host&#34;;
+    }
+  }
+</pre>
+<p><strong>测试效果</strong></p>
+<pre class="chroma">docker <span class="nb">exec</span> nginx nginx -s reload
+
+curl example.com/hello
+fake-host
+</pre>
+<blockquote>
+<p>和case 2相同，只不过proxy给后端一个随意编写的Host内容</p>
+</blockquote>
+
+<h3>3. 总结</h3>
+
+<p>nginx是可以随意修改传给后端的内容的，只要nginx程序支持修改。</p>
+
+<p>可用场景1：官网域名 &gt; cdn &gt; cdn域名 &gt; 接入层nginx &gt;修改Host为cdn域名&gt; 后端（此时认为用户是通过官网域名访问过来的）
+&gt; - 为什么不用ip，而是用cdn域名？
+&gt; 用了https的域名，为了安全
+&gt;
+&gt; - 为什么不用https的ip地址？
+&gt; 你的接入层nginx通常不会只监听一个域名，而是多个域名，此时用ip满足不了业务要求</p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/kernel_1.2.0_system_load_or_cpu_load.html">linux内核: 1.2.0 system load or cpu load</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>18 Oct 2021</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>1. linux中的<code>cpu load</code>还是<code>system load</code>？</h3>
+
+<p>一般情况下，稍微有经验的linux管理员都会熟练知道，查看系统负载，使用<code>top</code>、<code>uptime</code>或<code>w</code>命令都会输出load average的信息，分别是1、5、15分钟内的“cpu load”（并不是cpu load）信息。相信今天之前的我也会这样说，但是最近在重温系统负载相关知识的时候，竟然发现在一篇文章里面有如下表述:</p>
+<pre class="chroma">On Linux, the system load includes threads both in Runnable (R) and in Uninterruptible sleep (D) states (typically disk I/O, but not always)
+</pre>
+<blockquote>
+<p>出处：<a href="https://tanelpoder.com/posts/high-system-load-low-cpu-utilization-on-linux/">High System Load with Low CPU Utilization on Linux?</a></p>
+</blockquote>
+
+<p>大意是，linux的系统负载计算时，不仅包括处于可运行状态的进程，还包含了处于睡眠状态的“不可中断睡眠进程”。这个就太出乎我意料了，因为我一直以为这个<code>load average</code>是说的<code>cpu load</code>，如果事实真的是包含后者，那么这里就应该是<code>system load</code>（因为处于&rdquo;D&rdquo;状态的进程并不消耗cpu资源）了。</p>
+
+<h3>2. linux中<code>load average</code>确实包含了<code>Uninteruptible sleep process</code>吗？</h3>
+
+<p>先说结果，是的，和unix系统不同，linux系统上的<code>load average</code>是包含<code>Uninteruptible sleep process</code>的。</p>
+
+<p>首先，在load的wiki上可以看到如下表述：</p>
+<pre class="chroma">Most UNIX systems count only processes in the running (on CPU) or runnable (waiting for CPU) states. However, Linux also includes processes in uninterruptible sleep states (usually waiting for disk activity), which can lead to markedly different results if many processes remain blocked in I/O due to a busy or stalled I/O system.
+</pre>
+<p>明确的说明了unix和linux的不同，unix更符合我们的直觉，即为<code>cpu load</code>，而linux却是属实的<code>system load</code>。</p>
+
+<h3>3. 为什么linux要这样设计呢？</h3>
+
+<p>为了探寻linux这样设计的原因，我搜索到了一篇文章，果然并不是我一个人对这个感到好奇。
+&gt; 主要参考：<a href="https://brendangregg.com/blog/2017-08-08/linux-load-averages.html">Linux Load Averages: Solving the Mystery</a>
+&gt; 作者：Brendan Gregg
+&gt; 下面的叙述主要参考了这篇文章中的内容。</p>
+
+<p>首先，linux在最开始的版本中，和unix的行为保持一致，<code>load average</code>表示的是<code>cpu load</code>。后面在某个版本中修改为了包含<code>Uninteruptible sleep process</code>，也就是说linux中的<code>load average</code>表达的不仅仅是cpu的负载，还包含了I/O的负载（硬盘或NFS等）。</p>
+
+<p>那么，为什么呢？</p>
+
+<p>于是文章的作者开始搜索linux内核的提交历史记录，终于在远古时期的邮件列表中，他找到了1993年的一个更动</p>
+<pre class="chroma">From: Matthias Urlichs &lt;urlichs@smurf.sub.org&gt;
+Subject: Load average broken ?
+Date: Fri, 29 Oct 1993 11:37:23 +0200
+
+
+The kernel only counts &#34;runnable&#34; processes when computing the load average.
+I don&#39;t like that; the problem is that processes which are swapping or
+waiting on &#34;fast&#34;, i.e. noninterruptible, I/O, also consume resources.
+
+It seems somewhat nonintuitive that the load average goes down when you
+replace your fast swap disk with a slow swap disk...
+
+Anyway, the following patch seems to make the load average much more
+consistent WRT the subjective speed of the system. And, most important, the
+load is still zero when nobody is doing anything. ;-)
+
+--- kernel/sched.c.orig Fri Oct 29 10:31:11 1993
++++ kernel/sched.c  Fri Oct 29 10:32:51 1993
+@@ -414,7 +414,9 @@
+    unsigned long nr = 0;
+
+    for(p = &amp;LAST_TASK; p &gt; &amp;FIRST_TASK; --p)
+-       if (*p &amp;&amp; (*p)-&gt;state == TASK_RUNNING)
++       if (*p &amp;&amp; ((*p)-&gt;state == TASK_RUNNING) ||
++                  (*p)-&gt;state == TASK_UNINTERRUPTIBLE) ||
++                  (*p)-&gt;state == TASK_SWAPPING))
+            nr += FIXED_1;
+    return nr;
+ }
+--
+Matthias Urlichs        \ XLink-POP N|rnberg   | EMail: urlichs@smurf.sub.org
+Schleiermacherstra_e 12  \  Unix+Linux+Mac     | Phone: ...please use email.
+90491 N|rnberg (Germany)  \   Consulting+Networking+Programming+etc&#39;ing      42
+</pre>
+<p>提交这个更动的作者说，当用慢速的swap磁盘替换快速的swap磁盘时，负载竟然下降了，这样反映系统负载非常不直观。</p>
+
+<p>中间关于这个问题，大方向没变，但是有关细节多次变动。</p>
+
+<p>然后文章作者又探讨了如今（2017年）4.12版本的这个机制，而且Matthias在twitter回复了文章作者的邮件说：</p>
+<pre class="chroma">&#34;The point of &#34;load average&#34; is to arrive at a number relating how busy the system is from a human point of view. TASK_UNINTERRUPTIBLE means (meant?) that the process is waiting for something like a disk read which contributes to system load. A heavily disk-bound system might be extremely sluggish but only have a TASK_RUNNING average of 0.1, which doesn&#39;t help anybody.&#34;
+</pre>
+<p>大意就是Matthias认为1993年的那个更动的思路在现在（2017）依然是对的。</p>
+
+<p>然后作者认为，<code>Uninteruptible sleep process</code>现在已经不仅仅是代表了disk的负载，它包含了更多的东西，我们是否需要找寻另外一种方法，仅仅让<code>load average</code>包含<code>cpu load</code>和<code>disk load</code>。调度器的维护人员Peter Zijstra回应了他，Peter Zijstra表示可以用<code>task_struct-&gt;in_iowait</code>（进程的iowait）来替代<code>Uninteruptible sleep process</code>，这样更接近反映<code>cpu load</code>和<code>disk load</code>的真实情况（只是讨论，并未改动）。</p>
+
+<h3>4. 总结</h3>
+
+<p>linux为了反映<code>cpu load</code>和<code>disk load</code>的真实情况，所以将<code>load average</code>的计算包含了<code>Runable</code>和<code>Uninteruptible sleep</code>两种状态的进程。所以，之后如果看到linux系统的负载高，对于那些高I/O消耗的服务，有了另外一个排查的思路。</p>
+
+        </div>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

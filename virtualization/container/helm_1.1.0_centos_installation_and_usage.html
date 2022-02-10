@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>helm 1.1.0 安装（centos 7）及使用</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Jan 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 什么是helm？</h3>
+
+<p>helm是kubernetes的一个包管理工具，类似于yum之于rhel，apt之于debian。</p>
+
+<p>三个主要概念：
+- Chart，是helm的包。它包含了在Kubernetes集群中运行的应用程序、工具或服务所需的所有资源的定义。类似于rpm和dpkg
+- Repository，用于保存和分享charts的仓库。
+- Release，是在kubernetes集群中运行的charts的实例。一个charts可以被安装多次，每次都会生成一个新实例。当然，实例名称都是唯一的。</p>
+
+<h3>1. 安装helm</h3>
+<pre class="chroma">curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod <span class="m">700</span> get_helm.sh
+./get_helm.sh
+</pre>
+<h3>2. 使用helm</h3>
+
+<p>搜索chart</p>
+<pre class="chroma"><span class="c1">## SEARCH</span>
+<span class="c1"># 在helm hub中搜索包，helm hub包含多个repo的包资源</span>
+helm search hub <span class="o">[</span>package-name<span class="o">]</span>
+
+<span class="c1"># 在本地repo（helm repo add）中搜索包</span>
+helm search repo <span class="o">[</span>package-name<span class="o">]</span>
+
+<span class="c1"># 注意点：</span>
+<span class="c1"># - 不包含package-name时会列出所有可用的包</span>
+<span class="c1"># - package-name可以是不完整的包名称</span>
+</pre>
+<p>下载chart</p>
+<pre class="chroma">helm fetch repo-name/<span class="o">[</span>package-name<span class="o">]</span>
+</pre>
+<p>安装chart</p>
+<pre class="chroma"><span class="c1">## INSTALL</span>
+<span class="c1"># Usage:</span>
+<span class="c1">#   helm install [NAME] [CHART] [flags]</span>
+helm install happy-panda stable/mariadb
+
+<span class="c1"># 如果不想指定release的名称，可以使用如下参数，会自动生成一个release名称</span>
+helm install stable/mariadb --generate-name
+
+<span class="c1"># 注意点：</span>
+<span class="c1"># - Helm不会等到所有资源都运行后才退出</span>
+
+<span class="c1"># 更多安装方式</span>
+<span class="c1"># - 常规在repo里面安装，就是上面提到的</span>
+<span class="c1"># - 从本地chart包安装，helm install foo foo-0.1.1.tgz</span>
+<span class="c1"># - 从chart包解压缩出来的目录上安装，helm install foo path/to/foo</span>
+<span class="c1"># - 从完整的chart包url上安装，helm install foo https://example.com/charts/foo-1.2.3.tgz</span>
+</pre>
+<p>查看release状态和配置</p>
+<pre class="chroma"><span class="c1">## STATUS</span>
+<span class="c1"># 查看release的状态或重读它的配置</span>
+helm status happy-panda
+</pre>
+<p>在安装chart之前自定义参数</p>
+<pre class="chroma"><span class="c1"># 输出可以自定义的选项</span>
+helm show values stable/mariadb
+<span class="c1"># ......</span>
+<span class="c1">## Create a database user</span>
+<span class="c1">## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#creating-a-database-user-on-first-run</span>
+<span class="c1">##</span>
+<span class="c1"># mariadbUser:</span>
+<span class="c1"># mariadbPassword:</span>
+<span class="c1"># ......</span>
+
+<span class="c1"># 使用-f指定自定义内容</span>
+<span class="nb">echo</span> <span class="s1">&#39;{mariadbUser: user0, mariadbDatabase: user0db}&#39;</span> &gt; config.yaml
+helm install -f config.yaml stable/mariadb
+
+<span class="c1"># 使用--set在命令行指定自定义的变量</span>
+--set <span class="nv">a</span><span class="o">=</span>b,c<span class="o">=</span>d
+<span class="c1"># a: b</span>
+<span class="c1"># c: d</span>
+
+--set outer.inner<span class="o">=</span>value
+<span class="c1"># outer:</span>
+<span class="c1">#   inner: value</span>
+
+--set <span class="nv">name</span><span class="o">=</span><span class="o">{</span>a, b, c<span class="o">}</span>
+<span class="c1"># name:</span>
+<span class="c1">#   - a</span>
+<span class="c1">#   - b</span>
+<span class="c1">#   - c</span>
+
+--set servers<span class="o">[</span>0<span class="o">]</span>.port<span class="o">=</span>80,servers<span class="o">[</span>0<span class="o">]</span>.host<span class="o">=</span>example
+<span class="c1"># servers:</span>
+<span class="c1">#   port: 80</span>
+<span class="c1">#   host: example</span>
+
+--set <span class="nv">name</span><span class="o">=</span>value1<span class="se">\,</span>value2
+<span class="c1"># name: &#34;value1,value2&#34;</span>
+
+--set nodeSelector.<span class="s2">&#34;kubernetes\.io/role&#34;</span><span class="o">=</span>master
+<span class="c1"># nodeSelector:</span>
+<span class="c1">#   kubernetes.io/role: master</span>
+</pre>
+<p>升级release<br />
+当需要修改release配置，或者想要升级release使用的chart版本时，可以升级release<br />
+由于Kubernetes chart可能很大且很复杂，因此Helm尝试执行侵入性最小的升级。它将仅更新自上一次release基础上变动的内容。</p>
+<pre class="chroma">helm upgrade -f panda.yaml happy-panda stable/mariadb
+
+<span class="c1"># 查看刚才做出的修改</span>
+helm get values happy-panda
+</pre>
+<p>回退release<br />
+有升级就有回退</p>
+<pre class="chroma"><span class="c1"># helm rollback [RELEASE] [REVISION]</span>
+helm rollback happy-panda <span class="m">1</span>
+
+<span class="c1"># 可以通过helm history [RELEASE]来查看历史</span>
+helm <span class="nb">history</span> happy-panda
+</pre>
+<p>删除release</p>
+<pre class="chroma">helm uninstall happy-panda
+
+<span class="c1"># 删除，但是存在保留历史</span>
+helm uninstall happy-panda --keep-history
+</pre>
+<p>查看release列表</p>
+<pre class="chroma">helm list
+
+<span class="c1"># 可以查看使用--keep-history删除的release</span>
+helm list --uninstalled
+
+<span class="c1"># 查看所有的release，包含--keep-history删除的release</span>
+helm list --all
+</pre>
+<p>repo相关命令</p>
+<pre class="chroma">helm repo list
+helm repo add dev https://example.com/dev-charts
+helm repo update
+helm repo remove dev
+</pre>
+<h3>3. 创建自己的chart</h3>
+<pre class="chroma"><span class="c1"># 创建自己的chart，会在当前目录生成一个和chart同名的目录</span>
+helm create deis-workflow
+
+<span class="c1"># 目录结构如下</span>
+tree deis-workflow/
+deis-workflow/
+├── charts
+├── Chart.yaml
+├── templates
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── ingress.yaml
+│   ├── NOTES.txt
+│   ├── serviceaccount.yaml
+│   ├── service.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+
+<span class="c1"># 可以自定义里面的值</span>
+
+<span class="c1"># 自定义修改好之后，可以打包成为一个chart</span>
+helm package deis-workflow
+<span class="c1"># deis-workflow-0.1.0.tgz</span>
+
+<span class="c1"># 可以这样安装自定义的包</span>
+helm install deis-workflow ./deis-workflow-0.1.0.tgz
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
