@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                  <ul>
+                    <li><a href="/service/proxy/loadbalance_1.1.0_F5_cookie_persistence.html">loadbalance: 1.1.0 cookie persistence</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>loadbalance: 1.1.0 cookie persistence</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>08 Nov 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 文章背景</h3>
+
+<p>最近参与了一个项目，算是甲方工程师，乙方要求使用F5做负载均衡，用了cookie sticky。我们领导不要，要使用软负载均衡，也做cookie sticky。之前一直对收费的F5没研究，趁着这个机会来看看F5的原理。文档主要是参照了F5官网的<a href="https://support.f5.com/csp/article/K83419154">这篇关于cookie persistence的文章</a></p>
+
+<h3>1. 关于此话题</h3>
+
+<p>Cookie持久化使用HTTP cookie强制执行持久化。与所有持久化模式一样，http cookie保证了在BIG-IP初始时负载均衡给client分配backend后，相同的client的请求会持续发送给同一个backend。如果这个backend不可用，则系统会做出一个新的负载均衡决定。</p>
+
+<p>cookie持久化有四种方法。每一种方法都是独立的，并且它们一起提供了根据不同需求提供的多种选项。</p>
+
+<h3>2. cookie 持久化描述</h3>
+
+<p>cookie持久化包含下面四种持久化方法：</p>
+
+<blockquote>
+<p><strong>重要！</strong>，F5推荐使用cookie的rewrite方法，而不是http cookie被动方法。</p>
+</blockquote>
+
+<p>要使HTTP Cookie Passive方法成功，cookie必须来自Web服务器且包含相应的服务器信息。使用BIG-IP配置实用程序，您可以为cookie字符串生成一个模板，并自动添加编码，然后编辑模板以创建实际的cookie。</p>
+
+<ul>
+<li>cookie hash<br />
+hash cookie到一个特定的backend。当client重新经过F5时，F5将其转回之前的backend。使用这个方法，web服务器必须要生成cookie。BIG-IP系统不会像使用HTTP Cookie Insert方法那样自动创建cookie。</li>
+<li>HTTP Cookie Insert<br />
+使用HTTP Cookie Insert方法，client连接的服务器以插入HTTP响应头中的cookie的形式提供服务器信息。默认情况下，cookie名为<code>BIGipServer &lt;pool_name&gt;</code>，包括处理连接的backend的编码地址和端口。BIG-IP系统根据cookie持久性配置文件中的Expiration配置设置cookie的到期日期。HTTP Cookie Insert是cookie persistence的默认方法。</li>
+<li>HTTP Cookie Passive<br />
+和其他持久化方法不同，BIG-IP不会在backend的响应中插入或搜索<code>Set-Cookie</code>首部。此方法不会尝试设置cookie。使用此方法，服务器提供cookie，使用正确的服务器信息和timeout格式化。</li>
+<li>HTTP Cookie Rewrite<br />
+使用此方法，BIG-IP会拦截名为BIGipCookie的<code>Set-Cookie</code>首部，覆盖cookie的名称和值，然后发送给client。新cookie名为<code>BIGipServer &lt;pool_name&gt;</code>，它包含处理连接的backend服务器的地址和端口。</li>
+</ul>
+
+<blockquote>
+<p>由于只是用于了解F5的配置，所以详细的配置和选项就不在这边赘述了，需要的可以参考<a href="https://support.f5.com/csp/article/K83419154">这篇关于cookie persistence的文章</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

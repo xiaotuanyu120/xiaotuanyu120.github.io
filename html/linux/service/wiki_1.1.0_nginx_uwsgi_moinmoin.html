@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                  <ul>
+                    <li><a href="/linux/service/ffmpeg_1.1.0_compile_install.html">ffmpeg 1.1.0 compile install(centos)</a></li>
+                    <li><a href="/linux/service/inotify_1.1.0_intro.html">inotify: 1.1.0 初识inotify</a></li>
+                    <li><a href="/linux/service/inotify_2.1.0_rsync.html">inotify: 2.1.0 inotify+rsync实现实时文件同步</a></li>
+                    <li><a href="/linux/service/inotify_3.1.0_rollback.html">inotify: 3.1.0 inotify实现代码回滚(设想)</a></li>
+                    <li><a href="/linux/service/inotify_4.1.0_sersync.html">inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具</a></li>
+                    <li><a href="/linux/service/ldap_1.1.0_installation.html">ldap 1.0.0: installation</a></li>
+                    <li><a href="/linux/service/vnc_1.1.0_installation.html">vnc: 1.1.0 centos 7 安装</a></li>
+                    <li><a href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">WIKI: 1.1.0 nginx+uwsgi部署moinmoin</a></li>
+                    <li><a href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">WIKI: 1.2.0 moinmoin基本设置</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>WIKI: 1.1.0 nginx+uwsgi部署moinmoin</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>02 Feb 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 安装uwsgi</h3>
+<pre class="chroma">wget http://projects.unbit.it/downloads/uwsgi-2.0.12.tar.gz
+tar zxvf uwsgi-2.0.12.tar.gz
+mv uwsgi-2.0.12 /data/server/uwsgi
+<span class="nb">cd</span> /data/server/uwsgi
+make
+cp uwsgi /usr/local/bin/uwsgi
+</pre>
+<hr />
+
+<h3>2. 测试uwsgi</h3>
+<pre class="chroma">vim /root/test.py
+**************************************
+def application<span class="o">(</span>env, start_response<span class="o">)</span>:
+    start_response<span class="o">(</span><span class="s1">&#39;200 OK&#39;</span>, <span class="o">[</span><span class="o">(</span><span class="s1">&#39;Content-Type&#39;</span>,<span class="s1">&#39;text/html&#39;</span><span class="o">)</span><span class="o">]</span><span class="o">)</span>
+    <span class="k">return</span> <span class="s2">&#34;Hello World&#34;</span>
+**************************************
+
+uwsgi --http  :8001 --wsgi-file /root/test.py --daemonize<span class="o">=</span>/root/test.log
+curl 127.0.0.1:8001
+Hello World
+</pre>
+<hr />
+
+<h3>3. 安装moinmoin</h3>
+<pre class="chroma"><span class="c1"># 方法1（弃用，因为试用了几次都不成功，不能import MoinMoin）</span>
+wget https://static.moinmo.in/files/moin-1.9.8.tar.gz
+tar zxvf moin-1.9.8.tar.gz
+<span class="nb">cd</span> moin-1.9.8
+python setup.py install --force --prefix /usr/local --record<span class="o">=</span>install.log
+
+<span class="c1"># 方法2（成功的方法）</span>
+pip install moin
+Collecting moin
+  Downloading moin-1.9.8.tar.gz <span class="o">(</span>37.1MB<span class="o">)</span>
+    100% <span class="p">|</span>████████████████████████████████<span class="p">|</span> 37.1MB 7.6kB/s
+Building wheels <span class="k">for</span> collected packages: moin
+  Running setup.py bdist_wheel <span class="k">for</span> moin ... <span class="k">done</span>
+  Stored in directory: /root/.cache/pip/wheels/34/78/2c/64fccf6482fb6d515ecabf7edb0291e7f88e8a0b7888794b46
+Successfully built moin
+Installing collected packages: moin
+Successfully installed moin-1.9.8
+</pre>
+<hr />
+
+<h3>4. 准备wiki的uwsgi配置文件</h3>
+<pre class="chroma"><span class="nb">cd</span> /usr/local/py27/share/moin
+<span class="c1"># 创建wiki目录</span>
+mkdir mywiki
+<span class="c1"># 拷贝配置文件到wiki目录</span>
+cp -r <span class="o">{</span>data,underlay,server/moin.wsgi,config/wikiconfig.py<span class="o">}</span> mywiki
+<span class="c1"># 指定python环境</span>
+vim mywiki/moin.wsgi
+******************************************
+<span class="c1">## 找到a1、a2，在下面添加以下语句</span>
+
+<span class="c1"># a1) Path of the directory where the MoinMoin code package is located.</span>
+<span class="c1">#     Needed if you installed with --prefix=PREFIX or you didn&#39;t use setup.py.</span>
+<span class="c1">#sys.path.insert(0, &#39;PREFIX/lib/python2.3/site-packages&#39;)</span>
+sys.path.insert<span class="o">(</span>0, <span class="s1">&#39;/usr/local/py27/lib/python2.7/site-packages&#39;</span><span class="o">)</span>
+
+<span class="c1"># a2) Path of the directory where wikiconfig.py / farmconfig.py is located.</span>
+<span class="c1">#     See wiki/config/... for some sample config files.</span>
+sys.path.insert<span class="o">(</span>0, <span class="s1">&#39;/usr/local/py27/share/moin/mywiki&#39;</span><span class="o">)</span>
+
+<span class="c1">## 关闭moinmoin的静态文件提供功能，让web服务器来提供静态文件（未配置）</span>
+<span class="c1">#application = make_application(shared=True)</span>
+<span class="nv">application</span> <span class="o">=</span> make_application<span class="o">(</span><span class="nv">shared</span><span class="o">=</span>False<span class="o">)</span>
+******************************************
+
+<span class="c1"># 配置静态文件路径（未配置）</span>
+vim mywiki/wikiconfig.py
+******************************************
+class Config<span class="o">(</span>multiconfig.DefaultConfig<span class="o">)</span>:
+    <span class="nv">url_prefix_static</span> <span class="o">=</span> <span class="s1">&#39;/usr/local/share/moin/htdocs&#39;</span>
+******************************************
+</pre>
+<hr />
+
+<h3>5. 配置uwsgi文件</h3>
+<pre class="chroma"><span class="c1"># vim mywiki/uwsgi.ini</span>
+******************************************
+<span class="o">[</span>uwsgi<span class="o">]</span>
+<span class="nv">uid</span> <span class="o">=</span> nginx
+<span class="nv">gid</span> <span class="o">=</span> nginx
+<span class="nv">socket</span> <span class="o">=</span> /tmp/moin.sock
+chmod-socket <span class="o">=</span> <span class="m">660</span>
+
+<span class="nv">chdir</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki
+wsgi-file <span class="o">=</span> moin.wsgi
+<span class="nv">pidfile</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki/uwsgi.pid
+
+<span class="nv">master</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">workers</span> <span class="o">=</span> <span class="m">3</span>
+max-requests <span class="o">=</span> <span class="m">200</span>
+
+<span class="nv">harakiri</span> <span class="o">=</span> <span class="m">30</span>
+die-on-term <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">daemonize</span> <span class="o">=</span> /usr/local/py27/share/moin/mywiki/moin-uwsgi.log
+<span class="nv">vacuum</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c1">## 参数解释</span>
+harakiri： timeout
+daemoinize： run background <span class="p">&amp;</span> log
+vacuum： 当服务器退出的时候自动删除unix socket文件和pid文件
+******************************************
+</pre>
+<hr />
+
+<h3>6. 配置uwsgi启动脚本</h3>
+<pre class="chroma">vim /etc/init.d/uwsgid
+******************************************
+<span class="c1">#! /bin/sh</span>
+<span class="c1"># chkconfig: 2345 55 25</span>
+<span class="c1"># For CentOS/Redhat run: &#39;chkconfig --add uwsgi&#39;</span>
+
+<span class="nv">DESC</span><span class="o">=</span><span class="s2">&#34;uwsgi daemon&#34;</span>
+<span class="nv">NAME</span><span class="o">=</span>uwsgi
+<span class="nv">DAEMON</span><span class="o">=</span>/usr/local/bin/uwsgi
+<span class="nv">CONFIGFILE</span><span class="o">=</span>/usr/local/py27/share/moin/mywiki/<span class="nv">$NAME</span>.ini
+<span class="nv">PIDFILE</span><span class="o">=</span>/usr/local/py27/share/moin/mywiki/<span class="nv">$NAME</span>.pid
+<span class="nv">SCRIPTNAME</span><span class="o">=</span>/etc/init.d/uwsgid
+
+<span class="nb">set</span> -e
+<span class="o">[</span> -x <span class="s2">&#34;</span><span class="nv">$DAEMON</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">exit</span> <span class="m">0</span>
+
+do_start<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> <span class="nv">$CONFIGFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&#34;uwsgi already running&#34;</span>
+<span class="o">}</span>
+
+do_stop<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> --stop <span class="nv">$PIDFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&#34;uwsgi not running&#34;</span>
+    rm -f <span class="nv">$PIDFILE</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$DAEMON</span><span class="s2"> STOPED.</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+
+do_reload<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nv">$DAEMON</span> --reload <span class="nv">$PIDFILE</span> <span class="o">||</span> <span class="nb">echo</span> -n <span class="s2">&#34;uwsgi can&#39;t reload&#34;</span>
+<span class="o">}</span>
+
+do_status<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    ps aux<span class="p">|</span>grep <span class="nv">$DAEMON</span>
+<span class="o">}</span>
+
+<span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+ status<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&#34;</span><span class="s2">Status </span><span class="nv">$NAME</span><span class="s2">: \n</span><span class="s2">&#34;</span>
+    do_status
+ <span class="p">;</span><span class="p">;</span>
+ start<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&#34;</span><span class="s2">Starting </span><span class="nv">$NAME</span><span class="s2">: \n</span><span class="s2">&#34;</span>
+    do_start
+ <span class="p">;</span><span class="p">;</span>
+ stop<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&#34;</span><span class="s2">Stopping </span><span class="nv">$NAME</span><span class="s2">: \n</span><span class="s2">&#34;</span>
+    do_stop
+ <span class="p">;</span><span class="p">;</span>
+ reload<span class="p">|</span>graceful<span class="o">)</span>
+    <span class="nb">echo</span> -en <span class="s2">&#34;</span><span class="s2">Reloading </span><span class="nv">$NAME</span><span class="s2">: \n</span><span class="s2">&#34;</span>
+    do_reload
+ <span class="p">;</span><span class="p">;</span>
+ *<span class="o">)</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">Usage: </span><span class="nv">$SCRIPTNAME</span><span class="s2"> {start|stop|reload}</span><span class="s2">&#34;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+    <span class="nb">exit</span> <span class="m">3</span>
+ <span class="p">;</span><span class="p">;</span>
+<span class="k">esac</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+******************************************
+<span class="c1"># chmod 755 /etc/init.d/uwsgid</span>
+<span class="c1"># chkconfig --add uwsgid</span>
+<span class="c1"># chkconfig uwsgid on</span>
+</pre>
+<hr />
+
+<h3>7. 安装nginx</h3>
+<pre class="chroma"><span class="c1"># 安装过程略，记录过太多次</span>
+nginx -V
+nginx version: nginx/1.8.0
+built by gcc 4.4.7 <span class="m">20120313</span> <span class="o">(</span>Red Hat 4.4.7-16<span class="o">)</span> <span class="o">(</span>GCC<span class="o">)</span>
+built with OpenSSL 1.0.1e-fips <span class="m">11</span> Feb <span class="m">2013</span>
+TLS SNI support enabled
+configure arguments: --user<span class="o">=</span>nginx --group<span class="o">=</span>nginx --prefix<span class="o">=</span>/data/server/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre --with-http_realip_module
+
+<span class="c1"># 配置nginx</span>
+vim /data/server/nginx/conf/nginx.conf
+******************************************
+user  nginx<span class="p">;</span>
+......
+    server <span class="se">\{</span>
+        listen       <span class="m">80</span> default_server<span class="p">;</span>
+        server_name  _<span class="p">;</span>
+
+        location / <span class="o">{</span>
+            uwsgi_pass unix:/tmp/moin.sock<span class="p">;</span>
+            include uwsgi_params<span class="p">;</span>
+        <span class="o">}</span>
+******************************************
+<span class="c1"># 配置wiki目录权限让nginx可以访问</span>
+chown -R nginx:nginx /usr/local/py27/share
+</pre>
+<hr />
+
+<h3>8. 如何用命令行启动uwsgi服务</h3>
+<pre class="chroma">uwsgi -s 127.0.0.1:9003 -M -t <span class="m">30</span> -A <span class="m">4</span> -p <span class="m">2</span> -d /data/logs/moin-uwsgi.log /data/server/moin/ /data/server/moin/wiki/moin.wsgi
+<span class="c1">## 参数（标注配置项的都可以写入配置文件）</span>
+<span class="c1"># -s socket(配置项) bind to the specified UNIX/TCP socket using default protocol</span>
+<span class="c1"># -M master(配置项) enable master process</span>
+<span class="c1"># -t harakiri(配置项) set harakiri timeout</span>
+<span class="c1"># -A sharedarea(配置项) create a raw shared memory area of specified pages (note: it supports keyval too)</span>
+<span class="c1"># -p workers(配置项) spawn the specified number of workers/processes</span>
+<span class="c1"># -d daemonize(配置项) daemonize uWSGI</span>
+<span class="c1"># &#34;/data/server/moin&#34; pythonpath add directory (or glob) to pythonpath</span>
+<span class="c1"># &#34;/data/server/moin/wiki/moin.wsgi&#34; wsgi-file load .wsgi file</span>
+</pre>
+<hr />
+
+<h3>9. 遇到的问题</h3>
+
+<h4>1) 报错</h4>
+<pre class="chroma">uwsgi -s 127.0.0.1:9003 -M -t <span class="m">30</span> -A <span class="m">4</span> -p <span class="m">2</span> -d /data/logs/moin-uwsgi.log --pythonpath /data/server/moin/ --wsgi-file /data/server/moin/wiki/moin.wsgi
+/usr/bin/uwsgi:4:in <span class="s1">&#39;exec&#39;</span>: No such file or directory - /etc/uwsgi/ext/uwsgi/uwsgi.ruby <span class="o">(</span>Errno::ENOENT<span class="o">)</span>
+    from /usr/bin/uwsgi:4
+</pre>
+<h4>2) 解决方案</h4>
+<pre class="chroma">yum install -y ruby-devel
+mkdir -p /usr/local/ext/uwsgi
+<span class="nb">cd</span> /usr/local/ext/uwsgi/
+ruby /data/server/uwsgi/ext/uwsgi/extconf.rb
+<span class="c1"># extconf.rb需要根据你服务器文件的实际位置来定，可以find找出</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

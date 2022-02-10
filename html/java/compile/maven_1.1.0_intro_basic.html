@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                  <ul>
+                    <li><a href="/java/compile/maven_1.1.0_intro_basic.html">maven 1.1.0 基础介绍</a></li>
+                    <li><a href="/java/compile/maven_1.1.1_multi_modules_practice.html">maven 1.1.1 多module工程的版本管理实践</a></li>
+                    <li><a href="/java/compile/maven_1.1.2_jar_vs_war.html">maven 1.1.2 jar和war的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.3_jar_vs_war_ablout_resources.html">maven 1.1.3 jar和war中resources的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.4_command_basic.html">maven 1.4.0 命令行基础</a></li>
+                    <li><a href="/java/compile/maven_1.2.0_nexus.html">maven 1.2.0 私有仓库nexus</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>maven 1.1.0 基础介绍</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>21 Dec 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1.1 repository是什么？</h3>
+
+<p>maven的repository指的是保存artifact和依赖的仓库。分为本地和远程两种，本地仓库就是本地的一个目录，远程仓库分为公共仓库和私有仓库（本地网络中的一个服务，例如nexus）。</p>
+
+<h3>1.2 如何使用repository？</h3>
+
+<p>一般情况下，对于本地仓库，我们无需修改任何东西，除非需要清理磁盘空间。对于远程仓库，它可以实现上传（如果你有权限）和下载的功能。对于未存在于本地仓库中的依赖，maven会选择在远程仓库中下载那些依赖，默认情况下，会使用公共的central库，如果希望要修改，可以在maven的本地配置文件<code>settings.xml</code>中指定 <a href="https://maven.apache.org/guides/mini/guide-mirror-settings.html">mirror</a> 来修改默认的公共central库为其他库的地址，但是，更常见的配置是在java project的<code>pom.xml</code>中 <a href="https://maven.apache.org/guides/mini/guide-multiple-repositories.html">自定义库地址</a>  。</p>
+
+<h3>1.3 私有repository的用途</h3>
+
+<p>以前没有私有库的时候，本地的java project之间如果互相依赖，那么就需要手动拷贝jar包，或者干脆合并两个java project。如果遇到不同java project的不同版本release的依赖，则更加复杂，并且容易出错。</p>
+
+<p>而使用私有库，就可以将一个复杂依赖的java project拆开，而只是在mvn中配置依赖和依赖版本，很大的增强了管理</p>
+
+<h3>1.4 repository配置示例</h3>
+<pre class="chroma"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>releases<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://your-host:8081/repository/maven-releases/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/repositories&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre>
+<blockquote>
+<p>这里是以自建的私有库为例，若私有库需要auth访问，那么需要在mvn的配置(settings.xml)中增加<a href="/java/compile/maven_1.2.0_nexus.html">私有仓库server的auth配置</a>，需要重点注意的是<code>repository</code>里面的<code>id</code>必须和(settings.xml)中<code>server</code>的<code>id</code>一致。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

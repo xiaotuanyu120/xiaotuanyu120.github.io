@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+              <ul>
+                <li>
+                  <a href="/bigdata/cloudera/index.html">cloudera</a>
+                  <ul>
+                    <li><a href="/bigdata/cloudera/cloudera_1.0.0_pathb_installation.html">cloudera 1.0.0 pathB(生产环境-package) 安装</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.0_6.x_intro_and_requirements.html">cloudera 1.1.0 简介和安装要求说明</a></li>
+                    <li><a href="/bigdata/cloudera/cloudera_1.1.1_6.x_installation.html">cloudera 1.1.1 生产环境安装实践</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/bigdata/elk/index.html">elk</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>cloudera 1.1.0 简介和安装要求说明</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>24 Sep 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 关于cloudera，CDH和CM</h3>
+
+<p>cloudera是一家hadoop的商业公司，提供hadoop的商业产品CDH(Cloudera Distribution including Apache Hadoop)。同时cloudera也是apache软件基金会的赞助商。</p>
+
+<ul>
+<li>(CDH)[<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cdh_intro.html]:">https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cdh_intro.html]:</a> cloudera根据apache hadoop及其他开源工具组合的一套cloudera的hadoop发行版, 包含以下组件
+
+<ul>
+<li>HIVE</li>
+<li>IMPALA</li>
+<li>KUDU</li>
+<li>SENTRY</li>
+<li>SPARK</li>
+</ul></li>
+<li>(CM - cloudera manager)[<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_intro_primer.html]:">https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_intro_primer.html]:</a> cloudera提供的一个程序，可以从web界面管理CDH集群。</li>
+</ul>
+
+<h3>2. CDH6.X安装要求和支持的版本</h3>
+
+<p>参考文档： (CDH安装要求说明官方文档)[<a href="https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_requirements_supported_versions.html">https://www.cloudera.com/documentation/enterprise/6/release-notes/topics/rg_requirements_supported_versions.html</a>]</p>
+
+<h4>1) 操作系统要求</h4>
+
+<ul>
+<li>软件版本：
+
+<ul>
+<li>python 2.7</li>
+<li>perl</li>
+<li>python-psycopg2 - 如果使用postgresql的话，依赖这个python包</li>
+<li>iproute package， centos7系统的话，版本需要iproute-3.10</li>
+</ul></li>
+<li>系统版本：
+
+<ul>
+<li>centos 7.5, 7.4, 7.3, 7.2</li>
+<li>centos 6.9 , 6.8</li>
+</ul></li>
+<li>HDFS支持的底层文件系统格式：
+
+<ul>
+<li>ext3, HDFS测试最成熟的文件系统格式</li>
+<li>ext4, HDFS不支持ext3升级为ext4，推荐直接将磁盘格式化为ext4后使用</li>
+<li>XFS, centos7的默认存储格式</li>
+<li>S3, 亚马逊的简单存储服务</li>
+</ul></li>
+<li>KUDU支持的底层文件系统格式：
+
+<ul>
+<li>ext4</li>
+<li>XFS</li>
+</ul></li>
+<li>file access time：
+
+<ul>
+<li>编辑/etc/fstab: <code>/dev/sdb1 /data1 ext4 defaults,noatime 0</code>, 增加noatime选项，具体磁盘和挂载点按照实际情况来</li>
+<li>使上面的配置生效: <code>mount -o remount /data1</code>, 挂载点按照实际情况来</li>
+</ul></li>
+<li>文件系统挂载选项： 磁盘挂载到系统时，会有一个sync选项来启用写同步，但是对于HDFS, YARN, Kafka 和 Kudu来说，在CDH中，大部分的写操作已经做到了多副本备份，所以，写同步是没有必要的，降低性能的，可以禁用掉。例如: <code>/dev/sdb1 /data1 ext4 defaults,noatime,nosync 0</code></li>
+<li>nproc配置： CM会自动在/etc/security/limits.conf中配置nproc限制，但是这个配置可能会被/etc/security/limits.d/中的文件覆盖掉，请确保这样的事情不会发生，或者你手动设定nproc来保证上线足够高，例如262144或65536</li>
+</ul>
+
+<h4>2) 数据库要求</h4>
+
+<p>CM和CDH自带了一个内嵌的PostgreSQL数据库，仅用于非生产环境，生产环境下，需要配置使用一个外部使用的数据库。</p>
+
+<p>注意点：
+- 使用UTF8编码，mysql和mariadb必须使用utf8编码，而不是uft8mb4；
+- 如果使用MySQL5.7，需要安装MySQL-shared-compat 或 MySQL-shared package，因为CM的agent安装时依赖这个包。
+- 不支持mysql的基于GTID的replication
+- Hue需要操作系统默认版本的MySQL和MariaDB版本。
+- MySQL社区版和企业版都支持
+- cloudera支持oracle的Exadata和RAC instances当他们作为CDH的后端数据库却没有配置高可用时。 cloudera假定后端的数据库都是单点实例, 不支持数据库的高可用。</p>
+
+<blockquote>
+<p>当重启进程时，各个服务都会在CM连接的数据库中读取配置，如果配置无法读取，大数据集群将不会正确的启动。所以必须要提前做好数据库的备份，这方面内容可以参照(数据库备份)[<a href="https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ag_backup_dbs.html#xd_583c10bfdbd326ba--6eed2fb8-14349d04bee--7e98">https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ag_backup_dbs.html#xd_583c10bfdbd326ba&ndash;6eed2fb8-14349d04bee&ndash;7e98</a>]</p>
+</blockquote>
+
+<p>数据库支持列表：
+- MySQL 5.7
+- MariaDB 5.5, 10.0
+- PostgreSQL 8.4, 9.2, 9.4
+- Oracle 12c</p>
+
+<h4>3) JAVA</h4>
+
+<p>CDH 6.X 仅支持oracle JDK8(不支持openjdk)，以下是详细列表：
+- 1.8u162	Recommended / Latest version tested
+- 1.8u131	Recommended
+- 1.8u121	Recommended
+- 1.8u111	Recommended
+- 1.8u102	Recommended
+- 1.8u91	Recommended
+- 1.8u74	Recommended
+- 1.8u31	Minimum required</p>
+
+<h4>4) 网络和安全要求</h4>
+
+<p><strong>CDH和CM的TLS版本支持表</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Name</th>
+<th>Port</th>
+<th>Version</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Cloudera Manager</td>
+<td>Cloudera Manager Server</td>
+<td></td>
+<td>7182</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Cloudera Manager</td>
+<td>Cloudera Manager Server</td>
+<td></td>
+<td>7183</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Flume</td>
+<td></td>
+<td></td>
+<td>9099</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Flume</td>
+<td></td>
+<td>Avro Source/Sink	</td>
+<td></td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Flume</td>
+<td></td>
+<td>Flume HTTP Source/Sink</td>
+<td></td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>HBase</td>
+<td>Master</td>
+<td>HBase Master Web UI Port</td>
+<td>60010</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>HDFS</td>
+<td>NameNode</td>
+<td>Secure NameNode Web UI Port</td>
+<td>50470</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>HDFS</td>
+<td>Secondary NameNode</td>
+<td>Secure Secondary NameNode Web UI Port</td>
+<td>50495</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>HDFS</td>
+<td>HttpFS</td>
+<td>REST Port</td>
+<td>14000</td>
+<td>TLS 1.1, TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Hive</td>
+<td>HiveServer2</td>
+<td>HiveServer2 Port</td>
+<td>10000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Hue</td>
+<td>Hue Server</td>
+<td>Hue HTTP Port</td>
+<td>8888</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Daemon</td>
+<td>Impala Daemon Beeswax Port</td>
+<td>21000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Daemon</td>
+<td>Impala Daemon HiveServer2 Port</td>
+<td>21050</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Daemon</td>
+<td>Impala Daemon Backend Port</td>
+<td>22000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala StateStore</td>
+<td>StateStore Service Port</td>
+<td>24000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Daemon</td>
+<td>Impala Daemon HTTP Server Port</td>
+<td>25000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala StateStore</td>
+<td>StateStore HTTP Server Port</td>
+<td>25010</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Catalog Server</td>
+<td>Catalog Server HTTP Server Port</td>
+<td>25020</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>Impala Catalog Server</td>
+<td>Catalog Server Service Port</td>
+<td>26000</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Oozie</td>
+<td>Oozie Server</td>
+<td>Oozie HTTPS Port</td>
+<td>11443</td>
+<td>TLS 1.1, TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Solr</td>
+<td>Solr Server</td>
+<td>Solr HTTP Port</td>
+<td>8983</td>
+<td>TLS 1.1, TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Solr</td>
+<td>Solr Server</td>
+<td>Solr HTTPS Port</td>
+<td>8985</td>
+<td>TLS 1.1, TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Spark</td>
+<td>History Server</td>
+<td></td>
+<td>18080</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>YARN</td>
+<td>ResourceManager</td>
+<td>ResourceManager Web Application HTTP Port</td>
+<td>8090</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>YARN</td>
+<td>JobHistory Server</td>
+<td>MRv1 JobHistory Web Application HTTP Port</td>
+<td>19890</td>
+<td>TLS 1.2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>网络和安全要求</strong>
+- 网络协议： 仅支持ipv4，需要禁用ipv6
+- 集群主机的/etc/hosts文件
+    - 所有的主机上都要有一致的/etc/hosts文件
+    - hostname中不包含大写字母
+    - 不包含重复的ip
+- 大多数情况下，在使用CM安装和升级集群时，CM需要拥有对所有主机的SSH权限。一旦集群安装或者升级完毕，需要禁用CM的SSH的访问权限。CM不会保存SSH的认证，当安装和升级过程结束，CM会丢弃所有的SSH认证。
+- CM agent需要用root身份运行，来保证必要目录得以创建以及让特定的用户拥有进程和文件的权限（例如hdfs和mapred）。
+- selinux尽量关闭，或者你有本事别让它阻碍CDH和CM正常运行
+- 防火墙需要关闭，或者放行所有CM CDH和相关服务的(端口)[<a href="https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j">https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j</a>]
+- 对RHEL和CENTOS来说，<code>/etc/sysconfig/network</code>文件必须配置正确的hostname
+- CM和CDH使用多个users和groups来完成它们的工作。具体是哪些用户取决于你安装哪些组件和服务，不要去删除这些用户和组，也不要去修改他们的权限。CM、CDH和被管理的服务使用以下用户和组：</p>
+
+<table>
+<thead>
+<tr>
+<th>Component (Version)</th>
+<th>Unix User ID</th>
+<th>Groups</th>
+<th>Functionality</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Cloudera Manager (all versions)</td>
+<td>cloudera-scm</td>
+<td>cloudera-scm</td>
+<td>Clusters managed by Cloudera Manager run Cloudera Manager Server, monitoring roles, and other Cloudera Server processes as cloudera-scm.<br>Requires keytab file named cmf.keytabbecause name is hard-coded in Cloudera Manager.</td>
+</tr>
+
+<tr>
+<td>Apache Accumulo</td>
+<td>accumulo</td>
+<td>accumulo</td>
+<td>Accumulo processes run as this user.</td>
+</tr>
+
+<tr>
+<td>Apache Flume</td>
+<td>flume</td>
+<td>flume</td>
+<td>The sink that writes to HDFS as user must have write privileges.</td>
+</tr>
+
+<tr>
+<td>Apache HBase</td>
+<td>hbase</td>
+<td>hbase</td>
+<td>The Master and the RegionServer processes run as this user.</td>
+</tr>
+
+<tr>
+<td>HDFS</td>
+<td>hdfs</td>
+<td>hdfs, hadoop</td>
+<td>The NameNode and DataNodes run as this user, and the HDFS root directory as well as the directories used for edit logs should be owned by it.</td>
+</tr>
+
+<tr>
+<td>Apache Hive</td>
+<td>hive</td>
+<td>hive</td>
+<td>The HiveServer2 process and the Hive Metastore processes run as this user.<br>A user must be defined for Hive access to its Metastore DB (for example, MySQL or Postgres) but it can be any identifier and does not correspond to a Unix uid. This is javax.jdo.option.ConnectionUserName in hive-site.xml.</td>
+</tr>
+
+<tr>
+<td>Apache HCatalog</td>
+<td>hive</td>
+<td>hive</td>
+<td>The WebHCat service (for REST access to Hive functionality) runs as the hive user.</td>
+</tr>
+
+<tr>
+<td>HttpFS</td>
+<td>httpfs</td>
+<td>httpfs</td>
+<td>The HttpFS service runs as this user. See HttpFS Security Configuration for instructions on how to generate the merged httpfs-http.keytab file.</td>
+</tr>
+
+<tr>
+<td>Hue</td>
+<td>hue</td>
+<td>hue</td>
+<td>Hue services run as this user.</td>
+</tr>
+
+<tr>
+<td>Hue Load Balancer</td>
+<td>apache</td>
+<td>apache</td>
+<td>The Hue Load balancer has a dependency on the apache2 package that uses the apacheuser name. Cloudera Manager does not run processes using this user ID.</td>
+</tr>
+
+<tr>
+<td>Impala</td>
+<td>impala</td>
+<td>impala, hive</td>
+<td>Impala services run as this user.</td>
+</tr>
+
+<tr>
+<td>Apache Kafka</td>
+<td>kafka</td>
+<td>kafka</td>
+<td>Kafka services run as this user.</td>
+</tr>
+
+<tr>
+<td>Java KeyStore KMS</td>
+<td>kms</td>
+<td>kms</td>
+<td>The Java KeyStore KMS service runs as this user.</td>
+</tr>
+
+<tr>
+<td>Key Trustee KMS</td>
+<td>kms</td>
+<td>kms</td>
+<td>The Key Trustee KMS service runs as this user.</td>
+</tr>
+
+<tr>
+<td>Key Trustee Server</td>
+<td>keytrustee</td>
+<td>keytrustee</td>
+<td>The Key Trustee Server service runs as this user.</td>
+</tr>
+
+<tr>
+<td>Kudu</td>
+<td>kudu</td>
+<td>kudu</td>
+<td>Kudu services run as this user.</td>
+</tr>
+
+<tr>
+<td>MapReduce</td>
+<td>mapred</td>
+<td>mapred, hadoop</td>
+<td>Without Kerberos, the JobTracker and tasks run as this user. The LinuxTaskController binary is owned by this user for Kerberos.</td>
+</tr>
+
+<tr>
+<td>Apache Oozie</td>
+<td>oozie</td>
+<td>oozie</td>
+<td>The Oozie service runs as this user.</td>
+</tr>
+
+<tr>
+<td>Parquet</td>
+<td>~</td>
+<td>~</td>
+<td>No special users.</td>
+</tr>
+
+<tr>
+<td>Apache Pig</td>
+<td>~</td>
+<td>~</td>
+<td>No special users.</td>
+</tr>
+
+<tr>
+<td>Cloudera Search</td>
+<td>solr</td>
+<td>solr</td>
+<td>The Solr processes run as this user.</td>
+</tr>
+
+<tr>
+<td>Apache Spark</td>
+<td>spark</td>
+<td>spark</td>
+<td>The Spark History Server process runs as this user.</td>
+</tr>
+
+<tr>
+<td>Apache Sentry</td>
+<td>sentry</td>
+<td>sentry</td>
+<td>The Sentry service runs as this user.</td>
+</tr>
+
+<tr>
+<td>Apache Sqoop</td>
+<td>sqoop</td>
+<td>sqoop</td>
+<td>This user is only for the Sqoop1 Metastore, a configuration option that is not recommended.</td>
+</tr>
+
+<tr>
+<td>YARN</td>
+<td>yarn</td>
+<td>yarn, hadoop</td>
+<td>Without Kerberos, all YARN services and applications run as this user. The LinuxContainerExecutor binary is owned by this user for Kerberos.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>3. 裸机安装指南</h3>
+
+<p>(Cloudera Enterprise Reference Architecture for Bare Metal Deployments (PDF))[<a href="http://www.cloudera.com/documentation/other/reference-architecture/PDF/cloudera_ref_arch_metal.pdf">http://www.cloudera.com/documentation/other/reference-architecture/PDF/cloudera_ref_arch_metal.pdf</a>]</p>
+
+<h4>1) java</h4>
+
+<p>CM和CDH使用oracle jdk，不支持openjdk。</p>
+
+<h4>2) 适当大小的服务器配置</h4>
+
+<p>cloudera推荐在生产环境中部署三到四种机器类型：
+- Master Node, 运行Hadoop master daemon: NameNode, Standby NameNode, YARN Resource Manager and History Server, the HBase Master daemon, Sentry server, and the Impala StateStore Server and Catalog Server。 同时也是Zookeeper和JournalNodes的安装位置。kudu master servers也会部署在Master Node上。
+- Worker Node, Runs the HDFS DataNode, YARN NodeManager, HBase RegionServer, Impala impalad, Search worker daemons and Kudu Tablet Servers.
+- Utility Node, Runs Cloudera Manager and the Cloudera Management Services. 也可以部署一个MySQL（或其他）数据库，用于Cloudera Manager, Hive, Sentry 和其他 Hadoop-related projects.
+- Edge Node, Contains all client-facing configurations and services, including gateway configurations for HDFS, YARN, Impala, Hive, and HBase. The edge node is also a good place for Hue, Oozie, HiveServer2, and Impala HAProxy. HiveServer2 and Impala HAProxy serve as a gateway to external applications such as Business Intelligence (BI) tools.</p>
+
+<h3>4. 扩展阅读</h3>
+
+<p><a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/installation_reqts.html#pre-install">before you install</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+              <ul>
+                <li>
+                  <a href="/web/css/index.html">css</a>
+                </li>
+                <li>
+                  <a href="/web/jquery/index.html">jquery</a>
+                </li>
+                <li>
+                  <a href="/web/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/web/node.js/index.html">node.js</a>
+                  <ul>
+                    <li><a href="/web/node.js/log_1.0_env.html">weblog: 1.0 env</a></li>
+                    <li><a href="/web/node.js/log_2.0_server.html">weblog: 2.0 server</a></li>
+                    <li><a href="/web/node.js/log_3.0_client.html">weblog: 3.0 client</a></li>
+                    <li><a href="/web/node.js/log_4.0_log_agent.html">weblog: 4.0 log_agent</a></li>
+                    <li><a href="/web/node.js/node.js_1.0_intro.html">node.js: 1.0 introduction</a></li>
+                    <li><a href="/web/node.js/node.js_2.0_package.json.html">node.js: 2.0 package.json</a></li>
+                    <li><a href="/web/node.js/node.js_3.0_nvm.html">node.js: 3.0 nvm简介</a></li>
+                    <li><a href="/web/node.js/node.js_4.0_install_error.html">node.js: 4.0 npm install error</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/web/vue.js/index.html">vue.js</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>node.js: 1.0 introduction</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>07 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 什么是node.js？</h3>
+
+<p>node.js是一个服务器端的javascript代码解释器。它使用Google的V8引擎。</p>
+
+<p>特性：
+- node.js与其他编程语言的一个很大不同是，它并不是面向对象的，而是面向事件的。举例说明，一个连接的创建算是一个事件，一个数据传输算是一个事件&hellip;
+- 传统服务器语言PHP,JAVA等处理web请求经典的做法是为该连接创建一个进程或者线程去，这就意味着服务器的tcp并发成为一个瓶颈，而node.js宣称，基于事件与异步的编程方式，使得node.js轻松的可以达到上万并发。</p>
+
+<hr />
+
+<h3>2. 什么是V8引擎？</h3>
+
+<p>V8 JavaScript 引擎是 Google 用于其 Chrome 浏览器的底层 JavaScript 引擎。是Google使用C++编写，速度很快。它有一个特性是，我们可以将V8引擎嵌入到任何应用程序中，node.js就是将V8重建在服务器端来使用。</p>
+
+<hr />
+
+<h3>3. 精品文章</h3>
+
+<p><a href="https://www.ibm.com/developerworks/cn/opensource/os-nodejs/">ibm node.js introduction</a><br />
+<a href="http://www.infoq.com/cn/articles/what-is-nodejs">infoq node.js introduction</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

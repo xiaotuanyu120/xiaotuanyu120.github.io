@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                  <ul>
+                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">jdk: 1.0.0 jdk简介</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JVM查看默认参数</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.0_1.6_installation.html">jdk: 1.1.0 jre1.6安装</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.1_1.8_installation.html">jdk: 1.1.1 jdk1.8安装</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">jdk: 2.1.0 命令行编译java项目</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">jdk: 2.1.1 javac error IllegalArgumentException</a></li>
+                    <li><a href="/java/jvm/jvm_1.0.0_runtime_data_area.html">JVM: 1.0.0 运行时数据区域概念</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.0_optimize_params.html">JVM: 2.0.0 内存区域调优参数</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</a></li>
+                    <li><a href="/java/jvm/jvm_2.1.0_optimize_example.html">JVM: 2.1.0 调优实践</a></li>
+                    <li><a href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">JVM: 3.0.0 jvm状态查看命令(JDK自带)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Sep 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 问题背景</h3>
+
+<p>有一个java程序使用了oracle driver连接oracle数据库，结果在tomcat启动的时候，有如下报错信息</p>
+<pre class="chroma">2019-09-03 11:16:52,474 [Druid-ConnectionPool-Create-2015198630] ERROR [com.alibaba.druid.pool.DruidDataSource] - create connection error
+java.sql.SQLException: Locale not recognized
+        at oracle.jdbc.driver.T4CTTIoauthenticate.setSessionFields(T4CTTIoauthenticate.java:1006)
+        at oracle.jdbc.driver.T4CTTIoauthenticate.&lt;init&gt;(T4CTTIoauthenticate.java:238)
+        at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:401)
+        at oracle.jdbc.driver.PhysicalConnection.&lt;init&gt;(PhysicalConnection.java:553)
+        at oracle.jdbc.driver.T4CConnection.&lt;init&gt;(T4CConnection.java:254)
+        at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:32)
+        at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:528)
+        at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1375)
+        at com.alibaba.druid.pool.DruidAbstractDataSource.createPhysicalConnection(DruidAbstractDataSource.java:1431)
+        at com.alibaba.druid.pool.DruidDataSource$CreateConnectionThread.run(DruidDataSource.java:1844)
+</pre>
+<h3>1. 问题原因</h3>
+
+<p>通过搜索报错，在stackoverflow上发现这样一个<a href="https://stackoverflow.com/questions/9685052/an-getting-this-error-when-i-run-my-project-java-sql-sqlexception-locale-not-r">回答</a>，于是检查了tomcat配置，配置如下</p>
+<pre class="chroma">JAVA_OPTS=&#34;$JAVA_OPTS -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 -Dfile.encoding=UTF-8 -Duser.language=zh_CN -Dsun.jnu.encoding=UTF-8&#34;
+</pre>
+<p>重点是<code>-Duser.language=zh_CN</code>，原来JVM里面是有两个system property来一起表示<code>zh_CN</code>，一个是<code>user.language</code>，一个是<code>user.country</code>。这里应该配置成<code>-Duser.language=zh -Duser.country=CN</code>。
+&gt; 这里有几点需要说明：
+- 之所以有加这个参数，是因为线上有这个标准。而之所以这个标准以前存在了很久没有报错，<strong>&lt;个人猜测&gt;</strong>是因为mysql里面没有依赖JVM的Locale这个system property<strong>&lt;个人猜测&gt;</strong>。
+- 其实如果没有手动增加<code>user.language</code>和<code>user.country</code>这两个system property，JVM会使用默认的<code>en</code>和<code>US</code>，也不会报错，这边是画蛇添足了。</p>
+
+<p>参考资料：
+- <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">oracle对jdk7中的Locale官方文档</a>
+- <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">iana对语言的缩写描述文档 - 关于zh和其他语言缩写标准</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

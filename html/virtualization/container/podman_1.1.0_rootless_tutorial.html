@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>podman: 1.1.0 rootless</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>30 Jan 2021</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. <a href="/linux/advance/kernel_1.1.4_cgroup.html">启用cgroup v2</a></h3>
+
+<h3>2. 系统环境准备</h3>
+<pre class="chroma"><span class="c1"># 保持selinux为enforcing状态</span>
+
+<span class="c1"># 创建用户</span>
+useradd -d /data/container container
+
+<span class="c1"># USER NAMESPACE最大数优化</span>
+<span class="nb">echo</span> <span class="s2">&#34;user.max_user_namespaces=28633&#34;</span> &gt; /etc/sysctl.d/userns.conf
+sysctl -p /etc/sysctl.d/userns.conf
+
+<span class="c1"># check uid and gid map setting of user namespace</span>
+cat /etc/subuid
+cat /etc/subgid
+<span class="c1"># 正常应该是有username uid mapuidstart maprange</span>
+</pre>
+<h3>3. 安装podman</h3>
+<pre class="chroma"><span class="c1"># install podman</span>
+dnf -y install podman buildah crun fuse3
+</pre>
+<blockquote>
+<p>安装fuse3后，记得<a href="/linux/advance/kernel_1.1.5_enable_module.html">启用此内核模块</a></p>
+</blockquote>
+
+<h3>4. ROOTLESS 配置文件</h3>
+
+<ul>
+<li>image storage: $HOME/.local/share/containers/storage</li>
+<li>rootless配置文件：
+
+<ul>
+<li>$HOME/.config/containers/containers.conf</li>
+<li>$HOME/.config/containers/storage.conf</li>
+<li>$HOME/.config/containers/registries.conf</li>
+</ul></li>
+</ul>
+<pre class="chroma"><span class="c1"># ROOTLESS CONFIGURE</span>
+mkdir -p /data/container/.config/containers
+cp /usr/share/containers/containers.conf /data/container/.config/containers/containers.conf
+chown -R container.container /data/container/.config/containers
+<span class="c1"># 修改ociruntime为crun来支持cgroup v2：&#34;runtime = &#34;crun&#34;</span>
+<span class="c1"># 确保cgroup用的是systemd</span>
+</pre>
+<h3>4. 运行rootless容器</h3>
+<pre class="chroma"><span class="c1"># 有些镜像，类似于redis，会使用非root用户运行，那么根据uid map的规则，我们需要修改宿主机映射文件的属主属组</span>
+podman unshare chown -R containeruid.containergid /path/to/dir/on/host/needed/mounted
+
+podman run -it -d -p 80:80 -v /data/www/html:/var/www/html:Z nginx:latest
+</pre>
+<blockquote>
+<p><code>:Z</code>，含义是让selinux挂载本地目录的时候，重新lable一下，使其符合container环境的读写权限
+<a href="https://www.redhat.com/sysadmin/user-namespaces-selinux-rootless-containers">user namespaces &amp; selinux &amp; rootless container</a>
+<a href="https://www.redhat.com/sysadmin/behind-scenes-podman">What happens behind the scenes of a rootless Podman container?</a></p>
+
+<p><a href="https://github.com/containers/podman/issues/7768">Error: writing file <code>/sys/fs/cgroup/user.slice/user-1001.slice/user@1001.service/cgroup.subtree_control</code>: No such file or directory: OCI runtime command not found error</a></p>
+<pre class="chroma">echo &#34;+pids +memory&#34; &gt;/sys/fs/cgroup/user.slice/cgroup.subtree_control
+echo &#34;+pids +memory&#34; &gt;/sys/fs/cgroup/user.slice/user-1001.slice/cgroup.subtree_control
+</pre></blockquote>
+
+<h3>5. 检查rootless状态</h3>
+<pre class="chroma">podman unshare cat /proc/self/uid_map
+</pre>
+<h3>6. rootless podman will not write iptables rules</h3>
+
+<p>rootless podman运行的容器，不会写iptables规则，这就是如此设计的，它会启动一个进程专门来监听容器map的port</p>
+<pre class="chroma"><span class="c1"># 运行rootless podman nginx</span>
+podman run -it -d --rm --name nginx -p 80:80 nginx:latest
+
+<span class="c1"># 查看map的端口</span>
+podman port --all
+02ede4d6178f    80/tcp -&gt; 0.0.0.0:80
+
+<span class="c1"># 检查监听域名进程pid</span>
+netstat -lnpt
+......
+tcp6      <span class="m">0</span>      <span class="m">0</span> :::80       :::*        LISTEN 2520/containers-roo
+
+<span class="c1"># 查看pid</span>
+ps aux <span class="p">|</span>grep <span class="m">2520</span> <span class="p">|</span>grep -v grep 
+contain+    <span class="m">2520</span>  0.0  0.4 <span class="m">1975428</span> <span class="m">62760</span> ?       Sl    11:32   0:00 containers-rootlessport
+</pre>
+<blockquote>
+<ul>
+<li><a href="https://www.linode.com/community/questions/20801/rootless-container-in-podman-and-creating-a-private-container-registry-with-lino">question: how to let rootless podman write iptables rule; answer: no</a></li>
+<li><a href="https://github.com/containers/podman/issues/5141#issuecomment-584120613">podman issue 5141: its expected</a></li>
+<li><a href="https://github.com/containers/podman/issues/3981#issuecomment-529950830">podman issue 3981: rootless docker also dont write iptables rules</a></li>
+</ul>
+</blockquote>
+
+<h3>7. podman and systemd</h3>
+
+<p>podman虽然可以通过<code>podman generate systemd</code>来创建unit文件，但是这样创建出来的unit文件并不通用，它必须要求容器实现已经创建。</p>
+
+<h4>systemd unit file 模板</h4>
+
+<p>而很多人的要求可能是想要一个更加灵活和通用的systemd unit file。所以redhat的大神提供了一个下面的模板</p>
+<pre class="chroma">[Unit]
+Description=Podman in Systemd
+
+[Service]
+Restart=on-failure
+ExecStartPre=/usr/bin/rm -f /%t/%n-pid /%t/%n-cid
+ExecStart=/usr/bin/podman run --conmon-pidfile  /%t/%n-pid  --cidfile /%t/%n-cid -d busybox:latest top
+ExecStop=/usr/bin/sh -c &#34;/usr/bin/podman rm -f `cat /%t/%n-cid`&#34;
+KillMode=none
+Type=forking
+PIDFile=/%t/%n-pid
+
+[Install]
+WantedBy=multi-user.target
+</pre>
+<p>其中重点在于四个点
+- <code>%t</code>，容器runtime的根目录<code>/run/user/$UserID</code>
+- <code>%n</code>，service的名称（就是systemd unit file的文件名称）
+- <code>--conmon-pidfile</code>，conmon进程的pid保存文件
+- <code>--cidfile</code>，container的id保存文件
+通过以上四个点，我们基本上就可以确定了这个容器的systemd unit file的信息，来保证了用固定一个模板，来在不同服务器上管理容器的灵活性
+&gt; <a href="https://www.redhat.com/sysadmin/podman-shareable-systemd-services">redhat - byValentin Rothberg: Running containers with Podman and shareable systemd services</a></p>
+
+<h4>通过systemd管理rootless容器</h4>
+<pre class="chroma">systemctl --user daemon-reload
+systemctl --user start foo
+systemctl --user restart foo
+
+<span class="c1"># 开机启动</span>
+systemctl --user <span class="nb">enable</span> foo
+Created symlink /home/container/.config/systemd/user/multi-user.target.wants/foo.service → /home/container/.config/systemd/user/foo.service.
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

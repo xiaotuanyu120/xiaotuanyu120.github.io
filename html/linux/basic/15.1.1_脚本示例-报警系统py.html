@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_网络配置.html">2.1.0: 网络配置</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_YUM源配置.html">2.2.0: yum本地源配置</a></li>
+                    <li><a href="/linux/basic/02.2.1_yum-epel源.html">2.2.1: yum epel源</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/04.1.0_基础命令-目录_文档.html">4.1.0: 基础命令-目录/文档</a></li>
+                    <li><a href="/linux/basic/04.2.0_基础命令-文档属性_权限.html">4.2.0: 基础命令-文档属性/权限</a></li>
+                    <li><a href="/linux/basic/04.3.0_基础命令-shell相关.html">4.3.0: 基础命令-shell相关</a></li>
+                    <li><a href="/linux/basic/05.1.0_基础命令-特殊权限.html">5.1.0: 基础命令-特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_特殊权限-sbit实践研究.html">5.1.1: 特殊权限-sbit实践研究</a></li>
+                    <li><a href="/linux/basic/05.2.0_基础命令-文件查找_类型查看.html">5.2.0: 基础命令-文件查找/类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command_find_argName_error.html">5.2.1: 基础命令-find -name报错</a></li>
+                    <li><a href="/linux/basic/05.3.0_基础命令-软硬连接.html">5.3.0: 基础命令-软硬连接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
+                    <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_脚本基础-变量及计算.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_脚本基础-随机数生成.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/14.1.0_流程控制-条件判断.html">14.1.0: 流程控制-条件判断</a></li>
+                    <li><a href="/linux/basic/14.2.0_流程控制-function.html">14.2.0: 流程控制-function</a></li>
+                    <li><a href="/linux/basic/14.4.0_流程控制-练习题.html">14.4.0: 流程控制-练习题</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_网络抓包-抓包工具.html">18.1.0: 网络抓包-抓包工具</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/22.2.0_访问控制-htpasswd.html">22.2.0: 访问控制-htpasswd</a></li>
+                    <li><a href="/linux/basic/22.3.0_访问控制-rewrite.html">22.3.0: 访问控制-rewrite</a></li>
+                    <li><a href="/linux/basic/22.4.0_访问控制-SetEnvIf.html">22.4.0: 访问控制-SetEnvIf</a></li>
+                    <li><a href="/linux/basic/22.5.0_访问控制-防盗链.html">22.5.0: 访问控制-防盗链</a></li>
+                    <li><a href="/linux/basic/22.5.1_访问控制-防盗链无效.html">22.5.1: 访问控制-防盗链无效</a></li>
+                    <li><a href="/linux/basic/22.6.0_访问控制-目录文件限制.html">22.6.0: 访问控制-目录文件限制</a></li>
+                    <li><a href="/linux/basic/22.8.0_web实例-discuz论坛.html">22.8.0: web实例-discuz论坛</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP-cmake安装.html">25.1.0: LNMP-cmake安装</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>15.1.0: 脚本示例-报警系统py</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Dec 2014</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>分析规划</h3>
+
+<ul>
+<li>需求：
+
+<ul>
+<li>使用shell定制各种个性化告警工具，但需要统一化管理、规范化管理。</li>
+</ul></li>
+<li>思路：
+
+<ul>
+<li>指定一个脚本包，包含主程序、子程序、配置文件、邮件引擎、输出日志等。</li>
+</ul></li>
+<li>主程序：
+
+<ul>
+<li>作为整个脚本的入口，是整个系统的命脉。</li>
+</ul></li>
+<li>配置文件：
+
+<ul>
+<li>是一个控制中心，用它来开关各个子程序，指定各个相关联的日志文件。</li>
+</ul></li>
+<li>子程序：
+
+<ul>
+<li>这个才是真正的监控脚本，用来监控各个指标。</li>
+</ul></li>
+<li>邮件引擎：
+
+<ul>
+<li>是由一个php程序来实现，它可以定义发邮件的服务器、发邮件人以及收邮件人。</li>
+</ul></li>
+<li>输出日志：
+
+<ul>
+<li>整个监控系统要有日志输出。</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>PS：<br />
+我们的机器角色多种多样，但是所有机器上都要部署同样的监控系统，也就说所有机器不管什么角色，整个程序框架都是一致的，不同的地方在于根据不同的角色，定制不同的配置文件。</p>
+</blockquote>
+
+<h3>程序架构</h3>
+<pre class="chroma">tree mon
+mon
+├── bin
+│   └── main.sh
+├── conf
+│   └── mon.conf
+├── log
+│   ├── err.log
+│   └── mon.log
+├── mail
+│   ├── mail.php
+│   └── mail.sh
+└── shares
+    ├── 502.sh
+    └── load.sh
+
+<span class="c1"># 架构介绍</span>
+<span class="c1"># - bin下是主程序</span>
+<span class="c1"># - conf下是配置文件</span>
+<span class="c1"># - shares下是各个监控脚本</span>
+<span class="c1"># - mail下是邮件引擎</span>
+<span class="c1"># - log下是日志</span>
+</pre>
+<h3>主程序：main.sh</h3>
+<pre class="chroma"><span class="c1">## main.sh：脚本入口</span>
+<span class="c1">#!/bin/bash</span>
+<span class="c1">#Written by aming.</span>
+
+<span class="nb">export</span> <span class="nv">send</span><span class="o">=</span><span class="m">1</span>       
+<span class="c1">## 声明全局变量send，值为1，用来控制是否发送邮件</span>
+
+<span class="nb">export</span> <span class="nv">addr</span><span class="o">=</span><span class="sb">`</span>/sbin/ifconfig<span class="p">|</span>grep -A1 <span class="s1">&#39;eth0&#39;</span><span class="p">|</span>grep addr:<span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="p">|</span>awk -F: <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+<span class="c1">## 声明全局变量addr，值为IP地址</span>
+
+<span class="nv">dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="c1">## 为dir变量赋值为当前所在路径</span>
+
+<span class="nv">last_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$dir</span><span class="p">|</span>awk -F<span class="s1">&#39;/&#39;</span> <span class="s1">&#39;{print $NF}&#39;</span><span class="sb">`</span>
+<span class="c1">## 为last_dir变量赋值为当前所在路径的最后一段目录</span>
+<span class="c1">## 其实可以basename `pwd`来获取</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$last_dir</span> <span class="o">=</span><span class="o">=</span> <span class="s2">&#34;bin&#34;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="nv">$last_dir</span> <span class="o">=</span><span class="o">=</span> <span class="s2">&#34;bin/&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nv">conf_file</span><span class="o">=</span><span class="s2">&#34;../conf/mon.conf&#34;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;you shoud cd bin dir&#34;</span>
+    <span class="nb">exit</span>
+<span class="k">fi</span>
+<span class="c1">## 如果在bin目录里，指定它的配置文件mon.conf路径</span>
+
+<span class="nb">exec</span> 1&gt;&gt;../log/mon.log 2&gt;&gt;../log/err.log
+<span class="c1">## 指定此脚本输出日志文件路径</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;`date +&#34;</span>%F %T<span class="s2">&#34;` load average&#34;</span>
+/bin/bash ../shares/load.sh
+<span class="c1">## 启动负载监控脚本，查看负载</span>
+
+<span class="k">if</span> grep -q <span class="s1">&#39;to_mon_502=1&#39;</span> <span class="nv">$conf_file</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">export</span> <span class="nv">log</span><span class="o">=</span><span class="sb">`</span>grep <span class="s1">&#39;logfile=&#39;</span> <span class="nv">$conf_file</span> <span class="p">|</span>awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span>sed <span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
+    /bin/bash  ../shares/502.sh
+<span class="k">fi</span>
+<span class="c1">## 如果配置文件mon.conf中存在&#34;to_mon_502=1&#34;字符串（代表502监控启动）</span>
+<span class="c1">## 将log变量赋值，并声明为全局变量；此变量502脚本需要</span>
+</pre>
+<blockquote>
+<p>解释说明
+此文件是整个监控的入口，主要起到了如下作用：
+- 指定配置文件路径、日志文件路径；
+- 检查配置文件，查看相应监控脚本是否启动（例如load是肯定监控，502可选择是否监控）；
+- 根据配置文件，启动相应监控脚本；
+- 定义了相关全局变量，以供子脚本使用。</p>
+</blockquote>
+
+<h3>配置文件：mon.conf</h3>
+<pre class="chroma"><span class="c1">## mon.conf：脚本配置文件，定义该子脚本是否被执行</span>
+<span class="c1">## to config the options if to monitor</span>
+<span class="c1">## cdb</span>
+<span class="nv">to_mon_cdb</span><span class="o">=</span><span class="m">0</span>   
+<span class="c1">## 0 or 1, default 0,0 not monitor, 1 monitor</span>
+<span class="nv">cdb_ip</span><span class="o">=</span>10.20.3.13
+<span class="nv">cdb_port</span><span class="o">=</span><span class="m">3315</span>
+<span class="nv">cdb_user</span><span class="o">=</span>username
+<span class="nv">cdb_pass</span><span class="o">=</span>passwd
+
+<span class="c1">## httpd</span>
+<span class="nv">to_mon_httpd</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1">## php</span>
+<span class="nv">to_mon_php_socket</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1">## http_code_502，502错误（一般是服务器php出了问题）</span>
+<span class="nv">to_mon_502</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">logfile</span><span class="o">=</span>/data/log/xxx.xxx.com/access.log
+
+<span class="c1">## request_count</span>
+<span class="nv">to_mon_request_count</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">req_log</span><span class="o">=</span>/data/log/www.discuz.net/access.log
+<span class="nv">domainname</span><span class="o">=</span>www.discuz.net
+
+<span class="c1">## analyse access log avoid wget or curl</span>
+<span class="nv">to_mon_log</span><span class="o">=</span><span class="m">0</span>
+</pre>
+<blockquote>
+<p>解释说明
+- 配置文件定义相关监控脚本是否需要被执行
+- 此处我们只需要关注502错误，此配置文件的生效方式，是我们在其他脚本中用grep查询配置文件相应字段的值，只是我们自定义的一种方式，系统级和软件级应用并不是用这么简单的方式，在这里我们不深究</p>
+</blockquote>
+
+<h3>监控脚本：load.sh</h3>
+<pre class="chroma"><span class="c1">## load.sh：关于服务器负载情况的监控脚本</span>
+<span class="c1">#! /bin/bash</span>
+<span class="c1">##Writen by aming##</span>
+
+<span class="nv">load</span><span class="o">=</span><span class="sb">`</span>uptime <span class="p">|</span>awk -F <span class="s1">&#39;average:&#39;</span> <span class="s1">&#39;{print $2}&#39;</span><span class="p">|</span>cut -d<span class="s1">&#39;,&#39;</span> -f1<span class="p">|</span>sed <span class="s1">&#39;s/ //g&#39;</span> <span class="p">|</span>cut -d. -f1<span class="sb">`</span>
+<span class="c1">## 给load赋值为系统1分钟以内的平均负载（uptime命令最后面跟有负载信息）</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$load</span> -gt <span class="m">20</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$send</span> -eq <span class="s2">&#34;1&#34;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$addr</span><span class="s2"> `date +%T` load is </span><span class="nv">$load</span><span class="s2">&#34;</span> &gt;../log/load.tmp
+    <span class="c1">## 将ip、时间、负载过载警告写入一个临时文件，以待发送告警</span>
+    /bin/bash ../mail/mail.sh <span class="nv">$addr</span><span class="se">\_</span>load <span class="nv">$load</span> ../log/load.tmp
+    <span class="c1">## mail.sh中的$1、$2和$3在这里</span>
+<span class="k">fi</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">`date +%T` load is </span><span class="nv">$load</span><span class="s2">&#34;</span>
+
+<span class="c1">## 如果1分钟内的负载高了，调用mail.sh（调用mail.sh并不一定是发送邮件）</span>
+<span class="c1">## 如果send变量为1（初始赋值为1）并且load（系统1分钟内平均负载）大于20</span>
+</pre>
+<h3>监控脚本：502.sh</h3>
+<pre class="chroma"><span class="c1">## 502.sh：502错误的监控脚本</span>
+<span class="c1">#! /bin/bash</span>
+<span class="nv">d</span><span class="o">=</span><span class="sb">`</span>date -d <span class="s2">&#34;-1 min&#34;</span> +%H:%M<span class="sb">`</span>      
+<span class="c1">## 取1分钟以前的时间</span>
+<span class="nv">c_502</span><span class="o">=</span><span class="sb">`</span>grep :<span class="nv">$d</span>:  <span class="nv">$log</span>  <span class="p">|</span>grep <span class="s1">&#39; 502 &#39;</span><span class="p">|</span>wc -l<span class="sb">`</span>
+<span class="c1">## log变量中1分钟以前含502关键字的行数</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$c_502</span> -gt <span class="m">10</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nv">$send</span> <span class="o">=</span><span class="o">=</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+     <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$addr</span><span class="s2"> </span><span class="nv">$d</span><span class="s2"> 502 count is </span><span class="nv">$c_502</span><span class="s2">&#34;</span>&gt;../log/502.tmp
+    <span class="c1">## 将ip、时间、502错误警告写入一个临时文件，以待发送告警</span>
+     /bin/bash ../mail/mail.sh <span class="nv">$addr</span><span class="se">\_</span><span class="m">502</span> <span class="nv">$c_502</span>  ../log/502.tmp
+    <span class="c1">## mail.sh中的$1、$2和$3在这里</span>
+<span class="k">fi</span>
+<span class="c1">## 如果行数大于10并且send为1</span>
+<span class="c1">## 调用mail.sh脚本（并不代表发送邮件）</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">`date +%T` 502 </span><span class="nv">$c_502</span><span class="s2">&#34;</span>
+</pre>
+<blockquote>
+<p>解释说明：
+如果1分钟以内502错误的出现次数大于10，则调用mail.sh</p>
+</blockquote>
+
+<h3>邮件发送脚本：mail.sh</h3>
+<pre class="chroma"><span class="c1">## mail.sh：邮件发送脚本（判断是否符合发送告警邮件的标准）</span>
+<span class="c1">#!/bin/bash</span>
+
+<span class="c1">## 输入第一个变量赋值给log，load和502脚本都是本机IP地址</span>
+<span class="nv">log</span><span class="o">=</span><span class="nv">$1</span>  
+
+<span class="c1">## 之所以赋值两小时以前的时间戳，是希望在第一次运行此脚本时，$v大于3600秒，确保邮件发送成功</span>
+<span class="nv">t_s</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
+<span class="nv">t_s2</span><span class="o">=</span><span class="sb">`</span>date -d <span class="s2">&#34;2 hours ago&#34;</span> +%s<span class="sb">`</span>
+
+
+<span class="c1">## $1(主机IP)为名称的文件在tmp下是否存在，不存在意味着此脚本第一次运行，创建该文件，并输入内容为两小时以前的时间戳（此举是为了让脚本在第一次运行时发送邮件，只要大于3600秒就可以）</span>
+<span class="k">if</span> <span class="o">[</span> ! -f /tmp/<span class="nv">$log</span> <span class="o">]</span>     
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="nv">$t_s2</span> &gt; /tmp/<span class="nv">$log</span>      
+<span class="k">fi</span>
+
+<span class="c1">## 给t_s2重新赋值为该文件里的最新的时间戳</span>
+<span class="nv">t_s2</span><span class="o">=</span><span class="sb">`</span>tail -1 /tmp/<span class="nv">$log</span><span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span><span class="sb">`</span>
+
+<span class="c1">## 然后把当前时间戳追加到该文件</span>
+<span class="nb">echo</span> <span class="nv">$t_s</span>&gt;&gt;/tmp/<span class="nv">$log</span>
+
+<span class="nv">v</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$t_s</span>-<span class="nv">$t_s2</span><span class="o">]</span>
+
+
+<span class="c1">## 若两次调用mail脚本的时间差大于3600秒即1小时，则发送告警邮件</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$v</span> -gt <span class="m">3600</span> <span class="o">]</span>     
+<span class="k">then</span>    
+    /usr/bin/php ../mail/mail.php <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2"> </span><span class="nv">$2</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$3</span><span class="s2"> </span><span class="s2">&#34;</span>
+    <span class="nb">echo</span> <span class="s2">&#34;0&#34;</span> &gt; /tmp/<span class="nv">$log</span>.txt           
+<span class="k">else</span>    
+    <span class="c1">## 若两次调用mail脚本的时间差小于一小时，则检查log.txt是否存在</span>
+    <span class="c1">## 不存在的话说明是一小时以内第一次告警，创建文件并记录数字0</span>
+    <span class="k">if</span> <span class="o">[</span> ! -f /tmp/<span class="nv">$log</span>.txt <span class="o">]</span>     
+    <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&#34;0&#34;</span> &gt; /tmp/<span class="nv">$log</span>.txt      
+    <span class="k">fi</span>
+    <span class="c1">## 若计数器文件存在，即给log.txt里的数字加1。</span>
+    <span class="nv">nu</span><span class="o">=</span><span class="sb">`</span>cat /tmp/<span class="nv">$log</span>.txt<span class="sb">`</span>
+    <span class="nv">nu2</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$nu</span>+1<span class="o">]</span>               
+    <span class="nb">echo</span> <span class="nv">$nu2</span>&gt;/tmp/<span class="nv">$log</span>.txt  
+    <span class="c1">## 检查计数器文件中的数字是否大于10</span>
+    <span class="c1">## 若数字大于10，意味着调用了十次mail脚本，需要再次告警</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$nu2</span> -gt <span class="m">10</span> <span class="o">]</span>          
+    <span class="k">then</span>    
+        /usr/bin/php ../mail/mail.php <span class="s2">&#34;</span><span class="s2">trouble continue 10 min </span><span class="nv">$1</span><span class="s2">  </span><span class="nv">$2</span><span class="s2"> </span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$3</span><span class="s2">&#34;</span>
+        <span class="nb">echo</span> <span class="s2">&#34;0&#34;</span> &gt; /tmp/<span class="nv">$log</span>.txt
+    <span class="k">fi</span>    
+<span class="k">fi</span>
+</pre>
+<blockquote>
+<p>解释说明
+发送邮件的两个条件：
+- 距离上一次调用mail脚本已经间隔了1小时以上；
+- 1小时以内已经调用了mail脚本累计10次以上；</p>
+</blockquote>
+
+<h3>邮件引擎：mail.php</h3>
+<pre class="chroma"><span class="c1">## mail.php：邮件php引擎，不必掌握</span>
+<span class="c1">#!/usr/bin/python</span>
+
+import smtplib
+import sys
+
+<span class="nv">HOST</span> <span class="o">=</span> <span class="s2">&#34;smtp.gmail.com&#34;</span>
+<span class="nv">SUBJECT</span> <span class="o">=</span> sys.argv<span class="o">[</span>1<span class="o">]</span>
+<span class="nv">TO</span> <span class="o">=</span> <span class="s2">&#34;someone@gmail.com&#34;</span>
+<span class="nv">FROM</span> <span class="o">=</span> <span class="s2">&#34;someone@gmail.com&#34;</span>
+
+try:
+    <span class="nv">TEXT</span> <span class="o">=</span> sys.argv<span class="o">[</span>2<span class="o">]</span>
+except IndexError as e:
+    <span class="nv">TEXT</span> <span class="o">=</span> e
+
+<span class="nv">BODY</span> <span class="o">=</span> <span class="s1">&#39;\r\n&#39;</span>.join<span class="o">(</span><span class="o">(</span>
+        <span class="s2">&#34;From: %s&#34;</span> % FROM,
+        <span class="s2">&#34;To: %s&#34;</span> % TO,
+        <span class="s2">&#34;Subject: %s&#34;</span> % SUBJECT,
+        <span class="s2">&#34;&#34;</span>,
+        TEXT,
+<span class="o">)</span><span class="o">)</span>
+
+<span class="nv">smtp</span> <span class="o">=</span> smtplib.SMTP<span class="o">(</span><span class="o">)</span>
+smtp.connect<span class="o">(</span>HOST, <span class="s2">&#34;25&#34;</span><span class="o">)</span>
+smtp.starttls<span class="o">(</span><span class="o">)</span>
+smtp.login<span class="o">(</span>FROM, <span class="s2">&#34;bendan.521&#34;</span><span class="o">)</span>
+smtp.sendmail<span class="o">(</span>FROM, <span class="o">[</span>TO<span class="o">]</span>, BODY<span class="o">)</span>
+smtp.quit<span class="o">(</span><span class="o">)</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

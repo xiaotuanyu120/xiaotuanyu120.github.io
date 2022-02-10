@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>25 May 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 背景介绍</h3>
+
+<h4>1) 参考文档</h4>
+
+<p>此文档是沿承上一篇<a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">搭建discovery服务</a>，主要区别在于上一篇使用命令行启动服务，本篇需要将参数配置在systemd中。</p>
+
+<h4>2) 系统环境</h4>
+
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>ip</th>
+<th>OS</th>
+<th>usage</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>core-01</td>
+<td>172.17.8.101</td>
+<td>coreos 1353.7.0</td>
+<td>discovery service</td>
+</tr>
+
+<tr>
+<td>core-02</td>
+<td>172.17.8.102</td>
+<td>coreos 1353.7.0</td>
+<td>infra0</td>
+</tr>
+
+<tr>
+<td>core-03</td>
+<td>172.17.8.103</td>
+<td>coreos 1353.7.0</td>
+<td>infra1</td>
+</tr>
+
+<tr>
+<td>core-04</td>
+<td>172.17.8.104</td>
+<td>coreos 1353.7.0</td>
+<td>infra2</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h3>1. 使用自建的discovery服务来bootstrap新etcd集群</h3>
+
+<h4>1) 创建自建的discovery服务</h4>
+<pre class="chroma">systemctl stop etcd2
+vim /run/systemd/system/etcd2.service.d/20-cloudinit.conf
+**********************************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_ADVERTISE_CLIENT_URLS=http://172.17.8.101:2379&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_CLIENT_URLS=http://172.17.8.101:2379,http://127.0.0.1:2379,http://172.17.8.101:4001&#34;</span>
+**********************************************************************
+rm -rf /var/lib/etcd2/*
+systemctl daemon-reload
+systemctl start etcd2
+
+<span class="c1"># 在core-01创建一个URL</span>
+<span class="nv">UUID</span><span class="o">=</span><span class="k">$(</span>uuidgen<span class="k">)</span>
+curl -X PUT http://172.17.8.101:2379/v2/keys/_etcd/registry/<span class="si">${</span><span class="nv">UUID</span><span class="si">}</span>/_config/size -d <span class="nv">value</span><span class="o">=</span><span class="m">3</span>
+<span class="o">{</span><span class="s2">&#34;action&#34;</span>:<span class="s2">&#34;set&#34;</span>,<span class="s2">&#34;node&#34;</span>:<span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d/_config/size&#34;</span>,<span class="s2">&#34;value&#34;</span>:<span class="s2">&#34;3&#34;</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:50,<span class="s2">&#34;createdIndex&#34;</span>:50<span class="o">}</span><span class="o">}</span>
+</pre>
+<blockquote>
+<p>启动单点etcd2服务的时候，只需要指定<code>ETCD_ADVERTISE_CLIENT_URLS</code>和<code>ETCD_LISTEN_CLIENT_URLS</code>就好。</p>
+
+<p>后面的操作其实就是使用<code>uuidgen</code>命令帮助生成一个独一无二的discovery URL用于储存新etcd集群的节点信息，此处的curl命令设定了新etcd集群的节点是3个。</p>
+</blockquote>
+
+<h4>2) 使用discovery URL启动etcd集群</h4>
+<pre class="chroma"><span class="c1"># 1. 每个节点(core-{02-04})上执行以下命令，cleanup旧有etcd2数据</span>
+systemctl stop etcd2
+rm -rf /var/lib/etcd2/*
+
+<span class="c1"># 2. 每个节点(core-{02-04})上执行以下命令，配置etcd2服务</span>
+<span class="c1"># core-{02-04}分别配置</span>
+vim /run/systemd/system/etcd2.service.d/20-cloudinit.conf
+**********************************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_ADVERTISE_CLIENT_URLS=http://172.17.8.102:2379&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_INITIAL_ADVERTISE_PEER_URLS=http://172.17.8.102:2380&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_PEER_URLS=http://172.17.8.102:2380,http://172.17.8.102:7001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_DISCOVERY=http://172.17.8.101:2379/v2/keys/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d&#34;</span>
+**********************************************************************
+
+vim /run/systemd/system/etcd2.service.d/20-cloudinit.conf
+**********************************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_ADVERTISE_CLIENT_URLS=http://172.17.8.103:2379&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_INITIAL_ADVERTISE_PEER_URLS=http://172.17.8.103:2380&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_PEER_URLS=http://172.17.8.103:2380,http://172.17.8.103:7001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_DISCOVERY=http://172.17.8.101:2379/v2/keys/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d&#34;</span>
+**********************************************************************
+
+vim /run/systemd/system/etcd2.service.d/20-cloudinit.conf
+**********************************************************************
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_ADVERTISE_CLIENT_URLS=http://172.17.8.104:2379&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_INITIAL_ADVERTISE_PEER_URLS=http://172.17.8.104:2380&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379,http://0.0.0.0:4001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_LISTEN_PEER_URLS=http://172.17.8.104:2380,http://172.17.8.104:7001&#34;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s2">&#34;ETCD_DISCOVERY=http://172.17.8.101:2379/v2/keys/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d&#34;</span>
+**********************************************************************
+
+<span class="c1"># 3. 每个节点(core-{02-04})上均执行以下命令</span>
+systemctl daemon-reload
+systemctl start etcd2
+</pre>
+<blockquote>
+<p>systemctl start etcd2在第一和第二个节点上执行时，会卡住在那边，因为是在等待另外的节点，当执行第三个节点时，三台服务的命令都会结束</p>
+</blockquote>
+
+<h4>3) 在core-01检查节点信息</h4>
+<pre class="chroma">curl -X GET http://172.17.8.101:2379/v2/keys/_etcd/registry/<span class="si">${</span><span class="nv">UUID</span><span class="si">}</span>/_config/size
+<span class="o">{</span><span class="s2">&#34;action&#34;</span>:<span class="s2">&#34;get&#34;</span>,<span class="s2">&#34;node&#34;</span>:<span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d/_config/size&#34;</span>,<span class="s2">&#34;value&#34;</span>:<span class="s2">&#34;3&#34;</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:50,<span class="s2">&#34;createdIndex&#34;</span>:50<span class="o">}</span><span class="o">}</span>
+
+curl -X GET http://172.17.8.101:2379/v2/keys/_etcd/registry/<span class="si">${</span><span class="nv">UUID</span><span class="si">}</span>/
+<span class="o">{</span><span class="s2">&#34;action&#34;</span>:<span class="s2">&#34;get&#34;</span>,<span class="s2">&#34;node&#34;</span>:<span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d&#34;</span>,<span class="s2">&#34;dir&#34;</span>:true,<span class="s2">&#34;nodes&#34;</span>:<span class="o">[</span><span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d/4fb7e7cdc5741885&#34;</span>,<span class="s2">&#34;value&#34;</span>:<span class="s2">&#34;a4cf337962544541b0a249ba2d667f69=http://172.17.8.102:2380&#34;</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:135,<span class="s2">&#34;createdIndex&#34;</span>:135<span class="o">}</span>,<span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d/f40fad84300f7d1b&#34;</span>,<span class="s2">&#34;value&#34;</span>:<span class="s2">&#34;4f06aba0bf034894a93fda1329a44a4d=http://172.17.8.103:2380&#34;</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:169,<span class="s2">&#34;createdIndex&#34;</span>:169<span class="o">}</span>,<span class="o">{</span><span class="s2">&#34;key&#34;</span>:<span class="s2">&#34;/_etcd/registry/350ddc0a-f654-4093-9c6f-c53c0cb29c2d/14b783d8062e54d6&#34;</span>,<span class="s2">&#34;value&#34;</span>:<span class="s2">&#34;c48ec442264249819b0386c8a52de03c=http://172.17.8.104:2380&#34;</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:171,<span class="s2">&#34;createdIndex&#34;</span>:171<span class="o">}</span><span class="o">]</span>,<span class="s2">&#34;modifiedIndex&#34;</span>:50,<span class="s2">&#34;createdIndex&#34;</span>:50<span class="o">}</span><span class="o">}</span>
+</pre>
+<h4>4) 在core-02(或其他两个节点)检查etcd集群信息</h4>
+<pre class="chroma">etcdctl member list
+14b783d8062e54d6: <span class="nv">name</span><span class="o">=</span>c48ec442264249819b0386c8a52de03c <span class="nv">peerURLs</span><span class="o">=</span>http://172.17.8.104:2380 <span class="nv">clientURLs</span><span class="o">=</span>http://172.17.8.104:2379 <span class="nv">isLeader</span><span class="o">=</span><span class="nb">true</span>
+4fb7e7cdc5741885: <span class="nv">name</span><span class="o">=</span>a4cf337962544541b0a249ba2d667f69 <span class="nv">peerURLs</span><span class="o">=</span>http://172.17.8.102:2380 <span class="nv">clientURLs</span><span class="o">=</span>http://172.17.8.102:2379 <span class="nv">isLeader</span><span class="o">=</span><span class="nb">false</span>
+f40fad84300f7d1b: <span class="nv">name</span><span class="o">=</span>4f06aba0bf034894a93fda1329a44a4d <span class="nv">peerURLs</span><span class="o">=</span>http://172.17.8.103:2380 <span class="nv">clientURLs</span><span class="o">=</span>http://172.17.8.103:2379 <span class="nv">isLeader</span><span class="o">=</span><span class="nb">false</span>
+
+etcdctl cluster-health
+member 14b783d8062e54d6 is healthy: got healthy result from http://172.17.8.104:2379
+member 4fb7e7cdc5741885 is healthy: got healthy result from http://172.17.8.102:2379
+member f40fad84300f7d1b is healthy: got healthy result from http://172.17.8.103:2379
+cluster is healthy
+</pre>
+<hr />
+
+<h3>3. 结语</h3>
+
+<p>至此，我们就顺利的创建了一个三节点的etcd集群，并且结合systemd可以方便重启。因为coreos中，etcd2.service为只读，只能将配置写入在/run/systemd/system/etcd2.service.d目录中的配置文件里面了。</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

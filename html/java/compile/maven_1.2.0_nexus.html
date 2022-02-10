@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                  <ul>
+                    <li><a href="/java/compile/maven_1.1.0_intro_basic.html">maven 1.1.0 基础介绍</a></li>
+                    <li><a href="/java/compile/maven_1.1.1_multi_modules_practice.html">maven 1.1.1 多module工程的版本管理实践</a></li>
+                    <li><a href="/java/compile/maven_1.1.2_jar_vs_war.html">maven 1.1.2 jar和war的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.3_jar_vs_war_ablout_resources.html">maven 1.1.3 jar和war中resources的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.4_command_basic.html">maven 1.4.0 命令行基础</a></li>
+                    <li><a href="/java/compile/maven_1.2.0_nexus.html">maven 1.2.0 私有仓库nexus</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>maven 1.2.0 私有仓库nexus</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>20 Dec 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. nexus（oss开源版本）是什么？</h3>
+
+<p>按照官方说法，nexus是一个支持通用格式的artifact储存仓库。实际上最广为流行的用途是作为maven（java的编译工具）的私有仓库（相对于maven的公共仓库）。</p>
+
+<p>为何有了maven的公共仓库，还需要自己创建一个私有仓库呢：
+- 节省流量，避免重复的公网流量浪费
+- 加快速度，本地私有仓库请求速度肯定比公网快
+- 部署第三方组件，指的是那些没有加入到公共仓库的组件（一般都是商业原因）
+- 降低公共仓库压力（这个就是一个硬凑的理由）</p>
+
+<h3>2. 如何部署nexus？</h3>
+
+<p>首先，安装docker和docker-compose，然后准备下面这个<code>docker-compose.yml</code></p>
+<pre class="chroma"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
+</span><span class="w"></span><span class="k">services</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">nexus</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>sonatype/nexus3<span class="p">:</span><span class="m">3.29</span><span class="m">.0</span><span class="w">
+</span><span class="w">    </span><span class="k">container_name</span><span class="p">:</span><span class="w"> </span>nexus<span class="w">
+</span><span class="w">    </span><span class="k">restart</span><span class="p">:</span><span class="w"> </span>always<span class="w">
+</span><span class="w">    </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="s2">&#34;8081:8081&#34;</span><span class="w">
+</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">       </span>- /data/docker/data/nexus/data<span class="p">:</span>/nexus-data<span class="w">
+</span></pre>
+<p>启动nexus</p>
+<pre class="chroma">docker-compose up -d
+</pre>
+<blockquote>
+<p>访问<a href="http://ip:8081，会提示你admin的初始密码保存在`/nexus-data/admin.password`文件中。">http://ip:8081，会提示你admin的初始密码保存在`/nexus-data/admin.password`文件中。</a></p>
+</blockquote>
+
+<h3>3. 配置maven环境 - nexus的账号和密码</h3>
+
+<p>maven的settings.xml分为全局和用户两种配置文件，顾名思义，全局就是所有用户共同的配置，用户就是指定用户特定的配置（默认在<code>~/.m2/settings.xml</code>）。</p>
+
+<p>这两种配置文件，可以分别使用下面的选项来手动指定</p>
+<pre class="chroma">mvn -s /path/to/user-settings.xml
+
+mvn -gs /path/to/global-settings.xml
+</pre>
+<p><code>settings.xml</code>的内容示例</p>
+<pre class="chroma"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+
+<span class="nt">&lt;settings</span> <span class="na">xmlns=</span><span class="s">&#34;http://maven.apache.org/SETTINGS/1.0.0&#34;</span>
+          <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+          <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&#34;</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!--</span><span class="c"> servers
+</span><span class="c">   | This is a list of authentication profiles, keyed by the server</span><span class="c">-</span><span class="c">id used within the system.
+</span><span class="c">   | Authentication profiles can be used whenever maven must make a connection to a remote server.
+</span><span class="c">   |</span><span class="c">--&gt;</span>
+  <span class="nt">&lt;servers</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--</span><span class="c"> server
+</span><span class="c">     | Specifies the authentication information to use when connecting to a particular server, identified by
+</span><span class="c">     | a unique name within the system (referred to by the &#39;id&#39; attribute below).
+</span><span class="c">     |
+</span><span class="c">     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+</span><span class="c">     |       used together.
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>releases<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>password-for-admin<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+
+    <span class="nt">&lt;server</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;username</span><span class="nt">&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+      <span class="nt">&lt;password</span><span class="nt">&gt;</span>password-for-admin<span class="nt">&lt;/password&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+
+    <span class="nt">&lt;repositories</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;id</span><span class="nt">&gt;</span>releases<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;name</span><span class="nt">&gt;</span>releases<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://nexus.example.org/repository/maven-releases<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;/repository&gt;</span>
+      <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;id</span><span class="nt">&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;name</span><span class="nt">&gt;</span>snapshots<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://nexus.example.org/repository/maven-snapshots<span class="nt">&lt;/url&gt;</span>
+      <span class="nt">&lt;/repository&gt;</span>
+    <span class="nt">&lt;/repositories&gt;</span>
+
+    <span class="c">&lt;!--</span><span class="c"> Another sample, using keys to authenticate.
+</span><span class="c">    &lt;server&gt;
+</span><span class="c">      &lt;id&gt;siteServer&lt;/id&gt;
+</span><span class="c">      &lt;privateKey&gt;/path/to/private/key&lt;/privateKey&gt;
+</span><span class="c">      &lt;passphrase&gt;optional; leave empty if not used.&lt;/passphrase&gt;
+</span><span class="c">    &lt;/server&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+  <span class="nt">&lt;/servers&gt;</span>
+
+<span class="nt">&lt;/settings&gt;</span>
+</pre>
+<blockquote>
+<p>重点关注每一个<code>server</code>的<code>id</code>，这个id必须非重复，且和后面执行的信息需要匹配</p>
+</blockquote>
+
+<h3>4.1 配置你的java project，并发布</h3>
+
+<p>在java工程的maven文件<code>pom.xml</code>里面加入如下配置，指定编译后包的发布地址</p>
+<pre class="chroma"><span class="nt">&lt;project</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="nt">&gt;</span>
+
+  ...
+
+  <span class="nt">&lt;distributionManagement</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;snapshotRepository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://your-host:8081/repository/maven-snapshots/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/snapshotRepository&gt;</span>
+    <span class="nt">&lt;repository</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;id</span><span class="nt">&gt;</span>releases<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;url</span><span class="nt">&gt;</span>http://your-host:8081/repository/maven-releases/<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+  <span class="nt">&lt;/distributionManagement&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre>
+<blockquote>
+<p><code>repository</code>的<code>id</code>和前面maven配置文件<code>settings.xml</code>里面<code>server</code>的<code>id</code>必须要一致</p>
+
+<p><code>repository/maven-releases/</code>代表了nexus界面里面browse功能里面展示的各个repository的名称</p>
+</blockquote>
+
+<p>执行发布</p>
+<pre class="chroma">mvn deploy <span class="o">[</span>-s /path/to/user-settings.xml<span class="o">]</span>
+</pre>
+<h3>4.2 手动发布</h3>
+
+<p>详情见<a href="/java/compile/maven_1.1.4_command_basic.html">maven command basic</a>
+&gt; <a href="https://maven.apache.org/guides/mini/guide-3rd-party-jars-remote.html">apache guide of 3rd-party-jars-remote</a></p>
+
+<h3>5. 常见问题</h3>
+
+<p><strong>常见错误</strong>
+- 405, 有可能url写错了
+- 400, 有可能是不允许重新发布，也有可能是账号密码写错了</p>
+
+<p><strong>注意事项</strong>
+相应的代码修改之后，原则上要修改version，以保证每个release都是静态的，而不是用同一个version重复发布变更的代码。</p>
+
+<p>将思路放在如何让maven强制更新同一个version重复发布的release是一个<strong>错误的方向</strong>，应该确保每次代码修改后，其version相应的做出改动，其他组件对其的依赖通过version来更新其版本，这样才是正确的思路</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

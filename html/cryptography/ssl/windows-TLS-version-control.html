@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                  <ul>
+                    <li><a href="/cryptography/ssl/windows-TLS-version-control.html">SSL: windows tls version and ciphers control</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>SSL: windows tls version and ciphers control</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>11 Nov 2021</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 背景</h3>
+
+<p>强度不够的ssl版本和ssl加密算法，会影响服务器的安全性，所以需要禁用掉它们。这里专注在windows版本（windows server 2012 R2）。</p>
+
+<h3>1. 禁用windows服务器的SSL/TLS版本</h3>
+
+<p>需要禁掉<code>ssl 2.0,ssl 3.0,tls 1.0,tls 1.1</code>。</p>
+
+<p><strong>Windows Server 2012 R2 对SSL/TLS的支持情况</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Windows OS</th>
+<th>TLS 1.0 Client</th>
+<th>TLS 1.0 Server</th>
+<th>TLS 1.1 Client</th>
+<th>TLS 1.1 Server</th>
+<th>TLS 1.2 Client</th>
+<th>TLS 1.2 Server</th>
+<th>TLS 1.3 Client</th>
+<th>TLS 1.3 Server</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Windows 8.1/Windows Server 2012 R2</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Enabled</td>
+<td>Not supported</td>
+<td>Not supported</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/windows/win32/secauthn/protocols-in-tls-ssl--schannel-ssp-">windows server 2012 R2 TLS version support list</a></p>
+</blockquote>
+
+<p><strong>在注册表设定开启tls 1.2</strong></p>
+<pre class="chroma"># windows server 2012 R2
+# Registry path: HKLM SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL
+# disable ssl 2.0, ssl 3.0, tls 1.0 and tls 1.1
+[SSL 2.0\Client] &#34;Enabled&#34;=dword:00000000
+[SSL 2.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 2.0\Server] &#34;Enabled&#34;=dword:00000000
+[SSL 2.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 3.0\Client] &#34;Enabled&#34;=dword:00000000
+[SSL 3.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[SSL 3.0\Server] &#34;Enabled&#34;=dword:00000000
+[SSL 3.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.0\Client] &#34;Enabled&#34;=dword:00000000
+[TLS 1.0\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.0\Server] &#34;Enabled&#34;=dword:00000000
+[TLS 1.0\Server] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.1\Client] &#34;Enabled&#34;=dword:00000000
+[TLS 1.1\Client] &#34;DisabledByDefault&#34;=dword:00000001
+[TLS 1.1\Server] &#34;Enabled&#34;=dword:00000000
+[TLS 1.1\Server] &#34;DisabledByDefault&#34;=dword:00000001
+
+# enable tls 1.2
+[TLS 1.2\Client] &#34;Enabled&#34;=dword:00000001
+[TLS 1.2\Client] &#34;DisabledByDefault&#34;=dword:00000000
+[TLS 1.2\Server] &#34;Enabled&#34;=dword:00000001
+[TLS 1.2\Server] &#34;DisabledByDefault&#34;=dword:00000000
+</pre>
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786418(v=ws.11">windows server 2012 R2 SSL/TLS/DTLS registry setting</a>)</p>
+</blockquote>
+
+<h3>2. 禁用windows服务器的SSL ciphers</h3>
+
+<h4>2.1 禁用RC4</h4>
+
+<p><strong>windows server 2012 R2 对ciphers的支持列表</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Operating system version</th>
+<th>Protocol support</th>
+<th>Cipher suite support</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Windows Server 2012 R2 and Windows 8.1</td>
+<td>TLS 1.2</td>
+<td>AES 128</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TLS 1.1</td>
+<td>AES 256</td>
+</tr>
+
+<tr>
+<td></td>
+<td>TLS 1.0</td>
+<td>RC4 <sup>128</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>SSL 3.0</td>
+<td>RC4 <sup>56</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>SSL 2.0</td>
+<td>RC4 <sup>40</sup>&frasl;<sub>128</sub></td>
+</tr>
+
+<tr>
+<td></td>
+<td>DTLS 1.0</td>
+<td>Triple DES 168</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>DES 56</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786419(v=ws.11">windows server 2012 R2 ssl ciphers support list</a>#cipher-suite-and-protocol-support)</p>
+
+<p>RC4的都是需要禁用的</p>
+</blockquote>
+
+<p><strong>在注册表设定ciphers关闭RC4</strong></p>
+<pre class="chroma"># windows server 2012 R2
+# Registry path: HKLM SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers
+# disable RC4
+[RC4 40/128] &#34;Enabled&#34;=dword:00000000
+[RC4 56/128] &#34;Enabled&#34;=dword:00000000
+[RC4 128/128] &#34;Enabled&#34;=dword:00000000
+</pre>
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn786418(v=ws.11">windows server 2012 R2 ssl ciphers registry setting</a>)</p>
+</blockquote>
+
+<h4>2.2 禁用CBC</h4>
+
+<p><strong>windows server 2012 R2 默认启用的ciphersuites列表</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Cipher suite string</th>
+<th>Allowed by SCH_USE_STRONG_CRYPTO</th>
+<th>TLS/SSL Protocol Versions</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_RSA_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_GCM_SHA384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_GCM_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P384</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P256</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P384</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_256_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_128_CBC_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_256_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_AES_128_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_3DES_EDE_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0</td>
+</tr>
+
+<tr>
+<td>TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_RC4_128_SHA</td>
+<td>No</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_RC4_128_MD5</td>
+<td>No</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_NULL_SHA256</td>
+<td>Yes</td>
+<td>TLS 1.2</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>TLS_RSA_WITH_NULL_SHA</td>
+<td>Yes</td>
+<td>TLS 1.2, TLS 1.1, TLS 1.0, SSL 3.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>SSL_CK_RC4_128_WITH_MD5</td>
+<td>No</td>
+<td>SSL 2.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+
+<tr>
+<td>SSL_CK_DES_192_EDE3_CBC_WITH_MD5</td>
+<td>Yes</td>
+<td>SSL 2.0</td>
+</tr>
+
+<tr>
+<td>Only used when application explicitly requests.</td>
+<td></td>
+<td>	</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>详情见：<a href="https://docs.microsoft.com/en-us/windows/win32/secauthn/tls-cipher-suites-in-windows-8-1">windows server 2012 R2 ssl ciphersuites supporet list</a></p>
+
+<p>可以单个ciphersuit来禁用，但是对CBC的禁用使用这个方法是不生效的，正确的方法见下面。</p>
+</blockquote>
+
+<p>上面只是文档上的体现的ciphers算法列表，<strong>实际环境中的ciphers列表，可以通过以下命令查看</strong></p>
+<pre class="chroma">nmap --script ssl-enum-ciphers -p <span class="m">3389</span> ip_address
+<span class="c1"># 会输出对应IP:PORT下使用的ssl ciphers列表</span>
+</pre>
+<p><strong>通过设定SSP cipher order来限制cipher - CBC</strong></p>
+
+<ul>
+<li><p>step 1. 运行中打开<code>gpedit.msc</code></p></li>
+
+<li><p>step 2. <code>Local Computer Policy</code> &gt; <code>Administrative Template</code> &gt; <code>Network</code> &gt; <code>SSL Configuration setting</code> &gt; <code>SSL Cipher Suite Order</code></p></li>
+
+<li><p>step 3. 在弹出的界面中</p>
+
+<ul>
+<li><p>选中Enable</p></li>
+
+<li><p>编辑tlsv1.2 支持的非CBC的ciphers，拷贝到文本编辑器中，使用&rdquo;,&ldquo;连接这些ciphers字符串
+&gt; 可以按照这个来配置，只启用TLSv1.2的GCM相关的加密算法：
+&gt; <code>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256</code></p></li>
+
+<li><p>删除原有的SSL Cipher Suites内容，将新的ciphers字符串拷贝进去，然后apply</p></li>
+
+<li><p>使用命令应用策略<code>gpupdate /force</code></p></li>
+
+<li><p>重启服务器</p></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p><a href="https://social.technet.microsoft.com/Forums/windowsserver/en-US/a51f9574-73b0-4808-ad5f-4db081d80e6f/disable-cbc-mode-cipher-encryption-and-enable-ctr-or-gcm-cipher-mode-encryption-amp-disable-md5?forum=winserversecurity">how to disable cbc mode cipher encryption in windows server 2012</a></p>
+
+<p>同样适用于windows server 2012 R2：<a href="https://docs.microsoft.com/en-us/windows-server/security/tls/manage-tls">windows server 2016+: Manage Transport Layer Security</a></p>
+
+<p><strong>IMPORTANT</strong>: 一定注意，不要根据<code>SSL Cipher Suite Order</code>打开的界面上的右下角提示框里面的内容作为根据来设定ciphers的列表，而需要使用前面提到的<code>nmap命令</code>来设定。它右下角的提示框里面的内容应该是没有更新的，所以内容不对。</p>
+</blockquote>
+
+<h3>3.  禁用掉ssl版本和ssl cipher（RC4,CBC）之后，RDP无法连接是什么原因？</h3>
+
+<p>本来禁用掉SSL弱版本和SSL cipher（RC4、CBC）之后，还有对应的GCM算法来支持RDP。但是有些情况下，在windows server 2012 R2中采取了上述限制措施之后，使用nmap查看发现3389端口的ciphers列表为空，实际rdp也无法连接到服务器。</p>
+
+<p>这有可能是因为GCM算法缺失造成的，windows server 2012 R2通过KB2919355这个更新包来提供了GCM的支持。安装完KB2919355这个更新包之后，重启服务器再测试就可以看到GCM的算法支持了。</p>
+
+<blockquote>
+<ul>
+<li><p><strong>微软关于增加GCM的官方声明</strong>：
+<a href="https://support.microsoft.com/en-us/topic/update-adds-new-tls-cipher-suites-and-changes-cipher-suite-priorities-in-windows-8-1-and-windows-server-2012-r2-8e395e43-c8ef-27d8-b60c-0fc57d526d94">microsoft support: update add GCM</a></p></li>
+
+<li><p><strong>安装对应更新包的具体方法</strong>：
+在<a href="https://www.microsoft.com/en-us/download/details.aspx?id=42334">kb2919355下载链接</a>下载更新包之后，需要按照这样的顺序来安装：clearcompressionflag.exe, KB2919355, KB2932046, KB2959977, KB2937592, KB2938439, and KB2934018。</p>
+
+<ul>
+<li><strong>安装对应更新包出问题的解决方法</strong>：如果安装的时候遇到了&rdquo;The update is not applicable to your computer&rdquo;这个错误，有可能是因为部分依赖更新包没有安装导致的，请在安装KB2919355之前，提前安装KB2939087和KB2975061两个更新包。然后再尝试安装KB2919355更新包。<a href="https://www.lemonbits.com/kb2919355-update-not-applicable-computer/">参考文档</a></li>
+</ul></li>
+</ul>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

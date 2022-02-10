@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>OCI 1.1.0 在容器中运行buildah</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Jun 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 背景说明</h3>
+
+<p>目前，CI/CD中容器镜像编译的问题，使用的解决方案是把host上的docker socket映射到dind中，然后实现dind容器中的容器镜像编译。这样做的缺点是牺牲了安全性，毕竟目前版本的docker（19.03之前）还是以root身份启动，dind拥有了docker socket的权限是一个很大的漏洞。</p>
+
+<p>为了解决这样的问题，这个时候就需要引入podman和buildah，它们都是基于OCI规范的容器工具，podman致力于容器的运行，buildah致力于镜像的管理。</p>
+
+<h3>1. 尝试在容器中运行buildah及遇到的问题</h3>
+
+<h4>首先，明确思路</h4>
+
+<p>基于官方buildah的镜像，增加jdk、node等编译工具，编译成新的buildah-compile镜像。将新镜像用于gitlab-ci中用于编译项目代码(此部分不在此文章中涉猎，仅关注在如何在容器中运行buildah这个问题上)。</p>
+
+<h4>第一步，在官方buildah镜像中测试使用buildah编译镜像</h4>
+
+<p>在host安装podman和buildah</p>
+<pre class="chroma">yum install podman buildah -y
+</pre>
+<p>参照<a href="https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container/">Best practices for running Buildah in a container</a>，使用官方buildah镜像有以下注意点
+- 运行普通的root容器，不增加任何特权（不增加capibility）
+  - 使用fuse-overlayfs，需要host的/dev/fuse
+- buildah的运行，默认需要chroot，默认不用user namespace</p>
+<pre class="chroma">podman run -it --rm --device /dev/fuse quay.io/buildah/stable bash
+<span class="nb">cd</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
+buildah bud -t buildah-compile .
+Error during unshare<span class="o">(</span>CLONE_NEWUSER<span class="o">)</span>: Invalid argument
+User namespaces are not enabled in /proc/sys/user/max_user_namespaces.
+ERRO error parsing PID <span class="s2">&#34;&#34;</span>: strconv.Atoi: parsing <span class="s2">&#34;&#34;</span>: invalid syntax 
+ERRO <span class="o">(</span>unable to determine <span class="nb">exit</span> status<span class="o">)</span> 
+</pre>
+<p>这个错误信息是提示需要启用user namespaces，默认<code>/proc/sys/user/max_user_namespaces</code>是0，也就是disable。在git上提过issue，答复是<a href="https://github.com/containers/buildah/issues/2393#issuecomment-639414566">虽然buildah在此镜像中不需要使用user namespace，但是依然需要创建user namespace获取capabilities</a>。</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="m">15000</span> &gt; /proc/sys/user/max_user_namespaces
+</pre><pre class="chroma">podman run -it --rm --device /dev/fuse quay.io/buildah/stable bash
+<span class="nb">cd</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
+buildah bud -t buildah-compile .
+STEP 1: FROM quay.io/buildah/stable
+Getting image <span class="nb">source</span> signatures
+Copying blob 2d8f327dcfdd <span class="k">done</span>  
+Copying blob 03c837e31708 <span class="k">done</span>  
+Copying blob 98d006c204b6 <span class="k">done</span>  
+Copying blob 177f1feb6e39 <span class="k">done</span>  
+Copying blob f85e6dec1a0b <span class="k">done</span>  
+Copying config e03a232aae <span class="k">done</span>  
+Writing manifest to image destination
+Storing signatures
+STEP 2: RUN dnf -y update<span class="p">;</span>dnf -y install java-1.8.0-openjdk-devel nodejs maven<span class="p">;</span>dnf -y clean all
+error building at STEP <span class="s2">&#34;RUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span>: error mounting container <span class="s2">&#34;f830cbd673885c0da5511a1b5422ff77532195e60989eeae9d2dd80ecc779cd1&#34;</span>: error mounting build container <span class="s2">&#34;f830cbd673885c0da5511a1b5422ff77532195e60989eeae9d2dd80ecc779cd1&#34;</span>: failed to canonicalise path <span class="k">for</span> <span class="s2">&#34;/var/lib/containers/storage/overlay/a9df41225f6b2c802b51e7aca7ca43ef7f89509a769d7091a6081764b3f8c771/merged&#34;</span>: lstat /var/lib/containers/storage/overlay/a9df41225f6b2c802b51e7aca7ca43ef7f89509a769d7091a6081764b3f8c771/merged: invalid argument
+ERRO <span class="nb">exit</span> status <span class="m">1</span>
+</pre>
+<p>这个错误查看了一下，是一个fuse-overlayfs的问题，字面意思是没挂载上存储。如果<code>--storage-driver vfs</code>是可以执行通过的，但是vfs性能太差，最好别用。于是在<a href="https://github.com/containers/buildah/issues/1831#issuecomment-528247444">github的issue</a>里看到了一个这样的讨论，大意是，一个人认为fuse-overlayfs是不可以运行在本身已经是overlay的容器中的，所以必须要挂载host目录到/var/lib/containers，避免overlay top on overlay。但是另外一个哥们答复说，fuse-overlayfs是可以在overlay之上运行的，但是至于为啥这里不行，它也不太清楚，暂时也同意挂载host目录到/var/lib/containers来解决这个问题。总之，不管如何，挂载host的目录到容器中再试试吧。</p>
+<pre class="chroma">mkdir storage
+podman run -it --rm --device /dev/fuse -v ./storage:/var/lib/containers quay.io/buildah/stable bash
+<span class="nb">cd</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
+buildah bud -t buildah-compile .
+STEP 1: FROM quay.io/buildah/stable
+STEP 2: RUN dnf -y update<span class="p">;</span>dnf -y install java-1.8.0-openjdk-devel nodejs maven<span class="p">;</span>dnf -y clean all
+error building at STEP <span class="s2">&#34;RUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span>: error mounting container <span class="s2">&#34;d068b5f32f26e11bf0057f33afe0acfc9ed21df4ee4c2d484e410785921ae535&#34;</span>: error mounting build container <span class="s2">&#34;d068b5f32f26e11bf0057f33afe0acfc9ed21df4ee4c2d484e410785921ae535&#34;</span>: failed to canonicalise path <span class="k">for</span> <span class="s2">&#34;/var/lib/containers/storage/overlay/26556401814a0483015367e8c56c39ddb5af3af12d9504b67a66e7f0ba6a03d9/merged&#34;</span>: lstat /var/lib/containers/storage/overlay/26556401814a0483015367e8c56c39ddb5af3af12d9504b67a66e7f0ba6a03d9/merged: invalid argument
+ERRO <span class="nb">exit</span> status <span class="m">1</span> 
+</pre>
+<p>这里我是很疑惑的，查了很多资料，很多人提到了各式各样的问题，总之就集中在两点：
+1. /dev/fuse设备，host内核中启用fuse模块<code>yum install fuse3 fuse3-devel;modprobe fuse; lsmod |grep fuse</code>
+2. 挂载host目录到/var/lib/containers</p>
+
+<p>可是这两点我都做了，还是依旧不可以。而且，我也不是用rootless的方式启动podman，没理由不可以的。既然网上查不到，只能github提交issue来解决了。关于这个<a href="https://github.com/containers/buildah/issues/2393">issue</a>，我是从那个user namespace的错误提交的，是因为我要确认下，为啥buildah明确不用user namespace，还提示那个要启用user namespace的提示。得到无论是否使用user namespace都需要启用内核功能之后，后续聊到了之后的报错，源码的维护者还是坚持在我已经关注过的两点上指点我进行尝试。</p>
+
+<p>最后无果后，只能自力更生来尝试复盘。用到的所有工具</p>
+
+<ul>
+<li>centos7</li>
+<li>quay.io/buidlah/stable(base on fedora 32)</li>
+<li>buildah</li>
+<li>podman</li>
+<li>fuse-overlayfs</li>
+</ul>
+
+<p>看过工具清单之后，感觉可以从两个方向入手
+- centos7 update到最新;kernel update到最新
+- 基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像中的软件和方案本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)</p>
+
+<h4>第二步，尝试自定义镜像（基于centos7）</h4>
+
+<p>系统先不升级，尝试自定义镜像</p>
+<pre class="chroma"><span class="c1"># env</span>
+uname -a
+Linux localhost.localdomain 3.10.0-693.5.2.el7.x86_64 <span class="c1">#1 SMP Fri Oct 20 20:32:50 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux</span>
+
+cat /etc/redhat-release 
+CentOS Linux release 7.4.1708 <span class="o">(</span>Core<span class="o">)</span>
+
+<span class="c1"># 安装fuse ；内核加载fuse模块；开启user namespace内核功能；安装podman和buildah</span>
+yum install fuse3 fuse3-devel
+modprobe fuse
+<span class="nb">echo</span> <span class="m">15000</span> &gt; /proc/sys/user/max_user_namespaces
+yum install podman buildah -y
+
+yum list installed <span class="p">|</span>grep fuse
+Failed to <span class="nb">set</span> locale, defaulting to C
+fuse.x86_64                      2.9.2-11.el7                   @base           
+fuse-overlayfs.x86_64            0.7.2-6.el7_8                  @extras         
+fuse3.x86_64                     3.6.1-4.el7                    @extras         
+fuse3-devel.x86_64               3.6.1-4.el7                    @extras         
+fuse3-libs.x86_64                3.6.1-4.el7                    @extras    
+
+<span class="c1"># 使用root身份来在宿主机创建一个自定义版本的buildah镜像</span>
+<span class="nb">cd</span> /root
+mkdir -p buildah-test/build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> buildah-test/build
+cat &gt; Dockerfile <span class="s">&lt;&lt; EOF
+</span><span class="s"># stable/Dockerfile
+</span><span class="s">#
+</span><span class="s"># Build a Buildah container image from the latest
+</span><span class="s"># stable version of Buildah on the Fedoras Updates System.
+</span><span class="s"># https://bodhi.fedoraproject.org/updates/?search=buildah
+</span><span class="s"># This image can be used to create a secured container
+</span><span class="s"># that runs safely with privileges within the container.
+</span><span class="s">#
+</span><span class="s"># change fedora:latest to centos:7
+</span><span class="s">FROM centos:7
+</span><span class="s">
+</span><span class="s"># Don&#39;t include container-selinux and remove
+</span><span class="s"># directories used by yum that are just taking
+</span><span class="s"># up space.
+</span><span class="s"># remove --exclude container-selinux
+</span><span class="s">RUN useradd build; yum -y update; yum -y reinstall shadow-utils; yum -y install buildah fuse-overlayfs ; rm -rf /var/cache /var/log/dnf* /var/log/yum.*;
+</span><span class="s">
+</span><span class="s">RUN echo -e &#39;[engine]\ncgroup_manager = &#34;cgroupfs&#34;&#39; &gt; /etc/containers/containers.conf
+</span><span class="s">
+</span><span class="s"># Adjust storage.conf to enable Fuse storage.
+</span><span class="s">RUN chmod 644 /etc/containers/containers.conf; sed -i -e &#39;/size = &#34;&#34;/amount_program = &#34;/usr/bin/fuse-overlayfs&#34;&#39; -e &#39;/additionalimage.*/a &#34;/var/lib/shared&#34;,&#39; -e &#39;s|^mountopt[[:space:]]*=.*$|mountopt = &#34;nodev,fsync=0&#34;|g&#39; /etc/containers/storage.conf
+</span><span class="s">RUN mkdir -p /var/lib/shared/overlay-images /var/lib/shared/overlay-layers; touch /var/lib/shared/overlay-images/images.lock; touch /var/lib/shared/overlay-layers/layers.lock
+</span><span class="s">
+</span><span class="s"># Set an environment variable to default to chroot isolation for RUN
+</span><span class="s"># instructions and &#34;buildah run&#34;.
+</span><span class="s">ENV BUILDAH_ISOLATION=chroot
+</span><span class="s">EOF</span>
+
+<span class="c1"># note of the changes of customized image:</span>
+<span class="c1"># 1. change fedora:latest to centos:7</span>
+<span class="c1"># 2. remove --exclude container-selinux</span>
+
+buildah -t buildah-centos7 bud .
+
+
+<span class="c1"># 使用自定义镜像来执行，成功</span>
+<span class="nb">cd</span> ~/buildah-test
+mkdir storage
+
+podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z buildah-centos7 bash
+<span class="nb">cd</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
+buildah bud -t buildah-compile .
+</pre>
+<p>升级系统后，再来试试自定义镜像</p>
+<pre class="chroma">yum update
+
+<span class="c1"># 重启系统，自动从最新的内核启动</span>
+
+<span class="nb">echo</span> <span class="m">15000</span> &gt; /proc/sys/user/max_user_namespaces
+
+<span class="c1"># 使用自定义镜像，成功</span>
+podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z buildah-centos7 bash
+<span class="nb">cd</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
+buildah bud -t buildah-compile .
+</pre>
+<p>最终，原因还真有可能是我猜想的，基于fedora的buildah镜像中的fuse-overlayfs和centos内核配合出现问题。换成centos基础的buildah安装的fuse-overlayfs搭配centos版本的内核就okay了。暂时先提交给了buildah的源码维护者，等他们排查了。</p>
+
+<p>这里补充一下两个镜像中的fuse-overlayfs的版本</p>
+<pre class="chroma">podman run -it --rm --device /dev/fuse -v ./storage:/var/lib/containers quay.io/buildah/stable fuse-overlayfs --version
+fuse-overlayfs: version 1.0.0
+FUSE library version 3.9.1
+using FUSE kernel interface version 7.31
+fusermount3 version: 3.9.1
+
+podman run -it --rm --device /dev/fuse:rw -v ./storage:/var/lib/containers:Z buildah-centos7 fuse-overlayfs --version
+fuse-overlayfs: version 0.7.2
+FUSE library version 3.6.1
+using FUSE kernel interface version 7.29
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

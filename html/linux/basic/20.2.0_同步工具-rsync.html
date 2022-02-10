@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_网络配置.html">2.1.0: 网络配置</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_YUM源配置.html">2.2.0: yum本地源配置</a></li>
+                    <li><a href="/linux/basic/02.2.1_yum-epel源.html">2.2.1: yum epel源</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/04.1.0_基础命令-目录_文档.html">4.1.0: 基础命令-目录/文档</a></li>
+                    <li><a href="/linux/basic/04.2.0_基础命令-文档属性_权限.html">4.2.0: 基础命令-文档属性/权限</a></li>
+                    <li><a href="/linux/basic/04.3.0_基础命令-shell相关.html">4.3.0: 基础命令-shell相关</a></li>
+                    <li><a href="/linux/basic/05.1.0_基础命令-特殊权限.html">5.1.0: 基础命令-特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_特殊权限-sbit实践研究.html">5.1.1: 特殊权限-sbit实践研究</a></li>
+                    <li><a href="/linux/basic/05.2.0_基础命令-文件查找_类型查看.html">5.2.0: 基础命令-文件查找/类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command_find_argName_error.html">5.2.1: 基础命令-find -name报错</a></li>
+                    <li><a href="/linux/basic/05.3.0_基础命令-软硬连接.html">5.3.0: 基础命令-软硬连接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
+                    <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_脚本基础-变量及计算.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_脚本基础-随机数生成.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/14.1.0_流程控制-条件判断.html">14.1.0: 流程控制-条件判断</a></li>
+                    <li><a href="/linux/basic/14.2.0_流程控制-function.html">14.2.0: 流程控制-function</a></li>
+                    <li><a href="/linux/basic/14.4.0_流程控制-练习题.html">14.4.0: 流程控制-练习题</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_网络抓包-抓包工具.html">18.1.0: 网络抓包-抓包工具</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/22.2.0_访问控制-htpasswd.html">22.2.0: 访问控制-htpasswd</a></li>
+                    <li><a href="/linux/basic/22.3.0_访问控制-rewrite.html">22.3.0: 访问控制-rewrite</a></li>
+                    <li><a href="/linux/basic/22.4.0_访问控制-SetEnvIf.html">22.4.0: 访问控制-SetEnvIf</a></li>
+                    <li><a href="/linux/basic/22.5.0_访问控制-防盗链.html">22.5.0: 访问控制-防盗链</a></li>
+                    <li><a href="/linux/basic/22.5.1_访问控制-防盗链无效.html">22.5.1: 访问控制-防盗链无效</a></li>
+                    <li><a href="/linux/basic/22.6.0_访问控制-目录文件限制.html">22.6.0: 访问控制-目录文件限制</a></li>
+                    <li><a href="/linux/basic/22.8.0_web实例-discuz论坛.html">22.8.0: web实例-discuz论坛</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP-cmake安装.html">25.1.0: LNMP-cmake安装</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>20.2.0: 同步工具-rsync</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Jan 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 工具：rsync</h3>
+
+<p>作用：一个快速、万能、可远程的文件复制工具<br />
+语法：<br />
+- 本地复制</p>
+<pre class="chroma">rsync [OPTION...] SRC... [DEST]
+</pre>
+<ul>
+<li><p>用ssh的方式复制</p>
+<pre class="chroma">Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
+Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
+</pre></li>
+
+<li><p>用rsync daemon的方式复制（需要创建配置文件/etc/rsyncd.conf）</p>
+<pre class="chroma">Pull: rsync [OPTION...] [USER@]HOST::SRC... [DEST]
+  rsync [OPTION...] rsync://[USER@]HOST[:PORT]/SRC... [DEST]
+Push: rsync [OPTION...] SRC... [USER@]HOST::DEST
+  rsync [OPTION...] SRC... rsync://[USER@]HOST[:PORT]/DEST
+</pre></li>
+</ul>
+
+<p>参数：
+- <code>-a</code> archive mode<br />
+存档模式，等同于<code>-rlptgoD</code><br />
+<code>-a</code>选项后面可以跟一个 <code>--no-OPTION</code>,表示关闭<code>-rlptgoD</code>中的某个例如<code>-a --no-l</code>等同于<code>-rptgoD</code>
+- <code>-c</code> 默认rsync是基于size和mtime来判断文件是否需要同步，而-c会弃用这种方式，用checksum校验来代替
+- <code>-r</code> reverse mode 递归模式，主要是针对存档目录时使用
+- <code>-v</code> verbose 冗余信息模式，显示复制详细信息
+- <code>-l</code> 保留软链接
+- <code>-L</code> 跳过软连接，把软连接指向的源文件拷贝到目标目录
+- <code>-p</code> permission，保持源文件权限
+- <code>-o</code> owner，保持文件属主信息，但使用的用户必须是root用户
+- <code>-g</code> gid，保持文件属组信息
+- <code>-D</code> 保持设备文件信息
+- <code>-t</code> 保持文件时间信息
+- <code>--delete</code> 删除那些DST中SRC没有的文件
+- <code>--exclude=PATTERN</code>
+指定排除不需要传输的文件，等号后面跟文件名，可以是万用字符模式（如*.txt）
+当有多个条件需要指定时，只需要增添多个<code>--exclude=PATTERN</code>即可
+- <code>-P</code>
+等同于<code>--partial</code>(若传输中断，保留已传输的部分文件)和<code>--progress</code>(显示每个文件传输详细信息)
+- <code>-u</code> update，DST中比SRC时间还新的文件将被保留，不会覆盖，即使文件内容不一致
+- <code>--port</code> 指定端口（daemon模式下）
+- <code>-z</code> 复制的同时压缩文件</p>
+
+<blockquote>
+<p>rsync是增量备份，默认-av参数时在目标目录已经存在且内容无更改的文件不会被重新拷贝</p>
+</blockquote>
+
+<p>基本用法演示：<br />
+<strong>1. rsync本地同步文件</strong><br />
+自动创建并不存在的/tmp/111目录，只能创建1层目录</p>
+<pre class="chroma"><span class="c1"># 如果是2层及以上就会报错该目录不存在了</span>
+rsync -av perm/ /tmp/111
+sending incremental file list
+created directory /tmp/111
+./
+001.txt
+002.txt
+......
+377.log
+777.log
+
+sent <span class="m">792</span> bytes  received <span class="m">262</span> bytes  234.22 bytes/sec
+total size is <span class="m">0</span>  speedup is 0.00
+</pre>
+<p>SRC是&rdquo;perm&rdquo;时与&rdquo;perm/&ldquo;的不同</p>
+<pre class="chroma"><span class="c1"># 这样会把perm文件夹整个复制到目标目录里去</span>
+rsync -av perm /tmp/111
+sending incremental file list
+perm/
+perm/001.txt
+perm/002.txt
+......
+perm/377.log
+perm/777.log
+
+sent <span class="m">810</span> bytes  received <span class="m">263</span> bytes  2146.00 bytes/sec
+total size is <span class="m">0</span>  speedup is 0.00
+</pre>
+<p><strong>2. rsync远程同步文件</strong><br />
+以ssh的方式用rsync与web02远程同步文件</p>
+<pre class="chroma"><span class="c1"># 如果ssh端口不是22，那么需要写成：</span>
+<span class="c1"># rsync -av --rsh=&#34;ssh -p &lt;port&gt;&#34; perm/ 192.168.0.27:/tmp/rsyncdir/</span>
+<span class="c1"># 或rsync -av -e &#34;ssh -p &lt;port&gt;&#34; perm/ 192.168.0.27:/tmp/rsyncdir/</span>
+
+<span class="c1"># 本机上执行rsync，同步文件到192.168.0.27</span>
+rsync -av perm/ root@192.168.0.27:/tmp/rsyncdir/
+root@192.168.0.27<span class="s1">&#39;s password:
+</span><span class="s1">sending incremental file list
+</span><span class="s1">./
+</span><span class="s1">001.txt
+</span><span class="s1">002.txt
+</span><span class="s1">......
+</span><span class="s1">377.log
+</span><span class="s1">777.log
+</span><span class="s1">
+</span><span class="s1">sent 792 bytes  received 262 bytes  234.22 bytes/sec
+</span><span class="s1">total size is 0  speedup is 0.00
+</span><span class="s1">
+</span><span class="s1"># 192.168.0.27上同步文件到本地
+</span><span class="s1">rsync -avuL root@192.168.0.27:/tmp/rsyncdir perm/
+</span><span class="s1">root@192.168.0.27&#39;</span>s password:
+receiving incremental file list
+rsyncdir/
+rsyncdir/001.txt
+rsyncdir/002.txt
+......
+rsyncdir/377.log
+rsyncdir/777.log
+rsyncdir/testu
+
+sent <span class="m">281</span> bytes  received <span class="m">888</span> bytes  155.87 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.00
+</pre>
+<p><strong>3. 软连接拷贝相关参数&rdquo;-L&rdquo;和&rdquo;-l&rdquo;</strong></p>
+<pre class="chroma"><span class="c1"># -l会将软连接以软连接的形式拷贝过去</span>
+ll perm/ps.soft
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">11</span> Jan  <span class="m">6</span> 17:18 perm/ps.soft -&gt; /etc/passwd     
+rsync -av perm/ /tmp/111
+sending incremental file list
+./
+001.txt
+002.txt
+......
+377.log
+777.log
+ps.soft -&gt; /etc/passwd
+
+sent <span class="m">828</span> bytes  received <span class="m">265</span> bytes  2186.00 bytes/sec
+total size is <span class="m">11</span>  speedup is 0.01
+
+<span class="c1"># 查看结果</span>
+ll /tmp/111/ps.soft perm/ps.soft
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">11</span> Jan  <span class="m">6</span> 17:18 perm/ps.soft -&gt; /etc/passwd
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">11</span> Jan  <span class="m">6</span> 17:18 /tmp/111/ps.soft -&gt; /etc/passwd
+<span class="c1"># -a中包含-l，加上此参数，rsync会把软链接保持原有属性复制到目标目录，</span>
+
+
+<span class="c1"># -L参数会把软连接指向的源文件同步过去</span>
+
+<span class="c1"># 清空111目录后我们用-L再次复制</span>
+rsync -avL perm/ /tmp/111
+sending incremental file list
+./
+001.txt
+002.txt
+......
+377.log
+777.log
+ps.soft
+
+sent <span class="m">2495</span> bytes  received <span class="m">281</span> bytes  5552.00 bytes/sec
+total size is <span class="m">1639</span>  speedup is 0.59
+
+<span class="c1"># 查看结果</span>
+ll /tmp/111/ps.soft /etc/passwd
+-rw-r--r-- <span class="m">1</span> root root <span class="m">1639</span> Dec <span class="m">29</span> 20:23 /etc/passwd
+-rw-r--r-- <span class="m">1</span> root root <span class="m">1639</span> Dec <span class="m">29</span> 20:23 /tmp/111/ps.soft
+</pre>
+<p><strong>4. &ndash;no-OPTION参数用来指定不使用的参数</strong></p>
+<pre class="chroma"><span class="c1"># -a含-l，我们用--no-l把-l规避掉</span>
+<span class="c1"># 因为规避了-l参数，所以并不处理软连接文件</span>
+rsync -av --no-l perm/ /tmp/111
+sending incremental file list
+./
+001.txt
+......
+777.log
+skipping non-regular file <span class="s2">&#34;ps.soft&#34;</span>
+
+sent <span class="m">813</span> bytes  received <span class="m">262</span> bytes  2150.00 bytes/sec
+total size is <span class="m">11</span>  speedup is 0.01
+</pre>
+<p><strong>5. &ldquo;-u&rdquo;参数，当目标机器上文件时间比源文件时间新时不覆盖重传，即使文件内容不一致</strong></p>
+<pre class="chroma"><span class="c1"># 创建测试环境</span>
+mkdir src
+mkdir dest
+touch src/test01
+rsync -av src/ dest
+sending incremental file list
+./
+test01
+
+sent <span class="m">83</span> bytes  received <span class="m">34</span> bytes  234.00 bytes/sec
+total size is <span class="m">0</span>  speedup is 0.00
+
+<span class="c1"># 修改源文件内容，但是去touch目标文件，保证目标文件时间新于源文件</span>
+<span class="nb">echo</span> <span class="s2">&#34;good&#34;</span> &gt; src/test01
+touch dest/test01
+
+<span class="c1"># 加上-u参数，不重传文件，即使文件内容不一致</span>
+rsync -auv src/ dest
+sending incremental file list
+
+sent <span class="m">45</span> bytes  received <span class="m">12</span> bytes  114.00 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.09
+
+<span class="c1"># 而不加-u参数时，即使目标文件新于源文件也拷贝</span>
+rsync -av src/ dest
+sending incremental file list
+test01
+
+sent <span class="m">93</span> bytes  received <span class="m">31</span> bytes  248.00 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.04
+</pre>
+<p><strong>6. &lsquo;&ndash;delete&rsquo;参数可删除SRC没有，DEST有的文件</strong></p>
+<pre class="chroma"># 先在SRC删除ps.soft,用--delete实现另一端自动删除
+rm -f perm/ps.soft
+rsync -av --delete perm/ /tmp/111/
+sending incremental file list
+./
+deleting ps.soft
+testu
+
+sent 352 bytes  received 34 bytes  772.00 bytes/sec
+total size is 5  speedup is 0.01
+</pre>
+<p><strong>7. &ldquo;&ndash;exclude&rdquo;参数可指定排除复制的文件</strong></p>
+<pre class="chroma"><span class="c1">#把以.log结尾的文件排除在复制目标之外</span>
+<span class="c1"># rm -rf /tmp/111/*</span>
+<span class="c1"># rsync -av --exclude=&#39;*.log&#39; perm/ /tmp/111/</span>
+sending incremental file list        
+./
+001.txt
+002.txt
+003.txt
+004.txt
+005.txt
+006.txt
+007.txt
+testu
+
+sent <span class="m">503</span> bytes  received <span class="m">167</span> bytes  1340.00 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.01
+</pre>
+<p><strong>8. &ldquo;-c&rdquo;强制使用checksum来代替size和mtime的检测机制</strong></p>
+<pre class="chroma"><span class="c1">## 传统av参数会在size改变和mtime修改条件改变时同步文件</span>
+<span class="nb">echo</span> <span class="s2">&#34;good&#34;</span> &gt;&gt; test1/file1
+rsync -av test1/* test2/
+sending incremental file list
+file1
+
+sent <span class="m">130</span> bytes  received <span class="m">35</span> bytes  330.00 bytes/sec
+total size is <span class="m">22</span>  speedup is 0.13
+
+touch test1/file1
+rsync -av test1/* test2/
+sending incremental file list
+file1
+
+sent <span class="m">130</span> bytes  received <span class="m">35</span> bytes  330.00 bytes/sec
+total size is <span class="m">22</span>  speedup is 0.13
+
+<span class="c1">## 而-c参数仅会在checksum校验后发现不同才会同步文件</span>
+touch test1/file1
+rsync -acv test1/* test2/
+sending incremental file list
+
+sent <span class="m">99</span> bytes  received <span class="m">19</span> bytes  236.00 bytes/sec
+total size is <span class="m">22</span>  speedup is 0.19
+<span class="c1"># 在我们touch源文件之后，并未发送源文件</span>
+
+<span class="c1">## 对比使用vim打开文件，不做任何修改，然后保存是否会同步文件</span>
+<span class="c1"># 无-c，会同步文件</span>
+vim test1/file1
+rsync -av test1/* test2/
+sending incremental file list
+file1
+
+sent <span class="m">232</span> bytes  received <span class="m">35</span> bytes  534.00 bytes/sec
+total size is <span class="m">124</span>  speedup is 0.46
+
+<span class="c1"># 加-c，不会同步文件</span>
+vim test1/file1
+rsync -avc test1/* test2/
+sending incremental file list
+
+sent <span class="m">99</span> bytes  received <span class="m">19</span> bytes  236.00 bytes/sec
+total size is <span class="m">124</span>  speedup is 1.05
+</pre>
+<hr />
+
+<h4>rsync daemon模式:</h4>
+
+<p><strong>服务器配置文件/etc/rsyncd.conf(需要手动创建)</strong></p>
+<pre class="chroma">vi /etc/rsyncd.conf
+*************************************************
+<span class="nv">uid</span><span class="o">=</span>www
+<span class="nv">gid</span><span class="o">=</span>www
+use <span class="nv">chroot</span><span class="o">=</span>no
+max <span class="nv">connections</span><span class="o">=</span><span class="m">5</span>
+incoming <span class="nv">chmod</span> <span class="o">=</span> D755,F644
+<span class="c1">## 全局配置</span>
+<span class="nv">port</span><span class="o">=</span><span class="m">8700</span>
+<span class="c1">#监听端口，默认是873，若不是873，客户端需要增加--port 8700指定端口</span>
+<span class="c1">#默认端口的配置和服务信息可在/etc/services和/etc/xinetd.d/rsync里查到</span>
+log <span class="nv">file</span><span class="o">=</span>/var/log/rsync.log
+<span class="c1">#默认就是这个文件，可通过此行设置其他文件，日志很重要，用于排错</span>
+pid <span class="nv">file</span><span class="o">=</span>/var/run/rsyncd.pid
+<span class="c1">#进程文件，默认就是这个文件</span>
+lock <span class="nv">file</span> <span class="o">=</span> /var/run/rsync.lock
+log <span class="nv">file</span> <span class="o">=</span> /var/log/rsync.log
+
+<span class="c1">## 模块1</span>
+<span class="o">[</span>test1<span class="o">]</span>
+<span class="c1">#模块名称，用在客户端命令里</span>
+<span class="nv">path</span><span class="o">=</span>/root/perm
+<span class="c1">#指定此模块共享文件的目录</span>
+ignore errors
+use <span class="nv">chroot</span><span class="o">=</span>yes
+<span class="c1">#指定是否限定用户的活动范围就是path指定的目录</span>
+max <span class="nv">connections</span><span class="o">=</span><span class="m">4</span>
+<span class="c1">#指定最大连接数</span>
+<span class="nb">read</span> <span class="nv">only</span><span class="o">=</span>no
+<span class="c1">#如果设为只读，那客户端用户不可push文件进来，只能读取走</span>
+<span class="nv">list</span><span class="o">=</span>yes
+<span class="c1">#设定用户是否可以通过--list来查看server端的模块</span>
+<span class="nv">uid</span><span class="o">=</span>root
+<span class="c1">#若client写入文件，写入文件的属主归属</span>
+<span class="nv">gid</span><span class="o">=</span>root
+<span class="c1">#同上，写入文件的属组归属</span>
+auth <span class="nv">users</span><span class="o">=</span>testguy
+<span class="c1">#授权使用复制命令时的登录角色</span>
+secrets <span class="nv">file</span><span class="o">=</span>/etc/rsyncd.passwd
+<span class="c1">#登录角色的指定密码文件</span>
+hosts <span class="nv">allow</span><span class="o">=</span>192.168.0.1/24
+<span class="c1">#指定允许的ip网段及子网掩码（有子网掩码即为一个网段）</span>
+*************************************************
+</pre>
+<p><strong>服务端密码文件/etc/rsyncd.passwd</strong></p>
+<pre class="chroma"><span class="c1"># vi /etc/rsyncd.passwd</span>
+*************************************************
+<span class="c1">#可通过多行定义多个用户</span>
+用户名：密码
+*************************************************
+</pre>
+<p><strong>启动rsync守护进程（pid文件保存的内容是守护进程的pid）</strong></p>
+<pre class="chroma"><span class="c1"># 用--daemon启动rsync服务</span>
+<span class="c1"># 默认/etc/rsyncd.conf，也可手动指定--config=/.../rsyncd.conf</span>
+rsync --daemon
+
+<span class="c1">## 若pid文件已存在会报错</span>
+<span class="c1"># failed to create pid file /var/run/rsyncd.pid: File exists</span>
+
+<span class="c1"># port不是默认873，远程客户端需要用--port指定端口</span>
+
+rsync -av --port<span class="o">=</span><span class="m">8700</span> testguy@192.168.0.5::test1 /tmp/222
+Password:
+receiving incremental file list
+./
+001.txt
+002.txt
+......
+377.log
+777.log
+testu
+
+sent <span class="m">327</span> bytes  received <span class="m">927</span> bytes  167.20 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.00
+</pre>
+<p><strong>&ldquo;use chroot=yes&rdquo;产生的效果</strong></p>
+<pre class="chroma"><span class="c1">## 现在服务端创建一个软连接</span>
+<span class="c1"># ll /root/perm/rc.soft</span>
+lrwxrwxrwx <span class="m">1</span> root root <span class="m">18</span> Jan  <span class="m">7</span> 10:49 /root/perm/rc.soft -&gt; /etc/rc.d/rc.local
+
+<span class="c1">## client端同步出现报错，这是因为chroot把用户限制在path指定的目录里</span>
+<span class="c1"># rsync -avL --port=8700 testguy@192.168.0.5::test1 /tmp/222</span>
+Password:
+receiving incremental file list
+symlink has no referent: <span class="s2">&#34;/rc.soft&#34;</span> <span class="o">(</span>in test1<span class="o">)</span>
+./
+
+sent <span class="m">61</span> bytes  received <span class="m">431</span> bytes  75.69 bytes/sec
+total size is <span class="m">5</span>  speedup is 0.01
+rsync error: some files/attrs were not transferred <span class="o">(</span>see previous errors<span class="o">)</span> <span class="o">(</span>code 23<span class="o">)</span> at main.c<span class="o">(</span>1505<span class="o">)</span> <span class="o">[</span><span class="nv">generator</span><span class="o">=</span>3.0.6<span class="o">]</span>
+
+
+<span class="c1">## 编辑服务端配置文件&#34;use chroot=no&#34;，然后再在client端再次尝试</span>
+<span class="c1">## 无报错，成功传输</span>
+<span class="c1"># rsync -avL --port=8700 testguy@192.168.0.5::test1 /tmp/222</span>
+Password:
+receiving incremental file list
+rc.soft
+
+sent <span class="m">77</span> bytes  received <span class="m">652</span> bytes  162.00 bytes/sec
+total size is <span class="m">225</span>  speedup is 0.31
+</pre>
+<p><strong>服务端和客户端的密码文件（用&ndash;password-file指定客户端密码文件）</strong></p>
+<pre class="chroma"><span class="c1"># 客户端配置密码文件</span>
+vi /etc/rsyncd.d/rsyncd.pass
+*************************************************
+testguy:password
+*************************************************
+
+<span class="c1"># 必须要修改权限为600，否则报错</span>
+chmod <span class="m">600</span> /etc/rsyncd.d/rsyncd.pass
+
+<span class="c1">#指定客户端密码文件后不需要输入密码</span>
+rsync -avL --port<span class="o">=</span><span class="m">8700</span> --password-file<span class="o">=</span>/etc/rsyncd.d/rsyncd.pass testguy@192.168.0.5::test1 /tmp/222
+receiving incremental file list
+
+sent <span class="m">58</span> bytes  received <span class="m">389</span> bytes  894.00 bytes/sec
+total size is <span class="m">225</span>  speedup is 0.50
+</pre>
+<p><strong>配置hosts allow</strong></p>
+<pre class="chroma"><span class="c1"># &#34;hosts allow=192.168.0.1/24&#34;若没有/24则仅为192.168.0.1可以访问</span>
+<span class="c1"># 修改服务端配置文件&#34;hosts allow=192.168.0.1&#34;，客户端同步</span>
+rsync -avL --port<span class="o">=</span><span class="m">8700</span> --password-file<span class="o">=</span>/etc/rsyncd.d/rsyncd.pass testguy@192.168.0.5::test1 /tmp/222
+@ERROR: Unknown module <span class="s1">&#39;test1&#39;</span>
+rsync error: error starting client-server protocol <span class="o">(</span>code 5<span class="o">)</span> at main.c<span class="o">(</span>1503<span class="o">)</span> <span class="o">[</span><span class="nv">receiver</span><span class="o">=</span>3.0.6<span class="o">]</span>
+
+<span class="c1">## 服务端查看log信息，用于排错</span>
+<span class="c1"># cat /var/log/rsync.log</span>
+......
+2015/01/07 11:16:17 <span class="o">[</span>21454<span class="o">]</span> building file list
+2015/01/07 11:16:17 <span class="o">[</span>21454<span class="o">]</span> sent <span class="m">404</span> bytes  received <span class="m">59</span> bytes  total size <span class="m">225</span>
+2015/01/07 11:26:14 <span class="o">[</span>21468<span class="o">]</span> connect from Unknown_00-0c-29-24-9e-dd.gateway.2wire.net <span class="o">(</span>192.168.0.27<span class="o">)</span>
+2015/01/07 11:26:14 <span class="o">[</span>21468<span class="o">]</span> rsync denied on module test1 from unknown_00-0c-29-24-9e-dd.gateway.2wire.net <span class="o">(</span>192.168.0.27<span class="o">)</span>
+<span class="c1">## 将hosts段增加为&#34;hosts allow=192.168.0.1/24&#34;后即正常，</span>
+<span class="c1">## 那/24代表什么含义呢，如下面所示</span>
+<span class="c1">#/8=255.0.0.0</span>
+<span class="c1">#/16=255.255.0.0</span>
+<span class="c1">#/24=255.255.255.0</span>
+<span class="c1">#/32=255.255.255.255</span>
+<span class="c1">## /24代表了255.255.255.0的子网掩码，而子网掩码的作用是和传来的封包ip地址进行&#34;与&#34;计算，如果结果和本机网段一致，则可通信。</span>
+</pre>
+<p><strong>配置list=yes or no</strong></p>
+<pre class="chroma"><span class="c1"># &#34;list=no&#34;用来设定服务端模块是否可被列出（推荐设为no）</span>
+<span class="c1"># 客户端尝试list</span>
+rsync --port<span class="o">=</span><span class="m">8700</span> --list-only 192.168.0.5::
+
+<span class="c1"># 在服务器段设置配置文件为list=yes</span>
+rsync --port<span class="o">=</span><span class="m">8700</span> --list-only 192.168.0.5::
+test1
+
+<span class="c1"># --list-only可省略不写</span>
+rsync --port<span class="o">=</span><span class="m">8700</span>  192.168.0.5::
+test1
+</pre>
+<hr />
+
+<h4>rsync报错解决:</h4>
+
+<p>报错1<br />
+错误信息：</p>
+<pre class="chroma">rsync -av /root/ root@192.168.0.5:/root/
+rsync: Failed to <span class="nb">exec</span> ssh: No such file or directory <span class="o">(</span>2<span class="o">)</span>
+rsync error: error in IPC code <span class="o">(</span>code 14<span class="o">)</span> at pipe.c<span class="o">(</span>84<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
+rsync: connection unexpectedly closed <span class="o">(</span><span class="m">0</span> bytes received so far<span class="o">)</span> <span class="o">[</span>sender<span class="o">]</span>
+rsync error: error in rsync protocol data stream <span class="o">(</span>code 12<span class="o">)</span> at io.c<span class="o">(</span>600<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
+</pre>
+<p>解决办法</p>
+<pre class="chroma"><span class="c1"># 检查ssh命令是否存在</span>
+which ssh
+/usr/bin/which: no ssh in......
+<span class="c1"># 安装ssh命令</span>
+yum install openssh-clients
+</pre>
+<hr />
+
+<p>报错2<br />
+错误信息</p>
+<pre class="chroma">rsync -av /data/tongchiang/ root@124.6.62.13:/data/www/
+root@124.6.62.13<span class="se">\&#39;</span>s password:
+sending incremental file list
+eighth/
+eighth/bk.png
+eighth/eighth.css
+eighth/eighth.html
+rsync: connection unexpectedly closed <span class="o">(</span><span class="m">70</span> bytes received so far<span class="o">)</span> <span class="o">[</span>sender<span class="o">]</span>
+rsync error: error in rsync protocol data stream <span class="o">(</span>code 12<span class="o">)</span> at io.c<span class="o">(</span>600<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
+</pre>
+<p>解决过程：</p>
+<pre class="chroma"><span class="c1">## 查看目标主机的硬盘，发现硬盘满了，没空间了</span>
+<span class="c1"># df -h</span>
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vzfs        80G   80G     <span class="m">0</span> 100% /
+none            512M  4.0K  512M   1% /dev
+none            512M     <span class="m">0</span>  512M   0% /dev/shm
+<span class="c1">## 利用&#34;du -sh ./*&#34;来逐步排查，终于找到了罪魁祸首</span>
+<span class="c1"># du -sh error_log</span>
+79G     error_log
+</pre>
+<p>解决方案：</p>
+<pre class="chroma"><span class="c1">#解决方案:创建日志分割与删除脚本，并制定计划定期执行</span>
+<span class="c1"># vim /root/sh/error_log_del.sh</span>
+**********************************************************
+<span class="c1">#!/bin/bash</span>
+#
+<span class="c1">#created by zhaopeiwu @ 2015-04-20</span>
+<span class="c1">#FOR control the size of error log of apache</span>
+<span class="nv">PATH</span><span class="o">=</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/usr/local/apache2/bin:/usr/local/mysql/bin
+<span class="nb">export</span> PATH
+
+<span class="nv">log_path</span><span class="o">=</span><span class="s2">&#34;/usr/local/apache2/logs/&#34;</span>
+<span class="nv">log_size</span><span class="o">=</span><span class="sb">`</span>du -s <span class="nv">$log_path</span>/error_log<span class="p">|</span>cut -f 1<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$log_size</span> -gt <span class="m">100000</span> <span class="o">]</span><span class="p">;</span>
+        <span class="k">then</span>
+                mv <span class="nv">$log_path</span>/error_log <span class="nv">$log_path</span>/error_log_<span class="sb">`</span>date +%Y%m%d<span class="sb">`</span><span class="p">;</span>
+                touch <span class="nv">$log_path</span>/error_log<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="nv">num_del</span><span class="o">=</span><span class="sb">`</span>ls -t <span class="nv">$log_path</span>/error*<span class="p">|</span>wc -l<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$num_del</span> -gt <span class="m">4</span> <span class="o">]</span><span class="p">;</span>
+        <span class="k">then</span>
+                ls -t <span class="nv">$log_path</span>/error*<span class="p">|</span>tail -$<span class="o">[</span><span class="nv">$num_del</span>-2<span class="o">]</span><span class="p">|</span>xargs -i rm -f <span class="o">{</span><span class="o">}</span> <span class="m">2</span> &gt; /dev/null
+<span class="k">fi</span>
+
+<span class="nb">exit</span> <span class="m">0</span>
+*********************************************************
+
+<span class="c1"># 制作计划任务</span>
+crontab -e
+*********************************************************
+*/20 * * * * sh /root/sh/error_log_del.sh
+*********************************************************
+<span class="c1">#此脚本可让日志每20分钟把大于100M的日志分割，然后当日志大于4个的时候只保留最新的两个</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

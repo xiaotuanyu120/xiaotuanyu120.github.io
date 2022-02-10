@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/advanced/index.html">advanced</a>
+                </li>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                  <ul>
+                    <li><a href="/python/fluent_py/1.1__getitem__len__.html">1.1 magic method: __getitem__ __len__</a></li>
+                    <li><a href="/python/fluent_py/1.2.2__repr__str__.html">1.2.2 magic method: __repr__</a></li>
+                    <li><a href="/python/fluent_py/1.2.3__add__mul__sub__div__.html">1.2.3 magic method: 运算</a></li>
+                    <li><a href="/python/fluent_py/3.3_dict_setdefault_defaultdict__missing__.html">3.3 检查dict中key是否存在</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>3.3 检查dict中key是否存在</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>29 Jun 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 假设如下场景</h3>
+<pre class="chroma"><span class="n">citys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Beijing</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Shanghai</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Newyork</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Washington</span><span class="s2">&#34;</span><span class="p">]</span>
+</pre>
+<p>我们有一个数据源(不一定是一个list，也有可能是任何格式的数据)，其中包含了国家代号和城市名称，并以一种特定的格式表示(此例是用/间隔)。我们需要去解析它，并得到一个dict，key是国家代码，value是城市名称。</p>
+
+<hr />
+
+<h3>1. 普通少年这样解决</h3>
+<pre class="chroma"><span class="n">citys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Beijing</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Shanghai</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Newyork</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Washington</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">citys</span><span class="p">:</span>
+    <span class="n">country</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">country</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">result</span>
+</pre>
+<blockquote>
+<p>output: {&lsquo;CN&rsquo;: [&lsquo;Beijing&rsquo;, &lsquo;Shanghai&rsquo;], &lsquo;US&rsquo;: [&lsquo;Newyork&rsquo;, &lsquo;Washington&rsquo;]}<br />
+可是这样付出的代价是，每个item，我们查询了三次country这个key是否存在</p>
+</blockquote>
+
+<hr />
+
+<h3>2. pythonic青年使用dict方法解决</h3>
+
+<p>setdefault是dict的一个方法，<code>dict1.setdefault(k, d)</code>的含义是当k在dict1中不存在时，执行<code>dict1[k] = d</code></p>
+<pre class="chroma"><span class="n">citys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Beijing</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Shanghai</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Newyork</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Washington</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">citys</span><span class="p">:</span>
+    <span class="n">country</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="p">[</span><span class="p">]</span><span class="p">)</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">result</span>
+</pre>
+<blockquote>
+<p>output: {&lsquo;CN&rsquo;: [&lsquo;Beijing&rsquo;, &lsquo;Shanghai&rsquo;], &lsquo;US&rsquo;: [&lsquo;Newyork&rsquo;, &lsquo;Washington&rsquo;]}<br />
+同样的结果，我们只使用了一次查询</p>
+</blockquote>
+
+<hr />
+
+<h3>3. pythonic青年改dict为defaultdict来解决</h3>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">citys</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Beijing</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">CN/Shanghai</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Newyork</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">US/Washington</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">citys</span><span class="p">:</span>
+    <span class="n">country</span><span class="p">,</span> <span class="n">city</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">country</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">result</span>
+</pre>
+<blockquote>
+<p>output: defaultdict(<type 'list'>, {&lsquo;CN&rsquo;: [&lsquo;Beijing&rsquo;, &lsquo;Shanghai&rsquo;], &lsquo;US&rsquo;: [&lsquo;Newyork&rsquo;, &lsquo;Washington&rsquo;]})<br />
+当我们创建defaultdict时，我们传入了一个default_factory的参数，此例中为list(result = defaultdict(list))，当key不存在的时候，执行result[country] = list()</p>
+</blockquote>
+
+<p><strong>defaultdict扩展</strong></p>
+<pre class="chroma"><span class="c1"># 默认default_factory为list</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">test</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">result</span>
+<span class="n">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">list</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">test</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="p">]</span><span class="p">}</span><span class="p">)</span>
+
+<span class="c1"># 默认default_factory为int</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">test</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">result</span>
+<span class="n">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">int</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">test</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span><span class="p">)</span>
+
+<span class="c1"># 默认default_factory为自定义function</span>
+<span class="k">def</span> <span class="nf">default_str</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+     <span class="k">return</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">default string</span><span class="s2">&#34;</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">test</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">result</span>
+<span class="n">defaultdict</span><span class="p">(</span><span class="o">&lt;</span><span class="n">function</span> <span class="n">default_str</span> <span class="n">at</span> <span class="mh">0x7f5a8446e2a8</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">test</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">default string</span><span class="s1">&#39;</span><span class="p">}</span><span class="p">)</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

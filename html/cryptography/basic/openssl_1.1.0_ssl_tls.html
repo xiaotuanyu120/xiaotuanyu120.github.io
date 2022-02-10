@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/cryptography/basic/1.0.0_crytography_intro.html">密码学: 1.0.0 简要介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.1.0_hash_algorithm.html">密码学: 1.1.0 hash算法介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.2.0_algorithm.html">密码学: 1.2.0 加解密算法（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.3.0_signature.html">密码学: 1.3.0 数字签名（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.4.0_certification.html">密码学: 1.4.0 数字证书（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.5.0_pki.html">密码学: 1.5.0 PKI认证体系（转载）</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.1.0_ssl_tls.html">openssl 1.1.0 证书相关名词含义</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.2.0_pem.html">openssl 1.2.0 pem基本操作</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">openssl 1.3.0 获取证书</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>openssl 1.1.0 证书相关名词含义</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>26 May 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 参考链接</h3>
+
+<ul>
+<li><a href="http://how2ssl.com/articles/working_with_pem_files/">pem文件介绍</a></li>
+<li><a href="http://how2ssl.com/articles/openssl_commands_and_tips/">openssl命令文档</a></li>
+<li><code>man req</code></li>
+<li><a href="https://en.wikipedia.org/wiki/X.509">x.509 wiki</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">ssl &amp; tls wiki</a></li>
+<li><a href="https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them">ssl support</a></li>
+<li><a href="https://www.digicert.com/ssl.htm">证书的工作原理</a></li>
+</ul>
+
+<hr />
+
+<h3>1. SSL相关概念含义介绍</h3>
+
+<h4>1) SSL</h4>
+
+<p>SSL(Secure Sockets Layer)是一种加密协议，在SSL发展到SSL v3.0之后，使用TLS(Transport Layer Security)代替了SSL v4.0的叫法，但是因为SSL已经广泛流传，所以有些还是沿用SSL的叫法。</p>
+
+<h4>2) TLS</h4>
+
+<p>见第一条</p>
+
+<h4>3) X.509</h4>
+
+<p>X.509是密码学中的一种公钥认证标准。很多协议使用了X.509标准，包括TLS/SSL，基于此才实现了HTTPS。</p>
+
+<h4>4) DER</h4>
+
+<p>DER是一种编码规则，也用做扩展名。很多加密标准使用了ASN.1来定义数据结构，然后用DER来序列化那些数据结构。但是DER的编码规则产出的是二进制格式的文件，但有些软件只支持ASCII码，所以pem就出现了。</p>
+
+<h4>5) pem</h4>
+
+<ul>
+<li><p>pem是一种用于存储加密的key、证书和其他数据常用的文件格式。使用base64对DER编码的二进制数据进行编码得到了pem格式的文件</p></li>
+
+<li><p>文件格式</p>
+<pre class="chroma">-----BEGIN CERTIFICATE-----
+编码过的信息
+-----END CERTIFICATE-----
+</pre></li>
+
+<li><p>后缀名<br />
+pem可以保存为&rdquo;.pem&rdquo;,&ldquo;.crt&rdquo;,&ldquo;.cer&rdquo;后缀的文件中(为了认证)，也可以保存在&rdquo;.key&rdquo;后缀文件中(为了储存私钥)。其实我们可以保存pem信息为任意后缀名称，因为系统对pem文件的识别是通过开头和结尾的label而不是后缀名。将其保存在各种特定的后缀中主要是为了对人和软件的友好。</p></li>
+
+<li><p>pem文件可以包含多个pem信息段</p></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

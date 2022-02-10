@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                  <ul>
+                    <li><a href="/database/redis/redis_1.1.0_install.html">redis: 1.1.0 安装</a></li>
+                    <li><a href="/database/redis/redis_1.1.1_install_docker.html">redis: 1.1.1 docker-redis</a></li>
+                    <li><a href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">redis: 1.1.1 redis replication(sentinel集群)</a></li>
+                    <li><a href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">redis: 1.1.2 redis-py(sentinel)获取master信息</a></li>
+                    <li><a href="/database/redis/redis_1.2.0_basic_cmd.html">redis: 1.2.0 基本管理命令</a></li>
+                    <li><a href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">redis: 1.2.1 将redis执行结果输出到文件</a></li>
+                    <li><a href="/database/redis/redis_1.2.2_security_disable_command.html">redis: 1.2.2 安全性(CONFIG重命名)</a></li>
+                    <li><a href="/database/redis/redis_1.2.3_production_tunning.html">redis: 1.2.3 性能优化</a></li>
+                    <li><a href="/database/redis/redis_3.1.0_consistent.html">redis: 3.1.0 持久化、备份及恢复</a></li>
+                    <li><a href="/database/redis/redis_4.1.0_replication.html">redis: 4.1.0 主从配置</a></li>
+                    <li><a href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">redis: 4.2.0 主从遇到的问题</a></li>
+                    <li><a href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">redis: 5.1.0 错误-降级后启动报错</a></li>
+                    <li><a href="/database/redis/redis_6.1.0_debug_method.html">redis: 6.1.0 DEBUG方法</a></li>
+                    <li><a href="/database/redis/redis_cluster_1.1.0_install.html">redis-cluster: 1.1.0 安装</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>redis-cluster: 1.1.0 安装</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>23 Dec 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>redis-cluster简介</h3>
+
+<p>redis-cluster提供了一种方式，在多个redis节点中进行数据分片。同时，也在分区期间提供了一定程度的高可用性，当某个节点无法通信时，可以继续执行读写操作。</p>
+
+<h4>1) 在实际应用中，使用redis-cluster可以得到如下特性</h4>
+
+<ul>
+<li>自动在多个节点之间分割数据集</li>
+<li>当一部分节点出现故障或无法与其余集群通信时，继续执行操作</li>
+</ul>
+
+<h4>2) redis-cluster中的端口</h4>
+
+<p>每一个redis节点需要监听两个端口，其中一个端口是用于提供客户端服务，例如6379，另外一个端口是给前一个端口加上10000，例如16379.第二个大端口号用于集群总线通信的，在上面节点与节点之间使用二进制协议进行通信。集群总线被节点用于失败检测、配置更新、failover授权和其他集群功能。
+- 6379(默认)，需要给所有客户端开放访问，并且给所有集群节点开放访问(用于key的迁移)
+- 16379(默认)，需要开放给所有集群节点
+集群总线使用二进制协议，这样更适用于降低带宽和处理时间。</p>
+
+<h4>3) redis-cluster和docker</h4>
+
+<p>redis-cluster目前不支持nat网络或端口重定向过的网络。而docker恰好使用了端口转发的方式，来实现了同一台主机上的多个容器可以在容器内部使用同一个端口的方式。所以，如果要使用docker来部署redis-cluster，我们必须给容器使用host网络的方式。</p>
+
+<h4>4) redis-cluster数据分片</h4>
+
+<p>Redis Cluster不使用一致的哈希，而是使用一种不同形式的分片，其中每个键从概念上讲都是我们称为哈希槽的一部分。每一个redis-cluster中有16384个哈希槽，计算给定密钥的哈希槽是多少，我们只需对密钥的CRC16取模16384。</p>
+
+<p>每一个redis节点负责哈希槽的一个子区间，例如我们有一个3节点的redis-cluster，那么：
+- 节点A包含从0到5500的哈希槽。
+- 节点B包含从5501到11000的哈希槽。
+- 节点C包含从11001到16383的哈希槽。
+这允许我们方便的增删节点，如果我们增加一个节点D，只需要从ABC中挪一部分哈希槽到D中即可。类似的，如果我们要删除节点A，我们只需要把A中的哈希槽挪动到
+BC中即可。当节点A为空时，我可以将其从群集中完全删除。</p>
+
+<p>因为将哈希槽从一个节点移动到另一个节点不需要停止操作，所以添加和删除节点或更改节点持有的哈希槽的百分比不需要任何停机时间。</p>
+
+<p>redis-cluster支持针对多个key的批量操作，只需要目标keys存在在同一个哈希槽中。要达成将多个keys放在同一个哈希槽中，可以使用hash tags来手动分类(关键字就是<code>{}</code>，具体文档可以谷歌)。</p>
+
+<h4>5) redis-cluster主从模型</h4>
+
+<p>当redis-cluster部分子节点无法和其他大部分节点通信或者发生错误时使整个集群依然可用，redis-cluster使用了主从模型，使每一个哈希槽存在多个副本。</p>
+
+<p>在我们举得例子中，三个节点ABC，假设B发生了问题，那么5501-11000区间的哈希槽将无法被访问，但是因为我们给B提供了一个从节点B1，那么A和C将B1提升为主节点，此时就可以继续对5501-11000区间的哈希槽提供访问和操作。</p>
+
+<p>但是需要注意的是，如果B和B1同时发生错误，那么整个集群会发生失败</p>
+
+<h4>6) redis-cluster的一致性保证</h4>
+
+<p>redis-cluster不保证强一致性。在实际使用中，这意味着在某些特定条件下，redis-cluster会丢失丢失系统已确认给客户端的写入。</p>
+
+<p>Redis Cluster可能会丢失写入的第一个原因是因为它使用异步复制。
+- 客户端写入数据到B
+- B回复给客户端写入完成
+- B将这个写操作通告给B的从节点
+如你所见，B不会等待从节点的确认，而是直接回复客户端写入完成，因为不这样做的话会对Redis造成极大的延迟损失。那么可想而知，如果B在告知从节点有改动之前挂掉了，在这个过程中就会造成客户端写入过的数据丢失。</p>
+
+<p>基本上，我们需要在性能和一致性之间进行权衡。当然，如果你希望改变这种默认行为，而使用同步复制的话，可以使用WAIT命令。这样可以大大降低写操作的丢失，但是依然没有达到强一致性。在更复杂的故障情况下，总是有可能将无法接收写操作的从设备选为主设备。</p>
+
+<p>还有一种值得注意的情况，Redis Cluster将丢失写操作，这种情况发生在网络分区期间，在该分区中，客户端与少数实例（至少包括主实例）隔离。</p>
+
+<p>假设我们有三主三从ABCA1B1C1，然后有个客户端Z1，客户端Z1和B，被网络分区隔离出来，然后ACA1B1C1是在另外一个网络分区。Z1依然可以向B中写入，如果在很短的时间内集群恢复，然而时间已经长到足够B1被提升为主节点。此时Z1写入到B的数据会丢失。</p>
+
+<p>请注意，Z1将能够发送到B的最大写入量有一个最大窗口，如果已经有足够的时间让分区的多数方选举一个从属方为主，则少数方中的每个主节点将停止接受写入。该时间量是Redis Cluster的一个非常重要的配置指令，称为node timeout。当node timeout超时后，主节点会进入失败状态，然后被其他从节点代替。类似地，在没有主节点能够感知大多数其他主节点的节点超时之后，它进入错误状态并停止接受写入。</p>
+
+<h4>7) redis-cluster配置</h4>
+
+<ul>
+<li>cluster-enabled <yes/no>，启用集群模式</li>
+<li>cluster-config-file <filename>，集群配置文件名称，无法手动编辑，会自动生成。此配置文件用于保存集群状态</li>
+<li>cluster-node-timeout <milliseconds>，Redis群集节点不可用的、不被认为是失败的最长时间。如果主节点无法访问的时间超过指定的时间长度，则它的从节点将对其进行故障转移。此参数控制Redis Cluster中的其他重要事项。值得注意的是，在指定的时间内无法到达大多数主节点的每个节点都将停止接受查询。</li>
+<li>cluster-slave-validity-factor <factor>，如果设定为0，slave节点会一直尝试去故障转移主节点，而不考虑master和slave断开连接的时间。如果设定的值大于0，那么slave尝试故障转移主节点的最大时间区间为，设定的值乘以node timeout，超过此时间，slave将不再尝试故障转移主节点。例如node timeout时间为5s，设定此因子为10，那么50s内，slave会尝试故障转移master，而超过50s，slave将停止尝试故障转移master。值得注意的是，如果没有slave可以成功的故障转移master，那么整个集群将不可用，直到故障的master重新加入集群。</li>
+<li>cluster-migration-barrier <count>，一个主站将保持连接的最小数量的从站，以便另一个从站迁移到不再被任何从站覆盖的主站。</li>
+<li>cluster-require-full-coverage <yes/no>，如果将其设置为“是”（默认情况下为默认值），则在任何节点未覆盖一定比例的密钥空间的情况下，群集将停止接受写入。如果该选项设置为no，即使仅可以处理有关密钥子集的请求，群集仍将提供查询。 创建和使用Redis集群</li>
+</ul>
+
+<h3>docker本机搭建redis-cluster实践</h3>
+<pre class="chroma">mkdir redis-cluster-test
+<span class="nb">cd</span> redis-cluster-test
+
+<span class="c1"># 创建配置文件</span>
+<span class="c1"># 基本上就是默认配置，然后修改了以下内容</span>
+<span class="c1"># - port 7000（对应的端口组合的路径啥的一起改了）</span>
+<span class="c1"># - protect-mode no</span>
+<span class="c1"># - bind 0.0.0.0</span>
+<span class="c1"># - maxmemory 1024mb</span>
+<span class="c1"># - appendonly yes</span>
+<span class="c1"># - cluster-enabled yes</span>
+<span class="c1"># - cluster-config-file nodes-7000.conf</span>
+<span class="c1"># - cluster-node-timeout 5000</span>
+<span class="c1"># - cluster-replica-validity-factor 10</span>
+cat <span class="s">&lt;&lt; EOF &gt; 7000.conf
+</span><span class="s">bind 0.0.0.0
+</span><span class="s">protected-mode no
+</span><span class="s">port 7000
+</span><span class="s">tcp-backlog 511
+</span><span class="s">timeout 0
+</span><span class="s">tcp-keepalive 300
+</span><span class="s">daemonize no
+</span><span class="s">supervised no
+</span><span class="s">pidfile /var/run/redis_7000.pid
+</span><span class="s">loglevel notice
+</span><span class="s">logfile &#34;&#34;
+</span><span class="s">databases 16
+</span><span class="s">always-show-logo yes
+</span><span class="s">save 900 1
+</span><span class="s">save 300 10
+</span><span class="s">save 60 10000
+</span><span class="s">stop-writes-on-bgsave-error yes
+</span><span class="s">rdbcompression yes
+</span><span class="s">rdbchecksum yes
+</span><span class="s">dbfilename dump.rdb
+</span><span class="s">dir ./
+</span><span class="s">replica-serve-stale-data yes
+</span><span class="s">replica-read-only yes
+</span><span class="s">repl-diskless-sync no
+</span><span class="s">repl-diskless-sync-delay 5
+</span><span class="s">repl-disable-tcp-nodelay no
+</span><span class="s">replica-priority 100
+</span><span class="s">requirepass myredis123
+</span><span class="s">maxmemory 1024mb
+</span><span class="s">lazyfree-lazy-eviction no
+</span><span class="s">lazyfree-lazy-expire no
+</span><span class="s">lazyfree-lazy-server-del no
+</span><span class="s">replica-lazy-flush no
+</span><span class="s">appendonly yes
+</span><span class="s">appendfilename &#34;appendonly.aof&#34;
+</span><span class="s">appendfsync everysec
+</span><span class="s">no-appendfsync-on-rewrite no
+</span><span class="s">auto-aof-rewrite-percentage 100
+</span><span class="s">auto-aof-rewrite-min-size 64mb
+</span><span class="s">aof-load-truncated yes
+</span><span class="s">aof-use-rdb-preamble yes
+</span><span class="s">lua-time-limit 5000
+</span><span class="s">cluster-enabled yes
+</span><span class="s">cluster-config-file nodes-7000.conf
+</span><span class="s">cluster-node-timeout 5000
+</span><span class="s">cluster-replica-validity-factor 10
+</span><span class="s">slowlog-log-slower-than 10000
+</span><span class="s">slowlog-max-len 128
+</span><span class="s">latency-monitor-threshold 0
+</span><span class="s">notify-keyspace-events &#34;&#34;
+</span><span class="s">hash-max-ziplist-entries 512
+</span><span class="s">hash-max-ziplist-value 64
+</span><span class="s">list-max-ziplist-size -2
+</span><span class="s">list-compress-depth 0
+</span><span class="s">set-max-intset-entries 512
+</span><span class="s">zset-max-ziplist-entries 128
+</span><span class="s">zset-max-ziplist-value 64
+</span><span class="s">hll-sparse-max-bytes 3000
+</span><span class="s">stream-node-max-bytes 4096
+</span><span class="s">stream-node-max-entries 100
+</span><span class="s">activerehashing yes
+</span><span class="s">client-output-buffer-limit normal 0 0 0
+</span><span class="s">client-output-buffer-limit replica 256mb 64mb 60
+</span><span class="s">client-output-buffer-limit pubsub 32mb 8mb 60
+</span><span class="s">hz 10
+</span><span class="s">dynamic-hz yes
+</span><span class="s">aof-rewrite-incremental-fsync yes
+</span><span class="s">rdb-save-incremental-fsync yes
+</span><span class="s">EOF</span>
+<span class="c1"># 其他的7001.conf,7002.conf,7003.conf,7004.conf,7005.conf保持配置一致，然后端口改掉即可</span>
+
+<span class="c1"># 创建docker-compose文件</span>
+<span class="c1"># 重点注意：</span>
+<span class="c1"># - 网络模式使用host</span>
+<span class="c1"># - 生产环境中可以把rdb的目录(/data)给映射出来</span>
+cat <span class="s">&lt;&lt; EOF &gt; redis-cluster-test.yml
+</span><span class="s">version: &#39;3&#39;
+</span><span class="s">services:
+</span><span class="s">  redis-7000:
+</span><span class="s">    container_name: redis-7000
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7000.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">  redis-7001:
+</span><span class="s">    container_name: redis-7001
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7001.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">  redis-7002:
+</span><span class="s">    container_name: redis-7002
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7002.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">  redis-7003:
+</span><span class="s">    container_name: redis-7003
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7003.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">  redis-7004:
+</span><span class="s">    container_name: redis-7004
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7004.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">  redis-7005:
+</span><span class="s">    container_name: redis-7005
+</span><span class="s">    image: redis:5
+</span><span class="s">    network_mode: &#34;host&#34;
+</span><span class="s">    command: [&#34;redis-server&#34;, &#34;/usr/local/etc/redis/redis.conf&#34;]
+</span><span class="s">    volumes:
+</span><span class="s">      - ./7005.conf:/usr/local/etc/redis/redis.conf
+</span><span class="s">EOF</span>
+
+<span class="c1"># 启动redis-cluster集群</span>
+docker-compose -f redis-cluster-test.yml up -d
+
+<span class="c1"># 因为是host网络启动，会直接占用宿主机端口</span>
+netstat -lnpt <span class="p">|</span>grep redis
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7000            0.0.0.0:*               LISTEN      9090/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7001            0.0.0.0:*               LISTEN      9218/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7002            0.0.0.0:*               LISTEN      9297/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7003            0.0.0.0:*               LISTEN      9323/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7004            0.0.0.0:*               LISTEN      9143/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:7005            0.0.0.0:*               LISTEN      9192/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17000           0.0.0.0:*               LISTEN      9090/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17001           0.0.0.0:*               LISTEN      9218/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17002           0.0.0.0:*               LISTEN      9297/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17003           0.0.0.0:*               LISTEN      9323/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17004           0.0.0.0:*               LISTEN      9143/redis-server <span class="m">0</span> 
+tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:17005           0.0.0.0:*               LISTEN      9192/redis-server <span class="m">0</span> 
+
+<span class="c1"># 初始化集群</span>
+redis-cli -a password --cluster create <span class="se">\
+</span><span class="se"></span>127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 <span class="se">\
+</span><span class="se"></span>127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005 <span class="se">\
+</span><span class="se"></span>--cluster-replicas <span class="m">1</span>
+<span class="c1"># 会输出建议的master和slave分布，同意的话，输入yes即可</span>
+<span class="c1"># 会提示redis集群创建完毕</span>
+</pre>
+<h3>docker/nat网络环境支持</h3>
+
+<p>在实际上生产的时候遇到了一个问题，因为机房是nat网络结构，导致了如果我们用内网ip把redis-cluster启动起来，机房外部的客户端A访问这个集群碰到redirect的情况会有问题。因为当连接上node01的时，碰到需要redirect的情况，node01给出的redirect的ip是内网ip，而客户端A是使用外网才能访问到redis-cluster，此时就是有报错。所以此时需要以下几个配置
+- cluster-announce-ip，手动配置加入集群的ip
+- cluster-announce-port，手动配置加入集群的port
+- cluster-announce-bus-port，如果这个端口配置，则取代regular port+10000的策略，使用这个端口来替代</p>
+
+<p>详细配置的官方解释看这里</p>
+<pre class="chroma">########################## CLUSTER DOCKER/NAT support  ########################
+
+# In certain deployments, Redis Cluster nodes address discovery fails, because
+# addresses are NAT-ted or because ports are forwarded (the typical case is
+# Docker and other containers).
+#
+# In order to make Redis Cluster working in such environments, a static
+# configuration where each node knows its public address is needed. The
+# following two options are used for this scope, and are:
+#
+# * cluster-announce-ip
+# * cluster-announce-port
+# * cluster-announce-bus-port
+#
+# Each instruct the node about its address, client port, and cluster message
+# bus port. The information is then published in the header of the bus packets
+# so that other nodes will be able to correctly map the address of the node
+# publishing the information.
+#
+# If the above options are not used, the normal Redis Cluster auto-detection
+# will be used instead.
+#
+# Note that when remapped, the bus port may not be at the fixed offset of
+# clients port + 10000, so you can specify any port and bus-port depending
+# on how they get remapped. If the bus-port is not set, a fixed offset of
+# 10000 will be used as usually.
+#
+# Example:
+#
+# cluster-announce-ip 10.1.1.5
+# cluster-announce-port 6379
+# cluster-announce-bus-port 6380
+</pre>
+<blockquote>
+<p><a href="http://download.redis.io/redis-stable/redis.conf">redis.conf</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>flannel 1.1.0 install flannel using binaries（systemd）</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>31 Jul 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 安装etcd</h3>
+
+<p>这里仅启动单节点的etcd，并且使用最简单快捷的手动命令启动方式，为的是快速的测试flannel，详细的etcd集群的搭建参照<a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">这篇文档</a></p>
+<pre class="chroma"><span class="c1"># 下载etcd</span>
+wget https://github.com/coreos/etcd/releases/download/v3.2.4/etcd-v3.2.4-linux-amd64.tar.gz
+tar zxvf etcd-v3.2.4-linux-amd64.tar.gz
+
+<span class="c1"># 启动etcd服务</span>
+./etcd-v3.2.4-linux-amd64/etcd <span class="p">&amp;</span>
+
+<span class="c1"># 写入flannel配置</span>
+./etcd-v3.2.4-linux-amd64/etcdctl <span class="nb">set</span> /kube-centos/network/config <span class="s1">&#39;{ &#34;Network&#34;: &#34;10.5.0.0/16&#34;, &#34;Backend&#34;: {&#34;Type&#34;: &#34;vxlan&#34;}}&#39;</span>
+</pre>
+<blockquote>
+<p>这里的etcd仅会监听127.0.0.1 2379和2380端口，如果需要指定监听的ip和端口，参照上面的etcd文档链接</p>
+</blockquote>
+
+<hr />
+
+<h3>2. 安装配置flannel</h3>
+<pre class="chroma"><span class="nv">FLANNEL_VER</span><span class="o">=</span>v0.9.1
+wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz
+mkdir flannel
+tar zxvf flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz -C flannel
+cp flannel/flanneld /usr/local/bin
+mkdir -p /usr/libexec/flannel
+cp flannel/mk-docker-opts.sh /usr/libexec/flannel/
+
+<span class="c1"># 准备flannel配置文件</span>
+<span class="c1">## !!重点!! ##</span>
+<span class="c1"># -iface，根据实际情况设定</span>
+<span class="c1"># FLANNELD_PUBLIC_IP，每个节点不同</span>
+<span class="c1">#############</span>
+cat &gt; /etc/sysconfig/flanneld <span class="s">&lt;&lt; EOF
+</span><span class="s">FLANNELD_PUBLIC_IP=&#34;172.16.1.101&#34;
+</span><span class="s">FLANNELD_ETCD_ENDPOINTS=&#34;http://127.0.0.1:2379&#34;
+</span><span class="s">FLANNELD_ETCD_PREFIX=&#34;/kube-centos/network&#34;
+</span><span class="s"># Any additional options that you want to pass
+</span><span class="s">FLANNELD_OPTIONS=&#34;-iface=eth1&#34;
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<p><code>/etc/sysconfig/flanneld</code>会在systemd unit file中被用作环境变量文件</p>
+
+<p>此配置文件中<code>FLANNEL_ETCD_ENDPOINTS</code>配置了储存flannel配置的链接，<code>FLANNEL_ETCD_PREFIX</code>配置了存储flannel配置的前缀，而<code>FLANNEL_OPTIONS</code>配置了传入systemd unit file中的自定义选项，详细flannel选项见<a href="https://github.com/coreos/flannel/blob/master/Documentation/configuration.md">coreos官方说明</a>。</p>
+
+<p>关键环境变量的名称，规则见<a href="https://github.com/coreos/flannel/blob/master/Documentation/configuration.md#environment-variables">coreos关于flannel配置中的environment-variables说明。</a>
+例如&ndash;etcd-endpoints转换为FLANNEL_ETCD_ENDPOINTS</p>
+</blockquote>
+
+<hr />
+
+<h3>3. 启动flannel（systemd）</h3>
+<pre class="chroma"><span class="c1"># 创建systemd unit file</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Flanneld overlay address etcd agent
+</span><span class="s1">After=network.target
+</span><span class="s1">After=network-online.target
+</span><span class="s1">Wants=network-online.target
+</span><span class="s1">Before=docker.service
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=notify
+</span><span class="s1">EnvironmentFile=/etc/sysconfig/flanneld
+</span><span class="s1">ExecStart=/usr/local/bin/flanneld $FLANNELD_OPTIONS
+</span><span class="s1">ExecStartPost=/usr/libexec/flannel/mk-docker-opts.sh -c
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target
+</span><span class="s1">RequiredBy=docker.service&#39;</span> &gt; /usr/lib/systemd/system/flannel.service
+
+<span class="c1"># 可选，如果开启了selinux，需要执行此命令</span>
+<span class="c1"># chcon -u system_u /usr/lib/systemd/system/flannel.service</span>
+
+<span class="c1"># 启动flannel</span>
+systemctl daemon-reload
+systemctl <span class="nb">enable</span> flannel
+systemctl start flannel
+</pre>
+<blockquote>
+<p><code>ExecStartPost=/usr/libexec/flannel/mk-docker-opts.sh -c</code>这个配置是在flannel启动之后生成docker的配置文件，默认在/run/docker_opts.env</p>
+<pre class="chroma">OPTIONS:
+	-f	Path to flannel env file. Defaults to /run/flannel/subnet.env
+	-d	Path to Docker env file to write to. Defaults to /run/docker_opts.env
+	-i	Output each Docker option as individual var. e.g. DOCKER_OPT_MTU=1500
+	-c	Output combined Docker options into DOCKER_OPTS var
+	-k	Set the combined options key to this value (default DOCKER_OPTS=)
+	-m	Do not output --ip-masq (useful for older Docker version)
+</pre></blockquote>
+
+<p><strong>启动flannel发生了什么？</strong></p>
+<pre class="chroma"><span class="c1"># 首先生成了每个节点不同的flannel网络配置文件</span>
+cat /var/run/flannel/subnet.env
+<span class="nv">FLANNEL_NETWORK</span><span class="o">=</span>10.5.0.0/16
+<span class="nv">FLANNEL_SUBNET</span><span class="o">=</span>10.5.56.1/24
+<span class="nv">FLANNEL_MTU</span><span class="o">=</span><span class="m">1450</span>
+<span class="nv">FLANNEL_IPMASQ</span><span class="o">=</span><span class="nb">false</span>
+<span class="c1"># 而且还增加了一个flannel.1的interface</span>
+ip a <span class="p">|</span>grep flannel -A <span class="m">5</span>
+5: flannel.1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1450</span> qdisc noqueue state UNKNOWN
+    link/ether 9e:de:7e:36:74:cb brd ff:ff:ff:ff:ff:ff
+    inet 10.5.56.0/32 scope global flannel.1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9cde:7eff:fe36:74cb/64 scope link
+       valid_lft forever preferred_lft forever
+
+<span class="c1"># 然后根据上面的配置文件通过mk-docker-opts.sh脚本生成docker使用的配置文件</span>
+cat /run/docker_opts.env
+<span class="nv">DOCKER_OPTS</span><span class="o">=</span><span class="s2">&#34; --bip=10.5.56.1/24 --ip-masq=true --mtu=1450&#34;</span>
+</pre>
+<hr />
+
+<h3>4. 启动docker</h3>
+
+<h4>1) 安装docker（可选）</h4>
+
+<p>如果之前没有安装docker服务，可以参照<a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">yum安装docker</a>或<a href="/virtualization/docker/docker_1.1.1_installation_binary.html">二进制文件安装docker</a></p>
+
+<h4>2) 重启docker服务</h4>
+<pre class="chroma"><span class="c1"># 修改docker的systemd unit file，进行如下修改</span>
+vim /usr/lib/systemd/system/docker.service
+*************************************************
+<span class="c1"># 增加新的配置文件</span>
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/run/docker_opts.env
+<span class="c1"># 修改启动命令，增加$DOCKER_OPTS</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd <span class="nv">$DOCKER_OPTS</span>
+*************************************************
+
+systemctl daemon-reload
+systemctl restart docker
+</pre>
+<blockquote>
+<p><code>EnvironmentFile</code>指定的是上面我们使用mk-docker-opts.sh脚本生成的docker网络配置文件<br />
+<code>$DOCKER_OPTS</code>指的是/run/docker_opts.env中的对应变量</p>
+</blockquote>
+
+<h4>3) 查看网络情况</h4>
+<pre class="chroma">ip a show flannel.1
+5: flannel.1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1450</span> qdisc noqueue state UNKNOWN
+    link/ether 9e:de:7e:36:74:cb brd ff:ff:ff:ff:ff:ff
+    inet 10.5.56.0/32 scope global flannel.1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9cde:7eff:fe36:74cb/64 scope link
+       valid_lft forever preferred_lft forever
+
+ip a show docker0
+4: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu <span class="m">1500</span> qdisc noqueue state DOWN
+   link/ether 02:42:b5:cf:de:e2 brd ff:ff:ff:ff:ff:ff
+   inet 10.5.56.1/24 scope global docker0
+      valid_lft forever preferred_lft forever
+</pre>
+<blockquote>
+<p>此时docker0就已经在flannel.1的网段里面了</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

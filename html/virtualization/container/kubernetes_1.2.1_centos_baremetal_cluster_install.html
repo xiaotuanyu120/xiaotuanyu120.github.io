@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Jul 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>0. 背景介绍</h2>
+
+<h3>1) 参照文档</h3>
+
+<ul>
+<li>教程参照文档-<a href="https://kubernetes.io/docs/getting-started-guides/scratch/">[Creating a Custom Cluster from Scratch]</a></li>
+<li>网络参考-<a href="http://tonybai.com/2017/01/17/understanding-flannel-network-for-kubernetes/">理解Kubernetes网络之Flannel网络</a></li>
+</ul>
+
+<blockquote>
+<p>不参照<a href="https://kubernetes.io/docs/getting-started-guides/centos/centos_manual_config/">[CentOS]</a>和<a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/">[Using kubeadm to Create a Cluster]</a>的原因是，前者已经废弃，后者在beta阶段。另外此文档只是一个大纲，这样能够更深入的了解kubernetes的组件和原理。</p>
+
+<p>文档中有很多细节，实际操作之外的步骤大部分忽略掉了，推荐详读一遍文档。</p>
+</blockquote>
+
+<h3>2) 软件版本</h3>
+
+<table>
+<thead>
+<tr>
+<th>items</th>
+<th>version</th>
+<th>comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>OS</td>
+<td>centos7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>kubernetes</td>
+<td>1.9.1</td>
+<td>最新稳定版本</td>
+</tr>
+
+<tr>
+<td>docker</td>
+<td>17.09.0-ce</td>
+<td></td>
+</tr>
+
+<tr>
+<td>etcd</td>
+<td>3.0.7</td>
+<td></td>
+</tr>
+
+<tr>
+<td>flannel</td>
+<td></td>
+<td>使用flannel做overlay网络，支持不同主机间pods间网络互通</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<ul>
+<li>docker（或者rkt）是必备的，因为kubernetes本身就是一个容器的编排工具<br />
+</li>
+<li>etcd给kubernetes和flannel提供数据存储支持，可部署在kubernetes master节点上，也可以单独启用一个集群<br />
+</li>
+<li>flannel给kubernetes提供了overlay网络支持（可选，也有其他选择，详细见文章开头的文档链接中的描述），实现了不同主机pods之间的直接互通</li>
+<li>kubernetes包含以下组件
+
+<ul>
+<li>在master节点上运行的kube-apiserver,kube-controller-manager,kube-scheduler</li>
+<li>在node节点上运行的kubelet,kube-proxy</li>
+</ul></li>
+</ul>
+</blockquote>
+
+<h3>3) 节点规划</h3>
+
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>ip address</th>
+<th>service</th>
+<th>comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>master</td>
+<td>172.16.1.100</td>
+<td>etcd,kube-apiserver,kube-controller-manager,kube-scheduler,docker</td>
+<td>主节点</td>
+</tr>
+
+<tr>
+<td>node01</td>
+<td>172.16.1.101</td>
+<td>flannel,docker,kubelet,kube-proxy</td>
+<td>node 1</td>
+</tr>
+
+<tr>
+<td>node02</td>
+<td>172.16.1.102</td>
+<td>flannel,docker,kubelet,kube-proxy</td>
+<td>node 2</td>
+</tr>
+
+<tr>
+<td>node03</td>
+<td>172.16.1.103</td>
+<td>flannel,docker,kubelet,kube-proxy</td>
+<td>node 3</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2>1. 主机环境</h2>
+
+<p>为了将系统环境和软件环境对安装的影响度降低，需要确保以下几项需求满足
+- 安装必要的工具包<br />
+<code>yum install -y wget vim iptables iptables-services</code></p>
+
+<ul>
+<li><p>关闭selinux</p>
+<pre class="chroma">sed -i <span class="s2">&#34;s/SELINUX=enforcing/SELINUX=disabled/g&#34;</span> /etc/selinux/config
+setenforce <span class="m">0</span>
+</pre>
+<ul>
+<li>关闭iptables-services和firewalld<br />
+<code>systemctl stop firewalld;systemctl stop iptables</code><br />
+&gt; 防火墙后期需要开启，并开放api服务的端口</li>
+<li>设定hostname到hosts文件中
+<code>bash
+echo &quot;172.16.1.100  master
+172.16.1.101  node01
+172.16.1.102  node02
+172.16.1.103  node03&quot; &gt;&gt; /etc/hosts
+</code></li>
+</ul></li>
+
+<li><p>设定sysctl中的net.ipv4.ip_forward = 1</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s2">&#34;net.ipv4.ip_forward = 1&#34;</span> &gt;&gt; /etc/sysctl.conf
+sysctl -p
+</pre>
+<blockquote>
+<p>net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器
+- 关闭系统swap</p>
+<pre class="chroma">swapoff -a
+</pre></blockquote>
+</li>
+</ul>
+
+<p>注释swap的开机挂载项，修改<code>/etc/fstab</code></p>
+<pre class="chroma">#/dev/mapper/VolGroup00-LogVol01 swap                    swap    defaults        0 0
+</pre>
+<blockquote>
+<p>关闭系统swap，是为了严格的按照cpu和内存的限制，这样scheduler在规划pod的时候就不会把pod放进swap中了，这是为了性能考虑。</p>
+</blockquote>
+
+<hr />
+
+<h2>2. kubernetes master节点</h2>
+
+<h3>1) 配置kubernetes环境变量（master节点）</h3>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;export MASTER_IP=172.16.1.100
+</span><span class="s1">export SERVICE_CLUSTER_IP_RANGE=10.254.0.0/16
+</span><span class="s1">export CLUSTER_NAME=KubeTest
+</span><span class="s1">export PATH=$PATH:/usr/local/kubernetes/bin&#39;</span> &gt; /etc/profile.d/kubernetes.sh
+<span class="nb">source</span> /etc/profile.d/kubernetes.sh
+</pre>
+<blockquote>
+<p>规划集群中需要重复使用的内容为变量
+- <code>MASTER_IP</code> - master的静态ip
+- <code>SERVICE_CLUSTER_IP_RANGE</code> - service对象使用的ip范围
+- <code>CLUSTER_NAME</code> - kubernetes集群的名称</p>
+</blockquote>
+
+<!--
+``` bash
+echo 'export MASTER_IP=172.16.1.100
+export SERVICE_CLUSTER_IP_RANGE=10.254.0.0/16
+export CLUSTER_NAME=KubeTest
+export CA_CERT=/usr/local/kubernetes/security/ca.crt
+export MASTER_CERT=/usr/local/kubernetes/security/server.crt
+export MASTER_KEY=/usr/local/kubernetes/security/server.key
+export PATH=$PATH:/usr/local/kubernetes/bin' > /etc/profile.d/kubernetes.sh
+source /etc/profile.d/kubernetes.sh
+```
+> 规划集群中需要重复使用的内容为变量
+- `MASTER_IP` - master的静态ip
+- `SERVICE_CLUSTER_IP_RANGE` - service对象使用的ip范围
+- `CLUSTER_NAME` - kubernetes集群的名称
+- 认证变量（后面https支持会用到）：
+    - `CA_CERT` - 放在apiserver节点上
+    - `MASTER_CERT` - 放在apiserver节点上
+    - `MASTER_KEY` - 放在apiserver节点上
+-->
+
+<h3>2) 获取kubernetes（master节点）</h3>
+
+<p>kubernetes的二进制包里面包含了kubernetes的二进制文件和支持的etcd版本</p>
+<pre class="chroma"><span class="c1"># 下载kubernetes</span>
+wget https://dl.k8s.io/v1.9.1/kubernetes-server-linux-amd64.tar.gz
+tar zxvf kubernetes-server-linux-amd64.tar.gz
+
+<span class="c1"># 拷贝二进制文件到server端</span>
+mkdir -p /usr/local/kubernetes/<span class="o">{</span>bin,security,conf<span class="o">}</span>
+cp kubernetes/server/bin/<span class="o">{</span>kube-apiserver,kube-scheduler,kube-controller-manager,kubectl<span class="o">}</span> /usr/local/kubernetes/bin/
+chmod <span class="m">750</span> /usr/local/kubernetes/bin/*
+<span class="c1"># 如果使用docker启动kube-apiserver,kube-scheduler,kube-controller-manager这三个服务的话，不需要拷贝它们的二进制文件，只需要拷贝kubectl即可</span>
+
+<span class="c1"># 拷贝二进制文件到node端(提前做好ssh信任)</span>
+scp kubernetes/server/bin/<span class="o">{</span>kubelet,kube-proxy<span class="o">}</span> root@node01:/usr/local/bin
+scp kubernetes/server/bin/<span class="o">{</span>kubelet,kube-proxy<span class="o">}</span> root@node02:/usr/local/bin
+scp kubernetes/server/bin/<span class="o">{</span>kubelet,kube-proxy<span class="o">}</span> root@node03:/usr/local/bin
+</pre>
+<blockquote>
+<p>因为kubernetes这个项目是使用go语言编写，而go语言程序的部署方式很简单，就是拷贝二进制文件就可以，所以在这里，我们通过简单的复制各服务的二进制文件，就可以通过启动它们来启动相应的服务。</p>
+
+<p>本文开头的参照文档中说:<br />
+node需要运行的kubelet,kube-proxy,docker，推荐直接在系统层面上启动服务;<br />
+而对于etcd, kube-apiserver, kube-controller-manager 和 kube-scheduler，推荐我们使用容器来运行它们，文档中给出了几种镜像的获取方式，当然，我们下载的二进制文件中也有这样的镜像文件（bin目录中tar结尾的文件）可以本地加载（使用docker load命令）镜像到本机的docker中。</p>
+</blockquote>
+
+<!--
+### 3) 安全策略（master节点）
+#### (1) 准备https安全证书
+- 如果用http，安装简单，但需要使用防火墙去控制访问
+- 如果用https，配置安全认证文件即可，推荐使用
+
+准备certs(master节点做https服务器)
+``` bash
+# 获取easyrsa
+curl -L -O https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
+tar xzf easy-rsa.tar.gz
+
+# 初始化
+cd easy-rsa-master/easyrsa3
+./easyrsa init-pki
+
+# 生成ca.key
+./easyrsa --batch "--req-cn=${MASTER_IP}@`date +%s`" build-ca nopass
+
+# 生成server.key和server.crt
+./easyrsa --subject-alt-name="IP:${MASTER_IP}" --days=10000 build-server-full server nopass
+
+# 拷贝认证文件到自定义目录
+cp pki/ca.crt pki/issued/server.crt pki/private/server.key /usr/local/kubernetes/security
+```
+> 这些认证文件在apiserver启动时需要指定，可以通过增加以下参数
+--client-ca-file=/usr/local/kubernetes/security/ca.crt
+--tls-cert-file=/usr/local/kubernetes/security/server.crt
+--tls-private-key-file=/usr/local/kubernetes/security/server.key
+
+> [使用easyrsa生成认证文件的文档](https://k8smeetup.github.io/docs/admin/authentication/#easyrsa)
+-->
+
+<hr />
+
+<h3>3). 配置和安装kubernetes master服务</h3>
+
+<!--
+#### 1) 部署docker
+安装可参照[docker yum安装](/virtualization/docker/docker_1.1.0_installation_centos7.html)和[docker 二进制安装](/virtualization/docker/docker_1.1.1_installation_binary.html)，也可以使用发行版自己安装的docker版本(只要不是太旧)。
+> 二进制安装方法里面开启了selinux，这里需要关闭
+-->
+
+<h4>1) 部署etcd</h4>
+
+<p>在<code>kubernetes/cluster/images/etcd/Makefile</code>中查找到对应的etcd版本</p>
+
+<p>etcd 单点的安装可以参照<a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd install single node with systemd</a></p>
+
+<!--
+``` bash
+# mkdir -p /var/lib/etcd
+# export HostIP="172.16.1.100"
+# docker run -d -v /var/lib/etcd:/var/lib/etcd -p 4001:4001 -p 2380:2380 -p 2379:2379 \
+#  --name etcd quay.io/coreos/etcd:v2.3.8 \
+#  --advertise-client-urls http://$HostIP:2379 \
+#  --listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001
+```
+-->
+
+<p>使用etcd储存flannel的网络配置</p>
+<pre class="chroma">etcdctl --endpoints http://<span class="nv">$MASTER_IP</span>:2379 <span class="nb">set</span> /kube-centos/network/config <span class="s1">&#39;{ &#34;Network&#34;: &#34;10.5.0.0/16&#34;, &#34;Backend&#34;: {&#34;Type&#34;: &#34;vxlan&#34;}}&#39;</span>
+</pre>
+<blockquote>
+<p>为了测试，在主节点上只启动一个节点的etcd，etcd集群参照<a href="/virtualization/container">etcd 集群文档</a></p>
+</blockquote>
+
+<h4>2) 启动kubernets Apiserver, Controller Manager, 和 Scheduler服务</h4>
+
+<!--
+``` bash
+# docker load -i kubernetes/server/bin/kube-apiserver.tar
+# docker load -i kubernetes/server/bin/kube-controller-manager.tar
+# docker load -i kubernetes/server/bin/kube-scheduler.tar
+#
+# docker run -d --name=apiserver -p 8080:8080 gcr.io/google_containers/kube-apiserver:v1.8.3 \
+#  kube-apiserver \
+#  --insecure-bind-address=0.0.0.0 \
+#  --insecure-port=8080 \
+#  --advertise-address=0.0.0.0 \
+#  --service-cluster-ip-range=${SERVICE_CLUSTER_IP_RANGE} \
+#  --etcd-servers=http://127.0.0.1:4001 \
+#  --service-node-port-range=1-65535 \
+#  # --client-ca-file=${CA_CERT} \
+#  # --tls-cert-file=${MASTER_CERT} \
+#  # --tls-private-key-file=${MASTER_KEY}
+#
+# docker run -d --name=ControllerM gcr.io/google_containers/kube-controller-manager:v1.8.3 \
+#  kube-controller-manager \
+#  --master=${MASTER_IP}:8080
+#
+# docker run -d --name=scheduler gcr.io/google_containers/kube-scheduler:v1.8.3 \
+#  kube-scheduler \
+#  --master=${MASTER_IP}:8080
+```
+-->
+
+<p>准备配置文件：
+- config, 通用配置
+- apiserver, kube-apiserver配置
+- controller-manager, kube-controller-manager配置
+- scheduler, kube-scheduler配置</p>
+<pre class="chroma">cat &gt; /usr/local/kubernetes/conf/config <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes system config
+</span><span class="s">#
+</span><span class="s"># The following values are used to configure various aspects of all
+</span><span class="s"># kubernetes services, including
+</span><span class="s">#
+</span><span class="s">#   kube-apiserver.service
+</span><span class="s">#   kube-controller-manager.service
+</span><span class="s">#   kube-scheduler.service
+</span><span class="s">#   kubelet.service
+</span><span class="s">#   kube-proxy.service
+</span><span class="s"># logging to stderr means we get it in the systemd journal
+</span><span class="s">KUBE_LOGTOSTDERR=&#34;--logtostderr=true&#34;
+</span><span class="s">
+</span><span class="s">
+</span><span class="s"># journal message level, 0 is debug
+</span><span class="s">KUBE_LOG_LEVEL=&#34;--v=0&#34;
+</span><span class="s">
+</span><span class="s"># Should this cluster be allowed to run privileged docker containers
+</span><span class="s">KUBE_ALLOW_PRIV=&#34;--allow-privileged=false&#34;
+</span><span class="s">
+</span><span class="s"># How the controller-manager, scheduler, and proxy find the apiserver
+</span><span class="s">KUBE_MASTER=&#34;--master=http://127.0.0.1:8080&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/apiserver <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes system config
+</span><span class="s">#
+</span><span class="s"># The following values are used to configure the kube-apiserver
+</span><span class="s">#
+</span><span class="s">
+</span><span class="s"># The address on the local server to listen to.
+</span><span class="s">KUBE_API_ADDRESS=&#34;--insecure-bind-address=0.0.0.0&#34;
+</span><span class="s">
+</span><span class="s"># The port on the local server to listen on.
+</span><span class="s">KUBE_API_PORT=&#34;--insecure-port=8080&#34;
+</span><span class="s">
+</span><span class="s"># Port minions listen on
+</span><span class="s"># KUBELET_PORT=&#34;--kubelet-port=10250&#34;
+</span><span class="s">
+</span><span class="s"># Comma separated list of nodes in the etcd cluster
+</span><span class="s">KUBE_ETCD_SERVERS=&#34;--etcd-servers=http://127.0.0.1:2379,http://127.0.0.1:4001&#34;
+</span><span class="s">
+</span><span class="s"># Address range to use for services
+</span><span class="s">KUBE_SERVICE_ADDRESSES=&#34;--service-cluster-ip-range=$SERVICE_CLUSTER_IP_RANGE&#34;
+</span><span class="s">
+</span><span class="s"># default admission control policies
+</span><span class="s"># KUBE_ADMISSION_CONTROL=&#34;--admission-control=NamespaceLifecycle,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota&#34;
+</span><span class="s">KUBE_ADMISSION_CONTROL=&#34;&#34;
+</span><span class="s">
+</span><span class="s"># Add your own!
+</span><span class="s">KUBE_API_ARGS=&#34;--service-node-port-range=1-65535&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/controller-manager <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># The following values are used to configure the kubernetes controller-manager
+</span><span class="s">
+</span><span class="s"># defaults from config and apiserver should be adequate
+</span><span class="s">
+</span><span class="s"># Add your own!
+</span><span class="s">KUBE_CONTROLLER_MANAGER_ARGS=&#34;&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/scheduler <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes scheduler config
+</span><span class="s">
+</span><span class="s"># default config should be adequate
+</span><span class="s">
+</span><span class="s"># Add your own!
+</span><span class="s">KUBE_SCHEDULER_ARGS=&#34;&#34;
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<p><a href="https://github.com/kubernetes/kubernetes/issues/33714">错误: No API token found for service account &ldquo;default&rdquo;, retry after the token</a>，解决办法是配置<code>KUBE_ADMISSION_CONTROL=&quot;&quot;</code>禁用<code>KUBE_ADMISSION_CONTROL</code></p>
+</blockquote>
+
+<p>准备systemd unit文件:
+- kube-apiserver.service
+- kube-controller-manager.service
+- kube-scheduler.service</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kubernetes API Server
+</span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s1">After=network.target
+</span><span class="s1">After=etcd.service
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/config
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/apiserver
+</span><span class="s1">User=kube
+</span><span class="s1">ExecStart=/usr/local/kubernetes/bin/kube-apiserver \
+</span><span class="s1">	    $KUBE_LOGTOSTDERR \
+</span><span class="s1">	    $KUBE_LOG_LEVEL \
+</span><span class="s1">	    $KUBE_ETCD_SERVERS \
+</span><span class="s1">	    $KUBE_API_ADDRESS \
+</span><span class="s1">	    $KUBE_API_PORT \
+</span><span class="s1">	    $KUBELET_PORT \
+</span><span class="s1">	    $KUBE_ALLOW_PRIV \
+</span><span class="s1">	    $KUBE_SERVICE_ADDRESSES \
+</span><span class="s1">	    $KUBE_ADMISSION_CONTROL \
+</span><span class="s1">	    $KUBE_API_ARGS
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">Type=notify
+</span><span class="s1">LimitNOFILE=65536
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kube-apiserver.service
+
+mkdir /usr/lib/systemd/system/kube-apiserver.service.d
+<span class="nb">echo</span> <span class="s1">&#39;[Service]
+</span><span class="s1">PermissionsStartOnly=yes
+</span><span class="s1">ExecStartPre=/usr/bin/mkdir -p /var/run/kubernetes
+</span><span class="s1">ExecStartPre=/usr/bin/chown kube.kube /var/run/kubernetes&#39;</span> &gt; /usr/lib/systemd/system/kube-apiserver.service.d/pre-start.conf
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kubernetes Controller Manager
+</span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/config
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/controller-manager
+</span><span class="s1">User=kube
+</span><span class="s1">ExecStart=/usr/local/kubernetes/bin/kube-controller-manager \
+</span><span class="s1">	    $KUBE_LOGTOSTDERR \
+</span><span class="s1">	    $KUBE_LOG_LEVEL \
+</span><span class="s1">	    $KUBE_MASTER \
+</span><span class="s1">	    $KUBE_CONTROLLER_MANAGER_ARGS
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">LimitNOFILE=65536
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kube-controller-manager.service
+
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kubernetes Scheduler Plugin
+</span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/config
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/scheduler
+</span><span class="s1">User=kube
+</span><span class="s1">ExecStart=/usr/local/kubernetes/bin/kube-scheduler \
+</span><span class="s1">	    $KUBE_LOGTOSTDERR \
+</span><span class="s1">	    $KUBE_LOG_LEVEL \
+</span><span class="s1">	    $KUBE_MASTER \
+</span><span class="s1">	    $KUBE_SCHEDULER_ARGS
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">LimitNOFILE=65536
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kube-scheduler.service
+</pre>
+<p>依次启动<code>kube-apiserver.service</code>, <code>kube-controller-manager.service</code>, <code>kube-scheduler.service</code></p>
+<pre class="chroma"><span class="c1"># 重载systemd unit文件</span>
+systemctl daemon-reload
+
+<span class="c1"># 创建spawn服务的用户kube（在配置文件中配置）</span>
+useradd -r -s /sbin/nologin kube
+chown :kube /usr/local/kubernetes/bin/*
+
+systemctl <span class="nb">enable</span> kube-apiserver.service
+systemctl <span class="nb">enable</span> kube-controller-manager.service
+systemctl <span class="nb">enable</span> kube-scheduler.service
+systemctl start kube-apiserver.service
+systemctl start kube-controller-manager.service
+systemctl start kube-scheduler.service
+</pre>
+<hr />
+
+<h2>3. node节点配置和安装基本软件</h2>
+
+<h3>1) 部署flannel(node节点)</h3>
+<pre class="chroma"><span class="c1"># 下载flannel</span>
+<span class="nv">FLANNEL_VER</span><span class="o">=</span>v0.9.1
+wget https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz
+mkdir flannel
+tar zxvf flannel-<span class="si">${</span><span class="nv">FLANNEL_VER</span><span class="si">}</span>-linux-amd64.tar.gz -C flannel
+cp flannel/flanneld /usr/local/bin
+mkdir -p /usr/libexec/flannel
+cp flannel/mk-docker-opts.sh /usr/libexec/flannel/
+
+<span class="c1"># 准备flannel配置文件</span>
+<span class="c1">## !!重点!! ##</span>
+<span class="c1"># -iface，根据实际情况设定</span>
+<span class="c1"># FLANNELD_PUBLIC_IP，每个节点不同</span>
+<span class="c1">#############</span>
+cat &gt; /etc/sysconfig/flanneld <span class="s">&lt;&lt; EOF
+</span><span class="s">FLANNELD_PUBLIC_IP=&#34;172.16.1.101&#34;
+</span><span class="s">FLANNELD_ETCD_ENDPOINTS=&#34;http://172.16.1.100:2379&#34;
+</span><span class="s">FLANNELD_ETCD_PREFIX=&#34;/kube-centos/network&#34;
+</span><span class="s"># Any additional options that you want to pass
+</span><span class="s">FLANNELD_OPTIONS=&#34;-iface=eth1&#34;
+</span><span class="s">EOF</span>
+
+<span class="c1"># 准备flannel systemd unit文件</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Flanneld overlay address etcd agent
+</span><span class="s1">After=network.target
+</span><span class="s1">After=network-online.target
+</span><span class="s1">Wants=network-online.target
+</span><span class="s1">Before=docker.service
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=notify
+</span><span class="s1">EnvironmentFile=/etc/sysconfig/flanneld
+</span><span class="s1">ExecStart=/usr/local/bin/flanneld $FLANNELD_OPTIONS
+</span><span class="s1">ExecStartPost=/usr/libexec/flannel/mk-docker-opts.sh -c
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target
+</span><span class="s1">RequiredBy=docker.service&#39;</span> &gt; /usr/lib/systemd/system/flannel.service
+
+systemctl daemon-reload
+systemctl <span class="nb">enable</span> flannel
+systemctl start flannel
+</pre>
+<blockquote>
+<p>每个节点的flannel需要根据自己情况来填写配置文件</p>
+
+<p>flannel启动后生成了以下文件：<br />
+- /var/run/flannel/subnet.env, 从etcd中获取信息然后生成的flanneld配置文件
+- /run/docker_opts.env, flannel service文件中指定的/usr/libexec/flannel/mk-docker-opts.sh生成的docker环境变量文件</p>
+</blockquote>
+
+<h3>2) 安装docker(node节点)</h3>
+<pre class="chroma"><span class="c1"># 安装docker底包</span>
+yum install -y git libcgroup libcgroup-tools
+systemctl <span class="nb">enable</span> cgconfig
+systemctl start cgconfig
+
+<span class="c1"># 下载安装docker</span>
+<span class="nv">DOCKER_VER</span><span class="o">=</span>17.09.0
+wget https://download.docker.com/linux/static/stable/x86_64/docker-<span class="si">${</span><span class="nv">DOCKER_VER</span><span class="si">}</span>-ce.tgz
+tar zxvf docker-<span class="si">${</span><span class="nv">DOCKER_VER</span><span class="si">}</span>-ce.tgz
+cp docker/* /usr/local/bin/
+wget https://github.com/docker/compose/releases/download/1.17.1/docker-compose-Linux-x86_64
+cp docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+chmod <span class="m">755</span> /usr/local/bin/*
+
+<span class="c1"># 准备systemd unit文件</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Docker Application Container Engine
+</span><span class="s1">Documentation=https://docs.docker.com
+</span><span class="s1">After=network-online.target docker.socket flannel.service
+</span><span class="s1">Wants=network-online.target
+</span><span class="s1">Requires=docker.socket
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=notify
+</span><span class="s1"># the default is not to use systemd for cgroups because the delegate issues still
+</span><span class="s1"># exists and systemd currently does not support the cgroup feature set required
+</span><span class="s1"># for containers run by docker
+</span><span class="s1">EnvironmentFile=/run/docker_opts.env
+</span><span class="s1">ExecStart=/usr/local/bin/dockerd -H fd:// $DOCKER_OPTS
+</span><span class="s1">ExecReload=/bin/kill -s HUP $MAINPID
+</span><span class="s1">LimitNOFILE=1048576
+</span><span class="s1"># Having non-zero Limit*s causes performance problems due to accounting overhead
+</span><span class="s1"># in the kernel. We recommend using cgroups to do container-local accounting.
+</span><span class="s1">LimitNPROC=infinity
+</span><span class="s1">LimitCORE=infinity
+</span><span class="s1"># Uncomment TasksMax if your systemd version supports it.
+</span><span class="s1"># Only systemd 226 and above support this version.
+</span><span class="s1">#TasksMax=infinity
+</span><span class="s1">TimeoutStartSec=0
+</span><span class="s1"># set delegate yes so that systemd does not reset the cgroups of docker containers
+</span><span class="s1">Delegate=yes
+</span><span class="s1"># kill only the docker process, not all processes in the cgroup
+</span><span class="s1">KillMode=process
+</span><span class="s1"># restart the docker process if it exits prematurely
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">StartLimitBurst=3
+</span><span class="s1">StartLimitInterval=60s
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/docker.service
+
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Docker Socket for the API
+</span><span class="s1">PartOf=docker.service
+</span><span class="s1">
+</span><span class="s1">[Socket]
+</span><span class="s1">ListenStream=/var/run/docker.sock
+</span><span class="s1">SocketMode=0660
+</span><span class="s1">SocketUser=root
+</span><span class="s1">SocketGroup=docker
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=sockets.target&#39;</span> &gt; /usr/lib/systemd/system/docker.socket
+
+groupadd docker
+
+systemctl daemon-reload
+systemctl <span class="nb">enable</span> docker
+systemctl start docker
+</pre>
+<blockquote>
+<p>docker systemd</p>
+</blockquote>
+
+<h3>3) 安装kubelet(node节点)</h3>
+
+<p>准备配置文件：
+- config, 通用配置
+- kubelet, kubelet配置
+- controller-manager, kube-controller-manager配置</p>
+<pre class="chroma">mkdir /usr/local/kubernetes/conf -p
+
+cat &gt; /usr/local/kubernetes/conf/config <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes system config
+</span><span class="s">#
+</span><span class="s"># The following values are used to configure various aspects of all
+</span><span class="s"># kubernetes services, including
+</span><span class="s">#
+</span><span class="s">#   kube-apiserver.service
+</span><span class="s">#   kube-controller-manager.service
+</span><span class="s">#   kube-scheduler.service
+</span><span class="s">#   kubelet.service
+</span><span class="s">#   kube-proxy.service
+</span><span class="s"># logging to stderr means we get it in the systemd journal
+</span><span class="s">KUBE_LOGTOSTDERR=&#34;--logtostderr=true&#34;
+</span><span class="s">
+</span><span class="s">
+</span><span class="s"># journal message level, 0 is debug
+</span><span class="s">KUBE_LOG_LEVEL=&#34;--v=0&#34;
+</span><span class="s">
+</span><span class="s"># Should this cluster be allowed to run privileged docker containers
+</span><span class="s">KUBE_ALLOW_PRIV=&#34;--allow-privileged=false&#34;
+</span><span class="s">
+</span><span class="s"># How the controller-manager, scheduler, and proxy find the apiserver
+</span><span class="s">KUBE_MASTER=&#34;--master=http://172.16.1.100:8080&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/kubelet <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes kubelet (minion) config
+</span><span class="s">
+</span><span class="s"># --kubeconfig for kubeconfig
+</span><span class="s">KUBELET_KUBECONFIG=&#34;--kubeconfig=/usr/local/kubernetes/conf/node-kubeconfig.yaml&#34;
+</span><span class="s">
+</span><span class="s"># The address for the info server to serve on (set to 0.0.0.0 or &#34;&#34; for all interfaces)
+</span><span class="s">KUBELET_ADDRESS=&#34;--address=0.0.0.0&#34;
+</span><span class="s">
+</span><span class="s"># The port for the info server to serve on
+</span><span class="s"># KUBELET_PORT=&#34;--port=10250&#34;
+</span><span class="s">
+</span><span class="s"># You may leave this blank to use the actual hostname
+</span><span class="s">KUBELET_HOSTNAME=&#34;--hostname-override=&#34;
+</span><span class="s">
+</span><span class="s"># Add your own!
+</span><span class="s">KUBELET_ARGS=&#34;&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/proxy <span class="s">&lt;&lt; EOF
+</span><span class="s">###
+</span><span class="s"># kubernetes proxy config
+</span><span class="s">
+</span><span class="s"># default config should be adequate
+</span><span class="s">
+</span><span class="s"># Add your own!
+</span><span class="s">KUBE_PROXY_ARGS=&#34;&#34;
+</span><span class="s">EOF</span>
+
+cat &gt; /usr/local/kubernetes/conf/node-kubeconfig.yaml <span class="s">&lt;&lt; EOF
+</span><span class="s">apiVersion: v1
+</span><span class="s">kind: Config
+</span><span class="s">clusters:
+</span><span class="s">- name: local
+</span><span class="s">  cluster:
+</span><span class="s">    server: http://master:8080
+</span><span class="s">contexts:
+</span><span class="s">- context:
+</span><span class="s">    cluster: local
+</span><span class="s">  name: kubelet-cluster.local
+</span><span class="s">current-context: kubelet-cluster.local
+</span><span class="s">EOF</span>
+</pre>
+<p>准备systemd unit文件:
+- kubelet.service
+- kube-proxy.service</p>
+<pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kubernetes Kubelet Server
+</span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s1">After=docker.service
+</span><span class="s1">Requires=docker.service
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">WorkingDirectory=/var/lib/kubelet
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/config
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/kubelet
+</span><span class="s1">ExecStart=/usr/local/bin/kubelet \
+</span><span class="s1">	    $KUBE_LOGTOSTDERR \
+</span><span class="s1">	    $KUBE_LOG_LEVEL \
+</span><span class="s1">	    $KUBELET_KUBECONFIG \
+</span><span class="s1">	    $KUBELET_ADDRESS \
+</span><span class="s1">	    $KUBELET_PORT \
+</span><span class="s1">	    $KUBELET_HOSTNAME \
+</span><span class="s1">	    $KUBE_ALLOW_PRIV \
+</span><span class="s1">	    $KUBELET_ARGS
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">KillMode=process
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kubelet.service
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Kubernetes Kube-Proxy Server
+</span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s1">After=network.target
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/config
+</span><span class="s1">EnvironmentFile=-/usr/local/kubernetes/conf/proxy
+</span><span class="s1">ExecStart=/usr/local/bin/kube-proxy \
+</span><span class="s1">	    $KUBE_LOGTOSTDERR \
+</span><span class="s1">	    $KUBE_LOG_LEVEL \
+</span><span class="s1">	    $KUBE_MASTER \
+</span><span class="s1">	    $KUBE_PROXY_ARGS
+</span><span class="s1">Restart=on-failure
+</span><span class="s1">LimitNOFILE=65536
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kube-proxy.service
+</pre>
+<p>依次启动<code>kubelet</code>,<code>kube-proxy</code>服务</p>
+<pre class="chroma"><span class="c1"># 重载systemd units文件</span>
+systemctl daemon-reload
+
+<span class="c1"># 创建kubelet工作目录</span>
+mkdir /var/lib/kubelet
+
+<span class="c1"># 启动服务</span>
+systemctl <span class="nb">enable</span> kubelet
+systemctl <span class="nb">enable</span> kube-proxy
+systemctl start kubelet
+systemctl start kube-proxy
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

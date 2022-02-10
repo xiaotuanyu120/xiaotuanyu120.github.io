@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+              <ul>
+                <li>
+                  <a href="/web/css/index.html">css</a>
+                </li>
+                <li>
+                  <a href="/web/jquery/index.html">jquery</a>
+                </li>
+                <li>
+                  <a href="/web/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/web/node.js/index.html">node.js</a>
+                  <ul>
+                    <li><a href="/web/node.js/log_1.0_env.html">weblog: 1.0 env</a></li>
+                    <li><a href="/web/node.js/log_2.0_server.html">weblog: 2.0 server</a></li>
+                    <li><a href="/web/node.js/log_3.0_client.html">weblog: 3.0 client</a></li>
+                    <li><a href="/web/node.js/log_4.0_log_agent.html">weblog: 4.0 log_agent</a></li>
+                    <li><a href="/web/node.js/node.js_1.0_intro.html">node.js: 1.0 introduction</a></li>
+                    <li><a href="/web/node.js/node.js_2.0_package.json.html">node.js: 2.0 package.json</a></li>
+                    <li><a href="/web/node.js/node.js_3.0_nvm.html">node.js: 3.0 nvm简介</a></li>
+                    <li><a href="/web/node.js/node.js_4.0_install_error.html">node.js: 4.0 npm install error</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/web/vue.js/index.html">vue.js</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>node.js: 3.0 nvm简介</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>19 Jan 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 什么是nvm？</h3>
+
+<p>nvm全称为Node Version Manager，类似于python的virtualenv，可以管理多个node版本，并在其间切换</p>
+
+<hr />
+
+<h3>2. nvm安装</h3>
+<pre class="chroma">wget https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh
+sh install.sh
+<span class="c1"># 该脚本会clone nvm的repository到~/.nvm下</span>
+
+<span class="c1"># 在.bash_profile中增加以下内容</span>
+vim ~/.bash_profile
+**********************************
+<span class="nb">export</span> <span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.nvm</span><span class="s2">&#34;</span>
+<span class="o">[</span> -s <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> . <span class="s2">&#34;</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh</span><span class="s2">&#34;</span>
+**********************************
+<span class="nb">source</span> ~/.bash_profile
+</pre>
+<hr />
+
+<h3>3. nvm使用</h3>
+<pre class="chroma"><span class="c1"># 查看可以安装什么版本</span>
+nvm ls-remote
+
+<span class="c1"># 安装最新的稳定版本(v7.4.0)</span>
+nvm install stable
+
+<span class="c1"># 切换版本</span>
+nvm install v5.0.0
+nvm use v5.0.0
+node -v
+v5.0.0
+
+<span class="c1"># 安装多个版本时，设定一个默认版本</span>
+nvm <span class="nb">alias</span> default v7.4.0
+<span class="c1"># 删除alias</span>
+nvm <span class="nb">unalias</span> some_alias
+
+<span class="c1"># 查看alias和node版本</span>
+nvm list
+
+<span class="c1"># 卸载node特定版本</span>
+nvm uninstall v5.0.0
+
+<span class="c1"># 查看某版本的目录</span>
+nvm which 7.4
+<span class="c1"># or</span>
+nvm which v7.4.0
+
+<span class="c1"># 取消nvm安装的node激活，恢复系统环境</span>
+which node
+/root/.nvm/versions/node/v5.0.0/bin/node
+
+nvm deactivate
+/root/.nvm/*/bin removed from <span class="nv">$PATH</span>
+/root/.nvm/*/share/man removed from <span class="nv">$MANPATH</span>
+
+which node
+/usr/bin/which: no node in <span class="o">(</span>/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/python27/bin:/root/bin:/root/bin<span class="o">)</span>
+
+<span class="c1"># 使用特定版本运行node命令或者文件</span>
+nvm run v7.4.0 --version
+Running node v7.4.0 <span class="o">(</span>npm v4.0.5<span class="o">)</span>
+v7.4.0
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

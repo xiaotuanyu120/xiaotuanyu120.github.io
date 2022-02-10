@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                  <ul>
+                    <li><a href="/devops/arthas/arthas_1.1.0_installation.html">arthas: 1.1.0 安装使用</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>arthas: 1.1.0 安装使用</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Dec 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 理论</h3>
+
+<p>Arthas 是Alibaba开源的Java诊断工具，深受开发者喜爱。</p>
+
+<p>当你遇到以下类似问题而束手无策时，Arthas可以帮助你解决：
+- 这个类从哪个 jar 包加载的？为什么会报各种类相关的 Exception？
+- 我改的代码为什么没有执行到？难道是我没 commit？分支搞错了？
+- 遇到问题无法在线上 debug，难道只能通过加日志再重新发布吗？
+- 线上遇到某个用户的数据处理有问题，但线上同样无法 debug，线下无法重现！
+- 是否有一个全局视角来查看系统的运行状况？
+- 有什么办法可以监控到JVM的实时运行状态？
+- 怎么快速定位应用的热点，生成火焰图？</p>
+
+<p>arthas支持web console，但是那个web页面只能一次访问单台机器，为了方便管理，最好是使用arthas tunnel server。</p>
+
+<p>arthas tunnel server的工作原理是：</p>
+<pre class="chroma">browser &lt;-&gt; arthas tunnel server &lt;-&gt; arthas tunnel client &lt;-&gt; arthas agent
+</pre>
+<p>PS: 这样我们就可以通过一个固定的web界面，通过输入不同的agent id，然后来排查不同服务器上的jvm了。</p>
+
+<h3>1. 启动arthas tunnel server</h3>
+<pre class="chroma"><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="o">=</span>/usr/local/arthas-tunnel-server
+
+<span class="o">[</span><span class="o">[</span> -d <span class="si">${</span><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="si">}</span> <span class="o">]</span><span class="o">]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="si">}</span>
+
+<span class="c1"># download arthas-tunnel-server</span>
+wget https://github.com/alibaba/arthas/releases/download/arthas-all-3.1.7/arthas-tunnel-server-3.1.7.jar <span class="se">\
+</span><span class="se"></span>  -o <span class="si">${</span><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="si">}</span>/arthas-tunnel-server.jar
+
+cat <span class="s">&lt;&lt; EOF &gt; ${ARTHAS_TUNNEL_SERVER_DIR}/asts.sh
+</span><span class="s">nohup java -jar ${ARTHAS_TUNNEL_SERVER_DIR}//arthas-tunnel-server.jar &amp;
+</span><span class="s">EOF</span>
+
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="si">}</span> <span class="o">&amp;&amp;</span> sh <span class="si">${</span><span class="nv">ARTHAS_TUNNEL_SERVER_DIR</span><span class="si">}</span>/asts.sh
+</pre>
+<h3>2. 启动arthas agent</h3>
+<pre class="chroma"><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/jdk1.7.0_79
+<span class="nv">ARTHAS_AGENT_DIR</span><span class="o">=</span>/usr/local/arthas-agent
+<span class="nv">ARTHAS_TUNNEL_SERVER</span><span class="o">=</span>127.0.0.1
+
+<span class="o">[</span><span class="o">[</span> -d <span class="si">${</span><span class="nv">ARTHAS_AGENT_DIR</span><span class="si">}</span> <span class="o">]</span><span class="o">]</span> <span class="o">||</span> mkdir -p <span class="si">${</span><span class="nv">ARTHAS_AGENT_DIR</span><span class="si">}</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">ARTHAS_AGENT_DIR</span><span class="si">}</span> <span class="o">&amp;&amp;</span> wget https://alibaba.github.io/arthas/arthas-boot.jar
+
+<span class="c1"># start agent</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${ARTHAS_AGENT_DIR}/startup.sh
+</span><span class="s">sudo -u tomcat -EH ${JAVA_HOME}/bin/java -jar ${ARTHAS_AGENT_DIR}/arthas-boot.jar --tunnel-server &#39;ws://${ARTHAS_TUNNEL_SERVER}:7777/ws&#39;
+</span><span class="s">EOF</span>
+
+sh <span class="si">${</span><span class="nv">ARTHAS_AGENT_DIR</span><span class="si">}</span>/startup.sh
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

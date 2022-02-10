@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+              <ul>
+                <li>
+                  <a href="/devops/ansible/index.html">ansible</a>
+                  <ul>
+                    <li><a href="/devops/ansible/1.0.0_ansible_intro.html">1.0.0: ansible简介</a></li>
+                    <li><a href="/devops/ansible/1.0.1_ansible_intro_connection.html">1.0.1: ansible-连接上的理论知识</a></li>
+                    <li><a href="/devops/ansible/1.1.0_ansible_install.html">1.1.0: ansible安装</a></li>
+                    <li><a href="/devops/ansible/1.1.1_ansible_error_install_paramiko_cryptography.html">1.1.1: 安装paramiko时报crytography安装错误</a></li>
+                    <li><a href="/devops/ansible/1.1.2_ansible_become_sudo.html">1.1.2: ansible-become(sudo)</a></li>
+                    <li><a href="/devops/ansible/1.2.0_inventory_basic.html">1.2.0: INVENTORY基础</a></li>
+                    <li><a href="/devops/ansible/1.2.1_inventory_folder.html">1.2.1: INVENTORY 目录</a></li>
+                    <li><a href="/devops/ansible/1.2.2_inventory_variable.html">1.2.2: inventory variable</a></li>
+                    <li><a href="/devops/ansible/1.3.0_playbook_basic.html">1.3.0: PLAYBOOK基础</a></li>
+                    <li><a href="/devops/ansible/1.3.10_playbook_debug_register_with_items.html">1.3.10: playbook-debug_register&with_items</a></li>
+                    <li><a href="/devops/ansible/1.3.11_playbook_distribution_when.html">1.3.11: playbook-when distribution version/release</a></li>
+                    <li><a href="/devops/ansible/1.3.12_playbook_with_items_and_register.html">1.3.12: playbook with_items and register</a></li>
+                    <li><a href="/devops/ansible/1.3.13_playbook_variable_inside_variable.html">1.3.12: playbook with_items and register</a></li>
+                    <li><a href="/devops/ansible/1.3.14_playbook_determine_the_length_of_list.html">1.3.14: determine the length of list</a></li>
+                    <li><a href="/devops/ansible/1.3.1_playbook_yum.html">1.3.1: PLAYBOOK-模块yum</a></li>
+                    <li><a href="/devops/ansible/1.3.2_playbook_get_url.html">1.3.2: PLAYBOOK-模块get_url</a></li>
+                    <li><a href="/devops/ansible/1.3.3.1_playbook_copy_error.html">1.3.3.1: PLAYBOOK-copy error</a></li>
+                    <li><a href="/devops/ansible/1.3.3_playbook_copy_fetch.html">1.3.3: PLAYBOOK-模块copy,fetch</a></li>
+                    <li><a href="/devops/ansible/1.3.4_playbook_unarchive.html">1.3.4: PLAYBOOK-模块unarchive</a></li>
+                    <li><a href="/devops/ansible/1.3.5_playbook_register_when_include.html">1.3.5: playbook-register+when+include</a></li>
+                    <li><a href="/devops/ansible/1.3.6_playbook_dynamic_loop_include.html">1.3.6: playbook-动态、循环include(yaml)</a></li>
+                    <li><a href="/devops/ansible/1.3.7_playbook_handler_multitasks.html">1.3.7: playbook-handlers(多个actions)</a></li>
+                    <li><a href="/devops/ansible/1.3.8_playbook_loop_include.html">1.3.8: playbook-include&loop error</a></li>
+                    <li><a href="/devops/ansible/1.3.9_playbook_check_file_state.html">1.3.9: playbook-stat</a></li>
+                    <li><a href="/devops/ansible/1.4.1_ansible_options_exatra-vars.html">1.4.1: options --extra-vars</a></li>
+                    <li><a href="/devops/ansible/1.5.1_var_ssh_keyphrase.html">1.5.1: vars ssh连接变量</a></li>
+                    <li><a href="/devops/ansible/1.5.2_var_host_group_basic.html">1.5.2: vars host&group变量</a></li>
+                    <li><a href="/devops/ansible/1.5.3_var_rootgroup_subgroup.html">1.5.3: vars 组变量之父组和子组的变量是否可储存在同一个目录中？</a></li>
+                    <li><a href="/devops/ansible/1.5.4_var_same_host_different_group.html">1.5.4: vars host在不同group中，变量覆盖问题</a></li>
+                    <li><a href="/devops/ansible/1.6.1_logic_set_fact_with_conditions.html">1.6.1: LOGIC - 根据条件手动设定变量 - if else and when</a></li>
+                    <li><a href="/devops/ansible/1.6.2_logic_facts_service_facts.html">1.6.2: LOGIC-service_facts</a></li>
+                    <li><a href="/devops/ansible/1.6.3_logic_failed_when.html">1.6.3: LOGIC-faied when</a></li>
+                    <li><a href="/devops/ansible/2.1.0_example_ansible_tomcat_standalone.html">2.1.0: example tomcat启动脚本</a></li>
+                    <li><a href="/devops/ansible/2.2.0_example_lookup_environment_javahome.html">2.2.0: example 使用ansible环境变量获取主机JAVA_HOME</a></li>
+                    <li><a href="/devops/ansible/2.3.0_example_yaml_file_parse.html">2.3.0: example python解析yaml文件(ansible)</a></li>
+                    <li><a href="/devops/ansible/3.1.0_awx_installation.html">3.1.0: awx 安装</a></li>
+                    <li><a href="/devops/ansible/3.1.1_awx_usage_problem_01.html">3.1.1: awx 使用问题 - ssh连接错误</a></li>
+                    <li><a href="/devops/ansible/3.1.2_awx_usage_problem_02.html">3.1.2: awx 使用问题 - systemctl Interactive authentication required</a></li>
+                    <li><a href="/devops/ansible/3.2.0_awx_setup_tutorial.html">3.2.0: awx 使用简介</a></li>
+                    <li><a href="/devops/ansible/ansible_handler.html">ansible: handler</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/devops/arthas/index.html">arthas</a>
+                </li>
+                <li>
+                  <a href="/devops/git/index.html">git</a>
+                </li>
+                <li>
+                  <a href="/devops/jenkins/index.html">jenkins</a>
+                </li>
+                <li>
+                  <a href="/devops/mattermost/index.html">mattermost</a>
+                </li>
+                <li>
+                  <a href="/devops/sonarqube/index.html">sonarqube</a>
+                </li>
+                <li>
+                  <a href="/devops/vagrant/index.html">vagrant</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>1.5.4: vars host在不同group中，变量覆盖问题</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>17 Oct 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 问题背景</h3>
+
+<p>在ansible中，inventory的组织方式可如下</p>
+<pre class="chroma">somedomain
+
+[cluster01]
+domain01
+
+[cluster02]
+domain02
+
+[tomcat:children]
+cluster01
+cluster02
+</pre>
+<p>这样我们可以使用子分组来区分不同分组主机的变量，但是生产环境中，很有可能cluster01和02在同一台主机上<br />
+此时，在切换子分组的时候，每个子分组的变量会互相干涉吗？
+&gt; 注意：<br />
+文中的转义符&rdquo;\&ldquo;，仅为了语法不冲突，无实际意义，实际操作时，需去掉它</p>
+
+<hr />
+
+<h3>1. 以下所有实验的目录结构</h3>
+<pre class="chroma">tree .
+.
+├── group_vars
+│   ├── group
+│   ├── group01
+│   └── group02
+├── hosts
+└── main.yml
+</pre>
+<hr />
+
+<h3>2. group_vars同一层级之间会竞争，无法共存</h3>
+
+<h4>1) 场景1、子分组变量会覆盖父分组变量</h4>
+<pre class="chroma"><span class="c1"># inventory文件</span>
+****************************
+<span class="o">[</span>group:children<span class="o">]</span>
+group01
+
+<span class="o">[</span>group01<span class="o">]</span>
+192.168.33.102
+****************************
+
+<span class="c1"># 父group变量文件：group_vars/group</span>
+****************************
+---
+test: test_group
+****************************
+
+<span class="c1"># 子group变量文件：group_vars/group</span>
+****************************
+---
+test: test_group_01
+****************************
+
+<span class="c1"># 测试yaml文件：main.yml</span>
+****************************
+---
+- hosts: <span class="s2">&#34;\{\{ host }}&#34;</span>
+  remote_user: root
+
+  tasks:
+   - debug: <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;\{\{ test }}&#34;</span>
+****************************
+
+<span class="c1"># 测试结果</span>
+ansible-playbook -i hosts main.yml -e <span class="s1">&#39;{&#34;host&#34;:&#34;group&#34;}&#39;</span>
+
+PLAY <span class="o">[</span>group<span class="o">]</span> *******************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;test_group_01&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+192.168.33.102               : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>  
+
+<span class="c1"># 结论</span>
+子分组的变量会覆盖父分组
+</pre>
+<h4>2) 场景2、host变量会覆盖组变量</h4>
+<pre class="chroma"><span class="c1"># 与场景1唯一的改变是在inventory文件中增加host变量</span>
+****************************
+<span class="o">[</span>group:children<span class="o">]</span>
+group01
+
+<span class="o">[</span>group01<span class="o">]</span>
+192.168.33.102 <span class="nv">test</span><span class="o">=</span>test_host
+****************************
+
+<span class="c1"># 测试结果</span>
+ansible-playbook -i hosts main.yml -e <span class="s1">&#39;{&#34;host&#34;:&#34;group&#34;}&#39;</span>
+
+PLAY <span class="o">[</span>group<span class="o">]</span> *******************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;test_host&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+192.168.33.102               : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>   
+
+<span class="c1"># 结论</span>
+host变量会覆盖组变量
+</pre>
+<h4>3) 场景3、同一层级的组变量，不确定哪一方会胜出</h4>
+<pre class="chroma"><span class="c1"># 与场景1(注意是场景1)的区别1是修改了inventory内容</span>
+****************************
+<span class="o">[</span>group:children<span class="o">]</span>
+group01
+group02
+
+<span class="o">[</span>group01<span class="o">]</span>
+192.168.33.102
+
+<span class="o">[</span>group02<span class="o">]</span>
+192.168.33.102
+****************************
+
+<span class="c1"># 与场景1(注意是场景1)的区别2是增加了group_vars/group02的内容</span>
+****************************
+---
+test: test_group_02
+****************************
+
+<span class="c1"># 测试结果</span>
+ansible-playbook -i hosts main.yml -e <span class="s1">&#39;{&#34;host&#34;:&#34;group&#34;}&#39;</span>
+
+PLAY <span class="o">[</span>group<span class="o">]</span> *******************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;test_group_01&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+192.168.33.102               : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 结论</span>
+当同层级<span class="o">(</span>group01和group02<span class="o">)</span>同时存在针对同一host的组变量时，不确定哪一个会生效
+</pre>
+<p>当然，实验3也是主要的问题所在，因为假设在同一台host上我们部署了两个tomcat，一主一备，
+当我们希望去分别指定两个tomcat时，同一变量的情况下，我们无法准确的知道该变量会指定谁。</p>
+
+<hr />
+
+<h3>3. 如何解决主机同时处在不同分组时变量传递的问题</h3>
+
+<p>从上面的实验中，我们得出一个结论，ansible对于变量的层级分为三种，all、group、host(暂不考虑role)
+- 不同类别中变量优先级为host&gt;group&gt;all
+- 同类别中，子层级&gt;父层级
+也就是说，对于主机的指定越精确的变量，优先级越大。</p>
+
+<p>这里思考解决办法：
+- 办法1，可以通过使用不同的role，来达到隔离分组变量互相干扰的问题(个人不是太喜欢这种方法，未测试)
+- 办法2，上面的变量覆盖和冲突，根源在于ansible对同一变量名的优先级逻辑，那我们可以在变量名称逻辑上下功夫</p>
+
+<h4>1) 使用变量list解决</h4>
+<pre class="chroma"><span class="c1"># inventory内容</span>
+****************************
+<span class="o">[</span>group:children<span class="o">]</span>
+group01
+group02
+
+<span class="o">[</span>group01<span class="o">]</span>
+192.168.33.102
+
+<span class="o">[</span>group02<span class="o">]</span>
+192.168.33.102
+****************************
+
+<span class="c1"># group变量文件：group_vars/group</span>
+****************************
+---
+test:
+  - <span class="s1">&#39;\{\{ test_01 | d({}) }}&#39;</span>
+  - <span class="s1">&#39;\{\{ test_02 | d({}) }}&#39;</span>
+****************************
+<span class="c1"># 含义为当test_01变量不存在时，返回{}</span>
+<span class="c1"># test_02亦同</span>
+
+<span class="c1"># group01变量文件：group_vars/group01</span>
+****************************
+---
+test_01: test_group_01
+****************************
+
+<span class="c1"># group02变量文件：group_vars/group02</span>
+****************************
+---
+test_02: test_group_02
+****************************
+
+<span class="c1"># 测试yaml文件内容</span>
+****************************
+---
+- hosts: <span class="s2">&#34;\{\{ host }}&#34;</span>
+  remote_user: root
+
+  tasks:
+   - debug: <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;\{\{ test }}&#34;</span>
+****************************
+
+<span class="c1"># 测试结果</span>
+ansible-playbook -i hosts main.yml -e <span class="s1">&#39;{&#34;host&#34;:&#34;group&#34;}&#39;</span>
+
+PLAY <span class="o">[</span>group<span class="o">]</span> *******************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="o">[</span>
+        <span class="s2">&#34;test_group_01&#34;</span>,
+        <span class="s2">&#34;test_group_02&#34;</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+192.168.33.102               : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>  
+
+<span class="c1"># 此时我们发现返回的结果是一个list，包含了两个变量的值。但我们希望它返回两次，而不是一个list</span>
+<span class="c1"># 因为若返回结果是list，我们在很多模块中调用它会因为类型问题报错</span>
+
+<span class="c1"># 我们仅对yaml文件进行修改</span>
+****************************
+---
+- hosts: <span class="s2">&#34;\{\{ host }}&#34;</span>
+  remote_user: root
+
+  tasks:
+   - debug: <span class="nv">msg</span><span class="o">=</span><span class="s2">&#34;\{\{ item }}&#34;</span>
+     with_items: <span class="s2">&#34;\{\{ test }}&#34;</span>
+****************************
+
+<span class="c1"># 再次测试</span>
+ansible-playbook -i hosts main.yml -e <span class="s1">&#39;{&#34;host&#34;:&#34;group&#34;}&#39;</span>
+
+PLAY <span class="o">[</span>group<span class="o">]</span> *******************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">(</span><span class="nv">item</span><span class="o">=</span>test_group_01<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;item&#34;</span>: <span class="s2">&#34;test_group_01&#34;</span>,
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;test_group_01&#34;</span>
+<span class="o">}</span>
+ok: <span class="o">[</span>192.168.33.102<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">(</span><span class="nv">item</span><span class="o">=</span>test_group_02<span class="o">)</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;item&#34;</span>: <span class="s2">&#34;test_group_02&#34;</span>,
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;test_group_02&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+192.168.33.102               : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>   
+<span class="c1"># 此时结果完全符合我们的预期</span>
+</pre>
+<h4>2) 若不希望得到列表呢？ 使用主机别名解决</h4>
+
+<p>有时候我们并不希望执行时ansible去循环这个变量，而是希望指定一个子分组，ansible就采用我们在子分组中配置的那个变量怎么办？</p>
+
+<p>此时我们可以使用外部传参或inventory中指定别名的方式来隔离分组变量
+其中外部传参的方式完全规避了group vars的影响，暴力直接，但是也有其局限性，那就是在inventory中主机特别多时，需要整理的参数很多</p>
+
+<p>这里我们采用inventory别名的方法来测试<br />
+<strong>inventory文件内容修改</strong></p>
+<pre class="chroma">[group:children]
+group01
+group02
+
+[group01]
+host1 ansible_host=192.168.33.102
+
+[group02]
+host2 ansible_host=192.168.33.102
+</pre>
+<p><strong>变量文件修改</strong></p>
+<pre class="chroma"><span class="c"># group01变量文件</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">test_01</span><span class="p">:</span><span class="w"> </span>test_group_01<span class="w">
+</span><span class="w"></span><span class="k">test_separate</span><span class="p">:</span><span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span><span class="m">01</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># group02变量文件</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">test_02</span><span class="p">:</span><span class="w"> </span>test_group_02<span class="w">
+</span><span class="w"></span><span class="k">test_separate</span><span class="p">:</span><span class="w"> </span>this<span class="w"> </span>is<span class="w"> </span><span class="m">02</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span></pre>
+<p>这样我们就在group01和group02中拥有了两个直接冲突的变量</p>
+
+<p><strong>yaml测试文件修改</strong></p>
+<pre class="chroma">---
+- hosts: &#34;\{\{ host }}&#34;
+  remote_user: root
+
+  tasks:
+   - debug: msg=&#34;\{\{ test }}&#34;
+   - debug: msg=&#34;\{\{ test_separate }}&#34;
+</pre>
+<p>增加一个debug信息，让我们来看看区别</p>
+
+<p><strong>测试结果</strong></p>
+<pre class="chroma"><span class="c1"># 先来指定group01</span>
+ansible-playbook -i hosts main.yml -e <span class="s2">&#34;host=group01&#34;</span>
+
+PLAY <span class="o">[</span>group01<span class="o">]</span> *****************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host1<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host1<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="o">[</span>
+        <span class="s2">&#34;test_group_01&#34;</span>,
+        <span class="o">{</span><span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host1<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;this is 01&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+host1                      : <span class="nv">ok</span><span class="o">=</span><span class="m">3</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 再来指定group02</span>
+ansible-playbook -i hosts main.yml -e <span class="s2">&#34;host=group02&#34;</span>
+
+PLAY <span class="o">[</span>group02<span class="o">]</span> *****************************************************************
+
+TASK <span class="o">[</span>setup<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host2<span class="o">]</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host2<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="o">[</span>
+        <span class="o">{</span><span class="o">}</span>,
+        <span class="s2">&#34;test_group_02&#34;</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+
+TASK <span class="o">[</span>debug<span class="o">]</span> *******************************************************************
+ok: <span class="o">[</span>host2<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;this is 02&#34;</span>
+<span class="o">}</span>
+
+PLAY RECAP *********************************************************************
+host2                      : <span class="nv">ok</span><span class="o">=</span><span class="m">3</span>    <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>    <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>    <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>
+</pre>
+<p>我们可以看出，当我们指定的不是group而是其分组时，第一个debug信息输出的是一个包含{}的列表
+而第二个debug，则由于我们在inventory中的别名配置，隔离了分组之间的变量冲突</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

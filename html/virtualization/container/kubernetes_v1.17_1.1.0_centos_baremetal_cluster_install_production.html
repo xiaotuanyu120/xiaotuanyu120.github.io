@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>24 Dec 2019</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>本文档背景介绍</h2>
+
+<h3>1. 参照文档</h3>
+
+<p>kubernetes的官方文档，目前官方维护的最老的1.13的版本里面，也已经无法找到当时我在1.9里面参照的<code>Creating a Custom Cluster from Scratch</code>那篇文档了，基本上能看出来趋势是希望采用kubeadm这个工具来初始化集群。但是其实二进制模式的安装还是可行，而且个人意见：二进制安装能增强维护人员对k8s集群的细节了解程度，并且能在解决安装时遇到各种问题的情况下增加对k8s管理知识的了解。</p>
+
+<p>关于文档，主体流程和重点部分可以参照 <a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/implementation-details/">kubeadm 实施流程文档</a></p>
+
+<h3>2. 软件版本</h3>
+
+<table>
+<thead>
+<tr>
+<th>items</th>
+<th>version</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>OS</td>
+<td>centos7</td>
+</tr>
+
+<tr>
+<td>kubernetes</td>
+<td>1.17</td>
+</tr>
+
+<tr>
+<td>docker</td>
+<td>19.03.5-ce</td>
+</tr>
+
+<tr>
+<td>etcd</td>
+<td>v3.3.18</td>
+</tr>
+</tbody>
+</table>
+
+<h3>3. 节点规划</h3>
+
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>ip address</th>
+<th>服务</th>
+<th>comment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>master01,etcd01</td>
+<td>192.168.33.101</td>
+<td>kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker</td>
+<td>主节点01,etcd节点01</td>
+</tr>
+
+<tr>
+<td>master02,etcd02</td>
+<td>192.168.33.102</td>
+<td>kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker</td>
+<td>主节点02,etcd节点02</td>
+</tr>
+
+<tr>
+<td>master03,etcd03</td>
+<td>192.168.33.103</td>
+<td>kube-apiserver,kube-controller-manager,kube-scheduler,etcd,docker</td>
+<td>主节点03,etcd节点03</td>
+</tr>
+
+<tr>
+<td>node01</td>
+<td>192.168.33.104</td>
+<td>kubelet,kube-proxy,docker</td>
+<td>node节点01</td>
+</tr>
+
+<tr>
+<td>node02</td>
+<td>192.168.33.105</td>
+<td>kubelet,kube-proxy,docker</td>
+<td>node节点02</td>
+</tr>
+
+<tr>
+<td>node03</td>
+<td>192.168.33.106</td>
+<td>kubelet,kube-proxy,docker</td>
+<td>node节点03</td>
+</tr>
+</tbody>
+</table>
+
+<h3>4. 网络规划</h3>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>网段范围</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>pod</td>
+<td>10.5.0.0/16</td>
+</tr>
+
+<tr>
+<td>service</td>
+<td>10.254.0.0/16</td>
+</tr>
+
+<tr>
+<td>宿主机</td>
+<td>192.168.33.0/24</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2>宿主机环境准备(所有节点)</h2>
+
+<h3>1. 准备系统环境</h3>
+<pre class="chroma"><span class="c1"># 安装必要的工具包</span>
+yum install -y wget vim
+
+<span class="c1"># 确保mac地址和product_uuid不重复</span>
+<span class="c1"># 查看mac地址</span>
+ip link
+<span class="c1"># 查看uuid</span>
+cat /sys/class/dmi/id/product_uuid
+
+<span class="c1"># nftables驱动的防火墙管理工具和kube-proxy不兼容，所以需要换回老版本的iptables</span>
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl mask firewalld
+yum install -y iptables iptables-services
+systemctl disable iptables
+systemctl stop iptables
+<span class="c1"># 安装期间临时关闭防火墙，正式运行需开放api等服务的端口</span>
+
+<span class="c1"># 关闭selinux</span>  
+sed -i <span class="s2">&#34;s/SELINUX=enforcing/SELINUX=disabled/g&#34;</span> /etc/selinux/config
+setenforce <span class="m">0</span>
+
+<span class="c1"># 设定hostname到hosts文件中</span>
+cat <span class="s">&lt;&lt; EOF &gt;&gt; /etc/hosts
+</span><span class="s">192.168.33.101 master01
+</span><span class="s">192.168.33.102 master02
+</span><span class="s">192.168.33.103 master03
+</span><span class="s">192.168.33.101 etcd01
+</span><span class="s">192.168.33.102 etcd02
+</span><span class="s">192.168.33.103 etcd03
+</span><span class="s">192.168.33.104 node01
+</span><span class="s">192.168.33.105 node02
+</span><span class="s">192.168.33.106 node03
+</span><span class="s">EOF</span>
+
+<span class="c1"># 关闭系统swap</span>  
+swapoff -a
+<span class="c1"># 注释swap的开机挂载项，修改/etc/fstab</span>
+sed -ri <span class="s2">&#34;</span><span class="s2">s|(^ ?+\/.*swap.*</span>$<span class="s2">)|#\1|g</span><span class="s2">&#34;</span> /etc/fstab
+<span class="c1"># 关闭系统swap，是为了严格的按照cpu和内存的限制，这样scheduler在规划pod的时候就不会把pod放进swap中了，这是为了性能考虑。</span>
+
+<span class="c1"># 加载内核模块br_netfilter</span>
+lsmod <span class="p">|</span> grep br_netfilter
+<span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">||</span> modprobe br_netfilter
+
+<span class="c1"># 优化系统内核</span>
+cat <span class="s">&lt;&lt; EOF &gt;  /etc/sysctl.d/k8s.conf
+</span><span class="s">net.bridge.bridge-nf-call-ip6tables = 1
+</span><span class="s">net.bridge.bridge-nf-call-iptables = 1
+</span><span class="s">EOF</span>
+sysctl --system
+</pre>
+<hr />
+
+<h2>安装runtime(所有节点)</h2>
+
+<p>参照 <a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">docker installation on centos 7</a> 这篇文档来安装</p>
+
+<blockquote>
+<p>重点关注：
+- 使用overlay2存储驱动
+- 使用systemd替代cgroupfs作为cgroup管理器</p>
+</blockquote>
+
+<hr />
+
+<h2>准备环境变量</h2>
+<pre class="chroma"><span class="c1"># 各角色ip变量</span>
+<span class="nb">declare</span> -A IP_LIST
+<span class="nv">IP_LIST</span><span class="o">=</span><span class="o">(</span>
+<span class="o">[</span>master01<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.101&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>master02<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.102&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>master03<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.103&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>etcd01<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.101&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>etcd02<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.102&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>etcd03<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.103&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>node01<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.104&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>node02<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.105&#34;</span> <span class="se">\
+</span><span class="se"></span><span class="o">[</span>node03<span class="o">]</span><span class="o">=</span><span class="s2">&#34;192.168.33.106&#34;</span><span class="o">)</span>
+<span class="nv">KUBE_API_PROXY_IP</span><span class="o">=</span>192.168.33.101
+
+<span class="c1"># 安装环境变量</span>
+<span class="nv">DEPLOY_DIR</span><span class="o">=</span>/root/k8s
+<span class="nv">K8S_VER</span><span class="o">=</span>v1.17.0
+<span class="nv">ETCD_VER</span><span class="o">=</span>v3.3.18
+
+<span class="c1"># 证书环境变量</span>
+<span class="nv">K8S_PKI_DIR</span><span class="o">=</span>/etc/kubernetes/pki
+<span class="nv">ETCD_PKI_DIR</span><span class="o">=</span>/etc/etcd/pki
+<span class="nv">ADMIN_KUBECONFIG_DIR</span><span class="o">=</span>/root/.kube
+<span class="nv">KUBECONFIG_DIR</span><span class="o">=</span>/etc/kubernetes/kubeconfig
+
+<span class="c1"># IP配置变量</span>
+<span class="nv">SERVICE_CLUSTER_IP_RANGE</span><span class="o">=</span>10.254.0.0/16
+<span class="nv">SERVICE_NODE_PORT_RANGE</span><span class="o">=</span>30000-32767
+<span class="nv">POD_CLUSTER_IP_RANGE</span><span class="o">=</span>10.5.0.0/16
+</pre>
+<hr />
+
+<h2>给kube-apiserver创建一个负载均衡</h2>
+
+<p>这里我选择了master01机器上来部署高可用服务，当然你可以选择任意你希望部署的一台机器。</p>
+<pre class="chroma"><span class="nv">DOCKER_YML_DIR</span><span class="o">=</span>/data/docker/yml
+<span class="nv">DOCKER_RUNTIME_DIR</span><span class="o">=</span>/data/docker/runtime
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_YML_DIR</span><span class="si">}</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YML_DIR}/docker-compose-haproxy.yml
+</span><span class="s">version: &#39;3&#39;
+</span><span class="s">services:
+</span><span class="s">  haproxy:
+</span><span class="s">    container_name: haproxy-kube-apiserver
+</span><span class="s">    image: haproxy
+</span><span class="s">    ports:
+</span><span class="s">      - 443:6443
+</span><span class="s">    volumes:
+</span><span class="s">      - /data/docker/runtime/haproxy/etc/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+</span><span class="s">EOF</span>
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>/haproxy/etc
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_RUNTIME_DIR}/haproxy/etc/haproxy.cfg
+</span><span class="s">frontend k8s-api
+</span><span class="s">  bind 0.0.0.0:6443
+</span><span class="s">  mode tcp
+</span><span class="s">  option tcplog
+</span><span class="s">  timeout client 1h
+</span><span class="s">  default_backend k8s-api
+</span><span class="s">
+</span><span class="s">backend k8s-api
+</span><span class="s">  mode tcp
+</span><span class="s">  timeout server 1h
+</span><span class="s">  option tcplog
+</span><span class="s">  option tcp-check
+</span><span class="s">  balance roundrobin
+</span><span class="s">  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+</span><span class="s">  server k8s-api-1 ${IP_LIST[&#34;master01&#34;]}:6443 check
+</span><span class="s">  server k8s-api-2 ${IP_LIST[&#34;master02&#34;]}:6443 check
+</span><span class="s">  server k8s-api-3 ${IP_LIST[&#34;master03&#34;]}:6443 check
+</span><span class="s">EOF</span>
+
+docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
+</pre>
+<hr />
+
+<h2>准备 k8s、etcd二进制文件</h2>
+
+<p>master01上准备二进制文件，统一下发给所有其他机器，所以提前做好ssh信任</p>
+
+<h3>0. 准备各节点二进制文件目录</h3>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/<span class="o">{</span>node,master,etcd,cni<span class="o">}</span>/bin
+</pre>
+<h3>1. 下载二进制文件</h3>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>
+<span class="c1"># 下载kubernetes</span>
+wget https://dl.k8s.io/<span class="si">${</span><span class="nv">K8S_VER</span><span class="si">}</span>/kubernetes-server-linux-amd64.tar.gz -O <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubernetes-server-linux-amd64.tar.gz
+tar zxvf kubernetes-server-linux-amd64.tar.gz
+cp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubernetes/server/bin/<span class="o">{</span>kube-apiserver,kube-scheduler,kube-controller-manager,kubectl<span class="o">}</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/bin
+cp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubernetes/server/bin/<span class="o">{</span>kubelet,kube-proxy<span class="o">}</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/node/bin
+
+<span class="c1"># 下载etcd</span>
+curl -L https://github.com/coreos/etcd/releases/download/<span class="si">${</span><span class="nv">ETCD_VER</span><span class="si">}</span>/etcd-<span class="si">${</span><span class="nv">ETCD_VER</span><span class="si">}</span>-linux-amd64.tar.gz <span class="se">\
+</span><span class="se"></span>  -o etcd-<span class="si">${</span><span class="nv">ETCD_VER</span><span class="si">}</span>-linux-amd64.tar.gz
+tar xzvf etcd-<span class="si">${</span><span class="nv">ETCD_VER</span><span class="si">}</span>-linux-amd64.tar.gz
+cp etcd-<span class="si">${</span><span class="nv">ETCD_VER</span><span class="si">}</span>-linux-amd64/<span class="o">{</span>etcd,etcdctl<span class="o">}</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/etcd/bin/
+
+<span class="c1"># 下载cni</span>
+wget https://github.com/containernetworking/plugins/releases/download/v0.8.4/cni-plugins-linux-amd64-v0.8.4.tgz
+tar zxvf cni-plugins-linux-amd64-v0.8.4.tgz -C <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/cni/bin/
+</pre>
+<blockquote>
+<p><a href="https://github.com/coreos/flannel/issues/890">flannel cni issue: 890 about cni binary not found error</a></p>
+</blockquote>
+
+<h3>2. 分发二进制文件</h3>
+<pre class="chroma">chmod +x <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/etcd/bin/*
+chmod +x <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/node/bin/*
+chmod +x <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/bin/*
+
+<span class="c1"># 下发master二进制文件</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/bin/* <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:/usr/local/bin/
+<span class="k">done</span>
+
+<span class="c1"># 下发node二进制文件</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/node/bin/* <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/usr/local/bin/
+<span class="k">done</span>
+
+<span class="c1"># 下发etcd二进制文件</span>
+<span class="k">for</span> etcd in <span class="o">{</span>etcd01,etcd02,etcd03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/etcd/bin/* <span class="si">${</span><span class="nv">etcd</span><span class="si">}</span>:/usr/local/bin/
+<span class="k">done</span>
+
+<span class="c1"># 下发cni二进制文件</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&#34;mkdir -p /opt/cni/bin&#34;</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/cni/bin/* <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/opt/cni/bin
+<span class="k">done</span>
+</pre>
+<hr />
+
+<h2>生成k8s集群认证文件</h2>
+
+<h3>0. 生成k8s集群中的证书之前</h3>
+
+<p>创建认证文件之前，墙裂推荐阅读<a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs">apiserver authentication documentation</a>。</p>
+
+<p>里面重点提到了：
+- 证书中的CN(common name)，被用作request的用户名
+- 从k8s 1.4开始，证书中的organization被用作用户组（可多个）</p>
+
+<p>这里是一个证书CSR的示例，可以通过CSR来设定CN和O</p>
+<pre class="chroma"><span class="p">{</span>
+  <span class="nt">&#34;CN&#34;</span><span class="p">:</span> <span class="s2">&#34;kubernetes&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;algo&#34;</span><span class="p">:</span> <span class="s2">&#34;rsa&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">2048</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nt">&#34;names&#34;</span><span class="p">:</span><span class="p">[</span><span class="p">{</span>
+    <span class="nt">&#34;C&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;country&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;ST&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;state&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;L&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;city&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;O&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;organization&gt;&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;OU&#34;</span><span class="p">:</span> <span class="s2">&#34;&lt;organization unit&gt;&#34;</span>
+  <span class="p">}</span><span class="p">]</span>
+<span class="p">}</span>
+</pre>
+<h3>1. 安装cfssl</h3>
+<pre class="chroma">curl -s -L -o /usr/local/bin/cfssl https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl_1.4.1_linux_amd64
+curl -s -L -o /usr/local/bin/cfssljson https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssljson_1.4.1_linux_amd64
+curl -s -L -o /usr/local/bin/cfssl-certinfo https://github.com/cloudflare/cfssl/releases/download/v1.4.1/cfssl-certinfo_1.4.1_linux_amd64
+chmod +x /usr/local/bin/*
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
+
+<span class="c1"># 创建k8s-ssl目录</span>
+mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/<span class="o">{</span>etcd,kubernetes<span class="o">}</span>
+<span class="c1"># 此目录只是临时存放ca生成文件，可随意更换位置</span>
+</pre>
+<blockquote>
+<p>因为<a href="https://github.com/cloudflare/cfssl/issues/717">issues 717: 错误提示hosts缺失问题</a>，这里和官方文档不一样，从1.2升级到了1.4.1</p>
+</blockquote>
+
+<h3>2. 创建 etcd 认证文件</h3>
+
+<h4>1) 准备配置文件</h4>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd
+
+<span class="c1"># step 1. 创建根CA</span>
+<span class="c1"># 创建 ETCD CA 证书签名请求文件</span>
+cat &gt; ca-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;etcd.local&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 4096
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;kubernetes&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># step 2. 签名证书</span>
+<span class="c1"># 创建CA签名配置文件</span>
+<span class="c1"># [issue]: 因为etcd开启--client-cert-auth选项，导致需要给serverde profile (client auth) 权限</span>
+<span class="c1"># [issue-url]: https://github.com/etcd-io/etcd/issues/9785</span>
+cat &gt; ca-config.json <span class="s">&lt;&lt;EOF
+</span><span class="s">{
+</span><span class="s">  &#34;signing&#34;: {
+</span><span class="s">    &#34;default&#34;: {
+</span><span class="s">      &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">    },
+</span><span class="s">    &#34;profiles&#34;: {
+</span><span class="s">      &#34;server&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">            &#34;signing&#34;,
+</span><span class="s">            &#34;key encipherment&#34;,
+</span><span class="s">            &#34;server auth&#34;,
+</span><span class="s">            &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">      },
+</span><span class="s">      &#34;client&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">            &#34;signing&#34;,
+</span><span class="s">            &#34;key encipherment&#34;,
+</span><span class="s">            &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">      },
+</span><span class="s">      &#34;peer&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">            &#34;signing&#34;,
+</span><span class="s">            &#34;key encipherment&#34;,
+</span><span class="s">            &#34;server auth&#34;,
+</span><span class="s">            &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">      }
+</span><span class="s">    }
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># step 3. 创建&#34;证书签名请求&#34;文件</span>
+<span class="c1"># server限定etcd所有节点监听ip</span>
+cat &gt; server-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;server&#34;,
+</span><span class="s">    &#34;hosts&#34;: [
+</span><span class="s">      &#34;127.0.0.1&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd01&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd02&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd03&#39;]}&#34;
+</span><span class="s">    ],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">        &#34;size&#34;: 2048
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;O&#34;: &#34;kubernetes&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># client不限定签名ip</span>
+cat &gt; client-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;client&#34;,
+</span><span class="s">    &#34;hosts&#34;: [&#34;&#34;],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">        &#34;size&#34;: 2048
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;O&#34;: &#34;system:masters&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># peer限定签名etcd所有节点的通信ip</span>
+cat &gt; peer-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;peer&#34;,
+</span><span class="s">    &#34;hosts&#34;: [
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd01&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd02&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;etcd03&#39;]}&#34;
+</span><span class="s">    ],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">        &#34;size&#34;: 2048
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;O&#34;: &#34;kubernetes&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</pre>
+<h4>2) 生成证书</h4>
+<pre class="chroma"><span class="c1"># step 1. 生成 CA 证书和私钥</span>
+cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca
+<span class="c1"># 生成文件：ca-key.pem ca.csr ca.pem</span>
+
+<span class="c1"># step 2. 生成应CSR文件请求，使用CA签名过的证书</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>server server-csr.json <span class="p">|</span> cfssljson -bare server
+<span class="c1"># 生成文件：server-key.pem server.csr server.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client client-csr.json <span class="p">|</span> cfssljson -bare client
+<span class="c1"># 生成文件：client-key.pem client.csr client.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>peer peer-csr.json <span class="p">|</span> cfssljson -bare peer
+<span class="c1"># 生成文件：peer-key.pem peer.csr peer.pem</span>
+</pre>
+<h3>3. 创建 k8s master节点 认证文件</h3>
+
+<h4>1) 准备配置文件</h4>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+
+<span class="c1"># step 1. 创建根CA</span>
+<span class="c1"># 创建 K8S CA 证书签名请求文件</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;kubernetes&#34;,
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 4096
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;kubernetes&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># step 2. 签名证书</span>
+<span class="c1"># 创建CA签名配置文件</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca-config.json <span class="s">&lt;&lt;EOF
+</span><span class="s">{
+</span><span class="s">  &#34;signing&#34;: {
+</span><span class="s">    &#34;default&#34;: {
+</span><span class="s">      &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">    },
+</span><span class="s">    &#34;profiles&#34;: {
+</span><span class="s">      &#34;server&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">            &#34;signing&#34;,
+</span><span class="s">            &#34;key encipherment&#34;,
+</span><span class="s">            &#34;server auth&#34;,
+</span><span class="s">            &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">      },
+</span><span class="s">      &#34;client&#34;: {
+</span><span class="s">        &#34;usages&#34;: [
+</span><span class="s">            &#34;signing&#34;,
+</span><span class="s">            &#34;key encipherment&#34;,
+</span><span class="s">            &#34;client auth&#34;
+</span><span class="s">        ],
+</span><span class="s">        &#34;expiry&#34;: &#34;87600h&#34;
+</span><span class="s">      }
+</span><span class="s">    }
+</span><span class="s">  }
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># step 3. 创建&#34;证书签名请求&#34;文件</span>
+
+<span class="c1"># kube-apiserver</span>
+<span class="c1"># hosts内容：</span>
+<span class="c1">#   - HA所有监听ip、vip</span>
+<span class="c1">#   - --apiserver-advertise-address指定的ip</span>
+<span class="c1">#   - service网段第一个ip</span>
+<span class="c1">#   - k8s DNS域名</span>
+<span class="c1">#   - master节点名称</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-apiserver-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">    &#34;CN&#34;: &#34;kubernetes&#34;,
+</span><span class="s">    &#34;hosts&#34;: [
+</span><span class="s">      &#34;127.0.0.1&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;master01&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;master02&#39;]}&#34;,
+</span><span class="s">      &#34;${IP_LIST[&#39;master03&#39;]}&#34;,
+</span><span class="s">      &#34;${SERVICE_CLUSTER_IP_RANGE%.*}.1&#34;,
+</span><span class="s">      &#34;kubernetes&#34;,
+</span><span class="s">      &#34;kubernetes.default&#34;,
+</span><span class="s">      &#34;kubernetes.default.svc&#34;,
+</span><span class="s">      &#34;kubernetes.default.svc.cluster&#34;,
+</span><span class="s">      &#34;kubernetes.default.svc.cluster.local&#34;
+</span><span class="s">    ],
+</span><span class="s">    &#34;key&#34;: {
+</span><span class="s">        &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">        &#34;size&#34;: 2048
+</span><span class="s">    },
+</span><span class="s">    &#34;names&#34;: [
+</span><span class="s">        {
+</span><span class="s">            &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">            &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">            &#34;O&#34;: &#34;kubernetes&#34;,
+</span><span class="s">            &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">        }
+</span><span class="s">    ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># api-kubelet-client</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/api-kubelet-client.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;system:kubelet-api-admin&#34;,
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;127.0.0.1&#34;,
+</span><span class="s">    &#34;node01&#34;,
+</span><span class="s">    &#34;node02&#34;,
+</span><span class="s">    &#34;node03&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master01&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master02&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master03&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;node01&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;node02&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;node03&#39;]}&#34;
+</span><span class="s">  ],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;system:kubelet-api-admin&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># kube-controller-manager</span>
+<span class="c1"># 注意点：</span>
+<span class="c1"># - CN名称必须是： system:kube-controller-manager</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-controller-manager-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;system:kube-controller-manager&#34;,
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;127.0.0.1&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master01&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master02&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master03&#39;]}&#34;
+</span><span class="s">  ],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;system:kube-controller-manager&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># kube-scheduler</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-scheduler-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;system:kube-scheduler&#34;,
+</span><span class="s">  &#34;hosts&#34;: [
+</span><span class="s">    &#34;127.0.0.1&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master01&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master02&#39;]}&#34;,
+</span><span class="s">    &#34;${IP_LIST[&#39;master03&#39;]}&#34;
+</span><span class="s">  ],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;system:kube-scheduler&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># kube-proxy</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-proxy-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;system:kube-proxy&#34;,
+</span><span class="s">  &#34;hosts&#34;: [&#34;&#34;],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;system:node-proxier&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+</pre>
+<blockquote>
+<p><a href="https://kubernetes.io/docs/concepts/cluster-administration/certificates/">注：详情可以参照k8s证书官方文档</a></p>
+</blockquote>
+
+<h4>2) 生成证书</h4>
+<pre class="chroma"><span class="c1"># step 1. 生成 CA 证书和私钥</span>
+cfssl gencert -initca ca-csr.json <span class="p">|</span> cfssljson -bare ca
+<span class="c1"># 生成文件： ca-key.pem ca.csr ca.pem</span>
+
+<span class="c1"># step 2. 生成应CSR文件请求，使用CA签名过的证书</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>server kube-apiserver-csr.json <span class="p">|</span> cfssljson -bare kube-apiserver
+<span class="c1"># 生成文件： kube-apiserver-key.pem kube-apiserver.csr kube-apiserver.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>server api-kubelet-client.json <span class="p">|</span> cfssljson -bare api-kubelet-client
+<span class="c1"># 生成文件： api-kubelet-client-key.pem api-kubelet-client.csr api-kubelet-client.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client kube-controller-manager-csr.json <span class="p">|</span> cfssljson -bare kube-controller-manager
+<span class="c1"># 生成文件： kube-controller-manager-key.pem kube-controller-manager.csr kube-controller-manager.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client kube-scheduler-csr.json <span class="p">|</span> cfssljson -bare kube-scheduler
+<span class="c1"># 生成文件： kube-scheduler-key.pem kube-scheduler.csr kube-scheduler.pem</span>
+
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client  kube-proxy-csr.json <span class="p">|</span> cfssljson -bare kube-proxy
+<span class="c1"># 生成文件：kube-proxy-key.pem kube-proxy.csr kube-proxy.pem</span>
+</pre>
+<h3>4. 创建 admin 认证文件</h3>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes
+
+<span class="c1"># step 1. 创建&#34;证书签名请求&#34;文件</span>
+cat &gt; admin-csr.json <span class="s">&lt;&lt; EOF
+</span><span class="s">{
+</span><span class="s">  &#34;CN&#34;: &#34;admin&#34;,
+</span><span class="s">  &#34;hosts&#34;: [&#34;&#34;],
+</span><span class="s">  &#34;key&#34;: {
+</span><span class="s">    &#34;algo&#34;: &#34;rsa&#34;,
+</span><span class="s">    &#34;size&#34;: 2048
+</span><span class="s">  },
+</span><span class="s">  &#34;names&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;C&#34;: &#34;CN&#34;,
+</span><span class="s">      &#34;ST&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;L&#34;: &#34;BeiJing&#34;,
+</span><span class="s">      &#34;O&#34;: &#34;system:masters&#34;,
+</span><span class="s">      &#34;OU&#34;: &#34;System&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># step 2. 生成应CSR文件请求，使用CA签名过的证书</span>
+cfssl gencert -ca<span class="o">=</span>ca.pem -ca-key<span class="o">=</span>ca-key.pem -config<span class="o">=</span>ca-config.json -profile<span class="o">=</span>client admin-csr.json <span class="p">|</span> cfssljson -bare admin
+<span class="c1"># 生成文件：admin-key.pem admin.csr admin.pem</span>
+</pre>
+<h3>5. 校验证书方法</h3>
+<pre class="chroma">cfssl-certinfo -cert server.pem
+</pre>
+<h3>6. 分发证书</h3>
+<pre class="chroma"><span class="c1"># 下发证书到master</span>
+<span class="c1"># 证书对象</span>
+<span class="c1"># - 根证书</span>
+<span class="c1"># - 管理员证书</span>
+<span class="c1"># - apiserver证书</span>
+<span class="c1"># - apiserver-etcd-client证书</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">ETCD_PKI_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/<span class="o">{</span>ca.pem,ca-key.pem,admin.pem,admin-key.pem<span class="o">}</span> <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-apiserver.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/kube-apiserver.pem
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-apiserver-key.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/kube-apiserver-key.pem
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/api-kubelet-client.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/api-kubelet-client.pem
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/api-kubelet-client-key.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/api-kubelet-client-key.pem
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/ca.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">ETCD_PKI_DIR</span><span class="si">}</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/client.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/apiserver-etcd-client.pem
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/client-key.pem <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>/apiserver-etcd-client-key.pem
+<span class="k">done</span>
+
+<span class="c1"># 下发证书到node</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/<span class="o">{</span>ca.pem,api-kubelet-client.pem,api-kubelet-client-key.pem<span class="o">}</span> <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:<span class="si">${</span><span class="nv">K8S_PKI_DIR</span><span class="si">}</span>
+<span class="k">done</span>
+<span class="c1"># 用于加密master和node通信，kubelet中需要提供ca.pem来认证，主要用于kubectl logs/exec</span>
+
+<span class="c1"># 下发证书到etcd</span>
+<span class="k">for</span> etcd in <span class="o">{</span>etcd01,etcd02,etcd03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">etcd</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">ETCD_PKI_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/<span class="o">{</span>ca.pem,server.pem,server-key.pem,peer.pem,peer-key.pem<span class="o">}</span> <span class="si">${</span><span class="nv">etcd</span><span class="si">}</span>:<span class="si">${</span><span class="nv">ETCD_PKI_DIR</span><span class="si">}</span>
+<span class="k">done</span>
+</pre>
+<hr />
+
+<h2>生成kubeconfig</h2>
+
+<p>参照文档： <a href="https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/05-kubernetes-configuration-files.md">kubernetes in hard way about kubeconfig</a></p>
+<pre class="chroma"><span class="c1"># 创建k8s-config目录</span>
+mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+</pre>
+<h3>1. 创建 kubelet kubeconfig 文件</h3>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+<span class="nb">export</span> <span class="nv">KUBE_APISERVER</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">https://</span><span class="si">${</span><span class="nv">KUBE_API_PROXY_IP</span><span class="si">}</span><span class="s2">:443</span><span class="s2">&#34;</span>
+
+<span class="c1"># step 1. 创建 bootstrap token file</span>
+<span class="c1"># Token 可以是任意的包涵128 bit的字符串，可以使用安全的随机数发生器生成。</span>
+<span class="nb">export</span> <span class="nv">BOOTSTRAP_TOKEN</span><span class="o">=</span><span class="k">$(</span>head -c <span class="m">16</span> /dev/urandom <span class="p">|</span> od -An -t x <span class="p">|</span> tr -d <span class="s1">&#39; &#39;</span><span class="k">)</span>
+cat &gt; <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/token.csv <span class="s">&lt;&lt;EOF
+</span><span class="s">${BOOTSTRAP_TOKEN},kubelet-bootstrap,10001,&#34;system:bootstrappers&#34;
+</span><span class="s">EOF</span>
+<span class="c1"># 注意： 在进行后续操作前请检查 token.csv 文件，确认其中的 ${BOOTSTRAP_TOKEN} 环境变量已经被真实的值替换。</span>
+cat <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/token.csv 
+<span class="c1"># 输出类似这种值： 31c5af9c14a8f8ddbed6564234b2644f,kubelet-bootstrap,10001,&#34;system:bootstrappers&#34;</span>
+
+<span class="c1"># step 2. 生成 kubeconfig 和 设置 current context</span>
+<span class="c1"># 注意点： credential必须是，用户组system:node和hostname小写化后的拼接</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>    --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>    --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>    --server<span class="o">=</span><span class="si">${</span><span class="nv">KUBE_APISERVER</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>    --kubeconfig<span class="o">=</span>bootstrap-kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.conf
+
+  kubectl config set-credentials system:node:<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>    --token<span class="o">=</span><span class="si">${</span><span class="nv">BOOTSTRAP_TOKEN</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>    --kubeconfig<span class="o">=</span>bootstrap-kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.conf
+
+  kubectl config set-context default <span class="se">\
+</span><span class="se"></span>    --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>    --user<span class="o">=</span>system:node:<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>    --kubeconfig<span class="o">=</span>bootstrap-kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.conf
+
+  kubectl config use-context default --kubeconfig<span class="o">=</span>bootstrap-kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.conf
+<span class="k">done</span>
+<span class="c1"># 依次执行了以下步骤：</span>
+<span class="c1"># 生成文件： bootstrap-kubelet-${node}.conf，内容为集群信息（证书、apiserver地址、集群名称）</span>
+<span class="c1"># 修改文件： bootstrap-kubelet-${node}.conf，增加token等认证信息</span>
+<span class="c1"># 修改文件： bootstrap-kubelet-${node}.conf，增加context信息</span>
+<span class="c1"># 修改文件： bootstrap-kubelet-${node}.conf，设定当前context为default</span>
+</pre>
+<h3>2. 创建 kube-proxy kubeconfig 文件</h3>
+<pre class="chroma"><span class="nb">export</span> <span class="nv">KUBE_APISERVER</span><span class="o">=</span><span class="s2">&#34;</span><span class="s2">https://</span><span class="si">${</span><span class="nv">KUBE_API_PROXY_IP</span><span class="si">}</span><span class="s2">:443</span><span class="s2">&#34;</span>
+
+<span class="c1"># step 1. 生成 kubeconfig</span>
+kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --server<span class="o">=</span><span class="si">${</span><span class="nv">KUBE_APISERVER</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-proxy.conf
+<span class="c1"># 生成文件： kube-proxy.conf，内容为集群信息（证书、apiserver地址、集群名称）</span>
+
+kubectl config set-credentials system:kube-proxy <span class="se">\
+</span><span class="se"></span>  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-proxy.pem <span class="se">\
+</span><span class="se"></span>  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-proxy-key.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-proxy.conf
+<span class="c1"># 修改文件： kube-proxy.conf，增加认证用户和认证信息</span>
+
+kubectl config set-context default <span class="se">\
+</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>  --user<span class="o">=</span>system:kube-proxy <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-proxy.conf
+<span class="c1"># 修改文件： kube-proxy.conf，增加context信息</span>
+
+<span class="c1"># 设置 current context</span>
+kubectl config use-context default --kubeconfig<span class="o">=</span>kube-proxy.conf
+<span class="c1"># 修改文件： kube-proxy.conf，设定当前context为default</span>
+</pre>
+<h3>3. 创建 admin kubeconfig 文件</h3>
+<pre class="chroma"><span class="c1"># step 1. 生成 kubeconfig</span>
+kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --server<span class="o">=</span><span class="si">${</span><span class="nv">KUBE_APISERVER</span><span class="si">}</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>admin.conf
+<span class="c1"># 生成文件： admin.conf，内容为集群信息（证书、apiserver地址、集群名称）</span>
+
+kubectl config set-credentials admin <span class="se">\
+</span><span class="se"></span>  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/admin.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/admin-key.pem <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>admin.conf
+<span class="c1"># 修改文件： admin.conf，增加认证用户和认证信息</span>
+
+kubectl config set-context kubernetes <span class="se">\
+</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>  --user<span class="o">=</span>admin <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>admin.conf
+<span class="c1"># 修改文件： admin.conf，增加context信息</span>
+
+<span class="c1"># 设定上下文</span>
+kubectl config use-context kubernetes --kubeconfig<span class="o">=</span>admin.conf
+<span class="c1"># 修改文件： admin.conf，设定当前context为kubernetes</span>
+</pre>
+<h3>4. 创建 kube-controller-manager kubeconfig 文件</h3>
+<pre class="chroma"><span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --server<span class="o">=</span>https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="si">${</span><span class="nv">master</span><span class="si">}</span><span class="p">]</span><span class="si">}</span>:6443 <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+<span class="c1"># 注意点： credential必须是system:kube-controller-manager</span>
+kubectl config set-credentials system:kube-controller-manager <span class="se">\
+</span><span class="se"></span>  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-controller-manager.pem <span class="se">\
+</span><span class="se"></span>  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-controller-manager-key.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+kubectl config set-context default <span class="se">\
+</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>  --user<span class="o">=</span>system:kube-controller-manager <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+kubectl config use-context default --kubeconfig<span class="o">=</span>kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+<span class="k">done</span>
+</pre>
+<blockquote>
+<p>注意点：
+- 此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a>
+- 另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</p>
+</blockquote>
+
+<h3>5. 创建 kube-scheduler kubeconfig 文件</h3>
+<pre class="chroma"><span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+kubectl config set-cluster kubernetes <span class="se">\
+</span><span class="se"></span>  --certificate-authority<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/ca.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --server<span class="o">=</span>https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="si">${</span><span class="nv">master</span><span class="si">}</span><span class="p">]</span><span class="si">}</span>:6443 <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+<span class="c1"># 注意点： credential必须是system:kube-scheduler</span>
+kubectl config set-credentials system:kube-scheduler <span class="se">\
+</span><span class="se"></span>  --client-certificate<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-scheduler.pem <span class="se">\
+</span><span class="se"></span>  --client-key<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/kubernetes/kube-scheduler-key.pem <span class="se">\
+</span><span class="se"></span>  --embed-certs<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+kubectl config set-context default <span class="se">\
+</span><span class="se"></span>  --cluster<span class="o">=</span>kubernetes <span class="se">\
+</span><span class="se"></span>  --user<span class="o">=</span>system:kube-scheduler <span class="se">\
+</span><span class="se"></span>  --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+
+kubectl config use-context default --kubeconfig<span class="o">=</span>kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf
+<span class="k">done</span>
+</pre>
+<blockquote>
+<p>注意点：
+- 此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a>
+- 另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</p>
+</blockquote>
+
+<h3>6. 分发kubeconfig文件和admin上下文环境文件</h3>
+<pre class="chroma"><span class="nb">cd</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig
+<span class="c1"># 将bootstrap.kubelet.&lt;node-hostname&gt;.conf和kube-proxy.conf分发到node节点</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/bootstrap-kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.conf <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>/bootstrap-kubelet.conf
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-proxy.conf <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># 将master节点的 kubeconfig 分发到所有master上</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">ADMIN_KUBECONFIG_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;</span><span class="s2">mkdir -p </span><span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span><span class="s2">&#34;</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/admin.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">ADMIN_KUBECONFIG_DIR</span><span class="si">}</span>/config
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/token.csv <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>/kube-controller-manager.conf
+  scp <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kubeconfig/kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.conf <span class="nv">$master</span>:<span class="si">${</span><span class="nv">KUBECONFIG_DIR</span><span class="si">}</span>/kube-scheduler.conf
+<span class="k">done</span>
+</pre>
+<hr />
+
+<h2>准备master、node、etcd - systemd unit文件</h2>
+
+<h3>0. 创建各节点unit文件目录</h3>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/<span class="o">{</span>node,master,etcd<span class="o">}</span>/systemd-unit-files
+</pre>
+<h3>1. 创建master所需unit文件</h3>
+
+<p>需要各master节点根据自身调整ip地址</p>
+<pre class="chroma"><span class="c1"># kube-apiserver.service</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/kube-apiserver-${master}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Kubernetes API Server
+</span><span class="s">Documentation=https://github.com/kubernetes/kubernetes
+</span><span class="s">After=network.target
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">ExecStart=/usr/local/bin/kube-apiserver \\
+</span><span class="s">  --advertise-address=${IP_LIST[${master}]} \\
+</span><span class="s">  --bind-address=${IP_LIST[${master}]} \\
+</span><span class="s">  --secure-port=6443 \\
+</span><span class="s">  --insecure-port=0 \\
+</span><span class="s">  --authorization-mode=Node,RBAC \\
+</span><span class="s">  --enable-admission-plugins=NodeRestriction \\
+</span><span class="s">  --enable-bootstrap-token-auth=true \\
+</span><span class="s">  --token-auth-file=${KUBECONFIG_DIR}/token.csv \\
+</span><span class="s">  --service-cluster-ip-range=${SERVICE_CLUSTER_IP_RANGE} \\
+</span><span class="s">  --service-node-port-range=${SERVICE_NODE_PORT_RANGE} \\
+</span><span class="s">  --client-ca-file=${K8S_PKI_DIR}/ca.pem \\
+</span><span class="s">  --tls-cert-file=${K8S_PKI_DIR}/kube-apiserver.pem \\
+</span><span class="s">  --tls-private-key-file=${K8S_PKI_DIR}/kube-apiserver-key.pem \\
+</span><span class="s">  --service-account-key-file=${K8S_PKI_DIR}/ca-key.pem \\
+</span><span class="s">  --etcd-cafile=${ETCD_PKI_DIR}/ca.pem \\
+</span><span class="s">  --etcd-certfile=${K8S_PKI_DIR}/apiserver-etcd-client.pem \\
+</span><span class="s">  --etcd-keyfile=${K8S_PKI_DIR}/apiserver-etcd-client-key.pem \\
+</span><span class="s">  --etcd-servers=https://${IP_LIST[&#34;etcd01&#34;]}:2379,https://${IP_LIST[&#34;etcd02&#34;]}:2379,https://${IP_LIST[&#34;etcd03&#34;]}:2379 \\
+</span><span class="s">  --kubelet-certificate-authority=${K8S_PKI_DIR}/ca.pem \\
+</span><span class="s">  --kubelet-client-certificate=${K8S_PKI_DIR}/api-kubelet-client.pem \\
+</span><span class="s">  --kubelet-client-key=${K8S_PKI_DIR}/api-kubelet-client-key.pem \\
+</span><span class="s">  --allow-privileged=true \\
+</span><span class="s">  --apiserver-count=3 \\
+</span><span class="s">  --audit-log-maxage=30 \\
+</span><span class="s">  --audit-log-maxbackup=3 \\
+</span><span class="s">  --audit-log-maxsize=100 \\
+</span><span class="s">  --audit-log-path=/var/lib/audit.log \\
+</span><span class="s">  --event-ttl=1h \\
+</span><span class="s">  --v=2
+</span><span class="s">Restart=on-failure
+</span><span class="s">RestartSec=5
+</span><span class="s">Type=notify
+</span><span class="s">LimitNOFILE=65536
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+<span class="c1"># --admission-control: 1.10之后默认启用admission-control</span>
+<span class="c1">#   默认设定的值: &#34;NamespaceLifecycle, LimitRanger, ServiceAccount, TaintNodesByCondition, Priority,</span> 
+<span class="c1">#   DefaultTolerationSeconds, DefaultStorageClass, StorageObjectInUseProtection, PersistentVolumeClaimResize,</span>
+<span class="c1">#   MutatingAdmissionWebhook, ValidatingAdmissionWebhook, RuntimeClass, ResourceQuota&#34;</span>
+<span class="c1"># 若需要额外配置其他admission，请参照kubernetes admission controller官方文档</span>
+
+<span class="c1"># --enable-bootstrap-token-auth: 启用bootstrap-token认证，详情请参照[官方文档](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/)</span>
+
+<span class="c1"># 根据下面这个issue和pr内容，以下三个配置是用来加密master和node通信的，主要是kubectl logs/exec。</span>
+<span class="c1"># [issue: 14700](https://github.com/kubernetes/kubernetes/pull/14700)</span>
+<span class="c1"># [PR: 31562](https://github.com/kubernetes/kubernetes/pull/31562)</span>
+<span class="c1"># [kubelet-authentication-authorization]</span>
+<span class="c1">#   (https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/)</span>
+<span class="c1">#  --kubelet-certificate-authority</span>
+<span class="c1">#  --kubelet-client-certificate</span>
+<span class="c1">#  --kubelet-client-key</span>
+
+<span class="c1"># kube-controller-manager.service</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/kube-controller-manager-${master}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Kubernetes Controller Manager
+</span><span class="s">Documentation=https://github.com/kubernetes/kubernetes
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">ExecStart=/usr/local/bin/kube-controller-manager \\
+</span><span class="s">  --bind-address=127.0.0.1 \\
+</span><span class="s">  --controllers=*,bootstrapsigner,tokencleaner \\
+</span><span class="s">  --allocate-node-cidrs=true \\
+</span><span class="s">  --service-cluster-ip-range=${SERVICE_CLUSTER_IP_RANGE} \\
+</span><span class="s">  --cluster-cidr=${POD_CLUSTER_IP_RANGE} \\
+</span><span class="s">  --cluster-name=kubernetes \\
+</span><span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kube-controller-manager.conf \\
+</span><span class="s">  --root-ca-file=${K8S_PKI_DIR}/ca.pem \\
+</span><span class="s">  --cluster-signing-cert-file=${K8S_PKI_DIR}/ca.pem \\
+</span><span class="s">  --cluster-signing-key-file=${K8S_PKI_DIR}/ca-key.pem \\
+</span><span class="s">  --use-service-account-credentials=true \\
+</span><span class="s">  --service-account-private-key-file=${K8S_PKI_DIR}/ca-key.pem \\
+</span><span class="s">  --leader-elect=true \\
+</span><span class="s">  --v=2
+</span><span class="s">Restart=on-failure
+</span><span class="s">RestartSec=5
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+
+<span class="c1"># kube-scheduler.service</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/kube-scheduler-${master}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Kubernetes Scheduler
+</span><span class="s">Documentation=https://github.com/kubernetes/kubernetes
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">ExecStart=/usr/local/bin/kube-scheduler \\
+</span><span class="s">  --bind-address=127.0.0.1 \\
+</span><span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kube-scheduler.conf \\
+</span><span class="s">  --leader-elect=true \\
+</span><span class="s">  --v=2
+</span><span class="s">Restart=on-failure
+</span><span class="s">RestartSec=5
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+</pre>
+<blockquote>
+<p>如果中途修改过<code>--service-cluster-ip-range</code>(kube-apiserver,kube-controller-manager)，有可能会遇到下面的错误
+- <code>&quot;message&quot;: &quot;Cluster IP *.*.*.* is not within the service CIDR *.*.*.*/**; please recreate service&quot;</code>
+解决方案：
+<code>kubectl get services --all-namespaces</code>获得系统的最初创建的集群的service后，删除它<code>kubectl delete service kubernets</code>
+然后系统会自动创建它，但是！！！不推荐生产环境已经存在应用service后这样搞！！！</p>
+</blockquote>
+
+<h3>2. 创建etcd所需unit文件</h3>
+<pre class="chroma"><span class="k">for</span> etcd in <span class="o">{</span>etcd01,etcd02,etcd03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/etcd/systemd-unit-files/etcd-${etcd}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Etcd Server
+</span><span class="s">After=network.target
+</span><span class="s">After=network-online.target
+</span><span class="s">Wants=network-online.target
+</span><span class="s">Documentation=https://github.com/coreos
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">Type=notify
+</span><span class="s">WorkingDirectory=/var/lib/etcd/
+</span><span class="s">EnvironmentFile=-/etc/etcd/etcd.conf
+</span><span class="s">ExecStart=/usr/local/bin/etcd \\
+</span><span class="s">  --name=${etcd} \\
+</span><span class="s">  --client-cert-auth=true \\
+</span><span class="s">  --trusted-ca-file=${ETCD_PKI_DIR}/ca.pem \\
+</span><span class="s">  --cert-file=${ETCD_PKI_DIR}/server.pem \\
+</span><span class="s">  --key-file=${ETCD_PKI_DIR}/server-key.pem \\
+</span><span class="s">  --peer-client-cert-auth=true \\
+</span><span class="s">  --peer-trusted-ca-file=${ETCD_PKI_DIR}/ca.pem \\
+</span><span class="s">  --peer-cert-file=${ETCD_PKI_DIR}/peer.pem \\
+</span><span class="s">  --peer-key-file=${ETCD_PKI_DIR}/peer-key.pem \\
+</span><span class="s">  --initial-advertise-peer-urls=https://${IP_LIST[${etcd}]}:2380 \\
+</span><span class="s">  --listen-peer-urls=https://${IP_LIST[${etcd}]}:2380 \\
+</span><span class="s">  --listen-client-urls=https://${IP_LIST[${etcd}]}:2379,https://127.0.0.1:2379 \\
+</span><span class="s">  --advertise-client-urls=https://${IP_LIST[${etcd}]}:2379 \\
+</span><span class="s">  --initial-cluster-token=etcd-cluster-0 \\
+</span><span class="s">  --initial-cluster=etcd01=https://${IP_LIST[&#34;etcd01&#34;]}:2380,etcd02=https://${IP_LIST[&#34;etcd02&#34;]}:2380,etcd03=https://${IP_LIST[&#34;etcd03&#34;]}:2380 \\
+</span><span class="s">  --initial-cluster-state=new \\
+</span><span class="s">  --data-dir=/var/lib/etcd
+</span><span class="s">Restart=on-failure
+</span><span class="s">RestartSec=5
+</span><span class="s">LimitNOFILE=65536
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+</pre>
+<h3>3. 创建node所需unit文件</h3>
+<pre class="chroma"><span class="c1"># kubelet.service</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/node/systemd-unit-files/kubelet-${node}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Kubernetes Kubelet
+</span><span class="s">Documentation=https://github.com/kubernetes/kubernetes
+</span><span class="s">After=docker.service
+</span><span class="s">Requires=docker.service
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">WorkingDirectory=/var/lib/kubelet
+</span><span class="s">ExecStart=/usr/local/bin/kubelet \\
+</span><span class="s">  --address=${IP_LIST[${node}]} \\
+</span><span class="s">  --hostname-override=${node} \\
+</span><span class="s">  --network-plugin=cni \\
+</span><span class="s">  --pod-infra-container-image=k8s.gcr.io/pause-amd64:3.0 \\
+</span><span class="s">  --bootstrap-kubeconfig=${KUBECONFIG_DIR}/bootstrap-kubelet.conf \\
+</span><span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kubelet.conf \\
+</span><span class="s">  --client-ca-file=${K8S_PKI_DIR}/ca.pem \\
+</span><span class="s">  --cert-dir=${K8S_PKI_DIR} \\
+</span><span class="s">  --tls-cert-file=${K8S_PKI_DIR}/api-kubelet-client.pem \\
+</span><span class="s">  --tls-private-key-file=${K8S_PKI_DIR}/api-kubelet-client-key.pem \\
+</span><span class="s">  --anonymous-auth=false \\
+</span><span class="s">  --hairpin-mode promiscuous-bridge \\
+</span><span class="s">  --serialize-image-pulls=false \\
+</span><span class="s">  --cgroup-driver=systemd \\
+</span><span class="s">  --cluster-dns=${SERVICE_CLUSTER_IP_RANGE%.*}.2 \\
+</span><span class="s">  --cluster-domain=cluster.local \\
+</span><span class="s">  --v=2
+</span><span class="s">Restart=on-failure
+</span><span class="s">RestartSec=5
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+<span class="c1"># cgroup-driver和docker一致，皆为systemd</span>
+<span class="c1"># --cert-dir指定kubelet从master那边获取的签名证书存放目录</span>
+
+<span class="c1"># 根据下面这个issue和pr内容，以下配置是用来加密master和node通信的，主要是kubectl logs/exec。</span>
+<span class="c1"># [issue: 14700](https://github.com/kubernetes/kubernetes/pull/14700)</span>
+<span class="c1"># [PR: 31562](https://github.com/kubernetes/kubernetes/pull/31562)</span>
+<span class="c1"># [kubelet-authentication-authorization]</span>
+<span class="c1">#   (https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-authentication-authorization/)</span>
+<span class="c1"># --client-ca-file</span>
+
+<span class="c1"># 根据[issue: 63164](https://github.com/kubernetes/kubernetes/issues/63164)</span>
+<span class="c1"># tls bootsraping里面自动在--cert-dir下面生成的key，只是用于kubelet -&gt; apiserver</span>
+<span class="c1"># 而如果需要apiserver -&gt; kubelet的认证，需要手动指定以下参数，如果不指定，kubelet会自动生成一个ca</span>
+<span class="c1"># --tls-cert-file</span>
+<span class="c1"># --tls-private-key-file</span>
+
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/node/systemd-unit-files/kube-proxy-${node}.service
+</span><span class="s">[Unit]
+</span><span class="s">Description=Kubernetes Kube-Proxy Server
+</span><span class="s">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+</span><span class="s">After=network.target
+</span><span class="s">
+</span><span class="s">[Service]
+</span><span class="s">ExecStart=/usr/local/bin/kube-proxy \\
+</span><span class="s">  --logtostderr=true \\
+</span><span class="s">  --v=0 \\
+</span><span class="s">  --master=https://${KUBE_API_PROXY_IP}:443 \\
+</span><span class="s">  --bind-address=${IP_LIST[${node}]} \\
+</span><span class="s">  --hostname-override=${node} \\
+</span><span class="s">  --kubeconfig=${KUBECONFIG_DIR}/kube-proxy.conf \\
+</span><span class="s">  --cluster-cidr=${POD_CLUSTER_IP_RANGE}
+</span><span class="s">Restart=on-failure
+</span><span class="s">LimitNOFILE=65536
+</span><span class="s">
+</span><span class="s">[Install]
+</span><span class="s">WantedBy=multi-user.target
+</span><span class="s">EOF</span>
+<span class="k">done</span>
+</pre>
+<h3>4. 分发systemd unit文件</h3>
+<pre class="chroma"><span class="c1"># 下发master unit文件</span>
+<span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/systemd-unit-files/kube-apiserver-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.service <span class="se">\
+</span><span class="se"></span>    <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:/usr/lib/systemd/system/kube-apiserver.service         
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/systemd-unit-files/kube-controller-manager-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.service <span class="se">\
+</span><span class="se"></span>    <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:/usr/lib/systemd/system/kube-controller-manager.service
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/master/systemd-unit-files/kube-scheduler-<span class="si">${</span><span class="nv">master</span><span class="si">}</span>.service <span class="se">\
+</span><span class="se"></span>    <span class="si">${</span><span class="nv">master</span><span class="si">}</span>:/usr/lib/systemd/system/kube-scheduler.service  
+<span class="k">done</span>
+
+<span class="c1"># 下发node unit文件</span>
+<span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/node/systemd-unit-files/kubelet-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.service <span class="se">\
+</span><span class="se"></span>    <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/usr/lib/systemd/system/kubelet.service
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/node/systemd-unit-files/kube-proxy-<span class="si">${</span><span class="nv">node</span><span class="si">}</span>.service <span class="se">\
+</span><span class="se"></span>    <span class="si">${</span><span class="nv">node</span><span class="si">}</span>:/usr/lib/systemd/system/kube-proxy.service
+<span class="k">done</span>
+
+<span class="c1"># 下发etcd unit文件</span>
+<span class="k">for</span> etcd in <span class="o">{</span>etcd01,etcd02,etcd03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  rsync -av <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/etcd/systemd-unit-files/etcd-<span class="si">${</span><span class="nv">etcd</span><span class="si">}</span>.service <span class="si">${</span><span class="nv">etcd</span><span class="si">}</span>:/usr/lib/systemd/system/etcd.service
+<span class="k">done</span>
+</pre>
+<hr />
+
+<h2>启动服务</h2>
+
+<h3>1. etcd节点</h3>
+<pre class="chroma"><span class="k">for</span> etcd in <span class="o">{</span>etcd01,etcd02,etcd03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">etcd</span><span class="si">}</span> <span class="s2">&#34;mkdir -p /var/lib/etcd&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">etcd</span><span class="si">}</span> <span class="s2">&#34;systemctl daemon-reload&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">etcd</span><span class="si">}</span> <span class="s2">&#34;systemctl enable etcd&#34;</span>
+<span class="k">done</span>
+
+<span class="c1"># 手动去etcd机器上启动etcd，必须同时启动，集群才能启动成功</span>
+systemctl start etcd
+
+etcdctl <span class="se">\
+</span><span class="se"></span>  --endpoints https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="s2">&#34;etcd01&#34;</span><span class="p">]</span><span class="si">}</span>:2379,https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="s2">&#34;etcd02&#34;</span><span class="p">]</span><span class="si">}</span>:2379,https://<span class="si">${</span><span class="nv">IP_LIST</span><span class="p">[</span><span class="s2">&#34;etcd03&#34;</span><span class="p">]</span><span class="si">}</span>:2379 <span class="se">\
+</span><span class="se"></span>  --ca-file<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/ca.pem <span class="se">\
+</span><span class="se"></span>  --cert-file<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/peer.pem <span class="se">\
+</span><span class="se"></span>  --key-file<span class="o">=</span><span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/pki/etcd/peer-key.pem <span class="se">\
+</span><span class="se"></span>  cluster-health
+</pre>
+<h3>2. master节点</h3>
+<pre class="chroma"><span class="k">for</span> master in <span class="o">{</span>master01,master02,master03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;systemctl daemon-reload&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;systemctl start kube-apiserver kube-controller-manager kube-scheduler&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">master</span><span class="si">}</span> <span class="s2">&#34;systemctl enable kube-apiserver kube-controller-manager kube-scheduler&#34;</span>
+<span class="k">done</span>
+</pre>
+<h3>3. kubelet tls bootstrap</h3>
+
+<p>下面执行的内容牵扯到kubelet-tls-bootstrap的内容，可以参考<a href="https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/">官方文档</a></p>
+
+<p>创建ClusterRoleBinding允许kubelet创建CSR(certificate signing requests)</p>
+<pre class="chroma"><span class="c1"># enable bootstrapping nodes to create CSR</span>
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1
+</span><span class="s">kind: ClusterRoleBinding
+</span><span class="s">metadata:
+</span><span class="s">  name: create-csrs-for-bootstrapping
+</span><span class="s">subjects:
+</span><span class="s">- kind: Group
+</span><span class="s">  name: system:bootstrappers
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">roleRef:
+</span><span class="s">  kind: ClusterRole
+</span><span class="s">  name: system:node-bootstrapper
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">EOF</span>
+</pre>
+<p>创建ClusterRoleBinding允许kubelet请求和接收证书</p>
+<pre class="chroma"><span class="c1"># Approve all CSRs for the group &#34;system:bootstrappers&#34;</span>
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1
+</span><span class="s">kind: ClusterRoleBinding
+</span><span class="s">metadata:
+</span><span class="s">  name: auto-approve-csrs-for-group
+</span><span class="s">subjects:
+</span><span class="s">- kind: Group
+</span><span class="s">  name: system:bootstrappers
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">roleRef:
+</span><span class="s">  kind: ClusterRole
+</span><span class="s">  name: system:certificates.k8s.io:certificatesigningrequests:nodeclient
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">EOF</span>
+</pre>
+<p>创建ClusterRoleBinding允许kubelet重签证书</p>
+<pre class="chroma"><span class="c1"># Approve renewal CSRs for the group &#34;system:nodes&#34;</span>
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1
+</span><span class="s">kind: ClusterRoleBinding
+</span><span class="s">metadata:
+</span><span class="s">  name: auto-approve-renewals-for-nodes
+</span><span class="s">subjects:
+</span><span class="s">- kind: Group
+</span><span class="s">  name: system:nodes
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">roleRef:
+</span><span class="s">  kind: ClusterRole
+</span><span class="s">  name: system:certificates.k8s.io:certificatesigningrequests:selfnodeclient
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">EOF</span>
+</pre>
+<h3>4. node节点</h3>
+<pre class="chroma"><span class="k">for</span> node in <span class="o">{</span>node01,node02,node03<span class="o">}</span><span class="p">;</span><span class="k">do</span>
+  ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&#34;mkdir -p /var/lib/kubelet&#34;</span>
+  ssh root@<span class="si">${</span><span class="nv">node</span><span class="si">}</span> <span class="s2">&#34;systemctl daemon-reload &amp;&amp; systemctl start kubelet kube-proxy &amp;&amp; systemctl enable kubelet kube-proxy&#34;</span>
+<span class="k">done</span>
+</pre>
+<h3>5. 查看node节点的tls认证请求</h3>
+<pre class="chroma"><span class="c1"># 查看csr请求</span>
+kubectl get csr
+<span class="c1"># 如果自动认证签证证书失败，有需要人工批准的请求，可以执行approve csr请求</span>
+<span class="c1"># kubectl get csr | awk &#39;/Pending/ {print $1}&#39; | xargs kubectl certificate approve</span>
+</pre>
+<h3>6. 查看集群状态</h3>
+<pre class="chroma">kubectl get componentstatuses
+NAME                 STATUS    MESSAGE             ERROR
+scheduler            Healthy   ok                  
+controller-manager   Healthy   ok                  
+etcd-0               Healthy   <span class="o">{</span><span class="s2">&#34;health&#34;</span>:<span class="s2">&#34;true&#34;</span><span class="o">}</span>   
+etcd-2               Healthy   <span class="o">{</span><span class="s2">&#34;health&#34;</span>:<span class="s2">&#34;true&#34;</span><span class="o">}</span>   
+etcd-1               Healthy   <span class="o">{</span><span class="s2">&#34;health&#34;</span>:<span class="s2">&#34;true&#34;</span><span class="o">}</span>
+
+kubectl get nodes
+NAME      STATUS    ROLES     AGE       VERSION
+node01    Ready     &lt;none&gt;    40m       v1.9.1
+node02    Ready     &lt;none&gt;    3m        v1.9.1
+node03    Ready     &lt;none&gt;    3m        v1.9.1
+</pre>
+<hr />
+
+<h2>安装Pod网络附加组件</h2>
+
+<p>关于CNI网络组件的选择，可以自行搜索文档，此处选择使用flannel。</p>
+
+<h3>1. flannel需要的环境</h3>
+
+<ul>
+<li>bridge-nf-call-iptables内核优化开启，前面已经优化过，此处不需要再处理</li>
+<li>确保防火墙规则允许参与overlay网络的所有主机的UDP端口8285和8472通信，参照文档：<a href="https://coreos.com/flannel/docs/latest/troubleshooting.html#firewalls">coreos关于防火墙的说明</a></li>
+</ul>
+
+<h3>2. 启动flannel</h3>
+
+<p>官方kubeadm引导k8s集群的文档中，使用了这个yaml文件： <a href="https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml">https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml</a> 上面这个文件中默认使用了10.244.0.0/16作为pod的网络，如果希望自定义，需要在kubeadm init时增加&ndash;pod-network-cidr选项</p>
+
+<p>但是因为我们是二进制安装，此处我们下载上面的yaml文件，并手动修改pod网络的参数，并仅保留amd64硬件的daemonset，其他硬件平台的删除</p>
+<pre class="chroma">mkdir -p <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon
+
+<span class="c1"># customize kube-flannel.yml</span>
+<span class="c1"># ！！！！！！！！！！！！！！！！</span>
+<span class="c1"># ！！！ 有时候下面这个命令，会导致文件里面有乱码，为啥子我也没弄清楚，最后执行完检查下</span>
+<span class="c1"># ！！！ 如果有问题，手动粘贴以下内容，记得把变量${POD_CLUSTER_IP_RANGE}替换为它的值</span>
+<span class="c1"># ！！！！！！！！！！！！！！！！</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/kube-addon/kube-flannel.yml
+</span><span class="s">---
+</span><span class="s">apiVersion: policy/v1beta1
+</span><span class="s">kind: PodSecurityPolicy
+</span><span class="s">metadata:
+</span><span class="s">  name: psp.flannel.unprivileged
+</span><span class="s">  annotations:
+</span><span class="s">    seccomp.security.alpha.kubernetes.io/allowedProfileNames: docker/default
+</span><span class="s">    seccomp.security.alpha.kubernetes.io/defaultProfileName: docker/default
+</span><span class="s">    apparmor.security.beta.kubernetes.io/allowedProfileNames: runtime/default
+</span><span class="s">    apparmor.security.beta.kubernetes.io/defaultProfileName: runtime/default
+</span><span class="s">spec:
+</span><span class="s">  privileged: false
+</span><span class="s">  volumes:
+</span><span class="s">    - configMap
+</span><span class="s">    - secret
+</span><span class="s">    - emptyDir
+</span><span class="s">    - hostPath
+</span><span class="s">  allowedHostPaths:
+</span><span class="s">    - pathPrefix: &#34;/etc/cni/net.d&#34;
+</span><span class="s">    - pathPrefix: &#34;/etc/kube-flannel&#34;
+</span><span class="s">    - pathPrefix: &#34;/run/flannel&#34;
+</span><span class="s">  readOnlyRootFilesystem: false
+</span><span class="s">  # Users and groups
+</span><span class="s">  runAsUser:
+</span><span class="s">    rule: RunAsAny
+</span><span class="s">  supplementalGroups:
+</span><span class="s">    rule: RunAsAny
+</span><span class="s">  fsGroup:
+</span><span class="s">    rule: RunAsAny
+</span><span class="s">  # Privilege Escalation
+</span><span class="s">  allowPrivilegeEscalation: false
+</span><span class="s">  defaultAllowPrivilegeEscalation: false
+</span><span class="s">  # Capabilities
+</span><span class="s">  allowedCapabilities: [&#39;NET_ADMIN&#39;]
+</span><span class="s">  defaultAddCapabilities: []
+</span><span class="s">  requiredDropCapabilities: []
+</span><span class="s">  # Host namespaces
+</span><span class="s">  hostPID: false
+</span><span class="s">  hostIPC: false
+</span><span class="s">  hostNetwork: true
+</span><span class="s">  hostPorts:
+</span><span class="s">  - min: 0
+</span><span class="s">    max: 65535
+</span><span class="s">  # SELinux
+</span><span class="s">  seLinux:
+</span><span class="s">    # SELinux is unsed in CaaSP
+</span><span class="s">    rule: &#39;RunAsAny&#39;
+</span><span class="s">---
+</span><span class="s">kind: ClusterRole
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1beta1
+</span><span class="s">metadata:
+</span><span class="s">  name: flannel
+</span><span class="s">rules:
+</span><span class="s">  - apiGroups: [&#39;extensions&#39;]
+</span><span class="s">    resources: [&#39;podsecuritypolicies&#39;]
+</span><span class="s">    verbs: [&#39;use&#39;]
+</span><span class="s">    resourceNames: [&#39;psp.flannel.unprivileged&#39;]
+</span><span class="s">  - apiGroups:
+</span><span class="s">      - &#34;&#34;
+</span><span class="s">    resources:
+</span><span class="s">      - pods
+</span><span class="s">    verbs:
+</span><span class="s">      - get
+</span><span class="s">  - apiGroups:
+</span><span class="s">      - &#34;&#34;
+</span><span class="s">    resources:
+</span><span class="s">      - nodes
+</span><span class="s">    verbs:
+</span><span class="s">      - list
+</span><span class="s">      - watch
+</span><span class="s">  - apiGroups:
+</span><span class="s">      - &#34;&#34;
+</span><span class="s">    resources:
+</span><span class="s">      - nodes/status
+</span><span class="s">    verbs:
+</span><span class="s">      - patch
+</span><span class="s">---
+</span><span class="s">kind: ClusterRoleBinding
+</span><span class="s">apiVersion: rbac.authorization.k8s.io/v1beta1
+</span><span class="s">metadata:
+</span><span class="s">  name: flannel
+</span><span class="s">roleRef:
+</span><span class="s">  apiGroup: rbac.authorization.k8s.io
+</span><span class="s">  kind: ClusterRole
+</span><span class="s">  name: flannel
+</span><span class="s">subjects:
+</span><span class="s">- kind: ServiceAccount
+</span><span class="s">  name: flannel
+</span><span class="s">  namespace: kube-system
+</span><span class="s">---
+</span><span class="s">apiVersion: v1
+</span><span class="s">kind: ServiceAccount
+</span><span class="s">metadata:
+</span><span class="s">  name: flannel
+</span><span class="s">  namespace: kube-system
+</span><span class="s">---
+</span><span class="s">kind: ConfigMap
+</span><span class="s">apiVersion: v1
+</span><span class="s">metadata:
+</span><span class="s">  name: kube-flannel-cfg
+</span><span class="s">  namespace: kube-system
+</span><span class="s">  labels:
+</span><span class="s">    tier: node
+</span><span class="s">    app: flannel
+</span><span class="s">data:
+</span><span class="s">  cni-conf.json: |
+</span><span class="s">    {
+</span><span class="s">      &#34;cniVersion&#34;: &#34;0.2.0&#34;,
+</span><span class="s">      &#34;name&#34;: &#34;cbr0&#34;,
+</span><span class="s">      &#34;plugins&#34;: [
+</span><span class="s">        {
+</span><span class="s">          &#34;type&#34;: &#34;flannel&#34;,
+</span><span class="s">          &#34;delegate&#34;: {
+</span><span class="s">            &#34;hairpinMode&#34;: true,
+</span><span class="s">            &#34;isDefaultGateway&#34;: true
+</span><span class="s">          }
+</span><span class="s">        },
+</span><span class="s">        {
+</span><span class="s">          &#34;type&#34;: &#34;portmap&#34;,
+</span><span class="s">          &#34;capabilities&#34;: {
+</span><span class="s">            &#34;portMappings&#34;: true
+</span><span class="s">          }
+</span><span class="s">        }
+</span><span class="s">      ]
+</span><span class="s">    }
+</span><span class="s">  net-conf.json: |
+</span><span class="s">    {
+</span><span class="s">      &#34;Network&#34;: &#34;${POD_CLUSTER_IP_RANGE}&#34;,
+</span><span class="s">      &#34;Backend&#34;: {
+</span><span class="s">        &#34;Type&#34;: &#34;vxlan&#34;
+</span><span class="s">      }
+</span><span class="s">    }
+</span><span class="s">---
+</span><span class="s">apiVersion: apps/v1
+</span><span class="s">kind: DaemonSet
+</span><span class="s">metadata:
+</span><span class="s">  name: kube-flannel-ds-amd64
+</span><span class="s">  namespace: kube-system
+</span><span class="s">  labels:
+</span><span class="s">    tier: node
+</span><span class="s">    app: flannel
+</span><span class="s">spec:
+</span><span class="s">  selector:
+</span><span class="s">    matchLabels:
+</span><span class="s">      app: flannel
+</span><span class="s">  template:
+</span><span class="s">    metadata:
+</span><span class="s">      labels:
+</span><span class="s">        tier: node
+</span><span class="s">        app: flannel
+</span><span class="s">    spec:
+</span><span class="s">      affinity:
+</span><span class="s">        nodeAffinity:
+</span><span class="s">          requiredDuringSchedulingIgnoredDuringExecution:
+</span><span class="s">            nodeSelectorTerms:
+</span><span class="s">              - matchExpressions:
+</span><span class="s">                  - key: beta.kubernetes.io/os
+</span><span class="s">                    operator: In
+</span><span class="s">                    values:
+</span><span class="s">                      - linux
+</span><span class="s">                  - key: beta.kubernetes.io/arch
+</span><span class="s">                    operator: In
+</span><span class="s">                    values:
+</span><span class="s">                      - amd64
+</span><span class="s">      hostNetwork: true
+</span><span class="s">      tolerations:
+</span><span class="s">      - operator: Exists
+</span><span class="s">        effect: NoSchedule
+</span><span class="s">      serviceAccountName: flannel
+</span><span class="s">      initContainers:
+</span><span class="s">      - name: install-cni
+</span><span class="s">        image: quay.io/coreos/flannel:v0.11.0-amd64
+</span><span class="s">        command:
+</span><span class="s">        - cp
+</span><span class="s">        args:
+</span><span class="s">        - -f
+</span><span class="s">        - /etc/kube-flannel/cni-conf.json
+</span><span class="s">        - /etc/cni/net.d/10-flannel.conflist
+</span><span class="s">        volumeMounts:
+</span><span class="s">        - name: cni
+</span><span class="s">          mountPath: /etc/cni/net.d
+</span><span class="s">        - name: flannel-cfg
+</span><span class="s">          mountPath: /etc/kube-flannel/
+</span><span class="s">      containers:
+</span><span class="s">      - name: kube-flannel
+</span><span class="s">        image: quay.io/coreos/flannel:v0.11.0-amd64
+</span><span class="s">        command:
+</span><span class="s">        - /opt/bin/flanneld
+</span><span class="s">        args:
+</span><span class="s">        - --ip-masq
+</span><span class="s">        - --kube-subnet-mgr
+</span><span class="s">        resources:
+</span><span class="s">          requests:
+</span><span class="s">            cpu: &#34;100m&#34;
+</span><span class="s">            memory: &#34;50Mi&#34;
+</span><span class="s">          limits:
+</span><span class="s">            cpu: &#34;100m&#34;
+</span><span class="s">            memory: &#34;50Mi&#34;
+</span><span class="s">        securityContext:
+</span><span class="s">          privileged: false
+</span><span class="s">          capabilities:
+</span><span class="s">             add: [&#34;NET_ADMIN&#34;]
+</span><span class="s">        env:
+</span><span class="s">        - name: POD_NAME
+</span><span class="s">          valueFrom:
+</span><span class="s">            fieldRef:
+</span><span class="s">              fieldPath: metadata.name
+</span><span class="s">        - name: POD_NAMESPACE
+</span><span class="s">          valueFrom:
+</span><span class="s">            fieldRef:
+</span><span class="s">              fieldPath: metadata.namespace
+</span><span class="s">        volumeMounts:
+</span><span class="s">        - name: run
+</span><span class="s">          mountPath: /run/flannel
+</span><span class="s">        - name: flannel-cfg
+</span><span class="s">          mountPath: /etc/kube-flannel/
+</span><span class="s">      volumes:
+</span><span class="s">        - name: run
+</span><span class="s">          hostPath:
+</span><span class="s">            path: /run/flannel
+</span><span class="s">        - name: cni
+</span><span class="s">          hostPath:
+</span><span class="s">            path: /etc/cni/net.d
+</span><span class="s">        - name: flannel-cfg
+</span><span class="s">          configMap:
+</span><span class="s">            name: kube-flannel-cfg
+</span><span class="s">EOF</span>
+<span class="c1"># 包含以下资源</span>
+<span class="c1"># - PodSecurityPolicy</span>
+<span class="c1"># - ClusterRole</span>
+<span class="c1"># - ClusterRoleBinding</span>
+<span class="c1"># - ServiceAccount</span>
+<span class="c1"># - ConfigMap</span>
+<span class="c1"># - DaemonSet(for amd64 platform)</span>
+
+<span class="c1"># apply cni addon: flannel</span>
+kubectl apply -f <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/kube-flannel.yml
+</pre>
+<blockquote>
+<p><code>--kube-subnet-mgr</code>，使用了这个选项，flannel不会去etcd中获取网络配置信息，而是通过<code>/etc/kube-flannel/net-conf.json</code>来获取网络配置</p>
+</blockquote>
+
+<h3>3. 查看flannel运行状态</h3>
+<pre class="chroma">kubectl get pods --namespace kube-system
+NAME                          READY   STATUS    RESTARTS   AGE
+kube-flannel-ds-amd64-g2snw   1/1     Running   <span class="m">0</span>          62s
+kube-flannel-ds-amd64-pzmf5   1/1     Running   <span class="m">0</span>          62s
+kube-flannel-ds-amd64-sxtdz   1/1     Running   <span class="m">0</span>          62s
+</pre>
+<hr />
+
+<h2>安装DNS</h2>
+
+<p>高版本里面基本都推荐使用CoreDNS替代，参考文档<a href="https://kubernetes.io/docs/tasks/administer-cluster/coredns/#installing-coredns">K8S-COREDNS</a> &amp; <a href="https://github.com/coredns/deployment/tree/master/kubernetes">COREDNS-GITHUB</a></p>
+
+<p>创建coredns部署脚本</p>
+<pre class="chroma"><span class="c1"># coredns脚本安装需要jq命令支持</span>
+yum install epel-release -y
+yum install jq -y
+
+<span class="c1"># 下载部署coredns需要的文件</span>
+wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/deploy.sh -O <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
+wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/coredns.yaml.sed
+
+<span class="c1"># 官方脚本里面的function名称不符合bash的标准，你敢信？</span>
+sed -i <span class="s2">&#34;s/translate-kube-dns-configmap/translate_kube_dns_configmap/g&#34;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
+sed -i <span class="s2">&#34;s/kube-dns-federation-to-coredns/kube_dns_federation_to_coredns/g&#34;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
+sed -i <span class="s2">&#34;s/kube-dns-upstreamnameserver-to-coredns/kube_dns_upstreamnameserver_to_coredns/g&#34;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
+sed -i <span class="s2">&#34;s/kube-dns-stubdomains-to-coredns/kube_dns_stubdomains_to_coredns/g&#34;</span> <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh
+
+<span class="c1"># 部署coredns</span>
+<span class="c1"># -i 指定dns ip</span>
+sh <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class="si">}</span>/kube-addon/deploy.sh -i <span class="si">${</span><span class="nv">SERVICE_CLUSTER_IP_RANGE</span><span class="p">%.*</span><span class="si">}</span>.2<span class="p">|</span> kubectl apply -f -
+</pre>
+<hr />
+
+<h2>安装持久化存储方案（此处选择glusterfs）</h2>
+
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">k8s persistent volume docs</a></li>
+<li><a href="https://github.com/gluster/gluster-kubernetes/blob/master/docs/setup-guide.md">部署glusterfs之前需求</a></li>
+<li><a href="https://github.com/gluster/gluster-kubernetes">部署glusterfs文档</a></li>
+</ul>
+
+<h3>0. 浅谈选择glusterfs的理由</h3>
+
+<p>看了k8s的pv文档后，因为前面安装k8s的环境是bare metal，所以无法使用云提供的方案，最终只能从glusterfs和ceph里面选择一个。经过网络上简单的搜索之后，发现glusterfs性能上比ceph稍高一点，另外它支持一个heketi，可以用restful的方式管理glusterfs的volume。虽然我没有实际部署对比过，但是倾向于glusterfs。</p>
+
+<p>另外，之前不知道使用k8s持久化存储之前需要先安装持久化存储，汗，走了一点弯路。</p>
+
+<h3>1. k8s集群要求</h3>
+
+<ul>
+<li>至少三个节点</li>
+<li>每个节点必须至少连接一个raw disk（例如EBS卷或本地磁盘），以供heketi使用。这些设备上不得包含任何数据，因为它们将由heketi格式化和分区。</li>
+<li>每个节点上必须保留以下端口供glusterfs使用：
+
+<ul>
+<li>2222 - GlusterFS pod&rsquo;s sshd</li>
+<li>24007 - GlusterFS Daemon</li>
+<li>24008 - GlusterFS Management</li>
+<li>49152 to 49251 - Each brick for every volume on the host requires its own port. For every new brick, one new port will be used starting at 49152. We recommend a default range of 49152-49251 on each host, though you can adjust this to fit your needs.</li>
+</ul></li>
+<li>每个节点需要加载的内核模块
+
+<ul>
+<li>dm_snapshot</li>
+<li>dm_mirror</li>
+<li>dm_thin_pool</li>
+</ul></li>
+<li>每个节点需要拥有<code>mount.glusterfs</code>命令</li>
+<li>glusterfs客户端版本和server版本越接近越好</li>
+</ul>
+
+<h4>在节点上执行</h4>
+<pre class="chroma"><span class="c1"># 检查raw disk环境</span>
+fdisk -l
+<span class="c1"># 查看结果中是否有未被使用的磁盘</span>
+
+<span class="c1"># 检查和加载内核模块</span>
+lsmod <span class="p">|</span> grep dm_snapshot <span class="o">||</span> modprobe dm_snapshot
+lsmod <span class="p">|</span> grep dm_mirror <span class="o">||</span> modprobe dm_mirror
+lsmod <span class="p">|</span> grep dm_thin_pool <span class="o">||</span> modprobe dm_thin_pool
+<span class="c1"># 检查加载是否成功</span>
+lsmod <span class="p">|</span> egrep <span class="s1">&#39;^(dm_snapshot|dm_mirror|dm_thin_pool)&#39;</span>
+<span class="c1"># 输出内容</span>
+<span class="c1"># dm_thin_pool           66358  0</span> 
+<span class="c1"># dm_snapshot            39103  0</span> 
+<span class="c1"># dm_mirror              22289  0</span> 
+
+<span class="c1"># 安装mount.glusterfs命令</span>
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-libs-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-client-xlators-7.1-1.el7.x86_64.rpm
+yum install -y https://buildlogs.centos.org/centos/7/storage/x86_64/gluster-7/glusterfs-fuse-7.1-1.el7.x86_64.rpm
+<span class="c1"># 默认安装的是glusterfs 3.12，为了和下面gk-deploy脚本里面安装的版本一致，手动安装7.1版本</span>
+
+<span class="c1"># 查看glusterfs版本</span>
+glusterfs --version
+glusterfs 7.1
+
+mount.glusterfs -V
+glusterfs 7.1
+</pre>
+<h3>2. 部署glusterfs(master01上操作)</h3>
+<pre class="chroma"><span class="c1"># step 1. 下载安装文件</span>
+<span class="c1"># 以下测试使用的，最新commit是：</span>
+<span class="c1">#   Latest commit</span>
+<span class="c1">#   7246eb4</span>
+<span class="c1">#   on Jul 19, 2019</span>
+<span class="c1"># 这个时候的版本和kubenetes 1.17不兼容，有很多需要修改的东西</span>
+<span class="c1"># 我个人做了很多修改和debug，后面应该会修复，所以下面的内容</span>
+<span class="c1"># 请酌情来判断是否需要执行</span>
+git clone https://github.com/gluster/gluster-kubernetes.git
+<span class="nb">cd</span> gluster-kubernetes/deploy
+
+<span class="c1"># step 2. 准备topology文件</span>
+<span class="c1"># ***************************</span>
+<span class="c1"># 重点关注</span>
+<span class="c1"># - hostsnames.manage里面填写节点的hostname</span>
+<span class="c1"># - hostnames.storage里面填写节点的ip</span>
+<span class="c1"># - devices里面填写磁盘的名称</span>
+<span class="c1"># ***************************</span>
+cat <span class="s">&lt;&lt; EOF &gt; topology.json
+</span><span class="s">{
+</span><span class="s">  &#34;clusters&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;nodes&#34;: [
+</span><span class="s">        {
+</span><span class="s">          &#34;node&#34;: {
+</span><span class="s">            &#34;hostnames&#34;: {
+</span><span class="s">              &#34;manage&#34;: [
+</span><span class="s">                &#34;node01&#34;
+</span><span class="s">              ],
+</span><span class="s">              &#34;storage&#34;: [
+</span><span class="s">                &#34;${IP_LIST[&#39;node01&#39;]}&#34;
+</span><span class="s">              ]
+</span><span class="s">            },
+</span><span class="s">            &#34;zone&#34;: 1
+</span><span class="s">          },
+</span><span class="s">          &#34;devices&#34;: [
+</span><span class="s">            &#34;/dev/sdb&#34;
+</span><span class="s">          ]
+</span><span class="s">        },
+</span><span class="s">        {
+</span><span class="s">          &#34;node&#34;: {
+</span><span class="s">            &#34;hostnames&#34;: {
+</span><span class="s">              &#34;manage&#34;: [
+</span><span class="s">                &#34;node02&#34;
+</span><span class="s">              ],
+</span><span class="s">              &#34;storage&#34;: [
+</span><span class="s">                &#34;${IP_LIST[&#39;node02&#39;]}&#34;
+</span><span class="s">              ]
+</span><span class="s">            },
+</span><span class="s">            &#34;zone&#34;: 1
+</span><span class="s">          },
+</span><span class="s">          &#34;devices&#34;: [
+</span><span class="s">            &#34;/dev/sdb&#34;
+</span><span class="s">          ]
+</span><span class="s">        },
+</span><span class="s">        {
+</span><span class="s">          &#34;node&#34;: {
+</span><span class="s">            &#34;hostnames&#34;: {
+</span><span class="s">              &#34;manage&#34;: [
+</span><span class="s">                &#34;node03&#34;
+</span><span class="s">              ],
+</span><span class="s">              &#34;storage&#34;: [
+</span><span class="s">                &#34;${IP_LIST[&#39;node03&#39;]}&#34;
+</span><span class="s">              ]
+</span><span class="s">            },
+</span><span class="s">            &#34;zone&#34;: 1
+</span><span class="s">          },
+</span><span class="s">          &#34;devices&#34;: [
+</span><span class="s">            &#34;/dev/sdb&#34;
+</span><span class="s">          ]
+</span><span class="s">        }
+</span><span class="s">      ]
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOF</span>
+
+<span class="c1"># 安装前确认节点都ready状态</span>
+kubectl get nodes
+
+<span class="c1"># step 3. ISSUCE解决(在官方的git中已经有看到解决的pr，但我当前使用的时间点还需要自己来修改)</span>
+<span class="c1"># 1) k8s 1.17换了api版本</span>
+sed -ir <span class="s2">&#34;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&#34;</span> kube-templates/deploy-heketi-deployment.yaml
+sed -ir <span class="s2">&#34;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&#34;</span> kube-templates/gluster-s3-template.yaml
+sed -ir <span class="s2">&#34;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&#34;</span> kube-templates/glusterfs-daemonset.yaml
+sed -ir <span class="s2">&#34;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&#34;</span> kube-templates/heketi-deployment.yaml
+sed -ir <span class="s2">&#34;s|apiVersion: extensions/v1beta1|apiVersion: apps/v1|g&#34;</span> ocp-templates/glusterfs-template.yaml
+
+<span class="c1"># 2) error: error validating &#34;STDIN&#34;: error validating data: ValidationError(DaemonSet.spec): missing required</span>
+<span class="c1"># field &#34;selector&#34; in io.k8s.api.apps.v1.DaemonSetSpec; if you choose to ignore these errors, turn validation off with --validate=false</span>
+<span class="c1"># k8s 1.17需要指定pod selector</span>
+<span class="c1"># 确认以下内容，如果不存在，请手动增加</span>
+vim kube-templates/glusterfs-daemonset.yaml
+spec:
+  selector:
+    matchLabels:
+      name: glusterfs
+  template:
+    metadata:
+      labels:
+        name: glusterfs
+
+vim kube-templates/deploy-heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: deploy-heketi
+  template:
+    metadata:
+      labels:
+        name: deploy-heketi
+
+vim kube-templates/gluster-s3-template.yaml
+- kind: Deployment
+  spec:
+    selector:
+      matchLabels:
+        name: gluster-s3
+    template:
+      metadata:
+        labels:
+          name: gluster-s3
+
+vim kube-templates/heketi-deployment.yaml
+spec:
+  selector:
+    matchLabels:
+      name: heketi
+  template:
+    metadata:
+      labels:
+        name: heketi
+
+<span class="c1"># 3) Determining heketi service URL ... Error: unknown flag: --show-all</span>
+<span class="c1"># See &#39;kubectl get --help&#39; for usage.</span>
+<span class="c1"># Failed to communicate with heketi service.</span>
+<span class="c1"># kubectl v1.17 没有--show-all这个选项</span>
+vim gk-deploy
+<span class="c1"># 将下面的内容</span>
+<span class="c1"># heketi_pod=$(${CLI} get pod --no-headers --show-all --selector=&#34;heketi&#34; | awk &#39;{print $1}&#39;)</span>
+<span class="c1"># 修改为</span>
+<span class="c1"># heketi_pod=$(${CLI} get pod --no-headers --selector=&#34;heketi&#34; | awk &#39;{print $1}&#39;)</span>
+
+<span class="c1"># step 4. 部署heketi and GlusterFS</span>
+<span class="nv">ADMIN_KEY</span><span class="o">=</span>adminkey
+<span class="nv">USER_KEY</span><span class="o">=</span>userkey
+./gk-deploy -g -y -v --admin-key <span class="si">${</span><span class="nv">ADMIN_KEY</span><span class="si">}</span> --user-key <span class="si">${</span><span class="nv">USER_KEY</span><span class="si">}</span>
+<span class="c1"># 如果第一次没安装成功，需要二次安装，使用下面命令清除之前的安装资源</span>
+<span class="c1"># 删除资源和服务</span>
+<span class="c1"># ./gk-deploy -g --abort --admin-key adminkey --user-key userkey</span>
+<span class="c1"># 查看lv名称</span>
+<span class="c1"># lvs</span>
+<span class="c1"># 删除lv</span>
+<span class="c1"># lvremove /dev/vg</span>
+<span class="c1"># 清除磁盘(在节点机器上执行)</span>
+<span class="c1"># wipefs -a /dev/sdc</span>
+
+<span class="c1"># step 5. 检查heketi和glusterfs运行情况</span>
+<span class="nb">export</span> <span class="nv">HEKETI_CLI_SERVER</span><span class="o">=</span><span class="k">$(</span>kubectl get svc/heketi --template <span class="s1">&#39;http://{{.spec.clusterIP}}:{{(index .spec.ports 0).port}}&#39;</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$HEKETI_CLI_SERVER</span>
+curl <span class="nv">$HEKETI_CLI_SERVER</span>/hello
+<span class="c1"># Hello from Heketi</span>
+<span class="c1"># 如果timeout的话，看看是不是master没搞成node节点，没加入kube-proxy</span>
+<span class="c1"># 可以获取到地址之后，到node节点上执行curl操作</span>
+
+
+<span class="c1"># step 6. 创建storageclass，来自动为pvc创建pv</span>
+<span class="nv">SECRET_KEY</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> -n <span class="s2">&#34;</span><span class="si">${</span><span class="nv">ADMIN_KEY</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> base64<span class="sb">`</span>
+
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: v1
+</span><span class="s">kind: Secret
+</span><span class="s">metadata:
+</span><span class="s">  name: heketi-secret
+</span><span class="s">  namespace: default
+</span><span class="s">data:
+</span><span class="s">  # base64 encoded password. E.g.: echo -n &#34;mypassword&#34; | base64
+</span><span class="s">  key: ${SECRET_KEY}
+</span><span class="s">type: kubernetes.io/glusterfs
+</span><span class="s">EOF</span>
+
+cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span><span class="s">apiVersion: storage.k8s.io/v1
+</span><span class="s">kind: StorageClass
+</span><span class="s">metadata:
+</span><span class="s">  name: glusterfs-storage
+</span><span class="s">provisioner: kubernetes.io/glusterfs
+</span><span class="s">parameters:
+</span><span class="s">  resturl: &#34;${HEKETI_CLI_SERVER}&#34;
+</span><span class="s">  restuser: &#34;admin&#34;
+</span><span class="s">  secretNamespace: &#34;default&#34;
+</span><span class="s">  secretName: &#34;heketi-secret&#34;
+</span><span class="s">  volumetype: &#34;replicate:3&#34;
+</span><span class="s">EOF</span>
+<span class="c1"># 注意生成pvc资源时，需要指定storageclass为上面配置的&#34;glusterfs-storage&#34;</span>
+
+
+kubectl get nodes,pods
+NAME          STATUS   ROLES    AGE    VERSION
+node/node01   Ready    &lt;none&gt;   5d3h   v1.17.0
+node/node02   Ready    &lt;none&gt;   5d3h   v1.17.0
+node/node03   Ready    &lt;none&gt;   5d3h   v1.17.0
+
+NAME                          READY   STATUS    RESTARTS   AGE
+pod/glusterfs-bhprz           1/1     Running   <span class="m">0</span>          45m
+pod/glusterfs-jt64n           1/1     Running   <span class="m">0</span>          45m
+pod/glusterfs-vkfp5           1/1     Running   <span class="m">0</span>          45m
+pod/heketi-779bc95979-272qk   1/1     Running   <span class="m">0</span>          38m
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

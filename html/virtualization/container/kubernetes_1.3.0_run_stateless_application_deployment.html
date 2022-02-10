@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+              <ul>
+                <li>
+                  <a href="/virtualization/container/index.html">container</a>
+                  <ul>
+                    <li><a href="/virtualization/container/OCI_1.1.0_buildah_in_container.html">OCI 1.1.0 在容器中运行buildah</a></li>
+                    <li><a href="/virtualization/container/OCI_1.1.1_buildah_with_insecure_repository.html">OCI 1.1.1 buildah 推送镜像到非https的repository</a></li>
+                    <li><a href="/virtualization/container/cgroups_1.0.0_introduction_concept.html">cgroups 1.0.0 什么是cgroups？</a></li>
+                    <li><a href="/virtualization/container/container_1.0.1_linux_kernel_user_namespaces.html">container 1.0.1 linux kernel - user namespaces</a></li>
+                    <li><a href="/virtualization/container/container_1.1.1_java_encoding_and_container_locale.html">container 1.1.1 java encoding and container locale</a></li>
+                    <li><a href="/virtualization/container/coreos_1.1.0_install.html">coreos 1.1.0 系统安装-bare metal</a></li>
+                    <li><a href="/virtualization/container/coreos_1.2.0_vagrant_install.html">coreos 1.2.0 系统安装-vagrant</a></li>
+                    <li><a href="/virtualization/container/coreos_2.1.0_ignition_intro.html">coreos 2.1.0 ignition简介</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.0_boot_via_pxe_cloudinit.html">coreos 2.2.0 pxe引导coreos启动(cloudinit)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">coreos 2.2.1 pxe引导coreos启动(ignition)</a></li>
+                    <li><a href="/virtualization/container/coreos_2.2.2_boot_via_pxe_install.html">coreos 2.2.2 pxe引导coreos启动并安装到硬盘</a></li>
+                    <li><a href="/virtualization/container/coreos_2.3.0_boot_via_matchbox_ignition.html">coreos 2.3.0 ignition+matchbox安装coreos集群</a></li>
+                    <li><a href="/virtualization/container/coreos_2.4.0_generate-self-signed-certificates.html">coreos 2.4.0 生成ssl/tls自签名认证证书</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.2_install_single_node_systemd.html">etcd 1.1.2 etcd install single node(systemd)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.3_install_static_cluster_centos6.html">etcd 1.1.3 etcd install static cluster(centos6)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.4_install_static_cluster_with_ssl_tls.html">etcd 1.1.4 etcd install static cluster with ssl/tls</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.5_install_discovery_cluster_coreos.html">etcd 1.1.5 etcd install discovery cluster(coreos)</a></li>
+                    <li><a href="/virtualization/container/etcd_1.1.6_install_discovery_cluster_coreos_systemd.html">etcd 1.1.6 etcd install discovery cluster(coreos)-systemd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.1.0_python_api.html">etcd 2.1.0 etcd-api python-etcd</a></li>
+                    <li><a href="/virtualization/container/etcd_2.2.0_confd.html">etcd 2.2.0 搭配confd做配置管理</a></li>
+                    <li><a href="/virtualization/container/flannel_1.1.0_binary_install_systemd.html">flannel 1.1.0 install flannel using binaries（systemd）</a></li>
+                    <li><a href="/virtualization/container/flannel_1.2.0_configuration_and_option.html">flannel 1.2.0 configuration ans option</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.0_centos_installation_and_usage.html">helm 1.1.0 安装（centos 7）及使用</a></li>
+                    <li><a href="/virtualization/container/helm_1.1.1_chartmuseum.html">helm 1.1.1 chartmuseum</a></li>
+                    <li><a href="/virtualization/container/helm_2.1.0_create_tomcat_app.html">helm 2.1.0 从零开始创建tomcat的charts</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.1.0_intro.html">kubernetes 1.1.0 简介</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.0_install_vagrant_coreos_flannel.html">kubernetes 1.2.0 vagrant+coreos(flannel)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.1_centos_baremetal_cluster_install.html">kubernetes 1.2.1 kubernetes集群安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.2_centos_baremetal_cluster_install_ssl.html">kubernetes 1.2.2 kubernetes集群加密安装(centos7裸机)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.3_centos_baremetal_cluster_install_product.html">kubernetes 1.2.3 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.4_traefik_ingress.html">kubernetes 1.2.4 traefik ingress</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.5_traefik_ingress_ssl.html">kubernetes 1.2.5 ingress ssl</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.6_kube_dns.html">kubernetes 1.2.6 kube-dns</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.2.7_efk.html">kubernetes 1.2.7 EFK</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.0_run_stateless_application_deployment.html">kubernetes 1.3.0 run-stateless-application-deployment</a></li>
+                    <li><a href="/virtualization/container/kubernetes_1.3.1_guestbook_redis_cluster_and_php_frontend.html">kubernetes 1.3.1 guestbook(php frontend with redis cluster)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_2.1.0_cri_containerd_installation.html">kubernetes 2.1.0 CRI containerd installation</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.17 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_1.1.1_pull_image_from_private_registry.html">kubernetes v1.17 1.1.1 pull image from private registry</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.17_2.1.0_cicd_using_gitlab_and_helm.html">kubernetes v1.17 2.1.0 CI/CD using gitlab and helm</a></li>
+                    <li><a href="/virtualization/container/kubernetes_v1.21_1.1.0_centos_baremetal_cluster_install_production.html">kubernetes v1.21 1.1.0 kubernetes集群安装(生产环境)</a></li>
+                    <li><a href="/virtualization/container/podman_1.1.0_rootless_tutorial.html">podman: 1.1.0 rootless</a></li>
+                    <li><a href="/virtualization/container/podman_kownledge_1.0.1_more_security_than_docker.html">podman knowledge 1.0.1 为何podman比docker安全</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/virtualization/docker/index.html">docker</a>
+                </li>
+                <li>
+                  <a href="/virtualization/kvm/index.html">kvm</a>
+                </li>
+                <li>
+                  <a href="/virtualization/openstack/index.html">openstack</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>kubernetes 1.3.0 run-stateless-application-deployment</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>15 Jan 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. Objectives</h3>
+
+<ul>
+<li>deployment(nginx) 创建；</li>
+<li>deployment信息查看(kubectl)；</li>
+<li>deployment 更新。</li>
+</ul>
+
+<blockquote>
+<p>参考链接：<a href="https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/">kubenetes 官方文档</a></p>
+
+<p>执行以下操作之前，可以参照文档先创建一个kubenetes cluster</p>
+</blockquote>
+
+<h3>1. Creating and exploring an nginx deployment</h3>
+
+<p><code>deployment.yaml</code></p>
+<pre class="chroma"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1beta2<span class="w"> </span><span class="c"># for versions before 1.8.0 use apps/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Deployment<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx-deployment<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c"># tells deployment to run 2 pods matching the template</span><span class="w">
+</span><span class="w">  </span><span class="k">template</span><span class="p">:</span><span class="w"> </span><span class="c"># create pods using pod definition in this template</span><span class="w">
+</span><span class="w">    </span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="c"># unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is</span><span class="w">
+</span><span class="w">      </span><span class="c"># generated from the deployment name</span><span class="w">
+</span><span class="w">      </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span><span class="m">1.7</span><span class="m">.9</span><span class="w">
+</span><span class="w">        </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span>- <span class="k">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></pre>
+<h4>1) 创建deploment</h4>
+<pre class="chroma">kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment.yaml
+</pre>
+<h4>2) 查看deploment</h4>
+<pre class="chroma">kubectl describe deployment nginx-deployment
+</pre>
+<p>输出结果</p>
+<pre class="chroma">Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 15 Jan 2018 06:19:34 +0000
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision=1
+                        kubectl.kubernetes.io/last-applied-configuration={&#34;apiVersion&#34;:&#34;apps/v1beta2&#34;,&#34;kind&#34;:&#34;Deployment&#34;,&#34;metadata&#34;:{&#34;annotations&#34;:{},&#34;name&#34;:&#34;nginx-deployment&#34;,&#34;namespace&#34;:&#34;default&#34;},&#34;spec&#34;:{&#34;replicas&#34;:2,&#34;se...
+Selector:               app=nginx
+Replicas:               2 desired | 2 updated | 2 total | 0 available | 2 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        nginx:1.7.9
+    Port:         80/TCP
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      False   MinimumReplicasUnavailable
+  Progressing    True    ReplicaSetUpdated
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-deployment-6c54bd5869 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  15m   deployment-controller  Scaled up replica set nginx-deployment-6c54bd5869 to 2
+</pre>
+<h4>3) 查看pods</h4>
+<pre class="chroma">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre>
+<p>输出结果</p>
+<pre class="chroma">NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running   0          16m
+nginx-deployment-6c54bd5869-p79hd   1/1       Running   0          16m
+</pre>
+<h4>4) 查看pod详细信息</h4>
+<pre class="chroma">kubectl describe pod nginx-deployment-6c54bd5869-f56kg
+</pre>
+<p>输出结果</p>
+<pre class="chroma">Name:           nginx-deployment-6c54bd5869-f56kg
+Namespace:      default
+Node:           node01/10.0.2.15
+Start Time:     Mon, 15 Jan 2018 07:00:55 +0000
+Labels:         app=nginx
+                pod-template-hash=2710681425
+Annotations:    &lt;none&gt;
+Status:         Running
+IP:             10.5.52.3
+Controlled By:  ReplicaSet/nginx-deployment-6c54bd5869
+Containers:
+  nginx:
+    Container ID:   docker://cf62a29a203a6870fa8a8fc0610835cb16e53bd31a30d2c75a734b59ced355b5
+    Image:          nginx:1.7.9
+    Image ID:       docker-pullable://nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9d794affb40e0714846c451
+    Port:           80/TCP
+    State:          Running
+      Started:      Mon, 15 Jan 2018 07:02:32 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+Conditions:
+  Type           Status
+  Initialized    True
+  Ready          True
+  PodScheduled   True
+Volumes:         &lt;none&gt;
+QoS Class:       BestEffort
+Node-Selectors:  &lt;none&gt;
+Tolerations:     &lt;none&gt;
+Events:
+  Type     Reason             Age                 From               Message
+  ----     ------             ----                ----               -------
+  Warning  FailedScheduling   26m (x26 over 33m)  default-scheduler  0/3 nodes are available: 3 NodeNotReady.
+  Normal   Scheduled          22m                 default-scheduler  Successfully assigned nginx-deployment-6c54bd5869-f56kg to node01
+  Normal   Pulling            22m                 kubelet, node01    pulling image &#34;nginx:1.7.9&#34;
+  Normal   Pulled             21m                 kubelet, node01    Successfully pulled image &#34;nginx:1.7.9&#34;
+  Normal   Created            21m                 kubelet, node01    Created container
+  Normal   Started            21m                 kubelet, node01    Started container
+  Warning  MissingClusterDNS  1m (x20 over 22m)   kubelet, node01    pod: &#34;nginx-deployment-6c54bd5869-f56kg_default(65c64d74-f9c0-11e7-a243-525400cae48b)&#34;. kubelet does not have ClusterDNS IP configured and cannot create Pod using &#34;ClusterFirst&#34; policy. Falling back to &#34;Default&#34; policy.
+</pre>
+<h3>2. Updating the deployment</h3>
+
+<p>升级nginx到1.8,<code>deployment-update.yaml</code></p>
+<pre class="chroma"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1beta2<span class="w"> </span><span class="c"># for versions before 1.8.0 use apps/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Deployment<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx-deployment<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="k">template</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span><span class="m">1.8</span><span class="w"> </span><span class="c"># Update the version of nginx from 1.7.9 to 1.8</span><span class="w">
+</span><span class="w">        </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span>- <span class="k">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></pre>
+<h4>1) apply新的deploment</h4>
+<pre class="chroma">kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment-update.yaml
+</pre>
+<h4>2) 查看pod更新过程</h4>
+<pre class="chroma">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre>
+<p>输出结果</p>
+<pre class="chroma">NAME                                READY     STATUS              RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running             0          37m
+nginx-deployment-6c54bd5869-p79hd   1/1       Running             0          37m
+nginx-deployment-7694d679d9-z5fdf   0/1       ContainerCreating   0          40s
+</pre>
+<p>查看正在创建的pod的状态</p>
+<pre class="chroma">kubectl describe pod nginx-deployment-7694d679d9-z5fdf
+</pre>
+<p>输出结果</p>
+<pre class="chroma">Name:           nginx-deployment-7694d679d9-z5fdf
+Namespace:      default
+Node:           node03/10.0.2.15
+Start Time:     Mon, 15 Jan 2018 07:27:08 +0000
+Labels:         app=nginx
+                pod-template-hash=3250823585
+Annotations:    &lt;none&gt;
+Status:         Pending
+IP:             
+Controlled By:  ReplicaSet/nginx-deployment-7694d679d9
+Containers:
+  nginx:
+    Container ID:   
+    Image:          nginx:1.8
+    Image ID:       
+    Port:           80/TCP
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:         &lt;none&gt;
+Conditions:
+  Type           Status
+  Initialized    True
+  Ready          False
+  PodScheduled   True
+Volumes:         &lt;none&gt;
+QoS Class:       BestEffort
+Node-Selectors:  &lt;none&gt;
+Tolerations:     &lt;none&gt;
+Events:
+  Type     Reason             Age                From               Message
+  ----     ------             ----               ----               -------
+  Normal   Scheduled          53s                default-scheduler  Successfully assigned nginx-deployment-7694d679d9-z5fdf to node03
+  Warning  MissingClusterDNS  51s (x2 over 53s)  kubelet, node03    pod: &#34;nginx-deployment-7694d679d9-z5fdf_default(7e34acdf-f9c5-11e7-a243-525400cae48b)&#34;. kubelet does not have ClusterDNS IP configured and cannot create Pod using &#34;ClusterFirst&#34; policy. Falling back to &#34;Default&#34; policy.
+  Normal   Pulling            51s                kubelet, node03    pulling image &#34;nginx:1.8&#34;
+</pre>
+<blockquote>
+<p>正在pull nginx1.8的镜像</p>
+</blockquote>
+
+<p>k8s已经创建了新的pod，杀死了一个pod</p>
+<pre class="chroma">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre>
+<p>输出结果</p>
+<pre class="chroma">NAME                                READY     STATUS              RESTARTS   AGE
+nginx-deployment-6c54bd5869-f56kg   1/1       Running             0          40m
+nginx-deployment-7694d679d9-4465x   0/1       ContainerCreating   0          1m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running             0          3m
+</pre>
+<p>最终会创建两个新的pod，所有旧的pod被杀死</p>
+<pre class="chroma">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre><pre class="chroma">NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-7694d679d9-4465x   1/1       Running   0          2m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running   0          5m
+</pre>
+<p>查看新的deployment</p>
+<pre class="chroma">kubectl describe deployment nginx-deployment
+</pre>
+<p>输出结果中能很清晰的看到更新过程</p>
+<pre class="chroma">Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Mon, 15 Jan 2018 06:50:37 +0000
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision=2
+                        kubectl.kubernetes.io/last-applied-configuration={&#34;apiVersion&#34;:&#34;apps/v1beta2&#34;,&#34;kind&#34;:&#34;Deployment&#34;,&#34;metadata&#34;:{&#34;annotations&#34;:{},&#34;name&#34;:&#34;nginx-deployment&#34;,&#34;namespace&#34;:&#34;default&#34;},&#34;spec&#34;:{&#34;replicas&#34;:2,&#34;se...
+Selector:               app=nginx
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        nginx:1.8
+    Port:         80/TCP
+    Environment:  &lt;none&gt;
+    Mounts:       &lt;none&gt;
+  Volumes:        &lt;none&gt;
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  &lt;none&gt;
+NewReplicaSet:   nginx-deployment-7694d679d9 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  42m   deployment-controller  Scaled up replica set nginx-deployment-6c54bd5869 to 2
+  Normal  ScalingReplicaSet  6m    deployment-controller  Scaled up replica set nginx-deployment-7694d679d9 to 1
+  Normal  ScalingReplicaSet  3m    deployment-controller  Scaled down replica set nginx-deployment-6c54bd5869 to 1
+  Normal  ScalingReplicaSet  3m    deployment-controller  Scaled up replica set nginx-deployment-7694d679d9 to 2
+  Normal  ScalingReplicaSet  55s   deployment-controller  Scaled down replica set nginx-deployment-6c54bd5869 to 0
+</pre>
+<h3>3. Scaling the application by increasing the replica count</h3>
+
+<p>修改replicas为4</p>
+<pre class="chroma"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1beta2<span class="w"> </span><span class="c"># for versions before 1.8.0 use apps/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Deployment<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx-deployment<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="c"># Update the replicas from 2 to 4</span><span class="w">
+</span><span class="w">  </span><span class="k">template</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="p">:</span><span class="m">1.8</span><span class="w">
+</span><span class="w">        </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span>- <span class="k">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></pre>
+<h4>1) apply新的deploment</h4>
+<pre class="chroma">kubectl apply -f https://k8s.io/docs/tasks/run-application/deployment-scale.yaml
+</pre>
+<h4>2) 查看更新结果</h4>
+<pre class="chroma">kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+</pre>
+<p>输出结果</p>
+<pre class="chroma">NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-7694d679d9-4465x   1/1       Running   0          10m
+nginx-deployment-7694d679d9-ncg7f   1/1       Running   0          2m
+nginx-deployment-7694d679d9-skxr9   1/1       Running   0          2m
+nginx-deployment-7694d679d9-z5fdf   1/1       Running   0          13m
+</pre>
+<h3>4. Deleting a deployment</h3>
+<pre class="chroma">kubectl delete deployment nginx-deployment
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

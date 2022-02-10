@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                  <ul>
+                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">jdk: 1.0.0 jdk简介</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JVM查看默认参数</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.0_1.6_installation.html">jdk: 1.1.0 jre1.6安装</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.1_1.8_installation.html">jdk: 1.1.1 jdk1.8安装</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">jdk: 2.1.0 命令行编译java项目</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">jdk: 2.1.1 javac error IllegalArgumentException</a></li>
+                    <li><a href="/java/jvm/jvm_1.0.0_runtime_data_area.html">JVM: 1.0.0 运行时数据区域概念</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.0_optimize_params.html">JVM: 2.0.0 内存区域调优参数</a></li>
+                    <li><a href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</a></li>
+                    <li><a href="/java/jvm/jvm_2.1.0_optimize_example.html">JVM: 2.1.0 调优实践</a></li>
+                    <li><a href="/java/jvm/jvm_3.0.0_jdk_monitor_command.html">JVM: 3.0.0 jvm状态查看命令(JDK自带)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>JVM: 2.1.0 调优实践</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>04 Jan 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 锁定问题进程</h3>
+
+<h4>1) 监控OS资源</h4>
+
+<ul>
+<li><code>free -m</code> 查看内存资源使用情况</li>
+<li><code>top</code> 查看整个系统的进程资源使用情况</li>
+</ul>
+
+<h4>2) 根据进程号进行业务对应</h4>
+
+<p>根据上面的资源判断，会初步锁定几个进程号</p>
+<pre class="chroma">ps aux <span class="p">|</span> grep pid
+</pre>
+<p>通过上面的命令将进程号和具体业务联系起来，判断是否近期做过代码更新或架构改动(网络或业务)</p>
+
+<hr />
+
+<h3>2. 锁定问题线程</h3>
+
+<p>下面的进程只是一个示例pid 5233</p>
+<pre class="chroma">top -H -p <span class="m">5233</span>
+<span class="c1"># 输出以下内容，根据cpu、mem和time排序，查看是否有异常的进程</span>
+top - 09:27:34 up  4:40,  <span class="m">3</span> users,  load average: 0.25, 0.07, 0.02
+Tasks: <span class="m">217</span> total,   <span class="m">0</span> running, <span class="m">217</span> sleeping,   <span class="m">0</span> stopped,   <span class="m">0</span> zombie
+Cpu<span class="o">(</span>s<span class="o">)</span>:  0.4%us,  0.0%sy,  0.0%ni, 99.6%id,  0.0%wa,  0.0%hi,  0.0%si,  0.0%st
+Mem:  16315680k total,  2505924k used, 13809756k free,    44396k buffers
+Swap:  8224760k total,        0k used,  8224760k free,   191120k cached
+
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND                                                                                        
+ <span class="m">5292</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   1:35.52 java                                                                                            
+ <span class="m">5259</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:32.12 java                                                                                            
+ <span class="m">5258</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:31.21 java                                                                                            
+ <span class="m">5342</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:28.30 java                                                                                            
+ <span class="m">5234</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:10.69 java                                                                                            
+ <span class="m">5290</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:09.39 java                                                                                            
+ <span class="m">5340</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:09.32 java                                                                                            
+ <span class="m">5345</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:05.63 java                                                                                            
+ <span class="m">5367</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:04.97 java                                                                                            
+ <span class="m">5346</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:04.36 java                                                                                            
+ <span class="m">5253</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:04.02 java                                                                                            
+ <span class="m">5371</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:03.59 java                                                                                            
+ <span class="m">5464</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:03.16 java                                                                                            
+ <span class="m">5386</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:03.09 java                                                                                            
+ <span class="m">5461</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:03.06 java                                                                                            
+ <span class="m">5395</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.71 java                                                                                            
+ <span class="m">5354</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.59 java                                                                                            
+ <span class="m">5369</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.56 java                                                                                            
+ <span class="m">5408</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.50 java                                                                                            
+ <span class="m">5403</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.36 java                                                                                            
+ <span class="m">5348</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.24 java                                                                                            
+ <span class="m">5405</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.21 java                                                                                            
+ <span class="m">5353</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.18 java                                                                                            
+ <span class="m">5261</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.17 java                                                                                            
+ <span class="m">5390</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.14 java                                                                                            
+ <span class="m">5373</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.09 java                                                                                            
+ <span class="m">5416</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.07 java                                                                                            
+ <span class="m">5381</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.06 java                                                                                            
+ <span class="m">5349</span> root      <span class="m">20</span>   <span class="m">0</span> 16.9g 1.9g  12m S  0.0 12.5   0:02.03 java   
+ <span class="c1"># 按照time排序，发现有一个时间特别长的进程</span>  
+</pre>
+<hr />
+
+<h3>3. 查看线程具体信息</h3>
+<pre class="chroma"><span class="c1"># 通过jstack命令可以查看进程的栈信息</span>
+./jstack 5233<span class="p">|</span>head
+2017-01-04 09:26:11
+Full thread dump Java HotSpot<span class="o">(</span>TM<span class="o">)</span> 64-Bit Server VM <span class="o">(</span>20.6-b01 mixed mode<span class="o">)</span>:
+
+<span class="s2">&#34;Attach Listener&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007f5230001000 <span class="nv">nid</span><span class="o">=</span>0x17d7 waiting on condition <span class="o">[</span>0x0000000000000000<span class="o">]</span>
+   java.lang.Thread.State: RUNNABLE
+
+<span class="s2">&#34;Thread-83&#34;</span> daemon <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007f50b8010000 <span class="nv">nid</span><span class="o">=</span>0x1558 waiting on condition <span class="o">[</span>0x00007f52142bc000<span class="o">]</span>
+   java.lang.Thread.State: TIMED_WAITING <span class="o">(</span>sleeping<span class="o">)</span>
+	at java.lang.Thread.sleep<span class="o">(</span>Native Method<span class="o">)</span>
+	at org.apache.commons.pool.impl.GenericObjectPool<span class="nv">$Evictor</span>.run<span class="o">(</span>GenericObjectPool.java:1080<span class="o">)</span>
+...
+<span class="c1"># 会输出该进程的所有线程及其状态，其中nid对应了该线程pid的16进制</span>
+
+<span class="c1"># 获取5292线程的16位pid</span>
+<span class="nb">echo</span> <span class="s2">&#34;obase=16;5292&#34;</span><span class="p">|</span>bc
+14AC
+<span class="c1"># 不同进制之间的转换命令</span>
+<span class="c1"># http://www.cnblogs.com/chengmo/archive/2010/10/14/1851570.html</span>
+
+<span class="c1"># 根据16进制的pid号搜索栈内存中的相应线程信息</span>
+./jstack <span class="m">5233</span> <span class="p">|</span>grep -A10 14ac
+<span class="s2">&#34;chatCacheStoreTimer&#34;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007f52a4aa9800 <span class="nv">nid</span><span class="o">=</span>0x14ac in Object.wait<span class="o">(</span><span class="o">)</span> <span class="o">[</span>0x00007f52175c2000<span class="o">]</span>
+   java.lang.Thread.State: TIMED_WAITING <span class="o">(</span>on object monitor<span class="o">)</span>
+	at java.lang.Object.wait<span class="o">(</span>Native Method<span class="o">)</span>
+	- waiting on &lt;0x000000068d2c2c90&gt; <span class="o">(</span>a java.util.TaskQueue<span class="o">)</span>
+	at java.util.TimerThread.mainLoop<span class="o">(</span>Timer.java:509<span class="o">)</span>
+	- locked &lt;0x000000068d2c2c90&gt; <span class="o">(</span>a java.util.TaskQueue<span class="o">)</span>
+	at java.util.TimerThread.run<span class="o">(</span>Timer.java:462<span class="o">)</span>
+
+<span class="s2">&#34;DefaultQuartzScheduler_QuartzSchedulerThread&#34;</span> <span class="nv">prio</span><span class="o">=</span><span class="m">10</span> <span class="nv">tid</span><span class="o">=</span>0x00007f52a4a8f800 <span class="nv">nid</span><span class="o">=</span>0x14aa sleeping<span class="o">[</span>0x00007f5217644000<span class="o">]</span>
+   java.lang.Thread.State: TIMED_WAITING <span class="o">(</span>sleeping<span class="o">)</span>
+	at java.lang.Thread.sleep<span class="o">(</span>Native Method<span class="o">)</span>
+<span class="c1"># 发现此线程是在等待状态，后面是一个循环</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                  <ul>
+                    <li><a href="/database/redis/redis_1.1.0_install.html">redis: 1.1.0 安装</a></li>
+                    <li><a href="/database/redis/redis_1.1.1_install_docker.html">redis: 1.1.1 docker-redis</a></li>
+                    <li><a href="/database/redis/redis_1.1.1_redis_replication_sentinel.html">redis: 1.1.1 redis replication(sentinel集群)</a></li>
+                    <li><a href="/database/redis/redis_1.1.2_sentinel_python_get_master.html">redis: 1.1.2 redis-py(sentinel)获取master信息</a></li>
+                    <li><a href="/database/redis/redis_1.2.0_basic_cmd.html">redis: 1.2.0 基本管理命令</a></li>
+                    <li><a href="/database/redis/redis_1.2.1_execute_cmd_to_file.html">redis: 1.2.1 将redis执行结果输出到文件</a></li>
+                    <li><a href="/database/redis/redis_1.2.2_security_disable_command.html">redis: 1.2.2 安全性(CONFIG重命名)</a></li>
+                    <li><a href="/database/redis/redis_1.2.3_production_tunning.html">redis: 1.2.3 性能优化</a></li>
+                    <li><a href="/database/redis/redis_3.1.0_consistent.html">redis: 3.1.0 持久化、备份及恢复</a></li>
+                    <li><a href="/database/redis/redis_4.1.0_replication.html">redis: 4.1.0 主从配置</a></li>
+                    <li><a href="/database/redis/redis_4.2.0_replication_key_expire_problem.html">redis: 4.2.0 主从遇到的问题</a></li>
+                    <li><a href="/database/redis/redis_5.1.0_error_downgrade后启动报错.html">redis: 5.1.0 错误-降级后启动报错</a></li>
+                    <li><a href="/database/redis/redis_6.1.0_debug_method.html">redis: 6.1.0 DEBUG方法</a></li>
+                    <li><a href="/database/redis/redis_cluster_1.1.0_install.html">redis-cluster: 1.1.0 安装</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>redis: 1.1.1 redis replication(sentinel集群)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>08 Aug 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 环境介绍</h3>
+
+<table>
+<thead>
+<tr>
+<th align="center">hostname</th>
+<th align="center">ip</th>
+<th align="center">version</th>
+<th align="center">OS</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">sentinel01</td>
+<td align="center">192.168.33.41</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+
+<tr>
+<td align="center">sentinel02</td>
+<td align="center">192.168.33.42</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+
+<tr>
+<td align="center">sentinel03</td>
+<td align="center">192.168.33.43</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+
+<tr>
+<td align="center">redis01</td>
+<td align="center">192.168.33.51</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+
+<tr>
+<td align="center">redis02</td>
+<td align="center">192.168.33.52</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+
+<tr>
+<td align="center">redis03</td>
+<td align="center">192.168.33.53</td>
+<td align="center">4.0.1</td>
+<td align="center">centos 6.8 x86_64</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>sentinel集群必须为奇数，redis replication可以为2个节点或者多个节点</p>
+</blockquote>
+
+<hr />
+
+<h3>2. 安装并配置redis</h3>
+
+<p>所有节点包括sentinel节点都需要安装redis</p>
+
+<h4>1) 安装redis</h4>
+<pre class="chroma">wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+tar xzf redis-4.0.1.tar.gz
+<span class="nb">cd</span> redis-4.0.1
+make
+make install
+</pre>
+<h3>3. redis三节点配置</h3>
+
+<h4>1) 修改redis启动脚本</h4>
+<pre class="chroma">cp utils/redis_init_script /etc/init.d/redis
+chmod <span class="m">755</span> /etc/init.d/redis
+vi /etc/init.d/redis
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 因为我们配置了auth，需要在关闭时提供密码字符串</span>
+<span class="c1"># 配置一个自定义变量</span>
+<span class="nv">AUTH_PASSWORD</span><span class="o">=</span><span class="s2">&#34;123456&#34;</span>
+<span class="c1"># 在关闭stop case中增加&#34;-a $AUTH_PASSWORD&#34;</span>
+<span class="nv">$CLIEXEC</span> -p <span class="nv">$REDISPORT</span> -a <span class="nv">$AUTH_PASSWORD</span> shutdown
+******************************
+chkconfig redis on
+</pre>
+<blockquote>
+<p>脚本里面有默认的端口和pid文件配置，如果配置文件中的相应配置改动了，需要在启动脚本相应改动选项</p>
+</blockquote>
+
+<h4>2) 修改redis配置文件</h4>
+
+<p>redis节点上全部创建配置目录</p>
+<pre class="chroma">mkdir /etc/redis
+</pre>
+<p>redis01主节点修改以下配置</p>
+<pre class="chroma">cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+<span class="nb">bind</span> 0.0.0.0
+daemonize yes
+protected-mode no
+pidfile /var/run/redis_6379.pid
+port <span class="m">6379</span>
+loglevel notice
+logfile <span class="s2">&#34;/var/log/redis_6379.log&#34;</span>
+masterauth <span class="m">123456</span>
+requirepass <span class="m">123456</span>
+******************************
+</pre>
+<blockquote>
+<p>redis01主节点也配置masterauth是因为处理master角色转移后，本节点重新接入集群的情况</p>
+</blockquote>
+
+<p>redis02和redis03上修改以下配置</p>
+<pre class="chroma">cp redis.conf /etc/redis/6379.conf
+vi /etc/redis/6379.conf
+******************************
+<span class="nb">bind</span> 0.0.0.0
+daemonize yes
+protected-mode no
+pidfile /var/run/redis_6379.pid
+port <span class="m">6379</span>
+loglevel notice
+logfile <span class="s2">&#34;/var/log/redis_6379.log&#34;</span>
+slaveof 192.168.33.51 <span class="m">6379</span>
+masterauth <span class="m">123456</span>
+requirepass <span class="m">123456</span>
+******************************
+</pre>
+<blockquote>
+<p>redis02和redis03从节点之所以也配置requirepass，是为了等下redis集群failover功能，密码推荐和主上的密码一致</p>
+</blockquote>
+
+<h4>3) 启动redis-server服务</h4>
+<pre class="chroma"><span class="c1"># 在三个redis节点上重启redis</span>
+service redis stop
+service redis start
+</pre>
+<hr />
+
+<h3>3. sentinel节点配置</h3>
+
+<p><a href="http://redis.io/topics/sentinel">sentinel官方文档</a></p>
+
+<h4>1) 修改sentinel启动脚本</h4>
+<pre class="chroma">cp utils/redis_init_script /etc/init.d/sentinel
+chmod <span class="m">755</span> /etc/init.d/sentinel
+vi /etc/init.d/sentinel
+******************************
+<span class="c1"># 在第2行添加</span>
+<span class="c1">#chkconfig: 2345 80 90</span>
+
+<span class="c1"># 修改以下内容</span>
+<span class="nv">EXEC</span><span class="o">=</span>/usr/local/bin/redis-sentinel
+<span class="nv">REDISPORT</span><span class="o">=</span><span class="m">26379</span>
+<span class="nv">PIDFILE</span><span class="o">=</span>/var/run/sentinel.pid
+<span class="nv">CONF</span><span class="o">=</span><span class="s2">&#34;/etc/redis/sentinel.conf&#34;</span>
+
+<span class="c1"># 修改启动命令为后台启动</span>
+<span class="nv">$EXEC</span> <span class="nv">$CONF</span> <span class="p">&amp;</span>
+sleep <span class="m">1</span>
+<span class="nb">echo</span> <span class="sb">`</span>ps aux <span class="p">|</span>grep redis-sentinel<span class="p">|</span>grep -v grep<span class="p">|</span>grep <span class="si">${</span><span class="nv">REDISPORT</span><span class="si">}</span><span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span> &gt; <span class="nv">$PIDFILE</span>
+
+<span class="c1"># 在停止命令后面加上删除pidfile的动作</span>
+<span class="nb">echo</span> <span class="s2">&#34;Redis stopped&#34;</span>
+rm -rf <span class="nv">$PIDFILE</span>
+******************************
+chkconfig sentinel on
+</pre>
+<h4>2) 创建sentinel配置文件</h4>
+<pre class="chroma">vi /etc/redis/sentinel.conf
+******************************
+<span class="nb">bind</span> 0.0.0.0
+protected-mode no
+daemonize yes
+port <span class="m">26379</span>
+loglevel notice
+logfile <span class="s2">&#34;/var/log/sentinel.log&#34;</span>
+sentinel monitor mymaster 192.168.33.51 <span class="m">6379</span> <span class="m">2</span>
+sentinel auth-pass mymaster <span class="m">123456</span>
+sentinel down-after-milliseconds mymaster <span class="m">5000</span>
+sentinel failover-timeout mymaster <span class="m">8000</span>
+sentinel parallel-syncs mymaster <span class="m">1</span>
+******************************
+</pre>
+<blockquote>
+<p><code>sentinel monitor &lt;master-group-name&gt; &lt;ip&gt; &lt;port&gt; &lt;quorum&gt;</code><br />
+master-group-name 是自定义名称<br />
+quorum 此数字代表分布式的sentinel中，最少几个节点侦测到master失败才切换</p>
+
+<p><code>sentinel &lt;option_name&gt; &lt;master_name&gt; &lt;option_value&gt;</code><br />
+sentinel 选项名称 自定义名称 选项值<br />
+down-after-milliseconds 指定了多少ms连接不到该sentinel即认定其失效
+其他配置查看官方文档链接</p>
+
+<p>protected-mode 一定要设置为no，不然的话，仅能localhost访问</p>
+</blockquote>
+
+<h4>2) 启动sentinel服务</h4>
+
+<p>所有sentinel节点启动sentinel服务</p>
+<pre class="chroma">service sentinel start
+</pre>
+<hr />
+
+<h3>4. 效果测试</h3>
+
+<h4>1) 查看redis replication信息</h4>
+<pre class="chroma"><span class="c1"># 主节点上执行</span>
+redis-cli
+127.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+127.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:2
+slave0:ip<span class="o">=</span>192.168.33.52,port<span class="o">=</span>6379,state<span class="o">=</span>online,offset<span class="o">=</span>173294,lag<span class="o">=</span><span class="m">1</span>
+slave1:ip<span class="o">=</span>192.168.33.53,port<span class="o">=</span>6379,state<span class="o">=</span>online,offset<span class="o">=</span>173435,lag<span class="o">=</span><span class="m">1</span>
+master_replid:4d3fa0623c322feebecb70f7ad5f8525e63c0332
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:173576
+second_repl_offset:-1
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:173576
+</pre>
+<h4>2) 模拟redis01主节点失败</h4>
+
+<p><strong>sentinel日志</strong></p>
+<pre class="chroma">redis-cli -a <span class="m">123456</span> shutdown
+
+<span class="c1"># sentinel01日志</span>
+7937:X <span class="m">09</span> Aug 03:34:24.679 <span class="c1"># +sdown master mymaster 192.168.33.51 6379</span>
+7937:X <span class="m">09</span> Aug 03:34:24.809 <span class="c1"># +new-epoch 1</span>
+7937:X <span class="m">09</span> Aug 03:34:24.815 <span class="c1"># +vote-for-leader 627b4ec63708908fe747117c83a4a87bc30cadad 1</span>
+7937:X <span class="m">09</span> Aug 03:34:25.778 <span class="c1"># +odown master mymaster 192.168.33.51 6379 #quorum 3/2</span>
+7937:X <span class="m">09</span> Aug 03:34:25.778 <span class="c1"># Next failover delay: I will not start a failover before Wed Aug  9 03:34:41 2017</span>
+7937:X <span class="m">09</span> Aug 03:34:25.929 <span class="c1"># +config-update-from sentinel 627b4ec63708908fe747117c83a4a87bc30cadad 192.168.33.43 26379 @ mymaster 192.168.33.51 6379</span>
+7937:X <span class="m">09</span> Aug 03:34:25.929 <span class="c1"># +switch-master mymaster 192.168.33.51 6379 192.168.33.52 6379</span>
+7937:X <span class="m">09</span> Aug 03:34:25.930 * +slave slave 192.168.33.53:6379 192.168.33.53 <span class="m">6379</span> @ mymaster 192.168.33.52 <span class="m">6379</span>
+7937:X <span class="m">09</span> Aug 03:34:25.930 * +slave slave 192.168.33.51:6379 192.168.33.51 <span class="m">6379</span> @ mymaster 192.168.33.52 <span class="m">6379</span>
+7937:X <span class="m">09</span> Aug 03:34:30.996 <span class="c1"># +sdown slave 192.168.33.51:6379 192.168.33.51 6379 @ mymaster 192.168.33.52 6379</span>
+</pre>
+<blockquote>
+<p>sentinel三个节点日志差不多，大概就是以下步骤:
+- 测试到redis01挂掉，发出sdown事件
+- 接收到其它节点的redis01挂掉信息，会将sdown升级为odown事件
+- 投票新的master，然后执行failover操作(sentinel会重写redis的配置文件)</p>
+</blockquote>
+
+<p><strong>此时重新查看redis集群信息，redis02选为新的master，redis03为slave</strong></p>
+<pre class="chroma">redis-cli
+127.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+127.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:1
+slave0:ip<span class="o">=</span>192.168.33.53,port<span class="o">=</span>6379,state<span class="o">=</span>online,offset<span class="o">=</span>206712,lag<span class="o">=</span><span class="m">0</span>
+master_replid:c9a68d6274d26542eb7bef75a0df10f6ce594152
+master_replid2:2897700df07f0a75839738cd872ac8fc60a77b83
+master_repl_offset:206712
+second_repl_offset:27248
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:206712
+</pre>
+<p><strong>重新启动redis01，将会以slave身份加入到集群中</strong></p>
+<pre class="chroma">redis-cli
+127.0.0.1:6379&gt; auth <span class="m">123456</span>
+OK
+127.0.0.1:6379&gt; info replication
+<span class="c1"># Replication</span>
+role:master
+connected_slaves:2
+slave0:ip<span class="o">=</span>192.168.33.53,port<span class="o">=</span>6379,state<span class="o">=</span>online,offset<span class="o">=</span>250152,lag<span class="o">=</span><span class="m">1</span>
+slave1:ip<span class="o">=</span>192.168.33.51,port<span class="o">=</span>6379,state<span class="o">=</span>online,offset<span class="o">=</span>250152,lag<span class="o">=</span><span class="m">0</span>
+master_replid:c9a68d6274d26542eb7bef75a0df10f6ce594152
+master_replid2:2897700df07f0a75839738cd872ac8fc60a77b83
+master_repl_offset:250152
+second_repl_offset:27248
+repl_backlog_active:1
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:1
+repl_backlog_histlen:250152
+</pre>
+<hr />
+
+<h3>7. sentinel管理</h3>
+
+<h4>1) 查看master信息</h4>
+<pre class="chroma"><span class="c1"># 用redis-cli连接sentinel的端口</span>
+redis-cli -p <span class="m">26379</span>
+127.0.0.1:26379&gt; sentinel master mymaster
+ 1<span class="o">)</span> <span class="s2">&#34;name&#34;</span>
+ 2<span class="o">)</span> <span class="s2">&#34;mymaster&#34;</span>
+ 3<span class="o">)</span> <span class="s2">&#34;ip&#34;</span>
+ 4<span class="o">)</span> <span class="s2">&#34;192.168.110.5&#34;</span>
+ 5<span class="o">)</span> <span class="s2">&#34;port&#34;</span>
+ 6<span class="o">)</span> <span class="s2">&#34;6381&#34;</span>
+ 7<span class="o">)</span> <span class="s2">&#34;runid&#34;</span>
+ 8<span class="o">)</span> <span class="s2">&#34;88460abc58aa7d2e159a29a7fe29f2d64aa72033&#34;</span>
+ 9<span class="o">)</span> <span class="s2">&#34;flags&#34;</span>
+10<span class="o">)</span> <span class="s2">&#34;master&#34;</span>
+11<span class="o">)</span> <span class="s2">&#34;pending-commands&#34;</span>
+12<span class="o">)</span> <span class="s2">&#34;0&#34;</span>
+13<span class="o">)</span> <span class="s2">&#34;last-ping-sent&#34;</span>
+14<span class="o">)</span> <span class="s2">&#34;0&#34;</span>
+15<span class="o">)</span> <span class="s2">&#34;last-ok-ping-reply&#34;</span>
+16<span class="o">)</span> <span class="s2">&#34;404&#34;</span>
+17<span class="o">)</span> <span class="s2">&#34;last-ping-reply&#34;</span>
+18<span class="o">)</span> <span class="s2">&#34;404&#34;</span>
+19<span class="o">)</span> <span class="s2">&#34;down-after-milliseconds&#34;</span>
+20<span class="o">)</span> <span class="s2">&#34;60000&#34;</span>
+21<span class="o">)</span> <span class="s2">&#34;info-refresh&#34;</span>
+22<span class="o">)</span> <span class="s2">&#34;3270&#34;</span>
+23<span class="o">)</span> <span class="s2">&#34;role-reported&#34;</span>
+24<span class="o">)</span> <span class="s2">&#34;master&#34;</span>
+25<span class="o">)</span> <span class="s2">&#34;role-reported-time&#34;</span>
+26<span class="o">)</span> <span class="s2">&#34;8577307&#34;</span>
+27<span class="o">)</span> <span class="s2">&#34;config-epoch&#34;</span>
+28<span class="o">)</span> <span class="s2">&#34;2&#34;</span>
+29<span class="o">)</span> <span class="s2">&#34;num-slaves&#34;</span>
+30<span class="o">)</span> <span class="s2">&#34;2&#34;</span>
+31<span class="o">)</span> <span class="s2">&#34;num-other-sentinels&#34;</span>
+32<span class="o">)</span> <span class="s2">&#34;2&#34;</span>
+33<span class="o">)</span> <span class="s2">&#34;quorum&#34;</span>
+34<span class="o">)</span> <span class="s2">&#34;2&#34;</span>
+35<span class="o">)</span> <span class="s2">&#34;failover-timeout&#34;</span>
+36<span class="o">)</span> <span class="s2">&#34;180000&#34;</span>
+37<span class="o">)</span> <span class="s2">&#34;parallel-syncs&#34;</span>
+38<span class="o">)</span> <span class="s2">&#34;1&#34;</span>
+</pre>
+<p>其中&rdquo;num-other-sentinels&rdquo;代表了其他的sentinel节点个数<br />
+&ldquo;num-slaves&rdquo;代表了slave节点个数</p>
+
+<p>使用以下两个命令可以看到slaves和sentinels的信息</p>
+<pre class="chroma">SENTINEL slaves mymaster
+SENTINEL sentinels mymaster
+</pre>
+<h4>2) 获取当前master信息</h4>
+<pre class="chroma">127.0.0.1:26379&gt; SENTINEL get-master-addr-by-name mymaster
+1<span class="o">)</span> <span class="s2">&#34;192.168.110.5&#34;</span>
+2<span class="o">)</span> <span class="s2">&#34;6381&#34;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

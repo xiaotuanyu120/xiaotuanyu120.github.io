@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+              <ul>
+                <li>
+                  <a href="/java/compile/index.html">compile</a>
+                  <ul>
+                    <li><a href="/java/compile/maven_1.1.0_intro_basic.html">maven 1.1.0 基础介绍</a></li>
+                    <li><a href="/java/compile/maven_1.1.1_multi_modules_practice.html">maven 1.1.1 多module工程的版本管理实践</a></li>
+                    <li><a href="/java/compile/maven_1.1.2_jar_vs_war.html">maven 1.1.2 jar和war的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.3_jar_vs_war_ablout_resources.html">maven 1.1.3 jar和war中resources的区别</a></li>
+                    <li><a href="/java/compile/maven_1.1.4_command_basic.html">maven 1.4.0 命令行基础</a></li>
+                    <li><a href="/java/compile/maven_1.2.0_nexus.html">maven 1.2.0 私有仓库nexus</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/java/jvm/index.html">jvm</a>
+                </li>
+                <li>
+                  <a href="/java/security/index.html">security</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>maven 1.1.1 多module工程的版本管理实践</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Dec 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 问题点</h3>
+
+<p>一个java的maven工程，里面有多个modules，然后各个modules之间还有相互依赖关系。在这样的情况下，如何对子模块的version标准管理呢？</p>
+
+<h3>2. 官方建议方法</h3>
+
+<p>要点：
+- maven版本要在3.5.0以上
+- 项目version使用变量<code>${revision}</code>、<code>${sha1}</code>和<code>${changelist}</code>（不可变更变量名称）来组合version名称
+- 子module使用同样的变量组合方式来指定parent version，然后自身并不指定version（继承parent version）
+- 子module互相之间的依赖，使用<code>${project.version}</code>来标准化，其实内容就是parent的version</p>
+
+<p><strong>示例:parent-pom.xml</strong></p>
+<pre class="chroma"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>apache<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version</span><span class="nt">&gt;</span>18<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;name</span><span class="nt">&gt;</span>First CI Friendly<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  ...
+  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;revision</span><span class="nt">&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/revision&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;module</span><span class="nt">&gt;</span>ci-child1<span class="nt">&lt;/module&gt;</span>
+    ..
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre>
+<p><strong>示例：child-pom.xml</strong></p>
+<pre class="chroma"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version</span><span class="nt">&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ci-child1<span class="nt">&lt;/artifactId&gt;</span>
+   ...
+  <span class="nt">&lt;dependencies</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ci-child2<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>${project.version}<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+  <span class="nt">&lt;/dependencies&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre>
+<p>关于<code>INSTALL &amp; DEPLOY</code>，官方的原话是</p>
+<pre class="chroma">If you like to install or deploy artifacts by using the above setup you have to use the flatten-maven-plugin otherwise you will install/deploy artifacts in your repository which will not be consumable by Maven anymore. Such kind of setup will look like this:
+</pre><pre class="chroma"><span class="nt">&lt;project</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;modelVersion</span><span class="nt">&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+  <span class="nt">&lt;parent</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>apache<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version</span><span class="nt">&gt;</span>18<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span>
+  <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.ci<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>ci-parent<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;name</span><span class="nt">&gt;</span>First CI Friendly<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;version</span><span class="nt">&gt;</span>${revision}<span class="nt">&lt;/version&gt;</span>
+  ...
+  <span class="nt">&lt;properties</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;revision</span><span class="nt">&gt;</span>1.0.0-SNAPSHOT<span class="nt">&lt;/revision&gt;</span>
+  <span class="nt">&lt;/properties&gt;</span>
+ 
+ <span class="nt">&lt;build</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>flatten-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;updatePomFile</span><span class="nt">&gt;</span>true<span class="nt">&lt;/updatePomFile&gt;</span>
+        <span class="nt">&lt;flattenMode</span><span class="nt">&gt;</span>resolveCiFriendliesOnly<span class="nt">&lt;/flattenMode&gt;</span>
+      <span class="nt">&lt;/configuration&gt;</span>
+      <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;id</span><span class="nt">&gt;</span>flatten<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;phase</span><span class="nt">&gt;</span>process-resources<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;goal</span><span class="nt">&gt;</span>flatten<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+        <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;id</span><span class="nt">&gt;</span>flatten.clean<span class="nt">&lt;/id&gt;</span>
+          <span class="nt">&lt;phase</span><span class="nt">&gt;</span>clean<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;goal</span><span class="nt">&gt;</span>clean<span class="nt">&lt;/goal&gt;</span>
+          <span class="nt">&lt;/goals&gt;</span>
+        <span class="nt">&lt;/execution&gt;</span>
+      <span class="nt">&lt;/executions&gt;</span>
+    <span class="nt">&lt;/plugin&gt;</span>
+  <span class="nt">&lt;/plugins&gt;</span>
+  <span class="nt">&lt;/build&gt;</span>
+  <span class="nt">&lt;modules</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;module</span><span class="nt">&gt;</span>child1<span class="nt">&lt;/module&gt;</span>
+    ..
+  <span class="nt">&lt;/modules&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</pre>
+<blockquote>
+<p>大概的意思，我猜，是因为所有的version我们使用了变量，而不是固定的一个值，所以需要一个插件来特别处理，以保证其能在maven库中正确的被别人引用</p>
+</blockquote>
+
+<p><strong>CI支持</strong>
+至于官方提供了这个方法，其实是为了更好的兼容CI，因为不可能每次编译都手动修改pom，那么在命令行里面来修改version变量的方法就是</p>
+<pre class="chroma">mvn -Drevision=1.0.0-SNAPSHOT clean package
+</pre>
+<blockquote>
+<p>实际的CI流程中，肯定是使用变量来替代<code>1.0.0-SNAPSHOT</code>，例如日期字符串，或者commit串等，例如：<code>-Drevision=$(date +%Y%m%d.%H%M%S-${CI_COMMIT_SHA:0:6})</code></p>
+
+<p><a href="https://maven.apache.org/maven-ci-friendly.html#multi-module-setup">apache官方CI友好文档 - 提及的多模块version管理</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

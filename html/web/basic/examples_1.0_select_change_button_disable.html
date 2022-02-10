@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+              <ul>
+                <li>
+                  <a href="/web/css/index.html">css</a>
+                </li>
+                <li>
+                  <a href="/web/jquery/index.html">jquery</a>
+                </li>
+                <li>
+                  <a href="/web/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/web/basic/ajax_1.0_whats_ajax.html">ajax: 1.0 什么是ajax？</a></li>
+                    <li><a href="/web/basic/basic_1.0_a_disable_link.html">基础: 1.0 禁用a标签的link属性</a></li>
+                    <li><a href="/web/basic/error_1.0.0_nginx_vue_webpack_fresh_404.html">error 1.0.0 nginx vue webpack fresh 404</a></li>
+                    <li><a href="/web/basic/examples_1.0_select_change_button_disable.html">实例: 1.0 根据select的内容来改变button的disabled属性</a></li>
+                    <li><a href="/web/basic/examples_1.1_select_input_change_button_status.html">实例: 1.1 根据select和input的内容来改变button的disabled属性</a></li>
+                    <li><a href="/web/basic/examples_2.0_get_query_strings.html">实例: 2.0 获取query string中的值</a></li>
+                    <li><a href="/web/basic/object_1.0_location_get_url.html">object: 1.0 location-获取url</a></li>
+                    <li><a href="/web/basic/syntax_1.0_if.html">语法: 1.0 javascript的if语句</a></li>
+                    <li><a href="/web/basic/syntax_2.0_try_catch_finally.html">语法: 2.0 javascript的try catch finally语句</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/web/node.js/index.html">node.js</a>
+                </li>
+                <li>
+                  <a href="/web/vue.js/index.html">vue.js</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>实例: 1.0 根据select的内容来改变button的disabled属性</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>02 Nov 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 问题背景</h3>
+
+<p>有一个form，包含一个select下拉选框，一个button。默认button的disabled属性是true，希望当检测到select改变，且不等于默认值时，将button的disabled属性设置为false，以达到避免用户在页面刚刷新出来，select中的值还是默认值时误操作点击了button。</p>
+
+<hr />
+
+<h3>2. script内容</h3>
+
+<p>逻辑很简单，当select对象改变时，检查其值。根据其值来判断接下来的行动<br />
+&rdquo;.prop(property_name, value)&ldquo;，使用这个语句来改变对象的属性值</p>
+<pre class="chroma"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span><span class="p">.</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#selbrand&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+       <span class="nx">selbrand</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#selbrand&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+       <span class="k">if</span> <span class="p">(</span><span class="nx">selbrand</span> <span class="o">!=</span> <span class="s2">&#34;请选择产品&#34;</span><span class="p">)</span><span class="p">{</span>
+         <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#MyButton&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&#34;disabled&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span><span class="p">;</span>
+       <span class="p">}</span>
+       <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;#MyButton&#34;</span><span class="p">)</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">&#34;disabled&#34;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+       <span class="p">}</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</pre>
+<hr />
+
+<h3>3. html内容</h3>
+
+<p>重点其实就是看两个元素的id，js通过$(&rdquo;#id_name&rdquo;)来选择一个元素</p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p"></span><span class="p">&gt;</span>
+
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-group&#34;</span><span class="p"></span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">label</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;control-label&#34;</span> <span class="na">for</span><span class="o">=</span><span class="s">&#34;selbrand&#34;</span><span class="p"></span><span class="p">&gt;</span>Brand<span class="p">&lt;</span><span class="p">/</span><span class="nt">label</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">select</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-control&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;selbrand&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;selbrand&#34;</span><span class="p"></span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">option</span><span class="p"></span><span class="p">&gt;</span>请选择产品<span class="p">&lt;</span><span class="p">/</span><span class="nt">option</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">option</span><span class="p"></span><span class="p">&gt;</span>brand1<span class="p">&lt;</span><span class="p">/</span><span class="nt">option</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">option</span><span class="p"></span><span class="p">&gt;</span>brand2<span class="p">&lt;</span><span class="p">/</span><span class="nt">option</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="p">/</span><span class="nt">select</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+          <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;btn btn-primary&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;run&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;MyButton&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Click&#34;</span> <span class="na">disabled</span><span class="p"></span><span class="p">&gt;</span>restart<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="p">/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

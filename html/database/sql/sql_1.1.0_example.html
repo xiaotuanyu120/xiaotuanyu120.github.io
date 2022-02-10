@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                  <ul>
+                    <li><a href="/database/sql/sql_1.1.0_example.html">sql: 1.1.0 example</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>sql: 1.1.0 example</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Jul 2020</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 按照类型分类，对不同分类使用不同的条件筛选</h3>
+<pre class="chroma"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test</span> <span class="p">(</span>
+    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="p">,</span>
+    <span class="n">id</span>    <span class="nb">INT</span>          <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+    <span class="k">type</span>  <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">score</span> <span class="nb">INT</span>          <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test</span> <span class="p">(</span><span class="k">type</span><span class="p">,</span> <span class="n">score</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span><span class="p">,</span>
+       <span class="p">(</span><span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span><span class="p">,</span>
+       <span class="p">(</span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span><span class="p">,</span>
+       <span class="p">(</span><span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span><span class="p">,</span>
+       <span class="p">(</span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span><span class="p">,</span>
+       <span class="p">(</span><span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span><span class="p">;</span>
+
+<span class="k">SELECT</span> <span class="n">id</span>
+  <span class="k">FROM</span> <span class="n">test</span>
+ <span class="k">WHERE</span> <span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="k">AND</span> <span class="n">score</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="k">OR</span> <span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span> <span class="k">AND</span> <span class="n">score</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">75</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<h3>2. 查看表信息</h3>
+<pre class="chroma"><span class="c1">-- 查看表容量
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">ROUND</span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">DATA_LENGTH</span><span class="o">/</span><span class="mi">1024</span><span class="o">/</span><span class="mi">1024</span><span class="p">)</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s1">MB</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="k">data</span>
+  <span class="k">FROM</span> <span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span>
+ <span class="k">WHERE</span> <span class="n">table_schema</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">your_database_name</span><span class="s1">&#39;</span>
+   <span class="k">AND</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">your_table_name</span><span class="s1">&#39;</span><span class="p">;</span>
+</pre>
+<h3>3. 创建表</h3>
+<pre class="chroma"><span class="c1">-- 复制表的字段属性、数据来创建新表
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="n">EXIST</span> <span class="n">your_table_name_new</span> <span class="p">[</span><span class="k">AS</span><span class="p">]</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">your_table_name_old</span><span class="p">;</span>
+
+<span class="c1">-- 复制表的备注、索引、主键外键、存储引擎等
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="n">EXIST</span> <span class="n">your_table_name_new</span> <span class="p">(</span><span class="k">like</span> <span class="n">your_table_name_old</span><span class="p">)</span>
+</pre>
+<h3>4. 表重命名</h3>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">your_table_name</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">your_table_name_new</span><span class="p">;</span>
+</pre>
+<h3>5. 索引</h3>
+<pre class="chroma"><span class="c1">-- 查看索引
+</span><span class="c1"></span><span class="k">SHOW</span> <span class="k">INDEX</span> <span class="k">FROM</span> <span class="n">your_table_name</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">INDEX</span> <span class="n">index_name</span> <span class="k">on</span> <span class="n">your_table_name</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span><span class="n">column2</span><span class="p">)</span><span class="p">;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

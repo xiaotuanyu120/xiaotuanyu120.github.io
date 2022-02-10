@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                  <ul>
+                    <li><a href="/service/kafka/kafka_1.1.0_quick_start.html">kafka 1.1.0 quick start</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/lnmp/index.html">lnmp</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>kafka 1.1.0 quick start</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>21 Aug 2018</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. kafka installation</h3>
+<pre class="chroma"><span class="c1"># step 1. download kafka</span>
+wget http://www-eu.apache.org/dist/kafka/2.0.0/kafka_2.11-2.0.0.tgz
+tar -xzf kafka_2.11-2.0.0.tgz
+mv kafka_2.11-2.0.0 /usr/local/
+
+<span class="c1"># step 2. prepare kafka systemd unit files</span>
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Apache Zookeeper server (Kafka)
+</span><span class="s1">Documentation=http://zookeeper.apache.org
+</span><span class="s1">Requires=network.target
+</span><span class="s1">After=network.target
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=simple
+</span><span class="s1">User=root
+</span><span class="s1">Group=root
+</span><span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144
+</span><span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh /usr/local/kafka_2.11-2.0.0/config/zookeeper.properties
+</span><span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/zookeeper-server-stop.sh
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka-zookeeper.service
+
+<span class="nb">echo</span> <span class="s1">&#39;[Unit]
+</span><span class="s1">Description=Apache Kafka server (broker)
+</span><span class="s1">Documentation=http://kafka.apache.org/documentation.html
+</span><span class="s1">Requires=network.target
+</span><span class="s1">After=network.target kafka-zookeeper.service
+</span><span class="s1">
+</span><span class="s1">[Service]
+</span><span class="s1">Type=simple
+</span><span class="s1">User=root
+</span><span class="s1">Group=root
+</span><span class="s1">Environment=JAVA_HOME=/usr/java/jdk1.8.0_144
+</span><span class="s1">ExecStart=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-start.sh /usr/local/kafka_2.11-2.0.0/config/server.properties
+</span><span class="s1">ExecStop=/usr/local/kafka_2.11-2.0.0/bin/kafka-server-stop.sh
+</span><span class="s1">
+</span><span class="s1">[Install]
+</span><span class="s1">WantedBy=multi-user.target&#39;</span> &gt; /usr/lib/systemd/system/kafka.service
+
+<span class="c1"># step 3. reload systemd unit files</span>
+systemctl daemon-reload
+</pre>
+<h3>2. kafka configuration</h3>
+
+<p><code>config/zookeeper.properties</code>部分配置</p>
+<pre class="chroma"># the directory where the snapshot is stored.
+dataDir=/tmp/zookeeper
+</pre>
+<p><code>config/server.properties</code>部分配置</p>
+<pre class="chroma"># The id of the broker. This must be set to a unique integer for each broker.
+broker.id=0
+
+# The address the socket server listens on. It will get the value returned from 
+# java.net.InetAddress.getCanonicalHostName() if not configured.
+listeners=PLAINTEXT://:9092
+
+# The number of threads that the server uses for receiving requests from the network and sending responses to the network
+num.network.threads=3
+
+# The number of threads that the server uses for processing requests, which may include disk I/O
+num.io.threads=8
+
+# The send buffer (SO_SNDBUF) used by the socket server
+socket.send.buffer.bytes=102400
+
+# The receive buffer (SO_RCVBUF) used by the socket server
+socket.receive.buffer.bytes=102400
+
+# The maximum size of a request that the socket server will accept (protection against OOM)
+socket.request.max.bytes=104857600
+
+# A comma separated list of directories under which to store log files
+log.dirs=/tmp/kafka-logs
+
+# The default number of log partitions per topic. More partitions allow greater
+# parallelism for consumption, but this will also result in more files across
+# the brokers.
+num.partitions=1
+</pre>
+<blockquote>
+<p>此处只是部分配置，详细可以参照官方文档查看所有配置信息</p>
+</blockquote>
+
+<h3>3. kafka start</h3>
+<pre class="chroma">systemctl start kafka-zookeeper.service
+systemctl start kafka.service
+</pre>
+<h3>4. Create a topic</h3>
+<pre class="chroma">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">1</span> --partitions <span class="m">1</span> --topic <span class="nb">test</span>
+Created topic <span class="s2">&#34;test&#34;</span>.
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+<span class="nb">test</span>
+
+<span class="c1"># alter partition numbers</span>
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --partitions <span class="m">2</span> --topic <span class="nb">test</span>
+WARNING: If partitions are increased <span class="k">for</span> a topic that has a key, the partition logic or ordering of the messages will be affected
+Adding partitions succeeded!
+</pre>
+<h3>5. 生产和消费数据</h3>
+<pre class="chroma">bin/kafka-console-producer.sh --broker-list 192.168.33.10:9092 --topic <span class="nb">test</span>
+<span class="nb">test</span>
+test2
+quit
+
+bin/kafka-console-consumer.sh --bootstrap-server 192.168.33.10:9092 --topic <span class="nb">test</span> --from-beginning
+<span class="nb">test</span>
+quit
+test2
+</pre>
+<h3>6. 设置一个多broker的集群</h3>
+
+<p>配置和启动集群</p>
+<pre class="chroma"><span class="c1"># step 1. 准备其他两个节点的配置文件</span>
+cp config/server.properties config/server-1.properties
+cp config/server.properties config/server-2.properties
+
+<span class="c1"># config/server-1.properties</span>
+broker.id<span class="o">=</span><span class="m">1</span>
+<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9093
+log.dirs<span class="o">=</span>/tmp/kafka-logs-1
+ 
+<span class="c1"># config/server-2.properties:</span>
+broker.id<span class="o">=</span><span class="m">2</span>
+<span class="nv">listeners</span><span class="o">=</span>PLAINTEXT://:9094
+log.dirs<span class="o">=</span>/tmp/kafka-logs-2
+
+<span class="c1"># step 2. 准备systemd unit file</span>
+<span class="c1"># - 复制/usr/lib/systemd/system/kafka.service为/usr/lib/systemd/system/kafka-1.service和/usr/lib/systemd/system/kafka-2.service</span>
+<span class="c1"># - 修改ExecStart中指向的配置文件为对应的配置文件（上面准备的）</span>
+
+
+<span class="c1"># step 3. 启动集群</span>
+systemct daemon-reload
+systemctl start kafka-1
+systemctl start kafka-2
+</pre>
+<p>设定多factor单分区的topic</p>
+<pre class="chroma">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">1</span> --topic my-replicated-topic
+Created topic <span class="s2">&#34;my-replicated-topic&#34;</span>.
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+Topic:my-replicated-topic	PartitionCount:1	ReplicationFactor:3	Configs:
+	Topic: my-replicated-topic	Partition: 0	Leader: 1	Replicas: 1,0,2	Isr: 1,0,2
+</pre>
+<p>设定多factor多分区的topic</p>
+<pre class="chroma">bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor <span class="m">3</span> --partitions <span class="m">4</span> --topic my-replicated-topic-4
+Created topic <span class="s2">&#34;my-replicated-topic-4&#34;</span>.
+
+bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic-4
+Topic:my-replicated-topic-4	PartitionCount:4	ReplicationFactor:3	Configs:
+	Topic: my-replicated-topic-4	Partition: 0	Leader: 2	Replicas: 2,1,0	Isr: 2,1,0
+	Topic: my-replicated-topic-4	Partition: 1	Leader: 0	Replicas: 0,2,1	Isr: 0,2,1
+	Topic: my-replicated-topic-4	Partition: 2	Leader: 1	Replicas: 1,0,2	Isr: 1,0,2
+	Topic: my-replicated-topic-4	Partition: 3	Leader: 2	Replicas: 2,0,1	Isr: 2,0,1
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

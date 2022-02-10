@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                  <ul>
+                    <li><a href="/database/oracle/1.0.0_silent_installation_env.html">1.0.0 silent模式安装oracle 11G R2 之 环境准备</a></li>
+                    <li><a href="/database/oracle/1.1.0_silent_installation_oracle_install.html">1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装</a></li>
+                    <li><a href="/database/oracle/1.2.0_silent_installation_netca_listen.html">1.2.0 silent模式安装oracle 11G R2 之 netca监听</a></li>
+                    <li><a href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">1.3.0 silent模式安装oracle 11G R2 之 安装database实例</a></li>
+                    <li><a href="/database/oracle/1.4.0_silent_installation_error.html">1.4.0 silent模式安装oracle 11G R2 之 安装错误</a></li>
+                    <li><a href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">1.5.0 silent安装之cvuqdisk</a></li>
+                    <li><a href="/database/oracle/1.6.0_OUI_installation_error.html">1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合</a></li>
+                    <li><a href="/database/oracle/2.1.0_oracle_sql_statement.html">2.1.0 oracle sql语句之表备份实例</a></li>
+                    <li><a href="/database/oracle/2.2.0_oracle_sql_drop_database.html">2.2.0 oracle sql语句之删除数据库</a></li>
+                    <li><a href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">3.1.0 RAC-架构预览</a></li>
+                    <li><a href="/database/oracle/3.10.0_rac_dbca_create_database.html">3.10.0 RAC-通过DBCA创建数据库</a></li>
+                    <li><a href="/database/oracle/3.11.0_rac_management.html">3.11.0 RAC-管理命令</a></li>
+                    <li><a href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">3.2.0 RAC-配置主机名和网络</a></li>
+                    <li><a href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">3.3.0 RAC-配置ntp服务</a></li>
+                    <li><a href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">3.4.0 RAC-系统配置</a></li>
+                    <li><a href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">3.5.0 RAC-配置用户和组</a></li>
+                    <li><a href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">3.6.0 RAC-存储配置</a></li>
+                    <li><a href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">3.7.0 RAC-安装oracle grid infrastructure</a></li>
+                    <li><a href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">3.8.0 RAC-安装oracle 11g r2软件</a></li>
+                    <li><a href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">3.9.0 RAC-通过ASMCA创建ASM硬盘组</a></li>
+                    <li><a href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">4.1.0 oracle error之ORA-01034</a></li>
+                    <li><a href="/database/oracle/4.2.0_oracle_error_display.html">4.2.0 oracle error之图形安装DISPLAY错误</a></li>
+                    <li><a href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">5.1.0 oracle dataguard 11g r2 搭建</a></li>
+                    <li><a href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">5.1.1 oracle dataguard 11g r2 rman恢复错误</a></li>
+                    <li><a href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">5.2.0 oracle dataguard 11g r2 一主多备搭建</a></li>
+                    <li><a href="/database/oracle/5.3.0_dataguard_oracle_11gr2_manage.html">5.3.0 oracle dataguard 11g r2 管理命令</a></li>
+                    <li><a href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">6.2.0 ora-28001 the password has expired</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>5.1.0 oracle dataguard 11g r2 搭建</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>12 Jan 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 环境准备</h3>
+
+<p><a href="https://docs.oracle.com/cd/E11882_01/server.112/e41134/create_ps.htm#SBYDB4729">官方知识介绍</a></p>
+
+<table>
+<thead>
+<tr>
+<th>hostname</th>
+<th>ip</th>
+<th>ORACLE_UNIQUE_NAME</th>
+<th>ORACLE_SID</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>node1.dataguard.com</td>
+<td>192.168.33.91</td>
+<td>EXAMPLE</td>
+<td>EXAMPLE</td>
+</tr>
+
+<tr>
+<td>node2.dataguard.com</td>
+<td>192.168.33.92</td>
+<td>EXAMPLE_STBY</td>
+<td>EXAMPLE</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>oracle 版本：11.2.0.3</li>
+<li>OS 版本：CENTOS 6.8</li>
+<li>node1 为主数据库，安装了软件和数据库实例</li>
+<li>node2 为备数据库，仅安装了软件</li>
+</ul>
+
+<hr />
+
+<h3>1. 主服务器配置(node1)</h3>
+
+<h4>1) 更改日志模式为强制记录日志</h4>
+<pre class="chroma"><span class="c1">-- 查看日志模式
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">log_mode</span> <span class="k">FROM</span> <span class="n">v$database</span><span class="p">;</span>
+
+<span class="c1">-- 开启日志归档
+</span><span class="c1"></span><span class="n">SHUTDOWN</span> <span class="k">IMMEDIATE</span><span class="p">;</span>
+<span class="n">STARTUP</span> <span class="n">MOUNT</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">ARCHIVELOG</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">OPEN</span><span class="p">;</span>
+
+<span class="c1">-- 开启强制日志记录模式
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">FORCE</span> <span class="n">LOGGING</span><span class="p">;</span>
+</pre>
+<h4>2) 生成standby redo log</h4>
+<pre class="chroma"><span class="c1">-- 查看redo log和standby redo log
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">GROUP</span><span class="o">#</span><span class="p">,</span> <span class="n">BYTES</span> <span class="k">FROM</span> <span class="n">V$LOG</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">GROUP</span><span class="o">#</span><span class="p">,</span> <span class="n">BYTES</span> <span class="k">FROM</span> <span class="n">V$STANDBY_LOG</span><span class="p">;</span>
+
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">4</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo01.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">5</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo02.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">6</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo03.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">7</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo04.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+</pre>
+<h4>3) 初始化参数</h4>
+
+<p>step 1. 检查DB_UNIQUE_NAME和DB_NAME</p>
+<pre class="chroma"><span class="k">show</span> <span class="k">parameter</span> <span class="n">db_name</span>
+<span class="k">show</span> <span class="k">parameter</span> <span class="n">db_unique_name</span>
+</pre>
+<blockquote>
+<p>主库和备库上的DB_NAME需要一致，而DB_UNIQUE_NAME需要不同。<br />
+DB_UNIQUE_NAME会用在DG_CONFIG中的LOG_ARCHIVE_CONFIG参数中。<br />
+此例中，我们给node2的db_unique_name分别为EXAMPLE_STBY</p>
+</blockquote>
+
+<p>step 2. 配置LOG_ARCHIVE_CONFIG参数</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_CONFIG</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">DG_CONFIG=(EXAMPLE,EXAMPLE_STBY)</span><span class="s1">&#39;</span><span class="p">;</span>
+</pre>
+<p>step 3. 配置归档日志储存位置</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_DEST_1</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">LOCATION=USE_DB_RECOVERY_FILE_DEST VALID_FOR=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=EXAMPLE</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_DEST_STATE_1</span><span class="o">=</span><span class="n">ENABLE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_DEST_2</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">SERVICE=example_stby NOAFFIRM ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=EXAMPLE_STBY</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_DEST_STATE_2</span><span class="o">=</span><span class="n">ENABLE</span><span class="p">;</span>
+</pre>
+<p>step 4. 配置LOG_ARCHIVE_FORMAT和LOG_ARCHIVE_MAX_PROCESSES<br />
+将REMOTE_LOGIN_PASSWORDFILE设置为exclusive.</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_FORMAT</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">%t_%s_%r.arc</span><span class="s1">&#39;</span> <span class="k">SCOPE</span><span class="o">=</span><span class="n">SPFILE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_ARCHIVE_MAX_PROCESSES</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">REMOTE_LOGIN_PASSWORDFILE</span><span class="o">=</span><span class="k">EXCLUSIVE</span> <span class="k">SCOPE</span><span class="o">=</span><span class="n">SPFILE</span><span class="p">;</span>
+</pre>
+<p>step 5. 除了以上配置之外，推荐也确保主库可以切换为备库</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">FAL_SERVER</span><span class="o">=</span><span class="n">EXAMPLE_STBY</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">DB_FILE_NAME_CONVERT</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE</span><span class="s1">&#39;</span> <span class="k">SCOPE</span><span class="o">=</span><span class="n">SPFILE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">LOG_FILE_NAME_CONVERT</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE</span><span class="s1">&#39;</span> <span class="k">SCOPE</span><span class="o">=</span><span class="n">SPFILE</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="k">SET</span> <span class="n">STANDBY_FILE_MANAGEMENT</span><span class="o">=</span><span class="n">AUTO</span><span class="p">;</span>
+</pre>
+<h4>4) 监听服务安装</h4>
+
+<p>需要在各服务器的&rdquo;$ORACLE_HOME/network/admin/tnsnames.ora&rdquo;中配置主库和备库的入口。<br />
+可以使用netca或者手动创建以下内容</p>
+
+<p>step 1. 配置listener.ora</p>
+<pre class="chroma">vim /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora
+**********************************************
+<span class="c1"># listener.ora Network Configuration File: /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora</span>
+<span class="c1"># Generated by Oracle configuration tools.</span>
+
+<span class="nv">SID_LIST_LISTENER</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">SID_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">SID_DESC</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">GLOBAL_DBNAME</span> <span class="o">=</span> EXAMPLE<span class="o">)</span>
+      <span class="o">(</span><span class="nv">ORACLE_HOME</span> <span class="o">=</span> /u01/app/oracle/product/11.2.0/dbhome_1<span class="o">)</span>
+      <span class="o">(</span><span class="nv">SID_NAME</span> <span class="o">=</span> EXAMPLE<span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">LISTENER</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> IPC<span class="o">)</span><span class="o">(</span><span class="nv">KEY</span> <span class="o">=</span> EXTPROC1521<span class="o">)</span><span class="o">)</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)</span><span class="o">(</span><span class="nv">HOST</span> <span class="o">=</span> node1.dataguard.com<span class="o">)</span><span class="o">(</span><span class="nv">PORT</span> <span class="o">=</span> 1521<span class="o">)</span><span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">ADR_BASE_LISTENER</span> <span class="o">=</span> /u01/app/oracle
+**********************************************
+</pre>
+<p>step 2. 配置tnsnames.ora</p>
+<pre class="chroma">vim /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora
+**********************************************
+<span class="nv">EXAMPLE</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">ADDRESS_LIST</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)</span><span class="o">(</span><span class="nv">HOST</span> <span class="o">=</span> node1.dataguard.com<span class="o">)</span><span class="o">(</span><span class="nv">PORT</span> <span class="o">=</span> 1521<span class="o">)</span><span class="o">)</span>
+    <span class="o">)</span>
+    <span class="o">(</span><span class="nv">CONNECT_DATA</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">SID</span><span class="o">=</span>EXAMPLE<span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">EXAMPLE_STBY</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">ADDRESS_LIST</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)</span><span class="o">(</span><span class="nv">HOST</span> <span class="o">=</span> node2.dataguard.com<span class="o">)</span><span class="o">(</span><span class="nv">PORT</span> <span class="o">=</span> 1521<span class="o">)</span><span class="o">)</span>
+    <span class="o">)</span>
+    <span class="o">(</span><span class="nv">CONNECT_DATA</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">SID</span><span class="o">=</span>EXAMPLE<span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+**********************************************
+</pre>
+<p>step 3. 重启监听服务</p>
+<pre class="chroma">lsnrctl stop
+lsnrctl start
+</pre>
+<h4>5) 备份主库</h4>
+
+<p>使用rman来备份主库</p>
+<pre class="chroma">rman <span class="nv">target</span><span class="o">=</span>/
+RMAN&gt; BACKUP DATABASE PLUS ARCHIVELOG<span class="p">;</span>
+</pre>
+<h4>6) 创建备库控制文件和PFILE</h4>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">CREATE</span> <span class="n">STANDBY</span> <span class="n">CONTROLFILE</span> <span class="k">AS</span> <span class="s1">&#39;</span><span class="s1">/tmp/example_stby.ctl</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="n">PFILE</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">/tmp/initEXAMPLE_stby.ora</span><span class="s1">&#39;</span> <span class="k">FROM</span> <span class="n">SPFILE</span><span class="p">;</span>
+</pre>
+<hr />
+
+<h3>2. 从库安装配置(手动)</h3>
+
+<h4>1) 拷贝文件即适配本地化</h4>
+
+<p>step 1. 拷贝文件</p>
+<pre class="chroma"><span class="c1"># 创建数据库相关目录</span>
+mkdir -p /u01/app/oracle/oradata/EXAMPLE
+mkdir -p /u01/app/oracle/fast_recovery_area/EXAMPLE
+mkdir -p /u01/app/oracle/admin/EXAMPLE/adump
+
+<span class="c1"># 拷贝控制文件到所有目录</span>
+scp oracle@192.168.33.91:/tmp/example_stby.ctl /u01/app/oracle/oradata/EXAMPLE/control01.ctl
+cp /u01/app/oracle/oradata/EXAMPLE/control01.ctl /u01/app/oracle/fast_recovery_area/EXAMPLE/control02.ctl
+
+<span class="c1"># 拷贝备份的数据库文件和日志文件</span>
+scp -r oracle@192.168.33.91:/u01/app/oracle/fast_recovery_area/EXAMPLE/archivelog /u01/app/oracle/fast_recovery_area/EXAMPLE/
+scp -r oracle@192.168.33.91:/u01/app/oracle/fast_recovery_area/EXAMPLE/backupset /u01/app/oracle/fast_recovery_area/EXAMPLE/
+
+<span class="c1"># 拷贝参数文件</span>
+scp -r oracle@192.168.33.91:/tmp/initEXAMPLE_stby.ora /tmp/
+
+<span class="c1"># 拷贝远程登陆密码文件</span>
+scp -r oracle@192.168.33.91:/u01/app/oracle/product/11.2.0/dbhome_1/dbs/orapwEXAMPLE /u01/app/oracle/product/11.2.0/dbhome_1/dbs
+</pre>
+<p>step 2. 修改pfile文件使其适配备库</p>
+<pre class="chroma">vim /tmp/initEXAMPLE_stby.ora
+***************************************
+<span class="c1"># 只需要修改以下字段</span>
+*.db_unique_name<span class="o">=</span><span class="s1">&#39;EXAMPLE_STBY&#39;</span>
+*.fal_server<span class="o">=</span><span class="s1">&#39;EXAMPLE&#39;</span>
+*.log_archive_dest_1<span class="o">=</span><span class="s1">&#39;LOCATION=USE_DB_RECOVERY_FILE_DEST VALID_FOR=(ALL_LOGFILES,ALL_ROLES) DB_UNIQUE_NAME=EXAMPLE_STBY&#39;</span><span class="p">;</span>
+*.log_archive_dest_2<span class="o">=</span><span class="s1">&#39;SERVICE=example NOAFFIRM ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=EXAMPLE&#39;</span>
+***************************************
+</pre>
+<h4>2) 开启监听程序</h4>
+<pre class="chroma">scp -r oracle@192.168.33.91:/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora
+scp -r oracle@192.168.33.91:/u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/tnsnames.ora
+vim /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora
+***************************************
+<span class="c1"># listener.ora Network Configuration File: /u01/app/oracle/product/11.2.0/dbhome_1/network/admin/listener.ora</span>
+<span class="c1"># Generated by Oracle configuration tools.</span>
+
+<span class="nv">SID_LIST_LISTENER</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">SID_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">SID_DESC</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">GLOBAL_DBNAME</span> <span class="o">=</span> EXAMPLE<span class="o">)</span>
+      <span class="o">(</span><span class="nv">ORACLE_HOME</span> <span class="o">=</span> /u01/app/oracle/product/11.2.0/dbhome_1<span class="o">)</span>
+      <span class="o">(</span><span class="nv">SID_NAME</span> <span class="o">=</span> EXAMPLE<span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">LISTENER</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> IPC<span class="o">)</span><span class="o">(</span><span class="nv">KEY</span> <span class="o">=</span> EXTPROC1521<span class="o">)</span><span class="o">)</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)</span><span class="o">(</span><span class="nv">HOST</span> <span class="o">=</span> node2.dataguard.com<span class="o">)</span><span class="o">(</span><span class="nv">PORT</span> <span class="o">=</span> 1521<span class="o">)</span><span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">ADR_BASE_LISTENER</span> <span class="o">=</span> /u01/app/oracle
+***************************************
+
+lsnrctl stop
+lsnrctl start
+</pre>
+<h4>3) 恢复备份</h4>
+
+<p>从pfile中创建SPFILE</p>
+<pre class="chroma"><span class="nb">export</span> <span class="nv">ORACLE_SID</span><span class="o">=</span>EXAMPLE
+sqlplus / as sysdba
+
+CREATE SPFILE FROM <span class="nv">PFILE</span><span class="o">=</span><span class="s1">&#39;/tmp/initEXAMPLE_stby.ora&#39;</span><span class="p">;</span>
+</pre>
+<p>恢复数据库</p>
+<pre class="chroma">rman <span class="nv">target</span><span class="o">=</span>/
+RMAN&gt; STARTUP MOUNT<span class="p">;</span>
+RMAN&gt; RESTORE DATABASE<span class="p">;</span>
+</pre>
+<h4>4) 创建redo日志</h4>
+<pre class="chroma"><span class="c1">-- 查看redo log和standby redo log
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="k">GROUP</span><span class="o">#</span><span class="p">,</span> <span class="n">BYTES</span> <span class="k">FROM</span> <span class="n">V$LOG</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="k">GROUP</span><span class="o">#</span><span class="p">,</span> <span class="n">BYTES</span> <span class="k">FROM</span> <span class="n">V$STANDBY_LOG</span><span class="p">;</span>
+
+<span class="c1">-- ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=MANUAL;
+</span><span class="c1"></span><span class="c1">-- ALTER DATABASE ADD LOGFILE (&#39;/u01/app/oracle/oradata/EXAMPLE/online_redo01.log&#39;) SIZE 50M;
+</span><span class="c1"></span><span class="c1">-- ALTER DATABASE ADD LOGFILE (&#39;/u01/app/oracle/oradata/EXAMPLE/online_redo02.log&#39;) SIZE 50M;
+</span><span class="c1"></span><span class="c1">-- ALTER DATABASE ADD LOGFILE (&#39;/u01/app/oracle/oradata/EXAMPLE/online_redo03.log&#39;) SIZE 50M;
+</span><span class="c1"></span><span class="c1">-- ALTER SYSTEM SET STANDBY_FILE_MANAGEMENT=AUTO;
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">DROP</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">4</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">DROP</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">5</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">DROP</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">6</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">DROP</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">7</span><span class="p">;</span>
+<span class="c1">-- 除了以上创建online redo日志以外，我们还需要在各服务器上创建备库的redo日志，这是为了应对切换角色的情况。  
+</span><span class="c1"></span><span class="c1">-- 创建备库的redo日志时，日志的size要比online的日志要大，而且要多一条。
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">4</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo01.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">5</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo02.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">6</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo03.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">ADD</span> <span class="n">STANDBY</span> <span class="n">LOGFILE</span> <span class="k">GROUP</span> <span class="mi">7</span> <span class="p">(</span><span class="s1">&#39;</span><span class="s1">/u01/app/oracle/oradata/EXAMPLE/standby_redo04.log</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">SIZE</span> <span class="mi">50</span><span class="n">M</span><span class="p">;</span>
+</pre>
+<h4>5) 开启应用进程</h4>
+<pre class="chroma"><span class="c1">-- 打开数据库
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="k">open</span>
+</pre>
+<p>两种应用方式</p>
+<pre class="chroma"><span class="c1">-- 前台redo apply. 直到取消才会返回Session
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span><span class="p">;</span>
+
+<span class="c1">-- 后台 redo apply. 一旦apply进程开启，则返回到session
+</span><span class="c1"></span><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="k">DISCONNECT</span> <span class="k">FROM</span> <span class="k">SESSION</span><span class="p">;</span>
+</pre>
+<p>取消应用的方式</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="n">CANCEL</span><span class="p">;</span>
+</pre>
+<p>设置delay或者nodelay</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="n">CANCEL</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="n">DELAY</span> <span class="mi">30</span> <span class="k">DISCONNECT</span> <span class="k">FROM</span> <span class="k">SESSION</span><span class="p">;</span>
+
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="n">CANCEL</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="n">NODELAY</span> <span class="k">DISCONNECT</span> <span class="k">FROM</span> <span class="k">SESSION</span><span class="p">;</span>
+</pre>
+<p>一旦开启了备库上的redo log，则可以开启下面的实时应用进程</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">RECOVER</span> <span class="n">MANAGED</span> <span class="n">STANDBY</span> <span class="k">DATABASE</span> <span class="k">USING</span> <span class="k">CURRENT</span> <span class="n">LOGFILE</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>或者<code>ALTER DATABASE RECOVER MANAGED STANDBY DATABASE USING CURRENT LOGFILE disconnect;</code></p>
+</blockquote>
+
+<hr />
+
+<h3>3. 测试log传输</h3>
+
+<p>主库上执行</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">nls_date_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">DD-MON-YYYY HH24:MI:SS</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">sequence</span><span class="o">#</span><span class="p">,</span> <span class="n">first_time</span><span class="p">,</span> <span class="n">next_time</span> <span class="k">FROM</span> <span class="n">v$archived_log</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">sequence</span><span class="o">#</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">SYSTEM</span> <span class="n">SWITCH</span> <span class="n">LOGFILE</span><span class="p">;</span>
+</pre>
+<p>备库上执行</p>
+<pre class="chroma"><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">nls_date_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="s1">DD-MON-YYYY HH24:MI:SS</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="k">SELECT</span> <span class="n">sequence</span><span class="o">#</span><span class="p">,</span> <span class="n">first_time</span><span class="p">,</span> <span class="n">next_time</span><span class="p">,</span> <span class="n">applied</span> <span class="k">FROM</span> <span class="n">v$archived_log</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">sequence</span><span class="o">#</span><span class="p">;</span>
+</pre>
+<hr />
+
+<h3>其他</h3>
+
+<ol>
+<li>数据库redo日志信息：/u01/app/oracle/diag/rdbms/example/EXAMPLE/trace/alert_EXAMPLE.log</li>
+</ol>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

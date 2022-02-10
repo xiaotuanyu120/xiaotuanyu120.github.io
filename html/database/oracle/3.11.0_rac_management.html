@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">Linux中的DNS解析问题排查</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
+            </li>
+            <li>
+              <a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
+            </li>
+            <li>
+              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                  <ul>
+                    <li><a href="/database/oracle/1.0.0_silent_installation_env.html">1.0.0 silent模式安装oracle 11G R2 之 环境准备</a></li>
+                    <li><a href="/database/oracle/1.1.0_silent_installation_oracle_install.html">1.1.0 silent模式安装oracle 11G R2 之 oracle程序安装</a></li>
+                    <li><a href="/database/oracle/1.2.0_silent_installation_netca_listen.html">1.2.0 silent模式安装oracle 11G R2 之 netca监听</a></li>
+                    <li><a href="/database/oracle/1.3.0_silent_installation_dbca_dbinstance.html">1.3.0 silent模式安装oracle 11G R2 之 安装database实例</a></li>
+                    <li><a href="/database/oracle/1.4.0_silent_installation_error.html">1.4.0 silent模式安装oracle 11G R2 之 安装错误</a></li>
+                    <li><a href="/database/oracle/1.5.0_silent_install_about_cvuqdisk.html">1.5.0 silent安装之cvuqdisk</a></li>
+                    <li><a href="/database/oracle/1.6.0_OUI_installation_error.html">1.6.0 OUI安装oracle 11G R2 之 oracle程序安装错误集合</a></li>
+                    <li><a href="/database/oracle/2.1.0_oracle_sql_statement.html">2.1.0 oracle sql语句之表备份实例</a></li>
+                    <li><a href="/database/oracle/2.2.0_oracle_sql_drop_database.html">2.2.0 oracle sql语句之删除数据库</a></li>
+                    <li><a href="/database/oracle/3.1.0_rac_oracle_11g_r2_architechture.html">3.1.0 RAC-架构预览</a></li>
+                    <li><a href="/database/oracle/3.10.0_rac_dbca_create_database.html">3.10.0 RAC-通过DBCA创建数据库</a></li>
+                    <li><a href="/database/oracle/3.11.0_rac_management.html">3.11.0 RAC-管理命令</a></li>
+                    <li><a href="/database/oracle/3.2.0_rac_oracle_11g_r2_config_hostname_network.html">3.2.0 RAC-配置主机名和网络</a></li>
+                    <li><a href="/database/oracle/3.3.0_rac_oracle_11g_r2_config_ntp.html">3.3.0 RAC-配置ntp服务</a></li>
+                    <li><a href="/database/oracle/3.4.0_rac_oracle_11g_r2_config_os.html">3.4.0 RAC-系统配置</a></li>
+                    <li><a href="/database/oracle/3.5.0_rac_oracle_11g_r2_config_user_group.html">3.5.0 RAC-配置用户和组</a></li>
+                    <li><a href="/database/oracle/3.6.0_rac_oracle_11g_r2_config_storage.html">3.6.0 RAC-存储配置</a></li>
+                    <li><a href="/database/oracle/3.7.0_rac_oracle_11g_r2_install_oracle_grid_infrastructure.html">3.7.0 RAC-安装oracle grid infrastructure</a></li>
+                    <li><a href="/database/oracle/3.8.0_rac_oracle_11g_r2_install_oracle_11g_r2_software.html">3.8.0 RAC-安装oracle 11g r2软件</a></li>
+                    <li><a href="/database/oracle/3.9.0_rac_asmca_asm_diskgroups.html">3.9.0 RAC-通过ASMCA创建ASM硬盘组</a></li>
+                    <li><a href="/database/oracle/4.1.0_oracle_error_ORA-01034.html">4.1.0 oracle error之ORA-01034</a></li>
+                    <li><a href="/database/oracle/4.2.0_oracle_error_display.html">4.2.0 oracle error之图形安装DISPLAY错误</a></li>
+                    <li><a href="/database/oracle/5.1.0_dataguard_oracle_11gr2_installation.html">5.1.0 oracle dataguard 11g r2 搭建</a></li>
+                    <li><a href="/database/oracle/5.1.1_dataguard_oracle_11gr2_error.html">5.1.1 oracle dataguard 11g r2 rman恢复错误</a></li>
+                    <li><a href="/database/oracle/5.2.0_dataguard_oracle_11gr2_multi_stby_installation.html">5.2.0 oracle dataguard 11g r2 一主多备搭建</a></li>
+                    <li><a href="/database/oracle/5.3.0_dataguard_oracle_11gr2_manage.html">5.3.0 oracle dataguard 11g r2 管理命令</a></li>
+                    <li><a href="/database/oracle/6.1.0_error_ora_28001_password_expired.html">6.2.0 ora-28001 the password has expired</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>3.11.0 RAC-管理命令</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>30 Dec 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 查看节点状态</h3>
+<pre class="chroma"><span class="c1"># 查看节点名称列表</span>
+/u01/app/11.2.0/grid/bin/olsnodes
+db-oracle-node1
+db-oracle-node2
+
+<span class="c1"># 查看节点的vip</span>
+/u01/app/11.2.0/grid/bin/olsnodes -i
+db-oracle-node1 db-oracle-node1-vip
+db-oracle-node2 db-oracle-node2-vip
+
+<span class="c1"># 查看节点的激活状态</span>
+/u01/app/11.2.0/grid/bin/olsnodes -s
+db-oracle-node1 Active
+db-oracle-node2 Active
+</pre>
+<hr />
+
+<h3>2. 查看节点资源状态</h3>
+<pre class="chroma">/u01/app/11.2.0/grid/bin/crs_stat
+<span class="nv">NAME</span><span class="o">=</span>ora.DATADG.dg
+<span class="nv">TYPE</span><span class="o">=</span>ora.diskgroup.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.FRADG.dg
+<span class="nv">TYPE</span><span class="o">=</span>ora.diskgroup.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.LISTENER.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>ora.listener.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.LISTENER_SCAN1.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_listener.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.LISTENER_SCAN2.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_listener.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.LISTENER_SCAN3.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_listener.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.OCRVOTE.dg
+<span class="nv">TYPE</span><span class="o">=</span>ora.diskgroup.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.REDODG.dg
+<span class="nv">TYPE</span><span class="o">=</span>ora.diskgroup.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.asm
+<span class="nv">TYPE</span><span class="o">=</span>ora.asm.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.cvu
+<span class="nv">TYPE</span><span class="o">=</span>ora.cvu.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node1.ASM1.asm
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node1.LISTENER_DB-ORACLE-NODE1.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node1.gsd
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>OFFLINE
+<span class="nv">STATE</span><span class="o">=</span>OFFLINE
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node1.ons
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node1.vip
+<span class="nv">TYPE</span><span class="o">=</span>ora.cluster_vip_net1.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node2.ASM2.asm
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node2.LISTENER_DB-ORACLE-NODE2.lsnr
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node2.gsd
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>OFFLINE
+<span class="nv">STATE</span><span class="o">=</span>OFFLINE
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node2.ons
+<span class="nv">TYPE</span><span class="o">=</span>application
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.db-oracle-node2.vip
+<span class="nv">TYPE</span><span class="o">=</span>ora.cluster_vip_net1.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.gsd
+<span class="nv">TYPE</span><span class="o">=</span>ora.gsd.type
+<span class="nv">TARGET</span><span class="o">=</span>OFFLINE
+<span class="nv">STATE</span><span class="o">=</span>OFFLINE
+
+<span class="nv">NAME</span><span class="o">=</span>ora.net1.network
+<span class="nv">TYPE</span><span class="o">=</span>ora.network.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.oc4j
+<span class="nv">TYPE</span><span class="o">=</span>ora.oc4j.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.ons
+<span class="nv">TYPE</span><span class="o">=</span>ora.ons.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.racdb.db
+<span class="nv">TYPE</span><span class="o">=</span>ora.database.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.scan1.vip
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_vip.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node2
+
+<span class="nv">NAME</span><span class="o">=</span>ora.scan2.vip
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_vip.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="nv">NAME</span><span class="o">=</span>ora.scan3.vip
+<span class="nv">TYPE</span><span class="o">=</span>ora.scan_vip.type
+<span class="nv">TARGET</span><span class="o">=</span>ONLINE
+<span class="nv">STATE</span><span class="o">=</span>ONLINE on db-oracle-node1
+
+<span class="c1">## 以另外一种方式查看</span>
+/u01/app/11.2.0/grid/bin/crs_stat -t
+Name           Type           Target    State     Host
+------------------------------------------------------------
+ora.DATADG.dg  ora....up.type ONLINE    ONLINE    db-o...ode1
+ora.FRADG.dg   ora....up.type ONLINE    ONLINE    db-o...ode1
+ora....ER.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N1.lsnr ora....er.type ONLINE    ONLINE    db-o...ode2
+ora....N2.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora....N3.lsnr ora....er.type ONLINE    ONLINE    db-o...ode1
+ora.OCRVOTE.dg ora....up.type ONLINE    ONLINE    db-o...ode1
+ora.REDODG.dg  ora....up.type ONLINE    ONLINE    db-o...ode1
+ora.asm        ora.asm.type   ONLINE    ONLINE    db-o...ode1
+ora.cvu        ora.cvu.type   ONLINE    ONLINE    db-o...ode1
+ora....SM1.asm application    ONLINE    ONLINE    db-o...ode1
+ora....E1.lsnr application    ONLINE    ONLINE    db-o...ode1
+ora....de1.gsd application    OFFLINE   OFFLINE
+ora....de1.ons application    ONLINE    ONLINE    db-o...ode1
+ora....de1.vip ora....t1.type ONLINE    ONLINE    db-o...ode1
+ora....SM2.asm application    ONLINE    ONLINE    db-o...ode2
+ora....E2.lsnr application    ONLINE    ONLINE    db-o...ode2
+ora....de2.gsd application    OFFLINE   OFFLINE
+ora....de2.ons application    ONLINE    ONLINE    db-o...ode2
+ora....de2.vip ora....t1.type ONLINE    ONLINE    db-o...ode2
+ora.gsd        ora.gsd.type   OFFLINE   OFFLINE
+ora....network ora....rk.type ONLINE    ONLINE    db-o...ode1
+ora.oc4j       ora.oc4j.type  ONLINE    ONLINE    db-o...ode1
+ora.ons        ora.ons.type   ONLINE    ONLINE    db-o...ode1
+ora.racdb.db   ora....se.type ONLINE    ONLINE    db-o...ode1
+ora.scan1.vip  ora....ip.type ONLINE    ONLINE    db-o...ode2
+ora.scan2.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+ora.scan3.vip  ora....ip.type ONLINE    ONLINE    db-o...ode1
+</pre>
+<hr />
+
+<h3>3. 查看节点服务状态</h3>
+<pre class="chroma"><span class="c1"># 查看crs服务，此服务监听集群所有的资源情况，对它们产生启动关闭切换等操作</span>
+/u01/app/11.2.0/grid/bin/crsctl check crs
+CRS-4638: Oracle High Availability Services is online
+CRS-4537: Cluster Ready Services is online
+CRS-4529: Cluster Synchronization Services is online
+CRS-4533: Event Manager is online
+
+<span class="c1"># 查看时间服务ctss</span>
+/u01/app/11.2.0/grid/bin/crsctl check ctss
+CRS-4700: The Cluster Time Synchronization Service is in Observer mode.
+
+<span class="c1"># 查看节点状态</span>
+/u01/app/11.2.0/grid/bin/crsctl check cluster -all
+**************************************************************
+db-oracle-node1:
+CRS-4537: Cluster Ready Services is online
+CRS-4529: Cluster Synchronization Services is online
+CRS-4533: Event Manager is online
+**************************************************************
+db-oracle-node2:
+CRS-4537: Cluster Ready Services is online
+CRS-4529: Cluster Synchronization Services is online
+CRS-4533: Event Manager is online
+**************************************************************
+</pre>
+<hr />
+
+<h3>4. 查看ASM状态</h3>
+<pre class="chroma"><span class="c1">## 查看系统进程</span>
+ps aux <span class="p">|</span>grep ASM
+grid      <span class="m">4757</span>  0.0  0.3 <span class="m">499420</span> <span class="m">10700</span> ?        Ss   Dec29   0:20 asm_pmon_+ASM1
+grid      <span class="m">4759</span>  0.0  0.2 <span class="m">497040</span>  <span class="m">6356</span> ?        Ss   Dec29   0:20 asm_psp0_+ASM1
+grid      <span class="m">4761</span>  2.7  0.2 <span class="m">497040</span>  <span class="m">6084</span> ?        Ss   Dec29  39:20 asm_vktm_+ASM1
+grid      <span class="m">4765</span>  0.0  0.2 <span class="m">498464</span>  <span class="m">7592</span> ?        Ss   Dec29   0:02 asm_gen0_+ASM1
+grid      <span class="m">4767</span>  0.1  0.5 <span class="m">503320</span> <span class="m">14944</span> ?        Ss   Dec29   1:28 asm_diag_+ASM1
+grid      <span class="m">4769</span>  0.0  0.2 <span class="m">497296</span>  <span class="m">6728</span> ?        Ss   Dec29   0:16 asm_ping_+ASM1
+grid      <span class="m">4771</span>  0.4  0.8 <span class="m">509500</span> <span class="m">23872</span> ?        Ss   Dec29   6:28 asm_dia0_+ASM1
+grid      <span class="m">4773</span>  0.2  0.5 <span class="m">505512</span> <span class="m">16292</span> ?        Ss   Dec29   3:50 asm_lmon_+ASM1
+...
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

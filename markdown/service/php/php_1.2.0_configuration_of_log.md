@@ -1,0 +1,80 @@
+---
+title: php 1.2.0: PHP配置 - access,slow,error 日志
+date: 2015-01-12 05:47:00
+categories: service/php
+tags: [php]
+---
+
+### 0. php错误日志配置
+``` bash
+## 如果使用了php-fpm
+vim php-fpm.conf
+************************************
+[global]
+error_log = log/error_log
+
+[www]
+catch_workers_output = yes
+************************************
+
+
+vim php.ini
+************************************
+## 是否在浏览器展示错误信息
+display_error=off
+## 用于处理web服务器返回500时，查看进一步的错误信息
+
+## 是否开启日志记录
+log_errors=on
+
+## 错误日志的记录路径       
+error_log=/path/to/logfile
+
+## 错误日志的记录级别
+error_reporting = E_ALL & ~E_NOTICE
+
+## 错误级别参考
+E_ALL             所有错误和警告（除E_STRICT外）
+E_ERROR           致命的错误。脚本的执行被暂停。
+E_RECOVERABLE_ERROR    大多数的致命错误。
+E_WARNING         非致命的运行时错误，只是警告，但执行不会停止。
+E_PARSE           编译时解析错误，解析错误应该只由分析器生成。
+E_NOTICE          脚本运行时产生的提醒（往往是我们写的脚本里面的一些bug，比如某个变量没有定义），这个错误不会导致任务中断。
+E_STRICT          脚本运行时产生的提醒信息，包含php抛出的让我们要如何修改的建议信息。
+E_CORE_ERROR      在php启动后发生的致命性错误
+E_CORE_WARNING    在php启动后发生的非致命性错误，也就是警告信息
+E_COMPILE_ERROR   php编译时产生的致命性错误
+E_COMPILE_WARNING php编译时产生的警告信息
+E_USER_ERROR      用户生成的错误
+E_USER_WARNING    用户生成的警告
+E_USER_NOTICE     用户生成的提醒
+
+& 表示并且
+~ 表示非
+| 表示或者
+************************************
+# 需要确认指定的路径php daemon的用户有写权限
+
+## PS：修改配置之后，重启php服务和web服务器
+```
+> 假如你做了上面的操作，依然没有错误日志文件，或者没有内容，那你就需要去研究一下php文件内容中的这个设定了：error_reporting(0) (这个好坑)
+
+---
+
+### 1. php慢日志配置
+php-fpm.conf中配置
+``` bash
+## 慢日志路径和超时时间设置
+slowlog = /usr/local/php/logs/slow.log
+request_slowlog_timeout = 1
+```
+
+---
+
+### 2. php日志配置
+php-fpm.conf中配置
+``` bash
+# 以下可在不同的pool中配置
+access.log = /usr/local/php7/var/log/pool.access.log
+access.format = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
+```
