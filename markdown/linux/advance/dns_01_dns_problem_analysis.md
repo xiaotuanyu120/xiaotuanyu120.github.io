@@ -1,5 +1,5 @@
 ---
-title: Linux中的DNS解析问题排查
+title: DNS解析问题排查实践
 date: 2022-02-10 16:49:00
 categories: linux/advance
 tags: [dns,resolv.conf,hosts,dnsmasq,gethostbyname,nginx,resolver]
