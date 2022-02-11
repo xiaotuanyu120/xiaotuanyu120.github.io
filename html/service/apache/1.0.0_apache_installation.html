@@ -132,9 +132,6 @@
                   <a href="/service/keepalived/index.html">keepalived</a>
                 </li>
                 <li>
-                  <a href="/service/lnmp/index.html">lnmp</a>
-                </li>
-                <li>
                   <a href="/service/nginx/index.html">nginx</a>
                 </li>
                 <li>
@@ -329,6 +326,13 @@ sed -nri <span class="s2">&#34;/Include conf\/extra\/httpd-vhosts.conf/aInclude 
 <span class="c1">## ENABLE SYSTEMD UNIT FILE</span>
 systemctl daemon-reload
 systemctl <span class="nb">enable</span> httpd
+</pre>
+<h3>2. 查看apache编译参数</h3>
+<pre class="chroma">cat /path/to/apache/build/config.nice
+
+<span class="c1"># or</span>
+
+httpd -V
 </pre>
     </div>
 

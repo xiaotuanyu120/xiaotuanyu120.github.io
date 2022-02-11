@@ -107,4 +107,11 @@ sed -inr 's#.*;date.timezone =.*#date.timezone = Asia/Shanghai#g' $CONFDIR/php.i
 systemctl daemon-reload
 systemctl enable php-fpm
 ```
+
 > 脚本中PHP配置说明，请参照[php process 配置](/service/php/php_1.5.0_configuration_process.html)
+
+### 2. 查看php安装编译参数
+
+``` bash
+php -i | grep configure
+```

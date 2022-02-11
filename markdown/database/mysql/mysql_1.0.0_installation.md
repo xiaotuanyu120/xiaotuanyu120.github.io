@@ -11,6 +11,7 @@ github源码链接：https://github.com/xiaotuanyu120/install-lnmp
 ---
 
 ### 1. MySQL 5.1.72/5.1.73安装脚本
+
 ``` bash
 cat installmysql5172.sh
 *********************************************************
@@ -71,6 +72,7 @@ $BASEDIR/bin/mysqladmin -u root password "$PASSWORD"
 ---
 
 ### 2. MySQL 5.5.49/5.6.30安装脚本
+
 ``` bash
 # 不同之处只是版本号和配置文件，其他都一样
 cat installmysql5630.sh
@@ -139,6 +141,7 @@ $BASEDIR/bin/mysqladmin -u root password "$PASSWORD"
 ---
 
 ### 3. 脚本中MySQL配置说明
+
 ``` bash
 ## 脚本中配置项及其说明
 ## 启动脚本/etc/init.d/mysqld配置
@@ -155,7 +158,17 @@ pid_file - 指定mysql的pid文件路径
 ---
 
 ### 4. mysql服务版本查看
+
 ``` bash
 /usr/local/mysql/bin/mysql -V
 /usr/local/mysql/bin/mysql  Ver 14.14 Distrib 5.5.49, for Linux (x86_64) using readline 5.1
+```
+
+---
+
+### 5. mysql编译参数查看
+
+``` bash
+# mysql编译参数
+cat /path/to/mysql/bin/mysqlbug | grep configure
 ```
