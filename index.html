@@ -1261,7 +1261,7 @@ ServerTokens Prod
 
         <div class="article-summary">
         <div class="article-title">
-          <a href="service/nginx/nginx_2.1.9_configuration_security.html">nginx: 2.1.9 configuration of security</a>
+          <a href="service/nginx/nginx_2.1.4_configuration_security_base.html">nginx: 2.1.4 安全 - 基础安全</a>
         </div>
         <div>
           <hr style="border: 0; border-top: 1px dashed #a2a9b6">
@@ -1275,6 +1275,8 @@ ServerTokens Prod
 <h3>0. nginx本身的安全性需要注意的点</h3>
 
 <p>这里仅就nginx本身的安全配置做个小的总结，实际生产环境中，安全还会有其他的诸如代码、网络、主机等方方面面，这里就不涉及到了。</p>
+
+<p>业务逻辑方面的安全配置，请参照<a href="/servie/nginx/nginx_2.1.4_configuration_security_config.html">安全 - 业务配置安全</a></p>
 
 <p>仅就nginx本身的安全性而言，有如下几点需要注意
 - 隐藏nginx版本信息
@@ -1318,9 +1320,13 @@ ssl_ciphers HIGH:!aNULL:!MD5:!AES128:!SHA1:!SHA256:!SHA384;
 
 <h3>4. 配置安全的header</h3>
 
-<p>有一些安全的header还是需要额外增加一下的。
-&gt; - <a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">nginx docs: add_header</a>
-&gt;   - <code>always</code>，意思是无论响应代码如何，都会加上这个header</p>
+<p>有一些安全的header还是需要额外增加一下的。</p>
+
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_headers_module.html#add_header">nginx docs: add_header</a></p>
+
+<p><code>always</code>，意思是无论响应代码如何，都会加上这个header</p>
+</blockquote>
 
 <h4>1) Strict-Transport-Security</h4>
 
@@ -1328,9 +1334,7 @@ ssl_ciphers HIGH:!aNULL:!MD5:!AES128:!SHA1:!SHA256:!SHA384;
 <pre class="chroma">add_header Strict-Transport-Security &#34;&#34; always;
 </pre>
 <blockquote>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security">MDN WEB DOCS: Strict-Transport-Security</a></li>
-</ul>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security">MDN WEB DOCS: Strict-Transport-Security</a></p>
 </blockquote>
 
 <h4>2) X-Content-Type-Options</h4>
@@ -1365,17 +1369,22 @@ ssl_ciphers HIGH:!aNULL:!MD5:!AES128:!SHA1:!SHA256:!SHA384;
 
 <p>Content-Security-Policy，这个响应标头用以控制允许user agent为给定页面加载的资源。除了少数例外情况，设置的政策主要涉及指定服务器的源和脚本结束点。用以避免跨站脚本攻击。</p>
 
-<p>可做的限制举几个例子：
-- javascript可以加载的源地址
-- font可以加载的源地址
-- 可以通过脚本加载的URL
-- 图片加载的源地址
-- 多媒体资源加载的源地址
-- 样式文件加载的源地址
-等等</p>
-<pre class="chroma"># 设定所有来源都是本站
-add_header Content-Security-Policy  &#34;default-src &#39;self&#39;;&#34; always;
-</pre>
+<p>可做的限制举几个例子：</p>
+
+<ul>
+<li>javascript可以加载的源地址</li>
+<li>font可以加载的源地址</li>
+<li>可以通过脚本加载的URL</li>
+<li>图片加载的源地址</li>
+<li>多媒体资源加载的源地址</li>
+<li>样式文件加载的源地址
+等等
+<code>
+# 设定所有来源都是本站
+add_header Content-Security-Policy  &quot;default-src 'self';&quot; always;
+</code></li>
+</ul>
+
 <blockquote>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">MDN WEB DOCS: Content-Security-Policy</a></p>
 </blockquote>
@@ -1384,16 +1393,20 @@ add_header Content-Security-Policy  &#34;default-src &#39;self&#39;;&#34; always
 
 <p>在上面虽然隐藏了nginx的服务器版本，但是依然可以被探测是nginx服务器。</p>
 
-<p>若想隐藏这个内容：
-- 一个是购买nginx的商业发行版，通过<code>server_tokens &quot;your string or variable here or empty to disable Server header&quot;</code>来实现；
-- 另外一个安装nginx-extras，但是这个是依赖外部模块，引入了不必要的风险，和我们的目标不一致;
-- 还有一个就是通过修改源码</p>
-<pre class="chroma"># 路径：src/http/ngx_http_header_filter_module.c
-static u_char ngx_http_server_string[] = &#34;Server: nginx&#34; CRLF;
+<p>若想隐藏这个内容：</p>
 
+<ul>
+<li>一个是购买nginx的商业发行版，通过<code>server_tokens &quot;your string or variable here or empty to disable Server header&quot;</code>来实现；</li>
+<li>另外一个安装nginx-extras，但是这个是依赖外部模块，引入了不必要的风险，和我们的目标不一致;</li>
+<li>还有一个就是通过修改源码
+<code>
+# 路径：src/http/ngx_http_header_filter_module.c
+static u_char ngx_http_server_string[] = &quot;Server: nginx&quot; CRLF;
 # 路径：src/core/nginx.h
-#define NGINX_VER          &#34;nginx/&#34; NGINX_VERSION
-</pre>
+#define NGINX_VER          &quot;nginx/&quot; NGINX_VERSION
+</code></li>
+</ul>
+
 <h3>6. 总结</h3>
 
 <p>通过减少服务器信息外漏，增强ssl连接安全和限制请求规范（https、mime不许修改和限制源地址）的多重手段，增强nginx的安全性</p>
