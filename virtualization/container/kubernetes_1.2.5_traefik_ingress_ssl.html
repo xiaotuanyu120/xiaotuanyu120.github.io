@@ -183,11 +183,14 @@
 <li>kubectl 客户端</li>
 </ol>
 
-<p>增加ssl的重点在于
-- 自定义config文件中定义证书文件
-- mount证书和配置文件到pod中
-- ingress规则那边增加secret证书到tls
-<a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">traefik 官方文档</a></p>
+<p>增加ssl的重点在于</p>
+
+<ul>
+<li>自定义config文件中定义证书文件</li>
+<li>mount证书和配置文件到pod中</li>
+<li>ingress规则那边增加secret证书到tls
+<a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">traefik 官方文档</a></li>
+</ul>
 
 <h3>1. 准备secret</h3>
 <pre class="chroma"><span class="c1"># 将tls.crt 和 tls.key 上传到服务器上</span>

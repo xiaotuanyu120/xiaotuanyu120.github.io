@@ -240,8 +240,12 @@
 作用：切换effective用户，会改变HOME变量<br />
 语法：<br />
 &ldquo;su [参数] 用户名&rdquo;<br />
-参数：<br />
-- -,-l,&ndash;login 会改变PATH变量</p>
+参数：</p>
+
+<ul>
+<li>-,-l,&ndash;login 会改变PATH变量<br />
+</li>
+</ul>
 
 <p>用法举例：</p>
 <pre class="chroma"><span class="c1"># &#34;su username&#34;与&#34;su - username&#34;的区别</span>
@@ -305,9 +309,12 @@ root     pts/0        2016-04-27 23:35 <span class="o">(</span>10.10.230.14<span
 作用：临时获得root权限(su到root需要输入root的密码不安全，所以sudo是个好选择)<br />
 安装方法： yum install -y sudo<br />
 语法：sudo 正常命令输入<br />
-参数：<br />
-- -u 指定命令执行时的用户身份
-- -c 后面跟需要执行的命令字符串(-c参数使用方法：sudo sh -c &ldquo;cmd&rdquo;)</p>
+参数：</p>
+
+<ul>
+<li><p>-u 指定命令执行时的用户身份</p></li>
+
+<li><p>-c 后面跟需要执行的命令字符串(-c参数使用方法：sudo sh -c &ldquo;cmd&rdquo;)</p>
 <pre class="chroma"><span class="c1"># 参数&#34;-u&#34;用法举例，用无法登录的sshd用户创建文件</span>
 su sshd
 This account is currently not available.
@@ -324,11 +331,12 @@ good
 <p>配置文件：<br />
 /etc/sudoers<br />
 修改配置文件命令：<br />
-visudo<br />
-&gt; 使用此命令编辑会在保存后检查语法
-使用此命令编辑会更加保证此文件安全，只会同时让一人编辑此文件</p>
+visudo</p>
 
-<p>配置语法：<br />
+<blockquote>
+<p>使用此命令编辑会在保存后检查语法
+使用此命令编辑会更加保证此文件安全，只会同时让一人编辑此文件
+配置语法：<br />
 user_name host_allowed=(as_user) commands<br />
 意为该user_name在被允许的host_allowed上可以作为as_user的身份，执行commands这些命令<br />
 用法举例：</p>
@@ -336,14 +344,12 @@ user_name host_allowed=(as_user) commands<br />
 su <span class="nb">test</span>
 passwd su-test
 passwd: Only root can specify a user name.
-
 <span class="c1"># 切换回root用户，执行visudo给test分配passwd的使用权限</span>
 visudo
 *********************************************
 <span class="c1"># 添加如下内容</span>
 <span class="nb">test</span>    <span class="nv">ALL</span><span class="o">=</span><span class="o">(</span>root<span class="o">)</span>      /usr/bin/passwd
 *********************************************
-
 <span class="c1"># 切换到test用户，用sudo尝试给su-test修改密码</span>
 su - <span class="nb">test</span>
 sudo passwd su-test
@@ -353,7 +359,10 @@ New password:
 BAD PASSWORD: it is based on a dictionary word
 Retype new password:
 passwd: all authentication tokens updated successfully.
-</pre>
+</pre></blockquote>
+</li>
+</ul>
+
     </div>
 
   </div>

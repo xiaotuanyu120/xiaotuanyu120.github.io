@@ -246,21 +246,30 @@ cp jsvc ../..
 <h4>2) daemon.sh参数介绍及自定义</h4>
 
 <p>jsvc提供了<code>$CATALINA_HOME/bin/daemon.sh</code>文件来替代上面的命令行模式来启动tomcat.
-我们有两种定义它的方式，
-- 一种是直接修改它来达到自定义目的；
-- 另外一种是通过创建另外一个脚本，通过调用daemon.sh然后传入变量的方式来自定义。</p>
+我们有两种定义它的方式，</p>
+
+<ul>
+<li>一种是直接修改它来达到自定义目的；</li>
+<li>另外一种是通过创建另外一个脚本，通过调用daemon.sh然后传入变量的方式来自定义。</li>
+</ul>
 
 <blockquote>
-<p><code>daemon.sh</code>其他重要参数：<br />
-- <code>CATALINA_OUT</code>, catalina.out的位置
-- <code>JAVA_OPTS</code>, jvm options</p>
+<p><code>daemon.sh</code>其他重要参数：</p>
+
+<ul>
+<li><code>CATALINA_OUT</code>, catalina.out的位置</li>
+<li><code>JAVA_OPTS</code>, jvm options</li>
+</ul>
 </blockquote>
 
-<p>个人推荐第二种，下面是可使用的自定义参数
-- <code>--java-home</code>，会传给jsvc的<code>-java-home</code>，默认使用系统环境java命令来判断JAVA_HOME
-- <code>--catalina-home</code>，会传给jsvc的<code>-Dcatalina.home</code>，默认使用当前daemon.sh脚本所在目录的上级目录作为catalina.home
-- <code>--catalina-base</code>，会传给jsvc的<code>-Dcatalina.base</code>，默认和&ndash;catalina-home值相同
-- <code>--tomcat-user</code>，回传给jsvc的<code>-user</code>，默认竟然是tomcat用户</p>
+<p>个人推荐第二种，下面是可使用的自定义参数</p>
+
+<ul>
+<li><code>--java-home</code>，会传给jsvc的<code>-java-home</code>，默认使用系统环境java命令来判断JAVA_HOME</li>
+<li><code>--catalina-home</code>，会传给jsvc的<code>-Dcatalina.home</code>，默认使用当前daemon.sh脚本所在目录的上级目录作为catalina.home</li>
+<li><code>--catalina-base</code>，会传给jsvc的<code>-Dcatalina.base</code>，默认和&ndash;catalina-home值相同</li>
+<li><code>--tomcat-user</code>，回传给jsvc的<code>-user</code>，默认竟然是tomcat用户</li>
+</ul>
 
 <p>自定义部分</p>
 <pre class="chroma"><span class="c1"># 自定义catalina.out日志位置</span>

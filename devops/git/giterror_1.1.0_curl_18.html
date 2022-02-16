@@ -198,8 +198,12 @@ git fetch --unshallow
 
 <ol>
 <li><p>如果是容器启动的gitlab，优化内核，将超过RST段之外的信息标记为invalid
-<code>echo 1 &gt; /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal</code>
-&gt; <a href="https://forum.gitlab.com/t/docker-container-cloning-large-repo-fails-solved/6845">forum.gitlab.com large repo fails solved</a></p></li>
+<code>echo 1 &gt; /proc/sys/net/netfilter/nf_conntrack_tcp_be_liberal</code></p>
+
+<blockquote>
+<p><a href="https://forum.gitlab.com/t/docker-container-cloning-large-repo-fails-solved/6845">forum.gitlab.com large repo fails solved</a></p>
+</blockquote>
+</li>
 
 <li><p>检查nginx配置</p></li>
 </ol>

@@ -168,16 +168,22 @@
 
 <p>某天有其他项目组来问我，<code>docker run</code>启动没问题，但是换成<code>docker-compose</code>启动后，一直是显示restarting状态咋办。</p>
 
-<p>因为我一直有以下的docker运行个人习惯：
-- 使用offical原生镜像
-- 每个镜像里面只运行一个服务</p>
+<p>因为我一直有以下的docker运行个人习惯：</p>
+
+<ul>
+<li>使用offical原生镜像</li>
+<li>每个镜像里面只运行一个服务</li>
+</ul>
 
 <p>所以一直没遇到过这个怪问题。后来经过一段时间的面向google运维找到了问题的答案。</p>
 
-<p>参考文档：
-- <a href="https://stackoverflow.com/questions/32255814/what-purpose-does-using-exec-in-docker-entrypoint-scripts-serve">stackoverflow - 关于在docker entrypoint脚本中使用exec的回答</a>
-- <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint">docker docs - 关于docker entrypoint脚本的详细说明</a>
-- <a href="http://wiki.bash-hackers.org/commands/builtin/exec">bash - exec的详细文档</a></p>
+<p>参考文档：</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/32255814/what-purpose-does-using-exec-in-docker-entrypoint-scripts-serve">stackoverflow - 关于在docker entrypoint脚本中使用exec的回答</a></li>
+<li><a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint">docker docs - 关于docker entrypoint脚本的详细说明</a></li>
+<li><a href="http://wiki.bash-hackers.org/commands/builtin/exec">bash - exec的详细文档</a></li>
+</ul>
 
 <h3>1. entrypoint使用脚本的时候，用docker-compose启动一直处在restarting的状态？</h3>
 
@@ -193,24 +199,36 @@
 /usr/local/apache-tomcat-8.5.35/bin/catalina.sh start
 /bin/bash
 </pre>
-<p>这样使用最后一句<code>/bin/bash</code>，相当于把这个脚本hold住，让它不停止，则这个容器就会一直处于一个运行状态。然而这样真的完美吗？答案是否定的。
-&gt; 无语，竟然有人想到用sleep 30000d来解决，只能说世界之大，无奇不有啊</p>
+<p>这样使用最后一句<code>/bin/bash</code>，相当于把这个脚本hold住，让它不停止，则这个容器就会一直处于一个运行状态。然而这样真的完美吗？答案是否定的。</p>
+
+<blockquote>
+<p>无语，竟然有人想到用sleep 30000d来解决，只能说世界之大，无奇不有啊</p>
+</blockquote>
 
 <p>实际测试了一下，结果竟然真的复现了上面说到的情况，使用<code>docker run</code>启动没问题，但是换成<code>docker-compose</code>启动后，一直是显示restarting状态。</p>
 
 <p>而查看<code>docker-compose</code>启动后的容器日志，是一直循环在输出程序启动的日志，于是问题肯定出现在，这个脚本最后的<code>/bin/bash</code>并没有起到把这个脚本hold住的效果。</p>
 
-<p>原来，docker官方已经给这个问题提出过解决方案，详细内容可以参考<a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint">docker docs - 关于docker entrypoint脚本的详细说明</a>。以下是个人总结的entrypoint使用脚本时的几个要点：
-- 通过在脚本中使用<code>exec &lt;cmd&gt;</code>取代直接执行<code>&lt;cmd&gt;</code>的方式，让<code>&lt;cmd&gt;</code>来取代被执行的脚本，而不是另外生成一个新的进程。
-- 这个<code>&lt;cmd&gt;</code>不能是后台执行的语句，只能是前台执行的语句，才能保证容器持续运行</p>
+<p>原来，docker官方已经给这个问题提出过解决方案，详细内容可以参考<a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint">docker docs - 关于docker entrypoint脚本的详细说明</a>。以下是个人总结的entrypoint使用脚本时的几个要点：</p>
 
-<p>下面这个要点看情况使用，并不是必须的
-- 脚本最后添加<code>exec &quot;$@&quot;</code>语句来重定向脚本执行的参数到脚本内部，其实就是把<code>&lt;entrypoint&gt; &lt;cmd&gt;</code>中的<code>&lt;cmd&gt;</code>传递到<code>&lt;entrypoint&gt;</code>脚本中。</p>
+<ul>
+<li>通过在脚本中使用<code>exec &lt;cmd&gt;</code>取代直接执行<code>&lt;cmd&gt;</code>的方式，让<code>&lt;cmd&gt;</code>来取代被执行的脚本，而不是另外生成一个新的进程。</li>
+<li>这个<code>&lt;cmd&gt;</code>不能是后台执行的语句，只能是前台执行的语句，才能保证容器持续运行</li>
+</ul>
 
-<p>根据entrypoint使用脚本时的要点，上面的脚本存在几个问题：
-- 使用<code>catalina.sh start</code>，这样启动是后台启动。需要变更成<code>catalina.sh run</code>这样前台启动的方式
-- <code>/bin/bash</code>去掉，通过给<code>catalina.sh run</code>前面增加<code>exec</code>的方式来让<code>catalina.sh run</code>成为真正控制docker容器生命周期的命令。
-&gt; 为了增强entrypoint的灵活性（entrypoint就是因为能接收参数的灵活性，才在已经有cmd的情况下还有生存空间），可以将run赋值给entrypoint的默认参数<code>cmd</code></p>
+<p>下面这个要点看情况使用，并不是必须的</p>
+
+<ul>
+<li>脚本最后添加<code>exec &quot;$@&quot;</code>语句来重定向脚本执行的参数到脚本内部，其实就是把<code>&lt;entrypoint&gt; &lt;cmd&gt;</code>中的<code>&lt;cmd&gt;</code>传递到<code>&lt;entrypoint&gt;</code>脚本中。</li>
+</ul>
+
+<p>根据entrypoint使用脚本时的要点，上面的脚本存在几个问题：</p>
+
+<ul>
+<li>使用<code>catalina.sh start</code>，这样启动是后台启动。需要变更成<code>catalina.sh run</code>这样前台启动的方式</li>
+<li><code>/bin/bash</code>去掉，通过给<code>catalina.sh run</code>前面增加<code>exec</code>的方式来让<code>catalina.sh run</code>成为真正控制docker容器生命周期的命令。
+&gt; 为了增强entrypoint的灵活性（entrypoint就是因为能接收参数的灵活性，才在已经有cmd的情况下还有生存空间），可以将run赋值给entrypoint的默认参数<code>cmd</code></li>
+</ul>
 
 <p>同上修正上面的问题，得到正确的entrypoint脚本：</p>
 <pre class="chroma"><span class="cp">#!/bin/bash

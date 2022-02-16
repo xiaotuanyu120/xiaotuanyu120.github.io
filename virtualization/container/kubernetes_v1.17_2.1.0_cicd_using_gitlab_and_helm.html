@@ -180,10 +180,13 @@
 
 <h3>1. 思路背景</h3>
 
-<p>虽然gitlab提供了和kubernetes的integration，但是在我看来有几个缺点：
-1. 太复杂，试图增加很多功能，但是我只需要ci/cd流里面的功能
-2. gitlab社区版有很多功能限制
-所以，这边研究一下如何自定义环境变量在gitlab-runner上来使用helm和k8s交互，以达到CI/CD的目的。</p>
+<p>虽然gitlab提供了和kubernetes的integration，但是在我看来有几个缺点：</p>
+
+<ol>
+<li>太复杂，试图增加很多功能，但是我只需要ci/cd流里面的功能</li>
+<li>gitlab社区版有很多功能限制
+所以，这边研究一下如何自定义环境变量在gitlab-runner上来使用helm和k8s交互，以达到CI/CD的目的。</li>
+</ol>
 
 <h3>2. 提供kubernetes访问资源</h3>
 

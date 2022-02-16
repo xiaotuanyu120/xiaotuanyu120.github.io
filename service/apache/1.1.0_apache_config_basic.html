@@ -406,27 +406,28 @@ SSLRandomSeed connect builtin
 
 <p><code>regex</code>就是正则表达式(<a href="https://httpd.apache.org/docs/2.4/glossary.html#regex">regex</a>)。如果正则匹配到了，后面的参数部分才会生效。</p>
 
-<p>其他的部分就是变量的设定了，可选的设定模式有
-- varname，设定变量为1
-- !varname，若变量存在，则删除这个变量
-- varname=value，将变量设定为指定的值</p>
-<pre class="chroma"># 若请求的URI为图片格式，则设定object_is_image为对应的格式
-SetEnvIf Request_URI &#34;\.gif$&#34; object_is_image=gif
-SetEnvIf Request_URI &#34;\.jpg$&#34; object_is_image=jpg
-SetEnvIf Request_URI &#34;\.xbm$&#34; object_is_image=xbm
+<p>其他的部分就是变量的设定了，可选的设定模式有</p>
 
+<ul>
+<li>varname，设定变量为1</li>
+<li>!varname，若变量存在，则删除这个变量</li>
+<li>varname=value，将变量设定为指定的值
+<code>
+# 若请求的URI为图片格式，则设定object_is_image为对应的格式
+SetEnvIf Request_URI &quot;\.gif$&quot; object_is_image=gif
+SetEnvIf Request_URI &quot;\.jpg$&quot; object_is_image=jpg
+SetEnvIf Request_URI &quot;\.xbm$&quot; object_is_image=xbm
 # 若请求是转发自 www.mydomain.example.com ，则设定intra_site_referral为1
 SetEnvIf Referer www\.mydomain\.example\.com intra_site_referral
-
 # 若前面的object_is_image内容是xbm，则设定XBIT_PROCESSING为1
 SetEnvIf object_is_image xbm XBIT_PROCESSING=1
-
 # 若请求的URI包含后缀名，则将其（正则表达式括号内的部分）赋值给EXTENSION
-SetEnvIf Request_URI &#34;\.(.*)$&#34; EXTENSION=$1
-
+SetEnvIf Request_URI &quot;\.(.*)$&quot; EXTENSION=$1
 # 若请求中任意TS开头的字段存在，且以任意a-z中的字母开头，则设定HAVE_TS为1
 SetEnvIf ^TS  ^[a-z]  HAVE_TS
-</pre>
+</code></li>
+</ul>
+
 <blockquote>
 <p>扩展阅读：<a href="https://httpd.apache.org/docs/2.4/env.html">Apache HTTP 服务器中的环境变量</a></p>
 </blockquote>

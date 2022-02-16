@@ -179,8 +179,11 @@
       </div>
 <h3>0. 安装docker</h3>
 
-<p>安装可参照<a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">docker yum安装</a>和<a href="/virtualization/docker/docker_1.1.1_installation_binary.html">docker 二进制安装</a>，也可以使用发行版自己安装的docker版本(只要不是太旧)。
-&gt; 二进制安装方法里面开启了selinux，这里需要关闭</p>
+<p>安装可参照<a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">docker yum安装</a>和<a href="/virtualization/docker/docker_1.1.1_installation_binary.html">docker 二进制安装</a>，也可以使用发行版自己安装的docker版本(只要不是太旧)。</p>
+
+<blockquote>
+<p>二进制安装方法里面开启了selinux，这里需要关闭</p>
+</blockquote>
 
 <hr />
 
@@ -255,9 +258,12 @@ cat &gt; docker-compose.yml <span class="s">&lt;&lt; EOF
 docker-compose up -d
 </pre>
 <blockquote>
-<p>此处不过多介绍elasticsearch和kibana，感兴趣的参照以下文档
-- <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html">elasticsearch 6.0 官方文档</a>
-- <a href="https://www.elastic.co/guide/en/kibana/6.0/setup.html">kibana 6.0 官方文档</a></p>
+<p>此处不过多介绍elasticsearch和kibana，感兴趣的参照以下文档</p>
+
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup.html">elasticsearch 6.0 官方文档</a></li>
+<li><a href="https://www.elastic.co/guide/en/kibana/6.0/setup.html">kibana 6.0 官方文档</a></li>
+</ul>
 </blockquote>
 
 <hr />
@@ -305,13 +311,19 @@ docker-compose up -d
 <blockquote>
 <p>当使用tail时，tag配置成tomcat.*，其中*会自动将path变量的内容扩展到tag中，并且使用“.”代替“/”，此处实际tag为tomcat.usr.local.tomcat.logs.catalina.out</p>
 
-<p>官方文档
-- <a href="https://docs.fluentd.org/v0.12/articles/in_tail">type tail文档</a>
-- <a href="https://docs.fluentd.org/v0.12/articles/parser_multiline">format multiline文档</a></p>
+<p>官方文档</p>
+
+<ul>
+<li><a href="https://docs.fluentd.org/v0.12/articles/in_tail">type tail文档</a></li>
+<li><a href="https://docs.fluentd.org/v0.12/articles/parser_multiline">format multiline文档</a></li>
+</ul>
 </blockquote>
 
-<p>精品文章：
-- <a href="http://270142877.blog.51cto.com/12869137/1951159">Tomcat容器日志收集方案fluentd+elasticsearch+kilbana</a></p>
+<p>精品文章：</p>
+
+<ul>
+<li><a href="http://270142877.blog.51cto.com/12869137/1951159">Tomcat容器日志收集方案fluentd+elasticsearch+kilbana</a></li>
+</ul>
 
     </div>
 

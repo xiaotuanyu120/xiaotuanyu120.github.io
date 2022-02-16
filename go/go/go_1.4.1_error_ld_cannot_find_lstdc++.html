@@ -198,13 +198,19 @@ ld: skipping incompatible //usr/lib/libstdc++.so when searching <span class="k">
 attempt to open //usr/lib/libstdc++.a failed
 ld: cannot find -lstdc++
 </pre>
-<p>提示不兼容，那么就两种可能：
-- 版本不兼容
-- 位数不兼容（32位程序？排除，因为安装了i386的库发现还是不行）</p>
+<p>提示不兼容，那么就两种可能：</p>
 
-<p>那么问题有可能是版本不兼容，后来通过下面两个方式验证，果然是版本不兼容
-- 将centos7 换成fedora 31（libc++ 9.3.0版本）
-- 使用开源项目中的dockerfile，查看libc++版本（9.3.0）</p>
+<ul>
+<li>版本不兼容</li>
+<li>位数不兼容（32位程序？排除，因为安装了i386的库发现还是不行）</li>
+</ul>
+
+<p>那么问题有可能是版本不兼容，后来通过下面两个方式验证，果然是版本不兼容</p>
+
+<ul>
+<li>将centos7 换成fedora 31（libc++ 9.3.0版本）</li>
+<li>使用开源项目中的dockerfile，查看libc++版本（9.3.0）</li>
+</ul>
 
 <p>获得一个教训，开发还是要用ubuntu或者fedora等环境啊，centos和redhat还是只适合服务器和运维个人的测试环境了。</p>
 

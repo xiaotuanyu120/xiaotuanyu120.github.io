@@ -192,9 +192,12 @@
 
 <p>索引之间完全独立，从而也不会有索引之间字段类型冲突的问题。</p>
 
-<p>这个方法有两个优点：
-- 数据更密集的可能性增大，因此会更加从Lucene中使用的压缩技术中收益。
-- 用于全文搜索评分的术语统计更可能是准确的，因为同一索引中的所有文档都代表单独的实体。</p>
+<p>这个方法有两个优点：</p>
+
+<ul>
+<li>数据更密集的可能性增大，因此会更加从Lucene中使用的压缩技术中收益。</li>
+<li>用于全文搜索评分的术语统计更可能是准确的，因为同一索引中的所有文档都代表单独的实体。</li>
+</ul>
 
 <p>每个索引的大小可以根据其包含的文档数量进行适当调整：您可以为<code>user</code>索引使用较少数量的主分片，为<code>tweets</code>索引使用较大数量的主分片。</p>
 
@@ -303,25 +306,43 @@ GET twitter/_search
 
 <h3>移除映射类型的规划</h3>
 
-<p>这对我们的用户来说是一个很大的变化，所以我们试图让它尽可能轻松。更改将如下所示：
-- Elasticsearch 5.6.0
-    - 在索引中设置<code>index.mapping.single_type：true</code>将启用在6.0中强制执行的每个索引单一类型的行为。
-    - 在5.6上创建的索引，可以使用<code>join</code>字段来实现父子类型。
-- Elasticsearch 6.x
-    - 在5.x版本创建的索引将继续在6.x中按照原来的方式存在。
-    - 在6.x版本创建的索引仅允许每个索引单一类型。type可以使用任意名称，但是在每个索引中只能有一个type。推荐的type名称是<code>_doc</code>，以便索引API具有与7.0中相同的路径：<code>PUT {index}/_doc/{id}</code> 和 <code>POST {index}/_doc</code>。
-    - <code>_type</code>名称不能再与<code>_id</code>组合以形成<code>_uid</code>字段。 <code>_uid</code>字段现在是<code>_id</code>字段的别名。
-    - 新创建的索引不再支持老式的父子类型，而是以<code>_join</code>字段方式来替代。
-    - 不推荐再使用<code>_default_</code>映射类型。
-- Elasticsearch 7.x
-    - URL中的<code>type</code>参数已弃用。例如，索引文档不再需要文档类型。对于自动创建的id，新的索引API是<code>PUT {index}/_doc/{id}</code>(在明确的id时) 和 <code>POST {index}/_doc</code>
-    - 索引创建、<code>GET|PUT _mapping</code>和文档API支持查询字符串参数(include_type_name)，该参数指示请求和响应是否应该包含类型名称。这个参数默认是<code>true</code>。7.x中创建的未明确指定类型的索引将使用一个虚拟类型<code>_doc</code>。未设置<code>include_type_name = false</code>将导致弃用警告。
-    - <code>_default_</code>映射类型已删除。
-- Elasticsearch 8.x
-    - URL中不再支持type参数。
-    - 不推荐使用·include_type_name·参数，默认为false，并在其设置为true时使请求失败。
-- Elasticsearch 9.x
-    - <code>include_type_name</code>参数已删除。</p>
+<p>这对我们的用户来说是一个很大的变化，所以我们试图让它尽可能轻松。更改将如下所示：</p>
+
+<ul>
+<li>Elasticsearch 5.6.0
+
+<ul>
+<li>在索引中设置<code>index.mapping.single_type：true</code>将启用在6.0中强制执行的每个索引单一类型的行为。</li>
+<li>在5.6上创建的索引，可以使用<code>join</code>字段来实现父子类型。</li>
+</ul></li>
+<li>Elasticsearch 6.x
+
+<ul>
+<li>在5.x版本创建的索引将继续在6.x中按照原来的方式存在。</li>
+<li>在6.x版本创建的索引仅允许每个索引单一类型。type可以使用任意名称，但是在每个索引中只能有一个type。推荐的type名称是<code>_doc</code>，以便索引API具有与7.0中相同的路径：<code>PUT {index}/_doc/{id}</code> 和 <code>POST {index}/_doc</code>。</li>
+<li><code>_type</code>名称不能再与<code>_id</code>组合以形成<code>_uid</code>字段。 <code>_uid</code>字段现在是<code>_id</code>字段的别名。</li>
+<li>新创建的索引不再支持老式的父子类型，而是以<code>_join</code>字段方式来替代。</li>
+<li>不推荐再使用<code>_default_</code>映射类型。</li>
+</ul></li>
+<li>Elasticsearch 7.x
+
+<ul>
+<li>URL中的<code>type</code>参数已弃用。例如，索引文档不再需要文档类型。对于自动创建的id，新的索引API是<code>PUT {index}/_doc/{id}</code>(在明确的id时) 和 <code>POST {index}/_doc</code></li>
+<li>索引创建、<code>GET|PUT _mapping</code>和文档API支持查询字符串参数(include_type_name)，该参数指示请求和响应是否应该包含类型名称。这个参数默认是<code>true</code>。7.x中创建的未明确指定类型的索引将使用一个虚拟类型<code>_doc</code>。未设置<code>include_type_name = false</code>将导致弃用警告。</li>
+<li><code>_default_</code>映射类型已删除。</li>
+</ul></li>
+<li>Elasticsearch 8.x
+
+<ul>
+<li>URL中不再支持type参数。</li>
+<li>不推荐使用·include_type_name·参数，默认为false，并在其设置为true时使请求失败。</li>
+</ul></li>
+<li>Elasticsearch 9.x
+
+<ul>
+<li><code>include_type_name</code>参数已删除。</li>
+</ul></li>
+</ul>
 
     </div>
 

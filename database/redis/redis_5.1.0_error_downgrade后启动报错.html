@@ -176,16 +176,19 @@
 
 <h4>1) 删除dump.rdb文件</h4>
 
-<p>如何查找dump.rdb文件所在
-1. 查看配置文件<code>dir</code>及<code>dbfilename</code>配置项
-2. redis-cli查看dir值</p>
-<pre class="chroma">127.0.0.1:6379&gt; config get dir
-1<span class="o">)</span> <span class="s2">&#34;dir&#34;</span>
-2<span class="o">)</span> <span class="s2">&#34;/&#34;</span>
-</pre>
-<h4>2) 或者修改dump文件名称</h4>
+<p>如何查找dump.rdb文件所在</p>
 
-<p>去配置文件修改dumpfile名称，dbfilename dump2.rdb</p>
+<ol>
+<li>查看配置文件<code>dir</code>及<code>dbfilename</code>配置项</li>
+<li>redis-cli查看dir值
+<code>bash
+127.0.0.1:6379&gt; config get dir
+1) &quot;dir&quot;
+2) &quot;/&quot;
+</code>
+#### 2) 或者修改dump文件名称
+去配置文件修改dumpfile名称，dbfilename dump2.rdb</li>
+</ol>
 
     </div>
 

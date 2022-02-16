@@ -273,10 +273,13 @@
 
 <h3>3. 具体如何使用</h3>
 
-<p>我们需要配置的两个文件：
-- <code>/etc/subuid</code>
-- <code>/etc/subgid</code>
-这两个文件格式基本一致<code>用户名:映射uid起点:映射uid长度</code>，举个例子<code>container:100000:65536</code>，意思就是container用户启动的容器，映射宿主机的100000-165535到容器的0-65535。也就是root用户的uid 0 映射到宿主机就是uid 100000。</p>
+<p>我们需要配置的两个文件：</p>
+
+<ul>
+<li><code>/etc/subuid</code></li>
+<li><code>/etc/subgid</code>
+这两个文件格式基本一致<code>用户名:映射uid起点:映射uid长度</code>，举个例子<code>container:100000:65536</code>，意思就是container用户启动的容器，映射宿主机的100000-165535到容器的0-65535。也就是root用户的uid 0 映射到宿主机就是uid 100000。</li>
+</ul>
 
 <p>当我们配置好以上两个文件之后，有两个执行文件会负责在容器启动的时候，创建用户命名空间并将配置好的uid和gid映射到容器中，这两个执行文件就是<code>newuidmap</code>,<code>newgidmap</code>(rhel系安装<code>shadow-utils</code>，debian系安装<code>uidmap</code>)。</p>
 

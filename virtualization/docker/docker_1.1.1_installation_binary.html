@@ -182,10 +182,11 @@
 
 <h4>2) 增强安全</h4>
 
-<p>为了增强安全性，系统需要开启selinux，开启selinux后，docker会自动在创建容器时配置selinux的context，也就是说，我们只要开启selinux就好，其他的docker来做了。<br />
-&gt; <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/overview_of_containers_in_red_hat_systems/introduction_to_linux_containers#secure_containers_with_selinux">redhat 关于这docker和selinux的详细解释</a></p>
+<p>为了增强安全性，系统需要开启selinux，开启selinux后，docker会自动在创建容器时配置selinux的context，也就是说，我们只要开启selinux就好，其他的docker来做了。</p>
 
 <blockquote>
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html/overview_of_containers_in_red_hat_systems/introduction_to_linux_containers#secure_containers_with_selinux">redhat 关于这docker和selinux的详细解释</a></p>
+
 <p>关于安全计算模式（seccomp）,参见<a href="https://docs.docker.com/engine/security/seccomp/">docker关于seccomp的详细介绍</a>，通过seccomp可以禁用某些系统调用，来增强docker的安全性。</p>
 </blockquote>
 

@@ -253,35 +253,40 @@ chown -R vsftpd-u:vsftpd-u /home/vsftpd-u/
 <h3>7. selinux &amp; firewalld</h3>
 <pre class="chroma">setsebool -P allow_ftpd_full_access <span class="m">1</span>
 </pre>
-<p>firewalld的两种写法
-- 写法1：开放给所有用户</p>
-<pre class="chroma">firewall-cmd --permanent --add-service<span class="o">=</span>ftp
-</pre>
+<p>firewalld的两种写法</p>
+
 <ul>
-<li>写法2：开放给某个网段
+<li>写法1：开放给所有用户
+<code>bash
+firewall-cmd --permanent --add-service=ftp
+</code>
+- 写法2：开放给某个网段
 <code>bash
 firewall-cmd --permanent --add-rich-rule='rule family=&quot;ipv4&quot; source address=&quot;192.168.0.0/24&quot; service name=&quot;ftp&quot; accept'
 firewall-cmd --reload
-</code>
-&gt; PS：如果希望删除已经增加的规则，去修改public zone的配置文件，重新加载即可
-&gt; <code>
-&gt; vim /etc/firewalld/zones/public.xml
+</code></li>
+</ul>
+
+<blockquote>
+<p>PS：如果希望删除已经增加的规则，去修改public zone的配置文件，重新加载即可</p>
+<pre class="chroma">&gt; vim /etc/firewalld/zones/public.xml
 &gt; firewall-cmd --reload
-&gt;</code>
+&gt; ```
+ 
 ### 8. 配置访问控制
-<strong>需求1</strong>
+**需求1**
 - ftp-W,可以写入，不可读取，无法修改ftp文件内容及名称；
 - ftp-R，可以读取，不可写入，无法修改ftp文件内容及名称。
-<strong>配置ftp-W</strong>
-<code>bash
+
+**配置ftp-W**
+``` bash
 vim /etc/vsftpd/vsftpd.conf
 *********************************************
 ## 增加下面两行（行1：无法修改ftp文件；行2：无法下载）
 cmds_denied=DELE,RMD,RNFR,RNTO,MKD
 download_enable=NO
 *********************************************
-</code></li>
-</ul>
+</pre></blockquote>
 
 <p><strong>配置ftp-R</strong></p>
 <pre class="chroma">vim /etc/vsftpd/vsftpd.conf

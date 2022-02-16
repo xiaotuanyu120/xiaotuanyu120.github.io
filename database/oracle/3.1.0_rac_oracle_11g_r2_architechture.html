@@ -183,10 +183,16 @@
 
 <h4>2) 网络</h4>
 
-<p><img src="/static/images/docs/database/oralce/database-oracle-3.1.0-02.PNG" alt="" />
-- switch*4
-  - public 2个公网
-  - private 2个私网</p>
+<p><img src="/static/images/docs/database/oralce/database-oracle-3.1.0-02.PNG" alt="" /></p>
+
+<ul>
+<li>switch*4
+
+<ul>
+<li>public 2个公网</li>
+<li>private 2个私网</li>
+</ul></li>
+</ul>
 
 <blockquote>
 <p>公网的switch做了链路聚合，使其在逻辑上成为一个switch。而em1和em2则bond在一起成为bond0，提供公网的连接高可用。</p>
@@ -196,17 +202,26 @@
 
 <h4>3) 硬件需求</h4>
 
-<p>推荐配置<br />
-- 集群节点
-  - 至少2G内存
-  - 4个网卡
-  - 支持1024x768的显示分辨率，用以支持显示OUI的图形界面
-  - 集群内所有节点使用统一芯片架构(x86_64)
-  - fiber HBA
-- 交换机
-  - 光纤接口
-  - 千兆连接
-- 存储设备</p>
+<p>推荐配置</p>
+
+<ul>
+<li>集群节点
+
+<ul>
+<li>至少2G内存</li>
+<li>4个网卡</li>
+<li>支持1024x768的显示分辨率，用以支持显示OUI的图形界面</li>
+<li>集群内所有节点使用统一芯片架构(x86_64)</li>
+<li>fiber HBA</li>
+</ul></li>
+<li>交换机
+
+<ul>
+<li>光纤接口</li>
+<li>千兆连接</li>
+</ul></li>
+<li>存储设备</li>
+</ul>
 
 <h4>4) 文件系统分区</h4>
 

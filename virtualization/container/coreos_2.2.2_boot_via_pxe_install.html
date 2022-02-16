@@ -180,14 +180,20 @@
 
 <p>目的：通过<a href="/virtualization/container/coreos_2.2.1_boot_via_pxe_ignition.html">pxe引导</a>进入coreos，然后在coreos执行安装脚本将系统安装到硬盘</p>
 
-<p>思路：
-- pxe引导的coreos自带coreos-install脚本
-- 在另外一台局域网内的机器上提供nginx服务提供系统镜像和yaml文件
-- 执行coreos-install时，使用-b参数指定下载的url，-c参数指定提前下载好的yaml文件，-d参数指定系统安装的磁盘，-V指定需要安装的版本</p>
+<p>思路：</p>
 
-<p>参考资料
-- <a href="https://github.com/k8sp/bootstrapper">https://github.com/k8sp/bootstrapper</a>
-- coreos-install脚本内容</p>
+<ul>
+<li>pxe引导的coreos自带coreos-install脚本</li>
+<li>在另外一台局域网内的机器上提供nginx服务提供系统镜像和yaml文件</li>
+<li>执行coreos-install时，使用-b参数指定下载的url，-c参数指定提前下载好的yaml文件，-d参数指定系统安装的磁盘，-V指定需要安装的版本</li>
+</ul>
+
+<p>参考资料</p>
+
+<ul>
+<li><a href="https://github.com/k8sp/bootstrapper">https://github.com/k8sp/bootstrapper</a></li>
+<li>coreos-install脚本内容</li>
+</ul>
 
 <hr />
 

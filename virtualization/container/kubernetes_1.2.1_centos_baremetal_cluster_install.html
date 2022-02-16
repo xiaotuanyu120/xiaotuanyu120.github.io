@@ -298,11 +298,12 @@
 
 <h2>1. 主机环境</h2>
 
-<p>为了将系统环境和软件环境对安装的影响度降低，需要确保以下几项需求满足
-- 安装必要的工具包<br />
-<code>yum install -y wget vim iptables iptables-services</code></p>
+<p>为了将系统环境和软件环境对安装的影响度降低，需要确保以下几项需求满足</p>
 
 <ul>
+<li><p>安装必要的工具包<br />
+<code>yum install -y wget vim iptables iptables-services</code></p></li>
+
 <li><p>关闭selinux</p>
 <pre class="chroma">sed -i <span class="s2">&#34;s/SELINUX=enforcing/SELINUX=disabled/g&#34;</span> /etc/selinux/config
 setenforce <span class="m">0</span>
@@ -325,10 +326,15 @@ echo &quot;172.16.1.100  master
 sysctl -p
 </pre>
 <blockquote>
-<p>net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器
-- 关闭系统swap</p>
-<pre class="chroma">swapoff -a
-</pre></blockquote>
+<p>net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器</p>
+
+<ul>
+<li>关闭系统swap<br />
+<code>bash
+swapoff -a
+</code></li>
+</ul>
+</blockquote>
 </li>
 </ul>
 
@@ -351,10 +357,13 @@ sysctl -p
 <span class="nb">source</span> /etc/profile.d/kubernetes.sh
 </pre>
 <blockquote>
-<p>规划集群中需要重复使用的内容为变量
-- <code>MASTER_IP</code> - master的静态ip
-- <code>SERVICE_CLUSTER_IP_RANGE</code> - service对象使用的ip范围
-- <code>CLUSTER_NAME</code> - kubernetes集群的名称</p>
+<p>规划集群中需要重复使用的内容为变量</p>
+
+<ul>
+<li><code>MASTER_IP</code> - master的静态ip</li>
+<li><code>SERVICE_CLUSTER_IP_RANGE</code> - service对象使用的ip范围</li>
+<li><code>CLUSTER_NAME</code> - kubernetes集群的名称</li>
+</ul>
 </blockquote>
 
 <!--
@@ -501,11 +510,14 @@ cp pki/ca.crt pki/issued/server.crt pki/private/server.key /usr/local/kubernetes
 ```
 -->
 
-<p>准备配置文件：
-- config, 通用配置
-- apiserver, kube-apiserver配置
-- controller-manager, kube-controller-manager配置
-- scheduler, kube-scheduler配置</p>
+<p>准备配置文件：</p>
+
+<ul>
+<li>config, 通用配置</li>
+<li>apiserver, kube-apiserver配置</li>
+<li>controller-manager, kube-controller-manager配置</li>
+<li>scheduler, kube-scheduler配置</li>
+</ul>
 <pre class="chroma">cat &gt; /usr/local/kubernetes/conf/config <span class="s">&lt;&lt; EOF
 </span><span class="s">###
 </span><span class="s"># kubernetes system config
@@ -586,10 +598,13 @@ cat &gt; /usr/local/kubernetes/conf/scheduler <span class="s">&lt;&lt; EOF
 <p><a href="https://github.com/kubernetes/kubernetes/issues/33714">错误: No API token found for service account &ldquo;default&rdquo;, retry after the token</a>，解决办法是配置<code>KUBE_ADMISSION_CONTROL=&quot;&quot;</code>禁用<code>KUBE_ADMISSION_CONTROL</code></p>
 </blockquote>
 
-<p>准备systemd unit文件:
-- kube-apiserver.service
-- kube-controller-manager.service
-- kube-scheduler.service</p>
+<p>准备systemd unit文件:</p>
+
+<ul>
+<li>kube-apiserver.service</li>
+<li>kube-controller-manager.service</li>
+<li>kube-scheduler.service</li>
+</ul>
 <pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
 </span><span class="s1">Description=Kubernetes API Server
 </span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes
@@ -731,9 +746,12 @@ systemctl start flannel
 <blockquote>
 <p>每个节点的flannel需要根据自己情况来填写配置文件</p>
 
-<p>flannel启动后生成了以下文件：<br />
-- /var/run/flannel/subnet.env, 从etcd中获取信息然后生成的flanneld配置文件
-- /run/docker_opts.env, flannel service文件中指定的/usr/libexec/flannel/mk-docker-opts.sh生成的docker环境变量文件</p>
+<p>flannel启动后生成了以下文件：</p>
+
+<ul>
+<li>/var/run/flannel/subnet.env, 从etcd中获取信息然后生成的flanneld配置文件</li>
+<li>/run/docker_opts.env, flannel service文件中指定的/usr/libexec/flannel/mk-docker-opts.sh生成的docker环境变量文件</li>
+</ul>
 </blockquote>
 
 <h3>2) 安装docker(node节点)</h3>
@@ -814,10 +832,13 @@ systemctl start docker
 
 <h3>3) 安装kubelet(node节点)</h3>
 
-<p>准备配置文件：
-- config, 通用配置
-- kubelet, kubelet配置
-- controller-manager, kube-controller-manager配置</p>
+<p>准备配置文件：</p>
+
+<ul>
+<li>config, 通用配置</li>
+<li>kubelet, kubelet配置</li>
+<li>controller-manager, kube-controller-manager配置</li>
+</ul>
 <pre class="chroma">mkdir /usr/local/kubernetes/conf -p
 
 cat &gt; /usr/local/kubernetes/conf/config <span class="s">&lt;&lt; EOF
@@ -890,9 +911,12 @@ cat &gt; /usr/local/kubernetes/conf/node-kubeconfig.yaml <span class="s">&lt;&lt
 </span><span class="s">current-context: kubelet-cluster.local
 </span><span class="s">EOF</span>
 </pre>
-<p>准备systemd unit文件:
-- kubelet.service
-- kube-proxy.service</p>
+<p>准备systemd unit文件:</p>
+
+<ul>
+<li>kubelet.service</li>
+<li>kube-proxy.service</li>
+</ul>
 <pre class="chroma"><span class="nb">echo</span> <span class="s1">&#39;[Unit]
 </span><span class="s1">Description=Kubernetes Kubelet Server
 </span><span class="s1">Documentation=https://github.com/GoogleCloudPlatform/kubernetes

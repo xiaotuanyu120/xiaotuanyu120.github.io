@@ -238,13 +238,19 @@
       </div>
 <h3>1. <code>/etc/hosts</code></h3>
 
-<p>作用：一个用来映射hostnames的静态表，原理跟DNS类似<br />
-&gt; man page description
-hosts - The static table lookup for hostnames</p>
+<p>作用：一个用来映射hostnames的静态表，原理跟DNS类似</p>
 
-<p>要点：
-- 名称解析方法：1、使用DNS域名服务器；2、使用/etc/hosts文件进行解析。
-- 可以在/etc/host.conf文件修改使用的优先顺序。order 指定按照哪种顺序来尝试不同的名字解析机制。bind 使用DNS域名服务器来解析名字，hosts是使用/etc/hosts文件进行解析。</p>
+<blockquote>
+<p>man page description
+hosts - The static table lookup for hostnames</p>
+</blockquote>
+
+<p>要点：</p>
+
+<ul>
+<li>名称解析方法：1、使用DNS域名服务器；2、使用/etc/hosts文件进行解析。</li>
+<li>可以在/etc/host.conf文件修改使用的优先顺序。order 指定按照哪种顺序来尝试不同的名字解析机制。bind 使用DNS域名服务器来解析名字，hosts是使用/etc/hosts文件进行解析。</li>
+</ul>
 
 <h3>2. <code>/etc/host.conf</code></h3>
 <pre class="chroma"># 当系统中同时存在DNS域名解析和/etc/hosts主机表机制时，由该/etc/host.conf确定主机名解释顺序

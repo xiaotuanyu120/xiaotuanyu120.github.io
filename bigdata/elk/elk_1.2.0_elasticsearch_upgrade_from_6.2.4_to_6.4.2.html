@@ -158,8 +158,11 @@
 
 <p>如果在使用6.0以前的版本，推荐在升级到6.4.2之前先升级到5.6版本。X-Pack 5.6提供了一个免费的升级助手，可以帮助在升级之前定位你需要处理的问题，而且在升级之前简化需要reindex的索引的迁移过程。升级助手在试用版和基本版许可证下都是启用的。你可以以升级为目的来安装X-Pack。在6.3版本及其之后，当你安装elasticsearch、kibana和logstash时，X-Pack会自动被安装。</p>
 
-<p>从elasticsearch5.6或者elasticsearch6.0-6.2版本升级来elasticsearch6.4.2都支持滚动升级。从5.6之前的任何版本升级都需要完全重新启动集群。
-&gt; 2.x版本的索引不兼容6.4.2。你必须在升级6.4.2之前，在5.6版本上移除或者重新索引它们。内部Kibana和X-Pack索引以及默认的Beats和Logstash映射模板也需要更新才能与6.4.2一起使用。</p>
+<p>从elasticsearch5.6或者elasticsearch6.0-6.2版本升级来elasticsearch6.4.2都支持滚动升级。从5.6之前的任何版本升级都需要完全重新启动集群。</p>
+
+<blockquote>
+<p>2.x版本的索引不兼容6.4.2。你必须在升级6.4.2之前，在5.6版本上移除或者重新索引它们。内部Kibana和X-Pack索引以及默认的Beats和Logstash映射模板也需要更新才能与6.4.2一起使用。</p>
+</blockquote>
 
 <h3>3. Preparing to upgrade</h3>
 
@@ -205,12 +208,15 @@
 
 <h3>4. Upgrade order</h3>
 
-<p>elastic stack升级时需要按照以下的顺序：
-1. Elasticsearch Hadoop: <a href="https://www.elastic.co/guide/en/elasticsearch/hadoop/6.4/install.html">install instructions</a>
-2. Elasticsearch: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/setup-upgrade.html">upgrade instructions</a>
-3. Kibana: <a href="https://www.elastic.co/guide/en/kibana/6.4/upgrade.html">upgrade instructions</a>
-4. Logstash: <a href="http://www.elastic.co/guide/en/logstash/6.4/upgrading-logstash.html">upgrade instructions</a>
-5. Beats: <a href="https://www.elastic.co/guide/en/beats/libbeat/6.4/upgrading.html">upgrade instructions</a></p>
+<p>elastic stack升级时需要按照以下的顺序：</p>
+
+<ol>
+<li>Elasticsearch Hadoop: <a href="https://www.elastic.co/guide/en/elasticsearch/hadoop/6.4/install.html">install instructions</a></li>
+<li>Elasticsearch: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/setup-upgrade.html">upgrade instructions</a></li>
+<li>Kibana: <a href="https://www.elastic.co/guide/en/kibana/6.4/upgrade.html">upgrade instructions</a></li>
+<li>Logstash: <a href="http://www.elastic.co/guide/en/logstash/6.4/upgrading-logstash.html">upgrade instructions</a></li>
+<li>Beats: <a href="https://www.elastic.co/guide/en/beats/libbeat/6.4/upgrading.html">upgrade instructions</a></li>
+</ol>
 
 <h3>5. elasticsearch 滚动升级</h3>
 

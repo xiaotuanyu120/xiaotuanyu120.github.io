@@ -170,9 +170,12 @@
 <h3>0. <code>.gitlab-ci.yml</code>说明</h3>
 
 <p>参考链接：<a href="https://docs.gitlab.com/ee/ci/yaml/">.gitlab-ci.yml 官方文档</a>
-.gitlab-ci.yml是用于配置gitlab的pipeline，里面定义了
-- gitlab-runner执行的内容
-- 特定条件触发后任务的执行走向</p>
+.gitlab-ci.yml是用于配置gitlab的pipeline，里面定义了</p>
+
+<ul>
+<li>gitlab-runner执行的内容</li>
+<li>特定条件触发后任务的执行走向</li>
+</ul>
 <pre class="chroma"><span class="k">image</span><span class="p">:</span><span class="w"> </span>dind<span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">stages</span><span class="p">:</span><span class="w">
@@ -210,10 +213,13 @@
 </span><span class="w"></span><span class="w">    </span>- master<span class="w">
 </span></pre>
 <blockquote>
-<p>注意点：
-- 只有一个stage里面的所有job都执行完毕了，才会去执行下一个stage
-- 同一个stage里面的job是同时被执行的
-- only限定了只有master分支commit后才会触发pipeline的执行</p>
+<p>注意点：</p>
+
+<ul>
+<li>只有一个stage里面的所有job都执行完毕了，才会去执行下一个stage</li>
+<li>同一个stage里面的job是同时被执行的</li>
+<li>only限定了只有master分支commit后才会触发pipeline的执行</li>
+</ul>
 </blockquote>
 
 <h3>1. 常用的gitlab ci内置变量</h3>
@@ -262,11 +268,14 @@
 
 <h3>4. git strategy</h3>
 
-<p>通过设定GIT_STRATEGY，我们可以来给job设定不同的git策略
-- clone，最慢的选项，会重新下载代码，保证本地代码总是最原始状态
-- fetch，会使用本地的代码为基础，然后拉取最新的commit，来加速拉取代码的速度
-- none，会直接使用本地的代码
-&gt; <a href="https://docs.gitlab.com/ee/ci/yaml/#git-strategy">gitlab docs about git strategy</a></p>
+<p>通过设定GIT_STRATEGY，我们可以来给job设定不同的git策略</p>
+
+<ul>
+<li>clone，最慢的选项，会重新下载代码，保证本地代码总是最原始状态</li>
+<li>fetch，会使用本地的代码为基础，然后拉取最新的commit，来加速拉取代码的速度</li>
+<li>none，会直接使用本地的代码
+&gt; <a href="https://docs.gitlab.com/ee/ci/yaml/#git-strategy">gitlab docs about git strategy</a></li>
+</ul>
 
 <h3>5. anchors</h3>
 

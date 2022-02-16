@@ -178,9 +178,12 @@ If the crypto.policy Security Property is defined, then the JDK uses the policy 
 If the crypto.policy Security Property is not set, and the traditional US_export_policy.jar and local_policy.jar files (which correspond to strong but limited cryptographic strength and unlimited cryptographic strength, respectively) are found in the legacy &lt;java_home&gt;/lib/security directory, then the JDK uses the policy configuration specified in these JAR files. This helps preserve compatibility for users upgrading from an older version of the JDK.
 If the crypto.policy Security Property is not set, and the US_export_policy.jar and local_policy.jar files don&#39;t exist in the &lt;java_home&gt;/lib/security directory, then the JDK uses unlimited cryptographic strength, which is equivalent to cryto.policy=unlimited.
 </pre>
-<p>所以，综上所述
-- 如果是用新版本的jdk，直接在<java_home>/jre/lib/security/java.security中配置cryto.policy=unlimited即可
-- 如果是老版本的jdk，直接下载对应版本的unlimited policy文件，然后解压到<java_home>/jre/lib/security即可</p>
+<p>所以，综上所述</p>
+
+<ul>
+<li>如果是用新版本的jdk，直接在<java_home>/jre/lib/security/java.security中配置cryto.policy=unlimited即可</li>
+<li>如果是老版本的jdk，直接下载对应版本的unlimited policy文件，然后解压到<java_home>/jre/lib/security即可</li>
+</ul>
 
 <blockquote>
 <p><a href="https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html">oracle官方说明文档 - 请查看启用unlimited部分</a></p>

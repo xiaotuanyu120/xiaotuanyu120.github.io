@@ -182,9 +182,12 @@
 
 <p>docker daemon其实就是一个容器管理服务端，关于容器的实现，其实都是linux kernel提供的能力。和虚拟机不同，容器其实是在一定的资源隔离的情况下（kernel提供的能力），来给某个进程提供了一个独立的运行环境。</p>
 
-<p>所以容器，其实就是一个特殊环境下的进程，本身所有的进程，应该是按照树状结构挂在linux系统上面的，但是因为docker的daemon设计，导致了所有容器进程，都挂在了docker-daemon下面。这样的设计带来了几个问题
-1. docker-daemon死掉后，其他的容器进程会退出
-2. 当普通用户A执行了docker run命令后，容器的启动并不是在用户A的命名空间中启动，这带来了audit上面的溯源问题。</p>
+<p>所以容器，其实就是一个特殊环境下的进程，本身所有的进程，应该是按照树状结构挂在linux系统上面的，但是因为docker的daemon设计，导致了所有容器进程，都挂在了docker-daemon下面。这样的设计带来了几个问题</p>
+
+<ol>
+<li>docker-daemon死掉后，其他的容器进程会退出</li>
+<li>当普通用户A执行了docker run命令后，容器的启动并不是在用户A的命名空间中启动，这带来了audit上面的溯源问题。</li>
+</ol>
 
 <blockquote>
 <ul>
@@ -209,8 +212,11 @@
 
 <p>安全无小事，容器虽然因为其优点，被广泛应用，但是对于其安全上的缺陷，我们还是要慎之又慎，直面缺陷，做好防护</p>
 
-<p>参考文档：
-- <a href="https://juejin.im/entry/5953111e6fb9a06bbc4ad665">绝不避谈docker安全</a></p>
+<p>参考文档：</p>
+
+<ul>
+<li><a href="https://juejin.im/entry/5953111e6fb9a06bbc4ad665">绝不避谈docker安全</a></li>
+</ul>
 
     </div>
 

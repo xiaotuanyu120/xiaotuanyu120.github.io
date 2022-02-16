@@ -247,26 +247,32 @@
 <code>yum install -y vim-enhanced</code><br />
 <code>yum install -y vim-*(用通配符来找到以&quot;vim-&quot;开头的包来安装）</code></p>
 
-<p>语法：
-- <code>vim filename</code><br />
-- <code>vim +n filename</code>，n是数字，可以定位到该文件的第n行，多用于程序调试</p>
+<p>语法：</p>
+
+<ul>
+<li><code>vim filename</code><br />
+</li>
+<li><code>vim +n filename</code>，n是数字，可以定位到该文件的第n行，多用于程序调试</li>
+</ul>
 
 <h4>1) 模式类别及其快捷键：</h4>
 
 <ol>
-<li><p>一般模式<br />
-&gt; 进入方式：<br />
-按下&rdquo;Esc&rdquo;键及刚用vim打开一个文件时<br />
-&gt;
-可执行操作：<br />
-移动光标，删除内容，复制，粘贴。<br />
-&gt;
-光标位移动<br />
+<li><p>一般模式</p>
+
+<blockquote>
+<p>进入方式：<br />
+按下&rdquo;Esc&rdquo;键及刚用vim打开一个文件时</p>
+
+<p>可执行操作：<br />
+移动光标，删除内容，复制，粘贴。</p>
+
+<p>光标位移动<br />
 &ldquo;h&rdquo;和&rdquo;←&rdquo;、&rdquo;j&rdquo;和&rdquo;↓&rdquo;、&rdquo;k&rdquo;和&rdquo;↑&rdquo;、&rdquo;l&rdquo;和&rdquo;→&rdquo;，四组分别代表向左、下、上、右各移动一个字符<br />
 &ldquo;space&rdquo;，空格键代表向右移动一个字符，跟&rdquo;l&rdquo;和&rdquo;→&rdquo;不同的是，空格键在遇到换行符的时候换行<br />
-PS：先输入数字n后面跟上面相应的快捷键，代表向相应方向移动该数字个位<br />
-&gt;
-光标页移动<br />
+PS：先输入数字n后面跟上面相应的快捷键，代表向相应方向移动该数字个位</p>
+
+<p>光标页移动<br />
 Ctrl+f或pagedown键        屏幕向前移动一页<br />
 Ctrl+b或pageup键        屏幕向后移动一页<br />
 光标精准移动<br />
@@ -277,9 +283,9 @@ Ctrl+b或pageup键        屏幕向后移动一页<br />
 &ldquo;L&rdquo;移动到本显示屏的最下面一行首字母<br />
 &ldquo;gg&rdquo; 移动到文档首行首字母<br />
 &ldquo;G&rdquo;  移动到尾行首字母<br />
-&ldquo;nG&rdquo; 移动到第n行<br />
-&gt;<br />
-复制、粘贴与删除、还原<br />
+&ldquo;nG&rdquo; 移动到第n行</p>
+
+<p>复制、粘贴与删除、还原<br />
 &ldquo;x,X&rdquo;   x向后删除一个字符，X向前删除一个字符<br />
 &ldquo;nx&rdquo;    向后删除n个字符<br />
 &ldquo;dd&rdquo;    删除/剪切光标所在的那一行（dd后可以直接p，相当于剪切）<br />
@@ -293,55 +299,72 @@ Ctrl+b或pageup键        屏幕向后移动一页<br />
 &ldquo;ctrl+r&rdquo;   与&rdquo;u&rdquo;相反的操作<br />
 &ldquo;v&rdquo;      按v后移动光标会选中指定字符，然后可以复制、粘贴等<br />
 &ldquo;V&rdquo;        整行选中光标所跨越的行<br />
-&ldquo;ctrl+v&rdquo;  块状选中字符，可用于选中几列</p></li>
+&ldquo;ctrl+v&rdquo;  块状选中字符，可用于选中几列</p>
+</blockquote>
+</li>
 
-<li><p>编辑模式
-&gt; 进入方式：<br />
-（i, I, a, A, o, O, r, R）按下任意一个键，想退回到一般模式时按下Esc即可。<br />
-&gt;
-可执行操作：<br />
+<li><p>编辑模式</p>
+
+<blockquote>
+<p>进入方式：<br />
+（i, I, a, A, o, O, r, R）按下任意一个键，想退回到一般模式时按下Esc即可。</p>
+
+<p>可执行操作：<br />
 输入内容<br />
 i                在当前字符前插入<br />
 I                在光标所在行行首插入<br />
 a                在当前字符后插入<br />
 A                在当前行行尾插入<br />
 o                在当前行的下一行插入新的一行<br />
-O                在当前行的上一行插入新的一行</p></li>
+O                在当前行的上一行插入新的一行</p>
+</blockquote>
+</li>
 
-<li><p>命令模式
-&gt; 进入方式：<br />
-在一般模式下，输入 &ldquo;:&rdquo; 、&rdquo;/&ldquo;或&rdquo;?&rdquo; 即可进入命令模式。<br />
-&gt;
-可执行操作：<br />
-搜索、替换、保存、退出、显示行号、禁止高亮显示等。<br />
-&gt;
-查找和替换<br />
+<li><p>命令模式</p>
+
+<blockquote>
+<p>进入方式：<br />
+在一般模式下，输入 &ldquo;:&rdquo; 、&rdquo;/&ldquo;或&rdquo;?&rdquo; 即可进入命令模式。</p>
+
+<p>可执行操作：<br />
+搜索、替换、保存、退出、显示行号、禁止高亮显示等。</p>
+
+<p>查找和替换<br />
 /word<br />
-寻找字符串word，按n将光标移动至下一个匹配项首字母，按N则相反<br />
-&gt;
-?word<br />
-与/word功能相同，只不过n和N的光标移动方向颠倒过来<br />
-&gt;
-:n1,n2s/word1/word2/g<br />
+寻找字符串word，按n将光标移动至下一个匹配项首字母，按N则相反</p>
+
+<dl>
+<dt>与/word功能相同，只不过n和N的光标移动方向颠倒过来<br />
+</dt>
+</dl>
+
+<dl>
+<dt>�向颠倒过来<br />
+</dt>
+</dl>
+
+<p>:n1,n2s/word1/word2/g<br />
 &ldquo;n1,n2&rdquo; 代表在n1，n2行之间作为搜索范围，&rdquo;1,$&ldquo;和&rdquo;%&ldquo;代表搜索整个文档；<br />
 &ldquo;s&rdquo; &ldquo;search&rdquo;的缩写，其后紧跟的第一个字符作为隔断符，一般为&rdquo;/&ldquo;、&rdquo;$&ldquo;、&rdquo;@&ldquo;或&rdquo;#&ldquo;，但不限于；<br />
 &ldquo;word1&rdquo;与&rdquo;word2&rdquo; 代表&rdquo;被替换的内容&rdquo;与&rdquo;替换的内容&rdquo;；<br />
 &ldquo;g&rdquo; &ldquo;global&rdquo;的缩写，代表替换此文档内搜索到所有关键字，如过没有，则只替换每行的第一个关键字<br />
-PS:g换成数字n可以替换每行的前n个<br />
-&gt;
-保存及退出<br />
+PS:g换成数字n可以替换每行的前n个</p>
+
+<p>保存及退出<br />
 :w               保存文本<br />
 :q               退出vim<br />
 :w!               强制保存，在root用户下即使文本只读也可以完成保存<br />
 :q!               强制退出，所有改动不生效<br />
 :wq              保存并退出<br />
-ZZ         等同于:wq<br />
-&gt;
-其他命令<br />
+ZZ         等同于:wq</p>
+
+<p>其他命令<br />
 :set nu               显示行号<br />
 :set nonu               不显示行号<br />
 :nohl                不高亮显示查询结果<br />
-:x和wq的区别，：x只在文件内容真正修改过之后才保存，：wq不管文件内容是否修改，都重新写入文档，使文件的mtime产生改变。</p></li>
+:x和wq的区别，：x只在文件内容真正修改过之后才保存，：wq不管文件内容是否修改，都重新写入文档，使文件的mtime产生改变。</p>
+</blockquote>
+</li>
 </ol>
 
 <h3>3. vim练习题</h3>

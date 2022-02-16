@@ -181,19 +181,28 @@ iptables -A INPUT -j REJECT --reject-with icmp-host-prohibited
 
 <h3>1. docker and iptables</h3>
 
-<p>先来研究一下docker和iptables的关系，首先，在开始之前，请先阅读以下两个文档
-- <a href="http://ipset.netfilter.org/iptables.man.html">iptables-manual</a>
-- <a href="https://docs.docker.com/network/iptables/">docker and iptables</a></p>
+<p>先来研究一下docker和iptables的关系，首先，在开始之前，请先阅读以下两个文档</p>
 
-<p>iptables本身，最有价值的是一张图，关于这个图，大家可以搜索iptables关键字，然后查看图片，就会有很多，在这里不赘述。里面重点如下
-1. iptables比较重要的几个表：raw，nat，filter，mangle
-2. 每个表里面有很多链，有默认链，也可以增加自定义链
-3. 一个tcp包到达后，并不是走完一个表的所有链然后再去走另外一个包里面的所有链，而是根据链的顺序来走，详细可以参照你查到的iptables图片</p>
+<ul>
+<li><a href="http://ipset.netfilter.org/iptables.man.html">iptables-manual</a></li>
+<li><a href="https://docs.docker.com/network/iptables/">docker and iptables</a></li>
+</ul>
 
-<p>大概先说一下docker官方文档里面讲的iptables相关内容
-1. docker会把iptables规则写到DOCKER链里面
-2. 如果需要增加自己的规则，请写到DOCKER-USER链中
-3. 默认docker是会自动管理iptables规则，我们可以选择关闭它，然后手动管理（如果你手动管理了，那真是脑子有问题了）</p>
+<p>iptables本身，最有价值的是一张图，关于这个图，大家可以搜索iptables关键字，然后查看图片，就会有很多，在这里不赘述。里面重点如下</p>
+
+<ol>
+<li>iptables比较重要的几个表：raw，nat，filter，mangle</li>
+<li>每个表里面有很多链，有默认链，也可以增加自定义链</li>
+<li>一个tcp包到达后，并不是走完一个表的所有链然后再去走另外一个包里面的所有链，而是根据链的顺序来走，详细可以参照你查到的iptables图片</li>
+</ol>
+
+<p>大概先说一下docker官方文档里面讲的iptables相关内容</p>
+
+<ol>
+<li>docker会把iptables规则写到DOCKER链里面</li>
+<li>如果需要增加自己的规则，请写到DOCKER-USER链中</li>
+<li>默认docker是会自动管理iptables规则，我们可以选择关闭它，然后手动管理（如果你手动管理了，那真是脑子有问题了）</li>
+</ol>
 
 <h3>2. 实际分析</h3>
 
@@ -245,9 +254,12 @@ COMMIT
 </pre>
 <p>那么问题就好理解了，因为当包到达INPUT表中的DOCKER-USER链时，它已经不是访问80端口了，已经是8080了，我们对80做的限制，当然是无效的。</p>
 
-<p>汗，既然找到了原因，那么再来分析一下我们的需求
-- 开放程序给部分ip
-- 禁止其他所有的来源ip对该程序的访问</p>
+<p>汗，既然找到了原因，那么再来分析一下我们的需求</p>
+
+<ul>
+<li>开放程序给部分ip</li>
+<li>禁止其他所有的来源ip对该程序的访问</li>
+</ul>
 
 <p>这样的话，我们可以增加以下规则（提前先清除掉之前增加的所有自定义规则）</p>
 <pre class="chroma">iptables -I DOCKER-USER -p tcp -j DROP
@@ -311,12 +323,18 @@ iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j DOCKER-FILTER
 
 <h4>c. 理性分析后发现真相（其实是瞎几把猜，外加疯狂google）</h4>
 
-<p>理论分析到现在，遇到一个理论和实际冲突，因为按照我的理解，在我的规划中docker端口转发的逻辑应该是这样的：
-- 客户对宿主机的端口发起请求 &gt; iptables(nat:PREROUTING:DOCKER-FILTER -&gt; nat:DOCKER-FILTER:DOCKER -&gt; nat:DOCKER:DNAT -&gt; filter:FORWARD:ACCEPT) &gt; docker0(docker网桥设备) &gt; vethxxxxx(容器网卡对中绑定在网桥上的虚拟网卡) &gt; eth0(容器网卡对中在容器中的虚拟网卡)
-&gt; nat:PREROUTING:DOCKER-FILTER这个我自己瞎编的格式含义是，iptables表:表中的链:应用的target</p>
+<p>理论分析到现在，遇到一个理论和实际冲突，因为按照我的理解，在我的规划中docker端口转发的逻辑应该是这样的：</p>
 
-<p><strong>难道还有其他访问的逻辑？。。。。。。还真有，首先，我上面说明的那条逻辑没问题，在其基础上，实际情况下还有另外一条逻辑：</strong>
-- 客户对宿主机的端口发起请求 &gt; iptables(nat:PREROUTING:DOCKER-FILTER -&gt; nat:DOCKER-FILTER:ACCEPT -&gt; filter:INPUT:ACCEPT) &gt; docker-proxy(本地用户空间中的端口转发进程) &gt; docker0(docker网桥设备) &gt; vethxxxxx(容器网卡对中绑定在网桥上的虚拟网卡) &gt; eth0(容器网卡对中在容器中的虚拟网卡)</p>
+<ul>
+<li>客户对宿主机的端口发起请求 &gt; iptables(nat:PREROUTING:DOCKER-FILTER -&gt; nat:DOCKER-FILTER:DOCKER -&gt; nat:DOCKER:DNAT -&gt; filter:FORWARD:ACCEPT) &gt; docker0(docker网桥设备) &gt; vethxxxxx(容器网卡对中绑定在网桥上的虚拟网卡) &gt; eth0(容器网卡对中在容器中的虚拟网卡)
+&gt; nat:PREROUTING:DOCKER-FILTER这个我自己瞎编的格式含义是，iptables表:表中的链:应用的target</li>
+</ul>
+
+<p><strong>难道还有其他访问的逻辑？。。。。。。还真有，首先，我上面说明的那条逻辑没问题，在其基础上，实际情况下还有另外一条逻辑：</strong></p>
+
+<ul>
+<li>客户对宿主机的端口发起请求 &gt; iptables(nat:PREROUTING:DOCKER-FILTER -&gt; nat:DOCKER-FILTER:ACCEPT -&gt; filter:INPUT:ACCEPT) &gt; docker-proxy(本地用户空间中的端口转发进程) &gt; docker0(docker网桥设备) &gt; vethxxxxx(容器网卡对中绑定在网桥上的虚拟网卡) &gt; eth0(容器网卡对中在容器中的虚拟网卡)</li>
+</ul>
 
 <p><strong>重点：docker目前依然使用&ndash;userland-proxy=true选项作为默认项，开启docker-proxy进程，来转发端口转发的流量，这就是我没有想到的另外一条逻辑</strong></p>
 <pre class="chroma">root      <span class="m">5619</span>  0.0  1.3 <span class="m">218448</span> <span class="m">13208</span> ?        Sl   07:58   0:00 /usr/bin/docker-proxy -proto tcp -host-ip 0.0.0.0 -host-port <span class="m">80</span> -container-ip 172.17.0.2 -container-port <span class="m">80</span>
@@ -327,19 +345,25 @@ iptables -t nat -I PREROUTING -m addrtype --dst-type LOCAL -j DOCKER-FILTER
 
 <p><strong>最终方案补充：在3的基础上，INPUT那边限制掉所有ip到容器端口转发中宿主机端口的流量。</strong></p>
 
-<p>此时，我们的逻辑如下
-- 允许的流量变成了nat:PREROUTING -&gt; nat:DOCKER-FILTER -&gt; nat:DOCKER:DNAT -&gt; filter:FORWARD:ACCEPT
-- 禁止的流量变成了nat:PREROUTING -&gt; nat:DOCKER-FILTER -&gt; nat:ACCEPT -&gt; filter:INPUT:DROP</p>
+<p>此时，我们的逻辑如下</p>
+
+<ul>
+<li>允许的流量变成了nat:PREROUTING -&gt; nat:DOCKER-FILTER -&gt; nat:DOCKER:DNAT -&gt; filter:FORWARD:ACCEPT</li>
+<li>禁止的流量变成了nat:PREROUTING -&gt; nat:DOCKER-FILTER -&gt; nat:ACCEPT -&gt; filter:INPUT:DROP</li>
+</ul>
 
 <blockquote>
 <p>docker-proxy浅谈
 在<a href="https://github.com/moby/moby/issues/14856">docker-proxy 默认禁用选项 &ndash;userland-proxy的issue: #14856</a>中，其实我感觉docker团队的目标是舍弃掉docker-proxy的，目前只是鉴于issue：14856引发的<a href="https://github.com/moby/moby/issues/5618">issue: #5618 内核错误</a>，并且虽然<a href="https://github.com/moby/moby/issues/5618#issuecomment-532623814">torvalds的fix</a>解决了内核问题，但是这个需要较高的版本（4.19.30），所以docker团队迄今为止并没有完成issue：14856的目标（在你阅读的时候，你可以去看一下issue：14856最新的进度）。</p>
 
-<p>参考链接
-- <a href="https://learnku.com/articles/25018">docker端口转发浅谈 - 这是我大量查询资料后，第一次接近真相的引子</a>
-- <a href="https://github.com/moby/moby/issues/14856">docker-proxy 默认禁用选项 &ndash;userland-proxy的issue</a>
-- <a href="https://windsock.io/the-docker-proxy/">理解docker-proxy存在现状及其意义的一篇英文博客</a>
-- <a href="https://www.jianshu.com/p/91002d316185">理解docker-proxy存在现状及其意义的另外一篇中文博客</a></p>
+<p>参考链接</p>
+
+<ul>
+<li><a href="https://learnku.com/articles/25018">docker端口转发浅谈 - 这是我大量查询资料后，第一次接近真相的引子</a></li>
+<li><a href="https://github.com/moby/moby/issues/14856">docker-proxy 默认禁用选项 &ndash;userland-proxy的issue</a></li>
+<li><a href="https://windsock.io/the-docker-proxy/">理解docker-proxy存在现状及其意义的一篇英文博客</a></li>
+<li><a href="https://www.jianshu.com/p/91002d316185">理解docker-proxy存在现状及其意义的另外一篇中文博客</a></li>
+</ul>
 </blockquote>
 
     </div>

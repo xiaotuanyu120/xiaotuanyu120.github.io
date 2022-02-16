@@ -210,10 +210,13 @@ sed -i <span class="s2">&#34;</span><span class="s2">s#%VNC_PORT%#</span><span c
 </pre>
 <h4>2) VM复制-模版文件</h4>
 
-<p>template.xml
-- vnc接口
-- br0和br1双网卡
-- selinux关闭</p>
+<p>template.xml</p>
+
+<ul>
+<li>vnc接口</li>
+<li>br0和br1双网卡</li>
+<li>selinux关闭</li>
+</ul>
 <pre class="chroma"><span class="nt">&lt;domain</span> <span class="na">type=</span><span class="s">&#39;kvm&#39;</span> <span class="na">id=</span><span class="s">&#39;41&#39;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;name</span><span class="nt">&gt;</span>%NAME%<span class="nt">&lt;/name&gt;</span>
   <span class="nt">&lt;uuid</span><span class="nt">&gt;</span>%UUID%<span class="nt">&lt;/uuid&gt;</span>

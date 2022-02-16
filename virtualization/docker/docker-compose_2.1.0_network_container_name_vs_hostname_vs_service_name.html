@@ -176,12 +176,15 @@
 <p>正常情况下，service name 和<code>docker run --name</code>中<a href="https://docs.docker.com/engine/reference/run/#name---name">命名规则</a>一致，就是<code>字母</code>加上<code>下划线</code>，但是如果是在spring的容器中，可能<code>下划线</code>会导致容器的相互调用出问题，详情见<a href="https://stackoverflow.com/questions/51632753/spring-boot-rest-app-returns-400-when-requested-from-other-docker-compose-servic">这个例子</a></p>
 </blockquote>
 
-<p>参考文档：
-- <a href="https://docs.docker.com/network/">docker network</a>
-- <a href="https://docs.docker.com/network/links/">docker &ndash;links</a>
-- <a href="https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge">Differences between user-defined bridges and the default bridge</a>
-- <a href="https://docs.docker.com/compose/networking/">docker compose network</a>
-- <a href="https://docs.docker.com/engine/reference/run/#name---name">docker run &ndash;name</a></p>
+<p>参考文档：</p>
+
+<ul>
+<li><a href="https://docs.docker.com/network/">docker network</a></li>
+<li><a href="https://docs.docker.com/network/links/">docker &ndash;links</a></li>
+<li><a href="https://docs.docker.com/network/bridge/#differences-between-user-defined-bridges-and-the-default-bridge">Differences between user-defined bridges and the default bridge</a></li>
+<li><a href="https://docs.docker.com/compose/networking/">docker compose network</a></li>
+<li><a href="https://docs.docker.com/engine/reference/run/#name---name">docker run &ndash;name</a></li>
+</ul>
 
     </div>
 

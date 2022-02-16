@@ -220,26 +220,32 @@ namespace就像资源名称的前缀。命名空间帮助不同的项目，团�
 
 <h4>1) kubernetes控制端</h4>
 
-<p>Kubernetes控制端由各种组件组成，每个组件都有自己的进程，可以在单个主节点或支持高可用性集群的多个主机上运行。 Kubernetes控制端的各个组件如下：
-- etcd<br />
-etcd是由CoreOS开发的持久轻量级的分布式键值数据存储，可靠地存储集群的配置数据，表示集群在任何给定时间点的整体状态。 其他组件监视此存储的更改，以使自己进入所需的状态。
-- API server<br />
-API服务器是一个关键组件，使用JSON over HTTP服务Kubernetes API，它提供了Kubernetes的内部和外部接口。API服务器处理和验证REST请求并更新etcd中的API对象的状态，从而允许客户端跨Worker节点配置工作负载和容器。
-- Scheduler<br />
-调度程序是可插拔组件，根据资源可用性选择哪个节点应该运行未调度的pod。 调度程序跟踪每个节点上的资源利用率，以确保工作负载不会超过可用资源。 为此，调度程序必须知道资源可用性及其跨服务器分配的现有工作负载。
-- Controller manager<br />
-控制器管理器是核心Kubernetes控制器（如DaemonSet Controller和Replication Controller）运行于其中的进程。控制器与API服务器通信以创建，更新和删除其管理的资源（pod，服务端点等）</p>
+<p>Kubernetes控制端由各种组件组成，每个组件都有自己的进程，可以在单个主节点或支持高可用性集群的多个主机上运行。 Kubernetes控制端的各个组件如下：</p>
+
+<ul>
+<li>etcd<br />
+etcd是由CoreOS开发的持久轻量级的分布式键值数据存储，可靠地存储集群的配置数据，表示集群在任何给定时间点的整体状态。 其他组件监视此存储的更改，以使自己进入所需的状态。</li>
+<li>API server<br />
+API服务器是一个关键组件，使用JSON over HTTP服务Kubernetes API，它提供了Kubernetes的内部和外部接口。API服务器处理和验证REST请求并更新etcd中的API对象的状态，从而允许客户端跨Worker节点配置工作负载和容器。</li>
+<li>Scheduler<br />
+调度程序是可插拔组件，根据资源可用性选择哪个节点应该运行未调度的pod。 调度程序跟踪每个节点上的资源利用率，以确保工作负载不会超过可用资源。 为此，调度程序必须知道资源可用性及其跨服务器分配的现有工作负载。</li>
+<li>Controller manager<br />
+控制器管理器是核心Kubernetes控制器（如DaemonSet Controller和Replication Controller）运行于其中的进程。控制器与API服务器通信以创建，更新和删除其管理的资源（pod，服务端点等）</li>
+</ul>
 
 <h4>2) kubernetes节点</h4>
 
-<p>节点也称为Worker或Minion，是部署容器（工作负载）的单个机器（或虚拟机）。 集群中的每个节点必须运行容器（例如Docker）以及下面提到的组件，以便与主站进行这些容器的网络配置的通信。
-- Kubelet<br />
+<p>节点也称为Worker或Minion，是部署容器（工作负载）的单个机器（或虚拟机）。 集群中的每个节点必须运行容器（例如Docker）以及下面提到的组件，以便与主站进行这些容器的网络配置的通信。</p>
+
+<ul>
+<li>Kubelet<br />
 Kubelet负责每个节点的运行状态（即，确保节点上的所有容器都是正常的）。 它负责按照控制平面的指示启动，停止和维护应用程序容器（组织为pod）。<br />
-Kubelet监视pod的状态，如果不是在所需的状态，pod将被重新部署到同一个节点。 节点状态每几秒钟通过心跳消息中继到主机。 一旦主节点检测到节点故障，Replication Controller会观察到此状态更改并在其他正常节点上启动pod。
-- Kube-proxy<br />
-kube-proxy是网络代理和负载均衡器的实现，它支持服务抽象以及其他网络操作。它负责根据传入请求的IP和端口号将流量路由到适当的容器。
-- cAdvisor<br />
-cAdvisor是一个代理，用于监视和收集资源使用情况和性能指标，如每个节点上的容器的CPU，内存，文件和网络使用情况。</p>
+Kubelet监视pod的状态，如果不是在所需的状态，pod将被重新部署到同一个节点。 节点状态每几秒钟通过心跳消息中继到主机。 一旦主节点检测到节点故障，Replication Controller会观察到此状态更改并在其他正常节点上启动pod。</li>
+<li>Kube-proxy<br />
+kube-proxy是网络代理和负载均衡器的实现，它支持服务抽象以及其他网络操作。它负责根据传入请求的IP和端口号将流量路由到适当的容器。</li>
+<li>cAdvisor<br />
+cAdvisor是一个代理，用于监视和收集资源使用情况和性能指标，如每个节点上的容器的CPU，内存，文件和网络使用情况。</li>
+</ul>
 
     </div>
 

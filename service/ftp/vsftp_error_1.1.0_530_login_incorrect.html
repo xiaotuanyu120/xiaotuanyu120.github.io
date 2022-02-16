@@ -188,11 +188,16 @@
 <p>在centos6上搭建了vsftpd服务，登录时提示&rdquo;530 login incorrect&rdquo;</p>
 
 <p>分析过程：
-首先这是个登录认证错误，而我搭建vsftp的时候使用的是db4-utils+pam认证
-1. 检查db4-utils生成的db文件中的用户名和密码，无误
-2. 检查vsftpd.conf中的pam_service_name配置项指定的pam文件名称，根据这个名称找到/etc/pam.d/下的对应文件，发现下面的路径写错了</p>
-<pre class="chroma">auth       sufficient   /lib64/security/pam_userdb.so db=/etc/vsftpd/vsftpd_userlist
-</pre>
+首先这是个登录认证错误，而我搭建vsftp的时候使用的是db4-utils+pam认证</p>
+
+<ol>
+<li>检查db4-utils生成的db文件中的用户名和密码，无误</li>
+<li>检查vsftpd.conf中的pam_service_name配置项指定的pam文件名称，根据这个名称找到/etc/pam.d/下的对应文件，发现下面的路径写错了
+<code>
+auth       sufficient   /lib64/security/pam_userdb.so db=/etc/vsftpd/vsftpd_userlist
+</code></li>
+</ol>
+
 <h3>1. 解决办法：</h3>
 
 <ol>

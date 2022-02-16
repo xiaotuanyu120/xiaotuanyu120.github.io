@@ -249,18 +249,27 @@
 <span class="c1"># ip段可以写成主机名，主机名可以用通配符&#34;*&#34;，来匹配域用户</span>
 <span class="c1"># 共享目录之后，可以跟多个ip段，用空格分开</span>
 </pre>
-<p>权限及登录身份段参数
-- rw(read &amp; write)<br />
-- ro(read only)<br />
-是否可读写，除了此处必须设置外，还限制在分享的文件或目录本身的权限
-- sync(内存和硬盘同步写入)<br />
-- async(暂存于内存，而不是直接写入硬盘)<br />
-- no_root_squash(如使用NFS的是root用户，则保留文档的root权限)<br />
-- root_squash(如使用NFS的是root用户，会把root更改成nfsnobody用户，安全性比较好)<br />
-- all_squash(不论使用NFS的是谁，都会把其更改为nfsnobody用户)<br />
-- anonuid(指定取代root_squash或all_squash所使用匿名用户的uid)
-- anongid(指定取代root_squash或all_squash所使用匿名用户的gid)<br />
-指定的uid和gid必须是本机系统里所存在的</p>
+<p>权限及登录身份段参数</p>
+
+<ul>
+<li>rw(read &amp; write)<br />
+</li>
+<li>ro(read only)<br />
+是否可读写，除了此处必须设置外，还限制在分享的文件或目录本身的权限</li>
+<li>sync(内存和硬盘同步写入)<br />
+</li>
+<li>async(暂存于内存，而不是直接写入硬盘)<br />
+</li>
+<li>no_root_squash(如使用NFS的是root用户，则保留文档的root权限)<br />
+</li>
+<li>root_squash(如使用NFS的是root用户，会把root更改成nfsnobody用户，安全性比较好)<br />
+</li>
+<li>all_squash(不论使用NFS的是谁，都会把其更改为nfsnobody用户)<br />
+</li>
+<li>anonuid(指定取代root_squash或all_squash所使用匿名用户的uid)</li>
+<li>anongid(指定取代root_squash或all_squash所使用匿名用户的gid)<br />
+指定的uid和gid必须是本机系统里所存在的</li>
+</ul>
 
 <h4>3) 扩展、nfsnobody</h4>
 <pre class="chroma">cat /etc/passwd<span class="p">|</span>grep nfsnobody

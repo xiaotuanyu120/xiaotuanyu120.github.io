@@ -256,16 +256,21 @@ chown -R vsftpd-u:vsftpd-u /home/vsftpd-u
 <pre class="chroma">setsebool -P allow_ftpd_full_access <span class="m">1</span>
 <span class="c1"># 如果未关闭selinux而且未设置ftp的访问权限，会报错500 oops cannot change directory</span>
 </pre>
-<p>Iptables
-- passive mode添加iptables规则的方法
-- vsftpd配置被动模式的端口范围
-<code>/etc/vsftpd/vsftpd.conf</code></p>
-<pre class="chroma">listen_port=3721
+<p>Iptables</p>
+
+<ul>
+<li>passive mode添加iptables规则的方法</li>
+<li>vsftpd配置被动模式的端口范围
+<code>/etc/vsftpd/vsftpd.conf</code>
+<code>
+listen_port=3721
 pasv_enable=YES
 pasv_min_port=3722
 pasv_max_port=3999
 port_enable=YES
-</pre>
+</code></li>
+</ul>
+
 <h1>iptables根据配置放行端口</h1>
 <pre class="chroma">-A INPUT -p tcp -m state --state NEW -m tcp --dport <span class="m">3721</span> -j ACCEPT
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 3722:3999 -j ACCEPT

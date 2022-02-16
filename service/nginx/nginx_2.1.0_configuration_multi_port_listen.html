@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -211,9 +212,12 @@
             }
     }
 </pre>
-<p>重点配置：
-- https端口后面增加ssl，<code>listen 443 ssl</code>，相当于省略<code>ssl on</code>
-- 之所以不加<code>ssl on</code>，是因为此配置会影响http端口的正常监听</p>
+<p>重点配置：</p>
+
+<ul>
+<li>https端口后面增加ssl，<code>listen 443 ssl</code>，相当于省略<code>ssl on</code></li>
+<li>之所以不加<code>ssl on</code>，是因为此配置会影响http端口的正常监听</li>
+</ul>
 
     </div>
 

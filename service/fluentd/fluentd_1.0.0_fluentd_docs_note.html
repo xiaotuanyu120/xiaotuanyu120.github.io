@@ -187,11 +187,14 @@
 
 <h3>3. event的生命周期</h3>
 
-<p>可以简要用fluentd的组件将event的生命周期描述为：<code>source-filter-match</code><br />
-&gt; 其中source是日志如何进入；filter是日志如何处理，可选；match是日志如何出去<br />
+<p>可以简要用fluentd的组件将event的生命周期描述为：<code>source-filter-match</code></p>
+
+<blockquote>
+<p>其中source是日志如何进入；filter是日志如何处理，可选；match是日志如何出去<br />
 可指定多个source；<br />
 match中通过tag pattern来匹配，顺序是按照配置文件中的上下顺序；<br />
 如果希望match匹配的同一个时间有多个输出，需要使用type:<code>out_copy</code>；</p>
+</blockquote>
 
 <h3>4. 其他</h3>
 

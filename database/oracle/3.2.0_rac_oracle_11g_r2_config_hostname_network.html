@@ -184,10 +184,13 @@ cat /etc/sysconfig/network
 
 <p>节点网卡名称：eth1-4，对应架构图中的em1-4</p>
 
-<p>规划的网段：
-- public：192.168.33.0/24(eth1,eth2)
-- private：172.16.44.0/24(eth3)
-- private：172.16.48.0/24(eth4)</p>
+<p>规划的网段：</p>
+
+<ul>
+<li>public：192.168.33.0/24(eth1,eth2)</li>
+<li>private：172.16.44.0/24(eth3)</li>
+<li>private：172.16.48.0/24(eth4)</li>
+</ul>
 
 <p>网络配置主要关注正确设置public和private网络接口以及Single Client Access Name(SCAN)的DNS配置。 public网络bond网卡来提供高可用性。 High Availability Internet Protocol (HAIP)为private网络接口提供故障迁移和负载均衡。 SCAN为Oracle RAC database 11g r2提供了一个唯一的名称，可供集群中的任一客户端访问Oracle数据库时使用。</p>
 

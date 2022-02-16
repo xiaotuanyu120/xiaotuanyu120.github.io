@@ -239,11 +239,13 @@
 <h3>1. 工具：rsync</h3>
 
 <p>作用：一个快速、万能、可远程的文件复制工具<br />
-语法：<br />
-- 本地复制</p>
-<pre class="chroma">rsync [OPTION...] SRC... [DEST]
-</pre>
+语法：</p>
+
 <ul>
+<li><p>本地复制</p>
+<pre class="chroma">rsync [OPTION...] SRC... [DEST]
+</pre></li>
+
 <li><p>用ssh的方式复制</p>
 <pre class="chroma">Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
 Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
@@ -257,29 +259,32 @@ Push: rsync [OPTION...] SRC... [USER@]HOST::DEST
 </pre></li>
 </ul>
 
-<p>参数：
-- <code>-a</code> archive mode<br />
+<p>参数：</p>
+
+<ul>
+<li><code>-a</code> archive mode<br />
 存档模式，等同于<code>-rlptgoD</code><br />
-<code>-a</code>选项后面可以跟一个 <code>--no-OPTION</code>,表示关闭<code>-rlptgoD</code>中的某个例如<code>-a --no-l</code>等同于<code>-rptgoD</code>
-- <code>-c</code> 默认rsync是基于size和mtime来判断文件是否需要同步，而-c会弃用这种方式，用checksum校验来代替
-- <code>-r</code> reverse mode 递归模式，主要是针对存档目录时使用
-- <code>-v</code> verbose 冗余信息模式，显示复制详细信息
-- <code>-l</code> 保留软链接
-- <code>-L</code> 跳过软连接，把软连接指向的源文件拷贝到目标目录
-- <code>-p</code> permission，保持源文件权限
-- <code>-o</code> owner，保持文件属主信息，但使用的用户必须是root用户
-- <code>-g</code> gid，保持文件属组信息
-- <code>-D</code> 保持设备文件信息
-- <code>-t</code> 保持文件时间信息
-- <code>--delete</code> 删除那些DST中SRC没有的文件
-- <code>--exclude=PATTERN</code>
+<code>-a</code>选项后面可以跟一个 <code>--no-OPTION</code>,表示关闭<code>-rlptgoD</code>中的某个例如<code>-a --no-l</code>等同于<code>-rptgoD</code></li>
+<li><code>-c</code> 默认rsync是基于size和mtime来判断文件是否需要同步，而-c会弃用这种方式，用checksum校验来代替</li>
+<li><code>-r</code> reverse mode 递归模式，主要是针对存档目录时使用</li>
+<li><code>-v</code> verbose 冗余信息模式，显示复制详细信息</li>
+<li><code>-l</code> 保留软链接</li>
+<li><code>-L</code> 跳过软连接，把软连接指向的源文件拷贝到目标目录</li>
+<li><code>-p</code> permission，保持源文件权限</li>
+<li><code>-o</code> owner，保持文件属主信息，但使用的用户必须是root用户</li>
+<li><code>-g</code> gid，保持文件属组信息</li>
+<li><code>-D</code> 保持设备文件信息</li>
+<li><code>-t</code> 保持文件时间信息</li>
+<li><code>--delete</code> 删除那些DST中SRC没有的文件</li>
+<li><code>--exclude=PATTERN</code>
 指定排除不需要传输的文件，等号后面跟文件名，可以是万用字符模式（如*.txt）
-当有多个条件需要指定时，只需要增添多个<code>--exclude=PATTERN</code>即可
-- <code>-P</code>
-等同于<code>--partial</code>(若传输中断，保留已传输的部分文件)和<code>--progress</code>(显示每个文件传输详细信息)
-- <code>-u</code> update，DST中比SRC时间还新的文件将被保留，不会覆盖，即使文件内容不一致
-- <code>--port</code> 指定端口（daemon模式下）
-- <code>-z</code> 复制的同时压缩文件</p>
+当有多个条件需要指定时，只需要增添多个<code>--exclude=PATTERN</code>即可</li>
+<li><code>-P</code>
+等同于<code>--partial</code>(若传输中断，保留已传输的部分文件)和<code>--progress</code>(显示每个文件传输详细信息)</li>
+<li><code>-u</code> update，DST中比SRC时间还新的文件将被保留，不会覆盖，即使文件内容不一致</li>
+<li><code>--port</code> 指定端口（daemon模式下）</li>
+<li><code>-z</code> 复制的同时压缩文件</li>
+</ul>
 
 <blockquote>
 <p>rsync是增量备份，默认-av参数时在目标目录已经存在且内容无更改的文件不会被重新拷贝</p>

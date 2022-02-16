@@ -201,10 +201,14 @@
       </div>
 <h3>1. tomcat6中的日志库种类</h3>
 
-<p>tomcat6可以使用三种日志库-<a href="http://tomcat.apache.org/tomcat-6.0-doc/logging.html">参考连接</a>
-- system logging API, java.util.logging
-- Java Servlets specification提供的logging API, javax.servlet.ServletContext.log(&hellip;)
-- 使用第三方的日志框架</p>
+<p>tomcat6可以使用三种日志库-<a href="http://tomcat.apache.org/tomcat-6.0-doc/logging.html">参考连接</a></p>
+
+<ul>
+<li>system logging API, java.util.logging</li>
+<li>Java Servlets specification提供的logging API, javax.servlet.ServletContext.log(&hellip;)</li>
+<li>使用第三方的日志框架<br />
+</li>
+</ul>
 
 <hr />
 
@@ -216,9 +220,12 @@
 
 <h4>2) 配置文件指引</h4>
 
-<p>JULI默认情况下是启动的，除了全局的java.util.logging外，还支持classloader级别的配置。这意味着tomcat可以在以下几个层面进行配置：
-- 全局配置，配置文件<code>${catalina.base}/conf/logging.properties</code>。由启动脚本中的<code>java.util.logging.config.file</code>配置，若没有此配置，或者该文件不可读，则采用系统JRE中的<code>${java.home}/lib/logging.properties</code>文件。
-- 在web应用中，配置文件是<code>WEB-INF/classes/logging.properties</code>。</p>
+<p>JULI默认情况下是启动的，除了全局的java.util.logging外，还支持classloader级别的配置。这意味着tomcat可以在以下几个层面进行配置：</p>
+
+<ul>
+<li>全局配置，配置文件<code>${catalina.base}/conf/logging.properties</code>。由启动脚本中的<code>java.util.logging.config.file</code>配置，若没有此配置，或者该文件不可读，则采用系统JRE中的<code>${java.home}/lib/logging.properties</code>文件。</li>
+<li>在web应用中，配置文件是<code>WEB-INF/classes/logging.properties</code>。</li>
+</ul>
 
 <h4>3) 日志级别</h4>
 

@@ -247,19 +247,31 @@ v8.11.3
 <h4>step 3. install awx base on docker-compose</h4>
 
 <p>默认情况下 installer/inventory 文件会把awx安装在本地，如果需要安装到其他机器，可以修改 installer/inventory<br />
-里面还有其他变量可以修改
-- 常规配置
-  - host_port, 默认访问端口80
-  - host_port_ssl，ssl端口，默认是端口443，只有在ssl_certificate配置的时候才生效
-  - ssl_certificate，指定包含crt和key的文件
-  - docker_compose_dir, 设置docker-compose.yml储存的目录，默认是/tmp/awxcompose
-- PostgreSQL
-  - postgres_data_dir，pg数据库容器的数据挂载目录，默认是/tmp/pgdocker
-  - pg_hostname，如果想用外部的pg，设定外部pg的hostname，这样安装awx的时候，awx不会创建pg镜像
-- docker-registry
-  - docker_registry，镜像仓库地址，例如127.0.0.1:5000
-  - docker_registry_repository，镜像仓库命名空间，例如awx
-  - docker_registry_username，镜像仓库用户名，在运行install的时候，传入<code>docker_registry_password</code>来认证</p>
+里面还有其他变量可以修改</p>
+
+<ul>
+<li>常规配置
+
+<ul>
+<li>host_port, 默认访问端口80</li>
+<li>host_port_ssl，ssl端口，默认是端口443，只有在ssl_certificate配置的时候才生效</li>
+<li>ssl_certificate，指定包含crt和key的文件</li>
+<li>docker_compose_dir, 设置docker-compose.yml储存的目录，默认是/tmp/awxcompose</li>
+</ul></li>
+<li>PostgreSQL
+
+<ul>
+<li>postgres_data_dir，pg数据库容器的数据挂载目录，默认是/tmp/pgdocker</li>
+<li>pg_hostname，如果想用外部的pg，设定外部pg的hostname，这样安装awx的时候，awx不会创建pg镜像</li>
+</ul></li>
+<li>docker-registry
+
+<ul>
+<li>docker_registry，镜像仓库地址，例如127.0.0.1:5000</li>
+<li>docker_registry_repository，镜像仓库命名空间，例如awx</li>
+<li>docker_registry_username，镜像仓库用户名，在运行install的时候，传入<code>docker_registry_password</code>来认证</li>
+</ul></li>
+</ul>
 <pre class="chroma"><span class="nb">cd</span> awx/installer
 
 <span class="c1"># 安装awx</span>
@@ -281,11 +293,14 @@ f8550eeff8c2        ansible/awx_rabbitmq:3.7.4   <span class="s2">&#34;docker-en
 <p>默认情况，inventory中是安装awx到localhost中，如果需要修改，可以参照<a href="https://github.com/ansible/awx/blob/devel/INSTALL.md">awx 官方安装教程</a><br />
 inventory中还有其他的变量可以修改，例如，是否更换默认的postgres为其他的数据库，以及搭建awx在什么平台上（k8s、openshift、docker原生、docker compose）</p>
 
-<p><strong>☆☆重点关注☆☆</strong>
-- 如果inventory中的dockerhub_base有配置（默认是有配置），则会执行image_build，编译镜像awx_web
-- 如果inventory中的docker_registry有配置，但dockerhub_base没配置，则会执行image_push，push镜像到自己的镜像仓库中
-- 如果inventory中的openshift_host有配置，或者kubernetes_context有配置，则会执行kubernetes
-- 如果inventory中的openshift_host和kubernetes_context都没有配置，则会执行local_docker</p>
+<p><strong>☆☆重点关注☆☆</strong></p>
+
+<ul>
+<li>如果inventory中的dockerhub_base有配置（默认是有配置），则会执行image_build，编译镜像awx_web</li>
+<li>如果inventory中的docker_registry有配置，但dockerhub_base没配置，则会执行image_push，push镜像到自己的镜像仓库中</li>
+<li>如果inventory中的openshift_host有配置，或者kubernetes_context有配置，则会执行kubernetes</li>
+<li>如果inventory中的openshift_host和kubernetes_context都没有配置，则会执行local_docker</li>
+</ul>
 </blockquote>
 
 <h4>step 4. 访问awx</h4>

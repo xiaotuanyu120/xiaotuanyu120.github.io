@@ -342,10 +342,13 @@ Set by the service manager for supervised processes for status and start-up comp
 
 <p>在本文的场景下，我们集中讨论一下tomcat这个程序，所以下面都是以tomcat当做通用的服务来举例。</p>
 
-<p>首先，我们需要在systemd中运行两个程序，一个是tomcat，一个是watchdog，而且这两个程序都是长时间运行的。systemd里面可以执行启动程序的参数有以下几个
-- ExecStartPre
-- ExecStartPost
-- ExecStart</p>
+<p>首先，我们需要在systemd中运行两个程序，一个是tomcat，一个是watchdog，而且这两个程序都是长时间运行的。systemd里面可以执行启动程序的参数有以下几个</p>
+
+<ul>
+<li>ExecStartPre</li>
+<li>ExecStartPost</li>
+<li>ExecStart</li>
+</ul>
 
 <p>因为只有ExecStart参数执行的程序才是可以长时间运行的，其他两个参数执行的服务不可以长时间执行，否则程序的启动会卡住。所以我们只能将服务和watchdog的启动逻辑合并在一起，在一个“容器”脚本或者程序里面顺序启动tomcat和watchdog。</p>
 

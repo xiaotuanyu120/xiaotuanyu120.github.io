@@ -305,17 +305,20 @@ chmod-socket <span class="o">=</span> <span class="m">666</span>
 ***********************
 </pre>
 <blockquote>
-<p>配置说明
-- chdir 指定base目录(既example的project根目录)
-- module 指定django的wsgi接口文件<br />
-  因为django新版将project根目录下的example.wsgi文件替换成了example/wsgi.py文件，而module的指定不支持文件名称，所以只能用python的模块调用方式&rdquo;example.wsgi&rdquo;来指定django的wsgi接口文件
-- master true的话，就开启了master 模式，会有一个master process 和多个worker process
-- processes 指定worker process的数量
-- pidfile 指定pid文件
-- daemonize 在app加载后，将uwsgi服务化
-- socket 指定socket文件，如果你使用的是socket监听的话
-- chmod-socket 指定socket文件的权限，权限不足会无法访问，可在日志中看到错误提示
-- vacuum uwsgi结束后，删除socket和所有生成的文件</p>
+<p>配置说明</p>
+
+<ul>
+<li>chdir 指定base目录(既example的project根目录)</li>
+<li>module 指定django的wsgi接口文件<br />
+因为django新版将project根目录下的example.wsgi文件替换成了example/wsgi.py文件，而module的指定不支持文件名称，所以只能用python的模块调用方式&rdquo;example.wsgi&rdquo;来指定django的wsgi接口文件</li>
+<li>master true的话，就开启了master 模式，会有一个master process 和多个worker process</li>
+<li>processes 指定worker process的数量</li>
+<li>pidfile 指定pid文件</li>
+<li>daemonize 在app加载后，将uwsgi服务化</li>
+<li>socket 指定socket文件，如果你使用的是socket监听的话</li>
+<li>chmod-socket 指定socket文件的权限，权限不足会无法访问，可在日志中看到错误提示</li>
+<li>vacuum uwsgi结束后，删除socket和所有生成的文件</li>
+</ul>
 </blockquote>
 
 <p><a href="http://uwsgi-docs.readthedocs.io/en/latest/Options.html">uwsgi options documentation</a></p>

@@ -246,36 +246,38 @@ git push origin master
 
 <h3>3. 普通开发人员角色(win)</h3>
 
-<p>普通开发人员在等待主管将项目初始化之后，就可以clone项目并编辑自己的分支了，假设其用的是windows系统
-1. 下载git for windows客户端
-2. 打开git bash客户端
-3. 执行下面命令</p>
-<pre class="chroma">ssh-keygen.exe
+<p>普通开发人员在等待主管将项目初始化之后，就可以clone项目并编辑自己的分支了，假设其用的是windows系统</p>
+
+<ol>
+<li>下载git for windows客户端</li>
+<li>打开git bash客户端</li>
+<li>执行下面命令
+<code>bash
+ssh-keygen.exe
 Generating public/private rsa key pair.
-Enter file in which to save the key <span class="o">(</span>/c/Users/opsuser.IG/.ssh/id_rsa<span class="o">)</span>:
-Created directory <span class="s1">&#39;/c/Users/opsuser.IG/.ssh&#39;</span>.
-Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:
+Enter file in which to save the key (/c/Users/opsuser.IG/.ssh/id_rsa):
+Created directory '/c/Users/opsuser.IG/.ssh'.
+Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /c/Users/opsuser.IG/.ssh/id_rsa.
 Your public key has been saved in /c/Users/opsuser.IG/.ssh/id_rsa.pub.
 The key fingerprint is:
 SHA256:JN/yNAhk4307bT/SH8HfnnlLcTjUjdmxODH3ts7NqN0 opsuser@opsuser
-The key<span class="se">\&#39;</span>s randomart image is:
-+---<span class="o">[</span>RSA 2048<span class="o">]</span>----+
-<span class="p">|</span>      +      o o <span class="p">|</span>
-<span class="p">|</span>     + <span class="nv">o</span>      <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="p">|</span>
-<span class="p">|</span>      + o .  o+.*<span class="p">|</span>
-<span class="p">|</span>       <span class="o">=</span> + o .oo.<span class="p">|</span>
-<span class="p">|</span>        S * o <span class="nv">o</span><span class="o">=</span>.<span class="p">|</span>
-<span class="p">|</span>         + + oo+B<span class="p">|</span>
-<span class="p">|</span>          . . <span class="o">=</span><span class="o">=</span><span class="o">=</span><span class="p">|</span>
-<span class="p">|</span>             +.<span class="o">=</span><span class="o">=</span><span class="p">|</span>
-<span class="p">|</span>            . .+E<span class="p">|</span>
-+----<span class="o">[</span>SHA256<span class="o">]</span>-----+
-</pre>
-<ol>
-<li>将id_rsa.pub的内容也拷贝到git服务器的authorized_keys文件中（另起一行）</li>
-<li>打开git bash客户端
+The key\'s randomart image is:
++---[RSA 2048]----+
+|      +      o o |
+|     + o      ===|
+|      + o .  o+.*|
+|       = + o .oo.|
+|        S * o o=.|
+|         + + oo+B|
+|          . . ===|
+|             +.==|
+|            . .+E|
++----[SHA256]-----+
+</code>
+4. 将id_rsa.pub的内容也拷贝到git服务器的authorized_keys文件中（另起一行）
+5. 打开git bash客户端
 <code>bash
 git clone git@192.168.1.105：/data/git/test.git
 Cloning into 'test'...

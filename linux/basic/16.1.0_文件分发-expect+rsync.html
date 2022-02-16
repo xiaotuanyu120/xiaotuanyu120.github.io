@@ -253,30 +253,45 @@ ssh命令安装：<code>yum install -y openssh-clients</code></p>
 <p><em>仅有spawn是命令</em></p>
 
 <p><strong>timeout</strong><br />
-我们可以通过设置给timeout一个值（代表秒数）或者一个动作（可以不给出）来使得expect命令未寻找到关键字段情况发生时，告诉脚本如何处理此情况。<br />
-&gt; man page description<br />
+我们可以通过设置给timeout一个值（代表秒数）或者一个动作（可以不给出）来使得expect命令未寻找到关键字段情况发生时，告诉脚本如何处理此情况。</p>
+
+<blockquote>
+<p>man page description<br />
 The pattern timeout introduces a timeout (in seconds) and action that is executed after no characters have been read for a given time. The timeout pattern applies to the most recently specified process. There is no default timeout. The special variable &ldquo;timeout&rdquo; (used by the expect command) has no affect on this timeout.</p>
+</blockquote>
 
 <p><strong>spawn</strong><br />
-给进程一个spawn id，就像开了一个专属的tty给spawn用于执行该进程。<br />
-&gt; man page description<br />
+给进程一个spawn id，就像开了一个专属的tty给spawn用于执行该进程。</p>
+
+<blockquote>
+<p>man page description<br />
 returns the UNIX process id. If no process is spawned, 0 is returned.
 Internally, spawn uses a pty, initialized the same way as the user&rsquo;s tty.</p>
+</blockquote>
 
 <p><strong>exp_continue [-continue_timer]</strong><br />
-此命令允许expect自己循环执行，而并不是按照默认的模式执行。默认情况下exp_continue会重置timeout的定时器，但是如果我们同时使用了-continue_timer的话，exp_continue就不会重置timeout定时器了。<br />
-&gt; man page description<br />
+此命令允许expect自己循环执行，而并不是按照默认的模式执行。默认情况下exp_continue会重置timeout的定时器，但是如果我们同时使用了-continue_timer的话，exp_continue就不会重置timeout定时器了。</p>
+
+<blockquote>
+<p>man page description<br />
 The command exp_continue allows expect itself to continue executing rather than returning as it normally would. By default exp_continue resets the timeout timer. The -continue_timer flag prevents timer from being restarted. (Seeexpect for more information.)</p>
+</blockquote>
 
 <p><strong>interact [string1 body1] &hellip; [stringn [bodyn]]</strong><br />
-此命令将当前进程的控制权交给用户，允许用户键盘敲出的字符传送给当前进程，而进程产生的错误输出和标准输出会传递到当前屏幕<br />
-&gt; man page description<br />
+此命令将当前进程的控制权交给用户，允许用户键盘敲出的字符传送给当前进程，而进程产生的错误输出和标准输出会传递到当前屏幕</p>
+
+<blockquote>
+<p>man page description<br />
 gives control of the current process to the user, so that keystrokes are sent to the current process, and the stdout and stderr of the current process are returned.</p>
+</blockquote>
 
 <p><strong>EOF</strong><br />
-有时候我们会用expect侦测这个返回值，此返回值代表的含义是当前进程已经执行到end-of-file。（就像timeout到时间了以后会返回timeout，eof就是一个进程执行状态返回值）<br />
-&gt; man page description<br />
+有时候我们会用expect侦测这个返回值，此返回值代表的含义是当前进程已经执行到end-of-file。（就像timeout到时间了以后会返回timeout，eof就是一个进程执行状态返回值）</p>
+
+<blockquote>
+<p>man page description<br />
 The pattern eof introduces an action that is executed upon end-of-file. A separate eof pattern may also follow the -outputflag in which case it is matched if an eof is detected while writing output. The default eof action is &ldquo;return&rdquo;, so that interactsimply returns upon any EOF.</p>
+</blockquote>
 
 <h4>4) 实例演示</h4>
 
@@ -382,16 +397,22 @@ spawn_id: spawn id exp4 not open
 
 <h4>1) 作用：</h4>
 
-<p>一个快速、多功能、远程（含本地）的文件拷贝工具<br />
-&gt; man page description<br />
+<p>一个快速、多功能、远程（含本地）的文件拷贝工具</p>
+
+<blockquote>
+<p>man page description<br />
 a fast, versatile, remote (and local) file-copying tool</p>
+</blockquote>
 
 <h4>2) 语法：</h4>
 
-<p><code>rsync [参数] 源文件(可远程) 目标文件(可远程)</code><br />
-&gt; man page description<br />
+<p><code>rsync [参数] 源文件(可远程) 目标文件(可远程)</code></p>
+
+<blockquote>
+<p>man page description<br />
  Pull: <code>rsync [OPTION&hellip;] [USER@]HOST:SRC&hellip; [DEST]</code><br />
  Push: <code>rsync [OPTION&hellip;] SRC&hellip; [USER@]HOST:DEST</code></p>
+</blockquote>
 
 <h4>3) 参数：</h4>
 

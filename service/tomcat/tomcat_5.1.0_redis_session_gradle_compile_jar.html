@@ -201,12 +201,15 @@
       </div>
 <h3>0. 问题背景</h3>
 
-<p>线上环境为tomcat6+jdk6，集群化后为了实现session共享，于是使用了jcoleman的<a href="https://github.com/jcoleman/tomcat-redis-session-manager">tomcat-redis-session-manager</a>，此功能需要额外三个jar包，分别为：<br />
-- tomcat-redis-session-manager-${version}.jar
-- jedis-${version}.jar
-- commons-pool2-${version}.jar
+<p>线上环境为tomcat6+jdk6，集群化后为了实现session共享，于是使用了jcoleman的<a href="https://github.com/jcoleman/tomcat-redis-session-manager">tomcat-redis-session-manager</a>，此功能需要额外三个jar包，分别为：</p>
+
+<ul>
+<li>tomcat-redis-session-manager-${version}.jar</li>
+<li>jedis-${version}.jar</li>
+<li>commons-pool2-${version}.jar
 不知道什么原因，作者提供的tomcat-redis-session-manager-tomcat6.jar会出错，当时为了找tomcat6的包，还是百般搜索，在作者github的issue中找到了一个jar包。<br />
-但是，最近公司线上要升级tomcat6到tomcat7，又遇到了同样的问题(ClassNotFoundException: org.apache.commons.pool.impl.GenericObjectPool$Config)，于是痛定思痛，决定找到一个能从根源上解决问题的方法</p>
+但是，最近公司线上要升级tomcat6到tomcat7，又遇到了同样的问题(ClassNotFoundException: org.apache.commons.pool.impl.GenericObjectPool$Config)，于是痛定思痛，决定找到一个能从根源上解决问题的方法</li>
+</ul>
 
 <hr />
 

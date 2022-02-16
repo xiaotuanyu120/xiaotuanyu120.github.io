@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -365,12 +366,17 @@ fake-host
 
 <p>nginx是可以随意修改传给后端的内容的，只要nginx程序支持修改。</p>
 
-<p>可用场景1：官网域名 &gt; cdn &gt; cdn域名 &gt; 接入层nginx &gt;修改Host为cdn域名&gt; 后端（此时认为用户是通过官网域名访问过来的）
-&gt; - 为什么不用ip，而是用cdn域名？
-&gt; 用了https的域名，为了安全
-&gt;
-&gt; - 为什么不用https的ip地址？
-&gt; 你的接入层nginx通常不会只监听一个域名，而是多个域名，此时用ip满足不了业务要求</p>
+<p>可用场景1：官网域名 &gt; cdn &gt; cdn域名 &gt; 接入层nginx &gt;修改Host为cdn域名&gt; 后端（此时认为用户是通过官网域名访问过来的）</p>
+
+<blockquote>
+<ul>
+<li><p>为什么不用ip，而是用cdn域名？
+用了https的域名，为了安全</p></li>
+
+<li><p>为什么不用https的ip地址？
+你的接入层nginx通常不会只监听一个域名，而是多个域名，此时用ip满足不了业务要求</p></li>
+</ul>
+</blockquote>
 
     </div>
 

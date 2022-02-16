@@ -239,26 +239,32 @@
 <h3>1. 命令：ps</h3>
 
 <p>作用：查看系统进程<br />
-语法：<br />
-- <code>ps -u username</code> 查看特定用户的所有进程
-- <code>ps aux</code> 查看完整的系统运行的进程，a列出所有，u按用户分类，x列出进程相关控制台与终端
-- <code>ps -elf</code> 以长格式查看系统进程信息，e列出所有，l以长格式显示，f全格式显示</p>
+语法：</p>
 
-<p>ps aux列标题含义：
-- <code>PID</code> process id，进程唯一标识可用于终止进程， kill -9 pid
-- <code>STAT</code> 表示进程的状态
-- <code>D</code> 不能中断的进程（通常为IO）
-- <code>R</code> running正在运行的进程
-- <code>S</code> stoped已经中断的进程
-- <code>T</code> 已经停止或者暂停的进程，如果我们正在运行一个命令，比如说 sleep 10 如果我们按一下ctrl -z 让他暂停，那么我们用ps查看就会显示T这个状态
-- <code>X</code> 已经死掉的进程（这个从来不会出现）
-- <code>Z</code> 僵尸进程，杀不掉的垃圾进程，占系统一小点资源，不过没有关系。如果太多，就有问题了。
-- <code>&lt;</code> 高优先级进程
-- <code>N</code> 低优先级进程
-- <code>L</code> 在内存中被锁了内存分页
-- <code>s</code> 主进程
-- <code>l</code> 多线程进程
-- <code>+</code> 在前台的进程</p>
+<ul>
+<li><code>ps -u username</code> 查看特定用户的所有进程</li>
+<li><code>ps aux</code> 查看完整的系统运行的进程，a列出所有，u按用户分类，x列出进程相关控制台与终端</li>
+<li><code>ps -elf</code> 以长格式查看系统进程信息，e列出所有，l以长格式显示，f全格式显示</li>
+</ul>
+
+<p>ps aux列标题含义：</p>
+
+<ul>
+<li><code>PID</code> process id，进程唯一标识可用于终止进程， kill -9 pid</li>
+<li><code>STAT</code> 表示进程的状态</li>
+<li><code>D</code> 不能中断的进程（通常为IO）</li>
+<li><code>R</code> running正在运行的进程</li>
+<li><code>S</code> stoped已经中断的进程</li>
+<li><code>T</code> 已经停止或者暂停的进程，如果我们正在运行一个命令，比如说 sleep 10 如果我们按一下ctrl -z 让他暂停，那么我们用ps查看就会显示T这个状态</li>
+<li><code>X</code> 已经死掉的进程（这个从来不会出现）</li>
+<li><code>Z</code> 僵尸进程，杀不掉的垃圾进程，占系统一小点资源，不过没有关系。如果太多，就有问题了。</li>
+<li><code>&lt;</code> 高优先级进程</li>
+<li><code>N</code> 低优先级进程</li>
+<li><code>L</code> 在内存中被锁了内存分页</li>
+<li><code>s</code> 主进程</li>
+<li><code>l</code> 多线程进程</li>
+<li><code>+</code> 在前台的进程</li>
+</ul>
 <pre class="chroma"><span class="c1"># 查看rsz实际内存占用，用来看哪个进程占用的内存多</span>
 ps -e -o <span class="s1">&#39;pid,comm,args,pcpu,rsz,vsz,stime,user,uid&#39;</span>
 PID COMMAND         COMMAND                     %CPU   RSZ    VSZ STIME USER       UID
@@ -313,12 +319,15 @@ PID COMMAND         COMMAND                     %CPU   RSZ    VSZ STIME USER    
 
 <p>作用：根据名称或其他属性查看进程pid<br />
 语法：<code>pgrep 参数 pattern</code><br />
-参数：
-- <code>-d 间隔符</code>, 进程号间隔符，默认是换行符
-- <code>-f</code>, 默认pattern匹配进程名称，加上-f匹配整个命令行
-- <code>-U 用户名称/uid</code>, 指定某个用户执行的进程
-- <code>-G 组名/gid</code>, 指定某个组执行的进程
-- <code>-o</code>, 只匹配存在时间最久的进程</p>
+参数：</p>
+
+<ul>
+<li><code>-d 间隔符</code>, 进程号间隔符，默认是换行符</li>
+<li><code>-f</code>, 默认pattern匹配进程名称，加上-f匹配整个命令行</li>
+<li><code>-U 用户名称/uid</code>, 指定某个用户执行的进程</li>
+<li><code>-G 组名/gid</code>, 指定某个组执行的进程</li>
+<li><code>-o</code>, 只匹配存在时间最久的进程</li>
+</ul>
 
 <p>用法举例：</p>
 <pre class="chroma"><span class="c1"># mysql有两个实例，每个实例两个进程，分别为root和mysql执行</span>

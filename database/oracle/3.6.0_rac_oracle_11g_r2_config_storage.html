@@ -171,10 +171,13 @@
       </div>
 <h3>1. 存储配置</h3>
 
-<p>接下来的存储配置会提供关于以下内容的推荐配置
-- 设置设备的多路径映射
-- 为ASM 硬盘管理使用udev规则或者oracle的ASMLib
-- 为了最佳性能而使用的tuned package</p>
+<p>接下来的存储配置会提供关于以下内容的推荐配置</p>
+
+<ul>
+<li>设置设备的多路径映射</li>
+<li>为ASM 硬盘管理使用udev规则或者oracle的ASMLib</li>
+<li>为了最佳性能而使用的tuned package</li>
+</ul>
 
 <h4>1) 设置DM-Multipath</h4>
 
@@ -408,109 +411,121 @@ kpartx -a /dev/mapper/db1
 <p>配置oracle ASM 需要udev rule或者ASMLib。<br />
 Oracle的ASMLib是一个可选的实用程序，用于管理和帮助用户使用Oracle ASM设备，并且不是Oracle ASM磁盘正常运行所必需的。此外，Oracle ASMLib对Oracle数据库性能没有任何影响，需要一个标记为kmod-oracleasm和专有用户空间实用程序的内核模块才能正常工作。<br />
 udev规则代表了Oracle ASMLib的替代方法，不需要额外的内核模块，因此在Linux系统上保持了更小的占用空间。<br />
-只能同时选用其中一种方法，此处使用udev 。
-1. 在第一个节点，使用root身份，为每个映射的硬盘卷识别Device Mapper Universally Unique IDentifier (DM_UUID)。</p>
-<pre class="chroma"><span class="k">for</span> i in ocrvote1p1 ocrvote2p1 ocrvote3p1 db1p1 db2p1 frap1 redop1<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&#34;%s %s\n&#34;</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="k">$(</span>udevadm info --query<span class="o">=</span>all --name<span class="o">=</span>/dev/mapper/<span class="nv">$i</span> <span class="p">|</span> grep -i dm_uuid<span class="k">)</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">done</span>
-ocrvote1p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100
-ocrvote2p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce
-ocrvote3p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798
-db1p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2
-db2p1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d
-frap1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a
-redop1 E: <span class="nv">DM_UUID</span><span class="o">=</span>part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf
-</pre>
-<ol>
-<li><p>在/etc/udev/rules.d中创建<code>99-oracle-asmdevices.rules</code></p>
-<pre class="chroma">vim /etc/udev/rules.d/99-oracle-asmdevices.rules
-******************************************************
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-<span class="nv">KERNEL</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;dm-*&#34;</span>,ENV<span class="o">{</span>DM_UUID<span class="o">}</span><span class="o">=</span><span class="o">=</span><span class="s2">&#34;part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf&#34;</span>,OWNER<span class="o">=</span><span class="s2">&#34;grid&#34;</span>,GROUP<span class="o">=</span><span class="s2">&#34;asmadmin&#34;</span>,MODE<span class="o">=</span><span class="s2">&#34;0660&#34;</span>
-******************************************************
-</pre>
-<p>含义是，如果任何<code>dm-*</code>设备匹配到了DM_UUID，则将其owner设置为grid用户，将其group设置为asmadmin组，将其权限修改为0660.
-3. 拷贝<code>99-oracle-asmdevices.rules</code>到集群中所有节点</p>
-<pre class="chroma">scp /etc/udev/rules.d/99-oracle-asmdevices.rules db-oracle-node2:/etc/udev/rules.d/
-</pre></li>
+只能同时选用其中一种方法，此处使用udev 。</p>
 
-<li><p>在每个节点上确认分区存在</p>
-<pre class="chroma"><span class="k">for</span> i in db1p1 db2p1 frap1 redop1 ocrvote1p1 ocrvote2p1 ocrvote3p1<span class="p">;</span> <span class="k">do</span> <span class="nb">printf</span> <span class="s2">&#34;%s %s\n&#34;</span> <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="k">$(</span>ls -ll /dev/mapper/<span class="nv">$i</span><span class="k">)</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">done</span>
-db1p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:10 /dev/mapper/db1p1 -&gt; ../dm-15
-db2p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:05 /dev/mapper/db2p1 -&gt; ../dm-12
-frap1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:05 /dev/mapper/frap1 -&gt; ../dm-13
-redop1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">7</span> Dec <span class="m">26</span> 09:05 /dev/mapper/redop1 -&gt; ../dm-9
-ocrvote1p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:05 /dev/mapper/ocrvote1p1 -&gt; ../dm-11
-ocrvote2p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:05 /dev/mapper/ocrvote2p1 -&gt; ../dm-10
-ocrvote3p1 lrwxrwxrwx <span class="m">1</span> root root <span class="m">8</span> Dec <span class="m">26</span> 09:05 /dev/mapper/ocrvote3p1 -&gt; ../dm-14
-</pre>
 <ol>
-<li><p>在每个节点上确认udev rules</p>
-<pre class="chroma"><span class="c1"># 根据上面分区对应的dm-x来确定执行命令的对象</span>
-udevadm <span class="nb">test</span> /sys/block/dm-9
-udevadm <span class="nb">test</span> /sys/block/dm-10
-udevadm <span class="nb">test</span> /sys/block/dm-11
-udevadm <span class="nb">test</span> /sys/block/dm-12
-udevadm <span class="nb">test</span> /sys/block/dm-13
-udevadm <span class="nb">test</span> /sys/block/dm-14
-udevadm <span class="nb">test</span> /sys/block/dm-15
-<span class="c1"># 检测结果</span>
-ll /dev/dm-*<span class="p">|</span>grep grid
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">10</span> Dec <span class="m">26</span> 09:35 /dev/dm-10
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">11</span> Dec <span class="m">26</span> 09:35 /dev/dm-11
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">12</span> Dec <span class="m">26</span> 09:35 /dev/dm-12
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">13</span> Dec <span class="m">26</span> 09:35 /dev/dm-13
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">14</span> Dec <span class="m">26</span> 09:35 /dev/dm-14
-brw-rw----. <span class="m">1</span> grid asmadmin 253, <span class="m">15</span> Dec <span class="m">26</span> 09:35 /dev/dm-15
-brw-rw----. <span class="m">1</span> grid asmadmin 253,  <span class="m">9</span> Dec <span class="m">26</span> 09:34 /dev/dm-9
-</pre></li>
-</ol></li>
+<li>在第一个节点，使用root身份，为每个映射的硬盘卷识别Device Mapper Universally Unique IDentifier (DM_UUID)。
+<code>bash
+for i in ocrvote1p1 ocrvote2p1 ocrvote3p1 db1p1 db2p1 frap1 redop1; do printf &quot;%s %s\n&quot; &quot;$i&quot; &quot;$(udevadm info --query=all --name=/dev/mapper/$i | grep -i dm_uuid)&quot;; done
+ocrvote1p1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100
+ocrvote2p1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce
+ocrvote3p1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798
+db1p1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2
+db2p1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d
+frap1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a
+redop1 E: DM_UUID=part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf
+</code>
+2. 在/etc/udev/rules.d中创建<code>99-oracle-asmdevices.rules</code>
+<code>bash
+vim /etc/udev/rules.d/99-oracle-asmdevices.rules
+******************************************************
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VBa47c63dc-5db76100&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VB96b54a9f-d8e3fcce&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VBce272003-a253f798&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VB5fd07f22-14a65bd2&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VBa522109e-6e7ba34d&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VB1f2e19af-e712c25a&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+KERNEL==&quot;dm-*&quot;,ENV{DM_UUID}==&quot;part1-mpath-1ATA_VBOX_HARDDISK_VB1bf7dcf2-cc7766bf&quot;,OWNER=&quot;grid&quot;,GROUP=&quot;asmadmin&quot;,MODE=&quot;0660&quot;
+******************************************************
+</code></li>
 </ol>
 
-<h4>4) 使用Automatic System Tuning来优化数据库存储</h4>
+<p>含义是，如果任何<code>dm-*</code>设备匹配到了DM_UUID，则将其owner设置为grid用户，将其group设置为asmadmin组，将其权限修改为0660.</p>
 
-<p>建议使用Red Hat Enterprise Linux 6中的调整软件包，通过使用配置文件自动调整系统以适应常见工作负载，每个配置文件针对不同的工作负载场景进行了调整，例如
+<ol>
+<li><p>拷贝<code>99-oracle-asmdevices.rules</code>到集群中所有节点</p>
+<pre class="chroma">scp /etc/udev/rules.d/99-oracle-asmdevices.rules db-oracle-node2:/etc/udev/rules.d/
+</pre>
+<ol>
+<li>在每个节点上确认分区存在
+<code>bash
+for i in db1p1 db2p1 frap1 redop1 ocrvote1p1 ocrvote2p1 ocrvote3p1; do printf &quot;%s %s\n&quot; &quot;$i&quot; &quot;$(ls -ll /dev/mapper/$i)&quot;; done
+db1p1 lrwxrwxrwx 1 root root 8 Dec 26 09:10 /dev/mapper/db1p1 -&gt; ../dm-15
+db2p1 lrwxrwxrwx 1 root root 8 Dec 26 09:05 /dev/mapper/db2p1 -&gt; ../dm-12
+frap1 lrwxrwxrwx 1 root root 8 Dec 26 09:05 /dev/mapper/frap1 -&gt; ../dm-13
+redop1 lrwxrwxrwx 1 root root 7 Dec 26 09:05 /dev/mapper/redop1 -&gt; ../dm-9
+ocrvote1p1 lrwxrwxrwx 1 root root 8 Dec 26 09:05 /dev/mapper/ocrvote1p1 -&gt; ../dm-11
+ocrvote2p1 lrwxrwxrwx 1 root root 8 Dec 26 09:05 /dev/mapper/ocrvote2p1 -&gt; ../dm-10
+ocrvote3p1 lrwxrwxrwx 1 root root 8 Dec 26 09:05 /dev/mapper/ocrvote3p1 -&gt; ../dm-14
+</code></li>
+</ol></li>
+
+<li><p>在每个节点上确认udev rules
+&ldquo;` bash</p>
+
+<h1>根据上面分区对应的dm-x来确定执行命令的对象</h1>
+
+<p>udevadm test /sys/block/dm-9
+udevadm test /sys/block/dm-10
+udevadm test /sys/block/dm-11
+udevadm test /sys/block/dm-12
+udevadm test /sys/block/dm-13
+udevadm test /sys/block/dm-14
+udevadm test /sys/block/dm-15</p></li>
+</ol>
+
+<h1>检测结果</h1>
+
+<p>ll /dev/dm-*|grep grid
+brw-rw&mdash;-. 1 grid asmadmin 253, 10 Dec 26 09:35 /dev/dm-10
+brw-rw&mdash;-. 1 grid asmadmin 253, 11 Dec 26 09:35 /dev/dm-11
+brw-rw&mdash;-. 1 grid asmadmin 253, 12 Dec 26 09:35 /dev/dm-12
+brw-rw&mdash;-. 1 grid asmadmin 253, 13 Dec 26 09:35 /dev/dm-13
+brw-rw&mdash;-. 1 grid asmadmin 253, 14 Dec 26 09:35 /dev/dm-14
+brw-rw&mdash;-. 1 grid asmadmin 253, 15 Dec 26 09:35 /dev/dm-15
+brw-rw&mdash;-. 1 grid asmadmin 253,  9 Dec 26 09:34 /dev/dm-9</p>
+<pre class="chroma">
+#### 4) 使用Automatic System Tuning来优化数据库存储
+建议使用Red Hat Enterprise Linux 6中的调整软件包，通过使用配置文件自动调整系统以适应常见工作负载，每个配置文件针对不同的工作负载场景进行了调整，例如
 - enterprise-storage
 - power savings
-- high network throughput</p>
+- high network throughput
 
-<p>建议创建一个与enterprise-storage profile相同的内容自定义配置文件，但禁用Transparent HugePages (THP)<br />
-在每一个集群内节点上使用root执行以下操作</p>
-<pre class="chroma"><span class="c1"># 安装tuned</span>
+建议创建一个与enterprise-storage profile相同的内容自定义配置文件，但禁用Transparent HugePages (THP)   
+在每一个集群内节点上使用root执行以下操作
+``` bash
+# 安装tuned
 yum install tuned
-<span class="c1"># 开机启动设置</span>
+# 开机启动设置
 chkconfig tuned on
-<span class="c1"># 启动服务</span>
+# 启动服务
 service tuned start
 
-<span class="c1"># 拷贝一个自定义配置文件</span>
-<span class="nb">cd</span> /etc/tune-profiles/
+# 拷贝一个自定义配置文件
+cd /etc/tune-profiles/
 cp -r enterprise-storage enterprise-storage-no-thp
 
-<span class="c1"># 禁用thp</span>
+# 禁用thp
 vim /etc/tune-profiles/enterprise-storage-no-thp/ktune.sh
 ******************************************************
-<span class="c1"># 修改 set_transparent_hugepages always为</span>
+# 修改 set_transparent_hugepages always为
 set_transparent_hugepages never
 ******************************************************
 
-<span class="c1"># 选定自定义的配置文件</span>
+# 选定自定义的配置文件
 tuned-adm profile enterprise-storage-no-thp
-Stopping tuned:                                            <span class="o">[</span>  OK  <span class="o">]</span>
-Switching to profile <span class="s1">&#39;enterprise-storage-no-thp&#39;</span>
-Applying deadline elevator: dm-0 dm-1 dm-10 dm-11 dm-12 dm-13 dm-14 dm-15 dm-2 dm-3 dm-4 dm-5 dm-6 dm-7 dm-8 dm-9 sda sdb sdc sdd sde sdf sdg s<span class="o">[</span>  OK  <span class="o">]</span>
+Stopping tuned:                                            [  OK  ]
+Switching to profile &#39;enterprise-storage-no-thp&#39;
+Applying deadline elevator: dm-0 dm-1 dm-10 dm-11 dm-12 dm-13 dm-14 dm-15 dm-2 dm-3 dm-4 dm-5 dm-6 dm-7 dm-8 dm-9 sda sdb sdc sdd sde sdf sdg s[  OK  ]
 Applying ktune sysctl settings:
-/etc/ktune.d/tunedadm.conf:                                <span class="o">[</span>  OK  <span class="o">]</span>
-Calling <span class="s1">&#39;/etc/ktune.d/tunedadm.sh start&#39;</span>:                  <span class="o">[</span>  OK  <span class="o">]</span>
+/etc/ktune.d/tunedadm.conf:                                [  OK  ]
+Calling &#39;/etc/ktune.d/tunedadm.sh start&#39;:                  [  OK  ]
 Applying sysctl settings from /etc/sysctl.conf
-Starting tuned:                                            <span class="o">[</span>  OK  <span class="o">]</span>
+Starting tuned:                                            [  OK  ]
 
-<span class="c1"># 检查thp是否禁用</span>
+# 检查thp是否禁用
 cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
-always madvise <span class="o">[</span>never<span class="o">]</span>
+always madvise [never]
 </pre>
     </div>
 

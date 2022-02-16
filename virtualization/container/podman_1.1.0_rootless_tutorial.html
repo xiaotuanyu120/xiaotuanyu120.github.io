@@ -288,13 +288,16 @@ PIDFile=/%t/%n-pid
 [Install]
 WantedBy=multi-user.target
 </pre>
-<p>其中重点在于四个点
-- <code>%t</code>，容器runtime的根目录<code>/run/user/$UserID</code>
-- <code>%n</code>，service的名称（就是systemd unit file的文件名称）
-- <code>--conmon-pidfile</code>，conmon进程的pid保存文件
-- <code>--cidfile</code>，container的id保存文件
+<p>其中重点在于四个点</p>
+
+<ul>
+<li><code>%t</code>，容器runtime的根目录<code>/run/user/$UserID</code></li>
+<li><code>%n</code>，service的名称（就是systemd unit file的文件名称）</li>
+<li><code>--conmon-pidfile</code>，conmon进程的pid保存文件</li>
+<li><code>--cidfile</code>，container的id保存文件
 通过以上四个点，我们基本上就可以确定了这个容器的systemd unit file的信息，来保证了用固定一个模板，来在不同服务器上管理容器的灵活性
-&gt; <a href="https://www.redhat.com/sysadmin/podman-shareable-systemd-services">redhat - byValentin Rothberg: Running containers with Podman and shareable systemd services</a></p>
+&gt; <a href="https://www.redhat.com/sysadmin/podman-shareable-systemd-services">redhat - byValentin Rothberg: Running containers with Podman and shareable systemd services</a></li>
+</ul>
 
 <h4>通过systemd管理rootless容器</h4>
 <pre class="chroma">systemctl --user daemon-reload

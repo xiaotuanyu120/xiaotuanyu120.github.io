@@ -162,14 +162,23 @@ java.sql.SQLException: Locale not recognized
 <p>通过搜索报错，在stackoverflow上发现这样一个<a href="https://stackoverflow.com/questions/9685052/an-getting-this-error-when-i-run-my-project-java-sql-sqlexception-locale-not-r">回答</a>，于是检查了tomcat配置，配置如下</p>
 <pre class="chroma">JAVA_OPTS=&#34;$JAVA_OPTS -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 -Dfile.encoding=UTF-8 -Duser.language=zh_CN -Dsun.jnu.encoding=UTF-8&#34;
 </pre>
-<p>重点是<code>-Duser.language=zh_CN</code>，原来JVM里面是有两个system property来一起表示<code>zh_CN</code>，一个是<code>user.language</code>，一个是<code>user.country</code>。这里应该配置成<code>-Duser.language=zh -Duser.country=CN</code>。
-&gt; 这里有几点需要说明：
-- 之所以有加这个参数，是因为线上有这个标准。而之所以这个标准以前存在了很久没有报错，<strong>&lt;个人猜测&gt;</strong>是因为mysql里面没有依赖JVM的Locale这个system property<strong>&lt;个人猜测&gt;</strong>。
-- 其实如果没有手动增加<code>user.language</code>和<code>user.country</code>这两个system property，JVM会使用默认的<code>en</code>和<code>US</code>，也不会报错，这边是画蛇添足了。</p>
+<p>重点是<code>-Duser.language=zh_CN</code>，原来JVM里面是有两个system property来一起表示<code>zh_CN</code>，一个是<code>user.language</code>，一个是<code>user.country</code>。这里应该配置成<code>-Duser.language=zh -Duser.country=CN</code>。</p>
 
-<p>参考资料：
-- <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">oracle对jdk7中的Locale官方文档</a>
-- <a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">iana对语言的缩写描述文档 - 关于zh和其他语言缩写标准</a></p>
+<blockquote>
+<p>这里有几点需要说明：</p>
+
+<ul>
+<li>之所以有加这个参数，是因为线上有这个标准。而之所以这个标准以前存在了很久没有报错，<strong>&lt;个人猜测&gt;</strong>是因为mysql里面没有依赖JVM的Locale这个system property<strong>&lt;个人猜测&gt;</strong>。</li>
+<li>其实如果没有手动增加<code>user.language</code>和<code>user.country</code>这两个system property，JVM会使用默认的<code>en</code>和<code>US</code>，也不会报错，这边是画蛇添足了。</li>
+</ul>
+</blockquote>
+
+<p>参考资料：</p>
+
+<ul>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html">oracle对jdk7中的Locale官方文档</a></li>
+<li><a href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">iana对语言的缩写描述文档 - 关于zh和其他语言缩写标准</a></li>
+</ul>
 
     </div>
 

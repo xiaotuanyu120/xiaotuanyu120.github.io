@@ -180,10 +180,13 @@
 
 <p>helm是kubernetes的一个包管理工具，类似于yum之于rhel，apt之于debian。</p>
 
-<p>三个主要概念：
-- Chart，是helm的包。它包含了在Kubernetes集群中运行的应用程序、工具或服务所需的所有资源的定义。类似于rpm和dpkg
-- Repository，用于保存和分享charts的仓库。
-- Release，是在kubernetes集群中运行的charts的实例。一个charts可以被安装多次，每次都会生成一个新实例。当然，实例名称都是唯一的。</p>
+<p>三个主要概念：</p>
+
+<ul>
+<li>Chart，是helm的包。它包含了在Kubernetes集群中运行的应用程序、工具或服务所需的所有资源的定义。类似于rpm和dpkg</li>
+<li>Repository，用于保存和分享charts的仓库。</li>
+<li>Release，是在kubernetes集群中运行的charts的实例。一个charts可以被安装多次，每次都会生成一个新实例。当然，实例名称都是唯一的。</li>
+</ul>
 
 <h3>1. 安装helm</h3>
 <pre class="chroma">curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3

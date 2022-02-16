@@ -256,10 +256,13 @@ At least one of these environment variable is needed to run this program
 user01  <span class="nv">ALL</span><span class="o">=</span><span class="o">(</span>root<span class="o">)</span>      SETENV:NOPASSWD: /bin/sh,/bin/env
 *******************************
 </pre>
-<p>然后尝试使用普通用户来启动tomcat，此时不会再报环境变量的错误
-&gt; 如果当你执行env时，没有发现JAVA_HOME在系统环境变量中，说明JAVA_HOME不是全局变量，可以增加以下sudo配置</p>
+<p>然后尝试使用普通用户来启动tomcat，此时不会再报环境变量的错误</p>
+
+<blockquote>
+<p>如果当你执行env时，没有发现JAVA_HOME在系统环境变量中，说明JAVA_HOME不是全局变量，可以增加以下sudo配置</p>
 <pre class="chroma">Defaults    env_keep += &#34;JAVA_HOME&#34;
-</pre>
+</pre></blockquote>
+
     </div>
 
   </div>

@@ -272,43 +272,52 @@ session    required     /lib64/security/pam_limits.so
 ********************
 </pre>
 <blockquote>
-<p>limits.conf的详细说明
-- 格式：<code>&lt;domain&gt;        &lt;type&gt;  &lt;item&gt;  &lt;value&gt;</code>
-  - <domain> can be:
-    - a user name
-    - a group name, with @group syntax
-    - the wildcard *, for default entry
-    - the wildcard %, can be also used with %group syntax, for maxlogin limit
-  - <type> can have the two values:
-    - &ldquo;soft&rdquo; for enforcing the soft limits - 取值范围是0-该用户资源上限，普通用户可配置
-    - &ldquo;hard&rdquo; for enforcing hard limits - 设定了该用户资源上限，只有管理员可配置
-    - &ldquo;-&rdquo; for both enforcing hard and soft limits
-  - <item> can be one of the following:
-    - core - limits the core file size (KB)
-    - data - max data size (KB)
-    - fsize - maximum filesize (KB)
-    - memlock - max locked-in-memory address space (KB)
-    - nofile - max number of open file descriptors
-    - rss - max resident set size (KB)
-    - stack - max stack size (KB)
-    - cpu - max CPU time (MIN)
-    - nproc - max number of processes
-    - as - address space limit (KB)
-    - maxlogins - max number of logins for this user
-    - maxsyslogins - max number of logins on the system
-    - priority - the priority to run user process with
-    - locks - max number of file locks the user can hold
-    - sigpending - max number of pending signals
-    - msgqueue - max memory used by POSIX message queues (bytes)
-    - nice - max nice priority allowed to raise to values: [-20, 19]
-    - rtprio - max realtime priority</p>
+<p>limits.conf的详细说明</p>
+
+<ul>
+<li>格式：<code>&lt;domain&gt;        &lt;type&gt;  &lt;item&gt;  &lt;value&gt;</code>
+
+<ul>
+<li><domain> can be:</li>
+<li>a user name</li>
+<li>a group name, with @group syntax</li>
+<li>the wildcard *, for default entry</li>
+<li>the wildcard %, can be also used with %group syntax, for maxlogin limit</li>
+<li><type> can have the two values:</li>
+<li>&ldquo;soft&rdquo; for enforcing the soft limits - 取值范围是0-该用户资源上限，普通用户可配置</li>
+<li>&ldquo;hard&rdquo; for enforcing hard limits - 设定了该用户资源上限，只有管理员可配置</li>
+<li>&rdquo;-&rdquo; for both enforcing hard and soft limits</li>
+<li><item> can be one of the following:</li>
+<li>core - limits the core file size (KB)</li>
+<li>data - max data size (KB)</li>
+<li>fsize - maximum filesize (KB)</li>
+<li>memlock - max locked-in-memory address space (KB)</li>
+<li>nofile - max number of open file descriptors</li>
+<li>rss - max resident set size (KB)</li>
+<li>stack - max stack size (KB)</li>
+<li>cpu - max CPU time (MIN)</li>
+<li>nproc - max number of processes</li>
+<li>as - address space limit (KB)</li>
+<li>maxlogins - max number of logins for this user</li>
+<li>maxsyslogins - max number of logins on the system</li>
+<li>priority - the priority to run user process with</li>
+<li>locks - max number of file locks the user can hold</li>
+<li>sigpending - max number of pending signals</li>
+<li>msgqueue - max memory used by POSIX message queues (bytes)</li>
+<li>nice - max nice priority allowed to raise to values: [-20, 19]</li>
+<li>rtprio - max realtime priority</li>
+</ul></li>
+</ul>
 </blockquote>
 
 <h3>2. systemd</h3>
 
-<p>systemd默认会有一个资源分配值，例如文件打开数的默认值是4096。可以通过修改systemd默认资源分配值或者单个unit文件配置资源分配值这两种方式来修改systemd启动的service的资源限制数值。
-- <code>/etc/systemd/system.conf</code>：系统进程的默认限制
-- <code>/etc/systemd/user.conf</code>：用户进程的默认限制</p>
+<p>systemd默认会有一个资源分配值，例如文件打开数的默认值是4096。可以通过修改systemd默认资源分配值或者单个unit文件配置资源分配值这两种方式来修改systemd启动的service的资源限制数值。</p>
+
+<ul>
+<li><code>/etc/systemd/system.conf</code>：系统进程的默认限制</li>
+<li><code>/etc/systemd/user.conf</code>：用户进程的默认限制</li>
+</ul>
 
 <h4>1) 修改systemd默认资源分配值</h4>
 
@@ -482,10 +491,11 @@ struct rlimit *old_limit);</p>
 Description
 The getrlimit() and setrlimit() system calls get and set resource limits respectively. Each resource has an associated soft and hard limit, as defined by the rlimit structure:</p>
 
-<p>struct rlimit {
-    rlim_t rlim_cur;  /* Soft limit <em>/
-    rlim_t rlim_max;  /</em> Hard limit (ceiling for rlim_cur) */
-};
+<p>struct rlimit {</p>
+<pre class="chroma">rlim_t rlim_cur;  /* Soft limit */
+rlim_t rlim_max;  /* Hard limit (ceiling for rlim_cur) */
+</pre>
+<p>};
 The soft limit is the value that the kernel enforces for the corresponding resource. The hard limit acts as a ceiling for the soft limit: an unprivileged process may only set its soft limit to a value in the range from 0 up to the hard limit, and (irreversibly) lower its hard limit. A privileged process (under Linux: one with the CAP_SYS_RESOURCE capability) may make arbitrary changes to either limit value.
 The value RLIM_INFINITY denotes no limit on a resource (both in the structure returned by getrlimit() and in the structure passed to setrlimit()).</p>
 
@@ -507,9 +517,10 @@ RLIMIT_MEMLOCK
 The maximum number of bytes of memory that may be locked into RAM. In effect this limit is rounded down to the nearest multiple of the system page size. This limit affects mlock(2) and mlockall(2) and the mmap(2) MAP_LOCKED operation. Since Linux 2.6.9 it also affects the shmctl(2) SHM_LOCK operation, where it sets a maximum on the total bytes in shared memory segments (see shmget(2)) that may be locked by the real user ID of the calling process. The shmctl(2) SHM_LOCK locks are accounted for separately from the per-process memory locks established by mlock(2), mlockall(2), and mmap(2) MAP_LOCKED; a process can lock bytes up to this limit in each of these two categories. In Linux kernels before 2.6.9, this limit controlled the amount of memory that could be locked by a privileged process. Since Linux 2.6.9, no limits are placed on the amount of memory that a privileged process may lock, and this limit instead governs the amount of memory that an unprivileged process may lock.
 RLIMIT_MSGQUEUE (Since Linux 2.6.8)
 Specifies the limit on the number of bytes that can be allocated for POSIX message queues for the real user ID of the calling process. This limit is enforced for mq_open(3). Each message queue that the user creates counts (until it is removed) against this limit according to the formula:
-bytes = attr.mq_maxmsg * sizeof(struct msg_msg *) +
-        attr.mq_maxmsg * attr.mq_msgsize
-where attr is the mq_attr structure specified as the fourth argument to mq_open(3).
+bytes = attr.mq_maxmsg * sizeof(struct msg_msg *) +</p>
+<pre class="chroma">    attr.mq_maxmsg * attr.mq_msgsize
+</pre>
+<p>where attr is the mq_attr structure specified as the fourth argument to mq_open(3).
 The first addend in the formula, which includes sizeof(struct msg_msg *) (4 bytes on Linux/i386), ensures that the user cannot create an unlimited number of zero-length messages (such messages nevertheless each consume some system memory for bookkeeping overhead).</p>
 
 <p>RLIMIT_NICE (since Linux 2.6.12, but see BUGS below)

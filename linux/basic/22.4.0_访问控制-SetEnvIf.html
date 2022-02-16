@@ -284,24 +284,35 @@ LoadModule setenvif_module modules/mod_setenvif.so
 </tr>
 </tbody>
 </table>
-<p>语法各字段含义
-1. attribute - 可能是以下内容<br />
- - a. request 的header，例如Host, User-Agent, Referer, and Accept-Language
- - b. request的信息:<br />
+<p>语法各字段含义</p>
+
+<ol>
+<li>attribute - 可能是以下内容<br />
+
+
+<ul>
+<li>a. request 的header，例如Host, User-Agent, Referer, and Accept-Language</li>
+<li>b. request的信息:<br />
 Remote_Host - hostname<br />
 Remote_Addr - ip地址<br />
 Server_Addr - 接受此reqest的服务器地址  only with versions later than 2.0.43<br />
 Request_Method - 使用的方法 (GET, POST, et cetera)<br />
 Request_Protocol - request使用的协议  e.g., &ldquo;HTTP/0.9&rdquo;, &ldquo;HTTP/1.1&rdquo;, etc.<br />
 Request_URI - hostname:port之后，qerry string之前的内容<br />
- - c. 变量 - 其他SetEnvIf[NoCase]的变量，需在此语句之前或之上声明的
-2. 正则表达字符串<br />
-用来匹配attribute，若匹配成功，后面的动作则执行
-3. 其余部分是变量设定<br />
+</li>
+<li>c. 变量 - 其他SetEnvIf[NoCase]的变量，需在此语句之前或之上声明的</li>
+</ul></li>
+<li>正则表达字符串<br />
+用来匹配attribute，若匹配成功，后面的动作则执行</li>
+<li>其余部分是变量设定<br />
 格式为
- - a. varname - 会默认把此变量设为1
- - b. !varname - 若变量存在，取消它
- - c. varname=varlue - 把变量设为value的值</p>
+
+<ul>
+<li>a. varname - 会默认把此变量设为1</li>
+<li>b. !varname - 若变量存在，取消它</li>
+<li>c. varname=varlue - 把变量设为value的值</li>
+</ul></li>
+</ol>
 
 <hr />
 

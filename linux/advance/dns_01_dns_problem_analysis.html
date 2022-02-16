@@ -253,9 +253,12 @@
 
 <p>如果以上的推导和求证没问题的话，到这里就出现了矛盾：<strong>nginx的DNS解析，理论上<code>/etc/hosts</code>应该生效，但是实际上没有生效</strong></p>
 
-<p>此时就有两个可能：
-- 还有其他影响DNS解析的因素未被考虑进来
-- nginx和<code>nslookup</code>类似，无法解析/etc/hosts中的记录（但这个可能性太小，以前做过很多hosts解析，如果这个假设成立，那么我早就发现这个问题了）</p>
+<p>此时就有两个可能：</p>
+
+<ul>
+<li>还有其他影响DNS解析的因素未被考虑进来</li>
+<li>nginx和<code>nslookup</code>类似，无法解析/etc/hosts中的记录（但这个可能性太小，以前做过很多hosts解析，如果这个假设成立，那么我早就发现这个问题了）</li>
+</ul>
 
 <p>于是先排查第一个可能，仔细检查了nginx的配置，发现了这样的一个配置</p>
 <pre class="chroma">resolver 127.0.0.1 ipv6=off valid=300s;
@@ -268,10 +271,13 @@
 
 <h3>总结</h3>
 
-<p>三个需要注意的点：
-- 需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS
-- 需要了解<code>nslookup</code>、<code>dig</code>、<code>hosts</code>无法解析<code>/etc/hosts</code>中的本地DNS记录，可以用<code>ping</code>或者<code>getent hosts</code>
-- 需要了解<code>dnsmasq</code>的基本配置</p>
+<p>三个需要注意的点：</p>
+
+<ul>
+<li>需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS</li>
+<li>需要了解<code>nslookup</code>、<code>dig</code>、<code>hosts</code>无法解析<code>/etc/hosts</code>中的本地DNS记录，可以用<code>ping</code>或者<code>getent hosts</code></li>
+<li>需要了解<code>dnsmasq</code>的基本配置</li>
+</ul>
 
     </div>
 

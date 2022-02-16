@@ -275,12 +275,15 @@ pid-file<span class="o">=</span>/var/run/mysqld/mysqld.pid
 ******************************************
 </pre>
 <blockquote>
-<p>配置要点：
-- 配置isolation级别为READ-COMMITTED，避免死锁
-- 配置引擎为InnoDB，Cloudera Manager只能使用InnoDB
-- 配置innodb_flush_method为O_DIRECT，Cloudera Manager需要高吞吐量
-- 根据cluster数量来配置数据库的max_connections
-- binlog不是必须要配置的</p>
+<p>配置要点：</p>
+
+<ul>
+<li>配置isolation级别为READ-COMMITTED，避免死锁</li>
+<li>配置引擎为InnoDB，Cloudera Manager只能使用InnoDB</li>
+<li>配置innodb_flush_method为O_DIRECT，Cloudera Manager需要高吞吐量</li>
+<li>根据cluster数量来配置数据库的max_connections</li>
+<li>binlog不是必须要配置的</li>
+</ul>
 </blockquote>
 
 <p><strong>启动mysql</strong></p>
@@ -341,10 +344,13 @@ vim /etc/yum.repos.d/cloudera-manager.repo
 yum install cloudera-manager-daemons cloudera-manager-server
 </pre>
 <blockquote>
-<p>或者可以使用非生产环境下的手动安装(pathA)
-- 下载<a href="http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装">http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装</a>
-- 下载<a href="http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装">http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装</a><br />
-会自动创建postgresql数据库</p>
+<p>或者可以使用非生产环境下的手动安装(pathA)</p>
+
+<ul>
+<li>下载<a href="http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装">http://archive.cloudera.com/cm5/redhat/6/x86_64/cm/5.11.1/RPMS/x86_64/下的rpm包安装</a></li>
+<li>下载<a href="http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装">http://archive.cloudera.com/cm5/installer/5.11.1/下的安装二进制文件执行安装</a><br />
+会自动创建postgresql数据库</li>
+</ul>
 </blockquote>
 
 <h4>3) 配置数据库连接</h4>
@@ -394,10 +400,13 @@ com.cloudera.cmf.db.setupType=EXTERNAL
 <p>因为parcel文件很大，所以避免网络延迟，我们可以提前下载parcel文件在本地，然后再进行安装。<br />
 我们需要安装5.11.1版本，所以我们访问<a href="http://archive.cloudera.com/cdh5/parcels/5.11.1/">http://archive.cloudera.com/cdh5/parcels/5.11.1/</a></p>
 
-<p>这里需要下载以下三个文件
-- CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel
-- CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1(需要更名)
-- manifest.json</p>
+<p>这里需要下载以下三个文件</p>
+
+<ul>
+<li>CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel</li>
+<li>CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1(需要更名)</li>
+<li>manifest.json</li>
+</ul>
 <pre class="chroma"><span class="nb">cd</span> /opt/cloudera/parcel-repo/
 wget http://archive.cloudera.com/cdh5/parcels/5.11.1/CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel
 wget -O CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha http://archive.cloudera.com/cdh5/parcels/5.11.1/CDH-5.11.1-1.cdh5.11.1.p0.4-el6.parcel.sha1

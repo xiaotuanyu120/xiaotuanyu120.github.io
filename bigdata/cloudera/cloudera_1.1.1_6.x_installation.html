@@ -249,10 +249,13 @@ sudo rpm --import https://archive.cloudera.com/cm6/6.0.0/redhat7/yum/RPM-GPG-KEY
 
 <p>可以通过CM来托管安装，也可以手动安装oracle JDK</p>
 
-<p>安装要求：
-- JDK必须是64位
-- 集群里面的JDK必须版本一致
-- JDK安装目录必须是/usr/java/jdk-version</p>
+<p>安装要求：</p>
+
+<ul>
+<li>JDK必须是64位</li>
+<li>集群里面的JDK必须版本一致</li>
+<li>JDK安装目录必须是/usr/java/jdk-version</li>
+</ul>
 <pre class="chroma">sudo yum install oracle-j2sdk1.8
 </pre>
 <h3>Step 3: Install Cloudera Manager Server</h3>
@@ -286,9 +289,12 @@ cat /var/log/cloudera-scm-agent/certmanager.log
 </pre>
 <blockquote>
 <p>推荐不开启，开启之后，server日志里面有报错，说没有企业版的license，所以没有自动注册证书什么的。然后又引起了安装CDH的错误 - <code>Installation failed. Failed to receive heartbeat from agent.</code>，排查了好久，网上都说hostname、hosts文件格式、tmpfs挂载、ntp时间同步和7182端口配置错误什么鬼的，结果没启用tls就安装成功了。<br />
-以下是两个关于tmpfs错误的说明，感兴趣的可以了解一下
-- <a href="https://community.cloudera.com/t5/Cloudera-Manager-Installation/Cloudera-Manager-Agent-cannot-connect-with-supervisor-Failed/td-p/58522">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 1</a>
-- <a href="http://community.cloudera.com/t5/Cloudera-Manager-Installation/CDH-5-12-0-clouder-manager-agent-can-not-start/td-p/58654">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 2</a></p>
+以下是两个关于tmpfs错误的说明，感兴趣的可以了解一下</p>
+
+<ul>
+<li><a href="https://community.cloudera.com/t5/Cloudera-Manager-Installation/Cloudera-Manager-Agent-cannot-connect-with-supervisor-Failed/td-p/58522">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 1</a></li>
+<li><a href="http://community.cloudera.com/t5/Cloudera-Manager-Installation/CDH-5-12-0-clouder-manager-agent-can-not-start/td-p/58654">tmpfs - Cloudera Manager. Agent cannot connect with supervisor. Failed to receive heartbeat from agent - 2</a></li>
+</ul>
 </blockquote>
 
 <h3>Step 4: Install Databases</h3>
@@ -469,22 +475,31 @@ sudo cp mysql-connector-java-5.1.46-bin.jar /usr/share/java/mysql-connector-java
 <p>在clouderamanager.cdh.com上执行，如果条件允许，可以有一台单独的数据库服务器</p>
 </blockquote>
 
-<p>CM提供了一个脚本(scm_prepare_database.sh)来创建和配置CM的数据库，这个脚本可以作如下事情：
-- 创建Cloudera Manager Server数据库配置文件
-- 为Cloudera Manager Server创建和配置数据库(MariaDB, MySQL, and PostgreSQL)
-- 为Cloudera Manager Server创建和配置用户(MariaDB, MySQL, and PostgreSQL)</p>
+<p>CM提供了一个脚本(scm_prepare_database.sh)来创建和配置CM的数据库，这个脚本可以作如下事情：</p>
+
+<ul>
+<li>创建Cloudera Manager Server数据库配置文件</li>
+<li>为Cloudera Manager Server创建和配置数据库(MariaDB, MySQL, and PostgreSQL)</li>
+<li>为Cloudera Manager Server创建和配置用户(MariaDB, MySQL, and PostgreSQL)</li>
+</ul>
 
 <h4>1) Syntax for scm_prepare_database.sh</h4>
 
-<p><code>/opt/cloudera/cm/schema/scm_prepare_database.sh [options] &lt;databaseType&gt; &lt;databaseName&gt; &lt;databaseUser&gt; &lt;password&gt;</code>
-- <code>&lt;databaseType&gt;</code>:
-    - MariaDB: mysql
-    - MySQL: mysql
-    - Oracle: oracle
-    - PostgreSQL: postgresql
-- <code>&lt;databaseName&gt;</code>, 对MySQL, MariaDB, and PostgreSQL来说，如果指定<code>-u</code>和<code>-p</code>选项，则脚本会创建指定的数据库，否则只会配置它。
-- <code>&lt;databaseUser&gt;</code>, 数据库用户名。
-- <code>&lt;password&gt;</code>, 数据库用户名密码，如果不想显式的暴露密码，可以忽略，然后在交互中输入密码。</p>
+<p><code>/opt/cloudera/cm/schema/scm_prepare_database.sh [options] &lt;databaseType&gt; &lt;databaseName&gt; &lt;databaseUser&gt; &lt;password&gt;</code></p>
+
+<ul>
+<li><code>&lt;databaseType&gt;</code>:
+
+<ul>
+<li>MariaDB: mysql</li>
+<li>MySQL: mysql</li>
+<li>Oracle: oracle</li>
+<li>PostgreSQL: postgresql</li>
+</ul></li>
+<li><code>&lt;databaseName&gt;</code>, 对MySQL, MariaDB, and PostgreSQL来说，如果指定<code>-u</code>和<code>-p</code>选项，则脚本会创建指定的数据库，否则只会配置它。</li>
+<li><code>&lt;databaseUser&gt;</code>, 数据库用户名。</li>
+<li><code>&lt;password&gt;</code>, 数据库用户名密码，如果不想显式的暴露密码，可以忽略，然后在交互中输入密码。</li>
+</ul>
 
 <blockquote>
 <p>如果在第四步中已经创建过数据库和用户授权，不需要执行此脚本时增加<code>-u</code>和<code>-p</code>选项</p>
@@ -522,10 +537,11 @@ INFO WebServerImpl:com.cloudera.server.cmf.WebServerImpl: Started Jetty server.
 <span class="c1"># 当看到上面信息的时候，服务已经启动完毕</span>
 </pre>
 <blockquote>
-<p>错误说明
-- 现象描述: 在群集安装界面，每次都是安装失败，失败的原因是在<code>正在检测 Cloudera Manager Server...</code>部分里面，执行的是<code>BEGIN host -t PTR localhost.localdomain</code>，每一台都是。</p>
+<p>错误说明</p>
 
 <ul>
+<li><p>现象描述: 在群集安装界面，每次都是安装失败，失败的原因是在<code>正在检测 Cloudera Manager Server...</code>部分里面，执行的是<code>BEGIN host -t PTR localhost.localdomain</code>，每一台都是。</p></li>
+
 <li><p>问题分析: 最初以为是cm会动态分析hostname，获得cm server的hostname，然后在各个cluster节点上使用/etc/hosts文件解析出来真正的ip。所以一直都在排查hosts文件，但其实不是这里的问题。</p></li>
 
 <li><p>真实原因: cm并不会动态分析hostname，而是在初始化的时候生成一个这样的初始化文件<code>/var/lib/cloudera-scm-server/certmanager/cm_init.txt</code>，里面很多初始化信息，后面cm再重启就不会变了，会一直用这个文件里面获取的信息。结果我遇到的坑就是，我先启动的cm然后又修改的hostname，结果web界面初始化的时候，死活识别不了真正的hostname，手动修改一下这个文件里面的hostname，然后重启一下cm，问题解决。</p></li>
@@ -537,10 +553,13 @@ INFO WebServerImpl:com.cloudera.server.cmf.WebServerImpl: Started Jetty server.
 <p>因为parcel文件很大，所以避免网络延迟，我们可以提前下载parcel文件在本地，然后再进行安装。<br />
 我们需要安装5.11.1版本，所以我们访问<a href="https://archive.cloudera.com/cdh6/6.0.0/parcels/">https://archive.cloudera.com/cdh6/6.0.0/parcels/</a></p>
 
-<p>这里需要下载以下三个文件
-- CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel
-- CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha256(需要更名)
-- manifest.json</p>
+<p>这里需要下载以下三个文件</p>
+
+<ul>
+<li>CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel</li>
+<li>CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel.sha256(需要更名)</li>
+<li>manifest.json</li>
+</ul>
 
 <blockquote>
 <p>重点注意，此处下载的文件，后来实测发现用不上，还是会在线下载，原因未查明。</p>
@@ -555,8 +574,11 @@ CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel  CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.pa
 </pre>
 <h4>4) 浏览器访问</h4>
 
-<p><code>http://&lt;server_host&gt;:7180</code>
-&gt; 如果开启了Auto-TLS，会跳转到<code>https://&lt;server_host&gt;:7183</code></p>
+<p><code>http://&lt;server_host&gt;:7180</code></p>
+
+<blockquote>
+<p>如果开启了Auto-TLS，会跳转到<code>https://&lt;server_host&gt;:7183</code></p>
+</blockquote>
 
 <h4>5) 登陆Cloudera Manager Admin Console</h4>
 
@@ -566,25 +588,31 @@ CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.parcel  CDH-6.0.0-1.cdh6.0.0.p0.537114-el7.pa
 
 <h4>1) 群集安装</h4>
 
-<p>会在web界面经过以下操作步骤：
-- 欢迎
-- Specify Hosts，示例格式<code>clouderamanager.localcdh.com,masterhost0[1-2].localcdh.com,workerhost0[1-4].localcdh.com</code>
-- 选择存储库, 选择公共库就好，暂时个人还没有碰到私有库的需求。如果界面上没有CDH6的选项，可以点击<code>选择parcel</code>旁边的更多选项，把最新版本的parcel url输入进去就可以了，例如，我希望安装CDH6，但是发现没有，我就增加一个<code>https://archive.cloudera.com/cdh6/6.0.0/parcels/</code>，即可。 如果需要安装sqoop，在这边需要勾选，不然后面没法选了。
-- JDK 安装选项， 选择oracle jdk安装，另外可以勾选无限什么的那个选项，估计就是jdk的证书白名单。
-- 提供 SSH 登录凭据，推荐用root的sshkey或者密码，这样权限足够，不会有乱七八糟问题。
-- Install Agents，容易出现<code>安装失败。 无法接收 Agent 发出的检测信号。</code>错误，就跟上面auto-tls注释里面说明的一样，注意那几项肯定能成功。
-- 正在安装选定 Parcel，顾名思义。
-- Inspect Hosts，检测部分参数，根据参数提示调整即可</p>
+<p>会在web界面经过以下操作步骤：</p>
+
+<ul>
+<li>欢迎</li>
+<li>Specify Hosts，示例格式<code>clouderamanager.localcdh.com,masterhost0[1-2].localcdh.com,workerhost0[1-4].localcdh.com</code></li>
+<li>选择存储库, 选择公共库就好，暂时个人还没有碰到私有库的需求。如果界面上没有CDH6的选项，可以点击<code>选择parcel</code>旁边的更多选项，把最新版本的parcel url输入进去就可以了，例如，我希望安装CDH6，但是发现没有，我就增加一个<code>https://archive.cloudera.com/cdh6/6.0.0/parcels/</code>，即可。 如果需要安装sqoop，在这边需要勾选，不然后面没法选了。</li>
+<li>JDK 安装选项， 选择oracle jdk安装，另外可以勾选无限什么的那个选项，估计就是jdk的证书白名单。</li>
+<li>提供 SSH 登录凭据，推荐用root的sshkey或者密码，这样权限足够，不会有乱七八糟问题。</li>
+<li>Install Agents，容易出现<code>安装失败。 无法接收 Agent 发出的检测信号。</code>错误，就跟上面auto-tls注释里面说明的一样，注意那几项肯定能成功。</li>
+<li>正在安装选定 Parcel，顾名思义。</li>
+<li>Inspect Hosts，检测部分参数，根据参数提示调整即可</li>
+</ul>
 
 <h4>2) 群集配置</h4>
 
-<p>会在web界面经过以下操作步骤：
-- Select Services，有打包好的方案选择，也有自定义服务选择，通常是自定义，方便看到安装了什么服务。
-- 自定义角色分配，可以参照<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_host_allocations.html#host_role_assignments">官网推荐</a>
-- 数据库设置，这边就是第四步里面创建的数据库
-- 审核更改，审核上面的配置
-- 命令详细信息，执行命令
-- Summary，结束</p>
+<p>会在web界面经过以下操作步骤：</p>
+
+<ul>
+<li>Select Services，有打包好的方案选择，也有自定义服务选择，通常是自定义，方便看到安装了什么服务。</li>
+<li>自定义角色分配，可以参照<a href="https://www.cloudera.com/documentation/enterprise/6/6.0/topics/cm_ig_host_allocations.html#host_role_assignments">官网推荐</a></li>
+<li>数据库设置，这边就是第四步里面创建的数据库</li>
+<li>审核更改，审核上面的配置</li>
+<li>命令详细信息，执行命令</li>
+<li>Summary，结束</li>
+</ul>
 
     </div>
 

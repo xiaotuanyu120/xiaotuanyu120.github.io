@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -224,27 +225,26 @@
 
 <h4>1) 方法1(tomcat)</h4>
 
-<p>既然此问题出现在tomcat返回给客户端http网络资源时出现问题，当然要从tomcat的配置下手<br />
-- <code>http</code>：<code>$CATALINA_BASE/conf/server.xml</code></p>
-<pre class="chroma">&lt;Connector port=&#34;6236&#34; protocol=&#34;HTTP/1.1&#34;
-               proxyPort=&#34;6116&#34;
-               ...
-               redirectPort=&#34;8443&#34; useBodyEncodingForURI=&#34;true&#34; URIEncoding=&#34;UTF-8&#34; /&gt;
-</pre>
-<p>增加配置<code>proxyPort</code>，将其配置为自定义的端口，则tomcat在返回给客户端时，会使用配置的端口，客户端使用这个端口则可正确访问静态网络资源。</p>
+<p>既然此问题出现在tomcat返回给客户端http网络资源时出现问题，当然要从tomcat的配置下手</p>
 
 <ul>
-<li><code>https</code>：<code>$CATALINA_BASE/conf/server.xml</code>
-<code>
-&lt;Connector port=&quot;6236&quot; protocol=&quot;HTTP/1.1&quot;
-           proxyPort=&quot;6116&quot;
-           sslProtocol='SSL'
-           scheme='https'
+<li><p><code>http</code>：<code>$CATALINA_BASE/conf/server.xml</code></p>
+<pre class="chroma">&lt;Connector port=&#34;6236&#34; protocol=&#34;HTTP/1.1&#34;
+           proxyPort=&#34;6116&#34;
            ...
-           redirectPort=&quot;8443&quot; useBodyEncodingForURI=&quot;true&quot; URIEncoding=&quot;UTF-8&quot; /&gt;
-</code>
-此处比http增加了<code>sslProtocol</code>,<code>scheme</code><br />
-</li>
+           redirectPort=&#34;8443&#34; useBodyEncodingForURI=&#34;true&#34; URIEncoding=&#34;UTF-8&#34; /&gt;
+</pre>
+<p>增加配置<code>proxyPort</code>，将其配置为自定义的端口，则tomcat在返回给客户端时，会使用配置的端口，客户端使用这个端口则可正确访问静态网络资源。</p></li>
+
+<li><p><code>https</code>：<code>$CATALINA_BASE/conf/server.xml</code></p>
+<pre class="chroma">&lt;Connector port=&#34;6236&#34; protocol=&#34;HTTP/1.1&#34;
+           proxyPort=&#34;6116&#34;
+           sslProtocol=&#39;SSL&#39;
+           scheme=&#39;https&#39;
+           ...
+           redirectPort=&#34;8443&#34; useBodyEncodingForURI=&#34;true&#34; URIEncoding=&#34;UTF-8&#34; /&gt;
+</pre>
+<p>此处比http增加了<code>sslProtocol</code>,<code>scheme</code></p></li>
 </ul>
 
 <p><a href="http://www.ituring.com.cn/article/48042">proxyPort参考配置</a><br />
@@ -269,13 +269,16 @@
 
 <h4>3) 总结</h4>
 
-<p>无论是在nginx还是tomcat上去配置，原理都是在request header中的$host后面增加端口号。
-- 当我们使用ip来访问的时候
-我们使用ip:port访问，request到达tomcat后，tomcat会根据request中的host来返回其他资源的连接给客户端，即返回<a href="http://ip:port/something">http://ip:port/something</a> ，所以这时是可以用server_port来解决的
-- 当我们使用域名访问的时候
+<p>无论是在nginx还是tomcat上去配置，原理都是在request header中的$host后面增加端口号。</p>
+
+<ul>
+<li>当我们使用ip来访问的时候
+我们使用ip:port访问，request到达tomcat后，tomcat会根据request中的host来返回其他资源的连接给客户端，即返回<a href="http://ip:port/something">http://ip:port/something</a> ，所以这时是可以用server_port来解决的</li>
+<li>当我们使用域名访问的时候
 首先来讨论域名的解析，假设一个www.test.com。<br />
 默认情况下，此域名会经由A记录来到一个ip地址，默认的端口是80来进行request；<br />
-但是我们不能使用80，而是在A记录之后指向了一个cdn，cdn指向了源ip:non_80_port，此时request到达tomcat，tomcat根据request中的host为url:non_80_port给客户端，而客户端使用这个去请求时就会出错，因为该域名被解析时，默认的端口是80。而如果我们自己使用fiddler软件去本地解析域名到ip:non_80_port，此时就可成功访问，因为url:non_80_port本来就解析到了正确的端口non_80_port。</p>
+但是我们不能使用80，而是在A记录之后指向了一个cdn，cdn指向了源ip:non_80_port，此时request到达tomcat，tomcat根据request中的host为url:non_80_port给客户端，而客户端使用这个去请求时就会出错，因为该域名被解析时，默认的端口是80。而如果我们自己使用fiddler软件去本地解析域名到ip:non_80_port，此时就可成功访问，因为url:non_80_port本来就解析到了正确的端口non_80_port。</li>
+</ul>
 
     </div>
 

@@ -586,9 +586,13 @@
 <ul>
 <li><p>选中Enable</p></li>
 
-<li><p>编辑tlsv1.2 支持的非CBC的ciphers，拷贝到文本编辑器中，使用&rdquo;,&ldquo;连接这些ciphers字符串
-&gt; 可以按照这个来配置，只启用TLSv1.2的GCM相关的加密算法：
-&gt; <code>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256</code></p></li>
+<li><p>编辑tlsv1.2 支持的非CBC的ciphers，拷贝到文本编辑器中，使用&rdquo;,&ldquo;连接这些ciphers字符串</p>
+
+<blockquote>
+<p>可以按照这个来配置，只启用TLSv1.2的GCM相关的加密算法：
+<code>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256</code></p>
+</blockquote>
+</li>
 
 <li><p>删除原有的SSL Cipher Suites内容，将新的ciphers字符串拷贝进去，然后apply</p></li>
 

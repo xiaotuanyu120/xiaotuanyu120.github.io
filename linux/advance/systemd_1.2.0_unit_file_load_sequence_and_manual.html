@@ -219,10 +219,13 @@
        are dynamically created via a systemd.generator(7).
 </pre>
 <blockquote>
-<p>重点需要注意：
-1. unit files配置在三个目录中
-2. unit files和iptables的规则差不多，是从（表中）上到下，遇到的第一个unit file生效。
-3. unit files可以是一个其他非表中目录的文件的链接（链接文件必须在表中的目录中）</p>
+<p>重点需要注意：</p>
+
+<ol>
+<li>unit files配置在三个目录中</li>
+<li>unit files和iptables的规则差不多，是从（表中）上到下，遇到的第一个unit file生效。</li>
+<li>unit files可以是一个其他非表中目录的文件的链接（链接文件必须在表中的目录中）</li>
+</ol>
 </blockquote>
 
 <h3>3. unit files覆盖配置</h3>
@@ -284,9 +287,12 @@
 <span class="nv">ExecStartPost</span><span class="o">=</span>-/usr/bin/docker network create --driver<span class="o">=</span>bridge --subnet<span class="o">=</span>172.30.2.0/24 --ip-range<span class="o">=</span>172.30.2.0/24 --gateway<span class="o">=</span>172.30.2.254 net2
 </pre>
 <blockquote>
-<p>扩展命令
-- <code>systemctl cat &lt;service_name&gt;</code>，查看配置文件内容
-- <code>systemctl show &lt;service_name&gt;</code>，查看实际生效的内容</p>
+<p>扩展命令</p>
+
+<ul>
+<li><code>systemctl cat &lt;service_name&gt;</code>，查看配置文件内容</li>
+<li><code>systemctl show &lt;service_name&gt;</code>，查看实际生效的内容</li>
+</ul>
 </blockquote>
 
     </div>

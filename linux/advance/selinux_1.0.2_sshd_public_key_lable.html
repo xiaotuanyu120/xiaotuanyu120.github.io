@@ -196,10 +196,13 @@
       </div>
 <h3>0. 背景说明</h3>
 
-<p>sshd默认限制如下
-- port: ssh_port_t &gt;&gt; tcp 22
-- 公钥文件: ssh_home_t &gt;&gt; <code>/home/[^/]+/.ssh(/.*)?</code>
-&gt; <a href="https://www.systutorials.com/docs/linux/man/8-sshd_selinux/">man docs: sshd selinux lable</a></p>
+<p>sshd默认限制如下</p>
+
+<ul>
+<li>port: ssh_port_t &gt;&gt; tcp 22</li>
+<li>公钥文件: ssh_home_t &gt;&gt; <code>/home/[^/]+/.ssh(/.*)?</code>
+&gt; <a href="https://www.systutorials.com/docs/linux/man/8-sshd_selinux/">man docs: sshd selinux lable</a></li>
+</ul>
 
 <p>线上常见的现象是，端口不会是22；另外公钥所在的家目录也不一定在/home；此时就需要用到下面的方法来调整</p>
 

@@ -206,10 +206,13 @@
 
 <h4>gitlab-runner(docker)原理</h4>
 
-<p>这里我们需要介绍几个角色（job-runner是我自己分类的，并非官方说法）：
-- gitlab-runner
-- job-runner
-- gitlab</p>
+<p>这里我们需要介绍几个角色（job-runner是我自己分类的，并非官方说法）：</p>
+
+<ul>
+<li>gitlab-runner</li>
+<li>job-runner</li>
+<li>gitlab</li>
+</ul>
 
 <p>其中，gitlab-runner是一个中介的角色，它首先在gitlab处通过token注册中介身份。然后定时去询问是否有&rdquo;工作机会&rdquo;（job），如果有&rdquo;工作机会&rdquo;，则创建一个job-runner的容器来完成工作。</p>
 
@@ -236,11 +239,14 @@ docker run --rm -v <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF
 </span><span class="se"></span>  --access-level<span class="o">=</span><span class="s2">&#34;not_protected&#34;</span>
 </pre>
 <blockquote>
-<p>主要选项介绍：
-- executor，指定runner名称
-- docker-image，指定任务执行默认的镜像（runner会控制docker，在宿主机启动独立的容器来执行任务，这里说的镜像就是这个容器的镜像。）
-- url，指定gitlab的url
-- registration-token，指定注册的runner的token，这个可以在gitlab的ci设定里面找到</p>
+<p>主要选项介绍：</p>
+
+<ul>
+<li>executor，指定runner名称</li>
+<li>docker-image，指定任务执行默认的镜像（runner会控制docker，在宿主机启动独立的容器来执行任务，这里说的镜像就是这个容器的镜像。）</li>
+<li>url，指定gitlab的url</li>
+<li>registration-token，指定注册的runner的token，这个可以在gitlab的ci设定里面找到</li>
+</ul>
 </blockquote>
 
 <p>上面的操作，会在<code>/data/docker/runtime/gitlab-runner/config</code>，这个目录中生成<code>config.toml</code>配置文件。</p>
@@ -249,8 +255,11 @@ docker run --rm -v <span class="si">${</span><span class="nv">GITLAB_RUNNER_CONF
 
 <p>如果我们有一个内部系统，希望job执行的时候去调用，但是该内部系统我们用的是内部解析的域名，需要修改配置</p>
 
-<p>假设这个系统是sonarqube，我们需要在job-runner的容器环境中增加本地解析，因为job-runner是用gitlab-runner自动启动的docker环境，所以需要修改config.toml中的<code>runners.docker</code>部分的<code>extra_hosts</code>配置
-&gt; 参考链接：<a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">gitlab-runner executor 配置extra_hosts</a></p>
+<p>假设这个系统是sonarqube，我们需要在job-runner的容器环境中增加本地解析，因为job-runner是用gitlab-runner自动启动的docker环境，所以需要修改config.toml中的<code>runners.docker</code>部分的<code>extra_hosts</code>配置</p>
+
+<blockquote>
+<p>参考链接：<a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">gitlab-runner executor 配置extra_hosts</a></p>
+</blockquote>
 
 <p>下面列出以下runner的额外docker的配置：</p>
 <pre class="chroma">[runners.docker]
@@ -351,12 +360,15 @@ Running in system-mode.
 ERROR: Registering runner... forbidden (check registration token)  runner=&lt;mytoken&gt;
 PANIC: Failed to register this runner. Perhaps you are having network problems
 </pre>
-<p>检查和排除过的可能问题所在
-- 确认自建gitlab的域名解析正确；
-- 确认自建gitlab域名的http协议正确(http还是https不能搞错，若是https，还要解决证书问题)；
-- 确认token输入正确(gitlab网页端，在project页面点击setting - CI/CD - RUNNER);
-- 确认经过curl和telnet两个工具测试，gitlab-runner所在服务器可以通过域名调用gitlab服务;
-- 确认gitlab-runner版本和gitlab版本一致;</p>
+<p>检查和排除过的可能问题所在</p>
+
+<ul>
+<li>确认自建gitlab的域名解析正确；</li>
+<li>确认自建gitlab域名的http协议正确(http还是https不能搞错，若是https，还要解决证书问题)；</li>
+<li>确认token输入正确(gitlab网页端，在project页面点击setting - CI/CD - RUNNER);</li>
+<li>确认经过curl和telnet两个工具测试，gitlab-runner所在服务器可以通过域名调用gitlab服务;</li>
+<li>确认gitlab-runner版本和gitlab版本一致;</li>
+</ul>
 
 <p>然而我网上搜索错误的关键字，大部分说的都是上面的原因。于是经过一番“大海捞针”，终于找到了一个解决办法:“将docker运行的register容器，网络模式改为host”</p>
 <pre class="chroma"><span class="c1"># 增加了--network host</span>

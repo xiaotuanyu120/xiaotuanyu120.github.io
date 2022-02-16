@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -201,9 +202,12 @@
       </div>
 <h3>0. 前言</h3>
 
-<p>nginx的逻辑判断需要注意以下几点：
-- if语句不可以嵌套
-- if不可以多condition（不可以使用&amp;&amp;和||）</p>
+<p>nginx的逻辑判断需要注意以下几点：</p>
+
+<ul>
+<li>if语句不可以嵌套</li>
+<li>if不可以多condition（不可以使用&amp;&amp;和||）</li>
+</ul>
 
 <blockquote>
 <p>参考文档：<a href="http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if">nginx_if语句官方文档</a></p>

@@ -240,13 +240,14 @@
 
 <p>1.1 命令：mkfs<br />
 作用：创建linux文件系统（格式化分区）<br />
-语法：<br />
-- <code>mkfs [-t] 分区</code><br />
-如无-t，默认为ext2</p>
+语法：</p>
 
 <ul>
-<li><code>mkfs.xxx 分区</code><br />
-xxx为格式名称，下图为不同格式的相应命令</li>
+<li><p><code>mkfs [-t] 分区</code><br />
+如无-t，默认为ext2</p></li>
+
+<li><p><code>mkfs.xxx 分区</code><br />
+xxx为格式名称，下图为不同格式的相应命令</p></li>
 </ul>
 
 <p>用法举例：</p>
@@ -321,12 +322,15 @@ meta-data<span class="o">=</span>/dev/sdb3              <span class="nv">isize</
 <p>1.2 mke2fs<br />
 作用：创建ext2、ext3或ext4文件系统<br />
 语法：<code>mke2fs [参数] 分区</code>
-参数：
-- -i 定义多少磁盘空间给予分配一个inode，数值越大，inode数目越少。此选项多用于应对小文件比较多的情况
-- -m 保留磁盘空间的百分比，给superuser用的，用于应对磁盘空间有可能满的情况
-- -t type 格式（只能跟ext2、ext3、ext4）
-- -L lable制定分区标签名，标签名可用于挂载分区用
-- -b &ldquo;block-size&rdquo;目前有效值为1024、2048或4096bytes</p>
+参数：</p>
+
+<ul>
+<li>-i 定义多少磁盘空间给予分配一个inode，数值越大，inode数目越少。此选项多用于应对小文件比较多的情况</li>
+<li>-m 保留磁盘空间的百分比，给superuser用的，用于应对磁盘空间有可能满的情况</li>
+<li>-t type 格式（只能跟ext2、ext3、ext4）</li>
+<li>-L lable制定分区标签名，标签名可用于挂载分区用</li>
+<li>-b &ldquo;block-size&rdquo;目前有效值为1024、2048或4096bytes</li>
+</ul>
 
 <p>用法举例：</p>
 <pre class="chroma">mke2fs -t ext3 /dev/sdb1

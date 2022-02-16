@@ -232,10 +232,13 @@
            Specifier and environment variable substitution is supported.
 </pre>
 <blockquote>
-<p>重点需要注意：
-1. ExecStartPost里面的命令如果以<code>-</code>开头，代表执行成功与否，systemd都会当做它执行成功了。
-2. ExecStartPost等命令，都可以配置多个，按照上下顺序执行
-3. ExecStart系列的命令，先执行ExecStartPre，然后是ExecStart，然后是ExecStartPost，命令中没有以<code>-</code>起头的，一个失败，其他的就不会再执行，而且会导致service进入failed状态</p>
+<p>重点需要注意：</p>
+
+<ol>
+<li>ExecStartPost里面的命令如果以<code>-</code>开头，代表执行成功与否，systemd都会当做它执行成功了。</li>
+<li>ExecStartPost等命令，都可以配置多个，按照上下顺序执行</li>
+<li>ExecStart系列的命令，先执行ExecStartPre，然后是ExecStart，然后是ExecStartPost，命令中没有以<code>-</code>起头的，一个失败，其他的就不会再执行，而且会导致service进入failed状态</li>
+</ol>
 </blockquote>
 
     </div>

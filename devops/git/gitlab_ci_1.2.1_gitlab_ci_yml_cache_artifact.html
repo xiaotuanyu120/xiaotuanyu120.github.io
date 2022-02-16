@@ -169,9 +169,12 @@
       </div>
 <h3>0. <a href="https://docs.gitlab.com/ee/ci/yaml/README.html#cache">cache</a> vs <a href="https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html#introduction-to-job-artifacts">artifacts</a></h3>
 
-<p>官方文档<a href="https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts">cache vs artifacts</a>里面说：
-- cache：用于储存工程依赖文件
-- artifacts：用于储存在stage之间需要传递的文件</p>
+<p>官方文档<a href="https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts">cache vs artifacts</a>里面说：</p>
+
+<ul>
+<li>cache：用于储存工程依赖文件</li>
+<li>artifacts：用于储存在stage之间需要传递的文件</li>
+</ul>
 
 <h3>1. cache</h3>
 
@@ -200,8 +203,11 @@
 <p>cache 本地目录配置参照<a href="/devops/git/gitlab_ci_1.1.1_gitlab_runner_configuration.html">gitlab runner 配置文档</a></p>
 </blockquote>
 
-<p><strong>EXAMPLE: CACHE MAVEN LOCAL REPOSITORY</strong>
-- 然后在.gitlab-ci.yml中配置</p>
+<p><strong>EXAMPLE: CACHE MAVEN LOCAL REPOSITORY</strong></p>
+
+<ul>
+<li>然后在.gitlab-ci.yml中配置</li>
+</ul>
 <pre class="chroma"><span class="k">variables</span><span class="p">:</span><span class="w">
 </span><span class="w"></span><span class="w">  </span><span class="k">MAVEN_OPTS</span><span class="p">:</span><span class="w"> </span>-Dmaven.repo.local=${CI_PROJECT_DIR}/.m2<span class="w">
 </span><span class="w">
@@ -226,9 +232,12 @@
 </span></pre>
 <blockquote>
 <p>error: <code>ERROR: Uploading artifacts to coordinator... too large archive</code>
-<a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a>
-1. gitlab启动参数增加nginx的<code>client_max_body_size</code>
-2. gitlab的admin的CICD设置中，调大artifacts的上限大小</p>
+<a href="https://gitlab.com/gitlab-org/gitlab-foss/issues/14841">解决方法</a></p>
+
+<ol>
+<li>gitlab启动参数增加nginx的<code>client_max_body_size</code></li>
+<li>gitlab的admin的CICD设置中，调大artifacts的上限大小</li>
+</ol>
 
 <p>如何在用不到artifact的job中禁用artifact的下载，用以加速job的运行
 使用<a href="https://docs.gitlab.com/ee/ci/yaml/#dependencies"><code>dependencis: []</code></a></p>
@@ -238,23 +247,27 @@
 
 <p>解决办法：</p>
 
-<p>step 1. 临时解决磁盘占用问题：
-- 删除老旧的artifact(<a href="https://docs.gitlab.com/ee/administration/job_artifacts.html#job-artifacts-using-too-much-disk-space">job artifacts using too much disk space</a>)， 执行<code>gitlab-rails console</code>，然后执行以下命令</p>
-<pre class="chroma"><span class="o">&gt;</span> <span class="n">project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">find_by_full_path</span><span class="p">(</span><span class="s1">&#39;path/to/project&#39;</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="n">builds_with_artifacts</span> <span class="o">=</span>  <span class="n">project</span><span class="o">.</span><span class="n">builds</span><span class="o">.</span><span class="n">with_downloadable_artifacts</span>
-<span class="o">&gt;</span> <span class="n">builds_to_clear</span> <span class="o">=</span> <span class="n">builds_with_artifacts</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&#34;</span><span class="s2">finished_at &lt; ?</span><span class="s2">&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="o"></span><span class="o">.</span><span class="n">week</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
-<span class="o">&gt;</span> <span class="n">builds_to_clear</span><span class="o">.</span><span class="n">find_each</span> <span class="k">do</span> <span class="o">|</span><span class="n">build</span><span class="o">|</span>
-<span class="o">&gt;</span>   <span class="n">build</span><span class="o">.</span><span class="n">artifacts_expire_at</span> <span class="o">=</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span>
-<span class="o">&gt;</span>   <span class="n">build</span><span class="o">.</span><span class="n">erase_erasable_artifacts!</span>
-<span class="o">&gt;</span> <span class="k">end</span>
-<span class="o">&gt;</span> <span class="sb">`</span><span class="sb">`</span><span class="sb">`</span><span class="sb">
-</span><span class="sb">
-</span><span class="sb">
-</span><span class="sb">&gt; step 2. 禁用这个新特性，执行</span><span class="sb">`</span><span class="n">gitlab</span><span class="o">-</span><span class="n">rails</span> <span class="n">console</span><span class="sb">`</span><span class="sb">，然后执行以下命令
-</span><span class="sb"></span><span class="sb">`</span><span class="sb">`</span><span class="sb">`</span> <span class="n">ruby</span>
-<span class="no">Feature</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="ss">:keep_latest_artifacts_for_ref</span><span class="p">)</span>
+<p>step 1. 临时解决磁盘占用问题：</p>
+
+<ul>
+<li>删除老旧的artifact(<a href="https://docs.gitlab.com/ee/administration/job_artifacts.html#job-artifacts-using-too-much-disk-space">job artifacts using too much disk space</a>)， 执行<code>gitlab-rails console</code>，然后执行以下命令
+<code>ruby
+&gt; project = Project.find_by_full_path('path/to/project')
+&gt; builds_with_artifacts =  project.builds.with_downloadable_artifacts
+&gt; builds_to_clear = builds_with_artifacts.where(&quot;finished_at &lt; ?&quot;, 1.week.ago)
+&gt; builds_to_clear.find_each do |build|
+&gt;   build.artifacts_expire_at = Time.now
+&gt;   build.erase_erasable_artifacts!
+&gt; end
+&gt;</code></li>
+</ul>
+
+<blockquote>
+<p>step 2. 禁用这个新特性，执行<code>gitlab-rails console</code>，然后执行以下命令</p>
+<pre class="chroma"><span class="no">Feature</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="ss">:keep_latest_artifacts_for_ref</span><span class="p">)</span>
 <span class="no">Feature</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="ss">:destroy_only_unlocked_expired_artifacts</span><span class="p">)</span>
-</pre>
+</pre></blockquote>
+
 <p>step 3. 检查不需要artifact的project，然后取消artifact的配置</p>
 </blockquote>
 

@@ -157,8 +157,11 @@
 
 <h4>grok 语法</h4>
 
-<p><code>%{SYNTAX:SEMANTIC}</code>，换成更好理解的描述就是<code>%{pattern_name:result_name}</code>，举两个实际的例子：<code>%{NUMBER:duration}</code>, <code>%{IP:client}</code>。 详细解释来说，就是我们需要提前定义一个pattern，其名称为<code>NUMBER</code>，然后用NUMBER代表的pattern去匹配日志，匹配到的字段的key就是duration。<br />
-&gt; 默认情况SEMANTIC全部保存为字符串，如果希望改变格式，可以显式指定<code>%{NUMBER:num:int}</code>，目前只支持两种string之外的格式<code>int</code>和<code>float</code>。</p>
+<p><code>%{SYNTAX:SEMANTIC}</code>，换成更好理解的描述就是<code>%{pattern_name:result_name}</code>，举两个实际的例子：<code>%{NUMBER:duration}</code>, <code>%{IP:client}</code>。 详细解释来说，就是我们需要提前定义一个pattern，其名称为<code>NUMBER</code>，然后用NUMBER代表的pattern去匹配日志，匹配到的字段的key就是duration。</p>
+
+<blockquote>
+<p>默认情况SEMANTIC全部保存为字符串，如果希望改变格式，可以显式指定<code>%{NUMBER:num:int}</code>，目前只支持两种string之外的格式<code>int</code>和<code>float</code>。</p>
+</blockquote>
 
 <p>例子：
 有一个这样的日志</p>
