@@ -196,35 +196,44 @@
 
 <p>CM和CDH自带了一个内嵌的PostgreSQL数据库，仅用于非生产环境，生产环境下，需要配置使用一个外部使用的数据库。</p>
 
-<p>注意点：
-- 使用UTF8编码，mysql和mariadb必须使用utf8编码，而不是uft8mb4；
-- 如果使用MySQL5.7，需要安装MySQL-shared-compat 或 MySQL-shared package，因为CM的agent安装时依赖这个包。
-- 不支持mysql的基于GTID的replication
-- Hue需要操作系统默认版本的MySQL和MariaDB版本。
-- MySQL社区版和企业版都支持
-- cloudera支持oracle的Exadata和RAC instances当他们作为CDH的后端数据库却没有配置高可用时。 cloudera假定后端的数据库都是单点实例, 不支持数据库的高可用。</p>
+<p>注意点：</p>
+
+<ul>
+<li>使用UTF8编码，mysql和mariadb必须使用utf8编码，而不是uft8mb4；</li>
+<li>如果使用MySQL5.7，需要安装MySQL-shared-compat 或 MySQL-shared package，因为CM的agent安装时依赖这个包。</li>
+<li>不支持mysql的基于GTID的replication</li>
+<li>Hue需要操作系统默认版本的MySQL和MariaDB版本。</li>
+<li>MySQL社区版和企业版都支持</li>
+<li>cloudera支持oracle的Exadata和RAC instances当他们作为CDH的后端数据库却没有配置高可用时。 cloudera假定后端的数据库都是单点实例, 不支持数据库的高可用。</li>
+</ul>
 
 <blockquote>
 <p>当重启进程时，各个服务都会在CM连接的数据库中读取配置，如果配置无法读取，大数据集群将不会正确的启动。所以必须要提前做好数据库的备份，这方面内容可以参照(数据库备份)[<a href="https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ag_backup_dbs.html#xd_583c10bfdbd326ba--6eed2fb8-14349d04bee--7e98">https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ag_backup_dbs.html#xd_583c10bfdbd326ba&ndash;6eed2fb8-14349d04bee&ndash;7e98</a>]</p>
 </blockquote>
 
-<p>数据库支持列表：
-- MySQL 5.7
-- MariaDB 5.5, 10.0
-- PostgreSQL 8.4, 9.2, 9.4
-- Oracle 12c</p>
+<p>数据库支持列表：</p>
+
+<ul>
+<li>MySQL 5.7</li>
+<li>MariaDB 5.5, 10.0</li>
+<li>PostgreSQL 8.4, 9.2, 9.4</li>
+<li>Oracle 12c</li>
+</ul>
 
 <h4>3) JAVA</h4>
 
-<p>CDH 6.X 仅支持oracle JDK8(不支持openjdk)，以下是详细列表：
-- 1.8u162	Recommended / Latest version tested
-- 1.8u131	Recommended
-- 1.8u121	Recommended
-- 1.8u111	Recommended
-- 1.8u102	Recommended
-- 1.8u91	Recommended
-- 1.8u74	Recommended
-- 1.8u31	Minimum required</p>
+<p>CDH 6.X 仅支持oracle JDK8(不支持openjdk)，以下是详细列表：</p>
+
+<ul>
+<li>1.8u162	Recommended / Latest version tested</li>
+<li>1.8u131	Recommended</li>
+<li>1.8u121	Recommended</li>
+<li>1.8u111	Recommended</li>
+<li>1.8u102	Recommended</li>
+<li>1.8u91	Recommended</li>
+<li>1.8u74	Recommended</li>
+<li>1.8u31	Minimum required</li>
+</ul>
 
 <h4>4) 网络和安全要求</h4>
 
@@ -443,18 +452,24 @@
 </tr>
 </tbody>
 </table>
-<p><strong>网络和安全要求</strong>
-- 网络协议： 仅支持ipv4，需要禁用ipv6
-- 集群主机的/etc/hosts文件
-    - 所有的主机上都要有一致的/etc/hosts文件
-    - hostname中不包含大写字母
-    - 不包含重复的ip
-- 大多数情况下，在使用CM安装和升级集群时，CM需要拥有对所有主机的SSH权限。一旦集群安装或者升级完毕，需要禁用CM的SSH的访问权限。CM不会保存SSH的认证，当安装和升级过程结束，CM会丢弃所有的SSH认证。
-- CM agent需要用root身份运行，来保证必要目录得以创建以及让特定的用户拥有进程和文件的权限（例如hdfs和mapred）。
-- selinux尽量关闭，或者你有本事别让它阻碍CDH和CM正常运行
-- 防火墙需要关闭，或者放行所有CM CDH和相关服务的(端口)[<a href="https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j">https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j</a>]
-- 对RHEL和CENTOS来说，<code>/etc/sysconfig/network</code>文件必须配置正确的hostname
-- CM和CDH使用多个users和groups来完成它们的工作。具体是哪些用户取决于你安装哪些组件和服务，不要去删除这些用户和组，也不要去修改他们的权限。CM、CDH和被管理的服务使用以下用户和组：</p>
+<p><strong>网络和安全要求</strong></p>
+
+<ul>
+<li>网络协议： 仅支持ipv4，需要禁用ipv6</li>
+<li>集群主机的/etc/hosts文件
+
+<ul>
+<li>所有的主机上都要有一致的/etc/hosts文件</li>
+<li>hostname中不包含大写字母</li>
+<li>不包含重复的ip</li>
+</ul></li>
+<li>大多数情况下，在使用CM安装和升级集群时，CM需要拥有对所有主机的SSH权限。一旦集群安装或者升级完毕，需要禁用CM的SSH的访问权限。CM不会保存SSH的认证，当安装和升级过程结束，CM会丢弃所有的SSH认证。</li>
+<li>CM agent需要用root身份运行，来保证必要目录得以创建以及让特定的用户拥有进程和文件的权限（例如hdfs和mapred）。</li>
+<li>selinux尽量关闭，或者你有本事别让它阻碍CDH和CM正常运行</li>
+<li>防火墙需要关闭，或者放行所有CM CDH和相关服务的(端口)[<a href="https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j">https://www.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_ports.html#concept_k5z_vwy_4j</a>]</li>
+<li>对RHEL和CENTOS来说，<code>/etc/sysconfig/network</code>文件必须配置正确的hostname</li>
+<li>CM和CDH使用多个users和groups来完成它们的工作。具体是哪些用户取决于你安装哪些组件和服务，不要去删除这些用户和组，也不要去修改他们的权限。CM、CDH和被管理的服务使用以下用户和组：</li>
+</ul>
 
 <table>
 <thead>
@@ -654,11 +669,14 @@
 
 <h4>2) 适当大小的服务器配置</h4>
 
-<p>cloudera推荐在生产环境中部署三到四种机器类型：
-- Master Node, 运行Hadoop master daemon: NameNode, Standby NameNode, YARN Resource Manager and History Server, the HBase Master daemon, Sentry server, and the Impala StateStore Server and Catalog Server。 同时也是Zookeeper和JournalNodes的安装位置。kudu master servers也会部署在Master Node上。
-- Worker Node, Runs the HDFS DataNode, YARN NodeManager, HBase RegionServer, Impala impalad, Search worker daemons and Kudu Tablet Servers.
-- Utility Node, Runs Cloudera Manager and the Cloudera Management Services. 也可以部署一个MySQL（或其他）数据库，用于Cloudera Manager, Hive, Sentry 和其他 Hadoop-related projects.
-- Edge Node, Contains all client-facing configurations and services, including gateway configurations for HDFS, YARN, Impala, Hive, and HBase. The edge node is also a good place for Hue, Oozie, HiveServer2, and Impala HAProxy. HiveServer2 and Impala HAProxy serve as a gateway to external applications such as Business Intelligence (BI) tools.</p>
+<p>cloudera推荐在生产环境中部署三到四种机器类型：</p>
+
+<ul>
+<li>Master Node, 运行Hadoop master daemon: NameNode, Standby NameNode, YARN Resource Manager and History Server, the HBase Master daemon, Sentry server, and the Impala StateStore Server and Catalog Server。 同时也是Zookeeper和JournalNodes的安装位置。kudu master servers也会部署在Master Node上。</li>
+<li>Worker Node, Runs the HDFS DataNode, YARN NodeManager, HBase RegionServer, Impala impalad, Search worker daemons and Kudu Tablet Servers.</li>
+<li>Utility Node, Runs Cloudera Manager and the Cloudera Management Services. 也可以部署一个MySQL（或其他）数据库，用于Cloudera Manager, Hive, Sentry 和其他 Hadoop-related projects.</li>
+<li>Edge Node, Contains all client-facing configurations and services, including gateway configurations for HDFS, YARN, Impala, Hive, and HBase. The edge node is also a good place for Hue, Oozie, HiveServer2, and Impala HAProxy. HiveServer2 and Impala HAProxy serve as a gateway to external applications such as Business Intelligence (BI) tools.</li>
+</ul>
 
 <h3>4. 扩展阅读</h3>
 

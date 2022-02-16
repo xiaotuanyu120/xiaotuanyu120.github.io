@@ -334,28 +334,41 @@ core id是每一个内核的唯一标识符，虚拟机上无此字段
 
 <h4>1) 命令：w</h4>
 
-<p>作用： 显示登录到系统的用户及它们在做什么<br />
-&gt; man page description<br />
+<p>作用： 显示登录到系统的用户及它们在做什么</p>
+
+<blockquote>
+<p>man page description<br />
 w - Show who is logged on and what they are doing.</p>
+</blockquote>
 
-<p>语法：<code>w [参数] [username]</code>
-&gt; man page description
+<p>语法：<code>w [参数] [username]</code></p>
+
+<blockquote>
+<p>man page description
 w - [husfV] [user]</p>
+</blockquote>
 
-<p>参数：
-- -h 不显示header
-- -u 忽略用户的uid</p>
-
-<p>输出结果含义：
-- 首行含义
- - $当前时间
- - up
- - $运行天数及时间
- - $登陆人数
- - 系统负载（1、5和15分钟内平均负载）</p>
+<p>参数：</p>
 
 <ul>
-<li>输出内容含义
+<li>-h 不显示header</li>
+<li>-u 忽略用户的uid</li>
+</ul>
+
+<p>输出结果含义：</p>
+
+<ul>
+<li><p>首行含义</p>
+
+<ul>
+<li>$当前时间</li>
+<li>up</li>
+<li>$运行天数及时间</li>
+<li>$登陆人数</li>
+<li>系统负载（1、5和15分钟内平均负载）</li>
+</ul></li>
+
+<li><p>输出内容含义</p>
 
 <ul>
 <li>USER：用户名称</li>
@@ -388,18 +401,27 @@ root     pts/0    essence-pc.gatew 11:05    0.00s  0.05s  0.00s w -h
 <h4>2) 命令：uptime</h4>
 
 <p>作用：Tell how long the system has been running.<br />
-语法：<br />
-- <code>uptime</code>
-- <code>uptime [-V]</code></p>
+语法：</p>
 
-<p>参数：
-- <code>-V</code> 查看版本</p>
+<ul>
+<li><code>uptime</code></li>
+<li><code>uptime [-V]</code></li>
+</ul>
 
-<p>输出内容含义：
-- $当前时间
-- up $运行天数及时间
-- $登陆人数
-- 系统负载（1、5和15分钟内平均负载）</p>
+<p>参数：</p>
+
+<ul>
+<li><code>-V</code> 查看版本</li>
+</ul>
+
+<p>输出内容含义：</p>
+
+<ul>
+<li>$当前时间</li>
+<li>up $运行天数及时间</li>
+<li>$登陆人数</li>
+<li>系统负载（1、5和15分钟内平均负载）</li>
+</ul>
 
     </div>
 

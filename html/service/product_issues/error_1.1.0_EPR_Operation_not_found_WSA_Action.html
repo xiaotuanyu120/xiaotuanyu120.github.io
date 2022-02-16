@@ -180,9 +180,12 @@
       </div>
 <h3>0. 问题描述</h3>
 
-<p>开发使用axis2，然后更新了一个方法，但是线上一直有报错。开发目测是找不到这个方法，于是有了下面这个排错过程。
-- Axis2： Apache Axis2是一个Web服务的核心支援引擎。AXIS2对旧有的AXIS重新设计及重写，并提供两种语言Java及C的开发版本
-- wsdl： WSDL（Web服务描述语言，Web Services Description Language）是为描述Web服务发布的XML格式。</p>
+<p>开发使用axis2，然后更新了一个方法，但是线上一直有报错。开发目测是找不到这个方法，于是有了下面这个排错过程。</p>
+
+<ul>
+<li>Axis2： Apache Axis2是一个Web服务的核心支援引擎。AXIS2对旧有的AXIS重新设计及重写，并提供两种语言Java及C的开发版本</li>
+<li>wsdl： WSDL（Web服务描述语言，Web Services Description Language）是为描述Web服务发布的XML格式。</li>
+</ul>
 
 <h3>1. 排查过程</h3>
 
@@ -229,11 +232,14 @@ org.apache.axis2.AxisFault: The endpoint reference (EPR) for the Operation not f
 
 <h3>2. 解决办法</h3>
 
-<p>然后问题基本上可以确定是这个方法没有更新上去，然后确认了一遍更新流程，做了以下操作：
-- 定位到类文件，删除它
-- 删除work缓存目录中的文件
-- 让开发重新更新这个类文件
-- 重启java服务</p>
+<p>然后问题基本上可以确定是这个方法没有更新上去，然后确认了一遍更新流程，做了以下操作：</p>
+
+<ul>
+<li>定位到类文件，删除它</li>
+<li>删除work缓存目录中的文件</li>
+<li>让开发重新更新这个类文件</li>
+<li>重启java服务</li>
+</ul>
 
     </div>
 

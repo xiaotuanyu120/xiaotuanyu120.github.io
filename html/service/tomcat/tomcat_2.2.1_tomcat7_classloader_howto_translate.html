@@ -228,10 +228,11 @@
 
 <h4>2) 类加载器定义</h4>
 
-<p>如上面架构图所示，Tomcat在初始化时创建以下类加载器：
-- <strong>Bootstrap</strong> &ndash; 这个类加载器包含java虚拟机提供的基本运行时类，外加系统扩展目录($JAVA_HOME/jre/lib/ext)中jar包中的所有类。注意：一些JVM可能会将其实现为多个类加载器，或者它根本不可见（作为类加载器）。</p>
+<p>如上面架构图所示，Tomcat在初始化时创建以下类加载器：</p>
 
 <ul>
+<li><p><strong>Bootstrap</strong> &ndash; 这个类加载器包含java虚拟机提供的基本运行时类，外加系统扩展目录($JAVA_HOME/jre/lib/ext)中jar包中的所有类。注意：一些JVM可能会将其实现为多个类加载器，或者它根本不可见（作为类加载器）。</p></li>
+
 <li><p><strong>System</strong> &ndash; 这个类加载器通常是根据CLASSPATH环境变量的内容来初始化类的。所有这些类对于Tomcat内部类和Web应用程序都是可见的。但是，标准的Tomcat启动脚本($CATALINA_HOME/bin/catalina.sh或％CATALINA_HOME％\bin\catalina.bat)完全忽略CLASSPATH环境变量本身的内容，而是从以下存储库构建System类加载器:</p>
 
 <ul>
@@ -255,46 +256,71 @@
 </ul></li>
 </ul>
 
-<p>默认情况下，它包含以下内容
-  - annotations-api.jar — JavaEE annotations classes.
-  - catalina.jar — Implementation of the Catalina servlet container portion of Tomcat.
-  - catalina-ant.jar — Tomcat Catalina Ant tasks.
-  - catalina-ha.jar — High availability package.
-  - catalina-tribes.jar — Group communication package.
-  - ecj-*.jar — Eclipse JDT Java compiler.
-  - el-api.jar — EL 2.2 API.
-  - jasper.jar — Tomcat Jasper JSP Compiler and Runtime.
-  - jasper-el.jar — Tomcat Jasper EL implementation.
-  - jsp-api.jar — JSP 2.2 API.
-  - servlet-api.jar — Servlet 3.0 API.
-  - tomcat-api.jar — Several interfaces defined by Tomcat.
-  - tomcat-coyote.jar — Tomcat connectors and utility classes.
-  - tomcat-dbcp.jar — Database connection pool implementation based on package-renamed copy of Apache Commons Pool and Apache Commons DBCP.
-  - tomcat-i18n-**.jar — Optional JARs containing resource bundles for other languages. As default bundles are also included in each individual JAR, they can be safely removed if no internationalization of messages is needed.
-  - tomcat-jdbc.jar — An alternative database connection pool implementation, known as Tomcat JDBC pool. See documentation for more details.
-  - tomcat-util.jar — Common classes used by various components of Apache Tomcat.
-  - tomcat7-websocket.jar — WebSocket 1.1 implementation
-  - websocket-api.jar — WebSocket 1.1 API</p>
+<p>默认情况下，它包含以下内容</p>
 
 <ul>
-<li><strong>WebappX</strong> &ndash; 为在单个Tomcat实例中部署的每个Web应用程序创建了一个类加载器。所有Web应用程序的/WEB-INF/classes目录中的解包的类和资源，以及Web应用程序/WEB-INF/lib目录下的JAR文件中的类和资源都对该Web应用程序可见，但对其他的web应用程序不可见。</li>
+<li><p>annotations-api.jar — JavaEE annotations classes.</p></li>
+
+<li><p>catalina.jar — Implementation of the Catalina servlet container portion of Tomcat.</p></li>
+
+<li><p>catalina-ant.jar — Tomcat Catalina Ant tasks.</p></li>
+
+<li><p>catalina-ha.jar — High availability package.</p></li>
+
+<li><p>catalina-tribes.jar — Group communication package.</p></li>
+
+<li><p>ecj-*.jar — Eclipse JDT Java compiler.</p></li>
+
+<li><p>el-api.jar — EL 2.2 API.</p></li>
+
+<li><p>jasper.jar — Tomcat Jasper JSP Compiler and Runtime.</p></li>
+
+<li><p>jasper-el.jar — Tomcat Jasper EL implementation.</p></li>
+
+<li><p>jsp-api.jar — JSP 2.2 API.</p></li>
+
+<li><p>servlet-api.jar — Servlet 3.0 API.</p></li>
+
+<li><p>tomcat-api.jar — Several interfaces defined by Tomcat.</p></li>
+
+<li><p>tomcat-coyote.jar — Tomcat connectors and utility classes.</p></li>
+
+<li><p>tomcat-dbcp.jar — Database connection pool implementation based on package-renamed copy of Apache Commons Pool and Apache Commons DBCP.</p></li>
+
+<li><p>tomcat-i18n-**.jar — Optional JARs containing resource bundles for other languages. As default bundles are also included in each individual JAR, they can be safely removed if no internationalization of messages is needed.</p></li>
+
+<li><p>tomcat-jdbc.jar — An alternative database connection pool implementation, known as Tomcat JDBC pool. See documentation for more details.</p></li>
+
+<li><p>tomcat-util.jar — Common classes used by various components of Apache Tomcat.</p></li>
+
+<li><p>tomcat7-websocket.jar — WebSocket 1.1 implementation</p></li>
+
+<li><p>websocket-api.jar — WebSocket 1.1 API</p></li>
+
+<li><p><strong>WebappX</strong> &ndash; 为在单个Tomcat实例中部署的每个Web应用程序创建了一个类加载器。所有Web应用程序的/WEB-INF/classes目录中的解包的类和资源，以及Web应用程序/WEB-INF/lib目录下的JAR文件中的类和资源都对该Web应用程序可见，但对其他的web应用程序不可见。</p></li>
 </ul>
 
 <p>前面提到过，web应用程序类加载器和默认的java委托模式(根据Servlet规范2.4版第9.7.2节Web应用程序类加载器中的建议)不同，当处理从Web应用程序的WebappX类加载器加载类的请求时，此类加载器将首先查找本身存储库，而不是委派给父类先去查找。不过也有例外，作为JRE基类一部分的类不能被覆盖。对于某些类（例如J2SE 1.4+中的XML解析器组件），可以使用J2SE 1.4认可的功能。最后，包含Servlet API类的任何JAR文件都将被类加载器显式忽略 &ndash; 不要在您的Web应用程序中包含这样的JAR。Tomcat中的所有其他类加载器遵循通常的委托模式。</p>
 
-<p>因此，从Web应用程序的角度来看，类或资源加载将按以下顺序查找以下存储库：
- - JVM中的Bootstrap类
- - web应用程序/WEB-INFO/classes中的类
- - web应用程序/WEB-INFO/lib中的类
- - System类加载器类
- - Common类加载器类</p>
+<p>因此，从Web应用程序的角度来看，类或资源加载将按以下顺序查找以下存储库：</p>
 
-<p>如果Web应用程序类加载器配置为<Loader delegate =“true”/>，则该顺序变为：
-- JVM中的Bootstrap类
-- System类加载器类
-- Common类加载器类
-- web应用程序/WEB-INFO/classes中的类
-- web应用程序/WEB-INFO/lib中的类</p>
+<ul>
+<li>JVM中的Bootstrap类</li>
+<li>web应用程序/WEB-INFO/classes中的类</li>
+<li>web应用程序/WEB-INFO/lib中的类</li>
+<li>System类加载器类</li>
+<li>Common类加载器类</li>
+</ul>
+
+<p>如果Web应用程序类加载器配置为<Loader delegate =“true”/>，则该顺序变为：</p>
+
+<ul>
+<li>JVM中的Bootstrap类</li>
+<li>System类加载器类</li>
+<li>Common类加载器类</li>
+<li>web应用程序/WEB-INFO/classes中的类</li>
+<li>web应用程序/WEB-INFO/lib中的类</li>
+</ul>
 
 <h4>3) XML解析器和Java</h4>
 

@@ -181,8 +181,11 @@
 <p>在<a href="https://kubernetes.io/docs/getting-started-guides/">官网的安装引导上</a>，有很多选择，其中包括各种云平台、各种虚拟化工具、各种linux发行版(主要是ubuntu、coreos和redhat)，包括推荐用于开发和测试的minikube。<br />
 如果仅仅为了测试kubernetes集群，这种<a href="https://coreos.com/kubernetes/docs/latest/kubernetes-on-vagrant.html">vagrant+coreos</a>的方案可能是最适合的。</p>
 
-<p>按照此教程，最终可以得到一个多节点的kubernetes集群，可以在工作站上使用kubectl工具通过kubernetes API来与节点交互。
-&gt; 我的工作站使用的是fedora 25</p>
+<p>按照此教程，最终可以得到一个多节点的kubernetes集群，可以在工作站上使用kubectl工具通过kubernetes API来与节点交互。</p>
+
+<blockquote>
+<p>我的工作站使用的是fedora 25</p>
+</blockquote>
 
 <hr />
 
@@ -240,18 +243,19 @@ vim config.rb
 <pre class="chroma">vagrant up
 </pre>
 <blockquote>
-<p>报错解决
-    # 报错信息
-    vagrant up
-    WARNING: can&rsquo;t open config file: /opt/vagrant/embedded/openssl.cnf
-    Generating RSA private key, 2048 bit long modulus
-    &hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;.+++
-    &hellip;&hellip;+++
-    e is 65537 (0x10001)
-    WARNING: can&rsquo;t open config file: /opt/vagrant/embedded/openssl.cnf
-    Unable to load config info from /opt/vagrant/embedded/openssl.cnf
-    failed generating SSL artifacts</p>
-<pre class="chroma">mv openssl openssl.bak.20170506
+<p>报错解决</p>
+<pre class="chroma"># 报错信息
+vagrant up
+WARNING: can&#39;t open config file: /opt/vagrant/embedded/openssl.cnf
+Generating RSA private key, 2048 bit long modulus
+......................+++
+......+++
+e is 65537 (0x10001)
+WARNING: can&#39;t open config file: /opt/vagrant/embedded/openssl.cnf
+Unable to load config info from /opt/vagrant/embedded/openssl.cnf
+failed generating SSL artifacts
+
+mv openssl openssl.bak.20170506
 ln -sf /usr/bin/openssl /opt/vagrant/embedded/bin/openssl
 </pre></blockquote>
 

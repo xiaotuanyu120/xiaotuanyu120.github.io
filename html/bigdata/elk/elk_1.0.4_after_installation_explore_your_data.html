@@ -226,15 +226,18 @@ yellow open   bank  l7sSYV2cQXmu6_4rJWVIww   5   1       1000            0    12
   <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-<p>返回结果中，我们看到了如下部分：
-- <code>took</code> - Elasticsearch执行搜索的时间（以毫秒为单位）
-- <code>timed_out</code> - 告诉我们搜索是否超时
-- <code>_shards</code> - 告诉我们搜索了多少个分片，以及搜索成功/失败分片的计数
-- <code>hits</code> - 搜索结果
-- <code>hits.total</code> - 符合我们搜索条件的文档总数
-- <code>hits.hits</code> - 实际的搜索结果数组（默认为前10个文档）
-- <code>hits.sort</code> - 搜索结果排序的key（如果是按照score排序，则missing）
-- <code>hits._score and max_score</code> - 目前不需要关注字段含义</p>
+<p>返回结果中，我们看到了如下部分：</p>
+
+<ul>
+<li><code>took</code> - Elasticsearch执行搜索的时间（以毫秒为单位）</li>
+<li><code>timed_out</code> - 告诉我们搜索是否超时</li>
+<li><code>_shards</code> - 告诉我们搜索了多少个分片，以及搜索成功/失败分片的计数</li>
+<li><code>hits</code> - 搜索结果</li>
+<li><code>hits.total</code> - 符合我们搜索条件的文档总数</li>
+<li><code>hits.hits</code> - 实际的搜索结果数组（默认为前10个文档）</li>
+<li><code>hits.sort</code> - 搜索结果排序的key（如果是按照score排序，则missing）</li>
+<li><code>hits._score and max_score</code> - 目前不需要关注字段含义</li>
+</ul>
 
 <p>下面的操作效果和上面一样，只不过使用的是请求体方式：</p>
 <pre class="chroma">GET /bank/_search

@@ -166,11 +166,14 @@
       </div>
 <h3>0. docker-compose 默认网络</h3>
 
-<p>在没有指定加入网络的情况下，docker-compose会默认创建一个网络，重点概括如下：
-- yaml文件所在的目录<code>&lt;folder_name&gt;</code>是一个project
-- docker-compose创建的默认网络是<code>&lt;folder_name&gt;_default</code>
-- 在同一个网络中的容器，网络可以互通，互相使用<code>service_name</code>当做对方的<code>hostname</code>
-- 在同一个网络中的容器，可以互相访问对方的<code>容器端口</code>，而不必要去使用对方的<code>主机端口</code></p>
+<p>在没有指定加入网络的情况下，docker-compose会默认创建一个网络，重点概括如下：</p>
+
+<ul>
+<li>yaml文件所在的目录<code>&lt;folder_name&gt;</code>是一个project</li>
+<li>docker-compose创建的默认网络是<code>&lt;folder_name&gt;_default</code></li>
+<li>在同一个网络中的容器，网络可以互通，互相使用<code>service_name</code>当做对方的<code>hostname</code></li>
+<li>在同一个网络中的容器，可以互相访问对方的<code>容器端口</code>，而不必要去使用对方的<code>主机端口</code></li>
+</ul>
 
 <h3>1. docker-compose 指定网络</h3>
 
@@ -224,9 +227,12 @@
 </span><span class="w">        </span><span class="k">gateway</span><span class="p">:</span><span class="w"> </span><span class="m">2001</span><span class="p">:</span><span class="m">3984</span><span class="p">:</span><span class="m">3989</span><span class="p">:</span><span class="p">:</span><span class="m">1</span><span class="w">
 </span></pre>
 <blockquote>
-<p>注意以下两项配置：
-- aliases: 在不同网络中，给每个service设定多个hostname
-- ipv4&amp;ipv6的地址配置和地址指定</p>
+<p>注意以下两项配置：</p>
+
+<ul>
+<li>aliases: 在不同网络中，给每个service设定多个hostname</li>
+<li>ipv4&amp;ipv6的地址配置和地址指定</li>
+</ul>
 </blockquote>
 
 <h3>2. docker-compose 自定义默认网络</h3>

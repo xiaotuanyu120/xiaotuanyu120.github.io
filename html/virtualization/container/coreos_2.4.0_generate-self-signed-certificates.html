@@ -178,8 +178,11 @@
       </div>
 <h3>0. 生成ssl/tls认证证书之前</h3>
 
-<p>本文参照的是coreos官网的文档<a href="https://github.com/coreos/docs/blob/master/os/generate-self-signed-certificates.md">生成自签名认证证书</a>，coreos推荐使用的工具是cfssl:，这是CloudFlare公司开源的PKI/TLS瑞士军刀，详细可参照其<a href="https://github.com/cloudflare/cfssl">开源项目地址</a>。
-&gt; 除了cfssl，还有easyrsa和openssl也是生成认证证书的工具</p>
+<p>本文参照的是coreos官网的文档<a href="https://github.com/coreos/docs/blob/master/os/generate-self-signed-certificates.md">生成自签名认证证书</a>，coreos推荐使用的工具是cfssl:，这是CloudFlare公司开源的PKI/TLS瑞士军刀，详细可参照其<a href="https://github.com/cloudflare/cfssl">开源项目地址</a>。</p>
+
+<blockquote>
+<p>除了cfssl，还有easyrsa和openssl也是生成认证证书的工具</p>
+</blockquote>
 
 <hr />
 
@@ -271,10 +274,13 @@ cat <span class="s">&lt;&lt; EOF &gt; ca-csr.json
 </pre>
 <blockquote>
 <p>增加了server，client和peer认证profile，时间调整为43800h。
-证书类型介绍：<br />
-- client certificate 由客户端使用，服务器用其验证客户端身份。例如etcdctl，etcd proxy，fleetctl或docker客户端。
-- server certificate 由服务端使用，客户端用其验证服务器身份。例如docker服务器或kube-apiserver。
-- peer certificate 由etcd集群成员使用，供它们彼此之间通信使用。</p>
+证书类型介绍：</p>
+
+<ul>
+<li>client certificate 由客户端使用，服务器用其验证客户端身份。例如etcdctl，etcd proxy，fleetctl或docker客户端。</li>
+<li>server certificate 由服务端使用，客户端用其验证服务器身份。例如docker服务器或kube-apiserver。</li>
+<li>peer certificate 由etcd集群成员使用，供它们彼此之间通信使用。</li>
+</ul>
 </blockquote>
 
 <h4>3) 生成CA文件</h4>

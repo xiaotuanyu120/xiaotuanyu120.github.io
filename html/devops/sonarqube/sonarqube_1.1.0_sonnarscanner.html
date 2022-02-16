@@ -164,9 +164,12 @@ sonar-scanner <span class="se">\
 </span><span class="se"></span>  -Dsonar.java.libraries<span class="o">=</span>./path/to/**/*.jar
 </pre>
 <blockquote>
-<p>重点：
-- java代码必须编译过后，使用sonar.java.binaries指向编译后的classes目录，然后sonar.sources指向源码目录，才可以正常检测
-- 有些教程让我们指定sonar.languages，这个选项已经废弃了，sonar会自己检测源码是什么类型</p>
+<p>重点：</p>
+
+<ul>
+<li>java代码必须编译过后，使用sonar.java.binaries指向编译后的classes目录，然后sonar.sources指向源码目录，才可以正常检测</li>
+<li>有些教程让我们指定sonar.languages，这个选项已经废弃了，sonar会自己检测源码是什么类型</li>
+</ul>
 </blockquote>
 
 <h3>3. <code>ERROR: Error during SonarQube Scanner execution java.lang.IllegalStateException: No files nor directories matching</code></h3>
@@ -175,9 +178,12 @@ sonar-scanner <span class="se">\
 
 <h3>4. 在docker中运行sonnarscanner</h3>
 
-<p>参考链接：
-- <a href="https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2">alpine镜像里面java找不到的报错解决方案</a>
-- <a href="https://www.javatt.com/p/66709">修改sonarscanner文件，配置使用系统的java环境</a></p>
+<p>参考链接：</p>
+
+<ul>
+<li><a href="https://community.sonarsource.com/t/installing-sonar-scanner-in-alpine-linux-docker/7010/2">alpine镜像里面java找不到的报错解决方案</a></li>
+<li><a href="https://www.javatt.com/p/66709">修改sonarscanner文件，配置使用系统的java环境</a></li>
+</ul>
 <pre class="chroma"><span class="c1"># 下载sonarscanner，解压目录，然后编辑sonarscanner，配置程序使用宿主机的java，而不是自己内嵌的java</span>
 sed -ir <span class="s1">&#39;s/^use_embedded_jre=.*$/use_embedded_jre=false/g&#39;</span> bin/sonar-scanner
 <span class="c1"># 然后将修改好的sonar-scanner目录打包成sonar-scanner-4.2.0.1873-linux.tar.gz</span>

@@ -288,23 +288,32 @@ Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><
 
 <h4>1) 什么是$1,$2和%1&hellip;?</h4>
 
-<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-01.png" alt="" />
-- &ldquo;()&rdquo; - 在RewriteCond中代表%1&hellip;&hellip;
-- &ldquo;()&rdquo; - 在RewriteRule中代表$1&hellip;&hellip;</p>
+<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-01.png" alt="" /></p>
+
+<ul>
+<li>&rdquo;()&rdquo; - 在RewriteCond中代表%1&hellip;&hellip;</li>
+<li>&rdquo;()&rdquo; - 在RewriteRule中代表$1&hellip;&hellip;</li>
+</ul>
 
 <h4>2) RewriteRule语法</h4>
 
-<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-02.png" alt="" />
-1. Pattern - 请求的URL(<a href="http://hostname:port之后的部分)匹配的规则">http://hostname:port之后的部分)匹配的规则</a>
-2. substitution - 匹配到的URL部分发送到此处重置位置
- - 文件系统绝对路径<br />
-RewriteRule &ldquo;^/games&rdquo; &ldquo;/usr/local/games/web&rdquo;
- - web路径<br />
+<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-02.png" alt="" /></p>
+
+<ol>
+<li>Pattern - 请求的URL(<a href="http://hostname:port之后的部分)匹配的规则">http://hostname:port之后的部分)匹配的规则</a></li>
+<li>substitution - 匹配到的URL部分发送到此处重置位置
+
+<ul>
+<li>文件系统绝对路径<br />
+RewriteRule &ldquo;^/games&rdquo; &ldquo;/usr/local/games/web&rdquo;</li>
+<li>web路径<br />
 RewriteRule &ldquo;^/foo$&rdquo; &ldquo;/bar&rdquo;<br />
-相当于$DocumentRoot/bar
- - URL绝对路径<br />
-RewriteRule &ldquo;^/product/view$&rdquo; &ldquo;<a href="http://site2.example.com/seeproduct.html&quot;">http://site2.example.com/seeproduct.html&rdquo;</a> [R]
-3. [flags] - 影响rewrite请求的选项</p>
+相当于$DocumentRoot/bar</li>
+<li>URL绝对路径<br />
+RewriteRule &ldquo;^/product/view$&rdquo; &ldquo;<a href="http://site2.example.com/seeproduct.html&quot;">http://site2.example.com/seeproduct.html&rdquo;</a> [R]</li>
+</ul></li>
+<li>[flags] - 影响rewrite请求的选项</li>
+</ol>
 
 <h4>3) RewriteRule的执行逻辑</h4>
 <pre class="chroma"><span class="c1">## 访问bbs.example.com时，根据后面是纯数字或纯字母做出反应</span>
@@ -349,12 +358,15 @@ Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><
 </pre>
 <h2>RewriteCond语法</h2>
 
-<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-03.png" alt="" />
-1. teststring - request的相关变量
-2. dondition - 正则匹配字符串
-3. [flags] - NC(忽略大小写), OR(或), NV(No Vary)
-4. 可有1个或多个RewriteCond
-5. 当有多个RewriteCond时，需要满足所有条件</p>
+<p><img src="/static/images/docs/linux/basiclinux-basic-22.3-03.png" alt="" /></p>
+
+<ol>
+<li>teststring - request的相关变量</li>
+<li>dondition - 正则匹配字符串</li>
+<li>[flags] - NC(忽略大小写), OR(或), NV(No Vary)</li>
+<li>可有1个或多个RewriteCond</li>
+<li>当有多个RewriteCond时，需要满足所有条件</li>
+</ol>
 
 <hr />
 

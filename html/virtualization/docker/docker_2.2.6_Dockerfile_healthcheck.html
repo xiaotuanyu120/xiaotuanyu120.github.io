@@ -168,34 +168,52 @@
 
 <p>根据docker关于<a href="https://docs.docker.com/engine/reference/builder/#healthcheck">healthcheck的官方文档</a>。</p>
 
-<p>healthcheck有两种格式：
-1. <code>HEALTHCHECK [OPTIONS] CMD command</code>，command就是执行健康监测的具体的命令
-2. <code>HEALTHCHECK NONE</code>, 禁止继承底层镜像的任何健康监测</p>
+<p>healthcheck有两种格式：</p>
 
-<p>关于<code>[OPTIONS]</code>，有如下选项
-- <code>--interval=DURATION</code> (default: 30s)
-- <code>--timeout=DURATION</code> (default: 30s)
-- <code>--start-period=DURATION</code> (default: 0s)
-- <code>--retries=N</code> (default: 3)</p>
+<ol>
+<li><code>HEALTHCHECK [OPTIONS] CMD command</code>，command就是执行健康监测的具体的命令</li>
+<li><code>HEALTHCHECK NONE</code>, 禁止继承底层镜像的任何健康监测</li>
+</ol>
+
+<p>关于<code>[OPTIONS]</code>，有如下选项</p>
+
+<ul>
+<li><code>--interval=DURATION</code> (default: 30s)</li>
+<li><code>--timeout=DURATION</code> (default: 30s)</li>
+<li><code>--start-period=DURATION</code> (default: 0s)</li>
+<li><code>--retries=N</code> (default: 3)</li>
+</ul>
 
 <blockquote>
-<p><code>OPTIONS</code>说明
-- 超过timeout时间的监测，被认为是<code>failed</code>
-- 容器启动后，经过interval时间后，执行第一次健康监测，后面的健康监测，都是在上一次健康监测执行完毕后的interval时间后执行
-- start-period给容器启动设定了一个启动时间，在这个时间内，健康监测<code>failed</code>并不会计算到retries次数内。但一旦健康监测<code>success</code>，则容器被认为启动成功，然后后面的健康监测<code>failed</code>就会记录到retries设定的最大失败次数内。</p>
+<p><code>OPTIONS</code>说明</p>
 
-<p>健康监测的状态转移：
-- 初始化状态是<code>starting</code>
-- 无论之前的状态如何，只要有一次健康监测成功，状态转为<code>healthy</code>
-- 当指定次数的健康监测连续失败后，状态转为<code>unhealthy</code></p>
+<ul>
+<li>超过timeout时间的监测，被认为是<code>failed</code></li>
+<li>容器启动后，经过interval时间后，执行第一次健康监测，后面的健康监测，都是在上一次健康监测执行完毕后的interval时间后执行</li>
+<li>start-period给容器启动设定了一个启动时间，在这个时间内，健康监测<code>failed</code>并不会计算到retries次数内。但一旦健康监测<code>success</code>，则容器被认为启动成功，然后后面的健康监测<code>failed</code>就会记录到retries设定的最大失败次数内。</li>
+</ul>
+
+<p>健康监测的状态转移：</p>
+
+<ul>
+<li>初始化状态是<code>starting</code></li>
+<li>无论之前的状态如何，只要有一次健康监测成功，状态转为<code>healthy</code></li>
+<li>当指定次数的健康监测连续失败后，状态转为<code>unhealthy</code></li>
+</ul>
 </blockquote>
 
-<p>关于CMD之后的command，有两种格式，一种是直接shell格式，<code>HEALTHCHECK CMD /bin/check-running</code>，第二种是和<code>ENTRYPOINT</code>类似的那种exec数组格式，<code>HEALTHCHECK CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code>
-&gt; command执行的三种exit状态
-&gt; - 0, success
-&gt; - 1, unhealthy
-&gt; - 2, reserved - 不要用这个exitcode
-&gt; eg: <code>HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1</code></p>
+<p>关于CMD之后的command，有两种格式，一种是直接shell格式，<code>HEALTHCHECK CMD /bin/check-running</code>，第二种是和<code>ENTRYPOINT</code>类似的那种exec数组格式，<code>HEALTHCHECK CMD [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
+
+<blockquote>
+<p>command执行的三种exit状态</p>
+
+<ul>
+<li>0, success</li>
+<li>1, unhealthy</li>
+<li>2, reserved - 不要用这个exitcode
+eg: <code>HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1</code></li>
+</ul>
+</blockquote>
 
 <h3>1. 为什么要用docker-compose的healthcheck？</h3>
 

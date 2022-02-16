@@ -152,12 +152,15 @@
 
 <h3>1. JVM中的内存区域结构</h3>
 
-<p>JVM中一般分为以下几种内存区域
-- 堆内存(Heap area)
-- 方法区(Method area and runtime constant pool)
-- 虚拟机栈(JVM stack)
-- 本地方法栈(Native method stack)
-- 程序计数器(PC registers)</p>
+<p>JVM中一般分为以下几种内存区域</p>
+
+<ul>
+<li>堆内存(Heap area)</li>
+<li>方法区(Method area and runtime constant pool)</li>
+<li>虚拟机栈(JVM stack)</li>
+<li>本地方法栈(Native method stack)</li>
+<li>程序计数器(PC registers)</li>
+</ul>
 
 <blockquote>
 <p>其中，堆内存和方法区内存是在JVM启动的时候分配的，在JVM退出时会被销毁，而栈内存、本地方法栈和程序计数器都是随着线程的启动而创建，线程的结束而销毁。</p>

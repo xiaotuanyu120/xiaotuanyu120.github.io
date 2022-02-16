@@ -272,15 +272,27 @@ passwd命令会修改&#34;/etc/shadow&#34;，一般只有root才拥有此命令�
 
 <h3>权限：SGID</h3>
 
-<p><strong>作用于普通文件</strong><br />
-- 作用：临时赋予用户二进制文档的拥有组的权限（多用于让普通用户可以使用某些特殊命令，和suid类似）<br />
-- 语法<br />
-  - <code>chmod g+s file</code>（增加s权限）
-  - <code>chmod g-s file</code>（减去s权限）
-- 使用限制与环境：<br />
-  1. 仅对于二进制文件有效；
-  2. 执行者必须对文件拥有x权限（否则根本无法执行文件，更别谈SGID赋予权限，此时权限位显示S）；
-  3. 权限只是在执行过程中拥有。</p>
+<p><strong>作用于普通文件</strong></p>
+
+<ul>
+<li>作用：临时赋予用户二进制文档的拥有组的权限（多用于让普通用户可以使用某些特殊命令，和suid类似）<br />
+</li>
+<li>语法<br />
+
+
+<ul>
+<li><code>chmod g+s file</code>（增加s权限）</li>
+<li><code>chmod g-s file</code>（减去s权限）</li>
+</ul></li>
+<li>使用限制与环境：<br />
+
+
+<ol>
+<li>仅对于二进制文件有效；</li>
+<li>执行者必须对文件拥有x权限（否则根本无法执行文件，更别谈SGID赋予权限，此时权限位显示S）；</li>
+<li>权限只是在执行过程中拥有。</li>
+</ol></li>
+</ul>
 
 <p>用法举例:</p>
 <pre class="chroma">locate命令，路径/usr/bin/locate，权限为&#34;rwx--s--x&#34;  

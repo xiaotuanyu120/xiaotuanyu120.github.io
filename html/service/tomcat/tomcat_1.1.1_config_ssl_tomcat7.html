@@ -209,9 +209,12 @@
 
 <p>tomcat6和7在ssl的配置上大同小异，所以使用tomcat同时代替这两个版本进行说明。</p>
 
-<p>在howto文档中可得到信息，tomcat对ssl有两种实现方式：
-- the JSSE implementation provided as part of the Java runtime (since 1.4)
-- the APR implementation, which uses the OpenSSL engine by default.</p>
+<p>在howto文档中可得到信息，tomcat对ssl有两种实现方式：</p>
+
+<ul>
+<li>the JSSE implementation provided as part of the Java runtime (since 1.4)</li>
+<li>the APR implementation, which uses the OpenSSL engine by default.</li>
+</ul>
 
 <p>由于apr模式基本上是tomcat优化的标配，在这里我们仅对apr对ssl的配置进行说明，在apr模式下配置ssl时，需要使用以下Connector配置</p>
 <pre class="chroma"><span class="c">&lt;!--</span><span class="c"> Define a HTTP/1.1 Connector on port 8443, APR implementation </span><span class="c">--&gt;</span>

@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -277,12 +278,15 @@
   <span class="nt">&lt;/Service&gt;</span>
 <span class="nt">&lt;/Server&gt;</span>
 </pre>
-<p>里面改了如下配置：
-- 设定从127.0.0.1代理过来的请求，不会增加到proxiesHeader配置的header（默认是x-forwarded-by）中
-- 设定remote ip的header是&rdquo;x-forwarded-for&rdquo;
-- 设定http的port是6116，否则默认是80
-- 设定protocol的header是&rdquo;x-forwarded-proto&rdquo;
-- 设定protocol header中为何值时判断其为https请求，默认是https</p>
+<p>里面改了如下配置：</p>
+
+<ul>
+<li>设定从127.0.0.1代理过来的请求，不会增加到proxiesHeader配置的header（默认是x-forwarded-by）中</li>
+<li>设定remote ip的header是&rdquo;x-forwarded-for&rdquo;</li>
+<li>设定http的port是6116，否则默认是80</li>
+<li>设定protocol的header是&rdquo;x-forwarded-proto&rdquo;</li>
+<li>设定protocol header中为何值时判断其为https请求，默认是https</li>
+</ul>
 
 <blockquote>
 <p>原理就是设定https的header，然后根据header内容判断是不是https；然后因为http不是80，所以设定一下端口号</p>

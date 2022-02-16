@@ -207,9 +207,12 @@
 <pre class="chroma">A hard limit cannot be increased by a non-root user once it is set;
 a soft limit may be increased up to the value of the hard limit.
 </pre>
-<p>意思是：
-1. root用户可以设置hard limit
-2. 所有用户的soft limit 不可以超过root设置的hard limit</p>
+<p>意思是：</p>
+
+<ol>
+<li>root用户可以设置hard limit</li>
+<li>所有用户的soft limit 不可以超过root设置的hard limit</li>
+</ol>
 
 <h4>实践测试</h4>
 <pre class="chroma"><span class="c1"># 创建test用户</span>

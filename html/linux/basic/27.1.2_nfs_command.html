@@ -251,11 +251,14 @@ Starting RPC idmapd:                                       <span class="o">[</sp
 <h4>2) 如何让设定好的共享目录启动</h4>
 
 <p>命令：<code>exportfs</code><br />
-作用：是挂载及卸载共享目录的命令
-- -a, 是挂载或卸载全部/etc/exports中设定的目录
-- -r, 重新挂载/etc/exports中设定的目录，并刷新/var/lib/nfs/xtab中的内容
-- -v, 显示共享目录的信息
-- -u, 卸载目录</p>
+作用：是挂载及卸载共享目录的命令</p>
+
+<ul>
+<li>-a, 是挂载或卸载全部/etc/exports中设定的目录</li>
+<li>-r, 重新挂载/etc/exports中设定的目录，并刷新/var/lib/nfs/xtab中的内容</li>
+<li>-v, 显示共享目录的信息</li>
+<li>-u, 卸载目录</li>
+</ul>
 
 <p>用法示例：</p>
 <pre class="chroma"><span class="c1"># 挂载全部共享目录</span>

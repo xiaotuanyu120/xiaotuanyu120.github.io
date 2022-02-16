@@ -191,15 +191,21 @@
     <span class="nt">&#34;changed&#34;</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}</span>
 </pre>
-<p>思考过可能的问题原因：
-1. 防火墙
-2. credential配置错误，用户名称或者密码
-3. 目标主机的.ssh和authorized_keys权限有问题</p>
+<p>思考过可能的问题原因：</p>
 
-<p>结果通过以下方法逐个排除：
-1. 关闭防火墙
-2. 检查credential配置，检查playbook的yaml文件中的ssh相关变量配置
-3. 检查目标主机的.ssh和authorized_keys</p>
+<ol>
+<li>防火墙</li>
+<li>credential配置错误，用户名称或者密码</li>
+<li>目标主机的.ssh和authorized_keys权限有问题</li>
+</ol>
+
+<p>结果通过以下方法逐个排除：</p>
+
+<ol>
+<li>关闭防火墙</li>
+<li>检查credential配置，检查playbook的yaml文件中的ssh相关变量配置</li>
+<li>检查目标主机的.ssh和authorized_keys</li>
+</ol>
 
 <h3>1. 解决办法</h3>
 

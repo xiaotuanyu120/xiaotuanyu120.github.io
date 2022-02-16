@@ -241,12 +241,15 @@
 <p>作用：收集、汇报和保存系统活动信息<br />
 安装命令：<code>yum install -y sysstat</code><br />
 语法：<code>sar [参数 [内容] ] 间隔时间 执行次数</code><br />
-参数：
-- <code>-n</code> 可跟DEV，用来显示网卡的活动信息（其他参数参照man。。。太多了）
-- <code>-o</code> 保存读取的信息到一个二进制文件（file命令查看为data）
-- <code>-b</code> Report  I/O and transfer rate statistics，主要来查看物理存储设备的I/O情况
-- <code>-q</code> 查看动态负载（load average）信息
-- <code>-f</code> 可指定分析-o参数创建的二进制文件或者是每天创建在/var/log/sa/路径下的文件</p>
+参数：</p>
+
+<ul>
+<li><code>-n</code> 可跟DEV，用来显示网卡的活动信息（其他参数参照man。。。太多了）</li>
+<li><code>-o</code> 保存读取的信息到一个二进制文件（file命令查看为data）</li>
+<li><code>-b</code> Report  I/O and transfer rate statistics，主要来查看物理存储设备的I/O情况</li>
+<li><code>-q</code> 查看动态负载（load average）信息</li>
+<li><code>-f</code> 可指定分析-o参数创建的二进制文件或者是每天创建在/var/log/sa/路径下的文件</li>
+</ul>
 
 <blockquote>
 <p>ps：具体每个参数对应输出信息的表头参照man配置详细介绍</p>

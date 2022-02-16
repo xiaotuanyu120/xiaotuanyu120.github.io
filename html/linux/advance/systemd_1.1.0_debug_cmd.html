@@ -211,11 +211,17 @@ systemctl status &lt;daemon_file_name&gt;
 journalctl <span class="nv">_PID</span><span class="o">=</span>&lt;pid_number&gt;
 </pre>
 <blockquote>
-<p>需要注意的几个排查点
-- 如果提示找不到unit文件
-    - daemon_file_name名称是否正确（后缀名）
-    - 是否重载了unit文件(systemctl reload)
-    - 使用systemctl list-unit-files|grep <daemon_file_name>来排查是否加载</p>
+<p>需要注意的几个排查点</p>
+
+<ul>
+<li>如果提示找不到unit文件
+
+<ul>
+<li>daemon_file_name名称是否正确（后缀名）</li>
+<li>是否重载了unit文件(systemctl reload)</li>
+<li>使用systemctl list-unit-files|grep <daemon_file_name>来排查是否加载</li>
+</ul></li>
+</ul>
 </blockquote>
 
     </div>

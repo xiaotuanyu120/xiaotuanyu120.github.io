@@ -250,9 +250,12 @@ mysql&gt; show full processlist;
 
 <h4>开发角度排查</h4>
 
-<p>1.　程序中，不使用持久链接，即使用mysql_connect而不是pconnect。
-2.  程序执行完毕，应该显式调用mysql_close
-3.　只能逐步分析系统的SQL查询，找到查询过慢的SQL,优化之</p>
+<p>1.　程序中，不使用持久链接，即使用mysql_connect而不是pconnect。</p>
+
+<ol>
+<li>程序执行完毕，应该显式调用mysql_close
+3.　只能逐步分析系统的SQL查询，找到查询过慢的SQL,优化之</li>
+</ol>
 
 <h4>运维角度解决</h4>
 <pre class="chroma"># 查看wait_timeout变量

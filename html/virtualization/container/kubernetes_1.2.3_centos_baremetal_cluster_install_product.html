@@ -338,13 +338,14 @@
 
 <h2>1. 主机环境</h2>
 
-<p>为了将系统环境和软件环境对安装的影响度降低，需要确保以下几项需求满足
-- 升级内核(overlay2需求)<br />
-<code>rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm; yum --enablerepo=elrepo-kernel install kernel-lt-devel kernel-lt -y</code><br />
-查看内核启动顺序,确认默认是新内核<br />
-<code>awk -F\' '$1==&quot;menuentry &quot; {print $2}' /etc/grub2.cfg;grub2-set-default 0;reboot</code></p>
+<p>为了将系统环境和软件环境对安装的影响度降低，需要确保以下几项需求满足</p>
 
 <ul>
+<li><p>升级内核(overlay2需求)<br />
+<code>rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm; yum --enablerepo=elrepo-kernel install kernel-lt-devel kernel-lt -y</code><br />
+查看内核启动顺序,确认默认是新内核<br />
+<code>awk -F\' '$1==&quot;menuentry &quot; {print $2}' /etc/grub2.cfg;grub2-set-default 0;reboot</code></p></li>
+
 <li><p>安装必要的工具包<br />
 <code>yum install -y wget vim iptables iptables-services</code></p></li>
 
@@ -375,10 +376,15 @@ echo &quot;172.16.1.73 master1
 sysctl -p
 </pre>
 <blockquote>
-<p>net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器
-- 关闭系统swap</p>
-<pre class="chroma">swapoff -a
-</pre></blockquote>
+<p>net.ipv4.ip_forward = 1的配置确保了可以通过映射docker容器端口到外网，否则我们无法通过外网ip访问容器</p>
+
+<ul>
+<li>关闭系统swap<br />
+<code>bash
+swapoff -a
+</code></li>
+</ul>
+</blockquote>
 </li>
 </ul>
 

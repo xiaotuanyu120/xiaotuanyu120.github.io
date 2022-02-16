@@ -147,12 +147,15 @@
       </div>
 <h3>0. 组件介绍</h3>
 
-<p>详细的组件说明可参照官方文档，此处只列出基于生产环境的标准考量采用的组件。
-- <code>filebeat</code>, log collector
-- <code>redis</code>, message queue
-- <code>logstash</code>, log analysis &amp; filter
-- <code>elasticsearch</code>, storage &amp; search
-- <code>kibana</code>, web UI</p>
+<p>详细的组件说明可参照官方文档，此处只列出基于生产环境的标准考量采用的组件。</p>
+
+<ul>
+<li><code>filebeat</code>, log collector</li>
+<li><code>redis</code>, message queue</li>
+<li><code>logstash</code>, log analysis &amp; filter</li>
+<li><code>elasticsearch</code>, storage &amp; search</li>
+<li><code>kibana</code>, web UI</li>
+</ul>
 
 <p>服务分布架构</p>
 
@@ -314,9 +317,13 @@ chown -R elasticsearch.elasticsearch /usr/local/elasticsearch
 systemctl daemon-reload
 </pre>
 <blockquote>
-<p>启动脚本：
-- <a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/rpm/init.d/elasticsearch">SysV init file</a><br />
-- <a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/common/systemd/elasticsearch.service">elasticsearch systemd unit file</a></p>
+<p>启动脚本：</p>
+
+<ul>
+<li><a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/rpm/init.d/elasticsearch">SysV init file</a><br />
+</li>
+<li><a href="https://github.com/elastic/elasticsearch/blob/master/distribution/packages/src/common/systemd/elasticsearch.service">elasticsearch systemd unit file</a></li>
+</ul>
 
 <p>注意JAVA_HOME换成本地生效的版本，不要照抄。</p>
 </blockquote>

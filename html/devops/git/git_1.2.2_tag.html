@@ -189,9 +189,12 @@ v1.8.5.5
 </pre>
 <h3>2. 创建tag</h3>
 
-<p>tag分以下两种：
-- lightweight(轻量级)，类似于一个无法修改的分支，只是指向一个commit
-- annotated(注释性)，是一个git数据对象的完整对象，会包含tag创建者名称、email、日期、tag message、可以被GPG验证。</p>
+<p>tag分以下两种：</p>
+
+<ul>
+<li>lightweight(轻量级)，类似于一个无法修改的分支，只是指向一个commit</li>
+<li>annotated(注释性)，是一个git数据对象的完整对象，会包含tag创建者名称、email、日期、tag message、可以被GPG验证。</li>
+</ul>
 <pre class="chroma"><span class="c1"># create annotated tag</span>
 git tag -a v1.4 -m <span class="s2">&#34;my version 1.4&#34;</span>
 

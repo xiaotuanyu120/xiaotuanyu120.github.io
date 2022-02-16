@@ -216,10 +216,13 @@
 
 <h3>3. 为什么linux要这样设计呢？</h3>
 
-<p>为了探寻linux这样设计的原因，我搜索到了一篇文章，果然并不是我一个人对这个感到好奇。
-&gt; 主要参考：<a href="https://brendangregg.com/blog/2017-08-08/linux-load-averages.html">Linux Load Averages: Solving the Mystery</a>
-&gt; 作者：Brendan Gregg
-&gt; 下面的叙述主要参考了这篇文章中的内容。</p>
+<p>为了探寻linux这样设计的原因，我搜索到了一篇文章，果然并不是我一个人对这个感到好奇。</p>
+
+<blockquote>
+<p>主要参考：<a href="https://brendangregg.com/blog/2017-08-08/linux-load-averages.html">Linux Load Averages: Solving the Mystery</a>
+作者：Brendan Gregg
+下面的叙述主要参考了这篇文章中的内容。</p>
+</blockquote>
 
 <p>首先，linux在最开始的版本中，和unix的行为保持一致，<code>load average</code>表示的是<code>cpu load</code>。后面在某个版本中修改为了包含<code>Uninteruptible sleep process</code>，也就是说linux中的<code>load average</code>表达的不仅仅是cpu的负载，还包含了I/O的负载（硬盘或NFS等）。</p>
 

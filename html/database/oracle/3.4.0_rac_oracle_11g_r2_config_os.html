@@ -225,13 +225,16 @@ COMMIT
 
 <p>需要调节内核的5个参数来调优虚拟内存，虚拟内存被用于oracle rac集群内部。特别需要注意的是，以下推荐的值只是调优的一个起点。</p>
 
-<p>以下是虚拟内存调优参数的简单介绍和建议值：
-- SWAPPINESS，值范围在0-100，代表了系统的swaps级别，高值，倾向于系统性能，会在内存不活动时主动的将其传输出物理内存暂存起来。低值，倾向于交互性，会尽可能的延长数据在内存中的时间，来降低访问的延时。默认值是60，oracle推荐设置为0
-- DIRTY DATA，代表了已经被修改，为了性能保存在页缓存中的数据，一旦此数据被写入硬盘中，转换为clean data。
-- DIRTY_RATIO，包含占系统总内存的百分比，即生成磁盘写入的进程它会开始写出脏数据的页面数。 默认值为20，推荐值为80。
-- DIRTY_BACKGROUND_RATIO，包含占系统总内存的百分比，即后台写回服务它会开始写出脏数据的页面数。 推荐值为3。
-- DIRTY_EXPIRE_CENTISECS，定义脏数据在内存中保持多久后有资格被写出的时间，默认是3000，单位是百分之一秒。oracle推荐为500.
-- DIRTY_WRITEBACK_CENTISECS，定义脏数据被写出内存到磁盘间的间隔时间，默认是500，单位是百分之一秒。oracle推荐为100.</p>
+<p>以下是虚拟内存调优参数的简单介绍和建议值：</p>
+
+<ul>
+<li>SWAPPINESS，值范围在0-100，代表了系统的swaps级别，高值，倾向于系统性能，会在内存不活动时主动的将其传输出物理内存暂存起来。低值，倾向于交互性，会尽可能的延长数据在内存中的时间，来降低访问的延时。默认值是60，oracle推荐设置为0</li>
+<li>DIRTY DATA，代表了已经被修改，为了性能保存在页缓存中的数据，一旦此数据被写入硬盘中，转换为clean data。</li>
+<li>DIRTY_RATIO，包含占系统总内存的百分比，即生成磁盘写入的进程它会开始写出脏数据的页面数。 默认值为20，推荐值为80。</li>
+<li>DIRTY_BACKGROUND_RATIO，包含占系统总内存的百分比，即后台写回服务它会开始写出脏数据的页面数。 推荐值为3。</li>
+<li>DIRTY_EXPIRE_CENTISECS，定义脏数据在内存中保持多久后有资格被写出的时间，默认是3000，单位是百分之一秒。oracle推荐为500.</li>
+<li>DIRTY_WRITEBACK_CENTISECS，定义脏数据被写出内存到磁盘间的间隔时间，默认是500，单位是百分之一秒。oracle推荐为100.</li>
+</ul>
 <pre class="chroma"><span class="c1">## 集群中各节点上执行</span>
 <span class="c1"># 备份原配置文件</span>
 cp /etc/sysctl.conf /etc/sysctl.conf.bak
@@ -251,10 +254,13 @@ sysctl -p
 </pre>
 <h4>5) 设置共享内存</h4>
 
-<p>共享内存允许进程间通过将内存区域放置到内存段中来彼此通信。在oracle这里，共享内存被System Global Area (SGA)拿来存储输入数据和控制信息。Oracle SGA的大小影响要在系统中设置的共享内存页和共享内存段的数量。默认情况下，RHEL6会提供一个很大的共享内存页数和共享内存段数，然而，一个系统在此方面合适的分配数量还是取决于RAM的大小。为了在oracle集群节点上分配合适的共享内存，我们需要优化以下三个参数。
-- SHMALL，全部共享内存页的页数最大值
-- SHMMAX，一个单独共享内存段容量的最大值，单位是bytes
-- SHMMNI，全部共享内存段的段数最大值</p>
+<p>共享内存允许进程间通过将内存区域放置到内存段中来彼此通信。在oracle这里，共享内存被System Global Area (SGA)拿来存储输入数据和控制信息。Oracle SGA的大小影响要在系统中设置的共享内存页和共享内存段的数量。默认情况下，RHEL6会提供一个很大的共享内存页数和共享内存段数，然而，一个系统在此方面合适的分配数量还是取决于RAM的大小。为了在oracle集群节点上分配合适的共享内存，我们需要优化以下三个参数。</p>
+
+<ul>
+<li>SHMALL，全部共享内存页的页数最大值</li>
+<li>SHMMAX，一个单独共享内存段容量的最大值，单位是bytes</li>
+<li>SHMMNI，全部共享内存段的段数最大值</li>
+</ul>
 
 <p>在oracle集群的节点中，为了在每个系统的内存页容量(bytes)中决定共享内页的数量，以下这个命令会帮助我们获得系统的内存页数量。</p>
 <pre class="chroma">getconf PAGE_SIZE
@@ -289,11 +295,14 @@ sysctl -p
 </pre>
 <h4>6) 设置信号量</h4>
 
-<p>RHEL6 提供了semaphores(信号量)用于在进程间同步信息。内核参数<code>sem</code>由以下4个部分组成
-- SEMMSL，每个信号量集合的最大信号量数
-- SEMMNI，系统的信号量集合的最大数目
-- SEMMNS，系统的最大信号量数，等于SHMMNI * SHMMSL
-- SEMOPM，每个semop系统调用执行的信号量操作的总数</p>
+<p>RHEL6 提供了semaphores(信号量)用于在进程间同步信息。内核参数<code>sem</code>由以下4个部分组成</p>
+
+<ul>
+<li>SEMMSL，每个信号量集合的最大信号量数</li>
+<li>SEMMNI，系统的信号量集合的最大数目</li>
+<li>SEMMNS，系统的最大信号量数，等于SHMMNI * SHMMSL</li>
+<li>SEMOPM，每个semop系统调用执行的信号量操作的总数</li>
+</ul>
 
 <p>设置以下的参数来确保oracle集群节点拥有足够的信号量</p>
 <pre class="chroma"><span class="c1"># 在/etc/sysctl.conf中配置</span>
@@ -319,9 +328,12 @@ sysctl -p
 </pre>
 <h4>8) 优化网络设置</h4>
 
-<p>oracle通过设定<code>RMEM</code>和<code>WMEM</code>，来优化应用程序sockets的缓存默认值和缓存最大值。
-- RMEM，receive buffer size
-- WMEM，send buffer size</p>
+<p>oracle通过设定<code>RMEM</code>和<code>WMEM</code>，来优化应用程序sockets的缓存默认值和缓存最大值。</p>
+
+<ul>
+<li>RMEM，receive buffer size</li>
+<li>WMEM，send buffer size</li>
+</ul>
 
 <p>oracle做如下推荐</p>
 <pre class="chroma"><span class="c1"># /etc/sysctl.conf</span>

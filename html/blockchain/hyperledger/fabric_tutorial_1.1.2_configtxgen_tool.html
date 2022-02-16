@@ -159,17 +159,26 @@
 
 <h3>1. configtxgen</h3>
 
-<p>configtxgen工具用于创建四个配置：
-- orderer <code>genesis block</code>,
-- channel <code>configuration transaction</code>,
-- and two <code>anchor peer transactions</code> - one for each Peer Org.</p>
+<p>configtxgen工具用于创建四个配置：</p>
 
-<p>orderer block是ordering服务的Genesis block，并且channel配置文件在channel创建时被广播给orderer。anchor peer事务指定了该通道上的每个组织的anchor peer。
-&gt; 参考链接：
-- <a href="https://hyperledger-fabric.readthedocs.io/en/latest/configtxgen.html">Channel Configuration (configtxgen)</a>
-- <a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#genesis-block">Genesis Block</a>
-- <a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#channel">Channel</a>
-- <a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#anchor-peer">anchor-peer</a></p>
+<ul>
+<li>orderer <code>genesis block</code>,</li>
+<li>channel <code>configuration transaction</code>,</li>
+<li>and two <code>anchor peer transactions</code> - one for each Peer Org.</li>
+</ul>
+
+<p>orderer block是ordering服务的Genesis block，并且channel配置文件在channel创建时被广播给orderer。anchor peer事务指定了该通道上的每个组织的anchor peer。</p>
+
+<blockquote>
+<p>参考链接：</p>
+
+<ul>
+<li><a href="https://hyperledger-fabric.readthedocs.io/en/latest/configtxgen.html">Channel Configuration (configtxgen)</a></li>
+<li><a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#genesis-block">Genesis Block</a></li>
+<li><a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#channel">Channel</a></li>
+<li><a href="https://hyperledger-fabric.readthedocs.io/en/latest/glossary.html#anchor-peer">anchor-peer</a></li>
+</ul>
+</blockquote>
 
 <h4>1) 它是如何工作的？</h4>
 

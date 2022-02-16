@@ -161,8 +161,11 @@
 
 <h3>1. 证书包含了什么内容？</h3>
 
-<p>证书包含了拥有者的部分信息，公钥，CA签名。
-&gt; 每一个公钥和一个私钥联系在一起，私钥是owner自己保存，私钥的签名，公钥可以打开。</p>
+<p>证书包含了拥有者的部分信息，公钥，CA签名。</p>
+
+<blockquote>
+<p>每一个公钥和一个私钥联系在一起，私钥是owner自己保存，私钥的签名，公钥可以打开。</p>
+</blockquote>
 
 <h3>2. 自建pki的关键</h3>
 
@@ -233,10 +236,13 @@ chmod +x /usr/local/bin/<span class="o">{</span>cfssl,cfssljson<span class="o">}
 2018/01/10 01:40:30 <span class="o">[</span>INFO<span class="o">]</span> signed certificate with serial number <span class="m">469763942862609470040121325446284354430448261745</span>
 </pre>
 <blockquote>
-<p>生成了以下三个文件：
-- ca.csr: CERTIFICATE REQUEST(是用来让另外的CA来签名的)
-- ca-key.pem: RSA PRIVATE KEY
-- ca.pem: CERTIFICATE</p>
+<p>生成了以下三个文件：</p>
+
+<ul>
+<li>ca.csr: CERTIFICATE REQUEST(是用来让另外的CA来签名的)</li>
+<li>ca-key.pem: RSA PRIVATE KEY</li>
+<li>ca.pem: CERTIFICATE</li>
+</ul>
 
 <p>运行一个CA服务端最少需要private key 和 certificate</p>
 </blockquote>
@@ -305,10 +311,13 @@ chmod +x /usr/local/bin/<span class="o">{</span>cfssl,cfssljson<span class="o">}
 <h3>1. 处理认证请求</h3>
 
 <p>客户端通过certificate signing request(CSR)和CA中心交互来获得认证。<br />
-每个CSR包含：
-- 发起认证请求的org信息
-- 公钥
-- 请求者的私钥</p>
+每个CSR包含：</p>
+
+<ul>
+<li>发起认证请求的org信息</li>
+<li>公钥</li>
+<li>请求者的私钥</li>
+</ul>
 
 <p>给定CSR，证书颁发机构（CA）可以创建一个证书。首先验证请求者是否拥有对相关私钥的控制权。它通过检查CSR的签名来做到这一点。然后，CA将检查请求方是否应该获得证书以及应该对哪个域名/IP有效。这可以通过数据库查询或通过注册机构完成。如果一切都检查无误，CA使用其私钥来创建并签署证书并发回给请求者。</p>
 

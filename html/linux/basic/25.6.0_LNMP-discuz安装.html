@@ -281,15 +281,17 @@ Content-Type: text/html
 Content-Length: <span class="m">168</span>
 Connection: keep-alive
 </pre>
-<p><strong>解决方案：</strong>
-- 尝试一：
-给网站目录修改属主为nginx的用户nobody<br />
-此用户可在nginx.conf里增加user username；来改变
-- 尝试二：
-给网站目录增加777属性</p>
+<p><strong>解决方案：</strong></p>
 
 <ul>
-<li>解决方案：在index字段增加index.php</li>
+<li><p>尝试一：
+给网站目录修改属主为nginx的用户nobody<br />
+此用户可在nginx.conf里增加user username；来改变</p></li>
+
+<li><p>尝试二：
+给网站目录增加777属性</p></li>
+
+<li><p>解决方案：在index字段增加index.php</p></li>
 </ul>
 
 <h4>2) 错误2：错误一解决之后，在浏览器里刷新出来php的内容，而不是将其解析。</h4>

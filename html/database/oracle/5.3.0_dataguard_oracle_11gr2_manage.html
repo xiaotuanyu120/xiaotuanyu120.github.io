@@ -632,27 +632,29 @@ spool off
 
 <h3>3.1 Dataguard 常用参数</h3>
 
-<p>日志的传输以及应用可以算作是Dataguard的核心所在.在我们搭建DG的过程中,如何配置优化日志传输服务,关系到整个DG体系的性能以及可用性.而且,不同的保护模式也需要不用的参数组合.10g下,影响配置日志传输的参数主要有以下几个:
-1. ARCH/LGWR
-设置日志的传送模式,默认使用arch传送.传送发生在日志切换边沿,最大可用和最大保护模式下,需要使用lgwr来传送日志.使用lgwr传送日志,需要备库建立standby logfile,并且支持日志的实时应用.
-2. SYNC /ASYNC
+<p>日志的传输以及应用可以算作是Dataguard的核心所在.在我们搭建DG的过程中,如何配置优化日志传输服务,关系到整个DG体系的性能以及可用性.而且,不同的保护模式也需要不用的参数组合.10g下,影响配置日志传输的参数主要有以下几个:</p>
+
+<ol>
+<li>ARCH/LGWR
+设置日志的传送模式,默认使用arch传送.传送发生在日志切换边沿,最大可用和最大保护模式下,需要使用lgwr来传送日志.使用lgwr传送日志,需要备库建立standby logfile,并且支持日志的实时应用.</li>
+<li>SYNC /ASYNC
 该参数表示网络I/O的操作方式, SYNC表示网络I/O将与重做日志的写入同步进行,等待网络i/o完成收到响应后继续下一个写操作.而ASYNC表示日志的传送是异步的,oracle利于LNS进程,接收lgwr发送过来的重做日志信息放入缓冲区,并异步传送到备机,也可以手动指定缓冲区的大小
-最大保护和最大可用模式下,需要设置为SYNC AFFIM模式.
-3. AFFIMAFFIRM
-该参数是LGWR传送模式下的一个属性,表示重做日志的磁盘I/O模式, AFFIM表示同步并且发送成功写操作状态到主数据库, NOAFFIRM表示主库无需等待备库的日志写成功.
-4. MANDATORY /OPTIONAL
-该参数表示归档的模式,默认值为OPTIONAL. MANDATORY表示强制归档,如果归档不成功会引起主库的归档等待.
-5. REOPENREOPEN
-该参数表示归档文件收到错误信息后,是否重试以及重试的最小间隔时间.
-6. MAX_FAILURE/ NOMAX_FAILUR
+最大保护和最大可用模式下,需要设置为SYNC AFFIM模式.</li>
+<li>AFFIMAFFIRM
+该参数是LGWR传送模式下的一个属性,表示重做日志的磁盘I/O模式, AFFIM表示同步并且发送成功写操作状态到主数据库, NOAFFIRM表示主库无需等待备库的日志写成功.</li>
+<li>MANDATORY /OPTIONAL
+该参数表示归档的模式,默认值为OPTIONAL. MANDATORY表示强制归档,如果归档不成功会引起主库的归档等待.</li>
+<li>REOPENREOPEN
+该参数表示归档文件收到错误信息后,是否重试以及重试的最小间隔时间.</li>
+<li>MAX_FAILURE/ NOMAX_FAILUR
 该参数表示由于故障而被关闭的目标文件的最大重试次数.超过设定次数,将不再重试.
-NOMAX_FAILUR表示不断重试
-7. NET_TIMEOUT
-该参数表示在网络出现异常或者某些情况下,主数据库的LNS进程放弃网络连接之前的最大等待时间.
-8. DELAYDELAY
+NOMAX_FAILUR表示不断重试</li>
+<li>NET_TIMEOUT
+该参数表示在网络出现异常或者某些情况下,主数据库的LNS进程放弃网络连接之前的最大等待时间.</li>
+<li>DELAYDELAY
 该参数表示日志的应用模式,delay表示延时指定时间应用传送过来的日志,nodelay表示不延时.
-该参数作用也可以通过发布alter database recover managed standby database delay 来实现.
-9. VALID_FOR
+该参数作用也可以通过发布alter database recover managed standby database delay 来实现.</li>
+<li>VALID_FOR
 VALID_FOR的引入,为了更好的实现主备平滑切换,用于说明目标文件何时可用以及归档的重做日志类型.
 VALID_FOR属性由2部分组成:archive_source(online_logfile,standby_logfile,all_logfiles)和database_role(primary_role,standby_role,all_role).
 online_logfile: 表示归档联机重做日志
@@ -660,7 +662,8 @@ standby_logfile:表示归档备用数据库的重做日志/接受的重做日志
 all_logfiles: online_logfile &amp;&amp; standby_logfile
 primary_role: 仅当数据库角色为主库时候归档生效
 standby_role: 仅当数据库角色为备库时候归档生效
-all_role: 任意角色归档均生效</p>
+all_role: 任意角色归档均生效</li>
+</ol>
 
 <h3>3.2 选择数据保护模式</h3>
 

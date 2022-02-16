@@ -194,46 +194,60 @@
 </span></pre>
 <h3>2. 根据简单条件来设定</h3>
 
-<p>此处逻辑设定
-- 对于<code>[mysql, nginx, php-fpm]</code>三个服务
-- 其中任意一个服务未启动，则设定<code>lnmp_running</code>为<code>false</code></p>
-<pre class="chroma">---<span class="w">
-</span><span class="w"></span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>populate<span class="w"> </span>service<span class="w"> </span>facts<span class="w">
-</span><span class="w">  </span><span class="k">service_facts</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">
-</span><span class="w"></span><span class="c"># 值得注意的是</span><span class="w">
-</span><span class="w"></span><span class="c"># 判断条件里面，增加判断lnmp_is_running是否被定义，是为了避免变量被重复覆盖</span><span class="w">
-</span><span class="w"></span><span class="c"># 导致循环中只有最后一个元素的运行状态决定了lnmp_is_running的值得情况</span><span class="w">
-</span><span class="w"></span><span class="c"># 所以这里增加判断，只要lnmp_is_running被定义了，其他元素就可以skip了</span><span class="w">
-</span><span class="w"></span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>set<span class="w"> </span>lnmp_is_running<span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span><span class="k">set_fact</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">    </span><span class="k">lnmp_is_running</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span><span class="k">when</span><span class="p">:</span><span class="w"> </span>lnmp_is_running<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>defined<span class="w"> </span>and<span class="w"> </span>ansible_facts.services<span class="p">[</span><span class="s1">&#39;\{\{item}}.service&#39;</span><span class="p">]</span>.state<span class="w"> </span>!=<span class="w"> </span><span class="s1">&#39;running&#39;</span><span class="w">
-</span><span class="w">  </span><span class="k">with_items</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;\{\{ [&#39;php-fpm&#39;, &#39;mysql&#39;, &#39;nginx&#39;] }}&#34;</span><span class="w">
-</span><span class="w">  </span><span class="k">ignore_errors</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 值得注意的是</span><span class="w">
-</span><span class="w"></span><span class="c"># 如果when的条件全部元素都未达成，lnmp_is_running是不会被设定的，尝试使用它时会报错该变量未定义</span><span class="w">
-</span><span class="w"></span><span class="c"># 所以上面使用了两个when来达到if else的效果</span><span class="w">
-</span><span class="w"></span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>set<span class="w"> </span>lnmp_is_running<span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="k">set_fact</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">    </span><span class="k">lnmp_is_running</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="k">when</span><span class="p">:</span><span class="w"> </span>lnmp_is_running<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>defined<span class="w">
-</span><span class="w">
-</span><span class="w"></span>- <span class="k">debug</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">    </span><span class="k">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;\{\{ lnmp_is_running }}&#34;</span><span class="w">
-</span></pre>
-<h3>3. 根据复杂条件来设定</h3>
+<p>此处逻辑设定</p>
 
-<p>此处逻辑设定
-- 对于<code>[mysql, nginx, php-fpm]</code>三个服务
-- 其中任意一个服务未启动，则设定<code>lnmp_running</code>为<code>false</code>
-- 同时需要记录未启动的服务列表<code>failed_services</code></p>
+<ul>
+<li>对于<code>[mysql, nginx, php-fpm]</code>三个服务</li>
+<li>其中任意一个服务未启动，则设定<code>lnmp_running</code>为<code>false</code>
+&ldquo;` yaml
+&mdash;</li>
+<li>name: populate service facts
+service_facts:</li>
+</ul>
 
-<p>增加一个前提，我们提前设定一个空列表<code>failed_services</code></p>
-<pre class="chroma">---<span class="w">
-</span><span class="w"></span><span class="k">failed_services</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="p">]</span><span class="w">
-</span></pre>
+<h1>值得注意的是</h1>
+
+<h1>判断条件里面，增加判断lnmp_is_running是否被定义，是为了避免变量被重复覆盖</h1>
+
+<h1>导致循环中只有最后一个元素的运行状态决定了lnmp_is_running的值得情况</h1>
+
+<h1>所以这里增加判断，只要lnmp_is_running被定义了，其他元素就可以skip了</h1>
+
+<ul>
+<li>name: set lnmp_is_running false
+set_fact:
+lnmp_is_running: false
+when: lnmp_is_running is not defined and ansible_facts.services[&rsquo;{{item}}.service&rsquo;].state != &lsquo;running&rsquo;
+with_items: &ldquo;{{ [&lsquo;php-fpm&rsquo;, &lsquo;mysql&rsquo;, &lsquo;nginx&rsquo;] }}&rdquo;
+ignore_errors: yes</li>
+</ul>
+
+<h1>值得注意的是</h1>
+
+<h1>如果when的条件全部元素都未达成，lnmp_is_running是不会被设定的，尝试使用它时会报错该变量未定义</h1>
+
+<h1>所以上面使用了两个when来达到if else的效果</h1>
+
+<ul>
+<li><p>name: set lnmp_is_running true
+set_fact:
+lnmp_is_running: true
+when: lnmp_is_running is not defined</p></li>
+
+<li><p>debug:
+msg: &ldquo;{{ lnmp_is_running }}&rdquo;</p>
+<pre class="chroma">### 3. 根据复杂条件来设定
+此处逻辑设定
+- 对于`[mysql, nginx, php-fpm]`三个服务
+- 其中任意一个服务未启动，则设定`lnmp_running`为`false`
+- 同时需要记录未启动的服务列表`failed_services`
+增加一个前提，我们提前设定一个空列表`failed_services`
+``` yaml
+---
+failed_services: []
+</pre></li>
+</ul>
+
 <p>此时上面的yaml就要改动一下</p>
 <pre class="chroma">---<span class="w">
 </span><span class="w"></span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>populate<span class="w"> </span>service<span class="w"> </span>facts<span class="w">

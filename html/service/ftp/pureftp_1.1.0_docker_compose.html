@@ -223,13 +223,16 @@
 </span><span class="w"></span><span class="c">#       name: production</span><span class="w">
 </span></pre>
 <blockquote>
-<p>此镜像的环境变量说明(详细的请查看<a href="https://github.com/stilliard/docker-pure-ftpd">源码</a>)
-- <code>PUBLICHOST</code>: 对应的是<code>-P</code>，可配置ip或者域名，含义是在回应客户端<code>PASV/EPSV/SPSV</code>命令时返回哪个ip。如果是nat环境，可以设定为nat环境的公网出口ip。
-- <code>FTP_USER_UID</code>: 对应的是<code>pure-pw</code>里面的<code>-u</code>，如果不指定，默认的就是ftpuser（镜像作者设定的），uid是1000
-- <code>FTP_USER_GID</code>: 对应的是<code>pure-pw</code>里面的<code>-g</code>，如果不指定，默认的就是ftpgroup，gid是1000
-- <code>FTP_USER_NAME</code>,<code>FTP_USER_PASS</code>,<code>FTP_USER_HOME</code>，包括上面的<code>FTP_USER_UID</code>和<code>FTP_USER_GID</code>，其实对应的都是<code>pure-pw</code>创建虚拟用户时用到的信息。
-- <code>FTP_MAX_CONNECTIONS</code>: 对应的是<code>-C</code>，含义是每个ip的最大连接的客户端数目
-- <code>FTP_MAX_CLIENTS</code>: 对应的是<code>-c</code>，含义是最大连接的客户端数目(所以说，端口数目设定为和这个数字一样多就好了)</p>
+<p>此镜像的环境变量说明(详细的请查看<a href="https://github.com/stilliard/docker-pure-ftpd">源码</a>)</p>
+
+<ul>
+<li><code>PUBLICHOST</code>: 对应的是<code>-P</code>，可配置ip或者域名，含义是在回应客户端<code>PASV/EPSV/SPSV</code>命令时返回哪个ip。如果是nat环境，可以设定为nat环境的公网出口ip。</li>
+<li><code>FTP_USER_UID</code>: 对应的是<code>pure-pw</code>里面的<code>-u</code>，如果不指定，默认的就是ftpuser（镜像作者设定的），uid是1000</li>
+<li><code>FTP_USER_GID</code>: 对应的是<code>pure-pw</code>里面的<code>-g</code>，如果不指定，默认的就是ftpgroup，gid是1000</li>
+<li><code>FTP_USER_NAME</code>,<code>FTP_USER_PASS</code>,<code>FTP_USER_HOME</code>，包括上面的<code>FTP_USER_UID</code>和<code>FTP_USER_GID</code>，其实对应的都是<code>pure-pw</code>创建虚拟用户时用到的信息。</li>
+<li><code>FTP_MAX_CONNECTIONS</code>: 对应的是<code>-C</code>，含义是每个ip的最大连接的客户端数目</li>
+<li><code>FTP_MAX_CLIENTS</code>: 对应的是<code>-c</code>，含义是最大连接的客户端数目(所以说，端口数目设定为和这个数字一样多就好了)</li>
+</ul>
 
 <p>docker镜像里面的环境变量选项是镜像作者自定义的，详细的说明还是要参照<a href="https://download.pureftpd.org/pub/pure-ftpd/doc/README">pure-ftpd选项说明</a></p>
 
@@ -240,14 +243,20 @@
 
 <p>首先我们要明确，我们要搞得是ftps(tls+ftp)，而不是sftp(过ssh通道)</p>
 
-<p>pure-ftpd开启tls有几个条件
-- 编译时有<code>--with-tls</code>选项，其实就是把openssl的库编译进去
-- 自生成或者买一个pem的秘钥（crt和key内容可分开为两个文件，也可合并为一个文件，一般选择合并在一起的pem。我们的例子也选用合并在一起的pem）
-- pure-ftpd启动时增加<code>--tls 1/2</code>的选项（1是mixed安全和非安全两种模式，2是强制全部是安全模式）</p>
+<p>pure-ftpd开启tls有几个条件</p>
 
-<p>此处的镜像是用这样的逻辑来开启tls的
-- 如果你映射了pem证书到容器<code>/etc/ssl/private/pure-ftpd.pem</code>，它会自动给你添加<code>--tls 1</code>选项
-- 如果你指定了<code>--tls 1/2</code>选项，且<code>/etc/ssl/private/pure-ftpd.pem</code>不存在，它会自动生成一个证书文件</p>
+<ul>
+<li>编译时有<code>--with-tls</code>选项，其实就是把openssl的库编译进去</li>
+<li>自生成或者买一个pem的秘钥（crt和key内容可分开为两个文件，也可合并为一个文件，一般选择合并在一起的pem。我们的例子也选用合并在一起的pem）</li>
+<li>pure-ftpd启动时增加<code>--tls 1/2</code>的选项（1是mixed安全和非安全两种模式，2是强制全部是安全模式）</li>
+</ul>
+
+<p>此处的镜像是用这样的逻辑来开启tls的</p>
+
+<ul>
+<li>如果你映射了pem证书到容器<code>/etc/ssl/private/pure-ftpd.pem</code>，它会自动给你添加<code>--tls 1</code>选项</li>
+<li>如果你指定了<code>--tls 1/2</code>选项，且<code>/etc/ssl/private/pure-ftpd.pem</code>不存在，它会自动生成一个证书文件</li>
+</ul>
 
 <p>我个人倾向于自己生成，然后挂载进去</p>
 <pre class="chroma"><span class="c1"># ssl key generate</span>

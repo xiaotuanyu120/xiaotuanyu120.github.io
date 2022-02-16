@@ -175,14 +175,20 @@
 
 <p>对于安装oracle RAC database 11g r2，oracle推荐给oracle grid Infrastructure创建grid用户，给oracle RAC database 软件安装创建oracle用户。基于所安装的软件，每个用户被分配不同的用户组来处理特定的角色。但是按此方法分开创建用户还需要oracle和grid都有一个公有的主组，oracle的中央inventory组(oinstall)。</p>
 
-<p>以下是为安装Oracle RAC database cluster和部分Oracle用户的系统用户组别：
-- OSDBA group (DBA) – 确定具有DBA特权的操作系统用户帐户
-- OSOPER group (OPER) – 创建了一个可选组，用于将有限的DBA权限（SYSOPER权限）分配给特定的操作系统用户帐户</p>
+<p>以下是为安装Oracle RAC database cluster和部分Oracle用户的系统用户组别：</p>
 
-<p>以下是为安装oracle Grid infrastructure和部分grid用户的系统用户组别：
-- OSDBA group (ASMDBA) – 提供Oracle ASM instances的管理访问
-- OSASM group (ASMADMIN) – 通过SYSASM特权为存储文件提供管理访问
-- OSOPER group (ASMOPER) – 创建一个可选组，用于将有关ASM的有限的DBA权限分配给特定操作系统用户账户</p>
+<ul>
+<li>OSDBA group (DBA) – 确定具有DBA特权的操作系统用户帐户</li>
+<li>OSOPER group (OPER) – 创建了一个可选组，用于将有限的DBA权限（SYSOPER权限）分配给特定的操作系统用户帐户</li>
+</ul>
+
+<p>以下是为安装oracle Grid infrastructure和部分grid用户的系统用户组别：</p>
+
+<ul>
+<li>OSDBA group (ASMDBA) – 提供Oracle ASM instances的管理访问</li>
+<li>OSASM group (ASMADMIN) – 通过SYSASM特权为存储文件提供管理访问</li>
+<li>OSOPER group (ASMOPER) – 创建一个可选组，用于将有关ASM的有限的DBA权限分配给特定操作系统用户账户</li>
+</ul>
 <pre class="chroma">groupadd --gid <span class="m">54321</span> oinstall
 groupadd --gid <span class="m">54322</span> dba
 groupadd --gid <span class="m">54323</span> asmdba
@@ -203,10 +209,13 @@ id grid
 </pre>
 <h4>2) 给grid和oracle用户设定limits</h4>
 
-<p>oracle推荐给每个oracle用户设定soft和hard限制，包含以下三项
-- nofile，文件描述符打开限制
-- nproc，进程限制
-- stack，堆栈段的容量</p>
+<p>oracle推荐给每个oracle用户设定soft和hard限制，包含以下三项</p>
+
+<ul>
+<li>nofile，文件描述符打开限制</li>
+<li>nproc，进程限制</li>
+<li>stack，堆栈段的容量</li>
+</ul>
 
 <p>之所以要设定这些限制，是为了预防因为某个用户耗尽所有系统资源造成的系统级别的崩溃</p>
 <pre class="chroma">touch /etc/security/limits.d/99-grid-oracle-limits.conf

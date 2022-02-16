@@ -155,8 +155,11 @@
       </div>
 <h3>0. 环境说明</h3>
 
-<p>官方文档上的BYFN是使用的1.0.3版本，如果使用的bin文件和docker镜像不是1.0.3版本，需要查看configuration和排查错误。
-&gt; 需要提前安装fabric prerequisites和下载fabric samples</p>
+<p>官方文档上的BYFN是使用的1.0.3版本，如果使用的bin文件和docker镜像不是1.0.3版本，需要查看configuration和排查错误。</p>
+
+<blockquote>
+<p>需要提前安装fabric prerequisites和下载fabric samples</p>
+</blockquote>
 
 <h3>1. byfn.sh</h3>
 
@@ -206,13 +209,16 @@ cat byfn.sh <span class="p">|</span>grep -Ev <span class="s2">&#34;</span><span 
 <p>此时我们就完成了二进制文件的绝对路径指定，然后我们可以使用byfn.sh这个脚本来启动一个网络，使用docker启动包含两个组织（每个组织各两个节点）。同时会启动一个docker执行脚本将四个节点加入到网络的channel中。</p>
 
 <p><strong>byfn.sh解析</strong>
-在我们generate一个网络channel时，实际上是执行了三个function：
-- <code>generateCerts</code><br />
-执行了<code>cryptogen generate --config=./crypto-config.yaml</code>语句，<code>cryptogen</code>使用了<code>crypto-config.yaml</code>文件生成了认证文件在<code>crypto-config</code>目录中。
-- <code>replacePrivateKey</code><br />
-先拷贝<code>docker-compose-e2e-template.yaml</code>为<code>docker-compose-e2e.yaml</code>，接下来替换第一步生成的认证文件信息到<code>docker-compose-e2e.yaml</code>中
-- <code>generateChannelArtifacts</code><br />
-<code>configtxgen</code>使用了<code>configtx.yaml</code>文件，使用了其他的profile来执行了一系列命令。</p>
+在我们generate一个网络channel时，实际上是执行了三个function：</p>
+
+<ul>
+<li><code>generateCerts</code><br />
+执行了<code>cryptogen generate --config=./crypto-config.yaml</code>语句，<code>cryptogen</code>使用了<code>crypto-config.yaml</code>文件生成了认证文件在<code>crypto-config</code>目录中。</li>
+<li><code>replacePrivateKey</code><br />
+先拷贝<code>docker-compose-e2e-template.yaml</code>为<code>docker-compose-e2e.yaml</code>，接下来替换第一步生成的认证文件信息到<code>docker-compose-e2e.yaml</code>中</li>
+<li><code>generateChannelArtifacts</code><br />
+<code>configtxgen</code>使用了<code>configtx.yaml</code>文件，使用了其他的profile来执行了一系列命令。</li>
+</ul>
 
 <h3>2. generate第一个网络配置</h3>
 <pre class="chroma">./byfn.sh -m generate

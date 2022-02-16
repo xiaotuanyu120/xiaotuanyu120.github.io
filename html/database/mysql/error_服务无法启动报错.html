@@ -225,12 +225,15 @@ ll www_zhenzhu365_com/
 -rwxrwxrwx 1 mysql mysql    60 10?? 27 16:01 emlog_user.MYD
 -rwxrwxrwx 1 mysql mysql  3072 10?? 27 16:01 emlog_user.MYI
 </pre>
-<p>文件说明：
-- <code>* db.opt</code> 此文件记录了该库默认的字符集编码和字符集编码优先级的规则，只会影响到新建的表，如果此文件被删除的话，新建表会依据全局设置进行设置
-- <code>*.frm</code> 与表相关的元数据(meta)信息都存放在&rdquo;.frm&rdquo;文件,包括表结构的定义信息等,不论是什么存储引擎,每一个表都会有一个以表名命名的&rdquo;.frm&rdquo;文件,所有的&rdquo;.frm&rdquo;文件都存放在所属数据库的文件夹下面.
-- <code>*.MYD</code> 是MyISAM存储引擎专用的,存放MyISAM表的数据,每一个MyISAM表都会有一个&rdquo;.MYD&rdquo;文件与之对应,它同样存放于所属数据库的文件夹下,和&rdquo;.frm&rdquo;文件在一起.
-- <code>*.MYI</code>是专属于MyISAM存储引擎的,主要存放MyISAM表的索引相关信息,对于MyISAM存储来说,可以被缓坡的内容主要就是来源于&rdquo;MYI&rdquo;文件中,每一个MyISA表对应一个&rdquo;MYI&rdquo;文件,其存放的位置和&rdquo;.frm&rdquo;及&rdquo;.MYD&rdquo;一样.
-- <code>*.ibd</code>和<code>*.ibdata</code> 这两种文件都是存放在InnoDB数据的文件,之所以用两种文件来存放InnoDB的数据,是因为InnoDB的数据存储方式能够通过配置来决定是使用共享表空间存放存储数据,还是用独享表空间存放存储数据.独享表空间存储方式使用&rdquo;.ibd&rdquo;文件来存放数据,且每个表一个&rdquo;.ibd&rdquo;文件,文件存放在和MyISAM数据相同的位置,如果选用共享存储表空间来存放数据,则会使用ibdata文件,所有表共同使用一个ibdata文件.</p>
+<p>文件说明：</p>
+
+<ul>
+<li><code>* db.opt</code> 此文件记录了该库默认的字符集编码和字符集编码优先级的规则，只会影响到新建的表，如果此文件被删除的话，新建表会依据全局设置进行设置</li>
+<li><code>*.frm</code> 与表相关的元数据(meta)信息都存放在&rdquo;.frm&rdquo;文件,包括表结构的定义信息等,不论是什么存储引擎,每一个表都会有一个以表名命名的&rdquo;.frm&rdquo;文件,所有的&rdquo;.frm&rdquo;文件都存放在所属数据库的文件夹下面.</li>
+<li><code>*.MYD</code> 是MyISAM存储引擎专用的,存放MyISAM表的数据,每一个MyISAM表都会有一个&rdquo;.MYD&rdquo;文件与之对应,它同样存放于所属数据库的文件夹下,和&rdquo;.frm&rdquo;文件在一起.</li>
+<li><code>*.MYI</code>是专属于MyISAM存储引擎的,主要存放MyISAM表的索引相关信息,对于MyISAM存储来说,可以被缓坡的内容主要就是来源于&rdquo;MYI&rdquo;文件中,每一个MyISA表对应一个&rdquo;MYI&rdquo;文件,其存放的位置和&rdquo;.frm&rdquo;及&rdquo;.MYD&rdquo;一样.</li>
+<li><code>*.ibd</code>和<code>*.ibdata</code> 这两种文件都是存放在InnoDB数据的文件,之所以用两种文件来存放InnoDB的数据,是因为InnoDB的数据存储方式能够通过配置来决定是使用共享表空间存放存储数据,还是用独享表空间存放存储数据.独享表空间存储方式使用&rdquo;.ibd&rdquo;文件来存放数据,且每个表一个&rdquo;.ibd&rdquo;文件,文件存放在和MyISAM数据相同的位置,如果选用共享存储表空间来存放数据,则会使用ibdata文件,所有表共同使用一个ibdata文件.</li>
+</ul>
 
 <p>PS：
 其中比较特殊的两个数据库是mysql和test，mysql中保存的是mysql软件的一些用户权限和之类的软件相关的设置项。</p>

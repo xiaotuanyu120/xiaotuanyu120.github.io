@@ -269,28 +269,40 @@ vrrp_instance VI_1 {
 }
 </pre>
 <blockquote>
-<p>配置简介:
-- global_defs, 全局配置，可配置邮件通知和lvs_id
-  - lvs_id, lvs负载均衡标识id，在一个网络内，应该是唯一的。
-- vrrp_script，可有多个脚本块配置
-  - script, 检测脚本，也可以是一条命令
-  - interval, 检测时间间隔
-  - weight, weight大于0时，若脚本返回结果为0，则增加priority；weight小于0时，若脚本返回结果非0，则减小priority。priority的范围为1-255
-  - fall 2, 连续失败2次才算失败
-  - rise 1, 成功一次就算成功
-- vrrp_instance, 创建vrrp实例
-  - state, 指定初始状态，主还是从，角色转换根据priority来定
-  - interface, 网卡
-  - priority, 优先级，用来确定角色
-  - virtual_router_id, 相同的VRID为一个组，它将决定多播的MAC地址
-  - advert_int, 检查间隔，默认为1秒。这就是VRRP的定时器，MASTER每隔这样一个时间间隔，就会发送一个advertisement报文以通知组内其他路由器自己工作正常
-  - unicast_src_ip, 单播源ip
-  - unicast_peer, 单播对端ip，可配置多个
-  - authentication, 安全认证
-    - auth_type PASS, 使用密码方式认证
-    - auth_pass, 指定密码
-  - virtual_ipaddress, 指定vip
-  - track_script, 指定检查脚本，可配置多个</p>
+<p>配置简介:</p>
+
+<ul>
+<li>global_defs, 全局配置，可配置邮件通知和lvs_id
+
+<ul>
+<li>lvs_id, lvs负载均衡标识id，在一个网络内，应该是唯一的。</li>
+</ul></li>
+<li>vrrp_script，可有多个脚本块配置
+
+<ul>
+<li>script, 检测脚本，也可以是一条命令</li>
+<li>interval, 检测时间间隔</li>
+<li>weight, weight大于0时，若脚本返回结果为0，则增加priority；weight小于0时，若脚本返回结果非0，则减小priority。priority的范围为1-255</li>
+<li>fall 2, 连续失败2次才算失败</li>
+<li>rise 1, 成功一次就算成功</li>
+</ul></li>
+<li>vrrp_instance, 创建vrrp实例
+
+<ul>
+<li>state, 指定初始状态，主还是从，角色转换根据priority来定</li>
+<li>interface, 网卡</li>
+<li>priority, 优先级，用来确定角色</li>
+<li>virtual_router_id, 相同的VRID为一个组，它将决定多播的MAC地址</li>
+<li>advert_int, 检查间隔，默认为1秒。这就是VRRP的定时器，MASTER每隔这样一个时间间隔，就会发送一个advertisement报文以通知组内其他路由器自己工作正常</li>
+<li>unicast_src_ip, 单播源ip</li>
+<li>unicast_peer, 单播对端ip，可配置多个</li>
+<li>authentication, 安全认证</li>
+<li>auth_type PASS, 使用密码方式认证</li>
+<li>auth_pass, 指定密码</li>
+<li>virtual_ipaddress, 指定vip</li>
+<li>track_script, 指定检查脚本，可配置多个</li>
+</ul></li>
+</ul>
 </blockquote>
 
 <p>BACKUP上配置</p>

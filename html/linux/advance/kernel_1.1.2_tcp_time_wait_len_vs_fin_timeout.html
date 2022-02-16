@@ -213,47 +213,44 @@
 
 <h4>2) 网上为何流传tcp_fin_timeout是2MSL呢？</h4>
 
-<p><strong>个人猜测</strong>是两个原因:
-- 第一是因为默认情况下，TCP_FIN_TIMEOUT就等于TCP_TIMEWAIT_LEN</p>
-<pre class="chroma"><span class="cp">#</span><span class="cp">define TCP_FIN_TIMEOUT	TCP_TIMEWAIT_LEN</span><span class="cp">
-</span><span class="cp"></span>                                 <span class="cm">/* BSD style FIN_WAIT2 deadlock breaker.
-</span><span class="cm">				  * It used to be 3min, new value is 60sec,
-</span><span class="cm">				  * to combine FIN-WAIT-2 timeout with
-</span><span class="cm">				  * TIME-WAIT timer.
-</span><span class="cm">				  */</span>
-</pre>
+<p><strong>个人猜测</strong>是两个原因:</p>
+
 <ul>
-<li>第二是因为，tcp_fin_timeout本身就是设定处于FIN_WAIT2状态下的tcp连接等待最后一个FIN的超时时间，这个超时时间越短，就越快加速等不到FIN的情况下FIN_WAIT2到下一步的过程，也是能一定程度上加快tcp的生命周期，所以才和TIMEWAIT的销毁时间等同来讲。</li>
+<li>第一是因为默认情况下，TCP_FIN_TIMEOUT就等于TCP_TIMEWAIT_LEN
+<code>c
+#define TCP_FIN_TIMEOUT	TCP_TIMEWAIT_LEN
+                             /* BSD style FIN_WAIT2 deadlock breaker.
+			  * It used to be 3min, new value is 60sec,
+			  * to combine FIN-WAIT-2 timeout with
+			  * TIME-WAIT timer.
+			  */
+</code>
+- 第二是因为，tcp_fin_timeout本身就是设定处于FIN_WAIT2状态下的tcp连接等待最后一个FIN的超时时间，这个超时时间越短，就越快加速等不到FIN的情况下FIN_WAIT2到下一步的过程，也是能一定程度上加快tcp的生命周期，所以才和TIMEWAIT的销毁时间等同来讲。
+&gt; 以上两个原因，都是个人猜测，个人猜测，请在未验证之前，不要拿来作为依据。
+### 3. 验证一波fin_timeout和TIMEWAIT的销毁时间确实没关系
+<code>bash
+# 1. 搭建一个tomcat，用于测试，此处忽略
+# 2. 首先设定fin_timeout为一个极短的时间
+echo &quot;3&quot; &gt; /proc/sys/net/ipv4/tcp_fin_timeout
+# 验证一下
+cat /proc/sys/net/ipv4/tcp_fin_timeout
+3
+# 3. curl一下tomcat，创建几个tcp连接
+curl 127.0.0.1:8080 -I
+# 4. 使用ss检查处于timewait状态的连接，使用-o来检查其时间
+ss -n -o state time-wait
+Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+tcp    0      0      127.0.0.1:42924              127.0.0.1:8080                timer:(timewait,55sec,0)
+tcp    0      0      127.0.0.1:42922              127.0.0.1:8080                timer:(timewait,54sec,0)
+# 发现初始化时间就是60s
+# 再次检查，发现时间减少，直到时间为0，tcp连接消失
+ss -n -o state time-wait
+Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
+tcp    0      0      127.0.0.1:42924              127.0.0.1:8080                timer:(timewait,34sec,0)
+tcp    0      0      127.0.0.1:42922              127.0.0.1:8080                timer:(timewait,33sec,0)
+</code></li>
 </ul>
 
-<blockquote>
-<p>以上两个原因，都是个人猜测，个人猜测，请在未验证之前，不要拿来作为依据。</p>
-</blockquote>
-
-<h3>3. 验证一波fin_timeout和TIMEWAIT的销毁时间确实没关系</h3>
-<pre class="chroma"><span class="c1"># 1. 搭建一个tomcat，用于测试，此处忽略</span>
-
-<span class="c1"># 2. 首先设定fin_timeout为一个极短的时间</span>
-<span class="nb">echo</span> <span class="s2">&#34;3&#34;</span> &gt; /proc/sys/net/ipv4/tcp_fin_timeout
-<span class="c1"># 验证一下</span>
-cat /proc/sys/net/ipv4/tcp_fin_timeout
-<span class="m">3</span>
-
-<span class="c1"># 3. curl一下tomcat，创建几个tcp连接</span>
-curl 127.0.0.1:8080 -I
-
-<span class="c1"># 4. 使用ss检查处于timewait状态的连接，使用-o来检查其时间</span>
-ss -n -o state time-wait
-Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
-tcp    <span class="m">0</span>      <span class="m">0</span>      127.0.0.1:42924              127.0.0.1:8080                timer:<span class="o">(</span>timewait,55sec,0<span class="o">)</span>
-tcp    <span class="m">0</span>      <span class="m">0</span>      127.0.0.1:42922              127.0.0.1:8080                timer:<span class="o">(</span>timewait,54sec,0<span class="o">)</span>
-<span class="c1"># 发现初始化时间就是60s</span>
-<span class="c1"># 再次检查，发现时间减少，直到时间为0，tcp连接消失</span>
-ss -n -o state time-wait
-Netid  Recv-Q Send-Q Local Address:Port               Peer Address:Port              
-tcp    <span class="m">0</span>      <span class="m">0</span>      127.0.0.1:42924              127.0.0.1:8080                timer:<span class="o">(</span>timewait,34sec,0<span class="o">)</span>
-tcp    <span class="m">0</span>      <span class="m">0</span>      127.0.0.1:42922              127.0.0.1:8080                timer:<span class="o">(</span>timewait,33sec,0<span class="o">)</span>
-</pre>
 <blockquote>
 <p>以上的操作实际上验证了，修改<code>tcp_fin_timeout</code>是无法修改TIMEWAIT的销毁时间的。</p>
 </blockquote>

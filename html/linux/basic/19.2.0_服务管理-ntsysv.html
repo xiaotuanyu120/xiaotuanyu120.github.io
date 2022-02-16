@@ -242,10 +242,13 @@
 简介：redhat系linux独有的类图形服务管理模式，用来图形化管理各runlevel下运行的服务<br />
 安装方法： <code>yum install -y ntsysv</code><br />
 语法：<code>ntsysv [--level levels No]</code><br />
-基本操作：
-- [tab]-在服务选择窗口、ok、cancel之间切换
-- [space]-在服务选择窗口上是选择与反选，在ok和cancel上是确认
-- 上下箭头-木有什么好说的了，最基本的操作</p>
+基本操作：</p>
+
+<ul>
+<li>[tab]-在服务选择窗口、ok、cancel之间切换</li>
+<li>[space]-在服务选择窗口上是选择与反选，在ok和cancel上是确认</li>
+<li>上下箭头-木有什么好说的了，最基本的操作</li>
+</ul>
 <pre class="chroma"><span class="c1"># 配置各runlevel的服务</span>
 ntsysv --level <span class="m">3</span>
 </pre>

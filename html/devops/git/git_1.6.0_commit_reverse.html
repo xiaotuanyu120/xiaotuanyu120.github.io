@@ -189,10 +189,13 @@ git commit --amend
 <p>在提交层面上，reset将分支的末端指向另外一个提交，这可以用来移除当前分支的某些提交，让我们拥有重新来过的机会。为了理解这个，我们需要牢记git中的一个基本知识(文件区域)<br />
 工作目录 &ndash;&gt; stage区域 &ndash;&gt; commit区域</p>
 
-<p>reset其实用三个参数，来对应的对于上面的区域做撤回操作
-- &ndash;soft - 只会改变commit区域，stage区域和工作目录都不会被改变
-- &ndash;mixed - 默认选项。stage区域和你指定的提交同步，但工作目录不受影响
-- &ndash;hard - stage区域和工作目录都同步到你指定的提交</p>
+<p>reset其实用三个参数，来对应的对于上面的区域做撤回操作</p>
+
+<ul>
+<li>&ndash;soft - 只会改变commit区域，stage区域和工作目录都不会被改变</li>
+<li>&ndash;mixed - 默认选项。stage区域和你指定的提交同步，但工作目录不受影响</li>
+<li>&ndash;hard - stage区域和工作目录都同步到你指定的提交</li>
+</ul>
 
 <h4>1) commit之前，撤销stage区域的文件</h4>
 

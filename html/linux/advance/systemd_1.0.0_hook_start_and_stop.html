@@ -196,9 +196,12 @@
       </div>
 <h3>1. 同时启动多个服务</h3>
 
-<p>这里主要使用了两个参数，units配置块里面的Requires和Wants
-- Requires: 如果服务本身被启动，其它关联的服务也会被启动，如果其他服务启动失败，则本服务也启动失败。
-- Wants: 比Requires弱一点的类似配置，区别在于，当其他服务启动失败时，不会影响到本服务本身的启动。</p>
+<p>这里主要使用了两个参数，units配置块里面的Requires和Wants</p>
+
+<ul>
+<li>Requires: 如果服务本身被启动，其它关联的服务也会被启动，如果其他服务启动失败，则本服务也启动失败。</li>
+<li>Wants: 比Requires弱一点的类似配置，区别在于，当其他服务启动失败时，不会影响到本服务本身的启动。</li>
+</ul>
 
 <p><strong>tomcat-01.service</strong> 配置</p>
 <pre class="chroma">[Unit]

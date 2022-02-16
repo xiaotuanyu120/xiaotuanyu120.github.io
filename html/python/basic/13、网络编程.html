@@ -203,12 +203,13 @@ s.listen(5)</p>
 
 <h1>backlog最小是0，如果传入的值小于0，则修正为0</h1>
 
-<p>while True:
-    print &lsquo;wait&rsquo;
-    c, addr = s.accept()
-    # socket.socket.accept()返回(socket object, address info)
-    # 对于ipv4的socket连接，address info为ip地址和端口的tuple</p>
-<pre class="chroma">print &#39;Got connection from&#39;, addr
+<p>while True:</p>
+<pre class="chroma">print &#39;wait&#39;
+c, addr = s.accept()
+# socket.socket.accept()返回(socket object, address info)
+# 对于ipv4的socket连接，address info为ip地址和端口的tuple
+
+print &#39;Got connection from&#39;, addr
 c.send(&#39;Thank you for connecting&#39;)
 c.close()
 </pre><pre class="chroma">

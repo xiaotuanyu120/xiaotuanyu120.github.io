@@ -198,10 +198,13 @@
 
 <p><a href="https://www.freebsd.org/cgi/man.cgi?sshd_config%285%29"><code>StrictsModes</code></a>默认为启用，用来控制sshd是否在处理用户登入之前来检查相关文件和家目录的权限。</p>
 
-<p>详细规则：
-- 家目录 &gt; 只能用户自己拥有写权限（属主属组是用户，权限是700、755、750等）
-- .ssh目录 &gt; 只能用户自己拥有读写执行权限（属主属组是用户，权限是700）
-- authorized_keys &gt; 只能用户自己拥有读写权限（属主属组是用户，权限是600）</p>
+<p>详细规则：</p>
+
+<ul>
+<li>家目录 &gt; 只能用户自己拥有写权限（属主属组是用户，权限是700、755、750等）</li>
+<li>.ssh目录 &gt; 只能用户自己拥有读写执行权限（属主属组是用户，权限是700）</li>
+<li>authorized_keys &gt; 只能用户自己拥有读写权限（属主属组是用户，权限是600）</li>
+</ul>
 
 <p>所以基本上检查权限就检查以上三个即可。并不推荐将<code>StrictsModes</code>修改为<code>No</code>，因为将自己的公钥文件设定为全局可写，是很危险的事情。</p>
 
@@ -209,9 +212,12 @@
 
 <p>selinux默认给sshd有一个policy，关于文件方面，都是有固定的位置给授权了lable，一般情况下，不会影响密钥认证的过程。</p>
 
-<p>但是以下情况会影响：
-- 修改了authorized_keys的位置
-- 用户家目录不在/home下</p>
+<p>但是以下情况会影响：</p>
+
+<ul>
+<li>修改了authorized_keys的位置</li>
+<li>用户家目录不在/home下</li>
+</ul>
 
 <p>此时因为修改了sshd密钥认证文件的位置，所以默认的sshd的selinux policy就无法正确的给文件正确的lable，所以此时需要我们手动来修正，具体的修正过程，见<a href="/linux/advance/selinux_1.0.2_sshd_public_key_lable.html">selinux sshd public key lable</a></p>
 

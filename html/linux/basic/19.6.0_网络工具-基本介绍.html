@@ -240,16 +240,22 @@
 
 <p>简介：可与服务器之间收发数据，常用来测试web访问<br />
 语法：<code>curl [参数] [URL...]</code><br />
-参数：
-- <code>-x</code> 指定代理服务器ip地址跟port访问网页（<code>curl -x ip:port URL</code>）
-- <code>-I</code> 只获取http-header（<code>curl -I URL</code>）
-- <code>-v</code> verbose模式
- - <code>&gt;</code>开头，意为curl发送
- - <code>&lt;</code>开头，意为curl接收的normal模式隐藏的信息
- - <code>*</code>开头，意为curl工具产生的附加信息
-- <code>-u</code> 可以指定用户名和密码(<code>curl -u &lt;username：password&gt; URL</code>)
-- <code>-O</code> 可以下载指定URL（<code>curl  URL -O</code>）
-- <code>-o</code> output自定义下载url名称（<code>curl -o filename URL</code>）</p>
+参数：</p>
+
+<ul>
+<li><code>-x</code> 指定代理服务器ip地址跟port访问网页（<code>curl -x ip:port URL</code>）</li>
+<li><code>-I</code> 只获取http-header（<code>curl -I URL</code>）</li>
+<li><code>-v</code> verbose模式
+
+<ul>
+<li><code>&gt;</code>开头，意为curl发送</li>
+<li><code>&lt;</code>开头，意为curl接收的normal模式隐藏的信息</li>
+<li><code>*</code>开头，意为curl工具产生的附加信息</li>
+</ul></li>
+<li><code>-u</code> 可以指定用户名和密码(<code>curl -u &lt;username：password&gt; URL</code>)</li>
+<li><code>-O</code> 可以下载指定URL（<code>curl  URL -O</code>）</li>
+<li><code>-o</code> output自定义下载url名称（<code>curl -o filename URL</code>）</li>
+</ul>
 
 <hr />
 

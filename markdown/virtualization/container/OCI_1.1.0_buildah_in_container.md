@@ -16,11 +16,13 @@ tags: [container,podman,docker,buildah,fuse-overlayfs]
 
 #### 第一步，在官方buildah镜像中测试使用buildah编译镜像
 在host安装podman和buildah
+
 ``` bash
 yum install podman buildah -y
 ```
 
 参照[Best practices for running Buildah in a container](https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container/)，使用官方buildah镜像有以下注意点
+
 - 运行普通的root容器，不增加任何特权（不增加capibility）
   - 使用fuse-overlayfs，需要host的/dev/fuse
 - buildah的运行，默认需要chroot，默认不用user namespace
@@ -85,12 +87,14 @@ ERRO exit status 1
 - fuse-overlayfs
 
 看过工具清单之后，感觉可以从两个方向入手
+
 - centos7 update到最新;kernel update到最新
 - 基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像中的软件和方案本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)
 
 #### 第二步，尝试自定义镜像（基于centos7）
 
 系统先不升级，尝试自定义镜像
+
 ``` bash
 # env
 uname -a

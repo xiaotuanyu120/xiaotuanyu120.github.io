@@ -177,21 +177,21 @@
 <p>报错信息：<br />
 <code>ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)</code></p>
 
-<p>解决方案：
-- 尝试解决<br />
-查询配置文件中配置的socket文件是否存在；<br />
-重新初始化数据库；</p>
+<p>解决方案：</p>
 
 <ul>
-<li>最终解决方案<br />
+<li><p>尝试解决<br />
+查询配置文件中配置的socket文件是否存在；<br />
+重新初始化数据库；</p></li>
+
+<li><p>最终解决方案<br />
 原来是配置文件中未配置client字段<br />
-/etc/my.cnf添加内容
-<code>
-[client]
+/etc/my.cnf添加内容</p>
+<pre class="chroma">[client]
 port=3306
 socket=/tmp/mysql.socket
-</code>
-结果：成功进入mysql</li>
+</pre>
+<p>结果：成功进入mysql</p></li>
 </ul>
 
 <h4>2) 服务启动错误</h4>
@@ -200,11 +200,14 @@ socket=/tmp/mysql.socket
 <pre class="chroma">service mysqld start
 Starting MySQL.. ERROR! The server quit without updating PID file <span class="o">(</span>/data/mysql/server.example.com.pid<span class="o">)</span>.
 </pre>
-<p>解决办法：
-1. 检查basedir和datadir的权限设置和属主
-2. 检查配置文件中basedir和datadir是否指定
-3. 查看错误日志（一般在datadir下）<br />
-发现里面有进一步的错误提示<code>[ERROR] Plugin 'InnoDB' init function returned error.</code></p>
+<p>解决办法：</p>
+
+<ol>
+<li>检查basedir和datadir的权限设置和属主</li>
+<li>检查配置文件中basedir和datadir是否指定</li>
+<li>查看错误日志（一般在datadir下）<br />
+发现里面有进一步的错误提示<code>[ERROR] Plugin 'InnoDB' init function returned error.</code></li>
+</ol>
 
 <p>网上查找解决方案<br />
 删除掉datadir下的ib开头的三个文件即可（为了安全起见，我把它们mv到了tmp下）</p>

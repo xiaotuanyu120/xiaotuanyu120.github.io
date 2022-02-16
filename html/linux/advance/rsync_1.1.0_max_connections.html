@@ -196,11 +196,14 @@
       </div>
 <h3>0. 理论</h3>
 
-<p><a href="https://download.samba.org/pub/rsync/rsyncd.conf.html">rsync man 文档</a><br />
-&gt; max connections
+<p><a href="https://download.samba.org/pub/rsync/rsyncd.conf.html">rsync man 文档</a></p>
+
+<blockquote>
+<p>max connections
 This parameter allows you to specify the maximum number of simultaneous connections you will allow. Any clients connecting when the maximum has been reached will receive a message telling them to try later. The default is 0, which means no limit. A negative value disables the module. See also the &ldquo;lock file&rdquo; parameter.<br />
 lock file
 This parameter specifies the file to use to support the &ldquo;max connections&rdquo; parameter. The rsync daemon uses record locking on this file to ensure that the max connections limit is not exceeded for the modules sharing the lock file. The default is /var/run/rsyncd.lock.</p>
+</blockquote>
 
 <hr />
 

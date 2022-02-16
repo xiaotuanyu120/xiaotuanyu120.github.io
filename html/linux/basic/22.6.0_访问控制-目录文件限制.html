@@ -246,39 +246,44 @@
 用Allow和Deny来控制客户端的访问权限<br />
 用Order来设置默认访问状态，和设定Allow、Deny的生效顺序</p>
 
-<p>用法简介：<br />
-- Allow用法汇总：
- - domain-name(可以用不完整domain-name)</p>
-<pre class="chroma">Allow from example.org
-Allow from .net example.edu
-</pre>
+<p>用法简介：</p>
+
 <ul>
-<li><p>IP地址(可以用不完整ip)
+<li><p>Allow用法汇总：</p>
+
+<ul>
+<li>domain-name(可以用不完整domain-name)
+<code>
+Allow from example.org
+Allow from .net example.edu
+</code></li>
+<li>IP地址(可以用不完整ip)
 <code>
 Allow from 10.1.2.3
 Allow from 192.168.1.104 192.168.1.205
 Allow from 10.1
 Allow from 10 172.20 192.168.2
-</code></p></li>
-
-<li><p>IP网段
+</code></li>
+<li>IP网段
 <code>
 Allow from 10.1.0.0/255.255.0.0
 Allow from 10.1.0.0/16
-</code></p></li>
-
-<li><p>变量</p>
-<pre class="chroma">Allow from env=env-variable
+</code></li>
+<li>变量
+<code>
+Allow from env=env-variable
 Allow from env=!env-variable
-</pre>
-<p>举例 - 只有user-agent是knockknock/2.0的才可以访问</p>
-<pre class="chroma">SetEnvIf User-Agent ^KnockKnock/2\.0 let_me_in
-&lt;Directory &#34;/docroot&#34;&gt;
+</code>
+举例 - 只有user-agent是knockknock/2.0的才可以访问<br />
+<code>
+SetEnvIf User-Agent ^KnockKnock/2\.0 let_me_in
+&lt;Directory &quot;/docroot&quot;&gt;
 Order Deny,Allow
 Deny from all
 Allow from env=let_me_in
 &lt;/Directory&gt;
-</pre></li>
+</code></li>
+</ul></li>
 
 <li><p>Deny用法汇总：
 同Allow，只是关键词变成了Deny</p></li>
@@ -339,29 +344,37 @@ c. 其他所有不匹配*.example.org的，通过
 语法：<code>Require [not] entity-name [entity-name] ...</code><br />
 container： <code>&lt;RequireAll&gt;</code>, <code>&lt;RequireAny&gt;</code> and <code>&lt;RequireNone&gt;</code></p>
 
-<p>authorization provider汇总：
-&gt; 1. <code>Require all granted</code><br />
-Access is allowed unconditionally
-2. <code>Require all denied</code><br />
-Access is denied unconditionally
-3. <code>Require env env-var [env-var] ...</code><br />
-Access is allowed only if one of the given environment variables is set
-4. <code>Require method http-method [http-method] ...</code><br />
-Access is allowed only for the given HTTP methods
-5. <code>Require expr expression</code><br />
+<p>authorization provider汇总：</p>
+
+<blockquote>
+<ol>
+<li><code>Require all granted</code><br />
+Access is allowed unconditionally</li>
+<li><code>Require all denied</code><br />
+Access is denied unconditionally</li>
+<li><code>Require env env-var [env-var] ...</code><br />
+Access is allowed only if one of the given environment variables is set</li>
+<li><code>Require method http-method [http-method] ...</code><br />
+Access is allowed only for the given HTTP methods</li>
+<li><code>Require expr expression</code><br />
 Access is allowed if expression evaluates to true
 示例：<br />
-<code>Require expr &quot;%{TIME_HOUR} -ge 9 &amp;&amp; %{TIME_HOUR} -le 17&quot;</code>
-&gt;
-由<code>mod_authz_user</code>,<code>mod_authz_host</code>,<code>mod_authz_groupfile</code>提供的用法
-6. <code>Require user userid [userid] ...</code><br />
-Only the named users can access the resource.
-7. <code>Require group group-name [group-name] ...</code><br />
-Only users in the named groups can access the resource.
-8. <code>Require valid-user</code><br />
-All valid users can access the resource.
-9. <code>Require ip 10 172.20 192.168.2</code><br />
-Clients in the specified IP address ranges can access the resource.</p>
+<code>Require expr &quot;%{TIME_HOUR} -ge 9 &amp;&amp; %{TIME_HOUR} -le 17&quot;</code></li>
+</ol>
+
+<p>由<code>mod_authz_user</code>,<code>mod_authz_host</code>,<code>mod_authz_groupfile</code>提供的用法</p>
+
+<ol>
+<li><code>Require user userid [userid] ...</code><br />
+Only the named users can access the resource.</li>
+<li><code>Require group group-name [group-name] ...</code><br />
+Only users in the named groups can access the resource.</li>
+<li><code>Require valid-user</code><br />
+All valid users can access the resource.</li>
+<li><code>Require ip 10 172.20 192.168.2</code><br />
+Clients in the specified IP address ranges can access the resource.</li>
+</ol>
+</blockquote>
 
 <p>用法举例：</p>
 <pre class="chroma"><span class="c1">## env：允许KnockKnoick/2.0开头的User-Agent访问</span>

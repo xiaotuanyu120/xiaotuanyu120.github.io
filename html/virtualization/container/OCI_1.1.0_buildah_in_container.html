@@ -193,10 +193,16 @@
 <p>在host安装podman和buildah</p>
 <pre class="chroma">yum install podman buildah -y
 </pre>
-<p>参照<a href="https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container/">Best practices for running Buildah in a container</a>，使用官方buildah镜像有以下注意点
-- 运行普通的root容器，不增加任何特权（不增加capibility）
-  - 使用fuse-overlayfs，需要host的/dev/fuse
-- buildah的运行，默认需要chroot，默认不用user namespace</p>
+<p>参照<a href="https://developers.redhat.com/blog/2019/08/14/best-practices-for-running-buildah-in-a-container/">Best practices for running Buildah in a container</a>，使用官方buildah镜像有以下注意点</p>
+
+<ul>
+<li>运行普通的root容器，不增加任何特权（不增加capibility）
+
+<ul>
+<li>使用fuse-overlayfs，需要host的/dev/fuse</li>
+</ul></li>
+<li>buildah的运行，默认需要chroot，默认不用user namespace</li>
+</ul>
 <pre class="chroma">podman run -it --rm --device /dev/fuse quay.io/buildah/stable bash
 <span class="nb">cd</span>
 <span class="nb">echo</span> -e <span class="s2">&#34;FROM quay.io/buildah/stable\nRUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span> &gt; Dockerfile
@@ -237,9 +243,12 @@ STEP 2: RUN dnf -y update<span class="p">;</span>dnf -y install java-1.8.0-openj
 error building at STEP <span class="s2">&#34;RUN dnf -y update;dnf -y install java-1.8.0-openjdk-devel nodejs maven;dnf -y clean all&#34;</span>: error mounting container <span class="s2">&#34;d068b5f32f26e11bf0057f33afe0acfc9ed21df4ee4c2d484e410785921ae535&#34;</span>: error mounting build container <span class="s2">&#34;d068b5f32f26e11bf0057f33afe0acfc9ed21df4ee4c2d484e410785921ae535&#34;</span>: failed to canonicalise path <span class="k">for</span> <span class="s2">&#34;/var/lib/containers/storage/overlay/26556401814a0483015367e8c56c39ddb5af3af12d9504b67a66e7f0ba6a03d9/merged&#34;</span>: lstat /var/lib/containers/storage/overlay/26556401814a0483015367e8c56c39ddb5af3af12d9504b67a66e7f0ba6a03d9/merged: invalid argument
 ERRO <span class="nb">exit</span> status <span class="m">1</span> 
 </pre>
-<p>这里我是很疑惑的，查了很多资料，很多人提到了各式各样的问题，总之就集中在两点：
-1. /dev/fuse设备，host内核中启用fuse模块<code>yum install fuse3 fuse3-devel;modprobe fuse; lsmod |grep fuse</code>
-2. 挂载host目录到/var/lib/containers</p>
+<p>这里我是很疑惑的，查了很多资料，很多人提到了各式各样的问题，总之就集中在两点：</p>
+
+<ol>
+<li>/dev/fuse设备，host内核中启用fuse模块<code>yum install fuse3 fuse3-devel;modprobe fuse; lsmod |grep fuse</code></li>
+<li>挂载host目录到/var/lib/containers</li>
+</ol>
 
 <p>可是这两点我都做了，还是依旧不可以。而且，我也不是用rootless的方式启动podman，没理由不可以的。既然网上查不到，只能github提交issue来解决了。关于这个<a href="https://github.com/containers/buildah/issues/2393">issue</a>，我是从那个user namespace的错误提交的，是因为我要确认下，为啥buildah明确不用user namespace，还提示那个要启用user namespace的提示。得到无论是否使用user namespace都需要启用内核功能之后，后续聊到了之后的报错，源码的维护者还是坚持在我已经关注过的两点上指点我进行尝试。</p>
 
@@ -253,9 +262,12 @@ ERRO <span class="nb">exit</span> status <span class="m">1</span>
 <li>fuse-overlayfs</li>
 </ul>
 
-<p>看过工具清单之后，感觉可以从两个方向入手
-- centos7 update到最新;kernel update到最新
-- 基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像中的软件和方案本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)</p>
+<p>看过工具清单之后，感觉可以从两个方向入手</p>
+
+<ul>
+<li>centos7 update到最新;kernel update到最新</li>
+<li>基于fedora的镜像自定义成基于centos的(因为宿主机和容器共享一个内核，所以我担心是fedora镜像中的软件和方案本身搭配的是fedora的高版本内核，而我不可能线上用fedora，所以只能把镜像的基础系统版本降级到centos的环境)</li>
+</ul>
 
 <h4>第二步，尝试自定义镜像（基于centos7）</h4>
 

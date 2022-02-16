@@ -238,16 +238,22 @@
       </div>
 <h3>1. 配置字段解释</h3>
 
-<p><code>limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;</code>
-&gt;1,$binary_remote_addr,ip地址的二进制变量<br />
+<p><code>limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;</code></p>
+
+<blockquote>
+<p>1,$binary_remote_addr,ip地址的二进制变量<br />
 2,zone=one,one是自定义的名称<br />
 3,zone=one:10m,10m定义的是可储存用户session请求的空间大小<br />
 4,rate=1r/s,1r/s代表的是1 request 每second</p>
+</blockquote>
 
-<p><code>limit_req zone=zone_name burst=number nodelay;</code>
-&gt;1,zone，指定使用的zone名称<br />
+<p><code>limit_req zone=zone_name burst=number nodelay;</code></p>
+
+<blockquote>
+<p>1,zone，指定使用的zone名称<br />
 2,burst，用来缓存一定数量的请求<br />
 3,nodelay，用来使超过限定数量的请求即时返回503，不再delay</p>
+</blockquote>
 
 <hr />
 

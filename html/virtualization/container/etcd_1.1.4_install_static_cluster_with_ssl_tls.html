@@ -192,11 +192,14 @@
 
 <p>生成认证文件详细操作参照<a href="https://github.com/coreos/docs/blob/master/os/generate-self-signed-certificates.md">使用cfssl生成认证文件的文档</a>，这里仅提及必要的内容，生成配置文件可在任意linux系统中生成，只需要在生成之后把相应的认证文件拷贝到相应节点即可。</p>
 
-<p>etcd里面可以做的认证包括：
-- 客户端验证服务端身份，需要在服务端提供服务器认证文件，例如server.pem，server-key.pem
-- 服务端验证客户端身份，需要在客户端提供客户端认证文件，例如client-key.pem，client.pem
-- etcd集群节点互相认证身份，需要各节点提供节点认证文件，例如member1.pem，member1-key.pem
-&gt; 当然任何认证都需要的一个文件是ca.pem</p>
+<p>etcd里面可以做的认证包括：</p>
+
+<ul>
+<li>客户端验证服务端身份，需要在服务端提供服务器认证文件，例如server.pem，server-key.pem</li>
+<li>服务端验证客户端身份，需要在客户端提供客户端认证文件，例如client-key.pem，client.pem</li>
+<li>etcd集群节点互相认证身份，需要各节点提供节点认证文件，例如member1.pem，member1-key.pem
+&gt; 当然任何认证都需要的一个文件是ca.pem</li>
+</ul>
 
 <p>CA选项文件<code>ca-config.json</code>和<code>ca-csr.json</code>自定义内容</p>
 <pre class="chroma">{
@@ -312,13 +315,16 @@
     ]
 }
 </pre>
-<p>使用上述选项文件，我们可以生成以下认证文件
-- ca.csr  ca-key.pem  ca.pem
-- server.csr  server-key.pem  server.pem
-- member1.csr  member1-key.pem  member1.pem
-- member2.csr  member2-key.pem  member2.pem
-- member3.csr  member3-key.pem  member3.pem
-- client.csr  client-key.pem  client.pem</p>
+<p>使用上述选项文件，我们可以生成以下认证文件</p>
+
+<ul>
+<li>ca.csr  ca-key.pem  ca.pem</li>
+<li>server.csr  server-key.pem  server.pem</li>
+<li>member1.csr  member1-key.pem  member1.pem</li>
+<li>member2.csr  member2-key.pem  member2.pem</li>
+<li>member3.csr  member3-key.pem  member3.pem</li>
+<li>client.csr  client-key.pem  client.pem</li>
+</ul>
 
 <h4>3) 拷贝认证文件到对应节点</h4>
 

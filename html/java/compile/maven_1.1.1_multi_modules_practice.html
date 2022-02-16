@@ -142,11 +142,14 @@
 
 <h3>2. 官方建议方法</h3>
 
-<p>要点：
-- maven版本要在3.5.0以上
-- 项目version使用变量<code>${revision}</code>、<code>${sha1}</code>和<code>${changelist}</code>（不可变更变量名称）来组合version名称
-- 子module使用同样的变量组合方式来指定parent version，然后自身并不指定version（继承parent version）
-- 子module互相之间的依赖，使用<code>${project.version}</code>来标准化，其实内容就是parent的version</p>
+<p>要点：</p>
+
+<ul>
+<li>maven版本要在3.5.0以上</li>
+<li>项目version使用变量<code>${revision}</code>、<code>${sha1}</code>和<code>${changelist}</code>（不可变更变量名称）来组合version名称</li>
+<li>子module使用同样的变量组合方式来指定parent version，然后自身并不指定version（继承parent version）</li>
+<li>子module互相之间的依赖，使用<code>${project.version}</code>来标准化，其实内容就是parent的version</li>
+</ul>
 
 <p><strong>示例:parent-pom.xml</strong></p>
 <pre class="chroma"><span class="nt">&lt;project</span><span class="nt">&gt;</span>

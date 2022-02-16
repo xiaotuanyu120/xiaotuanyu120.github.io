@@ -231,9 +231,12 @@
 <p>etcd的discovery服务只能用于集群引导阶段，不可以用于runtime修改配置或者集群监控中。
 一个discovery的URL定义一个独一无二的etcd集群，无法重用于生成另外一个etcd集群。</p>
 
-<p>etcd提供两种discovery服务：<br />
-- 公用etcd discovery服务, 通过访问<code>https://discovery.etcd.io/new?size=3</code>获取discovery URL
-- 自建etcd discovery服务, 使用现存的etcd服务来生成新etcd集群bootstrap过程需要的discovery URL</p>
+<p>etcd提供两种discovery服务：</p>
+
+<ul>
+<li>公用etcd discovery服务, 通过访问<code>https://discovery.etcd.io/new?size=3</code>获取discovery URL</li>
+<li>自建etcd discovery服务, 使用现存的etcd服务来生成新etcd集群bootstrap过程需要的discovery URL</li>
+</ul>
 
 <hr />
 

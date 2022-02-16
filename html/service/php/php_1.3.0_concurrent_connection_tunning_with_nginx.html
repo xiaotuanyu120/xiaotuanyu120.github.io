@@ -210,9 +210,12 @@ listen 443 backlog=8192;
 <blockquote>
 <p>关于此配置的默认值，可以打开默认配置文件查看(5.6.40版本是65536);关于处理中的连接队列最大值请查看<a href="/service/php/php_1.2.2_configuration_process.html">php进程管理配置说明</a></p>
 
-<p>PS: php-fpm的backlog不能一味追求大，需要看硬件处理水平而定。
-- 如果<code>最大进程数</code>+<code>backlog</code>设置过大，php的处理性能跟不上，超出了nginx等待时间，则会返回504，而php会报错broken pipeline
-- 如果<code>最大进程数</code>+<code>backlog</code>设置过小，nginx的请求过多，则会返回502</p>
+<p>PS: php-fpm的backlog不能一味追求大，需要看硬件处理水平而定。</p>
+
+<ul>
+<li>如果<code>最大进程数</code>+<code>backlog</code>设置过大，php的处理性能跟不上，超出了nginx等待时间，则会返回504，而php会报错broken pipeline</li>
+<li>如果<code>最大进程数</code>+<code>backlog</code>设置过小，nginx的请求过多，则会返回502</li>
+</ul>
 </blockquote>
 
 <p>linux系统内核配置(/etc/sysctl.conf)</p>
@@ -236,9 +239,12 @@ LISTEN     <span class="m">0</span>      <span class="m">8192</span>            
 
 <h3>2. 系统环境优化</h3>
 
-<p>除了backlog是为了应对突发能力的额外队列之外
-- 因为每个tcp连接都是一个文件，所以需要优化系统的最大文件打开数
-- 还因为系统对进程数量有限制，还需要优化系统的进程数量上限。</p>
+<p>除了backlog是为了应对突发能力的额外队列之外</p>
+
+<ul>
+<li>因为每个tcp连接都是一个文件，所以需要优化系统的最大文件打开数</li>
+<li>还因为系统对进程数量有限制，还需要优化系统的进程数量上限。</li>
+</ul>
 
 <p>此处的配置，可以参考<a href="/linux/advance/linux_optimize_ulimit.html">linux limit 配置</a></p>
 

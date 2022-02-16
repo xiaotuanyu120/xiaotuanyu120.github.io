@@ -190,16 +190,22 @@ expect <span class="o">{</span>
 <span class="o">}</span>
 expect eof
 </pre>
-<p>需要注意的参数
-- <code>-av</code> 同步拷贝
-- <code>-e</code> 指定传输shell
-- <code>--max-size</code> 设定传输数据上限
-- <code>--exclude-from</code> 指定要忽略的文件列表文件</p>
+<p>需要注意的参数</p>
 
-<p>特别需要注意的地方：
-1. 第一次做这个脚本没问题，第二次换了个环境，然后发现&ndash;exclude-from=&ldquo;/root/rule.txt&rdquo;报错，需要更换成&ndash;exclude-from=/root/rule.txt
+<ul>
+<li><code>-av</code> 同步拷贝</li>
+<li><code>-e</code> 指定传输shell</li>
+<li><code>--max-size</code> 设定传输数据上限</li>
+<li><code>--exclude-from</code> 指定要忽略的文件列表文件</li>
+</ul>
+
+<p>特别需要注意的地方：</p>
+
+<ol>
+<li>第一次做这个脚本没问题，第二次换了个环境，然后发现&ndash;exclude-from=&ldquo;/root/rule.txt&rdquo;报错，需要更换成&ndash;exclude-from=/root/rule.txt
 执行过程:
-/usr/bin/expect /root/ftpsync.sh root 192.168.0.208</p>
+/usr/bin/expect /root/ftpsync.sh root 192.168.0.208</li>
+</ol>
 
 <hr />
 

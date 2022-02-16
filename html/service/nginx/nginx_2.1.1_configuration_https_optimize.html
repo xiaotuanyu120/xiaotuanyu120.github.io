@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -213,22 +214,22 @@
 <p>1M 的会话缓存大概包含 4000 個会话，默认的缓存超时时间为 5 分钟，可以通过使用 <a href="https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout">ssl_session_timeout</a> 命令设置缓存超时时间。</p>
 
 <p>示例配置</p>
-<pre class="chroma">worker_processes auto<span class="p">;</span>
-http <span class="o">{</span>
-    <span class="c1">#配置共享会话缓存大小</span>
-    ssl_session_cache   shared:SSL:10m<span class="p">;</span>
-    <span class="c1">#配置会话超时时间</span>
-    ssl_session_timeout 10m<span class="p">;</span>
-    server <span class="o">{</span>
-        listen              <span class="m">443</span> ssl<span class="p">;</span>
-        server_name         www.example.com<span class="p">;</span>
-        <span class="c1">#设置长连接</span>
-        keepalive_timeout   70<span class="p">;</span>
-        ssl_certificate     www.example.com.crt<span class="p">;</span>
-        ssl_certificate_key www.example.com.key<span class="p">;</span>
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
-        ssl_ciphers         HIGH:!aNULL:!MD5<span class="p">;</span>
-        <span class="c1">#...</span>
+<pre class="chroma">worker_processes auto;
+http {
+    #配置共享会话缓存大小
+    ssl_session_cache   shared:SSL:10m;
+    #配置会话超时时间
+    ssl_session_timeout 10m;
+    server {
+        listen              443 ssl;
+        server_name         www.example.com;
+        #设置长连接
+        keepalive_timeout   70;
+        ssl_certificate     www.example.com.crt;
+        ssl_certificate_key www.example.com.key;
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
+        #...
 </pre>
     </div>
 

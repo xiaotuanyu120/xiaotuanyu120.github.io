@@ -223,10 +223,13 @@ vim /etc/selinux/config
 
 <h3>3. 查看及修改文件selinux上下文</h3>
 
-<p>命令：
-- chcon，变更文件的selinux context（用于临时变更，可被还原）
-- restorecon，还原文件的selinux context默认值（比如/var/www/html下的文件默认就是httpd_sys_content_t）
-- semanage，变更selinux policy</p>
+<p>命令：</p>
+
+<ul>
+<li>chcon，变更文件的selinux context（用于临时变更，可被还原）</li>
+<li>restorecon，还原文件的selinux context默认值（比如/var/www/html下的文件默认就是httpd_sys_content_t）</li>
+<li>semanage，变更selinux policy</li>
+</ul>
 <pre class="chroma"><span class="c1"># 查看selinux context的user</span>
 semanage user -l
 
@@ -250,10 +253,13 @@ restorecon -vFR /common/
 <span class="c1"># 修改端口上下文(给http的tcp协议增加8908端口)</span>
 semanage port -a -t http_port_t -p tcp <span class="m">8908</span>
 </pre>
-<p>selinux的context保存在
-- selinux将所有目录的context储存在<code>/etc/selinux/targeted/contexts</code>
-- 大多数的file和目录的context信息储存在<code>/etc/selinux/targeted/contexts/fils/files_contexts</code>
-- 可以将自定义的context添加在<code>/etc/selinux/targeted/contexts/files/files_contexts.local</code></p>
+<p>selinux的context保存在</p>
+
+<ul>
+<li>selinux将所有目录的context储存在<code>/etc/selinux/targeted/contexts</code></li>
+<li>大多数的file和目录的context信息储存在<code>/etc/selinux/targeted/contexts/fils/files_contexts</code></li>
+<li>可以将自定义的context添加在<code>/etc/selinux/targeted/contexts/files/files_contexts.local</code></li>
+</ul>
 
     </div>
 

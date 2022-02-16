@@ -408,10 +408,13 @@ repl_backlog_histlen:173576
 7937:X <span class="m">09</span> Aug 03:34:30.996 <span class="c1"># +sdown slave 192.168.33.51:6379 192.168.33.51 6379 @ mymaster 192.168.33.52 6379</span>
 </pre>
 <blockquote>
-<p>sentinel三个节点日志差不多，大概就是以下步骤:
-- 测试到redis01挂掉，发出sdown事件
-- 接收到其它节点的redis01挂掉信息，会将sdown升级为odown事件
-- 投票新的master，然后执行failover操作(sentinel会重写redis的配置文件)</p>
+<p>sentinel三个节点日志差不多，大概就是以下步骤:</p>
+
+<ul>
+<li>测试到redis01挂掉，发出sdown事件</li>
+<li>接收到其它节点的redis01挂掉信息，会将sdown升级为odown事件</li>
+<li>投票新的master，然后执行failover操作(sentinel会重写redis的配置文件)</li>
+</ul>
 </blockquote>
 
 <p><strong>此时重新查看redis集群信息，redis02选为新的master，redis03为slave</strong></p>

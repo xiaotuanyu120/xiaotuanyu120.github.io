@@ -179,10 +179,11 @@ backupdir=&ldquo;/home/bakfile&rdquo;</p>
 
 <p>filenum=<code>/bin/ls $backupdir/site*|wc -l</code>
 if [ $filenum &gt; 5 ];
-then
-    /bin/mkdir /tmp/oldbak 2&gt; /dev/null
-    /bin/ls -rt $backupdir/*.tar.gz|head -n <code>expr $filenum - 5</code>|xargs -i /bin/mv {} /tmp/oldbak;
-fi
+then</p>
+<pre class="chroma">/bin/mkdir /tmp/oldbak 2&gt; /dev/null
+/bin/ls -rt $backupdir/*.tar.gz|head -n `expr $filenum - 5`|xargs -i /bin/mv {} /tmp/oldbak;
+</pre>
+<p>fi
 &ldquo;&rdquo;</p>
 
     </div>

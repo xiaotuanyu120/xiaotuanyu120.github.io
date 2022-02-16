@@ -151,20 +151,26 @@
 
 <h3>1. 安装X-pack</h3>
 
-<p>安装X-pack之前，必须要先安装好elastic和kibana，如果要在logstash里面也安装X-pack，同时也要提前先安装好logstash。
-&gt; 需要注意的是，从elastic stack6.3版本开始，X-pack会包含在elk中，无需手动安装。</p>
+<p>安装X-pack之前，必须要先安装好elastic和kibana，如果要在logstash里面也安装X-pack，同时也要提前先安装好logstash。</p>
 
 <blockquote>
+<p>需要注意的是，从elastic stack6.3版本开始，X-pack会包含在elk中，无需手动安装。</p>
+
 <p>安装X-pack参考这篇<a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html">官方文档</a></p>
 
-<p><strong>重点注意</strong>
-- 先关闭logstash,kibana,elasticsearch
-- 按照下面步骤安装和配置x-pack
-- 启动elasticsearch，然后再启动kibana,logstash</p>
-<pre class="chroma">systemctl stop elasticsearch
+<p><strong>重点注意</strong></p>
+
+<ul>
+<li>先关闭logstash,kibana,elasticsearch</li>
+<li>按照下面步骤安装和配置x-pack</li>
+<li>启动elasticsearch，然后再启动kibana,logstash
+<code>bash
+systemctl stop elasticsearch
 systemctl stop kibana
 systemctl stop logstash
-</pre></blockquote>
+</code></li>
+</ul>
+</blockquote>
 
 <h4>1) 在elasticsearch中安装X-pack</h4>
 
@@ -215,10 +221,11 @@ Elasticsearch keystore is required by plugin <span class="o">[</span>x-pack-secu
 <p>如果使用了logstash和beats，X-Pack需要创建更多的indices，具体名称需要参考本地环境配置，如果不确定其名称，可以修改<code>action.auto_create_index</code>的值为<code>*</code>，这样elasticsearch就允许自动创建任意名称的index了。</p>
 </blockquote>
 
-<p><strong>step 2 配置TLS/SSL</strong>
-&gt; security部分是X-Pack的收费部分，免费试用30天，超过天数之后收费</p>
+<p><strong>step 2 配置TLS/SSL</strong></p>
 
 <blockquote>
+<p>security部分是X-Pack的收费部分，免费试用30天，超过天数之后收费</p>
+
 <p>ssl针对的是多节点集群，如果只是通过本机lo网卡的单点服务就不需要这个了</p>
 </blockquote>
 
@@ -271,14 +278,20 @@ chown -R elasticsearch.elasticsearch /usr/local/elasticsearch/
 </span><span class="w"></span><span class="k">xpack.security.transport.ssl.certificate_authorities</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;/usr/local/elasticsearch/config/certs/ca.crt&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></pre>
 <blockquote>
-<p>配置说明：
-- xpack.security.transport.ssl.verification_mode
-    - full, (default), 验证是否由指定的CA签名，另外验证hostname(或IP)是否匹配证书里面指定的hostname(或IP)。
-    - certificate, 仅验证是否由指定的CA签名，不验证其他。
-    - none, 什么都不验证，仅用于调试阶段，不要在生产环境上使用。
-- xpack.security.transport.ssl.key，节点key的绝对路径，位置必须是elasticsearch配置目录的子级目录。
-- xpack.security.transport.ssl.certificate，节点证书的绝对路径，位置必须是elasticsearch配置目录的子级目录。
-- xpack.security.transport.ssl.certificate_authorities，受信任的CA文件的数组，位置必须是elasticsearch配置目录的子级目录。</p>
+<p>配置说明：</p>
+
+<ul>
+<li>xpack.security.transport.ssl.verification_mode
+
+<ul>
+<li>full, (default), 验证是否由指定的CA签名，另外验证hostname(或IP)是否匹配证书里面指定的hostname(或IP)。</li>
+<li>certificate, 仅验证是否由指定的CA签名，不验证其他。</li>
+<li>none, 什么都不验证，仅用于调试阶段，不要在生产环境上使用。</li>
+</ul></li>
+<li>xpack.security.transport.ssl.key，节点key的绝对路径，位置必须是elasticsearch配置目录的子级目录。</li>
+<li>xpack.security.transport.ssl.certificate，节点证书的绝对路径，位置必须是elasticsearch配置目录的子级目录。</li>
+<li>xpack.security.transport.ssl.certificate_authorities，受信任的CA文件的数组，位置必须是elasticsearch配置目录的子级目录。</li>
+</ul>
 </blockquote>
 <pre class="chroma"><span class="c1"># step 5. 如果给PEM文件加了密语，需要将此密语增加到elasticsearch的keystore里面</span>
 /usr/local/elasticsearch/bin/elasticsearch-keystore add xpack.security.transport.ssl.secure_key_passphrase
@@ -380,9 +393,12 @@ kibana.yml</p>
 <p>配置文件中需要的证书文件可以从生成证书的节点上拷贝过来</p>
 </blockquote>
 
-<p><strong>step 3. 检验效果</strong>
-- 重启kibana服务
-- 通过浏览器访问kibana(<code>http://localhost:5601/</code>)，此时会需要验证登陆</p>
+<p><strong>step 3. 检验效果</strong></p>
+
+<ul>
+<li>重启kibana服务</li>
+<li>通过浏览器访问kibana(<code>http://localhost:5601/</code>)，此时会需要验证登陆</li>
+</ul>
 
 <h4>3) 在logstash中安装X-Pack</h4>
 

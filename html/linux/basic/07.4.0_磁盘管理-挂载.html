@@ -240,29 +240,41 @@
 
 <p>1.1 mount<br />
 作用：挂载文件系统<br />
-语法：
-- <code>mount [参数] 分区 挂载目录</code>
-- <code>mount [参数] UUID='' 挂载目录</code> (推荐)
-- <code>mount -a</code>
-- <code>mount -l</code></p>
+语法：</p>
 
-<p>挂载原则：
-- 单一分区不要重复挂载到不同目录
-- 单一目录不要重复挂载不同分区
-- 挂载目录理论上需要是空目录</p>
+<ul>
+<li><code>mount [参数] 分区 挂载目录</code></li>
+<li><code>mount [参数] UUID='' 挂载目录</code> (推荐)</li>
+<li><code>mount -a</code></li>
+<li><code>mount -l</code></li>
+</ul>
 
-<p>参数：
-- -t 指定分区格式，如果分区格式不匹配则报错
-- -a 按照/etc/fstab里面的配置，将没有挂载上来的文件系统全部挂载
-- -o（选项可以放在/etc/fstab里的挂载选项里）
- - async/sync 非同步写入还是同步写入<br />
-(async原理：当资料从硬盘载入到内存中后，假设该资料未改变，状态为clean，若资料在内存中改变，则内存中标记该资料为dirty，async挂载时系统会不定时的将dirty的资料写入到硬盘中，保证资料在内存与硬盘中同步)
- - auto\noauto 是否可被<code>&quot;mount -a&quot;</code>自动挂载
- - dev\nodev 在此分区上是否允许建立设备档案
- - remount 重新挂载
- - ro &ldquo;read-only&rdquo;以只读模式挂载
- - usrquota\grquota 用户&rdquo;\&ldquo;分组的磁盘配额，随着目前大硬件的普及，越来越少用到
- - default（rw suid exec auto nouser async dev）</p>
+<p>挂载原则：</p>
+
+<ul>
+<li>单一分区不要重复挂载到不同目录</li>
+<li>单一目录不要重复挂载不同分区</li>
+<li>挂载目录理论上需要是空目录</li>
+</ul>
+
+<p>参数：</p>
+
+<ul>
+<li>-t 指定分区格式，如果分区格式不匹配则报错</li>
+<li>-a 按照/etc/fstab里面的配置，将没有挂载上来的文件系统全部挂载</li>
+<li>-o（选项可以放在/etc/fstab里的挂载选项里）
+
+<ul>
+<li>async/sync 非同步写入还是同步写入<br />
+(async原理：当资料从硬盘载入到内存中后，假设该资料未改变，状态为clean，若资料在内存中改变，则内存中标记该资料为dirty，async挂载时系统会不定时的将dirty的资料写入到硬盘中，保证资料在内存与硬盘中同步)</li>
+<li>auto\noauto 是否可被<code>&quot;mount -a&quot;</code>自动挂载</li>
+<li>dev\nodev 在此分区上是否允许建立设备档案</li>
+<li>remount 重新挂载</li>
+<li>ro &ldquo;read-only&rdquo;以只读模式挂载</li>
+<li>usrquota\grquota 用户&rdquo;\&ldquo;分组的磁盘配额，随着目前大硬件的普及，越来越少用到</li>
+<li>default（rw suid exec auto nouser async dev）</li>
+</ul></li>
+</ul>
 
 <p>用法举例：</p>
 <pre class="chroma"><span class="c1"># 挂载xfs格式的sdb3，默认是读写模式</span>
@@ -365,9 +377,12 @@ mount -l <span class="p">|</span>grep /etc
 </pre>
 <p>1.2 umount
 作用：卸载文件系统
-语法：
-- umount 文件系统名称
-- umount 挂载点</p>
+语法：</p>
+
+<ul>
+<li>umount 文件系统名称</li>
+<li>umount 挂载点</li>
+</ul>
 
 <p>参数:
 -l lazy模式，立即卸载设备，在文件系统不繁忙的时候清除所有的索引

@@ -201,12 +201,18 @@
       </div>
 <h3>0. 前言</h3>
 
-<p>给开发搭建测试环境，软件版本如下：
-- jdk: 7u99
-- tomcat: 7.0.90
-    - shutdown port: 7081
-    - connector port: 7080
-- os: centos 7.4</p>
+<p>给开发搭建测试环境，软件版本如下：</p>
+
+<ul>
+<li>jdk: 7u99</li>
+<li>tomcat: 7.0.90
+
+<ul>
+<li>shutdown port: 7081</li>
+<li>connector port: 7080</li>
+</ul></li>
+<li>os: centos 7.4</li>
+</ul>
 
 <p>发现一个特别奇怪的问题，tomcat启动后，使用shutdown.sh或者catalina.sh stop无法关闭tomcat</p>
 
@@ -270,12 +276,15 @@ COMMIT
 </pre>
 <p>原来问题出现在防火墙规则上，本来上面五条规则是匹配在一起使用的，如果要禁用要全部禁用，如果要启用要一起启用，结果我看到后面两条被禁用，觉得不安全就给启用了，导致了这个问题。</p>
 
-<p>详细分析一下那五条iptables规则
-- <code>-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>，INPUT的连接状态的tcp全部通过
-- <code>-A INPUT -p icmp -j ACCEPT</code>，ping包全部通过
-- <code>-A INPUT -i lo -j ACCEPT</code>，lo网卡的全部通过
-- <code>-A INPUT -j REJECT --reject-with icmp-host-prohibited</code>， INPUT全部拒绝，同时拒绝ping
-- <code>-A FORWARD -j REJECT --reject-with icmp-host-prohibited</code>，FORWARD全部拒绝，同事拒绝转发ping</p>
+<p>详细分析一下那五条iptables规则</p>
+
+<ul>
+<li><code>-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>，INPUT的连接状态的tcp全部通过</li>
+<li><code>-A INPUT -p icmp -j ACCEPT</code>，ping包全部通过</li>
+<li><code>-A INPUT -i lo -j ACCEPT</code>，lo网卡的全部通过</li>
+<li><code>-A INPUT -j REJECT --reject-with icmp-host-prohibited</code>， INPUT全部拒绝，同时拒绝ping</li>
+<li><code>-A FORWARD -j REJECT --reject-with icmp-host-prohibited</code>，FORWARD全部拒绝，同事拒绝转发ping</li>
+</ul>
 
 <p>详细原因就是因为lo那条，tomcat是通过localhost去连接7080端口，结果我们没让它通行，所以才会报connection refused。</p>
 

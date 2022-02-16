@@ -16,7 +16,8 @@ SSL 的运行计算需要消耗额外的 CPU 资源，一般多核处理器系�
 1M 的会话缓存大概包含 4000 個会话，默认的缓存超时时间为 5 分钟，可以通过使用 [ssl_session_timeout](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) 命令设置缓存超时时间。
 
 示例配置
-``` bash
+
+```
 worker_processes auto;
 http {
     #配置共享会话缓存大小

@@ -180,19 +180,25 @@
 
 <p>jumpserver是一个开源堡垒机。</p>
 
-<p>组件包含：
-- core &gt;&gt; 核心组件
-- koko &gt;&gt; 字符协议的connector
-- <del>guacamole</del> &gt;&gt; 图形协议的connector（主要是win的vnc、rdp、ssh，此教程中取消安装这个组件）
-- lina &gt;&gt; 前端界面
-- <del>luna</del> &gt;&gt; web terminal（此教程中取消安装这个组件）
-- task &gt;&gt; celery，执行批量任务的（代码和core是一套）</p>
+<p>组件包含：</p>
+
+<ul>
+<li>core &gt;&gt; 核心组件</li>
+<li>koko &gt;&gt; 字符协议的connector</li>
+<li><del>guacamole</del> &gt;&gt; 图形协议的connector（主要是win的vnc、rdp、ssh，此教程中取消安装这个组件）</li>
+<li>lina &gt;&gt; 前端界面</li>
+<li><del>luna</del> &gt;&gt; web terminal（此教程中取消安装这个组件）</li>
+<li>task &gt;&gt; celery，执行批量任务的（代码和core是一套）</li>
+</ul>
 
 <h3>1. 安装jumpserver</h3>
 
-<p>需要说明的点：
-- 使用podman rootless运行容器(普通用户container)
-- 在selinux enforcing状态运行</p>
+<p>需要说明的点：</p>
+
+<ul>
+<li>使用podman rootless运行容器(普通用户container)</li>
+<li>在selinux enforcing状态运行</li>
+</ul>
 
 <p>使用root身份，准备启动环境</p>
 <pre class="chroma"><span class="c1"># create podman running user</span>
@@ -828,8 +834,11 @@ cat <span class="s">&lt;&lt; EOF &gt; ${JUMP_SCRIPT_DIR}/nginx_create_run.sh
 </span><span class="s">EOF</span>
 </pre>
 <blockquote>
-<p>如果希望用到luna(web terminal)，增加下面的内容
-- <code>-v ${JUMP_DATA_DIR}/nginx/luna:/opt/luna:Z \\</code></p>
+<p>如果希望用到luna(web terminal)，增加下面的内容</p>
+
+<ul>
+<li><code>-v ${JUMP_DATA_DIR}/nginx/luna:/opt/luna:Z \\</code></li>
+</ul>
 </blockquote>
 
 <p>启动jumpserver</p>

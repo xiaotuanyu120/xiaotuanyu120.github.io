@@ -201,9 +201,12 @@
       </div>
 <h3>0. 背景</h3>
 
-<p>之前讨论了tomcat官方推荐的jsvc模式启动tomcat的方式，但是这种方式有点问题
-1. jsvc和常规的startup.sh启动方式相比，虽然jsvc更准确的获得了进程的完全启动时间，但是反馈确实不如脚本方式快速
-2. jsvc模式，启动一个jvm，有两个进程</p>
+<p>之前讨论了tomcat官方推荐的jsvc模式启动tomcat的方式，但是这种方式有点问题</p>
+
+<ol>
+<li>jsvc和常规的startup.sh启动方式相比，虽然jsvc更准确的获得了进程的完全启动时间，但是反馈确实不如脚本方式快速</li>
+<li>jsvc模式，启动一个jvm，有两个进程</li>
+</ol>
 
 <p>所以这里来讨论如何使用systemd调用脚本，来代替jsvc的模式</p>
 
@@ -283,8 +286,11 @@ sudo systemctl status tomcat-cluster.target
 sudo systemctl status tomcat03
 </pre>
 <blockquote>
-<p>需要注意的点：
-1. 无法通过kill的方式杀掉tomcat01的进程，因为我们配置了Restart=always</p>
+<p>需要注意的点：</p>
+
+<ol>
+<li>无法通过kill的方式杀掉tomcat01的进程，因为我们配置了Restart=always</li>
+</ol>
 </blockquote>
 
     </div>

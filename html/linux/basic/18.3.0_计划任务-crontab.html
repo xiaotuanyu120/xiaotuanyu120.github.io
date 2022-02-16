@@ -244,16 +244,22 @@
 <code>service crond start</code><br />
 <code>chkconfig crond on</code></p>
 
-<p>配置文件：<code>/etc/crontab</code>
-&gt; 配置文件详情可查看man，里面有很多语法示例<br />
+<p>配置文件：<code>/etc/crontab</code></p>
+
+<blockquote>
+<p>配置文件详情可查看man，里面有很多语法示例<br />
 <code>man 5 crontab</code></p>
+</blockquote>
 
 <p>日志文件：<code>/var/log/cron</code></p>
 
-<p>参数：
-- <code>-u</code> - 指定用户，默认指定执行命令的用户
-- <code>-l</code> - 列出指定用户的计划任务
-- <code>-e</code> - 编辑指定用户的计划任务</p>
+<p>参数：</p>
+
+<ul>
+<li><code>-u</code> - 指定用户，默认指定执行命令的用户</li>
+<li><code>-l</code> - 列出指定用户的计划任务</li>
+<li><code>-e</code> - 编辑指定用户的计划任务</li>
+</ul>
 
 <p>参数用法举例：</p>
 <pre class="chroma"><span class="c1"># 查看就指定用户的计划任务</span>

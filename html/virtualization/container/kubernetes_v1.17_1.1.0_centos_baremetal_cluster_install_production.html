@@ -366,9 +366,12 @@ sysctl --system
 <p>参照 <a href="/virtualization/docker/docker_1.1.0_installation_centos7.html">docker installation on centos 7</a> 这篇文档来安装</p>
 
 <blockquote>
-<p>重点关注：
-- 使用overlay2存储驱动
-- 使用systemd替代cgroupfs作为cgroup管理器</p>
+<p>重点关注：</p>
+
+<ul>
+<li>使用overlay2存储驱动</li>
+<li>使用systemd替代cgroupfs作为cgroup管理器</li>
+</ul>
 </blockquote>
 
 <hr />
@@ -513,9 +516,12 @@ chmod +x <span class="si">${</span><span class="nv">DEPLOY_DIR</span><span class
 
 <p>创建认证文件之前，墙裂推荐阅读<a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#x509-client-certs">apiserver authentication documentation</a>。</p>
 
-<p>里面重点提到了：
-- 证书中的CN(common name)，被用作request的用户名
-- 从k8s 1.4开始，证书中的organization被用作用户组（可多个）</p>
+<p>里面重点提到了：</p>
+
+<ul>
+<li>证书中的CN(common name)，被用作request的用户名</li>
+<li>从k8s 1.4开始，证书中的organization被用作用户组（可多个）</li>
+</ul>
 
 <p>这里是一个证书CSR的示例，可以通过CSR来设定CN和O</p>
 <pre class="chroma"><span class="p">{</span>
@@ -1123,9 +1129,12 @@ kubectl config use-context default --kubeconfig<span class="o">=</span>kube-cont
 <span class="k">done</span>
 </pre>
 <blockquote>
-<p>注意点：
-- 此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a>
-- 另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</p>
+<p>注意点：</p>
+
+<ul>
+<li>此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a></li>
+<li>另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</li>
+</ul>
 </blockquote>
 
 <h3>5. 创建 kube-scheduler kubeconfig 文件</h3>
@@ -1152,9 +1161,12 @@ kubectl config use-context default --kubeconfig<span class="o">=</span>kube-sche
 <span class="k">done</span>
 </pre>
 <blockquote>
-<p>注意点：
-- 此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a>
-- 另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</p>
+<p>注意点：</p>
+
+<ul>
+<li>此处指定了&ndash;server，必须是自己所在节点的kube-apiserver，不然选举会卡住失败，参照<a href="https://github.com/kubernetes/kubernetes/issues/49000#issuecomment-316015834">issue: 49000</a></li>
+<li>另外，systemd unit文件中，&ndash;master是用来覆盖此处配置，可以省略</li>
+</ul>
 </blockquote>
 
 <h3>6. 分发kubeconfig文件和admin上下文环境文件</h3>
@@ -1304,11 +1316,14 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DEPLOY_DIR}/master/systemd-unit-files/ku
 <span class="k">done</span>
 </pre>
 <blockquote>
-<p>如果中途修改过<code>--service-cluster-ip-range</code>(kube-apiserver,kube-controller-manager)，有可能会遇到下面的错误
-- <code>&quot;message&quot;: &quot;Cluster IP *.*.*.* is not within the service CIDR *.*.*.*/**; please recreate service&quot;</code>
+<p>如果中途修改过<code>--service-cluster-ip-range</code>(kube-apiserver,kube-controller-manager)，有可能会遇到下面的错误</p>
+
+<ul>
+<li><code>&quot;message&quot;: &quot;Cluster IP *.*.*.* is not within the service CIDR *.*.*.*/**; please recreate service&quot;</code>
 解决方案：
 <code>kubectl get services --all-namespaces</code>获得系统的最初创建的集群的service后，删除它<code>kubectl delete service kubernets</code>
-然后系统会自动创建它，但是！！！不推荐生产环境已经存在应用service后这样搞！！！</p>
+然后系统会自动创建它，但是！！！不推荐生产环境已经存在应用service后这样搞！！！</li>
+</ul>
 </blockquote>
 
 <h3>2. 创建etcd所需unit文件</h3>

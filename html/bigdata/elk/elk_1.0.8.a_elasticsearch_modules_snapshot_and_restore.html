@@ -151,27 +151,39 @@
 
 <p>快照是递增备份的。这意味着在创建索引的快照时，Elasticsearch将避免复制已存储在存储库中的任何数据，作为同一索引的早期快照的一部分。因此，当我们对集群进行频繁快照备份时是很高效的。</p>
 
-<p>可以通过还原API将快照还原到正在运行的群集中。还原索引的备份时，可以更改已还原索引的名称及其某些设置，从而可以在如何使用快照和还原功能方面提供极大的灵活性。
-&gt; 不可以简单的通过把elasticsearch集群中各节点的数据目录的拷贝来备份。elasticsearch可能在集群运行时动态的修改内容。这意味着拷贝数据目录无法保证数据图像的一致性。尝试从这样的备份中恢复数据可能会失败，报告损坏和/或丢失文件，或者可能似乎已成功安静地丢失了某些数据。唯一可靠的集群备份方式就是使用快照和恢复功能。</p>
+<p>可以通过还原API将快照还原到正在运行的群集中。还原索引的备份时，可以更改已还原索引的名称及其某些设置，从而可以在如何使用快照和还原功能方面提供极大的灵活性。</p>
+
+<blockquote>
+<p>不可以简单的通过把elasticsearch集群中各节点的数据目录的拷贝来备份。elasticsearch可能在集群运行时动态的修改内容。这意味着拷贝数据目录无法保证数据图像的一致性。尝试从这样的备份中恢复数据可能会失败，报告损坏和/或丢失文件，或者可能似乎已成功安静地丢失了某些数据。唯一可靠的集群备份方式就是使用快照和恢复功能。</p>
+</blockquote>
 
 <h3>2. Version compatibility</h3>
 
-<p>快照包含构成索引的磁盘数据结构的副本。这意味着快照只能恢复到可以读取索引的Elasticsearch版本：
-- 5.x 制作的快照可以恢复到 6.x
-- 2.x 制作的快照可以恢复到 5.x
-- 1.x 制作的快照可以恢复到 2.x</p>
+<p>快照包含构成索引的磁盘数据结构的副本。这意味着快照只能恢复到可以读取索引的Elasticsearch版本：</p>
+
+<ul>
+<li>5.x 制作的快照可以恢复到 6.x</li>
+<li>2.x 制作的快照可以恢复到 5.x</li>
+<li>1.x 制作的快照可以恢复到 2.x</li>
+</ul>
 
 <p>相反的，1.x制作的快照不可以恢复到5.x或者6.x，2.x制作的快照不可以恢复到6.x。</p>
 
-<p>每一个快照可以包含多个版本的集群创建的索引，当恢复快照时，必须保证所有的索引都可以被恢复到集群中。如果任何一个索引的版本不匹配当前的集群，你将无法恢复这个快照。
-&gt; 在升级之前备份数据时，请记住，如果升级包含在与升级版本不兼容的版本中创建的索引，则升级后将无法还原快照。</p>
+<p>每一个快照可以包含多个版本的集群创建的索引，当恢复快照时，必须保证所有的索引都可以被恢复到集群中。如果任何一个索引的版本不匹配当前的集群，你将无法恢复这个快照。</p>
+
+<blockquote>
+<p>在升级之前备份数据时，请记住，如果升级包含在与升级版本不兼容的版本中创建的索引，则升级后将无法还原快照。</p>
+</blockquote>
 
 <p>如果您最终需要还原与当前正在运行的群集版本不兼容的索引的快照，您可以在最新的兼容版本上恢复它，并使用<a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/docs-reindex.html#reindex-from-remote">reindex-from-remote</a>在当前版本上重建索引。只有原始索引启用了源，才能从远程重新索引。检索和重新索引数据所花费的时间比简单地恢复快照要长得多。如果您有大量数据，我们建议您使用一部分数据测试远程进程的reindex，以便在继续之前了解时间要求。</p>
 
 <h3>3. Repositories</h3>
 
-<p>在执行快照和还原操作之前必须先注册快照存储库。我们建议为每个主要版本创建一个新的快照存储库。有效的存储库设置取决于存储库类型。如果将多个集群注册到同一个快照存储库，则只有一个集群应具有对存储库的写入权限。连接到该存储库的所有其他集群应将存储库设置为只读模式。
-&gt; 在主版本之间快照的格式可能会改变。所以，如果你有多个不同版本的集群尝试向同一个存储库中写入快照时，其中一个集群版本写入的可能对其他版本的集群是不可见的，存储库也有可能损坏。虽然可以给多个不同主版本集群除了其中一个集群之外设定只读是可行的，但是它不是一个受支持的配置。</p>
+<p>在执行快照和还原操作之前必须先注册快照存储库。我们建议为每个主要版本创建一个新的快照存储库。有效的存储库设置取决于存储库类型。如果将多个集群注册到同一个快照存储库，则只有一个集群应具有对存储库的写入权限。连接到该存储库的所有其他集群应将存储库设置为只读模式。</p>
+
+<blockquote>
+<p>在主版本之间快照的格式可能会改变。所以，如果你有多个不同版本的集群尝试向同一个存储库中写入快照时，其中一个集群版本写入的可能对其他版本的集群是不可见的，存储库也有可能损坏。虽然可以给多个不同主版本集群除了其中一个集群之外设定只读是可行的，但是它不是一个受支持的配置。</p>
+</blockquote>
 
 <p>创建快照存储库</p>
 <pre class="chroma">PUT /_snapshot/my_backup
@@ -285,8 +297,11 @@
 
 <h4>2) Read-only URL Repository</h4>
 
-<p>URL存储库(&ldquo;type&rdquo;: &ldquo;url&rdquo;)可用作访问共享文件系统存储库创建的数据的备用只读方式。url参数中指定的URL应指向共享文件系统存储库的根目录。支持以下设置：
-- url, Location of the snapshots. Mandatory.</p>
+<p>URL存储库(&ldquo;type&rdquo;: &ldquo;url&rdquo;)可用作访问共享文件系统存储库创建的数据的备用只读方式。url参数中指定的URL应指向共享文件系统存储库的根目录。支持以下设置：</p>
+
+<ul>
+<li>url, Location of the snapshots. Mandatory.</li>
+</ul>
 
 <p>URL Repository支持以下协议:&ldquo;http&rdquo;、&rdquo;https&rdquo;、&rdquo;ftp&rdquo;、&rdquo;file&rdquo;和&rdquo;jar&rdquo;。具有&rdquo;http:&ldquo;、
 &ldquo;https:&ldquo;和&rdquo;ftp:&ldquo;URL的URL存储库必须通过在<code>repositories.url.allowed_urls</code>设置中指定允许的URL来列入白名单。此设置支持代替主机，路径，查询和片段的通配符。例如：</p>
@@ -296,11 +311,14 @@
 
 <h4>3) Repository plugins</h4>
 
-<p>以下插件提供了其他的存储库后端：
-- <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-s3.html">repository-s3</a> for S3 repository support
-- <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-hdfs.html">repository-hdfs</a> for HDFS repository support in Hadoop environments
-- <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-azure.html">repository-azure</a> for Azure storage repositories
-- <a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-gcs.html">repository-gcs</a> for Google Cloud Storage repositories</p>
+<p>以下插件提供了其他的存储库后端：</p>
+
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-s3.html">repository-s3</a> for S3 repository support</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-hdfs.html">repository-hdfs</a> for HDFS repository support in Hadoop environments</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-azure.html">repository-azure</a> for Azure storage repositories</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/6.4/repository-gcs.html">repository-gcs</a> for Google Cloud Storage repositories</li>
+</ul>
 
 <h4>4) Repository Verification</h4>
 
@@ -483,8 +501,11 @@ PUT /_snapshot/my_backup/%3Csnapshot-%7Bnow%2Fd%7D%3E
   ]
 }
 </pre>
-<p>输出结果由多个部分组成。<code>stats</code>子对象提供有关快照文件的数量和大小的详细信息。由于快照是增量式的，仅复制尚未存储在存储库中的Lucene段，因此stats对象包含快照引用的所有文件的<code>total</code>部分，以及<code>incremental</code>部分，对于那些实际需要作为增量快照的一部分进行复制的文件的信息。在快照创建中时，返回结果中会有一个<code>progressed</code>部分，包含有关正在复制的文件的信息。
-&gt; 注意：属性<code>number_of_files</code>、<code>processed_files</code>、<code>total_size_in_bytes</code>和<code>processed_size_in_bytes</code>用于旧版5.x和6.x版本的向后兼容性原因。这些字段将在Elasticsearch v7.0.0中删除。</p>
+<p>输出结果由多个部分组成。<code>stats</code>子对象提供有关快照文件的数量和大小的详细信息。由于快照是增量式的，仅复制尚未存储在存储库中的Lucene段，因此stats对象包含快照引用的所有文件的<code>total</code>部分，以及<code>incremental</code>部分，对于那些实际需要作为增量快照的一部分进行复制的文件的信息。在快照创建中时，返回结果中会有一个<code>progressed</code>部分，包含有关正在复制的文件的信息。</p>
+
+<blockquote>
+<p>注意：属性<code>number_of_files</code>、<code>processed_files</code>、<code>total_size_in_bytes</code>和<code>processed_size_in_bytes</code>用于旧版5.x和6.x版本的向后兼容性原因。这些字段将在Elasticsearch v7.0.0中删除。</p>
+</blockquote>
 
 <p>支持多个快照id</p>
 <pre class="chroma">GET /_snapshot/my_backup/snapshot_1,snapshot_2/_status

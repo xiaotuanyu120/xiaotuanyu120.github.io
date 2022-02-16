@@ -146,10 +146,13 @@
 <h3>1. jinfo</h3>
 
 <p>简介：jinfo - Configuration Info
-语法：
-- <code>jinfo [ option ] pid</code>
-- <code>jinfo [ option ] executable core</code>
-- <code>jinfo [ option ] [server-id@]remote-hostname-or-IP</code></p>
+语法：</p>
+
+<ul>
+<li><code>jinfo [ option ] pid</code></li>
+<li><code>jinfo [ option ] executable core</code></li>
+<li><code>jinfo [ option ] [server-id@]remote-hostname-or-IP</code></li>
+</ul>
 
 <p>常用用法:</p>
 <pre class="chroma"><span class="c1"># 查看永久代最大可用内存</span>
@@ -178,28 +181,37 @@ jinfo -flag ThreadStackSize <span class="m">14391</span>
 
 <p>简介：jstat - Java Virtual Machine Statistics Monitoring Tool<br />
 语法：<code>jstat [ generalOption | outputOptions vmid [interval[s|ms] [count]] ]</code>
-参数：
-- generalOption
-  - help
-  - options
-- outputOptions
-  - stat option
-    - class, 用于查看类加载情况的统计
-    - compiler, 用于查看HotSpot中即时编译器编译情况的统计
-    - gc, 用于查看JVM中堆的垃圾收集情况的统计
-    - gccapacity, 用于查看新生代、老生代及持久代的存储容量情况
-    - gccause, 用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它还会显示最后一次及当前正在发生垃圾收集的原因。
-    - gcnew, 用于查看新生代垃圾收集的情况
-    - gcnewcapacity, 用于查看新生代的存储容量情况
-    - gcold, 	用于查看老生代及持久代发生GC的情况
-    - gcoldcapacity, 用于查看老生代的容量
-    - gcpermcapacity, 用于查看持久代的容量
-    - gcutil, 用于查看新生代、老生代及持代垃圾收集的情况
-    - printcompilation, HotSpot编译方法的统计
-  - other option
-    - h n, 用于指定每隔几行就输出列头，如果不指定，默认是只在第一行出现列头。
-    - t n, 用于在输出内容的第一列显示时间戳，这个时间戳代表的是JVM开始启动到现在的时间。
-    - JjavaOption, 用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。</p>
+参数：</p>
+
+<ul>
+<li>generalOption
+
+<ul>
+<li>help</li>
+<li>options</li>
+</ul></li>
+<li>outputOptions
+
+<ul>
+<li>stat option</li>
+<li>class, 用于查看类加载情况的统计</li>
+<li>compiler, 用于查看HotSpot中即时编译器编译情况的统计</li>
+<li>gc, 用于查看JVM中堆的垃圾收集情况的统计</li>
+<li>gccapacity, 用于查看新生代、老生代及持久代的存储容量情况</li>
+<li>gccause, 用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它还会显示最后一次及当前正在发生垃圾收集的原因。</li>
+<li>gcnew, 用于查看新生代垃圾收集的情况</li>
+<li>gcnewcapacity, 用于查看新生代的存储容量情况</li>
+<li>gcold, 	用于查看老生代及持久代发生GC的情况</li>
+<li>gcoldcapacity, 用于查看老生代的容量</li>
+<li>gcpermcapacity, 用于查看持久代的容量</li>
+<li>gcutil, 用于查看新生代、老生代及持代垃圾收集的情况</li>
+<li>printcompilation, HotSpot编译方法的统计</li>
+<li>other option</li>
+<li>h n, 用于指定每隔几行就输出列头，如果不指定，默认是只在第一行出现列头。</li>
+<li>t n, 用于在输出内容的第一列显示时间戳，这个时间戳代表的是JVM开始启动到现在的时间。</li>
+<li>JjavaOption, 用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。</li>
+</ul></li>
+</ul>
 
 <p>各选项输出内容含义：</p>
 
@@ -996,11 +1008,16 @@ jstat -gcutil <span class="m">16009</span> <span class="m">250</span> <span clas
 <h3>3. jps</h3>
 
 <p>简介：jps - Java Virtual Machine Process Status Tool
-语法：<code>jps [ options ] [ hostid ]</code>
-&gt; - options<br />
-Command-line options.
-&gt; - hostid<br />
-The host identifier of the host for which the process report should be generated. The hostid may include optional components that indicate. the communications protocol, port number, and other implementation specific data.</p>
+语法：<code>jps [ options ] [ hostid ]</code></p>
+
+<blockquote>
+<ul>
+<li>options<br />
+Command-line options.</li>
+<li>hostid<br />
+The host identifier of the host for which the process report should be generated. The hostid may include optional components that indicate. the communications protocol, port number, and other implementation specific data.</li>
+</ul>
+</blockquote>
 
 <p>常用用法：</p>
 <pre class="chroma"><span class="c1"># 标准用法</span>

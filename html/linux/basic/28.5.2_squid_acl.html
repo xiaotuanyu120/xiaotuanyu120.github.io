@@ -242,35 +242,41 @@
 
 <p>简介：ACL元素是Squid的访问控制的基础，access control list，用来对各种资源进行访问控制<br />
 语法：<code>acl name type value1 value2 ...</code><br />
-常用type:<br />
-- <code>src</code> 客户源ip
-- <code>dst</code> 原始服务器ip
-- <code>myip</code> squid服务器有多个ip时指定squid服务使用的ip
-- <code>dstdomain</code> 和dst的不同，dst会将域名转义成ip储存，而dstdomain会保存域名
-- <code>srcdomain</code> 会对每个客户ip进行反向dns查询
-- <code>port</code> 原始服务器端口号，或者端口号范围<code>80-80000</code>
-- <code>myport</code> squid服务的端口号，可指定多个
-- <code>method</code> http方法，可指定多个，<code>GET POST PUT</code>
-- <code>proto</code> URI访问协议，<code>http https ftp cache_object</code>等
-- <code>time</code> 根据时间控制访问，<code>00:00-04:00</code>
-- <code>ident</code> ident ACL匹配被ident协议返回的用户名
-- <code>proxy_auth</code> http代理验证</p>
+常用type:</p>
 
-<p>其他type：
-- <code>src_as</code>
-- <code>dst_as</code>
-- <code>snmp_community</code>
-- <code>maxconn</code>
-- <code>arp</code>
-- <code>srcdom_regex</code>
-- <code>dstdom_regex</code>
-- <code>url_regex</code>
-- <code>urlpath_regex</code>
-- <code>browser</code>
-- <code>req_mime_type</code>
-- <code>rep_mime_type</code>
-- <code>ident_regex</code>
-- <code>proxy_auth_regex</code></p>
+<ul>
+<li><code>src</code> 客户源ip</li>
+<li><code>dst</code> 原始服务器ip</li>
+<li><code>myip</code> squid服务器有多个ip时指定squid服务使用的ip</li>
+<li><code>dstdomain</code> 和dst的不同，dst会将域名转义成ip储存，而dstdomain会保存域名</li>
+<li><code>srcdomain</code> 会对每个客户ip进行反向dns查询</li>
+<li><code>port</code> 原始服务器端口号，或者端口号范围<code>80-80000</code></li>
+<li><code>myport</code> squid服务的端口号，可指定多个</li>
+<li><code>method</code> http方法，可指定多个，<code>GET POST PUT</code></li>
+<li><code>proto</code> URI访问协议，<code>http https ftp cache_object</code>等</li>
+<li><code>time</code> 根据时间控制访问，<code>00:00-04:00</code></li>
+<li><code>ident</code> ident ACL匹配被ident协议返回的用户名</li>
+<li><code>proxy_auth</code> http代理验证</li>
+</ul>
+
+<p>其他type：</p>
+
+<ul>
+<li><code>src_as</code></li>
+<li><code>dst_as</code></li>
+<li><code>snmp_community</code></li>
+<li><code>maxconn</code></li>
+<li><code>arp</code></li>
+<li><code>srcdom_regex</code></li>
+<li><code>dstdom_regex</code></li>
+<li><code>url_regex</code></li>
+<li><code>urlpath_regex</code></li>
+<li><code>browser</code></li>
+<li><code>req_mime_type</code></li>
+<li><code>rep_mime_type</code></li>
+<li><code>ident_regex</code></li>
+<li><code>proxy_auth_regex</code></li>
+</ul>
 
 <p>详细说明见<a href="http://home.arcor.de/pangj/squid/chap06.html">Squid: The Definitive Guide - acl guide</a></p>
 

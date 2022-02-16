@@ -149,6 +149,7 @@
                     <li><a href="/service/nginx/openresty_1.1.0_installation.html">openresty: 1.1.0 在location里面匹配parameters</a></li>
                     <li><a href="/service/nginx/practice_1.1.0_nginx_movie.html">实践: 1.1.0 使用nginx提供mp4串流服务</a></li>
                     <li><a href="/service/nginx/practice_1.1.1_nginx_zhibo_flv.html">实践: 1.1.1 使用nginx提供直播服务</a></li>
+                    <li><a href="/service/nginx/practice_1.1.2_nginx_frameset.html">实践 1.1.2 使用frameset实现URL原地跳转</a></li>
                   </ul>
                 </li>
                 <li>
@@ -208,8 +209,11 @@
     deny  all;
 }
 </pre>
-<p>但是这样是根据remote_address来限制的，所以说，如果用户和nginx服务器之间有代理的话，就不行了
-&gt;<a href="http://nginx.org/en/docs/http/ngx_http_access_module.html">nginx docs: access</a></p>
+<p>但是这样是根据remote_address来限制的，所以说，如果用户和nginx服务器之间有代理的话，就不行了</p>
+
+<blockquote>
+<p><a href="http://nginx.org/en/docs/http/ngx_http_access_module.html">nginx docs: access</a></p>
+</blockquote>
 
 <h3>2. 中间有代理的access限制方法</h3>
 <pre class="chroma">set $allow 0;

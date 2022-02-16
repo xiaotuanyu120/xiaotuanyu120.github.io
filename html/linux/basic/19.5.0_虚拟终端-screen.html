@@ -240,15 +240,21 @@
 
 <p>简介：虚拟一个物理终端<br />
 安装：<code>yum install -y screen</code><br />
-特点：<br />
-- 不会因为网络中断和退出当前登录的终端而退出
-- 每次登录都可以进入那个screen
-- 虚拟的并不是一个ssh连接的终端</p>
+特点：</p>
 
-<p>语法：
-- <code>screen [ -options ] [ cmd [ args ] ]</code>
-- <code>screen -r [[pid.]tty[.host]]</code>
-- <code>screen -r sessionowner/[[pid.]tty[.host]]</code></p>
+<ul>
+<li>不会因为网络中断和退出当前登录的终端而退出</li>
+<li>每次登录都可以进入那个screen</li>
+<li>虚拟的并不是一个ssh连接的终端</li>
+</ul>
+
+<p>语法：</p>
+
+<ul>
+<li><code>screen [ -options ] [ cmd [ args ] ]</code></li>
+<li><code>screen -r [[pid.]tty[.host]]</code></li>
+<li><code>screen -r sessionowner/[[pid.]tty[.host]]</code></li>
+</ul>
 
 <p>常用语法:</p>
 <pre class="chroma"><span class="c1">## 直接进入一个虚拟终端，相当于创建了一个新的session</span>

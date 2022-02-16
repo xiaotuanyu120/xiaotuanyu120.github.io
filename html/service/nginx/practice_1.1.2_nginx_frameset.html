@@ -190,39 +190,58 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>nginx: 2.1.5 configuration proxy_pass with URI</h2>
+      <h2>实践 1.1.2 使用frameset实现URL原地跳转</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>08 Nov 2018</p>
+        <p>16 Jun 2016</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>1. proxy_pass with URI</h3>
+<h2>0. 需求</h2>
 
-<p>A request URI is passed to the server as follows:</p>
+<p>用户访问网站的完整功能时，即使页面发生跳转，浏览器地址栏中的URL不要发生变化。</p>
 
-<p>If the proxy_pass directive is specified with a URI, then when a request is passed to the server, the part of a normalized request URI matching the location is replaced by a URI specified in the directive:</p>
-<pre class="chroma">location /name/ {
-    proxy_pass http://127.0.0.1/remote/;
+<h2>1. 实现思路</h2>
+
+<p>很明显需要用HTML的frame这个tag来做，frame中的内容是加载的其他资源，它发生跳转的时候，并不会影响frame所在的静态资源界面的URL。</p>
+
+<p>效果：
+访问url完全不会随着你访问资源的变化而变化，只是作为一个frame访问</p>
+
+<h2>2. 实现</h2>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">Content-Type</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;text/html;charset=GB2312&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>outside.example.com<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+ 
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">LANGUAGE</span><span class="o">=</span><span class="s">&#34;JavaScript&#34;</span><span class="p"></span><span class="p">&gt;</span> 
+<span class="nb">window</span><span class="p">.</span><span class="nx">status</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+ 
+<span class="p">&lt;</span><span class="nt">frameset</span> <span class="na">rows</span><span class="o">=</span><span class="s">&#34;0,*&#34;</span> <span class="na">framespacing</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">border</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&#34;0&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">frame</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;header&#34;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&#34;no&#34;</span> <span class="na">noresize</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;main&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">frame</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;main&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://inside.example.com&#34;</span> <span class="na">scrolling</span><span class="o">=</span><span class="s">&#34;auto&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">noframes</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">noframes</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">frameset</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre><pre class="chroma">server {
+    listen 80;
+    server_name outside.example.com;
+    index index.html;
+    location / {
+        root /data/index;
+    }
+    access_log  logs/access.log access;
 }
 </pre>
-<p>If proxy_pass is specified without a URI, the request URI is passed to the server in the same form as sent by a client when the original request is processed, or the full normalized request URI is passed when processing the changed URI:</p>
-<pre class="chroma">location /some/path/ {
-    proxy_pass http://127.0.0.1;
-}
-</pre>
-<p>Before version 1.1.12, if proxy_pass is specified without a URI, the original request URI might be passed instead of the changed URI in some cases.</p>
-
-<blockquote>
-<ul>
-<li>proxy_pass包含URI可能遇到404: <a href="http://stackoverflow.com/questions/16157893/nginx-proxy-pass-404-error-dont-understand-why">proxy_pass return 404 error</a></li>
-<li>更多官方文档参照: <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass">nginx proxy module doc</a></li>
-</ul>
-</blockquote>
-
     </div>
 
   </div>

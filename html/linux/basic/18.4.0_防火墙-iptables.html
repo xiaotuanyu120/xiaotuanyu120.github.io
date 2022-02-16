@@ -257,54 +257,69 @@ linux防火墙主要分为两种，TCP Wrapper(根据程序管控)和netfilter(�
 <code>match = -m matchname [per-match-options]</code><br />
 <code>target = -j targetname [per-target-options]</code></p>
 
-<p>参数：
-- <code>-nvL</code> 查看表规则，n为Numeric数字格式输出，v为Verbose冗长格式输出，L为list当前表规则
-- <code>-t table</code>指定表，默认filter表
-- <code>-F</code> flush清空规则
-- <code>-Z</code> zero清空计数器
-- <code>-I</code> insert插入一条规则
-- <code>-A</code> append增加一条规则
-- <code>-D</code> delete删除指定的规则
-- <code>-p protocol</code>指定协议TCP\UDP\ICMP等
-- <code>-P policy</code>默认策略 accpet或drop<br />
+<p>参数：</p>
+
+<ul>
+<li><code>-nvL</code> 查看表规则，n为Numeric数字格式输出，v为Verbose冗长格式输出，L为list当前表规则</li>
+<li><code>-t table</code>指定表，默认filter表</li>
+<li><code>-F</code> flush清空规则</li>
+<li><code>-Z</code> zero清空计数器</li>
+<li><code>-I</code> insert插入一条规则</li>
+<li><code>-A</code> append增加一条规则</li>
+<li><code>-D</code> delete删除指定的规则</li>
+<li><code>-p protocol</code>指定协议TCP\UDP\ICMP等</li>
+<li><code>-P policy</code>默认策略 accpet或drop<br />
 iptables -P INPUT DROP<br />
 iptables -P OUTPUT DROP<br />
 iptables -P FORWARD DROP<br />
-- <code>-s 源ip</code>
-- <code>--dport 端口号</code>
-- <code>--line-numbers</code> 查看规则行号</p>
+</li>
+<li><code>-s 源ip</code></li>
+<li><code>--dport 端口号</code></li>
+<li><code>--line-numbers</code> 查看规则行号</li>
+</ul>
 
-<p>iptables服务相关操作：
-- 服务<br />
+<p>iptables服务相关操作：</p>
+
+<ul>
+<li>服务<br />
 <code>service iptables restart</code><br />
-<code>service iptables save</code>（保存到/etc/sysconfig/iptables）
-- 备份及恢复<br />
+<code>service iptables save</code>（保存到/etc/sysconfig/iptables）</li>
+<li>备份及恢复<br />
 <code>iptables-save &gt; filename</code><br />
-<code>iptables-restore &lt; filename</code></p>
+<code>iptables-restore &lt; filename</code><br />
+</li>
+</ul>
 
 <p>table与chain：<br />
 4表5链(优先级，raw&gt;mangle&gt;nat&gt;filter)<br />
-raw-将访问的包不做跟踪，主要用来处理大量连接的情况，避免ip_conntrack出现表满报错的情况<br />
-- chains<br />
+raw-将访问的包不做跟踪，主要用来处理大量连接的情况，避免ip_conntrack出现表满报错的情况</p>
+
+<ul>
+<li>chains<br />
 PREROUTING<br />
 OUTPUT<br />
 mangle-This table is used for specialized packet alteration.<br />
-- chains<br />
+</li>
+<li>chains<br />
 INPUT<br />
 FORWARD<br />
 POSTROUTING<br />
 PREROUTING<br />
 OUTPUT<br />
 nat-This table is consulted when a packet  that  creates  a  newconnection  is encountered.<br />
-- chains<br />
+</li>
+<li>chains<br />
 PREROUTING<br />
 OUTPUT<br />
 POSTROUTING<br />
 filter-管理本机封包进出的规则<br />
-- chains<br />
+</li>
+<li>chains<br />
 INPUT<br />
 FORWARD<br />
-OUTPUT</p>
+OUTPUT<br />
+</li>
+</ul>
 
 <p>用法举例：</p>
 <pre class="chroma"><span class="c1">## -A与-I增加规则的区别</span>
