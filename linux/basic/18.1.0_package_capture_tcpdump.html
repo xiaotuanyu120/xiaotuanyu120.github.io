@@ -227,142 +227,103 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>2.5.0: openSSH-密钥登陆</h2>
+      <h2>18.1.0: 网络抓包 - tcpdump</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>14 Sep 2015</p>
+        <p>29 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h4>0、简介：</h4>
+<h3>1. 命令：tcpdump</h3>
 
-<p>目前的linux distribution基本都会预装openssh，我们会使用openssh自带的ssh-keygen命令来生成密钥。
-密钥登陆除了方便不用输密码，还可以用于同时管理多台server。</p>
+<p>作用：转储网络里传输的内容</p>
 
-<h4>1、生成密钥</h4>
-<pre class="chroma">ssh-keygen -b <span class="m">1024</span> -t rsa          <span class="c1"># &#39;-b&#39;指定key的字节数，&#39;-t&#39;指定key的类型(rsa、dsa等)</span>
-Generating public/private rsa key pair.
-Enter file in which to save the key <span class="o">(</span>/root/.ssh/id_rsa<span class="o">)</span>:    <span class="c1"># 配置key路径，默认即可</span>
-<span class="c1"># key路径如果不是默认，需要用&#34;ssh -i /path/to/keyfile user@ip&#34;来指定，否则会报错</span>
-Enter passphrase <span class="o">(</span>empty <span class="k">for</span> no passphrase<span class="o">)</span>:                 <span class="c1"># 配置密钥短语（重要），默认为空</span>
-Enter same passphrase again:                                <span class="c1"># 二次重复密钥短语</span>
-Your identification has been saved in /root/.ssh/id_rsa.    <span class="c1"># 认证文件</span>
-Your public key has been saved in /root/.ssh/id_rsa.pub.    <span class="c1"># key文件</span>
-The key fingerprint is:                                     <span class="c1"># key的指纹</span>
-ed:bf:9b:32:3c:53:c8:b2:76:13:79:70:c6:29:48:38 root@localhost.localdomain
-The key<span class="se">\&#39;</span>s randomart image is:                               <span class="c1"># key的随机图片验证</span>
-+--<span class="o">[</span> RSA 1024<span class="o">]</span>----+
-<span class="p">|</span>       .         <span class="p">|</span>
-<span class="p">|</span>      E .        <span class="p">|</span>
-<span class="p">|</span>       o . . .   <span class="p">|</span>
-<span class="p">|</span>        ..o <span class="o">=</span>    <span class="p">|</span>
-<span class="p">|</span>        S..B     <span class="p">|</span>
-<span class="p">|</span>        ..<span class="o">=</span> o    <span class="p">|</span>
-<span class="p">|</span>         +.+     <span class="p">|</span>
-<span class="p">|</span>        o O. .   <span class="p">|</span>
-<span class="p">|</span>       . . *<span class="o">=</span>o   <span class="p">|</span>
-+-----------------+
-<span class="c1"># ssh-keygen的具体语法可以man ssh-keygen查看</span>
-<span class="c1"># -b 指定的是key字节数，越长越安全，不过1024足够了</span>
-<span class="c1"># -t 指定的是key类型，详细可以看man ssh-keygen</span>
-<span class="c1"># passphrase最好指定，设定为空的话不安全。（passphrase &gt; key &gt; password 会增强安全度）</span>
+<blockquote>
+<p>man page description: <code>tcpdump - dump traffic on a network</code></p>
+</blockquote>
+
+<p>安装：<code>yum install tcpdump -y</code><br />
+语法：
+<code>tcpdump [参数 [参数内容] ] [协议] and [host host address] and [port port number]</code></p>
+
+<blockquote>
+<p>详细语法：
+man page description</p>
+<pre class="chroma">tcpdump [ -AdDefIKlLnNOpqRStuUvxX ] [ -B buffer_size ] [ -c count ]  
+[ -C file_size ] [ -G rotate_seconds ] [ -F file ]  
+[ -i interface ] [ -m module ] [ -M secret ]  
+[ -r file ] [ -s snaplen ] [ -T type ] [ -w file ]  
+[ -W filecount ]  
+[ -E spi@ipaddr algo:secret,...  ]  
+[ -y datalinktype ] [ -z postrotate-command ] [ -Z user ]  
+[ expression ]  
+</pre></blockquote>
+
+<p>参数详解：</p>
+
+<ul>
+<li><code>-nn</code> 把host、protocol、port等保留数字格式</li>
+<li><code>-i</code> 指定监听对象（tcpdump -i eth0）默认会监听系统的除lo之外的网卡列表中的排序最低的网卡，可通过指定<code>any</code>来监听所有网卡设备</li>
+<li><code>-c</code> 指定抓包个数</li>
+<li><code>-w</code> 把包数据保存到文件，后缀为cap，文件为二进制，和重定向（只是包数据流向等信息)不同</li>
+<li><code>-r</code> 看保存下的数据包流向等信息，和-w是对应的</li>
+<li><code>-s 0</code> 抓取数据包时默认抓取长度为68字节，加上此参数时抓完整包，无限制</li>
+</ul>
+
+<blockquote>
+<p>注意：
+如果抓包的时候只能抓到某个ip单向的包，有可能就是系统进和出走的网卡设备不同，此时可以尝试使用<code>any</code>来抓到双向的包。</p>
+</blockquote>
+
+<p>用法举例：</p>
+<pre class="chroma"><span class="c1"># -w参数转储包信息到文件</span>
+tcpdump -nn -c <span class="m">10</span> -w /tmp/tcpdump1.cap
+tcpdump: listening on eth0, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size <span class="m">65535</span> bytes
+<span class="m">10</span> packets captured
+<span class="m">11</span> packets received by filter
+<span class="m">0</span> packets dropped by kernel
+
+
+<span class="c1"># -r参数分析转储文件</span>
+tcpdump -r /tmp/tcpdump1.cap <span class="p">|</span>head -2
+reading from file /tmp/tcpdump1.cap, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>
+16:13:38.113868 IP 192.168.0.3.22 &gt; 192.168.0.28.56918: Flags <span class="o">[</span>P.<span class="o">]</span>, seq 3436852828:3436852972, ack 1010809782, win 543, length <span class="m">144</span>
+16:13:38.163777 IP 192.168.0.28.56918 &gt; 192.168.0.3.22: Flags <span class="o">[</span>.<span class="o">]</span>, ack 144, win 253, length <span class="m">0</span>
+
+
+<span class="c1"># -nn参数保留host、port等为数字格式</span>
+tcpdump  -c <span class="m">10</span> -r /tmp/tcpdump1.cap <span class="p">|</span>head -2
+reading from file /tmp/tcpdump1.cap, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>
+16:13:38.113868 IP web01.gateway.2wire.net.ssh &gt; Essence-PC.gateway.2wire.net.56918: Flags <span class="o">[</span>P.<span class="o">]</span>, seq 3436852828:3436852972, ack 1010809782, win 543, length <span class="m">144</span>
+16:13:38.163777 IP Essence-PC.gateway.2wire.net.56918 &gt; web01.gateway.2wire.net.ssh: Flags <span class="o">[</span>.<span class="o">]</span>, ack 144, win 253, length <span class="m">0</span>
+<span class="c1">#和上面一样的命令，只是去掉了-nn参数，ip和端口都变成了name</span>
+
+<span class="c1"># -Z 指定用户</span>
+tcpdump -Z root
+<span class="c1"># 针对错误：tcpdump: Couldn&#39;t find user &#39;tcpdump&#39;</span>
+
+<span class="c1"># 指定hostname</span>
+tcpdump host www.baidu.com
+
+<span class="c1"># 指定src</span>
+tcpdump src 192.168.1.1
+
+<span class="c1"># 指定dst</span>
+tcpdump dst 192.168.1.1
+
+<span class="c1"># 指定post</span>
+tcpdump port <span class="m">80</span>
 </pre>
-<h4>2、拷贝密钥到目标机器并修改储存目录与权限</h4>
-
-<p><strong>手动拷贝</strong></p>
-<pre class="chroma"><span class="c1"># 拷贝密钥文件</span>
-scp /root/.ssh/id_rsa.pub root@192.168.0.96:/root/.ssh/authorized_keys
-<span class="c1"># 修改密钥文件权限</span>
-ssh root@192.168.0.96 chmod <span class="m">600</span> /root/.ssh/authorized_keys
-<span class="c1"># 修改~/.ssh目录权限</span>
-ssh root@192.168.0.96 chmod <span class="m">700</span> /root/.ssh
-<span class="c1">## 记得关闭目标机器的selinux</span>
-<span class="c1">## 记得把目标机器的ssh端口在防火墙开启</span>
+<p>生产环境实际用例</p>
+<pre class="chroma">tcpdump -i any -nn -c <span class="m">1000</span> host 192.168.1.1 and not port <span class="o">(</span><span class="m">22</span> or 3600<span class="o">)</span> -w /tmp/tcpdump.result.cap
 </pre>
-<p><strong>ssh-copy-id命令拷贝</strong></p>
-<pre class="chroma">ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.0.96
-/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key<span class="o">(</span>s<span class="o">)</span>, to filter out any that are already installed
-/usr/bin/ssh-copy-id: INFO: <span class="m">1</span> key<span class="o">(</span>s<span class="o">)</span> remain to be installed -- <span class="k">if</span> you are prompted now it is to install the new keys
-root@192.168.0.96<span class="se">\&#39;</span>s password:
+<blockquote>
+<p>在抓包量比较大的时候，使用tcpdump查看抓包结果不是特别直观，建议是使用<a href="/linux/basic/18.1.0_package_capture_wireshark.html">wireshark</a>图形工具来查看</p>
+</blockquote>
 
-Number of key<span class="o">(</span>s<span class="o">)</span> added: <span class="m">1</span>
-
-Now try logging into the machine, with:   <span class="s2">&#34;ssh &#39;root@192.168.0.96&#39;&#34;</span>
-and check to make sure that only the key<span class="o">(</span>s<span class="o">)</span> you wanted were added.
-
-<span class="c1"># 登陆目标机器</span>
-ssh root@192.168.0.96
-Enter passphrase <span class="k">for</span> key <span class="s1">&#39;/root/.ssh/id_rsa&#39;</span>:        <span class="c1"># 输入密码短语</span>
-Last login: Mon Sep <span class="m">14</span> 11:01:57 <span class="m">2015</span> from 192.168.0.213
-
-ll .ssh/
-total <span class="m">12</span>
--rw------- <span class="m">1</span> root root <span class="m">240</span> Sep <span class="m">14</span> 11:01 authorized_keys
--rw-r--r-- <span class="m">1</span> root root <span class="m">175</span> Aug <span class="m">10</span> 09:54 known_hosts
-
-<span class="c1"># 新方法ssh-copy-id -i 公玥文件 username@domain/ip</span>
-<span class="c1"># 相当于用一个命令取代了上面的拷贝文件、修改名称、修改权限的操作</span>
-</pre>
-<p><a href="https://wiki.archlinux.org/index.php/SSH_keys_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29">详细扩展文档</a></p>
-
-<h4>3、ssh-agent代理输入passphrase</h4>
-<pre class="chroma"><span class="c1"># 启动ssh-agent</span>
-<span class="nb">eval</span> <span class="k">$(</span>ssh-agent<span class="k">)</span>
-Agent pid <span class="m">8865</span>
-
-<span class="c1"># 增加/root/.ssh/id_rsa的agent</span>
-ssh-add
-Enter passphrase <span class="k">for</span> /root/.ssh/id_rsa:
-Identity added: /root/.ssh/id_rsa <span class="o">(</span>/root/.ssh/id_rsa<span class="o">)</span>
-<span class="c1">#ssh-add 没有参数的时候会默认添加以下文件</span>
-<span class="c1">#  ~/.ssh/id_rsa, ~/.ssh/id_dsa, ~/.ssh/id_ecdsa and ~/.ssh/identity.</span>
-
-<span class="c1"># 查看当前的agent 连接</span>
-ssh-add -l
-<span class="m">1024</span> ed:bf:9b:32:3c:53:c8:b2:76:13:79:70:c6:29:48:38 /root/.ssh/id_rsa <span class="o">(</span>RSA<span class="o">)</span>
-
-<span class="c1"># 关闭agent 连接</span>
-ssh-agent -k
-<span class="nb">unset</span> SSH_AUTH_SOCK<span class="p">;</span>
-<span class="nb">unset</span> SSH_AGENT_PID<span class="p">;</span>
-<span class="nb">echo</span> Agent pid <span class="m">8865</span> killed<span class="p">;</span>
-
-ssh-add -l
-Could not open a connection to your authentication agent.
-</pre>
-<h4>4、ssh 配置文件</h4>
-<pre class="chroma"><span class="c1"># 配置文件类型</span>
-<span class="c1">#  ~/.ssh/config      :用户私有的配置文件，相应配置优先级高于全局文件中的配置</span>
-<span class="c1">#  /etc/ssh/ssh_config:全局配置文件</span>
-
-<span class="c1"># 禁用密码登陆</span>
-vim /etc/ssh/sshd_config
-**************************
-PasswordAuthentication no
-ChallengeResponseAuthentication no
-**************************
-
-<span class="c1"># 根据host分配认证文件</span>
-vim ~/.ssh/config
-**************************
-Host server1
-    HostName 172.16.2.3
-    User root
-    Port <span class="m">22</span>
-    IdentityFile /root/.ssh/172.16.2.3
-**************************
-<span class="c1"># Host:自定义字段，就是一个名称，用ssh匹配到此名称后使用此Host段的配置</span>
-<span class="c1"># HostName: ip地址或域名</span>
-<span class="c1"># User: 登陆用户名</span>
-<span class="c1"># Port: 登陆端口</span>
-<span class="c1"># IdentityFile: 指定私有key路径</span>
-
-<span class="c1"># 直接用server1关键字访问</span>
-ssh server1
-</pre>
     </div>
 
   </div>
