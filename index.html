@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
+            </li>
+            <li>
               <a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
-            </li>
-            <li>
-              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
             </li>
           </ul>
 
@@ -107,6 +107,60 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>16 Feb 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>1. JDK8: 为JVM中的DNS名称解析设定超时时间</h3>
+
+<p>JVM会缓存DNS结果。当JVM成功解析hostname为IP后，它会将解析结果缓存一定时间，这个时间即为TTL（time-to-live）。</p>
+
+<p>这个设定的默认值在不同的JVM中各不相同，许多JVM会设定这个值为少于60s的时间，这个设定是合理的，因为目前在云环境中，很多hostname会动态的变化，假如超时时间设定的过久，那么就会导致hostname解析会延时生效，会引发一系列连锁效应。</p>
+
+<blockquote>
+<p>有些特殊场景，有些管理员会将JVM的这个设定设置为永久缓存，这样的话，JVM运行期间，第一次成功获取的hostname解析的IP会永久储存在缓存中，直到JVM重启才会刷新。这样的话，在hostname会频繁改动的情况下问题就会更加严重。</p>
+</blockquote>
+
+<p><strong>如何设定JVM的DNS TTL</strong></p>
+
+<p>全局设定，可以编辑<code>$JRE_HOME/lib/security/java.security</code>中的<code>networkaddress.cache.ttl</code></p>
+<pre class="chroma">network.address.cache.ttl=60
+</pre>
+<blockquote>
+<p>设定为永久的值为<code>-1</code>，但是不推荐这样设定，因为这代表第一次成功解析到的记录会储存在缓存中永不失效，在hostname变更解析时必须要重启JVM才能使解析的变更生效。</p>
+</blockquote>
+
+<p>程序里面设定</p>
+<pre class="chroma"><span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">Security</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&#34;networkaddress.cache.ttl&#34;</span> <span class="o">,</span> <span class="s">&#34;60&#34;</span><span class="o">)</span><span class="o">;</span>
+</pre>
+<h3>2. JDK8: 禁用SSLv3等不安全的ssl/tls版本</h3>
+
+<p>目前<code>ssl 2.0, ssl 3.0, tls 1.0, tls 1.1</code>并不安全，建议使用<code>tls 1.2</code></p>
+
+<blockquote>
+<p>ssl版本禁用相关，也可以参照<a href="/cryptography/ssl/windows-TLS-version-control.html">windows ssl安全</a>查看理论知识。</p>
+</blockquote>
+
+<p>JVM全局设定，可以编辑<code>$JRE_HOME/lib/security/java.security</code>中的<code>jdk.tls.disabledAlgorithms</code>，这个选项配置的内容即为被禁用的ssl版本和加密算法</p>
+<pre class="chroma">jdk.tls.disabledAlgorithms=SSLv3, TLSv1, TLSv1.1, RC4, DES, MD5withRSA, \
+    DH keySize &lt; 1024, EC keySize &lt; 224, 3DES_EDE_CBC, anon, NULL, \
+    include jdk.disabled.namedCurves
+</pre>
+<blockquote>
+<p><code>DH keySize &lt; 1024</code>类似的格式，即为【某种算法】小于【xx】位的被禁用</p>
+</blockquote>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -203,7 +257,7 @@
 <ul>
 <li>需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS</li>
 <li>需要了解<code>nslookup</code>、<code>dig</code>、<code>hosts</code>无法解析<code>/etc/hosts</code>中的本地DNS记录，可以用<code>ping</code>或者<code>getent hosts</code></li>
-<li>需要了解<code>dnsmasq</code>的基本配置</li>
+<li>需要了解<a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html"><code>dnsmasq</code>的基本配置</a></li>
 </ul>
 
         </div>
@@ -329,7 +383,8 @@ ping google.com -c <span class="m">2</span>
 <h3>3. 其他会影响DNS的因素</h3>
 
 <ul>
-<li><a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq的简要介绍</a></li>
+<li>JVM中的dns设定，参见<a href="/java/jvm/jdk_3.1.0_config_java.security.html">java.security 中的dns超时配置</a></li>
+<li>dnsmasq中的一些dns方面的配置，可以参见<a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq的简要介绍</a></li>
 </ul>
 
         </div>
@@ -1625,105 +1680,6 @@ fake-host
 你的接入层nginx通常不会只监听一个域名，而是多个域名，此时用ip满足不了业务要求</p></li>
 </ul>
 </blockquote>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/kernel_1.2.0_system_load_or_cpu_load.html">linux内核: 1.2.0 system load or cpu load</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>18 Oct 2021</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>1. linux中的<code>cpu load</code>还是<code>system load</code>？</h3>
-
-<p>一般情况下，稍微有经验的linux管理员都会熟练知道，查看系统负载，使用<code>top</code>、<code>uptime</code>或<code>w</code>命令都会输出load average的信息，分别是1、5、15分钟内的“cpu load”（并不是cpu load）信息。相信今天之前的我也会这样说，但是最近在重温系统负载相关知识的时候，竟然发现在一篇文章里面有如下表述:</p>
-<pre class="chroma">On Linux, the system load includes threads both in Runnable (R) and in Uninterruptible sleep (D) states (typically disk I/O, but not always)
-</pre>
-<blockquote>
-<p>出处：<a href="https://tanelpoder.com/posts/high-system-load-low-cpu-utilization-on-linux/">High System Load with Low CPU Utilization on Linux?</a></p>
-</blockquote>
-
-<p>大意是，linux的系统负载计算时，不仅包括处于可运行状态的进程，还包含了处于睡眠状态的“不可中断睡眠进程”。这个就太出乎我意料了，因为我一直以为这个<code>load average</code>是说的<code>cpu load</code>，如果事实真的是包含后者，那么这里就应该是<code>system load</code>（因为处于&rdquo;D&rdquo;状态的进程并不消耗cpu资源）了。</p>
-
-<h3>2. linux中<code>load average</code>确实包含了<code>Uninteruptible sleep process</code>吗？</h3>
-
-<p>先说结果，是的，和unix系统不同，linux系统上的<code>load average</code>是包含<code>Uninteruptible sleep process</code>的。</p>
-
-<p>首先，在load的wiki上可以看到如下表述：</p>
-<pre class="chroma">Most UNIX systems count only processes in the running (on CPU) or runnable (waiting for CPU) states. However, Linux also includes processes in uninterruptible sleep states (usually waiting for disk activity), which can lead to markedly different results if many processes remain blocked in I/O due to a busy or stalled I/O system.
-</pre>
-<p>明确的说明了unix和linux的不同，unix更符合我们的直觉，即为<code>cpu load</code>，而linux却是属实的<code>system load</code>。</p>
-
-<h3>3. 为什么linux要这样设计呢？</h3>
-
-<p>为了探寻linux这样设计的原因，我搜索到了一篇文章，果然并不是我一个人对这个感到好奇。</p>
-
-<blockquote>
-<p>主要参考：<a href="https://brendangregg.com/blog/2017-08-08/linux-load-averages.html">Linux Load Averages: Solving the Mystery</a>
-作者：Brendan Gregg
-下面的叙述主要参考了这篇文章中的内容。</p>
-</blockquote>
-
-<p>首先，linux在最开始的版本中，和unix的行为保持一致，<code>load average</code>表示的是<code>cpu load</code>。后面在某个版本中修改为了包含<code>Uninteruptible sleep process</code>，也就是说linux中的<code>load average</code>表达的不仅仅是cpu的负载，还包含了I/O的负载（硬盘或NFS等）。</p>
-
-<p>那么，为什么呢？</p>
-
-<p>于是文章的作者开始搜索linux内核的提交历史记录，终于在远古时期的邮件列表中，他找到了1993年的一个更动</p>
-<pre class="chroma">From: Matthias Urlichs &lt;urlichs@smurf.sub.org&gt;
-Subject: Load average broken ?
-Date: Fri, 29 Oct 1993 11:37:23 +0200
-
-
-The kernel only counts &#34;runnable&#34; processes when computing the load average.
-I don&#39;t like that; the problem is that processes which are swapping or
-waiting on &#34;fast&#34;, i.e. noninterruptible, I/O, also consume resources.
-
-It seems somewhat nonintuitive that the load average goes down when you
-replace your fast swap disk with a slow swap disk...
-
-Anyway, the following patch seems to make the load average much more
-consistent WRT the subjective speed of the system. And, most important, the
-load is still zero when nobody is doing anything. ;-)
-
---- kernel/sched.c.orig Fri Oct 29 10:31:11 1993
-+++ kernel/sched.c  Fri Oct 29 10:32:51 1993
-@@ -414,7 +414,9 @@
-    unsigned long nr = 0;
-
-    for(p = &amp;LAST_TASK; p &gt; &amp;FIRST_TASK; --p)
--       if (*p &amp;&amp; (*p)-&gt;state == TASK_RUNNING)
-+       if (*p &amp;&amp; ((*p)-&gt;state == TASK_RUNNING) ||
-+                  (*p)-&gt;state == TASK_UNINTERRUPTIBLE) ||
-+                  (*p)-&gt;state == TASK_SWAPPING))
-            nr += FIXED_1;
-    return nr;
- }
---
-Matthias Urlichs        \ XLink-POP N|rnberg   | EMail: urlichs@smurf.sub.org
-Schleiermacherstra_e 12  \  Unix+Linux+Mac     | Phone: ...please use email.
-90491 N|rnberg (Germany)  \   Consulting+Networking+Programming+etc&#39;ing      42
-</pre>
-<p>提交这个更动的作者说，当用慢速的swap磁盘替换快速的swap磁盘时，负载竟然下降了，这样反映系统负载非常不直观。</p>
-
-<p>中间关于这个问题，大方向没变，但是有关细节多次变动。</p>
-
-<p>然后文章作者又探讨了如今（2017年）4.12版本的这个机制，而且Matthias在twitter回复了文章作者的邮件说：</p>
-<pre class="chroma">&#34;The point of &#34;load average&#34; is to arrive at a number relating how busy the system is from a human point of view. TASK_UNINTERRUPTIBLE means (meant?) that the process is waiting for something like a disk read which contributes to system load. A heavily disk-bound system might be extremely sluggish but only have a TASK_RUNNING average of 0.1, which doesn&#39;t help anybody.&#34;
-</pre>
-<p>大意就是Matthias认为1993年的那个更动的思路在现在（2017）依然是对的。</p>
-
-<p>然后作者认为，<code>Uninteruptible sleep process</code>现在已经不仅仅是代表了disk的负载，它包含了更多的东西，我们是否需要找寻另外一种方法，仅仅让<code>load average</code>包含<code>cpu load</code>和<code>disk load</code>。调度器的维护人员Peter Zijstra回应了他，Peter Zijstra表示可以用<code>task_struct-&gt;in_iowait</code>（进程的iowait）来替代<code>Uninteruptible sleep process</code>，这样更接近反映<code>cpu load</code>和<code>disk load</code>的真实情况（只是讨论，并未改动）。</p>
-
-<h3>4. 总结</h3>
-
-<p>linux为了反映<code>cpu load</code>和<code>disk load</code>的真实情况，所以将<code>load average</code>的计算包含了<code>Runable</code>和<code>Uninteruptible sleep</code>两种状态的进程。所以，之后如果看到linux系统的负载高，对于那些高I/O消耗的服务，有了另外一个排查的思路。</p>
 
         </div>
 

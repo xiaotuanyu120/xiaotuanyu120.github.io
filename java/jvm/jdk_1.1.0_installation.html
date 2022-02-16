@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
+            </li>
+            <li>
               <a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a>
-            </li>
-            <li>
-              <a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
             </li>
           </ul>
 
@@ -92,12 +92,12 @@
                 <li>
                   <a href="/java/jvm/index.html">jvm</a>
                   <ul>
-                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">jdk: 1.0.0 jdk简介</a></li>
-                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JVM查看默认参数</a></li>
-                    <li><a href="/java/jvm/jdk_1.1.0_1.6_installation.html">jdk: 1.1.0 jre1.6安装</a></li>
-                    <li><a href="/java/jvm/jdk_1.1.1_1.8_installation.html">jdk: 1.1.1 jdk1.8安装</a></li>
-                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">jdk: 2.1.0 命令行编译java项目</a></li>
-                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">jdk: 2.1.1 javac error IllegalArgumentException</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.0_intro.html">JDK 简要介绍</a></li>
+                    <li><a href="/java/jvm/jdk_1.0.1_check_default_settings_of_jvm.html">JDK 状态 - 查看默认参数</a></li>
+                    <li><a href="/java/jvm/jdk_1.1.0_installation.html">JDK 安装 - jre1.6 和 jre1.8</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.0_javac_compile.html">JDK 编译 - javac</a></li>
+                    <li><a href="/java/jvm/jdk_2.1.1_javac_compile_error_IllegalArgumentException.html">JDK 编译 - 错误 "javac error IllegalArgumentException"</a></li>
+                    <li><a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a></li>
                     <li><a href="/java/jvm/jvm_1.0.0_runtime_data_area.html">JVM: 1.0.0 运行时数据区域概念</a></li>
                     <li><a href="/java/jvm/jvm_2.0.0_optimize_params.html">JVM: 2.0.0 内存区域调优参数</a></li>
                     <li><a href="/java/jvm/jvm_2.0.1_optimize_params_user.language.html">JVM: 2.0.1 调优：-Duser.language引起的oracle driver报错</a></li>
@@ -131,7 +131,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>jdk: 1.1.0 jre1.6安装</h2>
+      <h2>JDK 安装 - jre1.6 和 jre1.8</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -141,16 +141,19 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>1. 安装JAVA环境</h3>
-
-<h4>1) 安装</h4>
+<h3>1.1 安装JAVA环境 - jre1.6</h3>
 <pre class="chroma">chmod u+x jre-6u45-linux-x64.bin
 sh jre-6u45-linux-x64.bin
 mv jre1.6.0_45 /usr/local/
 ln -s /usr/local/jre1.6.0_45/ /usr/local/jdk
 </pre>
-<h4>2) 配置java环境变量</h4>
-<pre class="chroma">vi /etc/profile.d/java-env.sh
+<h3>1.2 安装JAVA环境 - jre1.8</h3>
+<pre class="chroma">tar zxvf server-jdk-8u66-linux-x64.tar.gz
+mv jdk1.8.0_66/ /usr/local/
+ln -s /usr/local/jdk1.8.0_102 /usr/local/jdk
+</pre>
+<h3>2 配置java环境变量</h3>
+<pre class="chroma">vim /etc/profile.d/java-env.sh
 *******************************
 <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
 <span class="nv">JRE_HOME</span><span class="o">=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span>/jre
