@@ -1,5 +1,5 @@
 ---
-title: jdk: 1.0.0 jdk简介
+title: JDK 简要介绍
 date: 2016-01-07 21:35:00
 categories: java/jvm
 tags: [jdk]

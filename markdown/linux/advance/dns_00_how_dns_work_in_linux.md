@@ -126,4 +126,5 @@ hosts  Host names and numbers, used by gethostbyname(3) and
 含义是NSS会被gethostbyname或者相关的functions使用，基本上使用了C语言的这些函数来做名字解析的，都会按照NSS中的`hosts`的配置来解析域名。
 
 ### 3. 其他会影响DNS的因素
-- [dnsmasq的简要介绍](/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html)
+- JVM中的dns设定，参见[java.security 中的dns超时配置](/java/jvm/jdk_3.1.0_config_java.security.html)
+- dnsmasq中的一些dns方面的配置，可以参见[dnsmasq的简要介绍](/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html)

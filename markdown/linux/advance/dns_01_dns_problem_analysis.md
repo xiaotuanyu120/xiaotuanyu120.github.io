@@ -71,4 +71,4 @@ resolver 127.0.0.1 ipv6=off valid=300s;
 三个需要注意的点：
 - 需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS
 - 需要了解`nslookup`、`dig`、`hosts`无法解析`/etc/hosts`中的本地DNS记录，可以用`ping`或者`getent hosts`
-- 需要了解`dnsmasq`的基本配置
+- 需要了解[`dnsmasq`的基本配置](/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html)

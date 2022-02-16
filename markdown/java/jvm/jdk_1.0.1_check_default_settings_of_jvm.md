@@ -1,5 +1,5 @@
 ---
-title: JVM查看默认参数
+title: JDK 状态 - 查看默认参数
 date: 2016-08-08 09:58:00
 categories: java/jvm
 tags: [java,jvm]
