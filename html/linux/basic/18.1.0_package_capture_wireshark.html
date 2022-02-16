@@ -140,7 +140,8 @@
                     <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
                     <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
                     <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
-                    <li><a href="/linux/basic/18.1.0_网络抓包-抓包工具.html">18.1.0: 网络抓包-抓包工具</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_tcpdump.html">18.1.0: 网络抓包 - tcpdump</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_wireshark.html">18.1.0: 网络抓包 - wireshark</a></li>
                     <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
                     <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
                     <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
@@ -226,7 +227,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>18.1.0: 网络抓包-抓包工具</h2>
+      <h2>18.1.0: 网络抓包 - wireshark</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -236,89 +237,11 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>1. 命令：tcpdump</h3>
+<h3>1.0 wireshark</h3>
 
-<p>作用：转储网络里传输的内容</p>
+<p>wireshark是一个很强大的抓包分析图形工具，同时也可以用来分析tcpdump抓包的结果。至于图形工具如何使用，这里不做过多介绍，使用很简单，很直观。</p>
 
-<blockquote>
-<p>man page description: <code>tcpdump - dump traffic on a network</code></p>
-</blockquote>
-
-<p>安装：<code>yum install tcpdump -y</code><br />
-语法：
-<code>tcpdump [参数 [参数内容] ] [协议] and [host host address] and [port port number]</code></p>
-
-<blockquote>
-<p>详细语法：
-man page description</p>
-<pre class="chroma">tcpdump [ -AdDefIKlLnNOpqRStuUvxX ] [ -B buffer_size ] [ -c count ]  
-[ -C file_size ] [ -G rotate_seconds ] [ -F file ]  
-[ -i interface ] [ -m module ] [ -M secret ]  
-[ -r file ] [ -s snaplen ] [ -T type ] [ -w file ]  
-[ -W filecount ]  
-[ -E spi@ipaddr algo:secret,...  ]  
-[ -y datalinktype ] [ -z postrotate-command ] [ -Z user ]  
-[ expression ]  
-</pre></blockquote>
-
-<p>参数详解：</p>
-
-<ul>
-<li><code>-nn</code> 把host、protocol、port等保留数字格式</li>
-<li><code>-i</code> 指定监听对象（tcpdump -i eth0）默认会监听系统的除lo之外的网卡列表中的排序最低的网卡，可通过指定<code>any</code>来监听所有网卡设备</li>
-<li><code>-c</code> 指定抓包个数</li>
-<li><code>-w</code> 把包数据保存到文件，后缀为cap，文件为二进制，和重定向（只是包数据流向等信息)不同</li>
-<li><code>-r</code> 看保存下的数据包流向等信息，和-w是对应的</li>
-<li><code>-s 0</code> 抓取数据包时默认抓取长度为68字节，加上此参数时抓完整包，无限制</li>
-</ul>
-
-<blockquote>
-<p>注意：
-如果抓包的时候只能抓到某个ip单向的包，有可能就是系统进和出走的网卡设备不同，此时可以尝试使用<code>any</code>来抓到双向的包。</p>
-</blockquote>
-
-<p>用法举例：</p>
-<pre class="chroma"><span class="c1"># -w参数转储包信息到文件</span>
-tcpdump -nn -c <span class="m">10</span> -w /tmp/tcpdump1.cap
-tcpdump: listening on eth0, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size <span class="m">65535</span> bytes
-<span class="m">10</span> packets captured
-<span class="m">11</span> packets received by filter
-<span class="m">0</span> packets dropped by kernel
-
-
-<span class="c1"># -r参数分析转储文件</span>
-tcpdump -r /tmp/tcpdump1.cap <span class="p">|</span>head -2
-reading from file /tmp/tcpdump1.cap, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>
-16:13:38.113868 IP 192.168.0.3.22 &gt; 192.168.0.28.56918: Flags <span class="o">[</span>P.<span class="o">]</span>, seq 3436852828:3436852972, ack 1010809782, win 543, length <span class="m">144</span>
-16:13:38.163777 IP 192.168.0.28.56918 &gt; 192.168.0.3.22: Flags <span class="o">[</span>.<span class="o">]</span>, ack 144, win 253, length <span class="m">0</span>
-
-
-<span class="c1"># -nn参数保留host、port等为数字格式</span>
-tcpdump  -c <span class="m">10</span> -r /tmp/tcpdump1.cap <span class="p">|</span>head -2
-reading from file /tmp/tcpdump1.cap, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>
-16:13:38.113868 IP web01.gateway.2wire.net.ssh &gt; Essence-PC.gateway.2wire.net.56918: Flags <span class="o">[</span>P.<span class="o">]</span>, seq 3436852828:3436852972, ack 1010809782, win 543, length <span class="m">144</span>
-16:13:38.163777 IP Essence-PC.gateway.2wire.net.56918 &gt; web01.gateway.2wire.net.ssh: Flags <span class="o">[</span>.<span class="o">]</span>, ack 144, win 253, length <span class="m">0</span>
-<span class="c1">#和上面一样的命令，只是去掉了-nn参数，ip和端口都变成了name</span>
-
-<span class="c1"># -Z 指定用户</span>
-tcpdump -Z root
-<span class="c1"># 针对错误：tcpdump: Couldn&#39;t find user &#39;tcpdump&#39;</span>
-
-<span class="c1"># 指定hostname</span>
-tcpdump host www.baidu.com
-
-<span class="c1"># 指定src</span>
-tcpdump src 192.168.1.1
-
-<span class="c1"># 指定dst</span>
-tcpdump dst 192.168.1.1
-
-<span class="c1"># 指定post</span>
-tcpdump port <span class="m">80</span>
-</pre>
-<hr />
-
-<h3>2. 命令：tshark(wireshark)-非重点</h3>
+<h3>1.1 命令：tshark(wireshark)-非重点</h3>
 
 <p>作用：也是一个抓包工具</p>
 
@@ -389,6 +312,7 @@ Running as user <span class="s2">&#34;root&#34;</span> and group <span class="s2
 <span class="s2">&#34;May 18, 2016 09:45:58.745632745&#34;</span>,<span class="s2">&#34;10.10.180.13&#34;</span>,,,
 <span class="s2">&#34;May 18, 2016 09:45:58.756622638&#34;</span>,<span class="s2">&#34;61.14.162.1&#34;</span>,,,
 <span class="s2">&#34;May 18, 2016 09:45:58.766094659&#34;</span>,<span class="s2">&#34;10.10.180.13&#34;</span>,,,
+
 <span class="c1"># 不指定格式读取</span>
 tshark -c <span class="m">10</span> -n -t a -r someP.cap
 Running as user <span class="s2">&#34;root&#34;</span> and group <span class="s2">&#34;root&#34;</span>. This could be dangerous.
