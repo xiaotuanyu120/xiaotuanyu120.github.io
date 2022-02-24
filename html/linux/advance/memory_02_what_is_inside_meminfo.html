@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache 配置: 可以把ServerName和ServerAlias配置为IP吗？</a>
+            </li>
+            <li>
+              <a href="/linux/advance/performance_01_io_limit.html">performance: 限制进程的IO消耗</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a>
+            </li>
+            <li>
+              <a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
+            </li>
+            <li>
+              <a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                  <ul>
+                    <li><a href="/linux/advance/CENTOS_多网卡+多网关配置.html">CENTOS: 多网卡+多网关配置</a></li>
+                    <li><a href="/linux/advance/IPTABLES_按国家防流量.html">IPTABLES: 按国家防流量</a></li>
+                    <li><a href="/linux/advance/auditd_1.0.0_basic.html">auditd: linux 审计</a></li>
+                    <li><a href="/linux/advance/bash_1.1.0_.bashrc_vs_.bash_profile.html">bash 1.1.0 .bashrc vs .bash_profile</a></li>
+                    <li><a href="/linux/advance/centos6_booted_services_optimize.html">centos6 开机服务优化</a></li>
+                    <li><a href="/linux/advance/curl_1.1.0_post_usage.html">curl 1.1.0 POST usage</a></li>
+                    <li><a href="/linux/advance/discuz管理中心登录的时候闪退.html">discuz管理中心登录的时候闪退</a></li>
+                    <li><a href="/linux/advance/disk_1.0.1_xfs_undelete_recovery.html">disk: 1.0.1 xfs 硬盘数据恢复</a></li>
+                    <li><a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a></li>
+                    <li><a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a></li>
+                    <li><a href="/linux/advance/ffmpeg_1.1.0_convert_h265_to_h264.html">ffmpeg: 1.1.0 转换h265为h264</a></li>
+                    <li><a href="/linux/advance/firewall_ipset_basic.html">firewall: ipset使用教程</a></li>
+                    <li><a href="/linux/advance/firewall_ipset_bitmap_ip_mac.html">firewall: ipset-bitmap:ip,mac</a></li>
+                    <li><a href="/linux/advance/firewall_iptables_install_centos7.html">防火墙-Centos7使用iptables</a></li>
+                    <li><a href="/linux/advance/glibc_1.1.0_centos6.5_upgrade_2.14.html">glibc 1.1.0 centos6升级到2.14</a></li>
+                    <li><a href="/linux/advance/iconv_convert_encode_from_win_2_linux.html">linux: tranfer file from windows to linux, using iconv</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.0_tcp_time_wait.html">内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.1_nf_conntrack_table.html">内核调优: 1.1.1 优化nf_conntrack表来解决tcp包被drop的问题</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.2_tcp_time_wait_len_vs_fin_timeout.html">内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.3_listen_backlog.html">内核参数: 1.1.3 内核listen()中的参数 backlog</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.4_cgroup.html">linux内核: 1.1.4 cgroup</a></li>
+                    <li><a href="/linux/advance/kernel_1.1.5_enable_module.html">linux内核: 1.1.5 启用模块</a></li>
+                    <li><a href="/linux/advance/kernel_1.2.0_system_load_or_cpu_load.html">linux内核: 1.2.0 system load or cpu load</a></li>
+                    <li><a href="/linux/advance/linux_optimize_kernel.html">linux: 优化 - 内核</a></li>
+                    <li><a href="/linux/advance/linux_optimize_ulimit.html">linux: 系统资源限制 - 文件打开数 - ulimit、systemd</a></li>
+                    <li><a href="/linux/advance/linux_optimize_ulimit_error.html">linux: 普通用户无法修改ulimit</a></li>
+                    <li><a href="/linux/advance/linux_optimize_ulimit_ext_file_describer.html">linux: ulimit优化 - 扩展文件句柄vs文件描述符</a></li>
+                    <li><a href="/linux/advance/linux登录后显示_bash-4.1.html">linux登录后显示_bash-4.1</a></li>
+                    <li><a href="/linux/advance/linux知识盲点（数组与拷贝）.html">linux知识盲点（数组与拷贝）</a></li>
+                    <li><a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a></li>
+                    <li><a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a></li>
+                    <li><a href="/linux/advance/network_Centos7_no_nic_device.html">network: Centos7 没有可用的网络设备</a></li>
+                    <li><a href="/linux/advance/network_centos7-network_error.html">network: Centos7-网络服务错误</a></li>
+                    <li><a href="/linux/advance/network_tcp_alive_time_check.html">network: tcp 连接存活时间查询方法</a></li>
+                    <li><a href="/linux/advance/network_tcp_handshake.html">network: 理解TCP三次握手和四次挥手</a></li>
+                    <li><a href="/linux/advance/network_tcp_keepalive.html">network: tcp keepalive (include versus with http keepalive)</a></li>
+                    <li><a href="/linux/advance/network_tcp_tcp_queue.html">network: tcp queue(转载)</a></li>
+                    <li><a href="/linux/advance/network_vmware_clone_Centos6.html">network: vmware克隆Centos6后的网络设置</a></li>
+                    <li><a href="/linux/advance/nginx_log_combined.html">nginx: log_format combined?</a></li>
+                    <li><a href="/linux/advance/openssh_1.0.1_sshd_key_auth_error.html">openssh 1.0.1 sshd 密钥认证错误原因排查</a></li>
+                    <li><a href="/linux/advance/oper_1.0_file_and_user_process.html">日常管理: 1.0 查看文件与用户和进程的关联</a></li>
+                    <li><a href="/linux/advance/optimize_1.2.0_web.html">调优: 1.2.0 web服务器优化</a></li>
+                    <li><a href="/linux/advance/performance_01_io_limit.html">performance: 限制进程的IO消耗</a></li>
+                    <li><a href="/linux/advance/rsync_1.1.0_max_connections.html">rsync 1.1.0 error: max connections reached</a></li>
+                    <li><a href="/linux/advance/rsync_1.2.0_chmod_chown.html">rsync 1.2.0 chown chmod</a></li>
+                    <li><a href="/linux/advance/selinux_1.0.0_basic.html">selinux 1.0.0 basic</a></li>
+                    <li><a href="/linux/advance/selinux_1.0.1_enable_selinux_from_disabled.html">selinux 1.0.1 enable selinux from disabled status</a></li>
+                    <li><a href="/linux/advance/selinux_1.0.2_sshd_public_key_lable.html">selinux 1.0.2 lable sshd public key file</a></li>
+                    <li><a href="/linux/advance/ssl_generate_key_cfssl.html">ssl: generate key by cfssl</a></li>
+                    <li><a href="/linux/advance/sudo_1.1.0_SETENV_NOPASSWD.html">sudo 1.1.0 执行sudo时保持env变量</a></li>
+                    <li><a href="/linux/advance/systemd_1.0.0_hook_start_and_stop.html">systemd 1.0.0 同时启动关停多个服务</a></li>
+                    <li><a href="/linux/advance/systemd_1.1.0_debug_cmd.html">systemd 1.1.0 排查错误使用的命令</a></li>
+                    <li><a href="/linux/advance/systemd_1.2.0_unit_file_load_sequence_and_manual.html">systemd 1.2.0 unit file load sequence and manual</a></li>
+                    <li><a href="/linux/advance/systemd_1.3.0_start_pre_and_post.html">systemd 1.3.0 exec pre and post</a></li>
+                    <li><a href="/linux/advance/systemd_2.1.0_watchdog_for_tomcat.html">systemd 2.1.0 watchdog of systemd for tomcat</a></li>
+                    <li><a href="/linux/advance/systemd_2.1.1_watchdog_for_tomcat_error_of_nonroot_user.html">systemd 2.1.1 watchdog of systemd for tomcat continue: nonroot user problem</a></li>
+                    <li><a href="/linux/advance/systeminfo_1.1.0_cpuinfo.html">系统信息：1.1.0 cpuinfo 超线程引起的争吵</a></li>
+                    <li><a href="/linux/advance/tools_1.1.0_z_cd.html">工具: 1.1.0 切换目录-z武器</a></li>
+                    <li><a href="/linux/advance/what_is_sni.html">what is SNI?</a></li>
+                    <li><a href="/linux/advance/隐藏nginxtomcat版本号.html">隐藏nginx tomcat版本号</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>/proc/meminfo里面有什么？</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>17 Feb 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 文章背景</h3>
+
+<p>想要做好linux的性能调优，光知道工具如何使用还不够，最重要的是要理解指标。很多内存工具（例如free）提供的指标都是从<code>/proc/meminfo</code>这里面获取的数据。</p>
+
+<h3>1. <code>/proc/meminfo</code>是什么？</h3>
+
+<p>它是<code>/proc/</code>目录中最常用的一个文件，因为它提供了大量的系统内存用量的有价值的信息。它提供了linux内核使用的空闲的和使用的内存（包含物理内存和交换分区）容量以及共享内存和缓冲区内存。</p>
+
+<h3>2. <code>/proc/meminfo</code>里面有什么？</h3>
+
+<ul>
+<li><code>MemTotal</code>，可用的内存的总量（计算：物理内存 - 保留bits - 内核二进制代码容量）。</li>
+<li><code>MemFree</code>，（计算：<code>LowFree</code> + <code>HighFree</code>）。</li>
+<li><code>MemAvailable</code> (since Linux 3.14)，用于启动新应用的可用内存的估计值，不包含交换分区。</li>
+<li><code>Buffers</code>，原始磁盘块的临时存储（包括读写），不应该特别大（20MB左右）。</li>
+<li><code>Cached</code>，磁盘中文件读写时在内存中的缓存，不包括<code>SwapCached</code>。</li>
+<li><code>SwapCached</code>，交换出的内存交换回内存后，交换分区对应的交换文件依旧保留。在内存压力高时，不需要再次从内存中交换到交换分区，因为这些数据在交换分区文件中仍然存在，这减轻了I/O压力。</li>
+<li><code>Active</code>，最近使用过的内存，除非特别需要，否则通常不会回收。</li>
+<li><code>Inactive</code>，最近较少使用的内存，会优先被回收用于其他目的。</li>
+<li><code>Active(anon)</code> (since Linux 2.6.28)</li>
+<li><code>Inactive(anon)</code> (since Linux 2.6.28)</li>
+<li><code>Active(file)</code> (since Linux 2.6.28)</li>
+<li><code>Inactive(file)</code> (since Linux 2.6.28)</li>
+<li><code>Unevictable</code> (since Linux 2.6.28)</li>
+<li><code>Mlocked</code> (since Linux 2.6.28)</li>
+<li><code>HighTotal</code> (Starting with Linux 2.6.19, CONFIG_HIGHMEM is required.)，高内存的总量。高内存是所有高于约860MB的物理内存。高内存是用于分配给用户空间程序或页缓存使用的。内核必须使用技巧来访问此内存，使其访问速度比低内存慢。</li>
+<li><code>HighFree</code> (Starting with Linux 2.6.19, CONFIG_HIGHMEM is required.)，高内存的空闲容量。</li>
+<li><code>LowTotal</code> (Starting with Linux 2.6.19, CONFIG_HIGHMEM is required.)，低内存的总量。低内存的用途包含所有高内存的用途，但它也可用于内核用于自己的数据结构。在许多其他事情中，<code>Slab</code>所有的内容都会在这里分配。当低内存耗尽时，会产生严重的后果。</li>
+<li><code>LowFree</code> (Starting with Linux 2.6.19, CONFIG_HIGHMEM is required.)，低内存的空闲总量。</li>
+<li><code>MmapCopy</code> (since Linux 2.6.29)</li>
+<li><code>SwapTotal</code>，交换分区总量。</li>
+<li><code>SwapFree</code>，未使用的交换分区总量。</li>
+<li><code>Dirty</code>，等待写回到磁盘中的内存。</li>
+<li><code>Writeback</code>，正在主动写回磁盘的内存。</li>
+<li><code>AnonPages</code> (since Linux 2.6.18)，未关联文件并映射到用户空间页表的内存页。</li>
+<li><code>Mapped</code>[，映射进内存（使用<a href="https://man7.org/linux/man-pages/man2/mmap.2.html"><code>mmap</code></a>）的文件占用的内存，例如库文件。</li>
+<li><code>Shmem</code> (since Linux 2.6.32)，<a href="https://man7.org/linux/man-pages/man5/tmpfs.5.html"><code>tmpfs</code></a>文件系统占用的内存。</li>
+<li><code>KReclaimable</code> (since Linux 4.20)，内核在内存压力下会尝试回收的分配给内核的内存。包含<code>SReclaimable</code>和其他带有shirinker的直接分配的内存。</li>
+<li><code>Slab</code>，内核数据结构缓存。（见<a href="https://man7.org/linux/man-pages/man5/slabinfo.5.html">slabinfo</a>）</li>
+<li><code>SReclaimable</code> (since Linux 2.6.19)，<code>Slab</code>中的一部分，可能会被回收，例如缓存。</li>
+<li><code>SUnreclaim</code> (since Linux 2.6.19)，<code>Slab</code>中的一部分，不会在内存压力下回收。</li>
+<li><code>KernelStack</code> (since Linux 2.6.32)，分配给内核栈的内存。</li>
+<li><code>PageTables</code> (since Linux 2.6.18)，专用于最低页表级别的内存。</li>
+<li><code>Quicklists</code> (since Linux 2.6.27)</li>
+<li><code>NFS_Unstable</code> (since Linux 2.6.18)，发给了服务器，但是尚未提交到稳定存储中的NFS页面。</li>
+<li><code>Bounce</code> (since Linux 2.6.18)，用于块设备“反弹缓冲区”的内存。</li>
+<li><code>WritebackTmp</code> (since Linux 2.6.26)，FUSE 用于临时回写缓冲区的内存。</li>
+<li><code>CommitLimit</code> (since Linux 2.6.10)，当前系统可以分配的内存。仅当严格的overcommit accounting启用时（<code>/proc/sys/vm/overcommit_memory</code>为mode 2）此指标才有效。</li>
+<li><code>Committed_AS</code></li>
+<li><code>VmallocTotal</code></li>
+<li><code>VmallocUsed</code></li>
+<li><code>VmallocChunk</code></li>
+<li><code>HardwareCorrupted</code> (since Linux 2.6.32)(CONFIG_MEMORY_FAILURE is required.)</li>
+<li><code>LazyFree</code> (since Linux 4.12)</li>
+<li><code>AnonHugePages</code> (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
+<li><code>ShmemHugePages</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
+<li><code>ShmemPmdMapped</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
+<li><code>CmaTotal</code> (since Linux 3.1)(CONFIG_CMA is required.)</li>
+<li><code>CmaFree</code> (CONFIG_CMA is required.)</li>
+<li><code>HugePages_Total</code> (CONFIG_HUGETLB_PAGE is required.)</li>
+<li><code>HugePages_Free</code> (CONFIG_HUGETLB_PAGE is required.)</li>
+<li><code>HugePages_Rsvd</code> (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)</li>
+<li><code>HugePages_Surp</code> (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)</li>
+<li><code>HugePagesize</code> (CONFIG_HUGETLB_PAGE is required.)</li>
+<li><code>DirectMap4k</code> (since Linux 2.6.27)</li>
+<li><code>DirectMap4M</code> (since Linux 2.6.27)</li>
+<li><code>DirectMap2M</code> (since Linux 2.6.27)</li>
+<li><code>DirectMap1G</code> (since Linux 2.6.27)</li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
