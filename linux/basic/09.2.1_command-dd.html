@@ -231,265 +231,52 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>31.1.0: DNS服务</h2>
+      <h2>9.2.1: 命令 - dd</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>02 Feb 2015</p>
+        <p>01 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 参考连接</h3>
+<h2>1. <code>dd</code></h2>
+
+<p>作用：Copy a file, converting and formatting according to the operands.</p>
+
+<p>语法：<code>dd 参数</code></p>
+
+<p>参数：</p>
 
 <ul>
-<li><a href="https://blog.dnsimple.com/2014/01/why-alias-record/">链接1</a></li>
-<li><a href="https://support.dnsimple.com/articles/differences-between-a-cname-alias-url/">链接2</a></li>
+<li><code>if</code>, 用输入文件代替stdin</li>
+<li><code>of</code>, 用输出文件代替stdout</li>
+<li><code>bs</code>, 一次读写多少BYTES(ibs/obs，分别对应每次input字节数和output字节数)</li>
+<li><code>count</code>, 复制多少次输入的数据</li>
+<li><code>noatime</code>, 不要更新access time</li>
 </ul>
+<pre class="chroma"><span class="c1"># dd命令创建一个指定容量大小的文件</span>
+dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>destfile <span class="nv">bs</span><span class="o">=</span>10M <span class="nv">count</span><span class="o">=</span><span class="m">1</span>
+1+0 records in
+1+0 records out
+<span class="m">10485760</span> bytes <span class="o">(</span><span class="m">10</span> MB<span class="o">)</span> copied, 0.00720787 s, 1.5 GB/s
 
-<hr />
+<span class="c1"># dd命令复制文件</span>
+dd <span class="k">if</span><span class="o">=</span>./destfile <span class="nv">of</span><span class="o">=</span>destfile2 <span class="nv">bs</span><span class="o">=</span>5M
+2+0 records in
+2+0 records out
+<span class="m">10485760</span> bytes <span class="o">(</span><span class="m">10</span> MB<span class="o">)</span> copied, 0.0148796 s, <span class="m">705</span> MB/s
 
-<h3>1. 各种记录介绍</h3>
+<span class="c1"># dd命令制作iso镜像</span>
+dd <span class="k">if</span><span class="o">=</span>/dev/sr0 <span class="nv">of</span><span class="o">=</span>centos6.7.iso
+808960+0 records in
+808960+0 records out
+<span class="m">414187520</span> bytes <span class="o">(</span><span class="m">414</span> MB<span class="o">)</span> copied, 7.50537 s, 55.2 MB/s
 
-<ul>
-<li>A记录, 把域名map到ip地址<br />
-</li>
-<li>CNAME,
-把域名map到另外的域名上，访问时返回该域名，然后继续解析返回的域名
-但是，当你对此域名做cname后，不可以对此域名继续做其他任何形式的解析
-<a href="https://tools.ietf.org/html/rfc1912#section-2.4">https://tools.ietf.org/html/rfc1912#section-2.4</a></li>
-<li>alias,把域名map到X域名上，跟cname不同的是，它可以与其他针对于此域名的记录共存</li>
-<li>url,把域名301重定向到目标域名上</li>
-</ul>
-
-<hr />
-
-<h3>2. oracle RAC使用dns来实现SCAN功能实战</h3>
-
-<h4>1) 安装dns</h4>
-<pre class="chroma"><span class="c1"># node1上执行此命令</span>
-yum install bind-libs <span class="nb">bind</span> bind-utils
+<span class="c1"># cp命令制作iso镜像</span>
+cp /dev/sr0 centos6.7-2.iso
 </pre>
-<h4>2) 配置dns</h4>
-<pre class="chroma"><span class="c1"># 主配文件</span>
-vim /etc/named.conf
-******************************************************
-options <span class="o">{</span>
-        <span class="c1"># 配置dns服务监听的端口和ip</span>
-        listen-on port <span class="m">53</span> <span class="o">{</span> 127.0.0.1<span class="p">;</span> 192.168.33.103<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># zone配置所在目录(保持默认)</span>
-        directory       <span class="s2">&#34;/var/named&#34;</span><span class="p">;</span>
-        ...
-        <span class="c1"># 允许使用dns服务的ip及ip段</span>
-        allow-query     <span class="o">{</span> localhost<span class="p">;</span> 127.0.0.1<span class="p">;</span> 192.168.33.0/24<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># 此dns无法解析的，去哪里继续查询，这里指定局域网的公用dns</span>
-        forwarders <span class="o">{</span>192.168.33.1<span class="p">;</span> 10.0.0.4<span class="p">;</span><span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
-
-<span class="c1"># 增加正向解析规则，localdomain是我的测试环境，需要更新到正式环境所在的域</span>
-zone <span class="s2">&#34;localdomain.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;localdomain.zone&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
-
-<span class="c1"># 增加反向解析规则</span>
-zone <span class="s2">&#34;33.168.192.in-addr.arpa.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;33.168.192.in-addr.arpa&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
-
-******************************************************
-
-<span class="c1"># 创建和上面配置域名称对应的zone文件，放在directory的配置目录中</span>
-vim /var/named/localdomain.zone
-******************************************************
-<span class="nv">$TTL</span>    <span class="m">86400</span>
-@               IN SOA  localhost root.localhost <span class="o">(</span>
-                                        <span class="m">42</span>              <span class="p">;</span> serial <span class="o">(</span>d. adams<span class="o">)</span>
-                                        3H              <span class="p">;</span> refresh
-                                        15M             <span class="p">;</span> retry
-                                        1W              <span class="p">;</span> expiry
-                                        1D <span class="o">)</span>            <span class="p">;</span> minimum
-                IN NS           localhost
-localhost       IN A            127.0.0.1
-db-oracle-node1            IN A    192.168.33.103
-db-oracle-node2            IN A    192.168.33.104
-db-oracle-node1-vip        IN A    192.168.33.111
-db-oracle-node2-vip        IN A    192.168.33.112
-db-oracle-scan        IN A    192.168.33.120
-db-oracle-scan        IN A    192.168.33.121
-db-oracle-scan        IN A    192.168.33.122
-******************************************************
-
-vim /var/named/33.168.192.in-addr.arpa
-******************************************************
-<span class="nv">$ORIGIN</span> 33.168.192.in-addr.arpa.
-<span class="nv">$TTL</span> 1H
-@       IN      SOA     db-oracle-node1.localdomain.     root.db-oracle-node1.localdomain. <span class="o">(</span>      <span class="m">2</span>
-                                                3H
-                                                1H
-                                                1W
-                                                1H <span class="o">)</span>
-33.168.192.in-addr.arpa.         IN NS      db-oracle-node1.localdomain.
-
-<span class="m">103</span>     IN PTR  db-oracle-node1.localdomain.
-<span class="m">104</span>     IN PTR  db-oracle-node2.localdomain.
-<span class="m">111</span>     IN PTR  db-oracle-node1-vip.localdomain.
-<span class="m">112</span>     IN PTR  db-oracle-node2-vip.localdomain.
-<span class="m">120</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">121</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">122</span>     IN PTR  db-oracle-node-scan.localdomain.
-******************************************************
-<span class="c1">## A记录和PTR记录</span>
-<span class="c1"># A记录是将domain解析成ip</span>
-<span class="c1"># PTR是将ip反解析成domain</span>
-</pre>
-<h4>3) 启动dns服务</h4>
-<pre class="chroma">service named start
-chkconfig named on
-</pre>
-<h4>4) 配置节点的dns</h4>
-<pre class="chroma"><span class="c1"># 节点上配置dns</span>
-vim /etc/resolv.conf
-******************************************************
-search localdomain
-nameserver 192.168.33.103
-******************************************************
-</pre>
-<h4>5) 检测oracle SCAN的解析</h4>
-<pre class="chroma"><span class="c1">## host命令解析db-oracle-scan</span>
-host db-oracle-scan
-db-oracle-scan.localdomain has address 192.168.33.120
-db-oracle-scan.localdomain has address 192.168.33.121
-db-oracle-scan.localdomain has address 192.168.33.122
-
-<span class="c1">## 检测SCAN的三个ip轮询</span>
-<span class="c1"># 第一次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-
-<span class="c1"># 第二次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-</pre>
-<h4>6) 检测每个节点的vip</h4>
-<pre class="chroma"><span class="c1"># 检测node1的vip</span>
-host db-oracle-node1-vip
-db-oracle-node1-vip.localdomain has address 192.168.33.111
-nslookup db-oracle-node1-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node1-vip.localdomain
-Address: 192.168.33.111
-
-<span class="c1"># 检测node2的vip</span>
-host db-oracle-node2-vip
-db-oracle-node2-vip.localdomain has address 192.168.33.112
-
-nslookup db-oracle-node2-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node2-vip.localdomain
-Address: 192.168.33.112
-</pre>
-<h4>7) 检测反向解析</h4>
-<pre class="chroma"><span class="c1">## 检测反向解析</span>
-dig -x 192.168.33.120
-
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.8.2rc1-RedHat-9.8.2-0.47.rc1.el6_8.3 &lt;&lt;&gt;&gt; -x 192.168.33.120
-<span class="p">;</span><span class="p">;</span> global options: +cmd
-<span class="p">;</span><span class="p">;</span> Got answer:
-<span class="p">;</span><span class="p">;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">48957</span>
-<span class="p">;</span><span class="p">;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: <span class="m">1</span>
-
-<span class="p">;</span><span class="p">;</span> QUESTION SECTION:
-<span class="p">;</span>120.33.168.192.in-addr.arpa.   IN      PTR
-
-<span class="p">;</span><span class="p">;</span> ANSWER SECTION:
-120.33.168.192.in-addr.arpa. <span class="m">3600</span> IN    PTR     db-oracle-node-scan.localdomain.
-
-<span class="p">;</span><span class="p">;</span> AUTHORITY SECTION:
-33.168.192.in-addr.arpa. <span class="m">3600</span>   IN      NS      db-oracle-node1.localdomain.
-
-<span class="p">;</span><span class="p">;</span> ADDITIONAL SECTION:
-db-oracle-node1.localdomain. <span class="m">86400</span> IN   A       192.168.33.103
-
-<span class="p">;</span><span class="p">;</span> Query time: <span class="m">0</span> msec
-<span class="p">;</span><span class="p">;</span> SERVER: 192.168.33.103#53<span class="o">(</span>192.168.33.103<span class="o">)</span>
-<span class="p">;</span><span class="p">;</span> WHEN: Fri Dec <span class="m">23</span> 02:39:47 <span class="m">2016</span>
-<span class="p">;</span><span class="p">;</span> MSG SIZE  rcvd: <span class="m">136</span>
-</pre>
-<p>至此，我们提供了以下项目的ip解析</p>
-
-<table>
-<thead>
-<tr>
-<th>ip</th>
-<th>hostname</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>192.168.33.120</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.121</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.122</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.103</td>
-<td>db-oracle-node1</td>
-</tr>
-
-<tr>
-<td>192.168.33.104</td>
-<td>db-oracle-node2</td>
-</tr>
-
-<tr>
-<td>192.168.33.111</td>
-<td>db-oracle-node1-vip</td>
-</tr>
-
-<tr>
-<td>192.168.33.112</td>
-<td>db-oracle-node2-vip</td>
-</tr>
-</tbody>
-</table>
-
     </div>
 
   </div>

@@ -118,11 +118,15 @@
                     <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
                     <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
                     <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
-                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
                     <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
                     <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
                     <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
                     <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
                     <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
                     <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
                     <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
@@ -241,79 +245,70 @@
 
 <h3><code>ls</code></h3>
 
-<ul>
-<li>介绍：ls - list directory contents<br />
-</li>
-<li>相关参数：
+<p>介绍：ls - list directory contents</p>
+
+<p>相关参数：</p>
 
 <ul>
-<li>-l，use a long listing format，使用长格式显示</li>
-<li>-a，显示文件名以&rdquo;.&ldquo;开头的隐藏文件</li>
-<li>-h，以human易读格式显示，主要是看容量的时候使用&rdquo;KB&rdquo; &ldquo;MB&rdquo; &ldquo;GB&rdquo;</li>
-<li>-i，显示inode号</li>
-<li>-r，reverse，改变归类的顺序，例如和-t配合使用，-tr和-t显示顺序是颠倒的。</li>
-<li>-t，按照修改时间顺序归类文件。</li>
-<li>-d，列出目录本身的信息，而不是目录里边的内容。</li>
-</ul></li>
+<li><code>-l</code>，use a long listing format，使用长格式显示</li>
+<li><code>-a</code>，显示文件名以&rdquo;.&ldquo;开头的隐藏文件</li>
+<li><code>-h</code>，以human易读格式显示，主要是看容量的时候使用&rdquo;KB&rdquo; &ldquo;MB&rdquo; &ldquo;GB&rdquo;</li>
+<li><code>-i</code>，显示inode号</li>
+<li><code>-r</code>，reverse，改变归类的顺序，例如和-t配合使用，-tr和-t显示顺序是颠倒的。</li>
+<li><code>-t</code>，按照修改时间顺序归类文件。</li>
+<li><code>-d</code>，列出目录本身的信息，而不是目录里边的内容。</li>
 </ul>
 
 <hr />
 
 <h3><code>cd</code></h3>
 
-<ul>
-<li>介绍：change directory<br />
-</li>
-<li>常用用法：
+<p>介绍：change directory</p>
+
+<p>常用用法：</p>
 
 <ul>
-<li>&ldquo;cd&rdquo;/&ldquo;cd ~&rdquo; ，回到登陆用户家目录；</li>
-<li>&ldquo;cd 相对路径/绝对路径&rdquo;，进入该目标路径；</li>
-<li>&ldquo;cd ..&rdquo; ，进入上级目录；</li>
-<li>&ldquo;cd -&rdquo; ，进入上一次的目录，相当于windows里的后退；</li>
-</ul></li>
+<li><code>cd</code>/<code>cd ~</code> ，回到登陆用户家目录；</li>
+<li><code>cd 相对路径/绝对路径</code>，进入该目标路径；</li>
+<li><code>cd ..</code> ，进入上级目录；</li>
+<li><code>cd -</code> ，进入上一次的目录，相当于windows里的后退；</li>
 </ul>
 
 <hr />
 
 <h3><code>man</code></h3>
 
-<ul>
-<li>介绍：man - format and display the on-line manual pages<br />
-</li>
-<li>作用：用来查看配置文件及命令的帮助文档<br />
-</li>
-<li>常用用法：<br />
+<p>介绍：man - format and display the on-line manual pages</p>
 
+<p>作用：用来查看配置文件及命令的帮助文档</p>
+
+<p>常用用法：</p>
 
 <ul>
-<li>man 5 配置文件(直接是名称，不需要路径)</li>
-<li>man 命令</li>
-</ul></li>
+<li><code>man 5 配置文件</code>(直接是名称，不需要路径)</li>
+<li><code>man 命令</code></li>
 </ul>
 
 <hr />
 
 <h3><code>echo</code></h3>
 
+<p>作用：输出一个字符串，也可用来输出变量内容</p>
+
+<p>参数：</p>
+
 <ul>
-<li>作用：输出一个字符串，也可用来输出变量内容<br />
+<li><code>-e</code>, enable interpretation of backslash escapes<br />
 </li>
-<li>参数：
+<li><code>-n</code> 输出结果后不换行</li>
+</ul>
+
+<p>常用用法：</p>
 
 <ul>
-<li>-e enable interpretation of backslash escapes<br />
-</li>
-<li>-n 输出结果后不换行</li>
-</ul></li>
-<li>常用用法：<br />
-
-
-<ul>
-<li>echo $HOME 查看家目录路径</li>
-<li>echo $PATH 查看系统PATH变量</li>
-<li>echo &ldquo;string&rdquo; 输出字符串</li>
-</ul></li>
+<li><code>echo $HOME</code> 查看家目录路径</li>
+<li><code>echo $PATH</code> 查看系统PATH变量</li>
+<li><code>echo &quot;string&quot;</code> 输出字符串</li>
 </ul>
 <pre class="chroma"><span class="c1"># -e 参数可以识别特殊符号</span>
 <span class="c1"># 加上-e可是识别\n换行符</span>
@@ -338,31 +333,24 @@ good morning
 </pre>
 <h3><code>type</code></h3>
 
-<ul>
-<li>作用：查看命令类型<br />
-</li>
-<li>语法：type cmd_name<br />
-</li>
-</ul>
+<p>作用：查看命令类型<br />
+语法：<code>type cmd_name</code></p>
 
 <hr />
 
 <h3>命令路径变量：<code>PATH</code></h3>
 
-<ul>
-<li>作用：用来提供给系统查找命令的路径，可自定义包含其他路径<br />
-</li>
-<li>查看PATH: <code>echo $PATH</code><br />
-</li>
-<li>修改PATH：<br />
+<p>作用：用来提供给系统查找命令的路径，可自定义包含其他路径</p>
 
+<p>查看PATH: <code>echo $PATH</code></p>
+
+<p>修改PATH：</p>
 
 <ul>
-<li>临时生效 - 直接赋值，&rdquo;PATH=$PATH:路径1:路径2&hellip;&rdquo;<br />
+<li>临时生效 - 直接赋值，<code>PATH=$PATH:路径1:路径2...</code><br />
 </li>
-<li>永久生效 - 修改配置文件，<br />
+<li>永久生效 - 修改配置文件<br />
 </li>
-</ul></li>
 </ul>
 <pre class="chroma">vi /etc/profile
 *************************
@@ -377,10 +365,7 @@ good morning
 
 <h3><code>alias</code></h3>
 
-<ul>
-<li>作用：创建命令别名<br />
-</li>
-</ul>
+<p>作用：创建命令别名</p>
 <pre class="chroma"><span class="c1">## 创建ls的命令别名，敲击ll相当于&#34;ls -l --color=auto&#34;</span>
 <span class="nb">alias</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">&#39;ls -l --color=auto&#39;</span>
 
@@ -398,10 +383,7 @@ vi ~/.bashrc
 
 <h3><code>vi</code></h3>
 
-<ul>
-<li>作用：文本编辑器<br />
-</li>
-</ul>
+<p>作用：文本编辑器</p>
 
 <blockquote>
 <p>PS: 是必须学习的强大文本编辑器，编辑文件时，组合键<code>ctrl z</code>可以暂时退出编辑页面，<code>fg</code>命令返回。</p>
@@ -411,10 +393,7 @@ vi ~/.bashrc
 
 <h3><code>uname</code></h3>
 
-<ul>
-<li>作用：查看系统信息<br />
-</li>
-</ul>
+<p>作用：查看系统信息</p>
 <pre class="chroma">uname -a
 Linux web01 2.6.32-431.el6.i686 <span class="c1">#1 SMP Fri Nov 22 00:26:36 UTC 2013 i686 i686 i386 GNU/Linux</span>
 uname -r
@@ -423,16 +402,16 @@ uname -r
 <h2>2. bash shell操作快捷键</h2>
 
 <ul>
-<li>Ctrl+l 清屏</li>
-<li>Ctrl+c 取消命令</li>
-<li>Ctrl+z 暂停命令</li>
-<li>Ctrl+a 光标到行首</li>
-<li>Ctrl+e 光标到行尾</li>
-<li>Ctrl+u 删除光标前所有字符</li>
-<li>Ctrl+k 删除光标后所有字符</li>
-<li>Ctrl+d 退出登录 == exit</li>
-<li>Ctrl+s 锁住命令终端，按任何键都不会有反应</li>
-<li>Ctrl+q 解锁命令终端</li>
+<li><code>Ctrl+l</code> 清屏</li>
+<li><code>Ctrl+c</code> 取消命令</li>
+<li><code>Ctrl+z</code> 暂停命令</li>
+<li><code>Ctrl+a</code> 光标到行首</li>
+<li><code>Ctrl+e</code> 光标到行尾</li>
+<li><code>Ctrl+u</code> 删除光标前所有字符</li>
+<li><code>Ctrl+k</code> 删除光标后所有字符</li>
+<li><code>Ctrl+d</code> 退出登录 == exit</li>
+<li><code>Ctrl+s</code> 锁住命令终端，按任何键都不会有反应</li>
+<li><code>Ctrl+q</code> 解锁命令终端</li>
 </ul>
 
     </div>

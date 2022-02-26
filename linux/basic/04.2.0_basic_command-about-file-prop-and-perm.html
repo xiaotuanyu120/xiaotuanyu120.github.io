@@ -118,11 +118,15 @@
                     <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
                     <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
                     <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
-                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
                     <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
                     <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
                     <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
                     <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
                     <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
                     <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
                     <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
@@ -292,37 +296,34 @@
 
 <h3>命令：<code>chmod</code></h3>
 
-<ul>
-<li>作用：修改文件权限<br />
-</li>
-<li>语法：<br />
+<p>作用：修改文件权限</p>
 
+<p>语法：</p>
 
 <ul>
 <li><code>chmod u=rwx,g=r--,o=r-- filename</code></li>
 <li><code>chmod 744 filename</code></li>
 <li><code>chmod u+x filename</code></li>
-</ul></li>
-<li>参数：
+</ul>
+
+<p>参数：</p>
 
 <ul>
 <li><code>-R</code> 递归改变子目录及子目录下所有文件的权限。</li>
-</ul></li>
 </ul>
 
 <hr />
 
 <h3>命令：<code>chown</code></h3>
 
-<ul>
-<li>作用：修改文件属主、属组<br />
-</li>
-<li>语法：<code>chown user:group filename</code></li>
-<li>参数：
+<p>作用：修改文件属主、属组</p>
+
+<p>语法：<code>chown user:group filename</code></p>
+
+<p>参数：</p>
 
 <ul>
 <li><code>-R</code> 递归改变子目录及子目录下所有文件。</li>
-</ul></li>
 </ul>
 
 <blockquote>
@@ -333,53 +334,43 @@
 
 <h3>命令：<code>umask</code></h3>
 
-<ul>
-<li>作用：通过设置umask值，来控制新建目录文件及普通文件的初始权限<br />
-</li>
-<li>语法：<code>umask=022</code>（可自定义）<br />
-</li>
-<li>原理:
+<p>作用：通过设置umask值，来控制新建目录文件及普通文件的初始权限</p>
+
+<p>语法：<code>umask=022</code>（可自定义）</p>
+
+<p>原理:</p>
 
 <ul>
 <li>目录文件的默认完整权限是777(rwxrwxrwx)，减掉umask的022w&ndash;w-)，所以新建目录文件权限为(rwxr-xr-x)755;</li>
 <li>普通文件的默认完整权限是666(rw-rw-rw-)，减掉umask的022w&ndash;w-)，所以新建目录文件权限为(rw-r&ndash;r&ndash;)644。</li>
 <li>普通文件的默认完整权限之所以是666，是因为普通文件默认不需要执行权限。</li>
-</ul></li>
 </ul>
 
 <hr />
 
 <h3>命令：<code>chattr</code></h3>
 
-<ul>
-<li>作用：设置和取消文件的隐藏权限<br />
-</li>
-<li>语法：<code>chattr +/-隐藏权限 filename</code><br />
-</li>
-<li>参数：
+<p>作用：设置和取消文件的隐藏权限</p>
 
-<ul>
-<li><code>+/-a</code> 這個档案将只能增加资料，而不能刪除也不能修改资料，只有root才能设定这个属性</li>
-<li><code>+/-i</code> 这个档案将不能做内容、名称、权限、设定连接文件等等任何的修改</li>
-</ul></li>
-</ul>
+<p>语法：<code>chattr +/-隐藏权限 filename</code></p>
+
+<p>参数：
+ <code>+/-a</code> 這個档案将只能增加资料，而不能刪除也不能修改资料，只有root才能设定这个属性
+ <code>+/-i</code> 这个档案将不能做内容、名称、权限、设定连接文件等等任何的修改</p>
 
 <hr />
 
 <h3>命令：<code>lsattr</code></h3>
 
-<ul>
-<li>作用：查看文件的隐藏属性<br />
-</li>
-<li>语法：<code>lsattr destination</code>（类似于ls）<br />
-</li>
-<li>参数：<br />
+<p>作用：查看文件的隐藏属性</p>
 
+<p>语法：<code>lsattr destination</code>（类似于ls）</p>
+
+<p>参数：</p>
 
 <ul>
 <li><code>-R</code> 连同子目录的资料也一同显示出来</li>
 <li><code>-d</code> 如果接的是目录，列出目录本身的属性，而非目录内的文件属性</li>
-</ul></li>
 </ul>
 
     </div>
