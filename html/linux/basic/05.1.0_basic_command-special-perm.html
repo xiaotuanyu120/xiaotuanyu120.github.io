@@ -118,11 +118,15 @@
                     <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
                     <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
                     <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
-                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
                     <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
                     <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
                     <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
                     <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
                     <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
                     <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
                     <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
@@ -241,111 +245,99 @@
 
 <h3>权限：<code>SUID</code></h3>
 
-<ul>
-<li>作用：临时赋予用户二进制文档的拥有者的权限（主要用于让普通用户可以使用某些特殊命令）<br />
-</li>
-<li>语法：<br />
+<p>作用：临时赋予用户二进制文档的拥有者的权限（主要用于让普通用户可以使用某些特殊命令）</p>
 
+<p>语法：</p>
 
 <ul>
 <li><code>chmod u+s file</code>（增加s权限）</li>
 <li><code>chmod u-s file</code>（减去s权限）</li>
-</ul></li>
-<li>使用限制与环境：
+</ul>
+
+<p>使用限制与环境：</p>
 
 <ol>
 <li>仅对于二进制文件有效；</li>
 <li>执行者必须对文件拥有x权限（否则即使设置了SUID，由于你对文件根本无法执行SUID此时也无效，此时权限位显示S）；</li>
-<li>权限只是在执行过程中拥有属主权限</li>
-</ol></li>
-</ul>
-
-<p>用法举例:</p>
-<pre class="chroma">passwd命令，路径/usr/bin/passwd，权限为&#34;-rwsr-xr-x&#34;
-passwd命令会修改&#34;/etc/shadow&#34;，一般只有root才拥有此命令的操作权限
+<li>权限只是在执行过程中拥有属主权限
+<code>
+passwd命令，路径/usr/bin/passwd，权限为&quot;-rwsr-xr-x&quot;
+passwd命令会修改&quot;/etc/shadow&quot;，一般只有root才拥有此命令的操作权限
 可给passwd增加suid权限，这样普通用户就可以使用passwd命令了
-</pre>
+</code></li>
+</ol>
+
 <blockquote>
 <p>SUID只可用于二进制文件，不可用于shell script文件。</p>
 </blockquote>
 
 <hr />
 
-<h3>权限：SGID</h3>
+<h3>权限：<code>SGID</code></h3>
 
-<p><strong>作用于普通文件</strong></p>
+<p><strong>作用于普通文件</strong><br />
+作用：临时赋予用户二进制文档的拥有组的权限（多用于让普通用户可以使用某些特殊命令，和suid类似）</p>
 
-<ul>
-<li>作用：临时赋予用户二进制文档的拥有组的权限（多用于让普通用户可以使用某些特殊命令，和suid类似）<br />
-</li>
-<li>语法<br />
-
+<p>语法</p>
 
 <ul>
 <li><code>chmod g+s file</code>（增加s权限）</li>
 <li><code>chmod g-s file</code>（减去s权限）</li>
-</ul></li>
-<li>使用限制与环境：<br />
+</ul>
 
+<p>使用限制与环境：</p>
 
 <ol>
 <li>仅对于二进制文件有效；</li>
 <li>执行者必须对文件拥有x权限（否则根本无法执行文件，更别谈SGID赋予权限，此时权限位显示S）；</li>
-<li>权限只是在执行过程中拥有。</li>
-</ol></li>
-</ul>
+<li>权限只是在执行过程中拥有。
+<code>
+locate命令，路径/usr/bin/locate，权限为&quot;rwx--s--x&quot;  
+locate命令会读取&quot;/var/lib/mlocate/mlocate.db&quot;，此命令可用来搜索某些文件所在路径  
+</code></li>
+</ol>
 
-<p>用法举例:</p>
-<pre class="chroma">locate命令，路径/usr/bin/locate，权限为&#34;rwx--s--x&#34;  
-locate命令会读取&#34;/var/lib/mlocate/mlocate.db&#34;，此命令可用来搜索某些文件所在路径  
-</pre>
-<ul>
-<li><strong>作用于目录</strong><br />
-</li>
-<li>作用：临时将用户的effective group修改成该目录的的群组<br />
-</li>
-<li>语法：<br />
+<p><strong>作用于目录</strong><br />
+作用：临时将用户的effective group修改成该目录的的群组</p>
 
+<p>语法：</p>
 
 <ul>
 <li><code>chmod g+s dir</code>（增加s权限）<br />
 </li>
 <li><code>chmod g-s dir</code>（减去s权限）<br />
 </li>
-</ul></li>
-<li>使用限制与环境：<br />
+</ul>
 
+<p>使用限制与环境：</p>
 
 <ol>
 <li>使用者必须对该目录拥有x权限（否则无法进入，更别谈SGID赋予权限，此时权限位显示S）；<br />
 </li>
 <li>若用户对此目录拥有w权限，由于effective group被修改成该目录的group，所以用户在此目录下创建任何文件，属组该目录的用户组。<br />
 </li>
-</ol></li>
-</ul>
+</ol>
 
 <hr />
 
-<h3>权限：SBIT</h3>
+<h3>权限：<code>SBIT</code></h3>
 
-<ul>
-<li>作用：限制目录下不同用户之间对于其他用户文档或目录的编辑权限。<br />
-</li>
-<li>语法：<br />
+<p>作用：限制目录下不同用户之间对于其他用户文档或目录的编辑权限。</p>
 
+<p>语法：</p>
 
 <ul>
 <li><code>chmod o+t dir</code>（增加t权限）</li>
 <li><code>chmod o-t dir</code>（减去t权限）</li>
-</ul></li>
-<li>使用限制与环境
+</ul>
+
+<p>使用限制与环境</p>
 
 <ol>
 <li>只能针对目录；</li>
 <li>必须有x和w权限（否则无法进入和编辑，更不用谈sbit权限，此时权限位显示T）；</li>
 <li>用户自身创建的文档和目录，只有自己和root可以编辑（重命名、复制、删除等）</li>
-</ol></li>
-</ul>
+</ol>
 
     </div>
 

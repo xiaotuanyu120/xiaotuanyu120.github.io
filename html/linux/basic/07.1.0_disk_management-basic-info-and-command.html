@@ -231,265 +231,230 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>31.1.0: DNS服务</h2>
+      <h2>7.1.0: 磁盘管理 - 基本知识和命令</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>02 Feb 2015</p>
+        <p>24 Nov 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 参考连接</h3>
+<h2>1. 磁盘知识</h2>
+
+<h3>1.1 磁盘分区个数</h3>
+
+<p>MBR分区表主分区和扩展分区总数不超过4个，并且只能有最多一个扩展分区；</p>
+
+<blockquote>
+<p>因为MBR的分区表只有64字节，16个字节记录一个分区信息，所以最多记录4个；</p>
+
+<p>新的GPT分区表没有这个限制</p>
+
+<p>扩展分区下可以创建多个分区</p>
+</blockquote>
+
+<h3>1.2 磁盘命名规则</h3>
+
+<p>sata硬盘的设备名称从sda开始，依次是<code>sda,sdb,sdc,sdd</code>&hellip;;</p>
+
+<p>ide硬盘的设备名称从hda开始，依次为<code>hda,hdb,hdc,hdd</code>&hellip;;</p>
+
+<p>同一块硬盘上的分区编号是由&rdquo;设备名称&rdquo;+&ldquo;数字（从1开始）&rdquo;组成;<br />
+例如sda1、sda2。。。或hda1、hdb1</p>
+
+<p><strong>目前linux已经统一标识为sd开头，需要注意下面示例中磁盘命名被顶掉的问题</strong></p>
+<pre class="chroma"><span class="c1"># 查看目前vmware虚机的磁盘情况</span>
+fdisk -l
+
+Disk /dev/sda: 21.5 GB, <span class="m">21474836480</span> bytes
+<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">2610</span> cylinders
+<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0x000466e9
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           <span class="m">1</span>          <span class="m">26</span>      <span class="m">204800</span>   <span class="m">83</span>  Linux
+Partition <span class="m">1</span> does not end on cylinder boundary.
+/dev/sda2              <span class="m">26</span>        <span class="m">1301</span>    <span class="m">10240000</span>   <span class="m">83</span>  Linux
+/dev/sda3            <span class="m">1301</span>        <span class="m">1428</span>     <span class="m">1024000</span>   <span class="m">82</span>  Linux swap / Solaris
+/dev/sda4            <span class="m">1428</span>        <span class="m">2611</span>     <span class="m">9501696</span>    <span class="m">5</span>  Extended
+/dev/sda5            <span class="m">1429</span>        <span class="m">2611</span>     <span class="m">9500672</span>   <span class="m">83</span>  Linux
+
+<span class="c1"># 关闭虚机，添加IDE格式硬盘</span>
+
+<span class="c1"># 开机查看目前磁盘状态</span>
+fdisk -l
+
+Disk /dev/sda: <span class="m">5368</span> MB, <span class="m">5368709120</span> bytes
+<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">652</span> cylinders
+<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0x00000000
+
+
+Disk /dev/sdb: 21.5 GB, <span class="m">21474836480</span> bytes
+<span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">2610</span> cylinders
+<span class="nv">Units</span> <span class="o">=</span> cylinders of <span class="m">16065</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">8225280</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+Disk identifier: 0x000466e9
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1   *           <span class="m">1</span>          <span class="m">26</span>      <span class="m">204800</span>   <span class="m">83</span>  Linux
+Partition <span class="m">1</span> does not end on cylinder boundary.
+/dev/sdb2              <span class="m">26</span>        <span class="m">1301</span>    <span class="m">10240000</span>   <span class="m">83</span>  Linux
+/dev/sdb3            <span class="m">1301</span>        <span class="m">1428</span>     <span class="m">1024000</span>   <span class="m">82</span>  Linux swap / Solaris
+/dev/sdb4            <span class="m">1428</span>        <span class="m">2611</span>     <span class="m">9501696</span>    <span class="m">5</span>  Extended
+/dev/sdb5            <span class="m">1429</span>        <span class="m">2611</span>     <span class="m">9500672</span>   <span class="m">83</span>  Linux
+</pre>
+<blockquote>
+<p>默认IDE磁盘排序优于SCSI，所以顶掉了SCSI，命名为sda，SCSI自动成为sdb</p>
+
+<p>IDE磁盘目前也被统一识别为sd开头的命名</p>
+
+<p>所以IDE硬盘和SCSI\SATA硬盘混用的时候一定要注意，IDE会默认排在最前面</p>
+
+<p>如果原来你的SATA硬盘是最前面sda，IDE会挤掉它为sda，而原来的sata会变为sdb</p>
+</blockquote>
+
+<h3>1.3 磁盘格式</h3>
 
 <ul>
-<li><a href="https://blog.dnsimple.com/2014/01/why-alias-record/">链接1</a></li>
-<li><a href="https://support.dnsimple.com/articles/differences-between-a-cname-alias-url/">链接2</a></li>
-</ul>
-
-<hr />
-
-<h3>1. 各种记录介绍</h3>
-
-<ul>
-<li>A记录, 把域名map到ip地址<br />
+<li>ext2-4, linux以前及目前主流的分区格式，随着版本的增加，功能和性能不断提升</li>
+<li>xfs, 为了应对现在的虚拟化，和更好的性能，兼容所有ext4的功能，支持更大的磁盘，rhel7及centos7默认的磁盘格式<br />
 </li>
-<li>CNAME,
-把域名map到另外的域名上，访问时返回该域名，然后继续解析返回的域名
-但是，当你对此域名做cname后，不可以对此域名继续做其他任何形式的解析
-<a href="https://tools.ietf.org/html/rfc1912#section-2.4">https://tools.ietf.org/html/rfc1912#section-2.4</a></li>
-<li>alias,把域名map到X域名上，跟cname不同的是，它可以与其他针对于此域名的记录共存</li>
-<li>url,把域名301重定向到目标域名上</li>
 </ul>
 
 <hr />
 
-<h3>2. oracle RAC使用dns来实现SCAN功能实战</h3>
+<h2>2. 磁盘情况查看工具</h2>
 
-<h4>1) 安装dns</h4>
-<pre class="chroma"><span class="c1"># node1上执行此命令</span>
-yum install bind-libs <span class="nb">bind</span> bind-utils
+<h3>2.1 <code>df</code></h3>
+
+<p>作用：显示已挂载的分区空间使用情况</p>
+
+<p>语法：<code>df [参数] [文件（此文件所在分区的空间使用情况）]</code></p>
+
+<p>参数：</p>
+
+<ul>
+<li><code>-h</code> &ldquo;human-readable&rdquo;用人类易读方式列出，例如&rdquo;1K&rdquo;、&rdquo;234M&rdquo;和&rdquo;2G&rdquo;</li>
+<li><code>-m</code> 以M为单位列出结果</li>
+<li><code>-k</code> 以K为单位列出结果</li>
+<li><code>-T</code> &ldquo;type&rdquo;额外列出已挂载分区格式</li>
+<li><code>-i</code> &ldquo;inode&rdquo;将查看分区空间改为查看分区inode使用情况</li>
+</ul>
+<pre class="chroma"><span class="c1"># 查看某文件所在分区的分区使用情况</span>
+df -h /root/.cshrc
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       9.5G  1.2G  7.9G  13% /
+
+<span class="c1"># 查看系统所有分区的分区使用情况</span>
+df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       9.5G  1.2G  7.9G  13% /
+tmpfs           491M     <span class="m">0</span>  491M   0% /dev/shm
+/dev/sda1       190M   29M  151M  16% /boot
+/dev/sda5       8.8G   21M  8.4G   1% /data
+<span class="c1"># /dev/shm是内存中的分区</span>
+
+<span class="c1"># 查看系统分区的inode使用情况</span>
+df -ih
+Filesystem     Inodes IUsed IFree IUse% Mounted on
+/dev/sda2        626K   39K  588K    7% /
+tmpfs            123K     <span class="m">1</span>  123K    1% /dev/shm
+/dev/sda1         50K    <span class="m">38</span>   50K    1% /boot
+/dev/sda5        581K    <span class="m">11</span>  581K    1% /data
 </pre>
-<h4>2) 配置dns</h4>
-<pre class="chroma"><span class="c1"># 主配文件</span>
-vim /etc/named.conf
-******************************************************
-options <span class="o">{</span>
-        <span class="c1"># 配置dns服务监听的端口和ip</span>
-        listen-on port <span class="m">53</span> <span class="o">{</span> 127.0.0.1<span class="p">;</span> 192.168.33.103<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># zone配置所在目录(保持默认)</span>
-        directory       <span class="s2">&#34;/var/named&#34;</span><span class="p">;</span>
-        ...
-        <span class="c1"># 允许使用dns服务的ip及ip段</span>
-        allow-query     <span class="o">{</span> localhost<span class="p">;</span> 127.0.0.1<span class="p">;</span> 192.168.33.0/24<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># 此dns无法解析的，去哪里继续查询，这里指定局域网的公用dns</span>
-        forwarders <span class="o">{</span>192.168.33.1<span class="p">;</span> 10.0.0.4<span class="p">;</span><span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<h3>2.2 du</h3>
 
-<span class="c1"># 增加正向解析规则，localdomain是我的测试环境，需要更新到正式环境所在的域</span>
-zone <span class="s2">&#34;localdomain.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;localdomain.zone&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<p>作用：估算目录或文件占用空间（并非文件体积大小）</p>
 
-<span class="c1"># 增加反向解析规则</span>
-zone <span class="s2">&#34;33.168.192.in-addr.arpa.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;33.168.192.in-addr.arpa&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<p>语法：<code>du [参数] [文件]</code></p>
 
-******************************************************
+<p>参数：</p>
 
-<span class="c1"># 创建和上面配置域名称对应的zone文件，放在directory的配置目录中</span>
-vim /var/named/localdomain.zone
-******************************************************
-<span class="nv">$TTL</span>    <span class="m">86400</span>
-@               IN SOA  localhost root.localhost <span class="o">(</span>
-                                        <span class="m">42</span>              <span class="p">;</span> serial <span class="o">(</span>d. adams<span class="o">)</span>
-                                        3H              <span class="p">;</span> refresh
-                                        15M             <span class="p">;</span> retry
-                                        1W              <span class="p">;</span> expiry
-                                        1D <span class="o">)</span>            <span class="p">;</span> minimum
-                IN NS           localhost
-localhost       IN A            127.0.0.1
-db-oracle-node1            IN A    192.168.33.103
-db-oracle-node2            IN A    192.168.33.104
-db-oracle-node1-vip        IN A    192.168.33.111
-db-oracle-node2-vip        IN A    192.168.33.112
-db-oracle-scan        IN A    192.168.33.120
-db-oracle-scan        IN A    192.168.33.121
-db-oracle-scan        IN A    192.168.33.122
-******************************************************
+<ul>
+<li><code>-s</code> &ldquo;summarize&rdquo;查看目标目录下文件占用空间总和</li>
+<li><code>-S</code> &ldquo;separate&rdquo;</li>
+<li><code>-h</code> &ldquo;human-readable&rdquo;使用人类易读方式显示容量，例如nK、nM等</li>
+<li><code>-a</code> &ldquo;all&rdquo;估算时包含隐藏文件和普通文件</li>
+<li><code>-m</code> 以M作为单位显示空间大小</li>
+</ul>
 
-vim /var/named/33.168.192.in-addr.arpa
-******************************************************
-<span class="nv">$ORIGIN</span> 33.168.192.in-addr.arpa.
-<span class="nv">$TTL</span> 1H
-@       IN      SOA     db-oracle-node1.localdomain.     root.db-oracle-node1.localdomain. <span class="o">(</span>      <span class="m">2</span>
-                                                3H
-                                                1H
-                                                1W
-                                                1H <span class="o">)</span>
-33.168.192.in-addr.arpa.         IN NS      db-oracle-node1.localdomain.
+<blockquote>
+<p>PS:</p>
 
-<span class="m">103</span>     IN PTR  db-oracle-node1.localdomain.
-<span class="m">104</span>     IN PTR  db-oracle-node2.localdomain.
-<span class="m">111</span>     IN PTR  db-oracle-node1-vip.localdomain.
-<span class="m">112</span>     IN PTR  db-oracle-node2-vip.localdomain.
-<span class="m">120</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">121</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">122</span>     IN PTR  db-oracle-node-scan.localdomain.
-******************************************************
-<span class="c1">## A记录和PTR记录</span>
-<span class="c1"># A记录是将domain解析成ip</span>
-<span class="c1"># PTR是将ip反解析成domain</span>
+<ul>
+<li>du查看的是文件占用空间大小，而ls是查看文件的实际大小。</li>
+<li>du默认查看的是文件夹，只有目标文件为文件或者加上-a参数时才会显示普通文件的占用空间大小。</li>
+</ul>
+</blockquote>
+<pre class="chroma"><span class="c1"># &#34;-a&#34;参数用法举例</span>
+<span class="c1"># 无&#34;-a&#34;参数时只显示目录占用空间</span>
+du -h .
+8.0K    ./d
+8.0K    ./c
+28K     .
+<span class="c1"># 此目录一共占用24K，而上面两个容量加起来才12K，是因为还有普通文件没统计进来</span>
+<span class="c1"># 之所以都是4.0K的整数倍，是因为磁盘最小的一块就是4K啊</span>
+
+<span class="c1"># 加上&#34;-a&#34;参数后，显示所有文件占用空间</span>
+du -ah .
+4.0K    ./d/e.txt
+8.0K    ./d
+4.0K    ./b.txt
+4.0K    ./c/f.txt
+8.0K    ./c
+4.0K    ./a.txt
+28K     .
+<span class="c1"># 此目录占用28K，而上面所有文件占用空间加起来是32K？</span>
+<span class="c1"># 因为此目录下面的子目录d和c的占用空间已经包含了其本身下面的文件占用的空间数，所以上面计算相当于重复计算了d和c目录下面的文件，所以才会出现这样情况</span>
+<span class="c1"># 若不计算此目录子目录下的文件，也就是不计算e.txt和f.txt的占用空间，计算出来的占用量是24K，差距的4K是因为此目录本身也需要占用去4K的磁盘空间</span>
+
+<span class="c1"># 最实用和常用的使用方法,参数&#34;-s&#34;</span>
+<span class="c1"># 需要知道此目录总共占用空间</span>
+du -sh .
+28K     .
+
+<span class="c1"># 需要知道此目录下第一层级目录和普通文件各自占用空间</span>
+du -sh ./*
+4.0K    ./a.txt
+4.0K    ./b.txt
+8.0K    ./c
+8.0K    ./d
+
+<span class="c1"># 这样的好处是汇总了目录的容量，不再重复显示目录下文件的单独占用空间，符合大多数情况下我们的使用需求</span>
 </pre>
-<h4>3) 启动dns服务</h4>
-<pre class="chroma">service named start
-chkconfig named on
+<h3>2.3 blkid</h3>
+
+<p>作用：输出存储设备的属性信息</p>
+
+<p>语法：<code>blkid [参数] [设备]</code></p>
+<pre class="chroma">blkid
+/dev/sda1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;619a84a7-7fb2-4ad0-9d8d-5860d14610a1&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;ext4&#34;</span>
+/dev/sda2: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;f354fcc9-2144-4b51-b55b-0727570e2450&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;ext4&#34;</span>
+/dev/sda3: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;2022d4bf-6e4a-4e94-a67b-112389296afa&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;swap&#34;</span>
+/dev/sda5: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;864ecee1-bb51-42f8-bb77-4ec3f86e09b0&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;ext4&#34;</span>
+/dev/sdb1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;4b9301b7-c2d8-4ee1-925a-58c7987bf72b&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;ext4&#34;</span>
+/dev/sdb2: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;230151ac-6f82-428e-9594-3c13f69f08b8&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;ext4&#34;</span>
+/dev/sdb3: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;91560800-aa5d-42a2-a3d4-b2aafc09ff78&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;xfs&#34;</span>
+
+blkid /dev/sdb3
+/dev/sdb3: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;91560800-aa5d-42a2-a3d4-b2aafc09ff78&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;xfs&#34;</span>
 </pre>
-<h4>4) 配置节点的dns</h4>
-<pre class="chroma"><span class="c1"># 节点上配置dns</span>
-vim /etc/resolv.conf
-******************************************************
-search localdomain
-nameserver 192.168.33.103
-******************************************************
+<h3>2.4 mount</h3>
+
+<p>作用：查看分区格式及挂载点</p>
+<pre class="chroma">mount <span class="p">|</span>grep sda
+/dev/sda2 on / <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+/dev/sda1 on /boot <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
+/dev/sda5 on /data <span class="nb">type</span> ext4 <span class="o">(</span>rw<span class="o">)</span>
 </pre>
-<h4>5) 检测oracle SCAN的解析</h4>
-<pre class="chroma"><span class="c1">## host命令解析db-oracle-scan</span>
-host db-oracle-scan
-db-oracle-scan.localdomain has address 192.168.33.120
-db-oracle-scan.localdomain has address 192.168.33.121
-db-oracle-scan.localdomain has address 192.168.33.122
-
-<span class="c1">## 检测SCAN的三个ip轮询</span>
-<span class="c1"># 第一次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-
-<span class="c1"># 第二次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-</pre>
-<h4>6) 检测每个节点的vip</h4>
-<pre class="chroma"><span class="c1"># 检测node1的vip</span>
-host db-oracle-node1-vip
-db-oracle-node1-vip.localdomain has address 192.168.33.111
-nslookup db-oracle-node1-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node1-vip.localdomain
-Address: 192.168.33.111
-
-<span class="c1"># 检测node2的vip</span>
-host db-oracle-node2-vip
-db-oracle-node2-vip.localdomain has address 192.168.33.112
-
-nslookup db-oracle-node2-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node2-vip.localdomain
-Address: 192.168.33.112
-</pre>
-<h4>7) 检测反向解析</h4>
-<pre class="chroma"><span class="c1">## 检测反向解析</span>
-dig -x 192.168.33.120
-
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.8.2rc1-RedHat-9.8.2-0.47.rc1.el6_8.3 &lt;&lt;&gt;&gt; -x 192.168.33.120
-<span class="p">;</span><span class="p">;</span> global options: +cmd
-<span class="p">;</span><span class="p">;</span> Got answer:
-<span class="p">;</span><span class="p">;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">48957</span>
-<span class="p">;</span><span class="p">;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: <span class="m">1</span>
-
-<span class="p">;</span><span class="p">;</span> QUESTION SECTION:
-<span class="p">;</span>120.33.168.192.in-addr.arpa.   IN      PTR
-
-<span class="p">;</span><span class="p">;</span> ANSWER SECTION:
-120.33.168.192.in-addr.arpa. <span class="m">3600</span> IN    PTR     db-oracle-node-scan.localdomain.
-
-<span class="p">;</span><span class="p">;</span> AUTHORITY SECTION:
-33.168.192.in-addr.arpa. <span class="m">3600</span>   IN      NS      db-oracle-node1.localdomain.
-
-<span class="p">;</span><span class="p">;</span> ADDITIONAL SECTION:
-db-oracle-node1.localdomain. <span class="m">86400</span> IN   A       192.168.33.103
-
-<span class="p">;</span><span class="p">;</span> Query time: <span class="m">0</span> msec
-<span class="p">;</span><span class="p">;</span> SERVER: 192.168.33.103#53<span class="o">(</span>192.168.33.103<span class="o">)</span>
-<span class="p">;</span><span class="p">;</span> WHEN: Fri Dec <span class="m">23</span> 02:39:47 <span class="m">2016</span>
-<span class="p">;</span><span class="p">;</span> MSG SIZE  rcvd: <span class="m">136</span>
-</pre>
-<p>至此，我们提供了以下项目的ip解析</p>
-
-<table>
-<thead>
-<tr>
-<th>ip</th>
-<th>hostname</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>192.168.33.120</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.121</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.122</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.103</td>
-<td>db-oracle-node1</td>
-</tr>
-
-<tr>
-<td>192.168.33.104</td>
-<td>db-oracle-node2</td>
-</tr>
-
-<tr>
-<td>192.168.33.111</td>
-<td>db-oracle-node1-vip</td>
-</tr>
-
-<tr>
-<td>192.168.33.112</td>
-<td>db-oracle-node2-vip</td>
-</tr>
-</tbody>
-</table>
-
     </div>
 
   </div>

@@ -118,11 +118,15 @@
                     <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
                     <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
                     <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
-                    <li><a href="/linux/basic/07.2.0_磁盘管理-分区.html">7.2.0: 磁盘管理-分区</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
                     <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
                     <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
                     <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
                     <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
                     <li><a href="/linux/basic/10.2.2_软件安装-gcc升级.html">10.2.2: 软件安装-gcc升级</a></li>
                     <li><a href="/linux/basic/13.1.0_脚本基础-什么是脚本.html">13.1.0: 脚本基础-什么是脚本</a></li>
                     <li><a href="/linux/basic/13.2.0_脚本基础-date用法.html">13.2.0: 脚本基础-date用法</a></li>
@@ -227,7 +231,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>7.2.0: 磁盘管理-分区</h2>
+      <h2>7.2.0: 磁盘管理 - 分区工具 fdisk,parted</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -237,18 +241,22 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h4>1、磁盘分区</h4>
+<h2>1. 磁盘分区工具</h2>
 
-<p>1.1 fdisk<br />
-作用：查看磁盘情况、管理磁盘分区<br />
-语法：<br />
-查看磁盘状态<br />
-<code>fdisk -l [磁盘名称]</code>
-进入fdisk工具界面执行分区操作<br />
-<code>fdisk 磁盘名称</code></p>
+<h3>1.1 <code>fdisk</code></h3>
 
-<p>fdisk工具箱用法：<br />
-&ldquo;fdisk 磁盘名称&rdquo;进入fdisk工具，其中选项：</p>
+<p>作用：查看磁盘情况、管理磁盘分区</p>
+
+<p>语法：</p>
+
+<ul>
+<li>查看磁盘状态: <code>fdisk -l [磁盘名称]</code></li>
+<li>进入fdisk工具界面: <code>fdisk 磁盘名称</code></li>
+</ul>
+
+<p>fdisk工具箱用法：&rdquo;fdisk 磁盘名称&rdquo;进入fdisk工具</p>
+
+<p>fdisk工具箱选项：</p>
 
 <ul>
 <li>m 帮助，列出所有选项及其解释</li>
@@ -258,6 +266,8 @@
 <li>w &ldquo;write&rdquo;讲创建的分区表写入磁盘</li>
 <li>q &ldquo;quit&rdquo;退出</li>
 </ul>
+
+<p><strong>进入fdisk工具箱</strong></p>
 <pre class="chroma"><span class="c1"># 进入fdisk工具箱</span>
 fdisk /dev/sdb
 Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
@@ -270,9 +280,9 @@ After that, of course, the previous content won<span class="s1">&#39;t be recove
 </span><span class="s1">WARNING: DOS-compatible mode is deprecated. It&#39;</span>s strongly recommended to
          switch off the mode <span class="o">(</span><span class="nb">command</span> <span class="s1">&#39;c&#39;</span><span class="o">)</span> and change display units to
          sectors <span class="o">(</span><span class="nb">command</span> <span class="s1">&#39;u&#39;</span><span class="o">)</span>.
-
-<span class="c1"># 新建主分区sdb1</span>
-Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+</pre>
+<p><strong>新建主分区sdb1</strong></p>
+<pre class="chroma">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
 Command action
    e   extended
    p   primary partition <span class="o">(</span>1-4<span class="o">)</span>
@@ -281,9 +291,9 @@ Partition number <span class="o">(</span>1-4<span class="o">)</span>: <span clas
 First cylinder <span class="o">(</span>1-1305, default 1<span class="o">)</span>:
 Using default value <span class="m">1</span>
 Last cylinder, +cylinders or +size<span class="o">{</span>K,M,G<span class="o">}</span> <span class="o">(</span>1-1305, default 1305<span class="o">)</span>: +5G
-
-<span class="c1"># 打印目前分区情况</span>
-Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+</pre>
+<p><strong>打印目前分区情况</strong></p>
+<pre class="chroma">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
 
 Disk /dev/sdb: 10.7 GB, <span class="m">10737418240</span> bytes
 <span class="m">255</span> heads, <span class="m">63</span> sectors/track, <span class="m">1305</span> cylinders
@@ -303,8 +313,9 @@ Syncing disks.
 </pre>
 <hr />
 
-<p>1.2 parted<br />
-作用：</p>
+<h3>1.2 <code>parted</code></h3>
+
+<p>作用：</p>
 
 <ul>
 <li>查看磁盘情况<br />
@@ -323,28 +334,22 @@ Syncing disks.
 <li>parted是实时分区，而fdisk在输入w命令后才开始写入分区表。</li>
 </ul>
 
-<p>语法：<br />
-查看磁盘信息</p>
-<pre class="chroma">parted -l
-parted dev_name print
-parted dev_name unit mb print
-parted dev_name unit gb print
-</pre>
-<p>主要语法<br />
-<code>parted dev_name  [command [参数]]</code></p>
+<p>语法: <code>parted dev_name  [command [参数]]</code></p>
 
 <p>交互模式常用选项（由help命令可列出）：</p>
 
 <ul>
-<li>select 选择需要操作的disk(select /dev/sdb);</li>
-<li>mkpart 分区类型 [FS-TYPE] START END 分区命令(mkpart primary ext4 0GB 2GB)；</li>
-<li>print 显示磁盘分区信息；</li>
-<li>rm NUMBER 按照分区号码删除分区（rm 5），number可以用print看出；</li>
-<li>quit 退出parted工具。</li>
+<li><code>select DEVICE_NAME</code> 选择需要操作的disk(select /dev/sdb);</li>
+<li><code>mkpart PARTATION_TYPE [FORMART] START END</code> 分区命令(mkpart primary ext4 0GB 2GB)；</li>
+<li><code>print</code> 显示磁盘分区信息；</li>
+<li><code>rm NUMBER</code> 按照分区号码删除分区（rm 5），number可以用print看出；</li>
+<li><code>quit</code> 退出parted工具。</li>
 </ul>
-
-<p>用法举例：</p>
 <pre class="chroma"><span class="c1"># 查看磁盘情况</span>
+<span class="c1"># parted -l</span>
+<span class="c1"># parted dev_name print</span>
+<span class="c1"># parted dev_name unit mb print</span>
+<span class="c1"># parted dev_name unit gb print</span>
 parted /dev/sdb unit gb print
 Model: ATA CentOS6-1 SSD <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sdb: 5.37GB
@@ -387,9 +392,11 @@ Number  Start   End     Size   File system  Name     Flags
  <span class="m">2</span>      1000MB  2000MB  999MB               primaryPS:
 </pre>
 <blockquote>
-<p>超过2T的硬盘如果不希望容量浪费（MBR最大识别2T），只能将磁盘转化成GPT格式；<br />
-传统系统盘是BIOS+MBR，如果希望GPT做系统盘，linux下需要UEFI替代BIOS，采用UEFI+GPT的方式；<br />
-MBR分区表占64字节，采用主+扩展&lt;=4，而GPT只有16字节，类似于扩展分区，真正起作用的分区表在512字节之后，因此对GPT分区表来说是没有4个主分区的限制。</p>
+<p>超过2T的硬盘如果不希望容量浪费（MBR最大识别2T），只能将磁盘转化成GPT格式；</p>
+
+<p>传统系统盘是BIOS+MBR，如果希望GPT做系统盘，linux下需要UEFI替代BIOS，采用UEFI+GPT的方式；</p>
+
+<p>MBR分区表占64字节，采用主+扩展&lt;=4，而GPT只有16字节，类似于扩展分区，真正起作用的分区表在512字节之后，因此对GPT分区表来说是没有4个主分区的限制。</p>
 </blockquote>
 
     </div>

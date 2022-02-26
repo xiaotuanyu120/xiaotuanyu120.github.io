@@ -231,265 +231,375 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>31.1.0: DNS服务</h2>
+      <h2>9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>02 Feb 2015</p>
+        <p>01 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 参考连接</h3>
+<h2>1. <code>gzip</code></h2>
+
+<p>作用：压缩及解压缩文件，压缩文件后缀名为&rdquo;.gz&rdquo;</p>
+
+<p>语法: <code>gzip [参数] filename</code></p>
+
+<p>参数：</p>
 
 <ul>
-<li><a href="https://blog.dnsimple.com/2014/01/why-alias-record/">链接1</a></li>
-<li><a href="https://support.dnsimple.com/articles/differences-between-a-cname-alias-url/">链接2</a></li>
+<li><code>-c</code> 将源文件做标准输出，源文件保留</li>
+<li><code>-n</code> n为数字代表压缩级别，默认为6（1-9），1最快，9压缩比最好</li>
+<li><code>-d</code> 解压缩的参数</li>
 </ul>
 
-<hr />
+<p>压缩文件内容查看命令：<code>zcat file.gz</code></p>
 
-<h3>1. 各种记录介绍</h3>
+<blockquote>
+<p>PS：</p>
 
 <ul>
-<li>A记录, 把域名map到ip地址<br />
+<li>gzip压缩和解压后</li>
+<li>默认源文件会消失</li>
+<li>不支持压缩目录</li>
+</ul>
+</blockquote>
+<pre class="chroma"><span class="c1"># 用-c保留源文件</span>
+gzip -c pass &gt; pass.gz
+du -sh pass*
+8.0K    pass
+4.0K    pass.gz
+
+<span class="c1"># 同时压缩或解压缩多个文件</span>
+gzip t1 t2 t3 t4 t5 t6
+ls t*
+t1.gz  t2.gz  t3.gz  t4.gz  t5.gz  t6.gz
+
+gzip -d t1.gz t2.gz t3.gz t4.gz t5.gz t6.gz
+ls t*
+t1  t2  t3  t4  t5  t6
+</pre>
+<hr />
+
+<h2>2. <code>bzip2</code></h2>
+
+<p>作用：压缩及解压缩文件，压缩文件后缀名为&rdquo;.bz2&rdquo;</p>
+
+<p>语法： <code>bzip2 [参数] filename</code></p>
+
+<p>参数：</p>
+
+<ul>
+<li><code>-d</code> 解压缩参数</li>
+<li><code>-k</code> 压缩及解压缩时都保留源文件</li>
+</ul>
+
+<p>压缩文件内容查看命令：bzcat file.bz2</p>
+
+<blockquote>
+<p>PS：</p>
+
+<ul>
+<li>压缩效果好过gzip，但效果资源更多，压缩效果并不绝对；</li>
+<li>bzip2压缩及解压缩后，默认源文件消失；</li>
+<li>不支持压缩目录<br />
 </li>
-<li>CNAME,
-把域名map到另外的域名上，访问时返回该域名，然后继续解析返回的域名
-但是，当你对此域名做cname后，不可以对此域名继续做其他任何形式的解析
-<a href="https://tools.ietf.org/html/rfc1912#section-2.4">https://tools.ietf.org/html/rfc1912#section-2.4</a></li>
-<li>alias,把域名map到X域名上，跟cname不同的是，它可以与其他针对于此域名的记录共存</li>
-<li>url,把域名301重定向到目标域名上</li>
 </ul>
+</blockquote>
+<pre class="chroma"><span class="c1"># 用-k参数保留源文件</span>
+bzip2 -k pass
+du -sh pass*
+8.0K    pass
+4.0K    pass.bz2
+
+<span class="c1"># 同时压缩或解压缩多个文件</span>
+bzip2 t1 t2 t3 t4 t5 t6
+ls t*
+t1.bz2  t2.bz2  t3.bz2  t4.bz2  t5.bz2  t6.bz2
+
+bzip2 -d t1.bz2 t2.bz2 t3.bz2 t4.bz2 t5.bz2 t6.bz2
+ls t*
+t1  t2  t3  t4  t5  t6
+</pre>
+<hr />
+
+<h2>3. <code>xz</code></h2>
+
+<p>作用：压缩及解压缩文件，后缀名为&rdquo;.xz&rdquo;</p>
+
+<p>安装方法：<code>yum install -y xz</code></p>
+
+<p>语法：<code>xz [参数] filename</code></p>
+
+<p>参数：</p>
+
+<ul>
+<li><code>-d</code> 解压缩参数</li>
+<li><code>-c</code> 将源文件做标准输出，源文件保留</li>
+<li><code>-k</code> 压缩及解压缩时都保留源文件</li>
+</ul>
+
+<p>压缩文件内容查看命令：xzcat file.xz</p>
+
+<blockquote>
+<p>PS：</p>
+
+<ul>
+<li>xz压缩及解压缩后，默认源文件消失；</li>
+<li>不支持压缩目录；</li>
+<li>支持压缩多个文件<br />
+</li>
+</ul>
+</blockquote>
 
 <hr />
 
-<h3>2. oracle RAC使用dns来实现SCAN功能实战</h3>
+<h2>4. <code>zip/unzip</code></h2>
 
-<h4>1) 安装dns</h4>
-<pre class="chroma"><span class="c1"># node1上执行此命令</span>
-yum install bind-libs <span class="nb">bind</span> bind-utils
+<p>作用：压缩及解压缩文件，后缀名为&rdquo;.zip&rdquo;</p>
+
+<p>安装方式：<code>yum install -y zip/unzip(需要分别安装)</code></p>
+
+<p>语法：</p>
+
+<ul>
+<li>压缩文件：<code>zip file.zip file</code><br />
+</li>
+<li>解压缩：<code>unzip file.zip</code><br />
+</li>
+</ul>
+
+<p>参数：</p>
+
+<ul>
+<li><code>-m</code> &ldquo;move&rdquo;压缩源文件并删除</li>
+<li><code>-b</code> 跟path，指定压缩过程临时使用的文件夹，并不是说要把压缩文件放在那里</li>
+<li><code>-d</code> &ldquo;delete&rdquo;从压缩文件内删除指定文件(<code>zip -d file.zip deletefile1 deletefile2</code>)</li>
+<li><code>-r</code> 压缩目录（<code>zip -r dir.zip dir/</code>)
+压缩文件内容查看命令：unzip -v file.zip</li>
+</ul>
+
+<blockquote>
+<p>PS：</p>
+
+<ul>
+<li>不会删除源文件；</li>
+<li>多用于windows和linux互传文件</li>
+<li>可同时压缩多个文件<br />
+</li>
+</ul>
+</blockquote>
+<pre class="chroma"><span class="c1"># -m参数压缩时会删除源文件</span>
+zip -m t1.zip t1
+  adding: t1 <span class="o">(</span>stored 0%<span class="o">)</span>
+ls t1
+ls: cannot access t1: No such file or directory
+
+<span class="c1"># -v查看压缩文件内容</span>
+unzip -v t.zip
+Archive:  t.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:32 <span class="m">00000000</span>  t1
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:32 <span class="m">00000000</span>  t2
+      <span class="m">98</span>  Defl:N       <span class="m">12</span>  88% 12-02-2014 23:45 828c4283  t3
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:35 <span class="m">00000000</span>  t4
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:37 <span class="m">00000000</span>  t5
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:37 <span class="m">00000000</span>  t6
+--------          -------  ---                            -------
+      <span class="m">98</span>               <span class="m">12</span>  88%                            <span class="m">6</span> files
+
+<span class="c1"># -d参数删除压缩文件内的指定文件</span>
+zip -d t.zip t1 t2
+deleting: t1
+deleting: t2
+
+unzip -v t.zip
+Archive:  t.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+      <span class="m">98</span>  Defl:N       <span class="m">12</span>  88% 12-02-2014 23:45 828c4283  t3
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:35 <span class="m">00000000</span>  t4
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:37 <span class="m">00000000</span>  t5
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 12-02-2014 22:37 <span class="m">00000000</span>  t6
+--------          -------  ---                            -------
+      <span class="m">98</span>               <span class="m">12</span>  88%                            <span class="m">4</span> files
+
+<span class="c1"># 压缩目录必须加-r，才可以压缩目录内容</span>
+tree a
+a
+└── a.txt
+
+<span class="m">0</span> directories, <span class="m">1</span> file
+
+<span class="c1"># 不加-r压缩目录</span>
+zip a.zip a
+  adding: a/ <span class="o">(</span>stored 0%<span class="o">)</span>
+
+unzip -v a.zip
+Archive:  a.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 05-04-2016 05:56 <span class="m">00000000</span>  a/
+--------          -------  ---                            -------
+       <span class="m">0</span>                <span class="m">0</span>   0%                            <span class="m">1</span> file
+
+<span class="c1"># 加-r压缩目录</span>
+zip -r a.zip a
+  adding: a/ <span class="o">(</span>stored 0%<span class="o">)</span>
+  adding: a/a.txt <span class="o">(</span>stored 0%<span class="o">)</span>
+
+unzip -v a1.zip
+Archive:  a1.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 05-04-2016 05:56 <span class="m">00000000</span>  a/
+       <span class="m">0</span>  Stored        <span class="m">0</span>   0% 05-04-2016 05:56 <span class="m">00000000</span>  a/a.txt
+--------          -------  ---                            -------
+       <span class="m">0</span>                <span class="m">0</span>   0%                            <span class="m">2</span> files
 </pre>
-<h4>2) 配置dns</h4>
-<pre class="chroma"><span class="c1"># 主配文件</span>
-vim /etc/named.conf
-******************************************************
-options <span class="o">{</span>
-        <span class="c1"># 配置dns服务监听的端口和ip</span>
-        listen-on port <span class="m">53</span> <span class="o">{</span> 127.0.0.1<span class="p">;</span> 192.168.33.103<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># zone配置所在目录(保持默认)</span>
-        directory       <span class="s2">&#34;/var/named&#34;</span><span class="p">;</span>
-        ...
-        <span class="c1"># 允许使用dns服务的ip及ip段</span>
-        allow-query     <span class="o">{</span> localhost<span class="p">;</span> 127.0.0.1<span class="p">;</span> 192.168.33.0/24<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-        ...
-        <span class="c1"># 此dns无法解析的，去哪里继续查询，这里指定局域网的公用dns</span>
-        forwarders <span class="o">{</span>192.168.33.1<span class="p">;</span> 10.0.0.4<span class="p">;</span><span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<hr />
 
-<span class="c1"># 增加正向解析规则，localdomain是我的测试环境，需要更新到正式环境所在的域</span>
-zone <span class="s2">&#34;localdomain.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;localdomain.zone&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<h2>5. <code>tar</code></h2>
 
-<span class="c1"># 增加反向解析规则</span>
-zone <span class="s2">&#34;33.168.192.in-addr.arpa.&#34;</span> IN <span class="o">{</span>
-        <span class="nb">type</span> master<span class="p">;</span>
-        file <span class="s2">&#34;33.168.192.in-addr.arpa&#34;</span><span class="p">;</span>
-        allow-update <span class="o">{</span> none<span class="p">;</span> <span class="o">}</span><span class="p">;</span>
-<span class="o">}</span><span class="p">;</span>
+<p>作用：将目录或文件打包的工具，后缀名为&rdquo;.tar&rdquo;<br />
+语法：<code>tar [参数] file</code><br />
+参数：</p>
 
-******************************************************
+<ul>
+<li><p>主参数</p>
 
-<span class="c1"># 创建和上面配置域名称对应的zone文件，放在directory的配置目录中</span>
-vim /var/named/localdomain.zone
-******************************************************
-<span class="nv">$TTL</span>    <span class="m">86400</span>
-@               IN SOA  localhost root.localhost <span class="o">(</span>
-                                        <span class="m">42</span>              <span class="p">;</span> serial <span class="o">(</span>d. adams<span class="o">)</span>
-                                        3H              <span class="p">;</span> refresh
-                                        15M             <span class="p">;</span> retry
-                                        1W              <span class="p">;</span> expiry
-                                        1D <span class="o">)</span>            <span class="p">;</span> minimum
-                IN NS           localhost
-localhost       IN A            127.0.0.1
-db-oracle-node1            IN A    192.168.33.103
-db-oracle-node2            IN A    192.168.33.104
-db-oracle-node1-vip        IN A    192.168.33.111
-db-oracle-node2-vip        IN A    192.168.33.112
-db-oracle-scan        IN A    192.168.33.120
-db-oracle-scan        IN A    192.168.33.121
-db-oracle-scan        IN A    192.168.33.122
-******************************************************
+<ul>
+<li><code>-c</code> 表示建立包</li>
+<li><code>-x</code> 表示拆包</li>
+<li><code>-t</code> 查看包</li>
+</ul></li>
 
-vim /var/named/33.168.192.in-addr.arpa
-******************************************************
-<span class="nv">$ORIGIN</span> 33.168.192.in-addr.arpa.
-<span class="nv">$TTL</span> 1H
-@       IN      SOA     db-oracle-node1.localdomain.     root.db-oracle-node1.localdomain. <span class="o">(</span>      <span class="m">2</span>
-                                                3H
-                                                1H
-                                                1W
-                                                1H <span class="o">)</span>
-33.168.192.in-addr.arpa.         IN NS      db-oracle-node1.localdomain.
+<li><p>次要参数</p>
 
-<span class="m">103</span>     IN PTR  db-oracle-node1.localdomain.
-<span class="m">104</span>     IN PTR  db-oracle-node2.localdomain.
-<span class="m">111</span>     IN PTR  db-oracle-node1-vip.localdomain.
-<span class="m">112</span>     IN PTR  db-oracle-node2-vip.localdomain.
-<span class="m">120</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">121</span>     IN PTR  db-oracle-node-scan.localdomain.
-<span class="m">122</span>     IN PTR  db-oracle-node-scan.localdomain.
-******************************************************
-<span class="c1">## A记录和PTR记录</span>
-<span class="c1"># A记录是将domain解析成ip</span>
-<span class="c1"># PTR是将ip反解析成domain</span>
+<ul>
+<li><code>-v</code>, 显示打包过程</li>
+<li><code>-f</code>, 后面跟包文件路径及包名称, -f后面必须紧跟路径及名称，中间有空格，此参数一般放在最后面</li>
+<li><code>--exclude</code>, 可以在打包的时候，排除某些文件或者目录</li>
+<li>排除单个文件或者目录：<code>tar  -czvf 1.tar.gz --exclude 1.txt dir/</code></li>
+<li>排除多个文件或者目录: <code>tar -czvf 1.tar.gz --exclude 1.txt --exclude 123/ dir/</code></li>
+<li><code>-h (--dereference)</code>,打包软连接指向的文件而不是打包软连接本身</li>
+<li><code>--hard-dereference</code>，打包硬链接指向的文件而不是硬链接本身</li>
+<li><code>-P</code> 原本默认的是相对路径，加上-P后是绝对路径</li>
+</ul></li>
+
+<li><p>解压缩相关参数</p>
+
+<ul>
+<li><code>-z</code> 表示打包的同时使用gzip工具将其压缩，后缀名为&rdquo;.tar.gz&rdquo;</li>
+<li><code>-j</code> 表示打包的同时使用bzip2工具将其压缩，后缀名为&rdquo;.tar.bz2&rdquo;</li>
+<li><code>-J</code> 表示打包的同时使用xz工具将其压缩，后缀名为&rdquo;.tar.xz&rdquo;</li>
+<li><code>-C</code> 制定解压目录</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>ps：</p>
+
+<ul>
+<li>tar命令会覆盖文件，不会提示<br />
+</li>
+<li>参数前面的-可加可不加，强烈建议养成加-的习惯<br />
+</li>
+<li>gzip和bzip2单独不可对目录压缩，但是配合打包可以压缩目录。<br />
+</li>
+<li>不管是打包还是解包，原来的文件是不会删除的，但它会覆盖当前已经存在的文件或者目录。<br />
+</li>
+</ul>
+</blockquote>
+<pre class="chroma"><span class="c1">## 基础用法</span>
+<span class="c1"># -c打包，-t查看包内容，-f紧跟压缩包名称</span>
+tar -czf t.tar.gz t1 t2 t3 t4
+tar -tzf t.tar.gz
+t1
+t2
+t3
+t4
+
+<span class="c1"># -x解压包，-C制定解压目录</span>
+tar -xzf t.tar.gz -C tardir
+ls tardir
+t1  t2  t3  t4
+
+<span class="c1">## --exclude的用法</span>
+ls <span class="p">|</span>xargs -i cp <span class="o">{</span><span class="o">}</span> <span class="o">{</span><span class="o">}</span>.bak
+ls <span class="p">|</span>xargs -i cp <span class="o">{</span><span class="o">}</span> <span class="o">{</span><span class="o">}</span>.log
+ls
+t1      t1.bak.log  t2      t2.bak.log  t3      t3.bak.log
+t1.bak  t1.log      t2.bak  t2.log      t3.bak  t3.log
+
+<span class="c1"># 指定文件排除</span>
+tar -czf b.tar.gz t1 t2 t3 --exclude t3
+tar -tzf b.tar.gz
+t1
+t2
+<span class="c1"># 利用通配排除以&#34;.log&#34;结尾的，通配用法中需要用双引号哦</span>
+tar -czf a.tar.gz ./* --exclude <span class="s2">&#34;*.log&#34;</span>
+tar -tzf a.tar .gz
+./t1
+./t1.bak
+./t2
+./t2.bak
+./t3
+./t3.bak
+
+<span class="c1">## 不常用用法</span>
+<span class="c1"># 去除绝对路径（为了安全，避免tar解压覆盖目录）</span>
+<span class="c1"># 打包/etc目录内容，会提示去除了根绝对路径</span>
+tar -czf q.tar /etc/*
+tar: Removing leading <span class="s1">&#39;/&#39;</span> from member names
+<span class="c1"># -P是改变相对路径为绝对路径，危险，慎用。</span>
+
+
+<span class="c1">## tar解压覆盖文件研究</span>
+<span class="c1"># 第一种情况:</span>
+<span class="c1"># tar命令使用时忘记写压缩包名称，产生的文件覆盖</span>
+cat t1
+line <span class="m">1</span>
+
+cat t2
+line <span class="m">1</span>
+line <span class="m">2</span>
+
+tar -cvf t1 t2
+t2
+cat t1
+t20000644000000000000000000000001612712424445010026 0ustar  rootrootline <span class="m">1</span>
+line <span class="m">2</span>
+
+<span class="c1"># 第二种情况：</span>
+<span class="c1"># tar解压文件时，会自动覆盖解压目录下的同名文件</span>
+cat t1
+line <span class="m">1</span>
+
+cat t2
+line <span class="m">1</span>
+line <span class="m">2</span>
+
+tar cvf t.tar t1 t2
+t1
+t2
+
+<span class="nb">echo</span> <span class="s2">&#34;new line&#34;</span> &gt;&gt; t1
+
+cat t1
+line <span class="m">1</span>
+new line
+
+tar xvf t.tar
+t1
+t2
+
+cat t1
+line <span class="m">1</span>
 </pre>
-<h4>3) 启动dns服务</h4>
-<pre class="chroma">service named start
-chkconfig named on
-</pre>
-<h4>4) 配置节点的dns</h4>
-<pre class="chroma"><span class="c1"># 节点上配置dns</span>
-vim /etc/resolv.conf
-******************************************************
-search localdomain
-nameserver 192.168.33.103
-******************************************************
-</pre>
-<h4>5) 检测oracle SCAN的解析</h4>
-<pre class="chroma"><span class="c1">## host命令解析db-oracle-scan</span>
-host db-oracle-scan
-db-oracle-scan.localdomain has address 192.168.33.120
-db-oracle-scan.localdomain has address 192.168.33.121
-db-oracle-scan.localdomain has address 192.168.33.122
-
-<span class="c1">## 检测SCAN的三个ip轮询</span>
-<span class="c1"># 第一次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-
-<span class="c1"># 第二次请求</span>
-nslookup db-oracle-scan
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.121
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.122
-Name:   db-oracle-scan.localdomain
-Address: 192.168.33.120
-</pre>
-<h4>6) 检测每个节点的vip</h4>
-<pre class="chroma"><span class="c1"># 检测node1的vip</span>
-host db-oracle-node1-vip
-db-oracle-node1-vip.localdomain has address 192.168.33.111
-nslookup db-oracle-node1-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node1-vip.localdomain
-Address: 192.168.33.111
-
-<span class="c1"># 检测node2的vip</span>
-host db-oracle-node2-vip
-db-oracle-node2-vip.localdomain has address 192.168.33.112
-
-nslookup db-oracle-node2-vip
-Server:         192.168.33.103
-Address:        192.168.33.103#53
-
-Name:   db-oracle-node2-vip.localdomain
-Address: 192.168.33.112
-</pre>
-<h4>7) 检测反向解析</h4>
-<pre class="chroma"><span class="c1">## 检测反向解析</span>
-dig -x 192.168.33.120
-
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.8.2rc1-RedHat-9.8.2-0.47.rc1.el6_8.3 &lt;&lt;&gt;&gt; -x 192.168.33.120
-<span class="p">;</span><span class="p">;</span> global options: +cmd
-<span class="p">;</span><span class="p">;</span> Got answer:
-<span class="p">;</span><span class="p">;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">48957</span>
-<span class="p">;</span><span class="p">;</span> flags: qr aa rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: <span class="m">1</span>
-
-<span class="p">;</span><span class="p">;</span> QUESTION SECTION:
-<span class="p">;</span>120.33.168.192.in-addr.arpa.   IN      PTR
-
-<span class="p">;</span><span class="p">;</span> ANSWER SECTION:
-120.33.168.192.in-addr.arpa. <span class="m">3600</span> IN    PTR     db-oracle-node-scan.localdomain.
-
-<span class="p">;</span><span class="p">;</span> AUTHORITY SECTION:
-33.168.192.in-addr.arpa. <span class="m">3600</span>   IN      NS      db-oracle-node1.localdomain.
-
-<span class="p">;</span><span class="p">;</span> ADDITIONAL SECTION:
-db-oracle-node1.localdomain. <span class="m">86400</span> IN   A       192.168.33.103
-
-<span class="p">;</span><span class="p">;</span> Query time: <span class="m">0</span> msec
-<span class="p">;</span><span class="p">;</span> SERVER: 192.168.33.103#53<span class="o">(</span>192.168.33.103<span class="o">)</span>
-<span class="p">;</span><span class="p">;</span> WHEN: Fri Dec <span class="m">23</span> 02:39:47 <span class="m">2016</span>
-<span class="p">;</span><span class="p">;</span> MSG SIZE  rcvd: <span class="m">136</span>
-</pre>
-<p>至此，我们提供了以下项目的ip解析</p>
-
-<table>
-<thead>
-<tr>
-<th>ip</th>
-<th>hostname</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>192.168.33.120</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.121</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.122</td>
-<td>db-oracle-node-scan</td>
-</tr>
-
-<tr>
-<td>192.168.33.103</td>
-<td>db-oracle-node1</td>
-</tr>
-
-<tr>
-<td>192.168.33.104</td>
-<td>db-oracle-node2</td>
-</tr>
-
-<tr>
-<td>192.168.33.111</td>
-<td>db-oracle-node1-vip</td>
-</tr>
-
-<tr>
-<td>192.168.33.112</td>
-<td>db-oracle-node2-vip</td>
-</tr>
-</tbody>
-</table>
-
     </div>
 
   </div>
