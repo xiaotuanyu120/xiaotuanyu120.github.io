@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
+            </li>
+            <li>
+              <a href="/service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache 配置: 可以把ServerName和ServerAlias配置为IP吗？</a>
+            </li>
+            <li>
+              <a href="/linux/advance/performance_01_io_limit.html">performance: 限制进程的IO消耗</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/haproxy/index.html">haproxy</a>
+                  <ul>
+                    <li><a href="/service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a></li>
+                    <li><a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/product_issues/index.html">product_issues</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>haproxy: 使用docker-compose启动haproxy</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>24 Mar 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 使用docker-compose启动haproxy</h2>
+<pre class="chroma"><span class="nv">DOCKER_YML_DIR</span><span class="o">=</span>/data/docker/yml
+<span class="nv">DOCKER_RUNTIME_DIR</span><span class="o">=</span>/data/docker/runtime
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_YML_DIR</span><span class="si">}</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YML_DIR}/docker-compose-haproxy.yml
+</span><span class="s">version: &#39;3&#39;
+</span><span class="s">services:
+</span><span class="s">  haproxy:
+</span><span class="s">    container_name: haproxy
+</span><span class="s">    image: haproxy
+</span><span class="s">    ports:
+</span><span class="s">      - 443:6443
+</span><span class="s">    volumes:
+</span><span class="s">      - /data/docker/runtime/haproxy/etc/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+</span><span class="s">EOF</span>
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>/haproxy/etc
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_RUNTIME_DIR}/haproxy/etc/haproxy.cfg
+</span><span class="s">frontend front
+</span><span class="s">  bind 0.0.0.0:6443
+</span><span class="s">  mode tcp
+</span><span class="s">  option tcplog
+</span><span class="s">  timeout client 1h
+</span><span class="s">  default_backend back
+</span><span class="s">
+</span><span class="s">backend back
+</span><span class="s">  mode tcp
+</span><span class="s">  timeout server 1h
+</span><span class="s">  option tcplog
+</span><span class="s">  option tcp-check
+</span><span class="s">  balance roundrobin
+</span><span class="s">  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+</span><span class="s">  server RS1 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">  server RS2 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">  server RS3 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">EOF</span>
+
+docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

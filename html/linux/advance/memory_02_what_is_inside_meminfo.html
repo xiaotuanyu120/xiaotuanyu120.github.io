@@ -34,6 +34,12 @@
           <ul>
 
             <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
+            </li>
+            <li>
               <a href="/service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache 配置: 可以把ServerName和ServerAlias配置为IP吗？</a>
             </li>
             <li>
@@ -41,12 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a>
-            </li>
-            <li>
-              <a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
-            </li>
-            <li>
-              <a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
             </li>
           </ul>
 
@@ -244,26 +244,26 @@
 <li><code>Bounce</code> (since Linux 2.6.18)，用于块设备“反弹缓冲区”的内存。</li>
 <li><code>WritebackTmp</code> (since Linux 2.6.26)，FUSE 用于临时回写缓冲区的内存。</li>
 <li><code>CommitLimit</code> (since Linux 2.6.10)，当前系统可以分配的内存。仅当严格的overcommit accounting启用时（<code>/proc/sys/vm/overcommit_memory</code>为mode 2）此指标才有效。</li>
-<li><code>Committed_AS</code></li>
-<li><code>VmallocTotal</code></li>
-<li><code>VmallocUsed</code></li>
-<li><code>VmallocChunk</code></li>
+<li><code>Committed_AS</code>，系统上当前分配的内存总量。是分配给所有进程的内存量的总和，即使仅仅是分配给进程却并未被使用的。举例，一个进程分配了1G内存，使用了其中300M，这1G内存是这个进程随时可使用的内存。严格过度使用模式下(/proc/sys/vm/overcommit_memory中的mode 2)，超过CommitLimit的分配不会被准许。这有利于保证进程不会因为内存已分配，却因为内存不足的情况导致的错误。</li>
+<li><code>VmallocTotal</code>，vmalloc内存区域的总量。</li>
+<li><code>VmallocUsed</code>，vmalloc内存区域的使用量。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）</li>
+<li><code>VmallocChunk</code>，vmalloc区域的最大连续空闲连续块。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）</li>
 <li><code>HardwareCorrupted</code> (since Linux 2.6.32)(CONFIG_MEMORY_FAILURE is required.)</li>
-<li><code>LazyFree</code> (since Linux 4.12)</li>
-<li><code>AnonHugePages</code> (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>ShmemHugePages</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>ShmemPmdMapped</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>CmaTotal</code> (since Linux 3.1)(CONFIG_CMA is required.)</li>
-<li><code>CmaFree</code> (CONFIG_CMA is required.)</li>
-<li><code>HugePages_Total</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Free</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Rsvd</code> (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Surp</code> (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePagesize</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>DirectMap4k</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap4M</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap2M</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap1G</code> (since Linux 2.6.27)</li>
+<li><code>LazyFree</code> (since Linux 4.12)，显示<a href="https://man7.org/linux/man-pages/man2/madvise.2.html">madvise(2)</a>标记的内存量。</li>
+<li><code>AnonHugePages</code> (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，无文件映射的映射到用户空间页表的大页。</li>
+<li><code>ShmemHugePages</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，共享内存(shmem)和<a href="https://man7.org/linux/man-pages/man5/tmpfs.5.html">tmpfs(5)</a>使用的分配大页的内存。</li>
+<li><code>ShmemPmdMapped</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，映射到有大页的用户空间的共享内存。</li>
+<li><code>CmaTotal</code> (since Linux 3.1)(CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面总量。</li>
+<li><code>CmaFree</code> (CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面空闲量。</li>
+<li><code>HugePages_Total</code> (CONFIG_HUGETLB_PAGE is required.)，大页面池的总量。</li>
+<li><code>HugePages_Free</code> (CONFIG_HUGETLB_PAGE is required.)，大页面池中未被分配的大页量。</li>
+<li><code>HugePages_Rsvd</code> (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)，指从大页面池中承诺分配的，但并未实际分配的大页量。这些预留的大页量保证了一个应用可以在故障时间从大页面池中分配到大页。</li>
+<li><code>HugePages_Surp</code> (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)，这是大页面池中高于<code>/proc/sys/vm/nr_hugepages</code>的大页数量。其最大值被<code>/proc/sys/vm/nr_overcommit_hugepages</code>所设定。</li>
+<li><code>HugePagesize</code> (CONFIG_HUGETLB_PAGE is required.) ，大页的size。32位架构，单处理器的默认值是4096KB。SMP巨量内存内核和AMD64，默认值是2048KB。Itanium架构，默认值是262144KB。此统计信息仅出现在 x86、Itanium 和 AMD64 架构上。</li>
+<li><code>DirectMap4k</code> (since Linux 2.6.27)，内核中线性映射的4KB页的字节数量。</li>
+<li><code>DirectMap4M</code> (since Linux 2.6.27)，内核中线性映射的4MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
+<li><code>DirectMap2M</code> (since Linux 2.6.27)，内核中线性映射的2MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
+<li><code>DirectMap1G</code> (since Linux 2.6.27)，(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
 </ul>
 
     </div>

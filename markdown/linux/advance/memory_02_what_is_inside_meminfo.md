@@ -49,23 +49,23 @@ tags: [linux, memory, /proc/meminfo]
 - `Bounce` (since Linux 2.6.18)，用于块设备“反弹缓冲区”的内存。
 - `WritebackTmp` (since Linux 2.6.26)，FUSE 用于临时回写缓冲区的内存。
 - `CommitLimit` (since Linux 2.6.10)，当前系统可以分配的内存。仅当严格的overcommit accounting启用时（`/proc/sys/vm/overcommit_memory`为mode 2）此指标才有效。
-- `Committed_AS`
-- `VmallocTotal`
-- `VmallocUsed`
-- `VmallocChunk`
+- `Committed_AS`，系统上当前分配的内存总量。是分配给所有进程的内存量的总和，即使仅仅是分配给进程却并未被使用的。举例，一个进程分配了1G内存，使用了其中300M，这1G内存是这个进程随时可使用的内存。严格过度使用模式下(/proc/sys/vm/overcommit_memory中的mode 2)，超过CommitLimit的分配不会被准许。这有利于保证进程不会因为内存已分配，却因为内存不足的情况导致的错误。
+- `VmallocTotal`，vmalloc内存区域的总量。
+- `VmallocUsed`，vmalloc内存区域的使用量。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）
+- `VmallocChunk`，vmalloc区域的最大连续空闲连续块。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）
 - `HardwareCorrupted` (since Linux 2.6.32)(CONFIG_MEMORY_FAILURE is required.)
-- `LazyFree` (since Linux 4.12)
-- `AnonHugePages` (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)
-- `ShmemHugePages` (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)
-- `ShmemPmdMapped` (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)
-- `CmaTotal` (since Linux 3.1)(CONFIG_CMA is required.)
-- `CmaFree` (CONFIG_CMA is required.)
-- `HugePages_Total` (CONFIG_HUGETLB_PAGE is required.)
-- `HugePages_Free` (CONFIG_HUGETLB_PAGE is required.)
-- `HugePages_Rsvd` (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)
-- `HugePages_Surp` (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)
-- `HugePagesize` (CONFIG_HUGETLB_PAGE is required.) 
-- `DirectMap4k` (since Linux 2.6.27)
-- `DirectMap4M` (since Linux 2.6.27)
-- `DirectMap2M` (since Linux 2.6.27)
-- `DirectMap1G` (since Linux 2.6.27)
+- `LazyFree` (since Linux 4.12)，显示[madvise(2)](https://man7.org/linux/man-pages/man2/madvise.2.html)标记的内存量。
+- `AnonHugePages` (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，无文件映射的映射到用户空间页表的大页。
+- `ShmemHugePages` (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，共享内存(shmem)和[tmpfs(5)](https://man7.org/linux/man-pages/man5/tmpfs.5.html)使用的分配大页的内存。
+- `ShmemPmdMapped` (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，映射到有大页的用户空间的共享内存。
+- `CmaTotal` (since Linux 3.1)(CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面总量。
+- `CmaFree` (CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面空闲量。
+- `HugePages_Total` (CONFIG_HUGETLB_PAGE is required.)，大页面池的总量。
+- `HugePages_Free` (CONFIG_HUGETLB_PAGE is required.)，大页面池中未被分配的大页量。
+- `HugePages_Rsvd` (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)，指从大页面池中承诺分配的，但并未实际分配的大页量。这些预留的大页量保证了一个应用可以在故障时间从大页面池中分配到大页。
+- `HugePages_Surp` (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)，这是大页面池中高于`/proc/sys/vm/nr_hugepages`的大页数量。其最大值被`/proc/sys/vm/nr_overcommit_hugepages`所设定。
+- `HugePagesize` (CONFIG_HUGETLB_PAGE is required.) ，大页的size。32位架构，单处理器的默认值是4096KB。SMP巨量内存内核和AMD64，默认值是2048KB。Itanium架构，默认值是262144KB。此统计信息仅出现在 x86、Itanium 和 AMD64 架构上。
+- `DirectMap4k` (since Linux 2.6.27)，内核中线性映射的4KB页的字节数量。
+- `DirectMap4M` (since Linux 2.6.27)，内核中线性映射的4MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)
+- `DirectMap2M` (since Linux 2.6.27)，内核中线性映射的2MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)
+- `DirectMap1G` (since Linux 2.6.27)，(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)
