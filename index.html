@@ -34,6 +34,12 @@
           <ul>
 
             <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
+            </li>
+            <li>
               <a href="/service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache 配置: 可以把ServerName和ServerAlias配置为IP吗？</a>
             </li>
             <li>
@@ -41,12 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a>
-            </li>
-            <li>
-              <a href="/java/jvm/jdk_3.1.0_config_java.security.html">JDK 配置 - java security</a>
-            </li>
-            <li>
-              <a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
             </li>
           </ul>
 
@@ -107,6 +107,112 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>24 Mar 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. haproxy配置</h2>
+
+<h3>1) 常见的终止标志</h3>
+
+<ul>
+<li>PR，The proxy blocked the client&rsquo;s request, either because of an invalid HTTP syntax, in which case it returned an HTTP 400 error to the client, or because a deny filter matched, in which case it returned an HTTP 403 error.</li>
+</ul>
+
+<blockquote>
+<p>其他的见参考文档：<a href="https://www.haproxy.org/download/1.4/doc/configuration.txt">haproxy 8.5 部分配置</a>，这里只列出我遇到过的</p>
+</blockquote>
+
+<h3>2) ACL配置</h3>
+
+<p>大概的配置流程就是</p>
+
+<ol>
+<li>需要先定义一个测试标准</li>
+<li>然后再根据上面的测试标准来做对应的动作</li>
+</ol>
+
+<p>格式：<code>acl &lt;aclname&gt; &lt;criterion&gt; [flags] [operator] &lt;value&gt; ...</code></p>
+
+<blockquote>
+<p>含义是创建了一个新的aclname(或者替代旧的)，然后可以根据这个aclname来执行对应的action</p>
+</blockquote>
+
+<p><strong>例如根据ip来源的配置</strong></p>
+<pre class="chroma">acl in_src_ip_list src ip1 ip2 ip3 ...
+tcp-request content accept if in_src_ip_list
+tcp-request content reject
+</pre>
+<blockquote>
+<p>其他详情见参考文档：<a href="https://www.haproxy.org/download/1.4/doc/configuration.txt">haproxy 7. 部分配置</a></p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>24 Mar 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. 使用docker-compose启动haproxy</h2>
+<pre class="chroma"><span class="nv">DOCKER_YML_DIR</span><span class="o">=</span>/data/docker/yml
+<span class="nv">DOCKER_RUNTIME_DIR</span><span class="o">=</span>/data/docker/runtime
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_YML_DIR</span><span class="si">}</span>
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YML_DIR}/docker-compose-haproxy.yml
+</span><span class="s">version: &#39;3&#39;
+</span><span class="s">services:
+</span><span class="s">  haproxy:
+</span><span class="s">    container_name: haproxy
+</span><span class="s">    image: haproxy
+</span><span class="s">    ports:
+</span><span class="s">      - 443:6443
+</span><span class="s">    volumes:
+</span><span class="s">      - /data/docker/runtime/haproxy/etc/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+</span><span class="s">EOF</span>
+
+mkdir -p <span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>/haproxy/etc
+cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_RUNTIME_DIR}/haproxy/etc/haproxy.cfg
+</span><span class="s">frontend front
+</span><span class="s">  bind 0.0.0.0:6443
+</span><span class="s">  mode tcp
+</span><span class="s">  option tcplog
+</span><span class="s">  timeout client 1h
+</span><span class="s">  default_backend back
+</span><span class="s">
+</span><span class="s">backend back
+</span><span class="s">  mode tcp
+</span><span class="s">  timeout server 1h
+</span><span class="s">  option tcplog
+</span><span class="s">  option tcp-check
+</span><span class="s">  balance roundrobin
+</span><span class="s">  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+</span><span class="s">  server RS1 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">  server RS2 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">  server RS3 &lt;IP&gt;:&lt;PORT&gt; check
+</span><span class="s">EOF</span>
+
+docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
+</pre>
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -382,26 +488,26 @@ ionice -c <span class="m">2</span> -n <span class="m">7</span> tar Jcf ....
 <li><code>Bounce</code> (since Linux 2.6.18)，用于块设备“反弹缓冲区”的内存。</li>
 <li><code>WritebackTmp</code> (since Linux 2.6.26)，FUSE 用于临时回写缓冲区的内存。</li>
 <li><code>CommitLimit</code> (since Linux 2.6.10)，当前系统可以分配的内存。仅当严格的overcommit accounting启用时（<code>/proc/sys/vm/overcommit_memory</code>为mode 2）此指标才有效。</li>
-<li><code>Committed_AS</code></li>
-<li><code>VmallocTotal</code></li>
-<li><code>VmallocUsed</code></li>
-<li><code>VmallocChunk</code></li>
+<li><code>Committed_AS</code>，系统上当前分配的内存总量。是分配给所有进程的内存量的总和，即使仅仅是分配给进程却并未被使用的。举例，一个进程分配了1G内存，使用了其中300M，这1G内存是这个进程随时可使用的内存。严格过度使用模式下(/proc/sys/vm/overcommit_memory中的mode 2)，超过CommitLimit的分配不会被准许。这有利于保证进程不会因为内存已分配，却因为内存不足的情况导致的错误。</li>
+<li><code>VmallocTotal</code>，vmalloc内存区域的总量。</li>
+<li><code>VmallocUsed</code>，vmalloc内存区域的使用量。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）</li>
+<li><code>VmallocChunk</code>，vmalloc区域的最大连续空闲连续块。从Linux4.4之后，这个值不再被计算，硬编码为0（详情见/proc/vmallocinfo）</li>
 <li><code>HardwareCorrupted</code> (since Linux 2.6.32)(CONFIG_MEMORY_FAILURE is required.)</li>
-<li><code>LazyFree</code> (since Linux 4.12)</li>
-<li><code>AnonHugePages</code> (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>ShmemHugePages</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>ShmemPmdMapped</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)</li>
-<li><code>CmaTotal</code> (since Linux 3.1)(CONFIG_CMA is required.)</li>
-<li><code>CmaFree</code> (CONFIG_CMA is required.)</li>
-<li><code>HugePages_Total</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Free</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Rsvd</code> (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePages_Surp</code> (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>HugePagesize</code> (CONFIG_HUGETLB_PAGE is required.)</li>
-<li><code>DirectMap4k</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap4M</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap2M</code> (since Linux 2.6.27)</li>
-<li><code>DirectMap1G</code> (since Linux 2.6.27)</li>
+<li><code>LazyFree</code> (since Linux 4.12)，显示<a href="https://man7.org/linux/man-pages/man2/madvise.2.html">madvise(2)</a>标记的内存量。</li>
+<li><code>AnonHugePages</code> (since Linux 2.6.38)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，无文件映射的映射到用户空间页表的大页。</li>
+<li><code>ShmemHugePages</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，共享内存(shmem)和<a href="https://man7.org/linux/man-pages/man5/tmpfs.5.html">tmpfs(5)</a>使用的分配大页的内存。</li>
+<li><code>ShmemPmdMapped</code> (since Linux 4.8)(CONFIG_TRANSPARENT_HUGEPAGE is required.)，映射到有大页的用户空间的共享内存。</li>
+<li><code>CmaTotal</code> (since Linux 3.1)(CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面总量。</li>
+<li><code>CmaFree</code> (CONFIG_CMA is required.)，CMA(Contiguous Memory Allocator)页面空闲量。</li>
+<li><code>HugePages_Total</code> (CONFIG_HUGETLB_PAGE is required.)，大页面池的总量。</li>
+<li><code>HugePages_Free</code> (CONFIG_HUGETLB_PAGE is required.)，大页面池中未被分配的大页量。</li>
+<li><code>HugePages_Rsvd</code> (since Linux 2.6.17)(CONFIG_HUGETLB_PAGE is required.)，指从大页面池中承诺分配的，但并未实际分配的大页量。这些预留的大页量保证了一个应用可以在故障时间从大页面池中分配到大页。</li>
+<li><code>HugePages_Surp</code> (since Linux 2.6.24)(CONFIG_HUGETLB_PAGE is required.)，这是大页面池中高于<code>/proc/sys/vm/nr_hugepages</code>的大页数量。其最大值被<code>/proc/sys/vm/nr_overcommit_hugepages</code>所设定。</li>
+<li><code>HugePagesize</code> (CONFIG_HUGETLB_PAGE is required.) ，大页的size。32位架构，单处理器的默认值是4096KB。SMP巨量内存内核和AMD64，默认值是2048KB。Itanium架构，默认值是262144KB。此统计信息仅出现在 x86、Itanium 和 AMD64 架构上。</li>
+<li><code>DirectMap4k</code> (since Linux 2.6.27)，内核中线性映射的4KB页的字节数量。</li>
+<li><code>DirectMap4M</code> (since Linux 2.6.27)，内核中线性映射的4MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
+<li><code>DirectMap2M</code> (since Linux 2.6.27)，内核中线性映射的2MB页的字节数量。(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
+<li><code>DirectMap1G</code> (since Linux 2.6.27)，(x86 with CONFIG_X86_64 or CONFIG_X86_PAE enabled.)</li>
 </ul>
 
         </div>
@@ -915,206 +1021,6 @@ dnsmasq --hostsdir<span class="o">=</span>&lt;path/to/hosts-file-dir&gt;
 <p>可以通过<code>/proc/&lt;pid&gt;/oom_adj</code>来手动调整OOM，取值范围为[-17,15]，数值越大，表示越容易被OOM杀死，其中-17代表禁止OOM。</p>
 </blockquote>
 
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>19 Nov 2021</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>0. 背景</h3>
-
-<p>数据库中的一个字段，业务开发计划将其改为自增，由DBA执行后，发现原本字段中为NULL的记录，全都按照自增规则给重新赋了值。这不符合初衷啊，是为什么呢？</p>
-
-<h3>1. 重现场景</h3>
-
-<h4>1) 准备环境</h4>
-<pre class="chroma">docker run -it -d --name mysql -e <span class="nv">MYSQL_EMPTY_PASSWORD</span><span class="o">=</span><span class="nb">true</span> mysql:5.7
-</pre>
-<h4>2) 模拟线上场景</h4>
-
-<p><strong>创建测试表test2</strong></p>
-<pre class="chroma"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test2</span> <span class="p">(</span>
-    <span class="n">id</span>    <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="n">score</span> <span class="nb">INT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="p">,</span>
-    <span class="k">INDEX</span> <span class="p">(</span><span class="n">score</span><span class="p">)</span>
-<span class="p">)</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>score字段，允许为NULL，用来测试；之所以给score增加索引，是因为这是增加AUTO_INCREMENT的前提。</p>
-</blockquote>
-
-<p><strong>准备测试数据</strong></p>
-<pre class="chroma"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test2</span> <span class="k">VALUES</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>测试数据涵盖范围：</p>
-
-<ul>
-<li>正数</li>
-<li>NULL</li>
-<li>0</li>
-<li>负数</li>
-</ul>
-</blockquote>
-
-<p><strong>查看当前的现存记录</strong></p>
-<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>输出：</p>
-<pre class="chroma">&gt; +----+-------+
-&gt; | id | score |
-&gt; +----+-------+
-&gt; |  1 |  NULL |
-&gt; |  2 |   200 |
-&gt; |  3 |  NULL |
-&gt; |  4 |     0 |
-&gt; |  5 |    -2 |
-&gt; +----+-------+
-&gt; 5 rows in set (0.01 sec)
-&gt; ```
-
-**在有现存数据的基础上，设定score字段自增**
-``` sql
- ALTER TABLE test2 
-MODIFY COLUMN score INT AUTO_INCREMENT;
-</pre></blockquote>
-
-<p><strong>查看修改为自增之后的结果</strong></p>
-<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
-</pre>
-<p>输出：</p>
-<pre class="chroma">+----+-------+
-| id | score |
-+----+-------+
-|  1 |     1 |
-|  2 |   200 |
-|  3 |   201 |
-|  4 |   202 |
-|  5 |    -2 |
-+----+-------+
-5 rows in set (0.01 sec)
-</pre>
-<h4>3) 总结</h4>
-
-<ul>
-<li>给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</li>
-<li>自增赋值时，会按照之前记录的最大值加1</li>
-<li>负数和正数不会被重新赋值，会保持原记录</li>
-</ul>
-
-<h3>2. 文档解读</h3>
-
-<ul>
-<li>参考文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-auto-increment-handling.html">mysql 5.7 docs: InnoDB引擎下的AUTO_INCREMENT</a></li>
-</ul>
-
-<h4>1) 下面这个文档原文，证实了前面实践出的结论，给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</h4>
-<pre class="chroma">Specifying NULL or 0 for the AUTO_INCREMENT column
-
-In all lock modes (0, 1, and 2), if a user specifies NULL or 0 for the AUTO_INCREMENT column in an INSERT, InnoDB treats the row as if the value was not specified and generates a new value for it.
-</pre>
-<h4>2) innodb_autoinc_lock_mode</h4>
-
-<p>文档中着重介绍了变量<code>innodb_autoinc_lock_mode</code>，这个变量表示了处理AUTO_INCREMENT时的锁的模式，有可能会影响主备情况下并发事务的自增逻辑，牵扯到表锁和行锁，详细信息还是看上面的参考文档链接。</p>
-<pre class="chroma"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s2">&#34;</span><span class="s2">innodb_autoinc_lock_mode</span><span class="s2">&#34;</span><span class="p">;</span>
-</pre>
-<p>输出：</p>
-<pre class="chroma">+--------------------------+-------+
-| Variable_name            | Value |
-+--------------------------+-------+
-| innodb_autoinc_lock_mode | 1     |
-+--------------------------+-------+
-1 row in set (0.04 sec)
-</pre>
-<h4>3) 其他变量</h4>
-
-<ul>
-<li>auto_increment_increment，代表自增的数值，默认为1</li>
-<li>auto_increment_offset，代表目前自增数字的偏移量，默认为1，取值范围时1-65535</li>
-</ul>
-
-<h3>3. 总结</h3>
-
-<p>表创建好之后，增加自增逻辑，一定要慎重。如果是业务方面的需求，最好是用代码来解决自增问题，而不是依赖数据库的能力。</p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/apache/1.1.2_apache_config_security.html">apache 配置: 安全</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>15 Nov 2021</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>0. 背景</h3>
-
-<p>生产环境中的apache服务器(2.4.x)，需要进行一定的安全配置，来保护服务器的安全，其中就包含以下方面</p>
-
-<ul>
-<li>隐藏服务器类型和版本，Server标头</li>
-</ul>
-
-<h3>1. 隐藏Server版本</h3>
-<pre class="chroma"># 关闭服务器页脚信息，详细用途见下面文档，默认是off
-ServerSignature Off
-
-# 关闭Server版本号的显示
-ServerTokens Prod
-</pre>
-<blockquote>
-<ul>
-<li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#servertokens">ServerTokens</a></li>
-<li><a href="https://httpd.apache.org/docs/2.4/mod/core.html#serversignature">ServerSignature</a></li>
-</ul>
-</blockquote>
-
-<h3>2. 隐藏Server类型</h3>
-
-<p>经过上面的配置，我们依然还可以看到&rdquo;Server: Apache&rdquo;的字符串，此时我们有两种方法来去掉Apache</p>
-
-<ul>
-<li>使用<a href="https://github.com/SpiderLabs/ModSecurity">ModSecurity</a></li>
-<li>修改源码</li>
-</ul>
-
-<p>关于<code>ModSecurity</code>的解决办法，网上很多演示，这边就不赘述。况且，我也不是太喜欢这种方法，其一是因为这个解决办法有点重，其二是因为引入了一个不可控风险，和我们的目标相悖。所以这里说明以下修改源码的方案。</p>
-
-<p><code>PATH:./include/ap_release.h</code></p>
-<pre class="chroma"><span class="cp">#</span><span class="cp">define AP_SERVER_BASEVENDOR &#34;Apache Software Foundation&#34;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define AP_SERVER_BASEPROJECT &#34;Apache HTTP Server&#34;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">define AP_SERVER_BASEPRODUCT &#34;Apache&#34;</span><span class="cp">
-</span></pre>
-<p>将上面的三个变量改成空字符串即可。</p>
-<pre class="chroma">sed -i <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEVENDOR &#34;Apache Software Foundation&#34;|AP_SERVER_BASEVENDOR &#34;Security Server&#34;|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEPROJECT &#34;Apache HTTP Server&#34;|AP_SERVER_BASEPROJECT &#34;Security Server&#34;|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEPRODUCT &#34;Apache&#34;|AP_SERVER_BASEPRODUCT &#34;Security Server&#34;|g&#39;</span> <span class="se">\
-</span><span class="se"></span>    ./include/ap_release.h
-</pre>
         </div>
 
     </div>
