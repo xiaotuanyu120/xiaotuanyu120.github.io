@@ -1,18 +1,18 @@
 ---
-title: 防火墙-Centos7使用iptables
+title: firewall: Centos7安装iptables
 date: 2016-08-12 14:45:00
 categories: linux/advance
-tags: [linux,firewalld,iptables]
+tags: [firewall,firewalld,iptables]
 ---
 
-### Centos7的防火墙改变
+## Centos7的防火墙改变
 centos7上默认没有安装iptables，而是采用了firewalld进行了替代
  
-**什么是iptables？**
+## 什么是iptables？
 iptables是一款防火墙软件，基于netfilter机制，用户可以通过此软件来制定不同协议和针对不同表链的规则。
 iptables控制ipv4，ip6tables控制ipv6
  
-**什么是firewalld**
+## 什么是firewalld?
 firewalld是新一代的linux防火墙，也是基于netfilter机制，增加了许多新的特性。
 同时支持ipv4和ipv6，还支持bridge，另外增加了zone的新概念，详细信息可以参见下面链接
 [firewalld参考链接1](http://www.firewalld.org/)

@@ -1,24 +1,24 @@
 ---
-title: IPTABLES: 按国家防流量
+title: firewall: iptables防国家或地区流量
 date: 2016-01-22 11:19:00
 categories: linux/advance
-tags: [iptables]
+tags: [firewall,iptables]
 ---
 
-### 问题背景
+## 问题背景
 网站针对某个国家或地区开放，希望禁掉其它国家的访问
  
-### 使用工具
+## 使用工具
 1. 使用服务自带的限制，例如nginx和svn等，但有限制
 2. 使用iptables，全局限制，简单方便
 > 基于上面两条，优选iptables全局控制(仅限于当时的认知)
  
-### iptables模块介绍
+## iptables模块介绍
 - 普通修改iptables模块是需要重新编译内核的，但是如果使用xtables-addons（iptables扩展），则不需要重新编译。
 - xtables-addons中的xt_getip模块基于iptables的GeoIP过滤机制，可根据来源/目的地国家，过滤/NAT或管理数据包。
  
-### 部署过程
-#### xtables-addons安装
+## 部署过程
+### xtables-addons安装
 ``` bash
 # 依赖包安装
 yum install epel-release
@@ -42,7 +42,8 @@ cd geoip/
 mkdir -p /usr/share/xt_geoip
 cp -r {BE,LE} /usr/share/xt_geoip/
 ```
-### 规则制定
+
+## 规则制定
 ``` bash
 iptables -m geoip --src-cc country[,country...] --dst-cc country[,country...]
  
@@ -57,8 +58,8 @@ iptables -I INPUT -m geoip ! --src-cc US -j DROP
 ```
 > PS:国家代码参考ISO3166标准
  
-### 遇到的问题
-#### 问题现象
+## 遇到的问题
+### 问题现象
 ``` bash
 make
 make  all-recursive
@@ -81,7 +82,7 @@ make[1]: Leaving directory `/usr/local/src/xtables-addons-1.47.1'
 make: *** [all] Error 2
 ```
 
-#### 解决办法
+### 解决办法
 ``` bash
 # 尝试-1（本环境无效）
 vi /usr/src/kernels/2.6.32-431.el6.x86_64/include/linux/autoconf.h
