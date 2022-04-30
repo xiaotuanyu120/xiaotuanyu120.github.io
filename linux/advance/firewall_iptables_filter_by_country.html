@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/fd_01_file_descriptor_brief_introduction.html">fd: 文件描述符简明介绍</a>
+            </li>
+            <li>
               <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/performance_01_io_limit.html">performance: 限制进程的IO消耗</a>
-            </li>
-            <li>
-              <a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a>
             </li>
           </ul>
 
@@ -93,7 +93,6 @@
                   <a href="/linux/advance/index.html">advance</a>
                   <ul>
                     <li><a href="/linux/advance/CENTOS_多网卡+多网关配置.html">CENTOS: 多网卡+多网关配置</a></li>
-                    <li><a href="/linux/advance/IPTABLES_按国家防流量.html">IPTABLES: 按国家防流量</a></li>
                     <li><a href="/linux/advance/auditd_1.0.0_basic.html">auditd: linux 审计</a></li>
                     <li><a href="/linux/advance/bash_1.1.0_.bashrc_vs_.bash_profile.html">bash 1.1.0 .bashrc vs .bash_profile</a></li>
                     <li><a href="/linux/advance/centos6_booted_services_optimize.html">centos6 开机服务优化</a></li>
@@ -102,10 +101,12 @@
                     <li><a href="/linux/advance/disk_1.0.1_xfs_undelete_recovery.html">disk: 1.0.1 xfs 硬盘数据恢复</a></li>
                     <li><a href="/linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a></li>
                     <li><a href="/linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a></li>
+                    <li><a href="/linux/advance/fd_01_file_descriptor_brief_introduction.html">fd: 文件描述符简明介绍</a></li>
                     <li><a href="/linux/advance/ffmpeg_1.1.0_convert_h265_to_h264.html">ffmpeg: 1.1.0 转换h265为h264</a></li>
                     <li><a href="/linux/advance/firewall_ipset_basic.html">firewall: ipset使用教程</a></li>
                     <li><a href="/linux/advance/firewall_ipset_bitmap_ip_mac.html">firewall: ipset-bitmap:ip,mac</a></li>
-                    <li><a href="/linux/advance/firewall_iptables_install_centos7.html">防火墙-Centos7使用iptables</a></li>
+                    <li><a href="/linux/advance/firewall_iptables_filter_by_country.html">firewall: iptables防国家或地区流量</a></li>
+                    <li><a href="/linux/advance/firewall_iptables_install_centos7.html">firewall: Centos7安装iptables</a></li>
                     <li><a href="/linux/advance/glibc_1.1.0_centos6.5_upgrade_2.14.html">glibc 1.1.0 centos6升级到2.14</a></li>
                     <li><a href="/linux/advance/iconv_convert_encode_from_win_2_linux.html">linux: tranfer file from windows to linux, using iconv</a></li>
                     <li><a href="/linux/advance/kernel_1.1.0_tcp_time_wait.html">内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多</a></li>
@@ -186,7 +187,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>IPTABLES: 按国家防流量</h2>
+      <h2>firewall: iptables防国家或地区流量</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -196,11 +197,11 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>问题背景</h3>
+<h2>问题背景</h2>
 
 <p>网站针对某个国家或地区开放，希望禁掉其它国家的访问</p>
 
-<h3>使用工具</h3>
+<h2>使用工具</h2>
 
 <ol>
 <li>使用服务自带的限制，例如nginx和svn等，但有限制</li>
@@ -208,16 +209,16 @@
 &gt; 基于上面两条，优选iptables全局控制(仅限于当时的认知)</li>
 </ol>
 
-<h3>iptables模块介绍</h3>
+<h2>iptables模块介绍</h2>
 
 <ul>
 <li>普通修改iptables模块是需要重新编译内核的，但是如果使用xtables-addons（iptables扩展），则不需要重新编译。</li>
 <li>xtables-addons中的xt_getip模块基于iptables的GeoIP过滤机制，可根据来源/目的地国家，过滤/NAT或管理数据包。</li>
 </ul>
 
-<h3>部署过程</h3>
+<h2>部署过程</h2>
 
-<h4>xtables-addons安装</h4>
+<h3>xtables-addons安装</h3>
 <pre class="chroma"><span class="c1"># 依赖包安装</span>
 yum install epel-release
 yum install gcc-c++ make automake kernel-devel-<span class="sb">`</span>uname -r<span class="sb">`</span> wget unzip iptables-devel perl-Text-CSV_XS
@@ -240,7 +241,7 @@ make install
 mkdir -p /usr/share/xt_geoip
 cp -r <span class="o">{</span>BE,LE<span class="o">}</span> /usr/share/xt_geoip/
 </pre>
-<h3>规则制定</h3>
+<h2>规则制定</h2>
 <pre class="chroma">iptables -m geoip --src-cc country<span class="o">[</span>,country...<span class="o">]</span> --dst-cc country<span class="o">[</span>,country...<span class="o">]</span>
  
 <span class="c1"># 例如，阻止也门(YE)和赞比亚(ZM)的入站流量</span>
@@ -256,9 +257,9 @@ iptables -I INPUT -m geoip ! --src-cc US -j DROP
 <p>PS:国家代码参考ISO3166标准</p>
 </blockquote>
 
-<h3>遇到的问题</h3>
+<h2>遇到的问题</h2>
 
-<h4>问题现象</h4>
+<h3>问题现象</h3>
 <pre class="chroma">make
 make  all-recursive
 make<span class="o">[</span>1<span class="o">]</span>: Entering directory <span class="sb">`</span>/usr/local/src/xtables-addons-1.47.1<span class="s1">&#39;
@@ -279,7 +280,7 @@ make<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span c
 </span><span class="s1">make[1]: Leaving directory `/usr/local/src/xtables-addons-1.47.1&#39;</span>
 make: *** <span class="o">[</span>all<span class="o">]</span> Error <span class="m">2</span>
 </pre>
-<h4>解决办法</h4>
+<h3>解决办法</h3>
 <pre class="chroma"><span class="c1"># 尝试-1（本环境无效）</span>
 vi /usr/src/kernels/2.6.32-431.el6.x86_64/include/linux/autoconf.h
 *******************************************
