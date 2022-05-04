@@ -1,8 +1,8 @@
 ---
-title: fd: 文件描述符简明介绍
+title: rlimit fd: 简明介绍
 date: 2022-04-11 21:38:00
 categories: linux/advance
-tags: [fd]
+tags: [fd, rlimit]
 ---
 
 ## 0. 什么是fd？
