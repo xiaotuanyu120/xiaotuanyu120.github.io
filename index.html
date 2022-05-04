@@ -34,19 +34,19 @@
           <ul>
 
             <li>
-              <a href="/linux/advance/fd_01_file_descriptor_brief_introduction.html">fd: 文件描述符简明介绍</a>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
             </li>
             <li>
               <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
-            </li>
-            <li>
-              <a href="/service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
-            </li>
-            <li>
-              <a href="/service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache 配置: 可以把ServerName和ServerAlias配置为IP吗？</a>
-            </li>
-            <li>
-              <a href="/linux/advance/performance_01_io_limit.html">performance: 限制进程的IO消耗</a>
             </li>
           </ul>
 
@@ -110,7 +110,312 @@
 
         <div class="article-summary">
         <div class="article-title">
-          <a href="linux/advance/fd_01_file_descriptor_brief_introduction.html">fd: 文件描述符简明介绍</a>
+          <a href="linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>02 May 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>1. login shell和non-login shell是什么？</h3>
+
+<p>login shell是<code>参数0</code>以<code>&quot;-&quot;</code>开头，或者使用<code>--login(-l)</code>选项启动的shell。</p>
+
+<p>non-login shell是除了login shell之外的shell。</p>
+
+<blockquote>
+<ul>
+<li><a href="https://help.gnome.org/users/gnome-terminal/stable/pref-login-shell.html.en">gnome pages</a></li>
+<li><a href="https://linux.die.net/man/1/bash">bash manual docs</a> 查看Invocation部分</li>
+</ul>
+</blockquote>
+
+<h3>2. 如何区分login shell和non-login shell？</h3>
+
+<p>根据login shell的介绍说明可知，我们可以查看login shell的<code>参数0</code>或根据启动选项中是否包含<code>login</code>来判断</p>
+<pre class="chroma"><span class="c1"># METHOD 1，根据参数0是否以&#34;-&#34;开头来判断</span>
+<span class="nb">echo</span> <span class="nv">$0</span>
+-bash
+
+<span class="c1"># METHOD 2，使用SHELLOPT来判断（这个一定准确，推荐）</span>
+<span class="nb">shopt</span> login_shell
+login_shell       on
+
+<span class="nb">shopt</span> -q login_shell <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;Login shell&#39;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;Not login shell&#39;</span>
+Login shell
+</pre>
+<blockquote>
+<p>方法1中，参数0不以&rdquo;-&ldquo;开头时，也不一定不是login shell，是因为还有部分是通过&rdquo;&ndash;login&rdquo;选项来启动的。所以推荐用方法2。</p>
+</blockquote>
+
+<h3>3. 如何创建login shell和non-login shell？</h3>
+
+<p><strong>创建login shell</strong></p>
+
+<ul>
+<li>通过本地或者远程的连接，使用用户名和密码登录获得的第一个shell</li>
+<li>通过<code>bash</code>或<code>sh</code>加上<code>--login(-l)</code>参数启动shell</li>
+<li>使用<code>sudo -i</code>或<code>su -</code></li>
+</ul>
+
+<p><strong>创建non-login shell</strong></p>
+
+<ul>
+<li>未使用账号密码登录，直接使用<code>bash</code>或<code>sh</code>命令，无<code>--login(-l)</code>参数启动shell</li>
+<li>crond中创建任务，默认是non-login shell，但是可以通过显式使用<code>bash</code>或<code>sh</code>命令加上<code>--login(-l)</code>参数，例如<code>bash(or sh) -l -c &quot;command&quot;</code>来创建login-shell。</li>
+</ul>
+
+<blockquote>
+<p>这里暂时不讨论图形界面</p>
+</blockquote>
+
+<h3>4. 为什么需要有login shell和non-login shell？</h3>
+
+<p>没有找到确切的原因，但是根据网上的讨论，一个相对靠谱的说法是，因为login shell和non-login shell加载的start up文件不同（详细的看man文档），有些登录时需要执行的任务，如果在每次执行其他子shell的时候都执行一遍，这样任务太重。所以才创建了这种non-login shell，避免每次创建子shell环境都会执行一遍那些任务。</p>
+
+<blockquote>
+<p><a href="https://unix.stackexchange.com/questions/324359/why-a-login-shell-over-a-non-login-shell">stackexchange answer</a></p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>01 May 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. fd(文件描述符)限制的项目说明</h3>
+
+<ul>
+<li><strong><code>/proc/sys/fs/file-max</code></strong>是linux内核级别的设定，影响的是linux系统上所有进程可以打开的文件数上限</li>
+<li><strong><a href="/linux/advance/rlimit_ulimit_01_introduce.html"><code>ulimit</code></a></strong>是用户或用户组级别，通过PAM登录的login shell，fork出的进程可以打开的文件数上限；</li>
+<li><strong><code>/proc/sys/fs/file-nr</code></strong>是系统级别当前打开文件状态</li>
+<li><strong><code>/proc/$pid/limits</code></strong>是指定进程的资源限制上限</li>
+</ul>
+
+<blockquote>
+<p>参考文档:<br />
+<a href="https://unix.stackexchange.com/questions/55319/are-limits-conf-values-applied-on-a-per-process-basis">ulimit设定的是每个进程的属性，而不是该用户所有进程的总限制</a><br />
+<a href="https://unix.stackexchange.com/questions/447583/ulimit-vs-file-max">ulimit vs file-max</a><br />
+<a href="https://stackoverflow.com/questions/6180569/need-to-calculate-optimum-ulimit-and-fs-file-max-values-according-to-my-own-se">如何计算最大文件打开数应该设定多少</a></p>
+</blockquote>
+
+<h3>1. 系统级别，文件打开数状态查看</h3>
+<pre class="chroma"><span class="c1"># 查看linux内核级别的文件描述符上限</span>
+cat /proc/sys/fs/file-max
+<span class="m">97984</span>
+
+<span class="c1"># 查看目前系统使用的文件描述符数量</span>
+cat /proc/sys/fs/file-nr
+<span class="m">512</span> <span class="m">0</span> <span class="m">97984</span>
+<span class="c1"># 512   -&gt; 分配并使用的文件描述符数量</span>
+<span class="c1"># 0     -&gt; 分配却未使用的文件描述符数量</span>
+<span class="c1"># 97984 -&gt; 内核级别的最大文件描述符数量</span>
+</pre>
+<h3>2. 查看特定进程的最大文件打开数状态</h3>
+<pre class="chroma">cat /proc/397/limits <span class="p">|</span> grep <span class="s2">&#34;open files&#34;</span>
+Max open files            <span class="m">2048</span>                 <span class="m">2048</span>                 files
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>30 Apr 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>0. 总览</h2>
+
+<p>上一篇<a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">文件描述符简明介绍</a>中有介绍fd是什么，那么linux中是如何管理它的呢？</p>
+
+<p>根据上篇文章，我们可知，fd的实际使用是绑定到每个进程上的。</p>
+
+<p>因为linux上创建进程，其实是通过拷贝的方式来实现的，区别只是在于PID、PPID、某些资源和统计量（例如挂起的信号量），大部分的task_struct(fd表所在的数据结构)中的数据没有变化，相当于是直接继承了，<strong>所以fd的限制理论上，是直接继承的父进程的fd的限制</strong>。</p>
+
+<p>但是也会有其他的管理工具或者方法可以让子进程改变继承的fd限制。总结来讲有以下几种方式：</p>
+
+<ol>
+<li>login-shell通过ulimit来设定登录用户或登录用户组的fd限制（或non-login-shell通过在启动脚本中显式调用ulimit命令）</li>
+<li>container通过container management来设定fd限制</li>
+<li>systemd管理的service通过systemd的配置来设定fd限制</li>
+<li>程序本身调用系统调用来修改fd限制</li>
+</ol>
+
+<p>除了默认的从父进程继承的形式之外，其他所有改变fd限制的方式底层都是通过相关的几个系统调用（后面细讲）来实现的。</p>
+
+<blockquote>
+<p>只有root才可以调高hard limit，其他的用户只可以调整soft limit（不可以超过hard limit）</p>
+</blockquote>
+<pre class="chroma">┌────────────┐ ┌────────┐ ┌───────────────┐ ┌───────────┐ ┌─────────┐
+│init/systemd│ │services│ │non-login-shell│ │login-shell│ │container│
+└────────┬───┘ └──┬─┬───┘ └────────┬──────┘ └───┬───────┘ └──┬──────┘
+         │        │ │         (opti│onal)       │            │
+         │        │ │              └────────┐   │            │
+         │        │ │                       │   │(PAM)       │
+         │        │ └─sysvinit scripts──────┤   │            │
+         │        │     (optional)          │   │            │
+         │        │                         │   │            │
+         │        └───systemd units─┐       │   │            │
+         │                          │       │   │            │
+         │         ┌──────┐ ┌───────▼─┐ ┌───▼───▼──────┐ ┌───▼────────┐
+         │         │ hard │ │ systemd │ │ ulimit/login │ │ container  │
+         └────────►│ code │ │         │ │ pam_limit.so │ │ management │
+                   └──┬───┘ └────┬────┘ └───────┬──────┘ └──────┬─────┘
+                      │          │              │               │
+                      └──────────┴──────────────┼───────────────┘
+                                          SYSTEM│CALL
+                                                │
+   ┌─────────────────────────┬──────────────────▼──────┐
+   │                         │                         │
+   │     inherit from        │    getrlimit prlimit    │
+   │     parent process      │    setrlimit rlimit     │
+   │                         │                         │
+   ├─────────────────────────┴─────────────────────────┤
+   │                                                   │
+   │                      KERNEL                       │
+   │                                                   │
+   └───────────────────────────────────────────────────┘
+</pre>
+<h2>1. 资源限制(rlimit)的系统调用：getrlimit, setrlimit, prlimit</h2>
+
+<ul>
+<li><p>和资源限制（包含fd）系统调用相关的数据结构：<code>rlimit</code>（resource limit）</p></li>
+
+<li><p>和资源限制（包含fd）相关的系统调用</p></li>
+</ul>
+<pre class="chroma"><span class="c1">// 获取rlimit
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">getrlimit</span><span class="p">(</span><span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">rlim</span><span class="p">)</span><span class="p">;</span>
+
+<span class="c1">// 设定rlimit
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">setrlimit</span><span class="p">(</span><span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">rlim</span><span class="p">)</span><span class="p">;</span>
+
+<span class="c1">// 设定其他进程的rlimit
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">prlimit</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">new_limit</span><span class="p">,</span>
+                   <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">old_limit</span><span class="p">)</span><span class="p">;</span>
+</pre>
+<h2>2. 子进程继承父进程的fd限制</h2>
+
+<h3>2.1 简单fork进程，继承测试和hard code硬编程fd限制测试</h3>
+
+<p>准备一个简单的测试c程序<code>limit.c</code>，为排除ulimit的影响，修改父进程的rlimit值为和ulimit不同的值，看子进程是否继承</p>
+<pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;sys/resource.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;errno.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span><span class="cpf">&lt;sys/wait.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pid_t</span> <span class="n">c_pid</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">rlimit</span> <span class="n">p_rlim</span><span class="p">,</span> <span class="n">c_rlim</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fork</span><span class="p">(</span><span class="p">)</span><span class="o">=</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">fork done</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">c_pid</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">c_pid</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// change parent pid&#39;s rlimit
+</span><span class="c1"></span>        <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_cur</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
+        <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_max</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">setrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span> <span class="n">getrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Parent limits -&gt; soft limit= %ld </span><span class="se">\t</span><span class="s"> hard limit= %ld </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+                <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_cur</span><span class="p">,</span> 
+                <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_max</span><span class="p">)</span><span class="p">;</span>
+            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Parent pid = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="n">getrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Child limits -&gt; soft limit= %ld </span><span class="se">\t</span><span class="s"> hard limit= %ld </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+                <span class="n">c_rlim</span><span class="p">.</span><span class="n">rlim_cur</span><span class="p">,</span> 
+                <span class="n">c_rlim</span><span class="p">.</span><span class="n">rlim_max</span><span class="p">)</span><span class="p">;</span>
+            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Child pid = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><pre class="chroma"><span class="c1"># 为排除ulimit的影响，我们先设定ulimit的限制为和父进程的rlimit不同的值</span>
+<span class="nb">ulimit</span> -n <span class="m">1024</span>
+
+<span class="c1"># compile测试程序并运行</span>
+gcc limit.c -o limit
+
+./limit
+fork <span class="k">done</span>
+Child limits -&gt; soft <span class="nv">limit</span><span class="o">=</span> <span class="m">1024</span>    hard <span class="nv">limit</span><span class="o">=</span> <span class="m">1024</span> 
+Child <span class="nv">pid</span> <span class="o">=</span> <span class="m">246</span>
+Parent limits -&gt; soft <span class="nv">limit</span><span class="o">=</span> <span class="m">512</span>    hard <span class="nv">limit</span><span class="o">=</span> <span class="m">512</span> 
+Parent <span class="nv">pid</span> <span class="o">=</span> <span class="m">245</span>
+</pre>
+<p>可以看出，limit（子）的fd限制继承自limit（父），然后limit（父）可以通过hard code把fd限制手动修改</p>
+
+<blockquote>
+<p><strong>注意：</strong>程序设定的值不可以超过父进程bash的值，也就是ulimit命令设定的hard limit的值，否则会有如下报错</p>
+<pre class="chroma">strace ./limit
+
+......
+
+setrlimit<span class="o">(</span>RLIMIT_NOFILE, <span class="o">{</span><span class="nv">rlim_cur</span><span class="o">=</span>1025, <span class="nv">rlim_max</span><span class="o">=</span>1025<span class="o">}</span><span class="o">)</span> <span class="o">=</span> -1 EPERM <span class="o">(</span>Operation not permitted<span class="o">)</span>
+--- SIGSEGV <span class="o">{</span><span class="nv">si_signo</span><span class="o">=</span>SIGSEGV, <span class="nv">si_code</span><span class="o">=</span>SEGV_MAPERR, <span class="nv">si_addr</span><span class="o">=</span>0x80cde390<span class="o">}</span> ---
++++ killed by SIGSEGV +++
+Segmentation fault
+</pre></blockquote>
+
+<h2>3. 通过其他管理工具或者系统调用来修改fd限制</h2>
+
+<h3>3.1 ulimit</h3>
+
+<p>详细内容见：<a href="/linux/advance/rlimit_ulimit_01_introduce.html">ulimit工具简明介绍：2.3</a></p>
+
+<ul>
+<li>sysvinit script是否受ulimit中的配置限制；答案：（未验证，猜测是否）</li>
+<li>手动创建子shell(login shell 和 non-login shell)，是配置文件生效，还是继承的父进程的值？答案：继承父进程的值</li>
+<li>crontab中的任务是否受ulimit中的配置限制；答案：收到<code>/etc/security/limits.conf</code>中的配置限制，前提是在pam中针对crond配置了pam_limits.so模块的对应配置</li>
+</ul>
+
+<h3>3.2 systemd</h3>
+
+<p>详细内容见：<a href="/linux/advance/systemd_00_00_rlimit_settings.html">systemd 系统资源限制</a></p>
+
+<h3>3.3 container management</h3>
+
+<h4>3.3.1 docker</h4>
+
+<h4>3.3.2 podman</h4>
+
+<p>详细配置见<a href="/virtualization/container/podman_config_00_rlimit.html">podman config: 系统资源限制</a></p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
         </div>
         <div>
           <hr style="border: 0; border-top: 1px dashed #a2a9b6">
@@ -659,353 +964,6 @@ ionice -c <span class="m">2</span> -n <span class="m">7</span> tar Jcf ....
 <p><code>DH keySize &lt; 1024</code>类似的格式，即为【某种算法】小于【xx】位的被禁用</p>
 </blockquote>
 
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/dns_01_dns_problem_analysis.html">DNS解析问题排查实践</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>10 Feb 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>问题背景</h3>
-
-<p>调用路径：<code>service --&gt; public-proxy(nginx) --&gt; public world</code></p>
-
-<p>service通过nginx代理访问外网API A域名，A域名解析的IP有两个(RS1 和 RS2)，且都有防火墙白名单限制。A域名的防火墙已经给nginx代理服务器的IP加白。</p>
-
-<p>遇到的问题是，nginx访问A域名时，有报错说connection timeout，进一步查看，发现A域名解析出来的IP并不是RS1 和RS2。</p>
-
-<h3>初步排查</h3>
-
-<p>通过排查，发现服务器使用dnsmasq做了DNS缓存。<code>/etc/resolv.conf</code>中配置了dns server为本机的<code>dnsmasq</code>，而<code>dnsmasq</code>通过<code>resolv-file=***</code>指向特定的resolv配置文件，配置使用了四个DNS上游服务器IP地址。使用<code>dig</code>指定DNS服务器地址逐个解析排查，将解析结果和RS1 RS2比对，发现是其中两个DNS服务器返回的解析结果和RS1 RS2不匹配。</p>
-
-<p><strong>找到了问题的直接原因（关于这两台DNS服务器返回的解析结果为什么突然不一致的问题这里先不做讨论），最快的解决方式是修改<code>/etc/hosts</code>来固定域名的解析地址。为了尽快恢复故障，于是采用了这个方案。</strong></p>
-
-<h3>问题</h3>
-
-<p><strong>但是，写了<code>/etc/hosts</code>后，业务反馈错误量并未下降，并且使用<code>nslookup</code>解析出来的结果并不是<code>/etc/hosts</code>里面本地DNS记录。</strong></p>
-
-<p><del>基于对<code>nslookup</code>结果的信任，这里判断<code>/etc/hosts</code>中的DNS记录并未生效。</del></p>
-
-<p>于是产生以下几个疑问</p>
-
-<ul>
-<li><code>dnsmasq</code>在这个过程中扮演了什么角色，影响了dns解析中的哪些因素？</li>
-<li>linux中的进程是如何进行dns解析过程的？</li>
-</ul>
-
-<h4>首先是第一个问题，dnsmasq在这个过程中扮演了什么角色，影响了无dnsmasq中的哪些因素？</h4>
-
-<p>大概看了一下dnsmasq，简短一点介绍，它是一个dns缓存器。</p>
-
-<p>启动的时候加载了<code>/etc/resolv.conf</code>（获取dns upstream server）和<code>/etc/hosts</code>（获取本地dns记录，其实应该叫主机名解析记录，不过也可以用作dns劫持用，而且这里讨论的是dns解析问题，所以这里就以dns记录来表述）。</p>
-
-<p>了解到这里，就意识到，<code>/etc/hosts</code>是否是热加载的呢？<strong>会不会是因为不是热加载导致了<code>/etc/hosts</code>的修改并没有在<code>dnsmasq</code>中生效？</strong></p>
-
-<p>于是查看了一下文档，发现确实<code>dnsmasq</code>对<code>/etc/hosts</code>默认不是热加载，如果需要热加载，需要增加启动选项<code>--hostsdir</code>指向一个单独的hosts文件所在的目录。并且<code>dnsmasq</code>的<code>no-hosts</code>选项可以控制<code>dnsmasq</code>是否加载hosts文件。</p>
-
-<p>看到这里就去nginx服务器上确认了一下，发现并没有禁止hosts文件加载，并且也没有指向其他的hosts热加载目录</p>
-
-<p>分析到这里，按照逻辑来讲，可能就是上面说的原因。</p>
-
-<p>但是，还有一个问题。前面的假设是所有的dns解析请求是通过<code>dnsmasq</code>，因为<code>/etc/resolv.conf</code>中指向了本机的<code>dnsmasq</code>，那么按照上面的原因推断的话，这台服务器上所有的程序（不仅仅是nginx）访问A域名都会是同样的解析现象。<strong>但是实际情况是，使用<code>ping</code>命令来测试A域名的解析时，就是<code>/etc/hosts</code>中的结果。</strong></p>
-
-<p>那么现在就到了第一个问题了，linux中的进程在进行dns解析时，<code>dnsmasq</code>、<code>/etc/hosts</code>和<code>/etc/resolv.conf</code>在里面到底是按照什么逻辑来生效和互相影响的？</p>
-
-<h4>第二个问题，linux中的进程是如何进行dns解析过程的？</h4>
-
-<p>详细的内容见<a href="/linux/advance/dns_00_how_dns_work_in_linux.html">linux中的dns解析是如何工作的</a>。</p>
-
-<p>简短的介绍就是，使用C库中<code>gethostbyname</code>和其相关functions来做DNS解析时，是按照<code>NSS(/etc/nsswitch.conf)</code>中配置的<code>hosts: files dns</code>来确定本地DNS解析记录(<code>/etc/hosts</code>)和DNS服务器(<code>/etc/resolv.conf</code>和<code>dnsmasq</code>)的生效顺序，且只要优先度高的解析方式获取到了记录，剩下的解析方式就不会执行。</p>
-
-<blockquote>
-<p>这就是为什么<code>ping</code>可以解析<code>/etc/hosts</code>的DNS记录，但是<code>nslookup</code>无法解析<code>/etc/hosts</code>的DNS记录的原因，也是因为这个原因，导致了上面的误判(通过<code>nslookup</code>来检测域名解析，推断<code>/etc/hosts</code>的修改未生效)。其实不止<code>nslookup</code>，<code>host</code>和<code>dig</code>都是直接向DNS服务器发请求，而不会解析<code>/etc/hosts</code>中的记录。</p>
-</blockquote>
-
-<p>那么问题就很明了了，nginx服务器上的NSS配置是<code>hosts: files dns myhostname</code>，那么理论上当使用<code>gethostbyname</code>和其他相关functions的程序做DNS解析时候，<code>/etc/hosts</code>是第一顺位的解析方式。</p>
-
-<p>如果以上的推导和求证没问题的话，到这里就出现了矛盾：<strong>nginx的DNS解析，理论上<code>/etc/hosts</code>应该生效，但是实际上没有生效</strong></p>
-
-<p>此时就有两个可能：</p>
-
-<ul>
-<li>还有其他影响DNS解析的因素未被考虑进来</li>
-<li>nginx和<code>nslookup</code>类似，无法解析/etc/hosts中的记录（但这个可能性太小，以前做过很多hosts解析，如果这个假设成立，那么我早就发现这个问题了）</li>
-</ul>
-
-<p>于是先排查第一个可能，仔细检查了nginx的配置，发现了这样的一个配置</p>
-<pre class="chroma">resolver 127.0.0.1 ipv6=off valid=300s;
-</pre>
-<blockquote>
-<p><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#resolver">nginx docs: resolver</a></p>
-</blockquote>
-
-<p><strong>破案了，之所以修改了<code>/etc/hosts</code>的方案未生效（service通过nginx代理访问A域名依旧有问题），是因为nginx的这个配置跳过了<code>/etc/hosts</code>而直接使用了DNS服务器(dnsmasq)来做dns解析。</strong></p>
-
-<h3>总结</h3>
-
-<p>三个需要注意的点：</p>
-
-<ul>
-<li>需要了解linux中dns解析参与的因素及其顺序，重点是理解NSS</li>
-<li>需要了解<code>nslookup</code>、<code>dig</code>、<code>hosts</code>无法解析<code>/etc/hosts</code>中的本地DNS记录，可以用<code>ping</code>或者<code>getent hosts</code></li>
-<li>需要了解<a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html"><code>dnsmasq</code>的基本配置</a></li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/dns_00_how_dns_work_in_linux.html">Linux中的DNS解析是如何工作的</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>10 Feb 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>1. <code>/etc/hosts</code>中配置了域名本地解析记录，但是<code>dig</code>、<code>nslookup</code>、<code>host</code>无法识别</h3>
-
-<p>在<code>/etc/hosts</code>中配置一个本地解析记录</p>
-<pre class="chroma">cat /etc/hosts <span class="p">|</span> grep <span class="s2">&#34;test.localnet&#34;</span>
-127.0.0.1 test.localnet
-</pre>
-<p>使用ping测试是可以成功解析的</p>
-<pre class="chroma">ping test.localnet -c <span class="m">1</span>
-<span class="c1"># OUTPUT:</span>
-<span class="c1">#PING test.localnet (127.0.0.1) 56(84) bytes of data.</span>
-<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.042 ms</span>
-#
-<span class="c1">#--- test.localnet ping statistics ---</span>
-<span class="c1">#1 packets transmitted, 1 received, 0% packet loss, time 0ms</span>
-<span class="c1">#rtt min/avg/max/mdev = 0.042/0.042/0.042/0.000 ms</span>
-</pre>
-<p>但是使用<code>host</code>、<code>nslookup</code>、<code>dig</code>却无法找到这个解析</p>
-<pre class="chroma">host test.localnet
-<span class="c1"># OUTPUT:</span> 
-<span class="c1">#Host test.localnet not found: 3(NXDOMAIN)</span>
-
-dig test.localnet
-<span class="c1"># OUTPUT:</span>
-<span class="c1">#; &lt;&lt;&gt;&gt; DiG 9.11.4-P2-RedHat-9.11.4-26.P2.el7_9.8 &lt;&lt;&gt;&gt; test.localnet</span>
-<span class="c1">#;; global options: +cmd</span>
-<span class="c1">#;; Got answer:</span>
-<span class="c1">#;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NXDOMAIN, id: 7913</span>
-<span class="c1">#;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0</span>
-#
-<span class="c1">#;; QUESTION SECTION:</span>
-<span class="c1">#;test.localnet.			IN	A</span>
-#
-<span class="c1">#;; Query time: 3 msec</span>
-<span class="c1">#;; SERVER: 192.168.65.5#53(192.168.65.5)</span>
-<span class="c1">#;; WHEN: Thu Feb 10 06:11:10 UTC 2022</span>
-<span class="c1">#;; MSG SIZE  rcvd: 31</span>
-
-nslookup test.localnet
-<span class="c1"># OUTPUT:</span>
-<span class="c1">#Server:		192.168.65.5</span>
-<span class="c1">#Address:	192.168.65.5#53</span>
-#
-<span class="c1">#** server can&#39;t find test.localnet: NXDOMAIN</span>
-</pre>
-<p>google之后发现，host、dig、nslookup直接对DNS服务器来请求dns解析，而其他使用<a href="https://man7.org/linux/man-pages/man3/gethostbyname.3.html">gethostbyname</a>的程序，都是会按照<code>nsswitch.conf</code>中配置的host的读取顺序来解析域名或主机名，而默认的nsswitch是将<code>/etc/hosts</code>放在第一顺位，所以使用ping可以获取<code>/etc/hosts</code>中的dns记录。</p>
-
-<blockquote>
-<p><a href="https://serverfault.com/questions/498500/why-does-the-host-command-not-resolve-entries-in-etc-hosts">stackoverflow: Why does the host command not resolve entries in /etc/hosts?</a></p>
-</blockquote>
-
-<p>但是接着又出现一个问题，<code>nsswitch.conf</code>是做什么用的？为什么它会影响域名的解析？</p>
-
-<h3>2. <code>nsswitch.conf</code></h3>
-
-<h4>2.1 <code>nsswitch.conf</code>是什么？它是做什么用的？</h4>
-
-<p><a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">nsswitch.conf</a>是NSS(Name Service Switch)的配置文件，用于给GNU C语言库和某些其他的程序来确定从哪里和以什么顺序来获取名字服务信息（不仅仅包含主机名和域名）。</p>
-
-<h4>2.2 <code>nsswitch.conf</code>对于DNS解析有什么影响？</h4>
-
-<p>NSS(Name Service Switch)不只是配置主机名和域名的解析来源和顺序，它是一个综合的名字解析来源和顺序配置服务，详细可见<a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">man文档</a>。</p>
-
-<p>对于主机名和域名的解析，是合并到了一个<code>hosts</code>的配置中，举个例子</p>
-<pre class="chroma">hosts:      files dns myhostname
-</pre>
-<p>上面的配置含义是<code>files</code>(就是/etc/hosts)是第一顺位，<code>dns</code>(就是/etc/resolv.conf配置的dns服务器地址)是第二顺位。</p>
-
-<p>让我们来调换<code>dns</code>和<code>files</code>配置的顺序使用ping来验证一下</p>
-<pre class="chroma"><span class="c1"># 增加google.com的本地解析记录</span>
-cat /etc/hosts <span class="p">|</span> grep google.com
-<span class="c1"># OUTPUT:</span> 
-<span class="c1">#127.0.0.1 google.com</span>
-
-
-<span class="c1"># &#34;hosts:      files dns myhostname&#34;的情况下，ping的结果是127.0.0.1</span>
-ping google.com -c <span class="m">2</span>
-<span class="c1"># OUTPUT:</span>
-<span class="c1">#PING google.com (127.0.0.1) 56(84) bytes of data.</span>
-<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.025 ms</span>
-<span class="c1">#64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.067 ms</span>
-#
-<span class="c1">#--- google.com ping statistics ---</span>
-<span class="c1">#2 packets transmitted, 2 received, 0% packet loss, time 1040ms</span>
-<span class="c1">#rtt min/avg/max/mdev = 0.025/0.046/0.067/0.021 ms</span>
-
-
-<span class="c1"># &#34;hosts:      dns files myhostname&#34;的情况下，ping的结果是dns服务器返回的结果</span>
-ping google.com -c <span class="m">2</span>
-<span class="c1"># OUTPUT:</span>
-<span class="c1">#PING google.com (142.251.12.102) 56(84) bytes of data.</span>
-<span class="c1">#64 bytes from se-in-f102.1e100.net (142.251.12.102): icmp_seq=1 ttl=37 time=6.03 ms</span>
-<span class="c1">#64 bytes from se-in-f102.1e100.net (142.251.12.102): icmp_seq=2 ttl=37 time=6.55 ms</span>
-#
-<span class="c1">#--- google.com ping statistics ---</span>
-<span class="c1">#2 packets transmitted, 2 received, 0% packet loss, time 1005ms</span>
-<span class="c1">#rtt min/avg/max/mdev = 6.038/6.298/6.559/0.272 ms</span>
-</pre>
-<h4>2.3 <code>nsswitch.conf</code>的应用对象是？</h4>
-
-<p>在<a href="https://man7.org/linux/man-pages/man5/nsswitch.conf.5.html">nsswitch.conf的man文档</a>中可以查到以下说明</p>
-<pre class="chroma">hosts  Host names and numbers, used by gethostbyname(3) and
-              related functions.
-</pre>
-<p>含义是NSS会被gethostbyname或者相关的functions使用，基本上使用了C语言的这些函数来做名字解析的，都会按照NSS中的<code>hosts</code>的配置来解析域名。</p>
-
-<h3>3. 其他会影响DNS的因素</h3>
-
-<ul>
-<li>JVM中的dns设定，参见<a href="/java/jvm/jdk_3.1.0_config_java.security.html">java.security 中的dns超时配置</a></li>
-<li>dnsmasq中的一些dns方面的配置，可以参见<a href="/service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq的简要介绍</a></li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/dnsmasq/dnsmasq_01.01_introduction_and_basic.html">dnsmasq基础知识</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>08 Feb 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>0. dnsmasq是什么？</h3>
-
-<p>dnsmasq是一个轻量级的DHCP和DNS缓存服务器。常用于本地的DNS解析服务器。</p>
-
-<blockquote>
-<p>参考文档：</p>
-
-<ul>
-<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html">dnsmasq man page</a></li>
-<li><a href="https://thekelleys.org.uk/dnsmasq/docs/dnsmasq.conf.example">dnsmasq config example</a></li>
-<li><a href="https://thekelleys.org.uk/dnsmasq/docs/setup.html">dnsmasq setup docs</a></li>
-</ul>
-</blockquote>
-
-<h3>1. 如何安装dnsmasq</h3>
-
-<h4>1.1 源码安装</h4>
-
-<p>源码安装的步骤很简单，通常执行下面的命令就足够了</p>
-<pre class="chroma"><span class="c1"># 提前下载好源码，解压，然后进入源码目录，执行以下命令</span>
-make install
-</pre>
-<blockquote>
-<p>二进制文件: <code>/usr/local/sbin/dnsmasq</code></p>
-</blockquote>
-
-<h4>1.2 启动</h4>
-
-<p>启动方式也很简单，直接执行dnsmasq命令即可</p>
-<pre class="chroma">dnsmasq
-</pre>
-<p>进程默认是<code>daemon模式</code>后台运行，并监听53端口</p>
-
-<blockquote>
-<p>可以使用<code>-d, --no-daemon</code>选项来切换<code>daemon模式</code>为<code>debug模式</code></p>
-</blockquote>
-<pre class="chroma">dnsmasq -d
-dnsmasq: started, version 2.86 cachesize <span class="m">150</span>
-dnsmasq: compile <span class="nb">time</span> options: IPv6 GNU-getopt no-DBus no-UBus no-i18n no-IDN DHCP DHCPv6 no-Lua TFTP no-conntrack ipset auth no-cryptohash no-DNSSEC loop-detect inotify dumpfile
-dnsmasq: reading /etc/resolv.conf
-dnsmasq: using nameserver 192.168.65.5#53
-dnsmasq: <span class="nb">read</span> /etc/hosts - <span class="m">7</span> addresses
-</pre>
-<p>dnsmasq进程需要使用root身份启动，因为它需要使用特权端口53，启动后进程会抛弃root，使用nobody用户运行进程。</p>
-
-<h3>2. 基本配置</h3>
-
-<p>一般情况下，一台已经使用<code>/etc/resolv.conf</code>和<code>/etc/hosts</code>配置好dns解析的服务器，可以在没有配置文件的情况下，直接启动<code>dnsmasq</code>进程来提供dns服务。</p>
-
-<p>在简单的通过<code>无配置的dnsmasq</code>启动服务的情况下，dnsmasq提供dns服务是通过读取<code>/etc/resolv.conf</code>来获取dns上游服务器，还有通过<code>/etc/hosts</code>获取本地dns解析。</p>
-
-<h4>2.1 DNS上游服务器地址获取 - <code>/etc/resolv.conf</code></h4>
-
-<p>首先，我们需要创建一个<code>新的nameserver文件</code>来替代<code>/etc/resolv.conf</code></p>
-<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /etc/dnsmasq.resolv.conf
-</span><span class="s">#DNS UPSTREAM SERVER
-</span><span class="s">nameserver 8.8.8.8
-</span><span class="s">nameserver 4.4.4.4
-</span><span class="s">EOF</span>
-</pre>
-<p>然后创建dnsmasq启动时加载的配置文件</p>
-<pre class="chroma"><span class="c1"># Change this line if you want dns to get its upstream servers from</span>
-<span class="c1"># somewhere other that /etc/resolv.conf</span>
-resolv-file<span class="o">=</span>/etc/dnsmasq.resolv.conf
-</pre>
-<blockquote>
-<p>dnsmasq默认加载的配置文件是<code>/etc/dnsmasq.conf</code>，如果需要加载其他位置的配置文件，启动<code>dnsmasq</code>时需要使用<code>--conf-file=/path/to/dnsmasq.conf</code></p>
-</blockquote>
-
-<p>重新启动<code>dnsmasq</code>即可</p>
-
-<h4>2.2 本地DNS解析信息获取 - <code>/etc/hosts</code></h4>
-
-<p>可以禁用本地DNS解析，取消对<code>/etc/hosts</code>的加载</p>
-<pre class="chroma"><span class="c1"># If you don&#39;t want dnsmasq to read /etc/hosts, uncomment the</span>
-<span class="c1"># following line.</span>
-no-hosts
-</pre>
-<p>或者需要从<code>/etc/hosts</code>之外的文件来读取本地DNS解析记录</p>
-<pre class="chroma"><span class="c1"># or if you want it to read another file, as well as /etc/hosts, use</span>
-<span class="c1"># this.</span>
-addn-hosts<span class="o">=</span>/etc/dnsmasq.hosts
-</pre>
-<p><strong>值得注意的是</strong>，hosts记录修改后，需要重启dnsmasq才会生效。如果希望热加载hosts文件，需要在启动dnsmasq时增加如下选项。增加下面的选项后，dnsmasq会加载该目录下的所有hosts文件，新增文件或者修改原有文件会触发hosts的重新加载</p>
-<pre class="chroma"><span class="c1"># Read all the hosts files contained in the directory. New or changed files are read automatically. See --dhcp-hostsdir for details.</span>
-dnsmasq --hostsdir<span class="o">=</span>&lt;path/to/hosts-file-dir&gt;
-</pre>
-<h4>2.3 指定部分域名使用固定的DNS上游服务器</h4>
-
-<p>将所有对<code>*.yourhostname.com</code>的dns解析请求发送到<code>114.114.114.114</code></p>
-<pre class="chroma"><span class="nv">server</span><span class="o">=</span>/.yourhostname.com/114.114.114.114
-</pre>
-<h4>2.4 指定部分域名解析记录</h4>
-
-<p>将所有<code>*.yourhostname.com</code>的请求，解析到<code>127.0.0.1</code></p>
-<pre class="chroma"><span class="c1"># Add domains which you want to force to an IP address here.</span>
-<span class="c1"># The example below send any host in double-click.net to a local</span>
-<span class="c1"># web-server.</span>
-<span class="nv">address</span><span class="o">=</span>/double-click.net/127.0.0.1
-</pre>
-<h3>3. 使用dnsmasq作为dns解析服务器</h3>
-
-<p>只需要将<code>/etc/resolv.conf</code>中原有配置删除，增加如下内容即可</p>
-<pre class="chroma">nameserver &lt;ip-of-dnsmasq-listen&gt;
-</pre>
         </div>
 
     </div>
