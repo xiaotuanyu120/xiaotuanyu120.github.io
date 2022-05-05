@@ -223,25 +223,25 @@
 <blockquote>
 <p>只有root才可以调高hard limit，其他的用户只可以调整soft limit（不可以超过hard limit）</p>
 </blockquote>
-<pre class="chroma">┌────────────┐ ┌────────┐ ┌───────────────┐ ┌───────────┐ ┌─────────┐
-│init/systemd│ │services│ │non-login-shell│ │login-shell│ │container│
-└────────┬───┘ └──┬─┬───┘ └────────┬──────┘ └───┬───────┘ └──┬──────┘
-         │        │ │         (opti│onal)       │            │
-         │        │ │              └────────┐   │            │
-         │        │ │                       │   │(PAM)       │
-         │        │ └─sysvinit scripts──────┤   │            │
-         │        │     (optional)          │   │            │
-         │        │                         │   │            │
-         │        └───systemd units─┐       │   │            │
-         │                          │       │   │            │
-         │         ┌──────┐ ┌───────▼─┐ ┌───▼───▼──────┐ ┌───▼────────┐
-         │         │ hard │ │ systemd │ │ ulimit/login │ │ container  │
-         └────────►│ code │ │         │ │ pam_limit.so │ │ management │
-                   └──┬───┘ └────┬────┘ └───────┬──────┘ └──────┬─────┘
-                      │          │              │               │
-                      └──────────┴──────────────┼───────────────┘
+<pre class="chroma">┌────────────┐ ┌────────┐ ┌─────┐     ┌────┐ ┌─────┐ ┌─────┐     ┌─────────┐
+│init/systemd│ │services│ │shell│     │sshd│ │crond│ │login│     │container│
+└────────┬───┘ └────┬───┘ └───┬─┘     └──┬─┘ └──┬──┘ └───┬─┘     └────┬────┘
+         │          │    (opti│onal)     └──────┴────────┤            │ 
+         │          │         └─────────────┐            │            │
+         │          │                       │           PAM           │
+         │          ├─sysvinit scripts──────┤            │            │
+         │          │   (optional)          │            │            │
+         │          │                       │            │            │
+         │          ├─systemd units─┐       │            │            │
+         │          │               │       │            │            │
+         │       ┌──▼───┐   ┌───────▼─┐ ┌───▼──┐ ┌───────▼──────┐ ┌───▼────────┐
+         │       │ hard │   │ systemd │ │ulimit│ │ limits.conf  │ │ container  │
+         └──────►│ code │   │         │ │(cmd) │ │ pam_limit.so │ │ management │
+                 └──┬───┘   └────┬────┘ └───┬──┘ └───────┬──────┘ └──────┬─────┘
+                    │            │          │            │               │
+                    └────────────┴──────────┴───┬────────┴───────────────┘
                                           SYSTEM│CALL
-                                                │
+            DEFAULT                             │
    ┌─────────────────────────┬──────────────────▼──────┐
    │                         │                         │
    │     inherit from        │    getrlimit prlimit    │
