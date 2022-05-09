@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_network-config.html">2.1.0: 网络-基本配置</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_yum_repo.html">2.2.0: yum源管理</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.4.0_ssh-tool-putty.html">2.4.0: ssh工具-putty</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.1.0_单用户及救援模式.html">3.1.0: 单用户及救援模式</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/03.3.0_basic_command-start.html">3.3.0: 基础命令 - 入门</a></li>
+                    <li><a href="/linux/basic/04.1.0_basic_command-about-file.html">4.1.0: 基础命令 - 文件相关</a></li>
+                    <li><a href="/linux/basic/04.2.0_basic_command-about-file-prop-and-perm.html">4.2.0: 基础命令 - 文件属性和权限相关</a></li>
+                    <li><a href="/linux/basic/04.3.0_basic_command-about-shell.html">4.3.0: 基础命令 - shell基础</a></li>
+                    <li><a href="/linux/basic/05.1.0_basic_command-special-perm.html">5.1.0: 基础命令 - 文件特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_basic_command-sbit-practice.html">5.1.1: 基础命令 - 特殊权限sbit实践</a></li>
+                    <li><a href="/linux/basic/05.2.0_basic_command-file-stat-check.html">5.2.0: 基础命令 - 文件类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command-file-locate.html">5.2.1: 基础命令 - 文件定位（find）</a></li>
+                    <li><a href="/linux/basic/05.3.0_basic_command-soft-link-and-hard-link.html">5.3.0: 基础命令 - 软链接 和 硬链接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.5.0_disk_management-lvm.html">7.5.0: 磁盘管理-lvm</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
+                    <li><a href="/linux/basic/10.1.0_software_install-introduce.html">10.1.0: 软件安装-简介</a></li>
+                    <li><a href="/linux/basic/10.2.0_software_install-sourcecode.html">10.2.0: 软件安装-源码安装</a></li>
+                    <li><a href="/linux/basic/10.2.1_software_install-related-commands.html">10.2.1: 软件安装-相关命令wget</a></li>
+                    <li><a href="/linux/basic/10.2.2_software_install-upgrade-gcc.html">10.2.2: 软件安装-升级gcc</a></li>
+                    <li><a href="/linux/basic/10.3.0_software_install-rpm-tools.html">10.3.0: 软件安装-rpm</a></li>
+                    <li><a href="/linux/basic/10.4.0_software-install-yum-tools.html">10.4.0: 软件安装-yum</a></li>
+                    <li><a href="/linux/basic/11.1.0_shell_basic-bash-basic.html">11.1.0: shell基础-bash basic</a></li>
+                    <li><a href="/linux/basic/11.10.0_shell_basic-array.html">11.10.0: shell基础-数组</a></li>
+                    <li><a href="/linux/basic/11.2.0_shell_basic-wild_cards_and_output_redirect.html">11.2.0: shell基础-通配符&重定向</a></li>
+                    <li><a href="/linux/basic/11.3.0_shell_basic-task-management.html">11.3.0: shell基础-任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/basic/11.4.0_shell_basic-variable_check.html">11.4.0: shell基础-变量查看(echo)</a></li>
+                    <li><a href="/linux/basic/11.5.0_shell_basic-variable_set_and_unset.html">11.5.0: shell基础-变量声明&取消</a></li>
+                    <li><a href="/linux/basic/11.6.0_shell_basic-global-variable.html">11.6.0: shell基础-全局变量</a></li>
+                    <li><a href="/linux/basic/11.7.0_shell_basic-bash_env.html">11.7.0: shell基础-环境变量</a></li>
+                    <li><a href="/linux/basic/11.8.0_shell_basic-pipe-related.html">11.8.0: shell基础-管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/basic/11.9.0_shell_basic-and-or-logic.html">11.9.0: shell基础-与或逻辑操作符</a></li>
+                    <li><a href="/linux/basic/12.1.0_regex_basic-expression.html">12.1.0: 正则基础-编码符号含义</a></li>
+                    <li><a href="/linux/basic/12.2.0_regex_basic-grep.html">12.2.0: 正则基础-grep</a></li>
+                    <li><a href="/linux/basic/12.3.0_regex_basic-sed.html">12.3.0: 正则基础-sed</a></li>
+                    <li><a href="/linux/basic/12.3.1_regex_example-sed-delete-n-line-around.html">12.3.1: 正则基础-sed删除前后n行</a></li>
+                    <li><a href="/linux/basic/12.3.2_regex_example-sed-advance.html">12.3.2: 正则基础-sed高级用法</a></li>
+                    <li><a href="/linux/basic/12.4.0_regex_basic-awk.html">12.4.0: 正则基础-awk</a></li>
+                    <li><a href="/linux/basic/13.1.0_shell_script-introduction.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_shell_script-date.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_shell_script-var-and-caculate.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_shell_script-gen-random-number.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/14.1.0_shell_script_logic-if-case.html">14.1.0: 脚本逻辑基础-流程控制-条件判断if/case</a></li>
+                    <li><a href="/linux/basic/14.2.0_shell_script_logic-function.html">14.2.0: 脚本逻辑基础-功能抽象-function</a></li>
+                    <li><a href="/linux/basic/14.3.0_shell_script_logic-loop.html">14.3.0: 脚本逻辑基础-流程控制-循环语句</a></li>
+                    <li><a href="/linux/basic/14.4.0_shell_script_logic-example.html">14.4.0: 脚本基础-example</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.3.0_系统管理-top工具.html">17.3.0: 系统管理-top工具</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_tcpdump.html">18.1.0: 网络抓包 - tcpdump</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_wireshark.html">18.1.0: 网络抓包 - wireshark</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/22.1.0_基本配置-虚拟主机.html">22.1.0: 基本配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/22.2.0_访问控制-htpasswd.html">22.2.0: 访问控制-htpasswd</a></li>
+                    <li><a href="/linux/basic/22.3.0_访问控制-rewrite.html">22.3.0: 访问控制-rewrite</a></li>
+                    <li><a href="/linux/basic/22.4.0_访问控制-SetEnvIf.html">22.4.0: 访问控制-SetEnvIf</a></li>
+                    <li><a href="/linux/basic/22.5.0_访问控制-防盗链.html">22.5.0: 访问控制-防盗链</a></li>
+                    <li><a href="/linux/basic/22.5.1_访问控制-防盗链无效.html">22.5.1: 访问控制-防盗链无效</a></li>
+                    <li><a href="/linux/basic/22.6.0_访问控制-目录文件限制.html">22.6.0: 访问控制-目录文件限制</a></li>
+                    <li><a href="/linux/basic/22.8.0_web实例-discuz论坛.html">22.8.0: web实例-discuz论坛</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP_install.html">LNMP: 安装+配置+启动脚本</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.4.0_samba-smbtree命令.html">28.4.0: samba-smbtree命令</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>12.1.0: 正则基础-编码符号含义</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>10 Dec 2014</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>0. 前言介绍</h3>
+
+<p>正规表示法并不是某种工具独占的用法
+它是一种很重要且流行的字符串处理方法</p>
+
+<h3>1. 特殊编码</h3>
+
+<p><strong>不同的编码对正规表示法的抓取字符会有影响，
+但下面这些特殊符号的意义是确定的</strong>
+特殊符号|代表意义
+&mdash;|&mdash;
+[:alnum:]|代表英文大小写字节及数字，亦即 0-9, A-Z, a-z
+[:alpha:]|代表任何英文大小写字节，亦即 A-Z, a-z
+[:blank:]|代表空白键和[Tab]按键
+[:cntrl:]|代表键盘上面的控制按键，即 CR, LF, Tab, Del.. 等
+[:digit:]|代表数字而已，即 0-9
+[:graph:]|除了空白字节 (空白键与 [Tab] 按键) 外的其他所有按键
+[:lower:]|代表小写字节，亦即 a-z
+[:print:]|代表任何可以被打印出来的字节
+[:punct:]|代表标点符号 (punctuation symbol)，即：&rdquo; &lsquo; ? ! ; : # $&hellip;
+[:upper:]|代表大写字节，亦即 A-Z
+[:space:]|任何会产生空白的字节，包括空白键, [Tab], CR 等等
+[:xdigit:]|代表16进制的数字类型，包括： 0-9, A-F, a-f 的数字与字节</p>
+
+<p><strong>POSIX标准正则编码与其他用法的对应表格</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>POSIX</th>
+<th>Non standard</th>
+<th>Perl Tcl</th>
+<th>Vim</th>
+<th>ASCII</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[A-Za-z0-9]</td>
+</tr>
+
+<tr>
+<td>[:word:]</td>
+<td>\w</td>
+<td>\w</td>
+<td>[A-Za-z0-9_]</td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td>\W</td>
+<td>\W</td>
+<td>[^A-Za-z0-9_]</td>
+<td></td>
+</tr>
+
+<tr>
+<td>[:alpha:]</td>
+<td></td>
+<td></td>
+<td>\a</td>
+<td>[A-Za-z]</td>
+</tr>
+
+<tr>
+<td>[:blank:]</td>
+<td></td>
+<td></td>
+<td>\s</td>
+<td>[ \t]</td>
+</tr>
+
+<tr>
+<td></td>
+<td>\b</td>
+<td>&lt; &gt;</td>
+<td>(?&lt;=\W)(?=\w)丨(?&lt;=\w)(?=\W)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>[:cntrl:]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[\x00-\x1F\x7F]</td>
+</tr>
+
+<tr>
+<td>[:digit:]</td>
+<td></td>
+<td>\d</td>
+<td>\d</td>
+<td>[0-9]</td>
+</tr>
+
+<tr>
+<td></td>
+<td>\D</td>
+<td>\D</td>
+<td>[^0-9]</td>
+<td></td>
+</tr>
+
+<tr>
+<td>[:graph:]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[\x21-\x7E]</td>
+</tr>
+
+<tr>
+<td>[:lower:]</td>
+<td></td>
+<td></td>
+<td>\l</td>
+<td>[a-z]</td>
+</tr>
+
+<tr>
+<td>[:print:]</td>
+<td></td>
+<td></td>
+<td>\p</td>
+<td>[\x20-\x7E]</td>
+</tr>
+
+<tr>
+<td>[:punct:]</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[][!&ldquo;#$%&amp;&rsquo;()*+,./:;&lt;=&gt;?@\^_`{丨}~-]</td>
+</tr>
+
+<tr>
+<td>[:space:]</td>
+<td></td>
+<td>\s</td>
+<td>\_s</td>
+<td>[ \t\r\n\v\f]</td>
+</tr>
+
+<tr>
+<td></td>
+<td>\S</td>
+<td>\S</td>
+<td>[^ \t\r\n\v\f]</td>
+<td></td>
+</tr>
+
+<tr>
+<td>[:upper:]</td>
+<td></td>
+<td></td>
+<td>\u</td>
+<td>[A-Z]</td>
+</tr>
+
+<tr>
+<td>[:xdigit:]</td>
+<td></td>
+<td></td>
+<td>\x</td>
+<td>[A-Fa-f0-9]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>不存在于POSIX标准字符之中的字符含义</strong></p>
+
+<ul>
+<li><code>[:word:]</code>/<code>\w</code> - Alphanumeric characters plus &ldquo;_&rdquo;<br />
+</li>
+<li><code>\W</code> - Non-word characters</li>
+<li><code>\b</code>/<code>\&lt; \&gt;</code> - Word boundaries</li>
+<li><code>\D</code> - Non-digits</li>
+<li><code>\S</code> - Non-whitespace characters</li>
+</ul>
+
+<h3>2. 基础正规表示法字符汇整</h3>
+
+<table>
+<thead>
+<tr>
+<th>RE 字符</th>
+<th>含义与例子</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>^word</td>
+<td>## 以word开头的行<br>## 查找行首为&rdquo;#&ldquo;开始的那一行，并列出行号<br>grep -n &lsquo;^#&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>word$</td>
+<td>## 以word结尾的行<br>## 查找行尾为&rdquo;!&ldquo;的那一行，并列出行号<br>grep -n &lsquo;!$&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>.</td>
+<td>## 代表『一定有一个任意字节』的字符！<br>## 查找&rdquo;e&rdquo;+&ldquo;任意一个字符,包括空格&rdquo;+&ldquo;e&rdquo;的字符串<br>grep -n &lsquo;e.e&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>|## 脱义字符，将特殊符号的特殊意义去除！<br>## 查找含有单引号 &lsquo; 的那一行！<br>grep -n \&rsquo; regular_express.txt</td>
+<td></td>
+</tr>
+
+<tr>
+<td>*</td>
+<td>## 重复零个到无穷多个的前一个 RE 字符<br>## 找出含有 (es) (ess) (esss) &hellip;的字串<br>grep -n &lsquo;ess*&rsquo; regular_express.txt<br>## 因为 * 可以是 0 个，所以 es 也是符合带搜寻字串。<br>## 另外，因为 * 为重复『前一个 RE 字符』的符号，因此，在 * 之前必须要紧接著一个 RE 字符！例如任意字节则为 『.*』 ！</td>
+</tr>
+
+<tr>
+<td>[list]</td>
+<td>## 字节集合的 RE 字符，里面列出想要选择的字节！<br>## 搜寻含有 (gl) 或 (gd) 的那一行<br>grep -n &lsquo;g[ld]&rsquo; regular_express.txt<br>## 需要特别留意的是，在 [] 当中『谨代表一个待搜寻的字节』， 例如『 a[afl]y 』代表搜寻的字串可以是 aay, afy, aly 即 [afl] 代表 a 或 f 或 l 的意思！</td>
+</tr>
+
+<tr>
+<td>[n1-n2]</td>
+<td>## 字节集合的 RE 字符，里面列出想要撷取的字节范围！<br>## 搜寻含有任意数字的那一行！<br>grep -n &lsquo;[A-Z]&rsquo; regular_express.txt<br>## 需特别留意，在字节集合 [] 中的减号 - 是有特殊意义的，他代表两个字节之间的所有连续字节！但这个连续与否与 ASCII 编码有关，因此，你的编码需要配置正确(在 bash 当中，需要确定 LANG 与 LANGUAGE 的变量是否正确！) 例如所有大写字节则为 [A-Z]</td>
+</tr>
+
+<tr>
+<td>[^list]</td>
+<td>## 字节集合的 RE 字符，里面列出不要的字串或范围！<br>## 搜寻的字串可以是 &ldquo;oo&rdquo;+&ldquo;任意一个字符&rdquo;，除了&rdquo;oot&rdquo;<br>grep -n &lsquo;oo[^t]&rsquo; regular_express.txt<br>## 那个 ^ 在 [] 内时，代表的意义是『反向选择』的意思。 例如，我不要大写字节，则为 [^A-Z]。但是，需要特别注意的是，如果以 grep -n [^A-Z] regular_express.txt 来搜寻，却发现该文件内的所有行都被列出，为什么？因为这个 [^A-Z] 是『非大写字节』的意思， 因为每一行均有非大写字节，例如第一行的 &ldquo;Open Source&rdquo; 就有 p,e,n,o&hellip;. 等等的小写字</td>
+</tr>
+
+<tr>
+<td>{n,m}</td>
+<td>## 连续 n 到 m 个的『前一个 RE 字符』<br>## 若为 {n} 则是连续 n 个的前一个 RE 字符，<br>## 若是 {n,} 则是连续 n 个以上的前一个 RE 字符！<br>## 在 g 与 g 之间有2到3的 o 存在的字串，亦即 (goog)(gooog)<br>grep -n &lsquo;go{2,3}g&rsquo; regular_express.txt</td>
+</tr>
+</tbody>
+</table>
+
+<h3>3. 扩展正规表示法</h3>
+
+<table>
+<thead>
+<tr>
+<th>RE 字符</th>
+<th>含义和例子</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>+</td>
+<td>## 重复『一个或一个以上』的前一个 RE 字符<br>## 搜寻 (god) (good) (goood)&hellip; 等等的字符串<br>egrep -n &lsquo;go+d&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>?</td>
+<td>## 『零个或一个』的前一个 RE 字符<br>## 搜寻 (gd) (god) 这两个字串。<br>egrep -n &lsquo;go?d&rsquo; regular_express.txt<br>## &lsquo;go+d&rsquo; 与 &lsquo;go?d&rsquo;的结果集合与 &lsquo;go*d&rsquo; 相同</td>
+</tr>
+
+<tr>
+<td>丨</td>
+<td>## 用或( or )的方式找出数个字串<br>## 搜寻 gd 或 good 这两个字串<br>egrep -n &lsquo;gd丨good&rsquo; regular_express.txt<br>egrep -n &lsquo;gd丨good丨dog&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>()</td>
+<td>## 找出『群组』字串<br>## 搜寻 (glad) 或 (good) 这两个字串<br>egrep -n &lsquo;g(la丨oo)d&rsquo; regular_express.txt</td>
+</tr>
+
+<tr>
+<td>()+</td>
+<td>## 多个重复群组的判别<br>## 用echo打印『AxyzxyzxyzxyzC』，然后查找A和C中间包含1或多个xyz的判别<br>echo &lsquo;AxyzxyzxyzxyzC&rsquo; 丨 egrep &lsquo;A(xyz)+C&rsquo;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ASCII码表：</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>ASCII</th>
+<th>Hex</th>
+<th>Symbol</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>NUL</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1</td>
+<td>SOH</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>2</td>
+<td>STX</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>3</td>
+<td>ETX</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>4</td>
+<td>EOT</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>5</td>
+<td>ENQ</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>6</td>
+<td>ACK</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>7</td>
+<td>BEL</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td>8</td>
+<td>BS</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>9</td>
+<td>TAB</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td>A</td>
+<td>LF</td>
+</tr>
+
+<tr>
+<td>11</td>
+<td>B</td>
+<td>VT</td>
+</tr>
+
+<tr>
+<td>12</td>
+<td>C</td>
+<td>FF</td>
+</tr>
+
+<tr>
+<td>15</td>
+<td>F</td>
+<td>SI</td>
+</tr>
+
+<tr>
+<td>14</td>
+<td>E</td>
+<td>SO</td>
+</tr>
+
+<tr>
+<td>16</td>
+<td>10</td>
+<td>DLE</td>
+</tr>
+
+<tr>
+<td>17</td>
+<td>11</td>
+<td>DC1</td>
+</tr>
+
+<tr>
+<td>18</td>
+<td>12</td>
+<td>DC2</td>
+</tr>
+
+<tr>
+<td>19</td>
+<td>13</td>
+<td>DC3</td>
+</tr>
+
+<tr>
+<td>20</td>
+<td>14</td>
+<td>DC4</td>
+</tr>
+
+<tr>
+<td>21</td>
+<td>15</td>
+<td>NAK</td>
+</tr>
+
+<tr>
+<td>22</td>
+<td>16</td>
+<td>SYN</td>
+</tr>
+
+<tr>
+<td>23</td>
+<td>17</td>
+<td>ETB</td>
+</tr>
+
+<tr>
+<td>24</td>
+<td>18</td>
+<td>CAN</td>
+</tr>
+
+<tr>
+<td>25</td>
+<td>19</td>
+<td>EM</td>
+</tr>
+
+<tr>
+<td>26</td>
+<td>1A</td>
+<td>SUB</td>
+</tr>
+
+<tr>
+<td>27</td>
+<td>1B</td>
+<td>ESC</td>
+</tr>
+
+<tr>
+<td>28</td>
+<td>1C</td>
+<td>FS</td>
+</tr>
+
+<tr>
+<td>29</td>
+<td>1D</td>
+<td>GS</td>
+</tr>
+
+<tr>
+<td>30</td>
+<td>1E</td>
+<td>RS</td>
+</tr>
+
+<tr>
+<td>31</td>
+<td>1F</td>
+<td>US</td>
+</tr>
+
+<tr>
+<td>32</td>
+<td>20</td>
+<td>(space)</td>
+</tr>
+
+<tr>
+<td>33</td>
+<td>21</td>
+<td>!</td>
+</tr>
+
+<tr>
+<td>34</td>
+<td>22</td>
+<td>&ldquo;</td>
+</tr>
+
+<tr>
+<td>35</td>
+<td>23</td>
+<td>#</td>
+</tr>
+
+<tr>
+<td>36</td>
+<td>24</td>
+<td>$</td>
+</tr>
+
+<tr>
+<td>37</td>
+<td>25</td>
+<td>%</td>
+</tr>
+
+<tr>
+<td>38</td>
+<td>26</td>
+<td>&amp;</td>
+</tr>
+
+<tr>
+<td>39</td>
+<td>27</td>
+<td>&lsquo;</td>
+</tr>
+
+<tr>
+<td>40</td>
+<td>28</td>
+<td>(</td>
+</tr>
+
+<tr>
+<td>41</td>
+<td>29</td>
+<td>)</td>
+</tr>
+
+<tr>
+<td>42</td>
+<td>2A</td>
+<td>*</td>
+</tr>
+
+<tr>
+<td>43</td>
+<td>2B</td>
+<td>+</td>
+</tr>
+
+<tr>
+<td>44</td>
+<td>2C</td>
+<td>,</td>
+</tr>
+
+<tr>
+<td>45</td>
+<td>2D</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>46</td>
+<td>2E</td>
+<td>.</td>
+</tr>
+
+<tr>
+<td>47</td>
+<td>2F</td>
+<td>/</td>
+</tr>
+
+<tr>
+<td>48</td>
+<td>30</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>49</td>
+<td>31</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>50</td>
+<td>32</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>51</td>
+<td>33</td>
+<td>3</td>
+</tr>
+
+<tr>
+<td>52</td>
+<td>34</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>53</td>
+<td>35</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>54</td>
+<td>36</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>55</td>
+<td>37</td>
+<td>7</td>
+</tr>
+
+<tr>
+<td>56</td>
+<td>38</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>57</td>
+<td>39</td>
+<td>9</td>
+</tr>
+
+<tr>
+<td>58</td>
+<td>3A</td>
+<td>:</td>
+</tr>
+
+<tr>
+<td>59</td>
+<td>3B</td>
+<td>;</td>
+</tr>
+
+<tr>
+<td>60</td>
+<td>3C</td>
+<td>&lt;</td>
+</tr>
+
+<tr>
+<td>61</td>
+<td>3D</td>
+<td>=</td>
+</tr>
+
+<tr>
+<td>62</td>
+<td>3E</td>
+<td>&gt;</td>
+</tr>
+
+<tr>
+<td>63</td>
+<td>3F</td>
+<td>?</td>
+</tr>
+
+<tr>
+<td>64</td>
+<td>40</td>
+<td>@</td>
+</tr>
+
+<tr>
+<td>65</td>
+<td>41</td>
+<td>A</td>
+</tr>
+
+<tr>
+<td>66</td>
+<td>42</td>
+<td>B</td>
+</tr>
+
+<tr>
+<td>67</td>
+<td>43</td>
+<td>C</td>
+</tr>
+
+<tr>
+<td>68</td>
+<td>44</td>
+<td>D</td>
+</tr>
+
+<tr>
+<td>69</td>
+<td>45</td>
+<td>E</td>
+</tr>
+
+<tr>
+<td>70</td>
+<td>46</td>
+<td>F</td>
+</tr>
+
+<tr>
+<td>71</td>
+<td>47</td>
+<td>G</td>
+</tr>
+
+<tr>
+<td>72</td>
+<td>48</td>
+<td>H</td>
+</tr>
+
+<tr>
+<td>73</td>
+<td>49</td>
+<td>I</td>
+</tr>
+
+<tr>
+<td>74</td>
+<td>4A</td>
+<td>J</td>
+</tr>
+
+<tr>
+<td>75</td>
+<td>4B</td>
+<td>K</td>
+</tr>
+
+<tr>
+<td>76</td>
+<td>4C</td>
+<td>L</td>
+</tr>
+
+<tr>
+<td>77</td>
+<td>4D</td>
+<td>M</td>
+</tr>
+
+<tr>
+<td>78</td>
+<td>4E</td>
+<td>N</td>
+</tr>
+
+<tr>
+<td>79</td>
+<td>4F</td>
+<td>O</td>
+</tr>
+
+<tr>
+<td>80</td>
+<td>50</td>
+<td>P</td>
+</tr>
+
+<tr>
+<td>81</td>
+<td>51</td>
+<td>Q</td>
+</tr>
+
+<tr>
+<td>82</td>
+<td>52</td>
+<td>R</td>
+</tr>
+
+<tr>
+<td>83</td>
+<td>53</td>
+<td>S</td>
+</tr>
+
+<tr>
+<td>84</td>
+<td>54</td>
+<td>T</td>
+</tr>
+
+<tr>
+<td>85</td>
+<td>55</td>
+<td>U</td>
+</tr>
+
+<tr>
+<td>86</td>
+<td>56</td>
+<td>V</td>
+</tr>
+
+<tr>
+<td>87</td>
+<td>57</td>
+<td>W</td>
+</tr>
+
+<tr>
+<td>88</td>
+<td>58</td>
+<td>X</td>
+</tr>
+
+<tr>
+<td>89</td>
+<td>59</td>
+<td>Y</td>
+</tr>
+
+<tr>
+<td>90</td>
+<td>5A</td>
+<td>Z</td>
+</tr>
+
+<tr>
+<td>91</td>
+<td>5B</td>
+<td>[</td>
+</tr>
+
+<tr>
+<td>92</td>
+<td>5C</td>
+<td></td>
+</tr>
+
+<tr>
+<td>93</td>
+<td>5D</td>
+<td>]</td>
+</tr>
+
+<tr>
+<td>94</td>
+<td>5E</td>
+<td>^</td>
+</tr>
+
+<tr>
+<td>95</td>
+<td>5F</td>
+<td>_</td>
+</tr>
+
+<tr>
+<td>96</td>
+<td>60</td>
+<td>`</td>
+</tr>
+
+<tr>
+<td>97</td>
+<td>61</td>
+<td>a</td>
+</tr>
+
+<tr>
+<td>98</td>
+<td>62</td>
+<td>b</td>
+</tr>
+
+<tr>
+<td>99</td>
+<td>63</td>
+<td>c</td>
+</tr>
+
+<tr>
+<td>100</td>
+<td>64</td>
+<td>d</td>
+</tr>
+
+<tr>
+<td>101</td>
+<td>65</td>
+<td>e</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>66</td>
+<td>f</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>67</td>
+<td>g</td>
+</tr>
+
+<tr>
+<td>104</td>
+<td>68</td>
+<td>h</td>
+</tr>
+
+<tr>
+<td>105</td>
+<td>69</td>
+<td>i</td>
+</tr>
+
+<tr>
+<td>106</td>
+<td>6A</td>
+<td>j</td>
+</tr>
+
+<tr>
+<td>107</td>
+<td>6B</td>
+<td>k</td>
+</tr>
+
+<tr>
+<td>108</td>
+<td>6C</td>
+<td>l</td>
+</tr>
+
+<tr>
+<td>109</td>
+<td>6D</td>
+<td>m</td>
+</tr>
+
+<tr>
+<td>110</td>
+<td>6E</td>
+<td>n</td>
+</tr>
+
+<tr>
+<td>111</td>
+<td>6F</td>
+<td>o</td>
+</tr>
+
+<tr>
+<td>112</td>
+<td>70</td>
+<td>p</td>
+</tr>
+
+<tr>
+<td>113</td>
+<td>71</td>
+<td>q</td>
+</tr>
+
+<tr>
+<td>114</td>
+<td>72</td>
+<td>r</td>
+</tr>
+
+<tr>
+<td>115</td>
+<td>73</td>
+<td>s</td>
+</tr>
+
+<tr>
+<td>116</td>
+<td>74</td>
+<td>t</td>
+</tr>
+
+<tr>
+<td>117</td>
+<td>75</td>
+<td>u</td>
+</tr>
+
+<tr>
+<td>118</td>
+<td>76</td>
+<td>v</td>
+</tr>
+
+<tr>
+<td>119</td>
+<td>77</td>
+<td>w</td>
+</tr>
+
+<tr>
+<td>120</td>
+<td>78</td>
+<td>x</td>
+</tr>
+
+<tr>
+<td>121</td>
+<td>79</td>
+<td>y</td>
+</tr>
+
+<tr>
+<td>122</td>
+<td>7A</td>
+<td>z</td>
+</tr>
+
+<tr>
+<td>123</td>
+<td>7B</td>
+<td>{</td>
+</tr>
+
+<tr>
+<td>124</td>
+<td>7C</td>
+<td>丨</td>
+</tr>
+
+<tr>
+<td>125</td>
+<td>7D</td>
+<td>}</td>
+</tr>
+
+<tr>
+<td>126</td>
+<td>7E</td>
+<td>~</td>
+</tr>
+
+<tr>
+<td>127</td>
+<td>7F</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

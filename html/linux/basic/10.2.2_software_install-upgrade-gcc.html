@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_network-config.html">2.1.0: 网络-基本配置</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_yum_repo.html">2.2.0: yum源管理</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.4.0_ssh-tool-putty.html">2.4.0: ssh工具-putty</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.1.0_单用户及救援模式.html">3.1.0: 单用户及救援模式</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/03.3.0_basic_command-start.html">3.3.0: 基础命令 - 入门</a></li>
+                    <li><a href="/linux/basic/04.1.0_basic_command-about-file.html">4.1.0: 基础命令 - 文件相关</a></li>
+                    <li><a href="/linux/basic/04.2.0_basic_command-about-file-prop-and-perm.html">4.2.0: 基础命令 - 文件属性和权限相关</a></li>
+                    <li><a href="/linux/basic/04.3.0_basic_command-about-shell.html">4.3.0: 基础命令 - shell基础</a></li>
+                    <li><a href="/linux/basic/05.1.0_basic_command-special-perm.html">5.1.0: 基础命令 - 文件特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_basic_command-sbit-practice.html">5.1.1: 基础命令 - 特殊权限sbit实践</a></li>
+                    <li><a href="/linux/basic/05.2.0_basic_command-file-stat-check.html">5.2.0: 基础命令 - 文件类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command-file-locate.html">5.2.1: 基础命令 - 文件定位（find）</a></li>
+                    <li><a href="/linux/basic/05.3.0_basic_command-soft-link-and-hard-link.html">5.3.0: 基础命令 - 软链接 和 硬链接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.5.0_disk_management-lvm.html">7.5.0: 磁盘管理-lvm</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
+                    <li><a href="/linux/basic/10.1.0_software_install-introduce.html">10.1.0: 软件安装-简介</a></li>
+                    <li><a href="/linux/basic/10.2.0_software_install-sourcecode.html">10.2.0: 软件安装-源码安装</a></li>
+                    <li><a href="/linux/basic/10.2.1_software_install-related-commands.html">10.2.1: 软件安装-相关命令wget</a></li>
+                    <li><a href="/linux/basic/10.2.2_software_install-upgrade-gcc.html">10.2.2: 软件安装-升级gcc</a></li>
+                    <li><a href="/linux/basic/10.3.0_software_install-rpm-tools.html">10.3.0: 软件安装-rpm</a></li>
+                    <li><a href="/linux/basic/10.4.0_software-install-yum-tools.html">10.4.0: 软件安装-yum</a></li>
+                    <li><a href="/linux/basic/11.1.0_shell_basic-bash-basic.html">11.1.0: shell基础-bash basic</a></li>
+                    <li><a href="/linux/basic/11.10.0_shell_basic-array.html">11.10.0: shell基础-数组</a></li>
+                    <li><a href="/linux/basic/11.2.0_shell_basic-wild_cards_and_output_redirect.html">11.2.0: shell基础-通配符&重定向</a></li>
+                    <li><a href="/linux/basic/11.3.0_shell_basic-task-management.html">11.3.0: shell基础-任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/basic/11.4.0_shell_basic-variable_check.html">11.4.0: shell基础-变量查看(echo)</a></li>
+                    <li><a href="/linux/basic/11.5.0_shell_basic-variable_set_and_unset.html">11.5.0: shell基础-变量声明&取消</a></li>
+                    <li><a href="/linux/basic/11.6.0_shell_basic-global-variable.html">11.6.0: shell基础-全局变量</a></li>
+                    <li><a href="/linux/basic/11.7.0_shell_basic-bash_env.html">11.7.0: shell基础-环境变量</a></li>
+                    <li><a href="/linux/basic/11.8.0_shell_basic-pipe-related.html">11.8.0: shell基础-管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/basic/11.9.0_shell_basic-and-or-logic.html">11.9.0: shell基础-与或逻辑操作符</a></li>
+                    <li><a href="/linux/basic/12.1.0_regex_basic-expression.html">12.1.0: 正则基础-编码符号含义</a></li>
+                    <li><a href="/linux/basic/12.2.0_regex_basic-grep.html">12.2.0: 正则基础-grep</a></li>
+                    <li><a href="/linux/basic/12.3.0_regex_basic-sed.html">12.3.0: 正则基础-sed</a></li>
+                    <li><a href="/linux/basic/12.3.1_regex_example-sed-delete-n-line-around.html">12.3.1: 正则基础-sed删除前后n行</a></li>
+                    <li><a href="/linux/basic/12.3.2_regex_example-sed-advance.html">12.3.2: 正则基础-sed高级用法</a></li>
+                    <li><a href="/linux/basic/12.4.0_regex_basic-awk.html">12.4.0: 正则基础-awk</a></li>
+                    <li><a href="/linux/basic/13.1.0_shell_script-introduction.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_shell_script-date.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_shell_script-var-and-caculate.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_shell_script-gen-random-number.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/14.1.0_shell_script_logic-if-case.html">14.1.0: 脚本逻辑基础-流程控制-条件判断if/case</a></li>
+                    <li><a href="/linux/basic/14.2.0_shell_script_logic-function.html">14.2.0: 脚本逻辑基础-功能抽象-function</a></li>
+                    <li><a href="/linux/basic/14.3.0_shell_script_logic-loop.html">14.3.0: 脚本逻辑基础-流程控制-循环语句</a></li>
+                    <li><a href="/linux/basic/14.4.0_shell_script_logic-example.html">14.4.0: 脚本基础-example</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.3.0_系统管理-top工具.html">17.3.0: 系统管理-top工具</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_tcpdump.html">18.1.0: 网络抓包 - tcpdump</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_wireshark.html">18.1.0: 网络抓包 - wireshark</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/22.1.0_基本配置-虚拟主机.html">22.1.0: 基本配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/22.2.0_访问控制-htpasswd.html">22.2.0: 访问控制-htpasswd</a></li>
+                    <li><a href="/linux/basic/22.3.0_访问控制-rewrite.html">22.3.0: 访问控制-rewrite</a></li>
+                    <li><a href="/linux/basic/22.4.0_访问控制-SetEnvIf.html">22.4.0: 访问控制-SetEnvIf</a></li>
+                    <li><a href="/linux/basic/22.5.0_访问控制-防盗链.html">22.5.0: 访问控制-防盗链</a></li>
+                    <li><a href="/linux/basic/22.5.1_访问控制-防盗链无效.html">22.5.1: 访问控制-防盗链无效</a></li>
+                    <li><a href="/linux/basic/22.6.0_访问控制-目录文件限制.html">22.6.0: 访问控制-目录文件限制</a></li>
+                    <li><a href="/linux/basic/22.8.0_web实例-discuz论坛.html">22.8.0: web实例-discuz论坛</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP_install.html">LNMP: 安装+配置+启动脚本</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.4.0_samba-smbtree命令.html">28.4.0: samba-smbtree命令</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>10.2.2: 软件安装-升级gcc</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>10 Aug 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 什么是devtoolset？</h3>
+
+<p>Red Hat Developer Toolset is distributed as a collection of RPM packages that can be installed, updated, uninstalled, and inspected by using the standard package management tools that are included in Red Hat Enterprise Linux. Note that a valid subscription that provides access to the Red Hat Software Collections content set is required in order to install Red Hat Developer Toolset on your system.</p>
+
+<hr />
+
+<h3>2. gcc 4.9.2(devtoolset-3)安装方法</h3>
+<pre class="chroma"><span class="c1"># 检查系统版本和gcc版本</span>
+cat /etc/centos-release
+CentOS release 6.5 <span class="o">(</span>Final<span class="o">)</span>
+
+gcc --version
+gcc <span class="o">(</span>GCC<span class="o">)</span> 4.4.7 <span class="m">20120313</span> <span class="o">(</span>Red Hat 4.4.7-16<span class="o">)</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2010</span> Free Software Foundation, Inc.
+This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
+warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+<span class="c1"># 安装软件源和devtoolset-3版本的gcc和gcc-c++</span>
+yum install centos-release-scl
+yum install devtoolset-3-gcc  devtoolset-3-gcc-c++
+
+<span class="c1"># 初始化devtoolset-3(需要每次登录后执行一遍初始化)，查看gcc版本</span>
+<span class="nb">source</span> /opt/rh/devtoolset-3/enable
+gcc --version
+gcc <span class="o">(</span>GCC<span class="o">)</span> 4.9.2 <span class="m">20150212</span> <span class="o">(</span>Red Hat 4.9.2-6<span class="o">)</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2014</span> Free Software Foundation, Inc.
+This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
+warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</pre>
+<hr />
+
+<h3>3. gcc4.8.2(devtoolset-2)安装</h3>
+<pre class="chroma"><span class="c1"># 导入软件包证书</span>
+rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-GPG-KEYs/RPM-GPG-KEY-cern
+
+<span class="c1"># 下载源配置文件</span>
+wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
+
+<span class="c1"># 安装gcc软件</span>
+yum install devtoolset-2-gcc*
+
+<span class="c1"># 初始化devtoolset-2(需要每次登录后执行一遍初始化)，查看gcc版本</span>
+<span class="nb">source</span> /opt/rh/devtoolset-2/enable
+gcc --version
+gcc <span class="o">(</span>GCC<span class="o">)</span> 4.8.2 <span class="m">20140120</span> <span class="o">(</span>Red Hat 4.8.2-15<span class="o">)</span>
+Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2013</span> Free Software Foundation, Inc.
+This is free software<span class="p">;</span> see the <span class="nb">source</span> <span class="k">for</span> copying conditions.  There is NO
+warranty<span class="p">;</span> not even <span class="k">for</span> MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+</pre>
+<p>参考链接：</p>
+
+<ul>
+<li><a href="https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/">devtoolset-3官方指引</a></li>
+<li><a href="http://www.ie-lab.cn/page289?article_id=536">devtoolset各版本安装总结</a></li>
+<li><a href="https://gist.github.com/stephenturner/e3bc5cfacc2dc67eca8b">devtoolset-2安装指引</a></li>
+<li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Developer_Toolset/3/html/User_Guide/sect-Red_Hat_Developer_Toolset-Install.html">devtoolset redhat基础介绍</a></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
