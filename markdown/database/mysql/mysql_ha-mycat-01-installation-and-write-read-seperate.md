@@ -1,5 +1,5 @@
 ---
-title: MYSQL: MyCat安装，读写分离
+title: MySQL: HA - mycat安装&读写分离
 date: 2016-09-22 10:14:00
 categories: database/mysql
 tags: [mysql,mycat]

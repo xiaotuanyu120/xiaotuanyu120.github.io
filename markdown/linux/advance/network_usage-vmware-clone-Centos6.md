@@ -1,11 +1,11 @@
 ---
-title: network: vmware克隆Centos6后的网络设置
+title: 网络应用: vmware克隆VM后的网络设置(Centos6)
 date: 2015-11-06 10:28:00
 categories: linux/advance
 tags: [vmware,network]
 ---
 
-### 1. 修改网卡设备名称
+## 1. 修改网卡设备名称
 ``` bash
 vi /etc/udev/rules.d/70-persistent-net.rules
 *********************************
@@ -34,11 +34,9 @@ HOSTNAME=ftp-read-out.ig
 init 6
 ```
 
----
-
-### 问题
-#### 1) 问题描述
+## 2. 问题
+### 1) 问题描述
 发现70-persistent-net.rules文件不存在，自己创建也无法重命名网卡名称
 
-#### 2) 解决办法
+### 2) 解决办法
 `ntsysv`打开`udev-post`服务，重启后该服务会自动创建此文件

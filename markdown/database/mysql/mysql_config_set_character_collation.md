@@ -1,5 +1,5 @@
 ---
-title: MYSQL-配置：配置字符集为utf8
+title: MySQL: 配置 - 配置字符集为utf8
 date: 2020-10-21 23:32:00
 categories: database/mysql
 tags: [database,mysql]

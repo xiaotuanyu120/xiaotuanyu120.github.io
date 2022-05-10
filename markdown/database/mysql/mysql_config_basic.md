@@ -1,5 +1,5 @@
 ---
-title: MYSQL-配置：常用基本配置
+title: MySQL: 配置 - 常用基本配置
 date: 2015-01-12 05:47:00
 categories: database/mysql
 tags: [database,mysql]

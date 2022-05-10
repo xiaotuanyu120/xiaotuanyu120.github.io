@@ -1,5 +1,5 @@
 ---
-title: network: tcp 连接存活时间查询方法
+title: 网络: TCP - tcp连接存活时间查询方法
 date: 2019-07-05 11:52:00
 categories: linux/advance
 tags: [network,tcp]

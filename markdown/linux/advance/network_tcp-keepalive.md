@@ -1,5 +1,5 @@
 ---
-title: network: tcp keepalive (include versus with http keepalive)
+title: 网络: TCP - tcp keepalive and http keepalive
 date: 2018-06-25 12:57:00
 categories: linux/advance
 tags: [network,tcp]

@@ -1,7 +1,7 @@
 ---
-title: MyCat初识
+title: MySQL: HA - mycat简介
 date: 2016-09-22 09:46:00
-categories: database
+categories: database/mysql
 tags: [mysql,mycat]
 ---
 

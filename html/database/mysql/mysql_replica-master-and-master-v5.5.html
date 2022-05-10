@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
+            </li>
+            <li>
+              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+              <ul>
+                <li>
+                  <a href="/database/mysql/index.html">mysql</a>
+                  <ul>
+                    <li><a href="/database/mysql/MYSQL_多实例配置+启动脚本.html">MYSQL: 多实例配置+启动脚本</a></li>
+                    <li><a href="/database/mysql/MYSQL_无法通过sock登陆.html">MYSQL-error: 无法通过sock登陆</a></li>
+                    <li><a href="/database/mysql/MYSQL_查看表ENGINE(v5.6).html">MYSQL: 查看表ENGINE(v5.6)</a></li>
+                    <li><a href="/database/mysql/MYSQL_设置wait_timeout控制sleep线程太多.html">MYSQL: 设置wait_timeout控制sleep线程太多</a></li>
+                    <li><a href="/database/mysql/MySQL_增量备份-binlog.html">MySQL: 增量备份-binlog</a></li>
+                    <li><a href="/database/mysql/MySQL_备份及恢复理论.html">MySQL:备份及恢复理论</a></li>
+                    <li><a href="/database/mysql/MySQL_安装脚本.html">MySQL: 安装脚本</a></li>
+                    <li><a href="/database/mysql/MySQL_配置及优化.html">MySQL: 配置及优化</a></li>
+                    <li><a href="/database/mysql/error_1.0_force_close_of_thread.html">MYSQL-错误: 1.0 force close of thread xxx user: 'someuser'</a></li>
+                    <li><a href="/database/mysql/error_1.1_cant_connect_mysql_remotely.html">MYSQL-错误: 1.1 DNS查询优化和Host缓存</a></li>
+                    <li><a href="/database/mysql/error_5.6-error-1045.html">error: 5.6-error-1045</a></li>
+                    <li><a href="/database/mysql/error_innodb_init.html">MYSQL-错误：无法启动排障</a></li>
+                    <li><a href="/database/mysql/error_主从_1062Duplicateentry_.html">error: 主从"1062 Duplicate entry"</a></li>
+                    <li><a href="/database/mysql/error_双主错误1593.html">error: 双主错误1593</a></li>
+                    <li><a href="/database/mysql/error_服务无法启动报错.html">error: 服务无法启动报错</a></li>
+                    <li><a href="/database/mysql/error_表只读.html">error: 表只读</a></li>
+                    <li><a href="/database/mysql/mysql_1.0.0_installation.html">mysql 1.0.0: 安装教程</a></li>
+                    <li><a href="/database/mysql/mysql_1.0.1_docker_compose.html">mysql 1.0.1: docker-compose(单实例和主从)</a></li>
+                    <li><a href="/database/mysql/mysql_3.0.0_basic_operation.html">mysql 3.0.0：常用命令</a></li>
+                    <li><a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a></li>
+                    <li><a href="/database/mysql/mysql_config_basic.html">MySQL: 配置 - 常用基本配置</a></li>
+                    <li><a href="/database/mysql/mysql_config_optimize.html">MySQL: 配置 - 调优</a></li>
+                    <li><a href="/database/mysql/mysql_config_set_character_collation.html">MySQL: 配置 - 配置字符集为utf8</a></li>
+                    <li><a href="/database/mysql/mysql_error_start_login.html">MYSQL-错误：启动/登录报错</a></li>
+                    <li><a href="/database/mysql/mysql_ha-mycat-00-introduction.html">MySQL: HA - mycat简介</a></li>
+                    <li><a href="/database/mysql/mysql_ha-mycat-01-installation-and-write-read-seperate.html">MySQL: HA - mycat安装&读写分离</a></li>
+                    <li><a href="/database/mysql/mysql_manage_backup_recovery.html">MySQL: 管理 - 备份及恢复</a></li>
+                    <li><a href="/database/mysql/mysql_manage_reset_root_password.html">MySQL: 管理 - 忘记root密码</a></li>
+                    <li><a href="/database/mysql/mysql_replica-master-and-master-v5.5.html">MySQL: 复制 - 双主配置(MySQL5.5)</a></li>
+                    <li><a href="/database/mysql/mysql_replica-master-and-slave-v5.6-centos6.html">MySQL: 复制 - 主从配置(MySQL5.6 on centos6)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/database/oracle/index.html">oracle</a>
+                </li>
+                <li>
+                  <a href="/database/rabbitmq/index.html">rabbitmq</a>
+                </li>
+                <li>
+                  <a href="/database/redis/index.html">redis</a>
+                </li>
+                <li>
+                  <a href="/database/rocketmq/index.html">rocketmq</a>
+                </li>
+                <li>
+                  <a href="/database/sql/index.html">sql</a>
+                </li>
+                <li>
+                  <a href="/database/zookeeper/index.html">zookeeper</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>MySQL: 复制 - 双主配置(MySQL5.5)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Sep 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>0. 环境准备</h2>
+
+<ul>
+<li>mysql01：192.168.110.129</li>
+<li>mysql02：192.168.110.130</li>
+</ul>
+
+<h2>1. MySQL安装</h2>
+
+<h3>安装mysql5.5（为了演示方便，使用oneinstack包）</h3>
+<pre class="chroma"><span class="c1"># on mysql01&amp;mysql02</span>
+yum -y install wget screen python
+wget http://mirrors.linuxeye.com/oneinstack-full.tar.gz
+tar xzf oneinstack-full.tar.gz
+<span class="nb">cd</span> oneinstack
+screen -S oneinstack
+ 
+<span class="c1"># 官方提示：不要使用sh和bash命令执行下面脚本</span>
+./install.sh
+<span class="c1"># 按照提示选择安装mysql5.5</span>
+</pre>
+<h2>2. 配置mysql双主</h2>
+
+<h3>修改配置文件</h3>
+<pre class="chroma"><span class="c1"># on master01</span>
+vi /etc/my.cnf
+************************
+server-id <span class="o">=</span> <span class="m">1</span>
+binlog-ignore-db <span class="o">=</span> mysql
+binlog-ignore-db <span class="o">=</span> information_schema
+binlog-ignore-db <span class="o">=</span> performance_schema
+binlog-do-db <span class="o">=</span> <span class="nb">test</span>
+ 
+replicate-ignore-db <span class="o">=</span> mysql
+replicate-ignore-db <span class="o">=</span> information_schema
+replicate-ignore-db <span class="o">=</span> performance_schema
+replicate-do-db <span class="o">=</span> <span class="nb">test</span>
+ 
+auto-increment-increment <span class="o">=</span> <span class="m">2</span>
+auto-increment-offset <span class="o">=</span> <span class="m">1</span>
+************************
+service mysqld restart
+ 
+<span class="c1"># on master02</span>
+vi /etc/my.cnf
+************************
+server-id <span class="o">=</span> <span class="m">2</span>
+binlog-ignore-db <span class="o">=</span> mysql
+binlog-ignore-db <span class="o">=</span> information_schema
+binlog-ignore-db <span class="o">=</span> performance_schema
+binlog-do-db <span class="o">=</span> <span class="nb">test</span>
+ 
+replicate-ignore-db <span class="o">=</span> mysql
+replicate-ignore-db <span class="o">=</span> information_schema
+replicate-ignore-db <span class="o">=</span> performance_schema
+replicate-do-db <span class="o">=</span> <span class="nb">test</span>
+ 
+auto-increment-increment <span class="o">=</span> <span class="m">2</span>
+auto-increment-offset <span class="o">=</span> <span class="m">2</span>
+************************
+service mysqld restart
+</pre>
+<h3>资料同步及用户授权</h3>
+<pre class="chroma"><span class="c1"># on master01</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; grant replication slave on *.* to <span class="s1">&#39;slave&#39;</span>@<span class="s1">&#39;192.168.110.130&#39;</span> identified by <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; flush privileges<span class="p">;</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; FLUSH TABLES WITH READ LOCK<span class="p">;</span>
+ 
+mysqldump -u root -p <span class="nb">test</span> &gt; test.sql
+rsync -av ./test.sql root@192.168.110.130:/root/
+ 
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; UNLOCK TABLES<span class="p">;</span>
+ 
+<span class="c1"># on master02</span>
+mysql -u root -p &lt; test.sql
+ 
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; grant replication slave on *.* to <span class="s1">&#39;slave&#39;</span>@<span class="s1">&#39;192.168.110.129&#39;</span> identified by <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; flush privileges<span class="p">;</span>
+</pre>
+<h3>互相做主从</h3>
+<pre class="chroma"><span class="c1">## master02做master01的从</span>
+<span class="c1"># on master01</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; show master status<span class="se">\G</span>
+*************************** 1. row ***************************
+            File: mysql-bin.000005
+        Position: <span class="m">599</span>
+    Binlog_Do_DB: <span class="nb">test</span>
+Binlog_Ignore_DB: mysql,information_schema,performance_schema
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+ 
+<span class="c1"># on master02</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; CHANGE MASTER TO
+    -&gt; <span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;192.168.110.129&#39;</span>,
+    -&gt; <span class="nv">MASTER_PORT</span><span class="o">=</span>3306,
+    -&gt; <span class="nv">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;slave&#39;</span>,
+    -&gt; <span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span>,
+    -&gt; <span class="nv">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;mysql-bin.000005&#39;</span>,
+    -&gt; <span class="nv">MASTER_LOG_POS</span><span class="o">=</span>599<span class="p">;</span>
+ 
+<span class="c1">## master01做master02的从</span>
+<span class="c1"># on master02</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; show master status<span class="se">\G</span>
+*************************** 1. row ***************************
+            File: mysql-bin.000009
+        Position: <span class="m">753</span>
+    Binlog_Do_DB: <span class="nb">test</span>
+Binlog_Ignore_DB: mysql,information_schema,performance_schema
+ 
+<span class="c1"># on master01</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; CHANGE MASTER TO
+    -&gt; <span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;192.168.110.130&#39;</span>,
+    -&gt; <span class="nv">MASTER_PORT</span><span class="o">=</span>3306,
+    -&gt; <span class="nv">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;slave&#39;</span>,
+    -&gt; <span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;123456&#39;</span>,
+    -&gt; <span class="nv">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;mysql-bin.000009&#39;</span>,
+    -&gt; <span class="nv">MASTER_LOG_POS</span><span class="o">=</span>753<span class="p">;</span>
+ 
+<span class="c1">## 在两台mysql上都执行以下命令</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; start slave<span class="p">;</span>
+ 
+<span class="c1">## 查看状态</span>
+<span class="c1"># on master01</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; show slave status<span class="se">\G</span>
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting <span class="k">for</span> master to send event
+                  Master_Host: 192.168.110.130
+                  Master_User: slave
+                  Master_Port: <span class="m">3306</span>
+                Connect_Retry: <span class="m">60</span>
+              Master_Log_File: mysql-bin.000009
+          Read_Master_Log_Pos: <span class="m">753</span>
+               Relay_Log_File: mysql-relay-bin.000002
+                Relay_Log_Pos: <span class="m">253</span>
+        Relay_Master_Log_File: mysql-bin.000009
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB: <span class="nb">test</span>
+          Replicate_Ignore_DB: mysql,information_schema,performance_schema
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: <span class="m">0</span>
+                   Last_Error: 
+                 Skip_Counter: <span class="m">0</span>
+          Exec_Master_Log_Pos: <span class="m">753</span>
+              Relay_Log_Space: <span class="m">409</span>
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: <span class="m">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: <span class="m">0</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span class="m">0</span>
+                Last_IO_Error: 
+               Last_SQL_Errno: <span class="m">0</span>
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: <span class="m">2</span>
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+ 
+<span class="c1"># on master02</span>
+MySQL <span class="o">[</span><span class="o">(</span>none<span class="o">)</span><span class="o">]</span>&gt; show slave status<span class="se">\G</span>
+*************************** 1. row ***************************
+               Slave_IO_State: Waiting <span class="k">for</span> master to send event
+                  Master_Host: 192.168.110.129
+                  Master_User: slave
+                  Master_Port: <span class="m">3306</span>
+                Connect_Retry: <span class="m">60</span>
+              Master_Log_File: mysql-bin.000005
+          Read_Master_Log_Pos: <span class="m">599</span>
+               Relay_Log_File: mysql-relay-bin.000002
+                Relay_Log_Pos: <span class="m">253</span>
+        Relay_Master_Log_File: mysql-bin.000005
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB: <span class="nb">test</span>
+          Replicate_Ignore_DB: mysql,information_schema,performance_schema
+           Replicate_Do_Table: 
+       Replicate_Ignore_Table: 
+      Replicate_Wild_Do_Table: 
+  Replicate_Wild_Ignore_Table: 
+                   Last_Errno: <span class="m">0</span>
+                   Last_Error: 
+                 Skip_Counter: <span class="m">0</span>
+          Exec_Master_Log_Pos: <span class="m">599</span>
+              Relay_Log_Space: <span class="m">409</span>
+              Until_Condition: None
+               Until_Log_File: 
+                Until_Log_Pos: <span class="m">0</span>
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File: 
+           Master_SSL_CA_Path: 
+              Master_SSL_Cert: 
+            Master_SSL_Cipher: 
+               Master_SSL_Key: 
+        Seconds_Behind_Master: <span class="m">0</span>
+Master_SSL_Verify_Server_Cert: No
+                Last_IO_Errno: <span class="m">0</span>
+                Last_IO_Error: 
+               Last_SQL_Errno: <span class="m">0</span>
+               Last_SQL_Error: 
+  Replicate_Ignore_Server_Ids: 
+             Master_Server_Id: <span class="m">1</span>
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

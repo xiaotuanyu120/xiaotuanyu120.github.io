@@ -1,5 +1,5 @@
 ---
-title: MYSQL-管理：备份及恢复
+title: MySQL: 管理 - 备份及恢复
 date: 2015-01-14 19:04:00
 categories: database/mysql
 tags: [database,mysql]

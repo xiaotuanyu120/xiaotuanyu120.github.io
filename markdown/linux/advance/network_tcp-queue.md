@@ -1,5 +1,5 @@
 ---
-title: network: tcp queue(转载)
+title: 网络: TCP - tcp queue(转载)
 date: 2015-12-11 10:14:00
 categories: linux/advance
 tags: [linux,tcp]

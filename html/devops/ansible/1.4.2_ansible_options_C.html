@@ -173,45 +173,29 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>1.3.12: playbook with_items and register</h2>
+      <h2>1.4.2: options -C</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 May 2018</p>
+        <p>06 Oct 2016</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 背景说明</h3>
+<h3>1. 参数-C来模拟task的执行，并不去实际执行tasks</h3>
+<pre class="chroma">ansible -i hosts localhost -m service -a <span class="s2">&#34;name=iptables state=started&#34;</span> -C
+localhost <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: true,
+    <span class="s2">&#34;msg&#34;</span>: <span class="s2">&#34;service state changed&#34;</span>
+<span class="o">}</span>
 
-<p>变量example</p>
-<pre class="chroma"><span class="c"># all组变量文件中的变量</span><span class="w">
-</span><span class="w"></span><span class="k">cdn_proxy_nginx</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">  </span>- ip1<span class="w">
-</span><span class="w">  </span>- ip2<span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 子组的变量文件中的变量</span><span class="w">
-</span><span class="w"></span><span class="k">ipset_web</span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">  </span><span class="k">cdn_nginx</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ cdn_proxy_nginx }}&#34;</span><span class="w">
-</span><span class="w">  </span><span class="s2">&#34;{{ brand }}_nginx&#34;</span><span class="k"></span><span class="p">:</span><span class="w">
-</span><span class="w"></span><span class="w">    </span>- ip3<span class="w">
-</span><span class="w">    </span>- ip4<span class="w">
-</span></pre>
-<blockquote>
-<p>ipset_web本身是一个变量，如果要获得ip3和ip4的话，需要使用key -&gt; <code>&quot;{{ brand }}_nginx&quot;</code>，这样就要面临变量中使用变量的情况</p>
-</blockquote>
-
-<h3>1. 变量中如何使用变量</h3>
-<pre class="chroma">- <span class="k">name</span><span class="p">:</span><span class="w"> </span>ipset<span class="w"> </span>add<span class="w"> </span>ip<span class="w"> </span>to<span class="w"> </span>group<span class="w"> </span><span class="s2">&#34;{{ brand }}_nginx&#34;</span><span class="w">
-</span><span class="w">  </span><span class="k">command</span><span class="p">:</span><span class="w"> </span>ipset<span class="w"> </span>add<span class="w"> </span><span class="s2">&#34;{{brand}}_nginx&#34;</span><span class="w"> </span><span class="s2">&#34;{{ item }}&#34;</span><span class="w">
-</span><span class="w">  </span><span class="k">with_items</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;{{ ipset_web[&#39;{{ brand }}_nginx&#39;] }}&#34;</span><span class="w">
-</span><span class="w">  </span><span class="k">ignore_errors</span><span class="p">:</span><span class="w"> </span>yes<span class="w">
-</span></pre>
-<blockquote>
-<p>重点是<code>&quot;{{ ipset_web['{{ brand }}_nginx'] }}&quot;</code>，<a href="https://stackoverflow.com/questions/40043826/accessing-a-dictionary-using-another-variable-as-key-yaml">参考链接</a></p>
-</blockquote>
-
+ ansible -i hosts localhost -m service -a <span class="s2">&#34;name=iptables state=stopped&#34;</span> -C
+localhost <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+    <span class="s2">&#34;changed&#34;</span>: false,
+    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;iptables&#34;</span>,
+    <span class="s2">&#34;state&#34;</span>: <span class="s2">&#34;stopped&#34;</span>
+</pre>
     </div>
 
   </div>

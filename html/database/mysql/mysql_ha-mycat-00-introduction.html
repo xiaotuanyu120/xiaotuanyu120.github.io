@@ -162,140 +162,57 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>mysql 4.0.1：auto_increment引起的问题</h2>
+      <h2>MySQL: HA - mycat简介</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>19 Nov 2021</p>
+        <p>22 Sep 2016</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 背景</h3>
+<h3>什么是MyCat？</h3>
 
-<p>数据库中的一个字段，业务开发计划将其改为自增，由DBA执行后，发现原本字段中为NULL的记录，全都按照自增规则给重新赋了值。这不符合初衷啊，是为什么呢？</p>
+<p>MyCat是一个开源的数据库中间件，基于阿里曾经的cobar开发，致力于提供数据库分布式集群解决方案。</p>
 
-<h3>1. 重现场景</h3>
-
-<h4>1) 准备环境</h4>
-<pre class="chroma">docker run -it -d --name mysql -e <span class="nv">MYSQL_EMPTY_PASSWORD</span><span class="o">=</span><span class="nb">true</span> mysql:5.7
-</pre>
-<h4>2) 模拟线上场景</h4>
-
-<p><strong>创建测试表test2</strong></p>
-<pre class="chroma"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test2</span> <span class="p">(</span>
-    <span class="n">id</span>    <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="n">score</span> <span class="nb">INT</span> <span class="k">NULL</span><span class="p">,</span>
-    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="p">,</span>
-    <span class="k">INDEX</span> <span class="p">(</span><span class="n">score</span><span class="p">)</span>
-<span class="p">)</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>score字段，允许为NULL，用来测试；之所以给score增加索引，是因为这是增加AUTO_INCREMENT的前提。</p>
-</blockquote>
-
-<p><strong>准备测试数据</strong></p>
-<pre class="chroma"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test2</span> <span class="k">VALUES</span>
-    <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="k">NULL</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
-    <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>测试数据涵盖范围：</p>
+<h3>MyCat的特性</h3>
 
 <ul>
-<li>正数</li>
-<li>NULL</li>
-<li>0</li>
-<li>负数</li>
+<li>支持SQL92标准</li>
+<li>遵守Mysql原生协议，跨语言，跨平台，跨数据库的通用中间件代理。</li>
+<li>基于心跳的自动故障切换，支持读写分离，支持MySQL主从，以及galera cluster集群。</li>
+<li>支持Galera for MySQL集群，Percona Cluster或者MariaDB cluster</li>
+<li>基于Nio实现，有效管理线程，高并发问题。</li>
+<li>支持数据的多片自动路由与聚合，支持sum,count,max等常用的聚合函数,支持跨库分页。</li>
+<li>支持单库内部任意join，支持跨库2表join，甚至基于caltlet的多表join。</li>
+<li>支持通过全局表，ER关系的分片策略，实现了高效的多表join查询。</li>
+<li>支持多租户方案。</li>
+<li>支持分布式事务（弱xa）。</li>
+<li>支持全局序列号，解决分布式下的主键生成问题。</li>
+<li>分片规则丰富，插件化开发，易于扩展。</li>
+<li>强大的web，命令行监控。</li>
+<li>支持前端作为mysq通用代理，后端JDBC方式支持Oracle、DB2、SQL Server 、 mongodb 、巨杉。</li>
+<li>支持密码加密</li>
+<li>支持服务降级</li>
+<li>支持IP白名单</li>
+<li>支持SQL黑名单、sql注入攻击拦截</li>
+<li>支持分表（1.6）</li>
+<li>集群基于ZooKeeper管理，在线升级，扩容，智能优化，大数据处理（2.0开发版）。</li>
 </ul>
-</blockquote>
 
-<p><strong>查看当前的现存记录</strong></p>
-<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
-</pre>
-<blockquote>
-<p>输出：</p>
-<pre class="chroma">&gt; +----+-------+
-&gt; | id | score |
-&gt; +----+-------+
-&gt; |  1 |  NULL |
-&gt; |  2 |   200 |
-&gt; |  3 |  NULL |
-&gt; |  4 |     0 |
-&gt; |  5 |    -2 |
-&gt; +----+-------+
-&gt; 5 rows in set (0.01 sec)
-&gt; ```
+<h3>接触MyCat的几个缘由</h3>
 
-**在有现存数据的基础上，设定score字段自增**
-``` sql
- ALTER TABLE test2 
-MODIFY COLUMN score INT AUTO_INCREMENT;
-</pre></blockquote>
+<p>公司数据库瓶颈，想到可以做读写分离，于是接触到数据库中间件，在了解数据库中间件的过程中，发现MyCat的社区氛围、安装难度和配置复杂度深得我心。</p>
 
-<p><strong>查看修改为自增之后的结果</strong></p>
-<pre class="chroma"><span class="k">SELECT</span> <span class="o">*</span>
-  <span class="k">FROM</span> <span class="n">test2</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span><span class="p">;</span>
-</pre>
-<p>输出：</p>
-<pre class="chroma">+----+-------+
-| id | score |
-+----+-------+
-|  1 |     1 |
-|  2 |   200 |
-|  3 |   201 |
-|  4 |   202 |
-|  5 |    -2 |
-+----+-------+
-5 rows in set (0.01 sec)
-</pre>
-<h4>3) 总结</h4>
+<h3>运维角度来看MyCat</h3>
 
 <ul>
-<li>给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</li>
-<li>自增赋值时，会按照之前记录的最大值加1</li>
-<li>负数和正数不会被重新赋值，会保持原记录</li>
+<li>安装配置相对简单</li>
+<li>和Mysql集群架构低耦合，mysql可选主从、双主、n主n从等架构</li>
+<li>读写分离配置容易，只需要mycat配置好可读可写</li>
+<li>抽象了物理库表为逻辑库表，支持sql、join等操作，对用户来讲，接受难度低</li>
 </ul>
-
-<h3>2. 文档解读</h3>
-
-<ul>
-<li>参考文档：<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-auto-increment-handling.html">mysql 5.7 docs: InnoDB引擎下的AUTO_INCREMENT</a></li>
-</ul>
-
-<h4>1) 下面这个文档原文，证实了前面实践出的结论，给字段设定为自增后，现存记录中的<code>NULL</code>和<code>0</code>值都会按照自增规则被重新赋值</h4>
-<pre class="chroma">Specifying NULL or 0 for the AUTO_INCREMENT column
-
-In all lock modes (0, 1, and 2), if a user specifies NULL or 0 for the AUTO_INCREMENT column in an INSERT, InnoDB treats the row as if the value was not specified and generates a new value for it.
-</pre>
-<h4>2) innodb_autoinc_lock_mode</h4>
-
-<p>文档中着重介绍了变量<code>innodb_autoinc_lock_mode</code>，这个变量表示了处理AUTO_INCREMENT时的锁的模式，有可能会影响主备情况下并发事务的自增逻辑，牵扯到表锁和行锁，详细信息还是看上面的参考文档链接。</p>
-<pre class="chroma"><span class="k">SHOW</span> <span class="n">VARIABLES</span> <span class="k">LIKE</span> <span class="s2">&#34;</span><span class="s2">innodb_autoinc_lock_mode</span><span class="s2">&#34;</span><span class="p">;</span>
-</pre>
-<p>输出：</p>
-<pre class="chroma">+--------------------------+-------+
-| Variable_name            | Value |
-+--------------------------+-------+
-| innodb_autoinc_lock_mode | 1     |
-+--------------------------+-------+
-1 row in set (0.04 sec)
-</pre>
-<h4>3) 其他变量</h4>
-
-<ul>
-<li>auto_increment_increment，代表自增的数值，默认为1</li>
-<li>auto_increment_offset，代表目前自增数字的偏移量，默认为1，取值范围时1-65535</li>
-</ul>
-
-<h3>3. 总结</h3>
-
-<p>表创建好之后，增加自增逻辑，一定要慎重。如果是业务方面的需求，最好是用代码来解决自增问题，而不是依赖数据库的能力。</p>
 
     </div>
 

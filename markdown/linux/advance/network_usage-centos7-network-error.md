@@ -1,5 +1,5 @@
 ---
-title: network: Centos7-网络服务错误
+title: 网络: 应用 - 网络服务错误(Centos7)
 date: 2015-12-11 09:04:00
 categories: linux/advance
 tags: [centos7,linux]

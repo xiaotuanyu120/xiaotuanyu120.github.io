@@ -1,16 +1,16 @@
 ---
-title: MyCat准备之mysql双主配置
+title: MySQL: 复制 - 双主配置(MySQL5.5)
 date: 2016-09-22 10:15:00
-categories: database
-tags: [mysql,mycat]
+categories: database/mysql
+tags: [mysql]
 ---
 
-### 环境准备
+## 0. 环境准备
 - mysql01：192.168.110.129
 - mysql02：192.168.110.130
 
-### Mysql安装
-**安装mysql5.5**（使用oneinstack包）
+## 1. MySQL安装
+### 安装mysql5.5（为了演示方便，使用oneinstack包）
 ``` bash 
 # on mysql01&mysql02
 yum -y install wget screen python
@@ -24,9 +24,9 @@ screen -S oneinstack
 # 按照提示选择安装mysql5.5
 ```
  
-### 配置mysql双主
-**修改配置文件**
-```
+## 2. 配置mysql双主
+### 修改配置文件
+``` bash
 # on master01
 vi /etc/my.cnf
 ************************
@@ -66,7 +66,7 @@ auto-increment-offset = 2
 service mysqld restart
 ```
  
-**资料同步及用户授权**
+### 资料同步及用户授权
 ``` bash
 # on master01
 MySQL [(none)]> grant replication slave on *.* to 'slave'@'192.168.110.130' identified by '123456';
@@ -85,7 +85,7 @@ MySQL [(none)]> grant replication slave on *.* to 'slave'@'192.168.110.129' iden
 MySQL [(none)]> flush privileges;
 ```
  
-**互相做主从**
+### 互相做主从
 ``` bash
 ## master02做master01的从
 # on master01

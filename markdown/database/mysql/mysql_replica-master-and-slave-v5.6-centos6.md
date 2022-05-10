@@ -1,5 +1,5 @@
 ---
-title: MYSQL: 5.6主从(centos6)
+title: MySQL: 复制 - 主从配置(MySQL5.6 on centos6)
 date: 2015-11-07 15:15:00
 categories: database/mysql
 tags: [mysql,replication]
@@ -15,8 +15,9 @@ setenforce 0
 service iptables stop
 chkconfig iptables off
 ```
+
 ### 1. 配置master
-```
+``` bash
 vim /etc/my.cnf
 # server_id = 1
 # log_bin=/data/mysql/bin_log
@@ -37,7 +38,8 @@ mysql> grant replication slave on *.* to 'slave'@'%' identified by 'sudoslave';
 ```
 
 ### 2. 配置slave
-``` vim /etc/my.cnf
+``` bash
+vim /etc/my.cnf
 # server_id = 2
 # log_bin=/data/mysql/bin_log
 
@@ -87,7 +89,7 @@ mysql> show slave status\G
 ```
 
 ### 3. 如何指定哪个库被主从
-```
+``` bash
 # 主库新建数据库
 mysql> create database replication2;
 mysql> use replication2
