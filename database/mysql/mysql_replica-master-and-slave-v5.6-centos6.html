@@ -77,8 +77,6 @@
                 <li>
                   <a href="/database/mysql/index.html">mysql</a>
                   <ul>
-                    <li><a href="/database/mysql/MYSQL_5.6主从(centos6).html">MYSQL: 5.6主从(centos6)</a></li>
-                    <li><a href="/database/mysql/MYSQL_MyCat安装_读写分离.html">MYSQL: MyCat安装，读写分离</a></li>
                     <li><a href="/database/mysql/MYSQL_多实例配置+启动脚本.html">MYSQL: 多实例配置+启动脚本</a></li>
                     <li><a href="/database/mysql/MYSQL_无法通过sock登陆.html">MYSQL-error: 无法通过sock登陆</a></li>
                     <li><a href="/database/mysql/MYSQL_查看表ENGINE(v5.6).html">MYSQL: 查看表ENGINE(v5.6)</a></li>
@@ -99,12 +97,16 @@
                     <li><a href="/database/mysql/mysql_1.0.1_docker_compose.html">mysql 1.0.1: docker-compose(单实例和主从)</a></li>
                     <li><a href="/database/mysql/mysql_3.0.0_basic_operation.html">mysql 3.0.0：常用命令</a></li>
                     <li><a href="/database/mysql/mysql_4.0.1_problem_caused_by_auto_increment.html">mysql 4.0.1：auto_increment引起的问题</a></li>
-                    <li><a href="/database/mysql/mysql_config_basic.html">MYSQL-配置：常用基本配置</a></li>
-                    <li><a href="/database/mysql/mysql_config_optimize.html">MYSQL-配置：调优</a></li>
-                    <li><a href="/database/mysql/mysql_config_set_character_collation.html">MYSQL-配置：配置字符集为utf8</a></li>
+                    <li><a href="/database/mysql/mysql_config_basic.html">MySQL: 配置 - 常用基本配置</a></li>
+                    <li><a href="/database/mysql/mysql_config_optimize.html">MySQL: 配置 - 调优</a></li>
+                    <li><a href="/database/mysql/mysql_config_set_character_collation.html">MySQL: 配置 - 配置字符集为utf8</a></li>
                     <li><a href="/database/mysql/mysql_error_start_login.html">MYSQL-错误：启动/登录报错</a></li>
-                    <li><a href="/database/mysql/mysql_manage_backup_recovery.html">MYSQL-管理：备份及恢复</a></li>
-                    <li><a href="/database/mysql/mysql_manage_reset_root_password.html">MYSQL-管理：忘记root密码</a></li>
+                    <li><a href="/database/mysql/mysql_ha-mycat-00-introduction.html">MySQL: HA - mycat简介</a></li>
+                    <li><a href="/database/mysql/mysql_ha-mycat-01-installation-and-write-read-seperate.html">MySQL: HA - mycat安装&读写分离</a></li>
+                    <li><a href="/database/mysql/mysql_manage_backup_recovery.html">MySQL: 管理 - 备份及恢复</a></li>
+                    <li><a href="/database/mysql/mysql_manage_reset_root_password.html">MySQL: 管理 - 忘记root密码</a></li>
+                    <li><a href="/database/mysql/mysql_replica-master-and-master-v5.5.html">MySQL: 复制 - 双主配置(MySQL5.5)</a></li>
+                    <li><a href="/database/mysql/mysql_replica-master-and-slave-v5.6-centos6.html">MySQL: 复制 - 主从配置(MySQL5.6 on centos6)</a></li>
                   </ul>
                 </li>
                 <li>
@@ -160,7 +162,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>MYSQL: 5.6主从(centos6)</h2>
+      <h2>MySQL: 复制 - 主从配置(MySQL5.6 on centos6)</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -182,53 +184,54 @@ chkconfig iptables off
 </pre>
 <h3>1. 配置master</h3>
 <pre class="chroma">vim /etc/my.cnf
-# server_id = 1
-# log_bin=/data/mysql/bin_log
+<span class="c1"># server_id = 1</span>
+<span class="c1"># log_bin=/data/mysql/bin_log</span>
 service mysqld restart
 
-# 备份master数据库
+<span class="c1"># 备份master数据库</span>
 mysqldump -uroot -p --all-databases --master-data --flush-logs&gt; masterdump.sql
-# 上面的--master-data参数将bin-log的内容同步到了备份中，这样就不用暂停数据库和手动指定binlog的position了
-# 如果不想备份所有数据库，可以&#34;--databases db1 db2 ...&#34;
+<span class="c1"># 上面的--master-data参数将bin-log的内容同步到了备份中，这样就不用暂停数据库和手动指定binlog的position了</span>
+<span class="c1"># 如果不想备份所有数据库，可以&#34;--databases db1 db2 ...&#34;</span>
  
-grep CHANGE *sql | head -1
-CHANGE MASTER TO MASTER_LOG_FILE=&#39;bin_log.000001&#39;, MASTER_LOG_POS=120;
+grep CHANGE *sql <span class="p">|</span> head -1
+CHANGE MASTER TO <span class="nv">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;bin_log.000001&#39;</span>, <span class="nv">MASTER_LOG_POS</span><span class="o">=</span>120<span class="p">;</span>
  
-# 创建slave同步用的user
+<span class="c1"># 创建slave同步用的user</span>
 mysql -uroot -p
-mysql&gt; grant replication slave on *.* to &#39;slave&#39;@&#39;%&#39; identified by &#39;sudoslave&#39;;
-# 上面的&#39;%&#39;意思是，可以用任意的ip来远程访问master mysql
+mysql&gt; grant replication slave on *.* to <span class="s1">&#39;slave&#39;</span>@<span class="s1">&#39;%&#39;</span> identified by <span class="s1">&#39;sudoslave&#39;</span><span class="p">;</span>
+<span class="c1"># 上面的&#39;%&#39;意思是，可以用任意的ip来远程访问master mysql</span>
 </pre>
 <h3>2. 配置slave</h3>
-<pre class="chroma"># server_id = 2
-# log_bin=/data/mysql/bin_log
+<pre class="chroma">vim /etc/my.cnf
+<span class="c1"># server_id = 2</span>
+<span class="c1"># log_bin=/data/mysql/bin_log</span>
 
 service mysqld restart
  
-# 拷贝master备份数据到slave上
+<span class="c1"># 拷贝master备份数据到slave上</span>
 rsync -av /root/masterdump.sql root@172.16.2.48:/root/
  
-# 恢复master备份数据到slave上
+<span class="c1"># 恢复master备份数据到slave上</span>
 mysql -u root -p &lt; masterdump.sql
  
-# 指派master信息
+<span class="c1"># 指派master信息</span>
 mysql -u root -p
 mysql&gt; CHANGE MASTER TO
-    -&gt; MASTER_HOST=&#39;172.16.2.47&#39;,
-    -&gt; MASTER_PORT=3306,
-    -&gt; MASTER_USER=&#39;slave&#39;,
-    -&gt; MASTER_PASSWORD=&#39;sudoslave&#39;;
+    -&gt; <span class="nv">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;172.16.2.47&#39;</span>,
+    -&gt; <span class="nv">MASTER_PORT</span><span class="o">=</span>3306,
+    -&gt; <span class="nv">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;slave&#39;</span>,
+    -&gt; <span class="nv">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;sudoslave&#39;</span><span class="p">;</span>
  
-# 开启slave &amp; 查看状态
-mysql&gt; start slave;
-mysql&gt; show slave status\G
+<span class="c1"># 开启slave &amp; 查看状态</span>
+mysql&gt; start slave<span class="p">;</span>
+mysql&gt; show slave status<span class="se">\G</span>
 *************************** 1. row ***************************
 ...以下信息有省略...
-               Slave_IO_State: Waiting for master to send event
+               Slave_IO_State: Waiting <span class="k">for</span> master to send event
               Master_Log_File: bin_log.000003
-          Read_Master_Log_Pos: 120
+          Read_Master_Log_Pos: <span class="m">120</span>
                Relay_Log_File: slave-relay-bin.000005
-                Relay_Log_Pos: 281
+                Relay_Log_Pos: <span class="m">281</span>
         Relay_Master_Log_File: bin_log.000003
              Slave_IO_Running: Yes
             Slave_SQL_Running: Yes
@@ -239,76 +242,76 @@ mysql&gt; show slave status\G
       Replicate_Wild_Do_Table:
   Replicate_Wild_Ignore_Table:
   Replicate_Ignore_Server_Ids:
-             Master_Server_Id: 1
+             Master_Server_Id: <span class="m">1</span>
                   Master_UUID: d0d980a4-8e30-11e5-acb9-000c290f3e50
              Master_Info_File: /data/mysql/master.info
-                    SQL_Delay: 0
+                    SQL_Delay: <span class="m">0</span>
           SQL_Remaining_Delay: NULL
-      Slave_SQL_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it
-           Master_Retry_Count: 86400
+      Slave_SQL_Running_State: Slave has <span class="nb">read</span> all relay log<span class="p">;</span> waiting <span class="k">for</span> the slave I/O thread to update it
+           Master_Retry_Count: <span class="m">86400</span>
 </pre>
 <h3>3. 如何指定哪个库被主从</h3>
-<pre class="chroma"># 主库新建数据库
-mysql&gt; create database replication2;
+<pre class="chroma"><span class="c1"># 主库新建数据库</span>
+mysql&gt; create database replication2<span class="p">;</span>
 mysql&gt; use replication2
-mysql&gt; create table reptab(
-    -&gt; id int(5),
-    -&gt; name varchar(10));
+mysql&gt; create table reptab<span class="o">(</span>
+    -&gt; id int<span class="o">(</span>5<span class="o">)</span>,
+    -&gt; name varchar<span class="o">(</span>10<span class="o">)</span><span class="o">)</span><span class="p">;</span>
 mysql&gt; insert into reptab
-    -&gt; values (1,&#39;first&#39;);
+    -&gt; values <span class="o">(</span>1,<span class="s1">&#39;first&#39;</span><span class="o">)</span><span class="p">;</span>
 
-# 从库查看
-mysql&gt; select * from replication2.reptab;
+<span class="c1"># 从库查看</span>
+mysql&gt; <span class="k">select</span> * from replication2.reptab<span class="p">;</span>
 +------+-------+
-| id   | name  |
+<span class="p">|</span> id   <span class="p">|</span> name  <span class="p">|</span>
 +------+-------+
-|    1 | first |
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> first <span class="p">|</span>
 +------+-------+
-1 row in set (0.00 sec)
+<span class="m">1</span> row in <span class="nb">set</span> <span class="o">(</span>0.00 sec<span class="o">)</span>
  
-# 主从指定库配置
-# master修改配置，指定记录binlog的数据库(无binlog也就意味着无法被同步)
+<span class="c1"># 主从指定库配置</span>
+<span class="c1"># master修改配置，指定记录binlog的数据库(无binlog也就意味着无法被同步)</span>
 vim /etc/my.cnf
-# binlog-do-db=replication
-# binlog-ignore-db=replication2
+<span class="c1"># binlog-do-db=replication</span>
+<span class="c1"># binlog-ignore-db=replication2</span>
 service mysqld restart
  
-# slave修改配置，指定同步的数据库
+<span class="c1"># slave修改配置，指定同步的数据库</span>
 vim /etc/my.cnf
-# replicate-do-db=需要复制的数据库名
-# replicate-ignore-db=不需要复制的数据库名
+<span class="c1"># replicate-do-db=需要复制的数据库名</span>
+<span class="c1"># replicate-ignore-db=不需要复制的数据库名</span>
 
 service mysqld restart 
 
-# 查看状态
-# 主库修改数据
+<span class="c1"># 查看状态</span>
+<span class="c1"># 主库修改数据</span>
 mysql&gt; use replication2
 mysql&gt; insert into reptab
-    -&gt; values (2,&#39;second&#39;);
+    -&gt; values <span class="o">(</span>2,<span class="s1">&#39;second&#39;</span><span class="o">)</span><span class="p">;</span>
 mysql&gt; use replication
 mysql&gt; insert into replitab
-    -&gt; values (6,&#39;six&#39;);
+    -&gt; values <span class="o">(</span>6,<span class="s1">&#39;six&#39;</span><span class="o">)</span><span class="p">;</span>
 
-# 从库查看数据
-mysql&gt; select * from replication2.reptab;
+<span class="c1"># 从库查看数据</span>
+mysql&gt; <span class="k">select</span> * from replication2.reptab<span class="p">;</span>
 +------+-------+
-| id   | name  |
+<span class="p">|</span> id   <span class="p">|</span> name  <span class="p">|</span>
 +------+-------+
-|    1 | first |
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> first <span class="p">|</span>
 +------+-------+
-mysql&gt; select * from replication.replitab;
+mysql&gt; <span class="k">select</span> * from replication.replitab<span class="p">;</span>
 +------+-------+
-| id   | name  |
+<span class="p">|</span> id   <span class="p">|</span> name  <span class="p">|</span>
 +------+-------+
-|    1 | ONE   |
-|    2 | TWO   |
-|    3 | THREE |
-|    4 | FOUR  |
-|    5 | five  |
-|    6 | six   |
+<span class="p">|</span>    <span class="m">1</span> <span class="p">|</span> ONE   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">2</span> <span class="p">|</span> TWO   <span class="p">|</span>
+<span class="p">|</span>    <span class="m">3</span> <span class="p">|</span> THREE <span class="p">|</span>
+<span class="p">|</span>    <span class="m">4</span> <span class="p">|</span> FOUR  <span class="p">|</span>
+<span class="p">|</span>    <span class="m">5</span> <span class="p">|</span> five  <span class="p">|</span>
+<span class="p">|</span>    <span class="m">6</span> <span class="p">|</span> six   <span class="p">|</span>
 +------+-------+
-# 推测：从库没有再继续同步replication2数据库，但因为已经同步了一点数据，所以在slave status中并没有显示跳过了replication2数据库。
-# 为了验证上面的推测，我继续尝试去创建第三个库，再创建之前就去my.cnf中增加了ignore的配置（用逗号间隔库名），重启数据库服务，果然从库不会复制第三个库，但是关闭又重启slave之后，Replicate_Ignore_DB:字段依然是空，证明我上面推测的并不准确。
+<span class="c1"># 推测：从库没有再继续同步replication2数据库，但因为已经同步了一点数据，所以在slave status中并没有显示跳过了replication2数据库。</span>
+<span class="c1"># 为了验证上面的推测，我继续尝试去创建第三个库，再创建之前就去my.cnf中增加了ignore的配置（用逗号间隔库名），重启数据库服务，果然从库不会复制第三个库，但是关闭又重启slave之后，Replicate_Ignore_DB:字段依然是空，证明我上面推测的并不准确。</span>
 </pre>
     </div>
 

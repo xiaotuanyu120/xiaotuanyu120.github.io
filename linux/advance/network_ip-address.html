@@ -122,13 +122,14 @@
                     <li><a href="/linux/advance/linux知识盲点（数组与拷贝）.html">linux知识盲点（数组与拷贝）</a></li>
                     <li><a href="/linux/advance/memory_01_how_memory_work_in_linux.html">linux中的内存是如何工作的？</a></li>
                     <li><a href="/linux/advance/memory_02_what_is_inside_meminfo.html">/proc/meminfo里面有什么？</a></li>
-                    <li><a href="/linux/advance/network_Centos7_no_nic_device.html">network: Centos7 没有可用的网络设备</a></li>
-                    <li><a href="/linux/advance/network_centos7-network_error.html">network: Centos7-网络服务错误</a></li>
-                    <li><a href="/linux/advance/network_tcp_alive_time_check.html">network: tcp 连接存活时间查询方法</a></li>
-                    <li><a href="/linux/advance/network_tcp_handshake.html">network: 理解TCP三次握手和四次挥手</a></li>
-                    <li><a href="/linux/advance/network_tcp_keepalive.html">network: tcp keepalive (include versus with http keepalive)</a></li>
-                    <li><a href="/linux/advance/network_tcp_tcp_queue.html">network: tcp queue(转载)</a></li>
-                    <li><a href="/linux/advance/network_vmware_clone_Centos6.html">network: vmware克隆Centos6后的网络设置</a></li>
+                    <li><a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a></li>
+                    <li><a href="/linux/advance/network_tcp-alive-time-check.html">网络: TCP - tcp连接存活时间查询方法</a></li>
+                    <li><a href="/linux/advance/network_tcp-handshake-and-close.html">网络: TCP - 理解TCP三次握手和四次挥手</a></li>
+                    <li><a href="/linux/advance/network_tcp-keepalive.html">网络: TCP - tcp keepalive and http keepalive</a></li>
+                    <li><a href="/linux/advance/network_tcp-queue.html">网络: TCP - tcp queue(转载)</a></li>
+                    <li><a href="/linux/advance/network_usage-Centos7-no-nic-device.html">网络: 应用 - 没有可用的网络设备(Centos7)</a></li>
+                    <li><a href="/linux/advance/network_usage-centos7-network-error.html">网络: 应用 - 网络服务错误(Centos7)</a></li>
+                    <li><a href="/linux/advance/network_usage-vmware-clone-Centos6.html">网络应用: vmware克隆VM后的网络设置(Centos6)</a></li>
                     <li><a href="/linux/advance/nginx_log_combined.html">nginx: log_format combined?</a></li>
                     <li><a href="/linux/advance/openssh_1.0.1_sshd_key_auth_error.html">openssh 1.0.1 sshd 密钥认证错误原因排查</a></li>
                     <li><a href="/linux/advance/oper_1.0_file_and_user_process.html">日常管理: 1.0 查看文件与用户和进程的关联</a></li>
@@ -191,70 +192,95 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>network: Centos7-网络服务错误</h2>
+      <h2>网络: IP - IP地址简介</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>11 Dec 2015</p>
+        <p>05 Jul 2019</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 错误信息</h3>
-<pre class="chroma">systemctl start network
-job <span class="k">for</span> network.service failed. see <span class="s1">&#39;systemctl status network.service&#39;</span> and <span class="s1">&#39;journalctl -xn&#39;</span> <span class="k">for</span> details
+<h2>1. IP地址简介</h2>
 
-journalctl -xn
-<span class="c1">## 关键信息</span>
-RTNETLINK answer: File exists
-network.service: control process exited, <span class="nv">code</span><span class="o">=</span>exited <span class="nv">styatus</span><span class="o">=</span><span class="m">1</span>
-failed to start LSB: Bring up/down networking
+<ul>
+<li><a href="https://www.iana.org/help/abuse-answers">IANA: Private Use IP</a></li>
+<li><a href="https://www.avast.com/c-ip-address-public-vs-private">avast: public ip vs private ip</a></li>
+</ul>
+
+<h3>1.1 IP地址类型</h3>
+
+<p>目前有两种IP网段类型，IPV4和IPV6。</p>
+
+<h3>1.2 IP地址格式</h3>
+
+<p>其中IPV4从1983年1月1日开始使用，直至今日依然被广泛使用。IPV4的格式是用&rdquo;.&ldquo;分隔开的四段数字，每段数字的取值范围从0-255，于是IPV4的地址范围从0.0.0.0到255.255.255.255。</p>
+
+<p>而IPV6是从1999年开始部署，IPV6的地址是128位数字，通常使用十六进制字符表示，例如“2001:db8::abc:587”</p>
+
+<h3>1.3 IP地址分配</h3>
+
+<p>IP地址的分配和管理，是以Internet Assigned Numbers Authority (IANA)为中心，其与5个Regional Internet Registries (RIRs)合作来管理。</p>
+
+<p>RIR：</p>
+
+<ul>
+<li>AfriNIC (Africa and parts of the Indian Ocean)</li>
+<li>APNIC (Asia/Pacific Region)</li>
+<li>ARIN (North America and parts of the Caribbean)</li>
+<li>LACNIC (Latin America and parts of the Caribbean)</li>
+<li>RIPE NCC (Europe, the Middle East and Central Asia)</li>
+</ul>
+
+<p>RIR是实际的ip分配机构，它们将ip网段分配给不同的ISP。而IANA则作为一个顶层的注册机构，例如下面这条注册信息</p>
+<pre class="chroma">123/8   APNIC   2006-01 whois.apnic.net ALLOCATED
 </pre>
-<hr />
+<p>这代表了 123.0.0.0 - 123.255.255.255 在2006年1月分配给了APNIC。如果希望知道这个网段中的一段子网段分配给了谁，需要在whois.apnic.net中查询。</p>
 
-<h3>1. 尝试思路</h3>
+<p>IANA只记录以下信息：</p>
 
-<ol>
-<li>查看网卡配置文件<br />
-看是否存在&rdquo;HWADDR&rdquo;和&rdquo;MACADDR&rdquo;同时存在，却又不相同的值的情况</li>
-<li>查看NetworkManager服务状态<br />
-如果启动状态的话，暂时先关闭</li>
-<li>查看dhclient进程<br />
-如果&rdquo;ps ef | grep dhc&rdquo;出现dhclient进程，使用的是networkmanager的文件，kill掉此进程</li>
-</ol>
+<ul>
+<li>已分配给 RIR 或其他用户的IP地址</li>
+<li>保留用于特殊用途的那些IP地址</li>
+<li>那些还没有被分配，留作以后分配和使用的</li>
+</ul>
 
-<hr />
+<blockquote>
+<ul>
+<li>特殊用途的ip地址在IANA显式已经被注册</li>
+<li>IANA保留了192.0.32.0 - 192.0.47.255自用</li>
+</ul>
+</blockquote>
 
-<h3>2. 解决办法</h3>
+<h2>2. 特殊用途的地址</h2>
 
-<p>排查过程:<br />
-报错信息中有关键字&rdquo;file exists&rdquo;<br />
-ifconfig结果中只有lo和eno16777736<br />
-nmcli con show 有两个连接eno16777736和eno33554992</p>
-<pre class="chroma"><span class="c1"># 尝试把eno33554992先备份掉</span>
-<span class="nb">cd</span> /etc/sysconfig/network-scripts/
-mv ifcfg-eno33554992 ifcfg-eno33554992.bak
-systemctl start network
-<span class="c1"># 再没有报错</span>
+<h3>2.1 私有IP地址</h3>
+
+<p>这些私有IP地址，可以被任何人使用，无需任何其他人授权。同时，这些地址也永远不可能在互联网上可见。</p>
+<pre class="chroma">10.0.0.0 - 10.255.255.255     (10.0.0.0/8)
+172.16.0.0 - 172.31.255.255   (172.16.0.0/12)
+192.168.0.0 - 192.168.255.255 (192.168.0.0/16)
 </pre>
-<hr />
+<blockquote>
+<p>由上至下，也被成为ABC三类私有网段。详情见<a href="https://www.rfc-editor.org/rfc/rfc1918.html">RFC1918</a></p>
+</blockquote>
 
-<h3>3. 后续问题</h3>
-
-<p>network和NetworkManager服务启动后，nmcli con show 发现还是有两个连接，而且名称全部是&rdquo;eno16777736&rdquo;，一个设备名称是&rdquo;eno16777736&rdquo;，另一个是&rdquo;&ndash;&ldquo;。</p>
-
-<p>处理过程：</p>
-<pre class="chroma"><span class="c1"># 删掉旧连接</span>
-nmcli con delete eno16777736
-<span class="c1"># 发现两个连接都消失掉，重建连接</span>
-nmcli con add <span class="nb">type</span> ethernet con-name eth0 ifname eno16777736
-nmcli con reload
-nmcli con down eth0
-nmcli con up eth0
-ping 8.8.8.8
-<span class="c1"># 成功解决</span>
+<h3>2.2 自动配置的IP地址</h3>
+<pre class="chroma">169.254.0.0 - 169.254.255.255
 </pre>
+<p>用于一个联网设备需要ip地址，却没有被分配静态ip，且无法通过dhcp获取到ip时，自动给这个联网设备分配的一个地址。避免出现网络设备没有ip的情况，但需要注意，这个ip的流量会被限制在本地网络。</p>
+
+<h3>2.3 回环网络IP地址</h3>
+<pre class="chroma">127.0.0.0 - 127.255.255.255 (127.0.0.0/8)
+</pre>
+<p>用于代表设备本身的网络地址，最常用的是127.0.0.1。</p>
+
+<h3>2.4 多播地址</h3>
+<pre class="chroma">224.0.0.0 - 239.255.255.255
+</pre>
+<p>被预留用于在 Internet 中提供多播服务的特殊目的</p>
+
     </div>
 
   </div>

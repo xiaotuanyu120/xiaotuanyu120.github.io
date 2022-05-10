@@ -192,53 +192,257 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>CENTOS: 多网卡+多网关配置</h2>
+      <h2>网络: TCP - 理解TCP三次握手和四次挥手</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>16 Apr 2016</p>
+        <p>02 Aug 2016</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>CENTOS7下如何实现双网卡+双网关上网</h3>
+<h3>1. 安装wireshark和curl</h3>
+<pre class="chroma">yum install wireshark curl -y
+</pre>
+<p>wireshark:抓包工具，负责抓取tcp连接过程中的封包
+curl:网络访问工具，负责发起http访问</p>
 
-<p>全局路由文件<code>/etc/sysconfig/network</code>，此文件是路由的全局设置</p>
-<pre class="chroma">cat /etc/sysconfig/network
-<span class="c1"># Created by anaconda</span>
+<hr />
+
+<h3>2. 抓取思路</h3>
+
+<p>先通过wireshark尝试抓取curl访问目标网站的封包，找出解析的ip
+根据此ip来过滤出相关封包，以此来避免其他包混杂到我们的结果里，例如ssh连接封包</p>
+
+<h3>3. 抓取过程</h3>
+
+<h4>1) DNS请求过程</h4>
+
+<p>在另外一个terminal中执行<code>curl www.google.com</code>的同时,在当前terminal执行以下命令待命，会得到以下类似结果</p>
+<pre class="chroma">tshark -i eth1 <span class="p">|</span>grep <span class="s2">&#34;DNS&#34;</span>
+Running as user <span class="s2">&#34;root&#34;</span> and group <span class="s2">&#34;root&#34;</span>. This could be dangerous.
+Capturing on eth1
+0.831905064 10.10.180.23 -&gt; 10.10.210.3  DNS <span class="m">75</span> Standard query 0x6379  A template.ig.com
+0.832855189  10.10.210.3 -&gt; 10.10.180.23 DNS <span class="m">144</span> Standard query response 0x6379 No such name
+0.912767746 10.10.180.23 -&gt; 10.10.210.3  DNS <span class="m">74</span> Standard query 0xa4fe  A www.google.com
+0.912883870 10.10.180.23 -&gt; 10.10.210.3  DNS <span class="m">74</span> Standard query 0xc578  AAAA www.google.com
+0.913856839  10.10.210.3 -&gt; 10.10.180.23 DNS <span class="m">102</span> Standard query response 0xc578  AAAA 2404:6800:4005:804::2004
+0.913866732  10.10.210.3 -&gt; 10.10.180.23 DNS <span class="m">90</span> Standard query response 0xa4fe  A 216.58.203.4
 </pre>
-<p>网卡文件中全部配了GATEWAY，默认情况是无法上网的，此处我们不配置网关</p>
-<pre class="chroma">cat /etc/sysconfig/network-scripts/ifcfg-eno16777736 <span class="p">|</span>grep GATEWAY
-cat /etc/sysconfig/network-scripts/ifcfg-eno33554984 <span class="p">|</span>grep GATEWAY
+<p>10.10.210.3是我本机10.10.180.13的网关，本机通过和网关沟通，获取了www.google.com的dns地址</p>
+
+<h4>2) tcp握手挥手包抓取过程</h4>
+
+<p>此时我们就可以通过域名(www.google.com)和ip(216.58.203.4)同时筛选出我们想要的结果，依旧是当前terminal中用tshark命令待命，另外一个terminal中执行<code>curl www.google.com</code></p>
+<pre class="chroma">tshark -i eth1 <span class="p">|</span>grep <span class="s2">&#34;216.58.203.4&#34;</span>
+Running as user <span class="s2">&#34;root&#34;</span> and group <span class="s2">&#34;root&#34;</span>. This could be dangerous.
+Capturing on eth1
+1.204415032  10.10.210.3 -&gt; 10.10.180.23 DNS <span class="m">90</span> Standard query response 0xe38f  A 216.58.203.4
+1.210632617 10.10.180.23 -&gt; 216.58.203.4 TCP <span class="m">74</span> <span class="m">35944</span> &gt; http <span class="o">[</span>SYN<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">0</span> <span class="nv">Win</span><span class="o">=</span><span class="m">14600</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">MSS</span><span class="o">=</span><span class="m">1460</span> <span class="nv">SACK_PERM</span><span class="o">=</span><span class="m">1</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">315183370</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">0</span> <span class="nv">WS</span><span class="o">=</span><span class="m">64</span>
+1.252280354 216.58.203.4 -&gt; 10.10.180.23 TCP <span class="m">74</span> http &gt; <span class="m">35944</span> <span class="o">[</span>SYN, ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">0</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">1</span> <span class="nv">Win</span><span class="o">=</span><span class="m">42540</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">MSS</span><span class="o">=</span><span class="m">1430</span> <span class="nv">SACK_PERM</span><span class="o">=</span><span class="m">1</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">652383001</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">315183370</span> <span class="nv">WS</span><span class="o">=</span><span class="m">128</span>
+1.252310922 10.10.180.23 -&gt; 216.58.203.4 TCP <span class="m">66</span> <span class="m">35944</span> &gt; http <span class="o">[</span>ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">1</span> <span class="nv">Win</span><span class="o">=</span><span class="m">14656</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">315183413</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">652383001</span>
+1.252502322 10.10.180.23 -&gt; 216.58.203.4 HTTP <span class="m">241</span> GET / HTTP/1.1
+1.294232971 216.58.203.4 -&gt; 10.10.180.23 TCP <span class="m">66</span> http &gt; <span class="m">35944</span> <span class="o">[</span>ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">176</span> <span class="nv">Win</span><span class="o">=</span><span class="m">43648</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">652383043</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">315183413</span>
+1.295465786 216.58.203.4 -&gt; 10.10.180.23 HTTP <span class="m">545</span> HTTP/1.1 <span class="m">302</span> Found  <span class="o">(</span>text/html<span class="o">)</span>
+1.295532090 10.10.180.23 -&gt; 216.58.203.4 TCP <span class="m">66</span> <span class="m">35944</span> &gt; http <span class="o">[</span>ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">176</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">480</span> <span class="nv">Win</span><span class="o">=</span><span class="m">15680</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">315183456</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">652383044</span>
+1.296258753 10.10.180.23 -&gt; 216.58.203.4 TCP <span class="m">66</span> <span class="m">35944</span> &gt; http <span class="o">[</span>FIN, ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">176</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">480</span> <span class="nv">Win</span><span class="o">=</span><span class="m">15680</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">315183457</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">652383044</span>
+1.339379760 216.58.203.4 -&gt; 10.10.180.23 TCP <span class="m">66</span> http &gt; <span class="m">35944</span> <span class="o">[</span>FIN, ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">480</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">177</span> <span class="nv">Win</span><span class="o">=</span><span class="m">43648</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">652383088</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">315183457</span>
+1.339408390 10.10.180.23 -&gt; 216.58.203.4 TCP <span class="m">66</span> <span class="m">35944</span> &gt; http <span class="o">[</span>ACK<span class="o">]</span> <span class="nv">Seq</span><span class="o">=</span><span class="m">177</span> <span class="nv">Ack</span><span class="o">=</span><span class="m">481</span> <span class="nv">Win</span><span class="o">=</span><span class="m">15680</span> <span class="nv">Len</span><span class="o">=</span><span class="m">0</span> <span class="nv">TSval</span><span class="o">=</span><span class="m">315183500</span> <span class="nv">TSecr</span><span class="o">=</span><span class="m">652383088</span>
 </pre>
-<p>我们创建两个route-interface路由文件，把外网的路由文件中设定默认路由（也可以设置在全局配置文件中）</p>
-<pre class="chroma">cat /etc/sysconfig/network-scripts/router-eno16777736
-default via 172.16.2.1 dev eno16777736
-172.16.2.0/24 via 172.16.2.1 dev eno16777736
-# 默认网关只可以有一个，写法 default via ip_address dev interface
-# 其他路由写法：dest_ip_address/prefix via ip_address dev interface
- 
-cat /etc/sysconfig/network-scripts/router-eno33554984
-10.0.0.0/24 via 10.0.0.1 dev eno33554984
-</pre>
-<p>PING测试效果</p>
-<pre class="chroma">ping 8.8.8.8
-PING 8.8.8.8 <span class="o">(</span>8.8.8.8<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
-<span class="m">64</span> bytes from 8.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span>71.3 ms
-<span class="m">64</span> bytes from 8.8.8.8: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">128</span> <span class="nv">time</span><span class="o">=</span>71.6 ms
-^C
---- 8.8.8.8 ping statistics ---
-<span class="m">2</span> packets transmitted, <span class="m">2</span> received, 0% packet loss, <span class="nb">time</span> 1001ms
-rtt min/avg/max/mdev <span class="o">=</span> 71.309/71.465/71.622/0.309 ms
-</pre>
+<h4>3) 抓包结果总结</h4>
+
+<table>
+<thead>
+<tr>
+<th>src ip</th>
+<th align="center">package</th>
+<th>dest ip</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><strong>three-way handshake</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10.10.180.13</td>
+<td align="center">- SYN(Seq=0) -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.13</td>
+<td align="center">&lt;- SYN,ACK(Ack=1,Seq=0) -</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.13</td>
+<td align="center">- ACK(Seq=1,Ack=1) -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td><strong>HTTP request</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">- GET / HTTP/1.1 -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">&lt;- ACK(Ack=176,Seq=1) -</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">&lt;- HTTP/1.1 302 Found -</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td><strong>four-way handshake</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">- ACK(Seq=176,Ack=480) -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">- FIN,ACK(Seq=176,Ack=480) -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">&lt;- FIN,ACK(Ack=177,Seq=480) -</td>
+<td>216.58.203.4</td>
+</tr>
+
+<tr>
+<td>10.10.180.23</td>
+<td align="center">- ACK(Seq=177,Ack=481) -&gt;</td>
+<td>216.58.203.4</td>
+</tr>
+</tbody>
+</table>
+<p>上表基本展示了一个标准的，三次握手创建连接，4次挥手关闭连接的过程</p>
+
+<p><strong>seq和ack数字编号的含义</strong><br />
+TCP会话的每一端都会维护一个32bit的序列号seq，该序列号seq用来跟踪该端发送的数据量，在接收端通过确认号ack用来通知数据接收成功<br />
+当主机开启一个tcp会话时，seq号是随机的，是0-4,294,967,295之间的任意数值，但wireshark为了方便，都会显示给我们相对的seq和ack号，也就是上面我们看到的从0开始编号。</p>
+
+<p>分析上面的三次握手过程<br />
+客户端发送seq=0的包给服务端<br />
+服务端发送ack=1，确认收到了1个包，然后seq=0（维护的是服务端发送数据的序列号）<br />
+客户端发送ack=1确认收到了1个包，seq=1</p>
+
+<p>此时连接建立<br />
+连接建立后，客户端发起正常请求，此处请求的是google服务器的根目录<br />
+服务端发送ack=176确认收到1-176之间的包（包含客户端发送请求时的包），seq=1<br />
+服务端返回客户端请求的数据</p>
+
+<p>总结来讲：<br />
+seq是来计算自己发送数据包的序列号<br />
+ack是来确认接收到对方的数据包的序列号</p>
+
+<h4>4) tcp连接过程中的状态转移</h4>
+
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>动作</th>
+<th>client端状态</th>
+<th>server端状态</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td></td>
+<td>LISTEN</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>three way handshake</td>
+<td>client发送SYN</td>
+<td>SYN_SENT</td>
+<td>SYN_RCVD</td>
+</tr>
+
+<tr>
+<td>three way handshake</td>
+<td>server回复SYN,ACK</td>
+<td>ESTABLISHED</td>
+<td>SYN_RCVD</td>
+</tr>
+
+<tr>
+<td>three way handshake</td>
+<td>client回复ACK</td>
+<td>ESTABLISHED</td>
+<td>ESTABLISHED</td>
+</tr>
+
+<tr>
+<td>&mdash;</td>
+<td>&mdash;</td>
+<td>&mdash;</td>
+<td>&mdash;</td>
+</tr>
+
+<tr>
+<td>four way wavehand</td>
+<td>client发送FIN</td>
+<td>FIN_WAIT_1</td>
+<td>CLOSE_WAIT</td>
+</tr>
+
+<tr>
+<td>four way wavehand</td>
+<td>server回复ACK</td>
+<td>FIN_WAIT_2</td>
+<td>CLOSE_WAIT</td>
+</tr>
+
+<tr>
+<td>four way wavehand</td>
+<td>server发送FIN</td>
+<td>TIME_WAIT</td>
+<td>LAST_ACK</td>
+</tr>
+
+<tr>
+<td>four way wavehand</td>
+<td>client回复ACK</td>
+<td></td>
+<td>CLOSED</td>
+</tr>
+</tbody>
+</table>
+
 <blockquote>
-<p>扩展资料:</p>
+<p>完整状态图可以参照<a href="https://www.ibm.com/support/knowledgecenter/en/SSLTBW_2.1.0/com.ibm.zos.v2r1.halu101/constatus.htm">这个IBM文章</a></p>
 
-<ul>
-<li><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/sec-Using_the_Command_Line_Interface.html#sec-Static-Routes_and_the_Default_Gateway">redhat: 路由和默认网关</a></li>
-<li><a href="https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s1-networkscripts-static-routes.html">centos5: 静态路由</a></li>
-</ul>
+<p>这只是最理想的状态，其实关闭的时候还有一个closing状态，关键在于client端和server端交互FIN和ACK标志位的顺序影响</p>
 </blockquote>
 
     </div>
