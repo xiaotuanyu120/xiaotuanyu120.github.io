@@ -34,6 +34,17 @@ hdiutil detach /Volumes/Vagrant/
 ```
 > 其实也有图形界面的程序下载和安装
 
+#### 1.1 mac m1版本
+mac m1版本上只有parallels可用，但注意要是pro和bussiness版本才可以
+
+``` bash
+# 安装parallels provider插件
+vagrant plugin install vagrant-parallels
+```
+> [parallels vagrant文档](https://parallels.github.io/vagrant-parallels/docs/)
+
+> 选择镜像的时候到[vagrant boxes](https://app.vagrantup.com/boxes/search?page=1&provider=parallels&q=arm&sort=downloads&utf8=✓)搜索parallels的arm镜像即可，我目前使用的是`mattburnett/fedora-35-m1-arm64`
+
 ---
 
 ### 2. 在centos上安装vagrant

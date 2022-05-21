@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.4 安全 - CRLF注入漏洞（nginx）Demo
+title: nginx: 配置 - CRLF注入漏洞（nginx）Demo
 date: 2021-02-11 17:24:00
 categories: service/nginx
 tags: [nginx,rewrite,CRLF]

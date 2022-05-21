@@ -1,5 +1,5 @@
 ---
-title: 内核调优: 1.1.0 优化TCP来解决TIME_WAIT状态过多
+title: linux内核: TCP - TIME_WAIT
 date: 2017-02-07 16:56:00
 categories: linux/advance
 tags: [linux,tcp,time_wait]
@@ -18,6 +18,7 @@ TIME_WAIT是TCP连接中的一个状态，每一个TCP连接都会在内存中�
 
 ### 2. 计算TCP并发数
 因为每一个tcp连接是由<local-ip>:<local-port> <remote-ip>:<remote-port>确定的，此处限定<local-ip>,<remote-ip>,<remote-port>三项不变，只有<local-port>一个变量的情况下的tcp并发计算方法
+
 ``` bash
 # 查看可用端口数目
 cat /proc/sys/net/ipv4/ip_local_port_range

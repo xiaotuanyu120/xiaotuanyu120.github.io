@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.4 安全 - 基础安全
+title: nginx: 配置 - 基础安全
 date: 2021-11-10 19:49:00
 categories: service/nginx
 tags: [lnmp,nginx]
@@ -22,6 +22,10 @@ tags: [lnmp,nginx]
 
 ```
 server_tokens off;
+
+# 文件：conf/fastcgi_params
+# 将"fastcgi_param SERVER_SOFTWARE nginx/$nginx_version;"
+# 修改为"fastcgi_param SERVER_SOFTWARE nginx;"
 ```
 
 > [nginx core docs: server_tokens](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_tokens)
@@ -124,7 +128,7 @@ add_header Content-Security-Policy  "default-src 'self';" always;
 - 另外一个安装nginx-extras，但是这个是依赖外部模块，引入了不必要的风险，和我们的目标不一致;
 - 还有一个就是通过修改源码
 
-```
+``` bash
 # 路径：src/http/ngx_http_header_filter_module.c
 static u_char ngx_http_server_string[] = "Server: nginx" CRLF;
 

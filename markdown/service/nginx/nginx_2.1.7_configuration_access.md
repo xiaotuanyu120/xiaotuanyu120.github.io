@@ -1,8 +1,8 @@
 ---
-title: nginx 2.1.7: configuration of access limit
+title: nginx: 配置 - access limit
 date: 2021-02-09 10:18:00
 categories: service/nginx
-tags: [lnmp,nginx]
+tags: [nginx]
 ---
 
 ### 1. 常规的access限制

@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.3 configuration gzip optimization
+title: nginx: 配置 - gzip optimization
 date: 2017-02-08 10:11:00
 categories: service/nginx
 tags: [nginx,gzip]

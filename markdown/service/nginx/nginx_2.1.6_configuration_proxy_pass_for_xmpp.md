@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.6 configuration proxy_pass for xmpp
+title: nginx: 配置 - proxy_pass for xmpp
 date: 2021-01-21 22:01:00
 categories: service/nginx
 tags: [nginx,xmpp,stream]

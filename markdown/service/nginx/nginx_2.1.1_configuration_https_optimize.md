@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.1 configuration https optimization
+title: nginx: 配置 - https optimization
 date: 2017-01-13 08:58:00
 categories: service/nginx
 tags: [nginx]

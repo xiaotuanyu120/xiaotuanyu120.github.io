@@ -1,6 +1,6 @@
 ---
 title: 网络: IP - IP地址简介
-date: 2019-07-05 11:52:00
+date: 2022-05-11 11:52:00
 categories: linux/advance
 tags: [network,tcp]
 ---
@@ -69,3 +69,11 @@ IANA只记录以下信息：
 224.0.0.0 - 239.255.255.255
 ```
 被预留用于在 Internet 中提供多播服务的特殊目的
+
+### 2.5 共享地址段
+```
+100.64.0.0/10
+```
+用于运营商给用户提供的NAT解决方案
+
+其他的还有IANA预留给美国政府机构的地址，详细内容可以查阅[iana ipv4 ip address space registry](https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xml#note1)

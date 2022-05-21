@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/advanced/index.html">advanced</a>
+                </li>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/13-01-网络编程.html">13-网络编程</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>13-网络编程</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>16 Sep 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>13.1 网络基础</h3>
+
+<p>概念：IP, PORT, DOMAIN, URL(uniform resource locator), API(application program interface)
+通讯协议：tcp, udp
+常用协议：http, smtp, ssh, telnet &hellip;</p>
+
+<p>参考：<a href="http://blog.csdn.net/jmq_0000/article/details/7091142">http://blog.csdn.net/jmq_0000/article/details/7091142</a></p>
+
+<hr />
+
+<h3>13.2 socket编程</h3>
+
+<h4>13.2.1 client/server</h4>
+
+<p>文件: <code>server.py</code>
+&ldquo;` python# coding:utf-8</p>
+
+<p>import socket</p>
+
+<p>s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</p>
+
+<h1>各项参数意义:</h1>
+
+<h1>socket.socket(family, type)</h1>
+
+<h1>family:</h1>
+
+<h1>- AF_INET, IPV4-Address</h1>
+
+<h1>- AF_UNIX, Local communication</h1>
+
+<h1>type:</h1>
+
+<h1>- SOCK_STREAM, TCP</h1>
+
+<h1>- SOCK_DGRAM, UDP</h1>
+
+<h1>- SOCK_RAW, 原始数据包</h1>
+
+<p>host = &lsquo;127.0.0.1&rsquo;
+port = 8881
+s.bind((host, port))</p>
+
+<h1>对于ipv4 socket，bind函数接受一个ip地址和端口组成的tuple</h1>
+
+<p>print (host, port)
+s.listen(5)</p>
+
+<h1>socket.socket.listen([backlog])</h1>
+
+<h1>backlog用来限定同时处理的连接</h1>
+
+<h1>backlog最小是0，如果传入的值小于0，则修正为0</h1>
+
+<p>while True:</p>
+<pre class="chroma">print &#39;wait&#39;
+c, addr = s.accept()
+# socket.socket.accept()返回(socket object, address info)
+# 对于ipv4的socket连接，address info为ip地址和端口的tuple
+
+print &#39;Got connection from&#39;, addr
+c.send(&#39;Thank you for connecting&#39;)
+c.close()
+</pre><pre class="chroma">
+文件: `client.py`
+``` python
+# coding:utf-8
+
+import socket
+
+s = socket.socket()
+
+host = &#39;127.0.0.1&#39;
+port = 8881
+
+s.connect((host, port))
+print s.recv(1024)
+# recv(bufsize[, flags])
+# bufsize指定了一次可以传输数据的最大数量
+</pre>
+<h4>13.2.2 browser/server模式</h4>
+
+<p>文件: <code>simple_webserver.py</code></p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">HOST</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">127.0.0.1</span><span class="s1">&#39;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">10001</span>
+
+<span class="n">CONTENT</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">HTTP/1.1 200 OK</span><span class="s2">
+</span><span class="s2"></span><span class="s2">Server: huyang/1.0</span><span class="s2">
+</span><span class="s2"></span><span class="s2">Content-Type: text/html; charset=utf-8</span><span class="s2">
+</span><span class="s2"></span><span class="s2">Content-Length: 1000</span><span class="s2">
+</span><span class="s2"></span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;html&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;head&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;title&gt;hello socket programming&lt;/title&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;/head&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;body&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">I</span><span class="s2">&#39;</span><span class="s2">m Body</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;/body&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&lt;/html&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&#34;&#34;&#34;</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="p">(</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conn</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="p">)</span>
+
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Connected by</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">addr</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">print</span> <span class="n">data</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">CONTENT</span><span class="p">)</span>
+
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<blockquote>
+<p>和c/s端的主要区别就是返回的内容CONTENT中增加了http的header</p>
+</blockquote>
+
+<hr />
+
+<h3>13.3 使用内置的SocketServer编程</h3>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">from</span> <span class="nn">SocketServer</span> <span class="kn">import</span> <span class="n">TCPServer</span><span class="p">,</span> <span class="n">StreamRequestHandler</span>
+
+
+<span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">StreamRequestHandler</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">getpeername</span><span class="p">(</span><span class="p">)</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">connection from</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">addr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Hi, Everyone</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">server</span> <span class="o">=</span> <span class="n">TCPServer</span><span class="p">(</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">10002</span><span class="p">)</span><span class="p">,</span> <span class="n">Handler</span><span class="p">)</span>
+<span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<hr />
+
+<h3>13.4 urllib的使用</h3>
+
+<p>urllib vs urllib2</p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">http://m.sohu.com</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p>url介绍：
+<a href="https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B">https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B</a>
+<a href="http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95">http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95</a></p>
+
+<p>推荐：requests
+<a href="http://docs.python-requests.org/en/latest/">http://docs.python-requests.org/en/latest/</a></p>
+
+<hr />
+
+<h3>13.5 处理并发的机制介绍</h3>
+
+<p>三种：多进程（fork），多线程（Thread），异步IO（epoll/select)</p>
+
+<p>使用SocketServer提供的Fork， Thread机制</p>
+
+<p>http server:</p>
+
+<p>nginx 多进程模式  epoll
+apache  多线程</p>
+
+<hr />
+
+<h3>13.6 手工fork和thread的使用</h3>
+
+<p>Python提供多进程的包multiprocessing，可以像写线程一样写多进程代码。</p>
+
+<p>推荐书籍《Python网络编程基础》
+代码：<a href="https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21">https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

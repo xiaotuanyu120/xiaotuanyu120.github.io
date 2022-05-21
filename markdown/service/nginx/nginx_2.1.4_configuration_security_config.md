@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.4 安全 - 业务配置安全
+title: nginx: 配置 - 业务配置安全
 date: 2017-03-09 14:04:00
 categories: service/nginx
 tags: [nginx,rewrite]

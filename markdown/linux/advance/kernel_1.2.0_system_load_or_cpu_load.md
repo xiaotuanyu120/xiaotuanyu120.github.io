@@ -1,5 +1,5 @@
 ---
-title: linux内核: 1.2.0 system load or cpu load
+title: linux内核: 理论 - system load or cpu load
 date: 2021-10-18 09:13:00
 categories: linux/advance
 tags: [linux,kernel]
@@ -7,9 +7,11 @@ tags: [linux,kernel]
 
 ### 1. linux中的`cpu load`还是`system load`？
 一般情况下，稍微有经验的linux管理员都会熟练知道，查看系统负载，使用`top`、`uptime`或`w`命令都会输出load average的信息，分别是1、5、15分钟内的“cpu load”（并不是cpu load）信息。相信今天之前的我也会这样说，但是最近在重温系统负载相关知识的时候，竟然发现在一篇文章里面有如下表述:
+
 ```
 On Linux, the system load includes threads both in Runnable (R) and in Uninterruptible sleep (D) states (typically disk I/O, but not always)
 ```
+
 > 出处：[High System Load with Low CPU Utilization on Linux?](https://tanelpoder.com/posts/high-system-load-low-cpu-utilization-on-linux/)
 
 大意是，linux的系统负载计算时，不仅包括处于可运行状态的进程，还包含了处于睡眠状态的“不可中断睡眠进程”。这个就太出乎我意料了，因为我一直以为这个`load average`是说的`cpu load`，如果事实真的是包含后者，那么这里就应该是`system load`（因为处于"D"状态的进程并不消耗cpu资源）了。
@@ -18,9 +20,11 @@ On Linux, the system load includes threads both in Runnable (R) and in Uninterru
 先说结果，是的，和unix系统不同，linux系统上的`load average`是包含`Uninteruptible sleep process`的。
 
 首先，在load的wiki上可以看到如下表述：
+
 ```
 Most UNIX systems count only processes in the running (on CPU) or runnable (waiting for CPU) states. However, Linux also includes processes in uninterruptible sleep states (usually waiting for disk activity), which can lead to markedly different results if many processes remain blocked in I/O due to a busy or stalled I/O system.
 ```
+
 明确的说明了unix和linux的不同，unix更符合我们的直觉，即为`cpu load`，而linux却是属实的`system load`。
 
 ### 3. 为什么linux要这样设计呢？
@@ -34,6 +38,7 @@ Most UNIX systems count only processes in the running (on CPU) or runnable (wait
 那么，为什么呢？
 
 于是文章的作者开始搜索linux内核的提交历史记录，终于在远古时期的邮件列表中，他找到了1993年的一个更动
+
 ```
 From: Matthias Urlichs <urlichs@smurf.sub.org>
 Subject: Load average broken ?
@@ -69,14 +74,17 @@ Matthias Urlichs        \ XLink-POP N|rnberg   | EMail: urlichs@smurf.sub.org
 Schleiermacherstra_e 12  \  Unix+Linux+Mac     | Phone: ...please use email.
 90491 N|rnberg (Germany)  \   Consulting+Networking+Programming+etc'ing      42
 ```
+
 提交这个更动的作者说，当用慢速的swap磁盘替换快速的swap磁盘时，负载竟然下降了，这样反映系统负载非常不直观。
 
 中间关于这个问题，大方向没变，但是有关细节多次变动。
 
 然后文章作者又探讨了如今（2017年）4.12版本的这个机制，而且Matthias在twitter回复了文章作者的邮件说：
+
 ```
 "The point of "load average" is to arrive at a number relating how busy the system is from a human point of view. TASK_UNINTERRUPTIBLE means (meant?) that the process is waiting for something like a disk read which contributes to system load. A heavily disk-bound system might be extremely sluggish but only have a TASK_RUNNING average of 0.1, which doesn't help anybody."
 ```
+
 大意就是Matthias认为1993年的那个更动的思路在现在（2017）依然是对的。
 
 然后作者认为，`Uninteruptible sleep process`现在已经不仅仅是代表了disk的负载，它包含了更多的东西，我们是否需要找寻另外一种方法，仅仅让`load average`包含`cpu load`和`disk load`。调度器的维护人员Peter Zijstra回应了他，Peter Zijstra表示可以用` task_struct->in_iowait`（进程的iowait）来替代`Uninteruptible sleep process`，这样更接近反映`cpu load`和`disk load`的真实情况（只是讨论，并未改动）。

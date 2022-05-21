@@ -14,7 +14,7 @@ domain=www.example.com
 echo|openssl s_client -servername ${domain} -connect ${domain}:443|\
     sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ${domain}.crt
 ```
-> `-servername`，web服务器有可能同时托管多个ssl网站，所以需要指定servername，来在tls握手阶段判断获取哪个servername证书，[详情参照SNI说明](/linux/advance/what_is_sni.html)
+> `-servername`，web服务器有可能同时托管多个ssl网站，所以需要指定servername，来在tls握手阶段判断获取哪个servername证书，[详情参照SNI说明](/web/principle/what_is_sni.html)
 
 #### 浏览器（chrome）获取
 如何通过浏览器获得证书

@@ -1,5 +1,5 @@
 ---
-title: rlimit fd: 简明介绍
+title: rlimit: fd - 简明介绍
 date: 2022-04-11 21:38:00
 categories: linux/advance
 tags: [fd, rlimit]

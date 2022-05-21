@@ -1,5 +1,5 @@
 ---
-title: nginx: 3.1.0 module - nginx-sticky-module
+title: nginx: 模块 - nginx-sticky-module
 date: 2018-11-07 16:11:00
 categories: service/nginx
 tags: [nginx]

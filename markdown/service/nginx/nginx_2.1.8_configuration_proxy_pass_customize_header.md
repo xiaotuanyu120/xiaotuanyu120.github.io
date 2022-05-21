@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.8 nginx proxy的时候会撒谎吗？
+title: nginx: 配置 - nginx proxy的时候会撒谎吗？
 date: 2021-11-08 19:30:00
 categories: service/nginx
 tags: [nginx, proxy]

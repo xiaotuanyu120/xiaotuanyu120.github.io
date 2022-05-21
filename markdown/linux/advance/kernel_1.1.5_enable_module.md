@@ -1,5 +1,5 @@
 ---
-title: linux内核: 1.1.5 启用模块
+title: linux内核: 模块 - 启用模块
 date: 2021-01-30 15:46:00
 categories: linux/advance
 tags: [linux,kernel,modprobe]

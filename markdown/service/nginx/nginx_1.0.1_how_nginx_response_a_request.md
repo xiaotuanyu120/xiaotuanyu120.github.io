@@ -1,8 +1,8 @@
 ---
-title: nginx 1.0.1: how nginx response a request
+title: nginx: 理论 - how nginx response a request
 date: 2015-12-03 14:39:00
 categories: service/nginx
-tags: [lnmp,nginx]
+tags: [nginx]
 ---
 
 ### 1. NGXIN在request到达后，如何来返回响应

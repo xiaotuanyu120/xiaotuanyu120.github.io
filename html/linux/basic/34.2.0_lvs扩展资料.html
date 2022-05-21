@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_network-config.html">2.1.0: 网络-基本配置</a></li>
+                    <li><a href="/linux/basic/02.1.1_network-C6-check-gateway-info.html">2.1.1: 网络 - 静态路由及网关</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_yum_repo.html">2.2.0: yum源管理</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.4.0_ssh-tool-putty.html">2.4.0: ssh工具-putty</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.1.0_单用户及救援模式.html">3.1.0: 单用户及救援模式</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/03.3.0_basic_command-start.html">3.3.0: 基础命令 - 入门</a></li>
+                    <li><a href="/linux/basic/04.1.0_basic_command-about-file.html">4.1.0: 基础命令 - 文件相关</a></li>
+                    <li><a href="/linux/basic/04.2.0_basic_command-about-file-prop-and-perm.html">4.2.0: 基础命令 - 文件属性和权限相关</a></li>
+                    <li><a href="/linux/basic/04.3.0_basic_command-about-shell.html">4.3.0: 基础命令 - shell基础</a></li>
+                    <li><a href="/linux/basic/05.1.0_basic_command-special-perm.html">5.1.0: 基础命令 - 文件特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_basic_command-sbit-practice.html">5.1.1: 基础命令 - 特殊权限sbit实践</a></li>
+                    <li><a href="/linux/basic/05.2.0_basic_command-file-stat-check.html">5.2.0: 基础命令 - 文件类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command-file-locate.html">5.2.1: 基础命令 - 文件定位（find）</a></li>
+                    <li><a href="/linux/basic/05.2.2-basic_command-file-locate-mtimen-study.html">5.2.2: 基础命令 - find中mtime n的实践</a></li>
+                    <li><a href="/linux/basic/05.3.0_basic_command-soft-link-and-hard-link.html">5.3.0: 基础命令 - 软链接 和 硬链接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.5.0_disk_management-lvm.html">7.5.0: 磁盘管理-lvm</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
+                    <li><a href="/linux/basic/10.1.0_software_install-introduce.html">10.1.0: 软件安装-简介</a></li>
+                    <li><a href="/linux/basic/10.2.0_software_install-sourcecode.html">10.2.0: 软件安装-源码安装</a></li>
+                    <li><a href="/linux/basic/10.2.1_software_install-related-commands.html">10.2.1: 软件安装-相关命令wget</a></li>
+                    <li><a href="/linux/basic/10.2.2_software_install-upgrade-gcc.html">10.2.2: 软件安装-升级gcc</a></li>
+                    <li><a href="/linux/basic/10.3.0_software_install-rpm-tools.html">10.3.0: 软件安装-rpm</a></li>
+                    <li><a href="/linux/basic/10.4.0_software-install-yum-tools.html">10.4.0: 软件安装-yum</a></li>
+                    <li><a href="/linux/basic/11.01.0_shell_basic-bash-basic.html">11.1.0: shell基础-bash basic</a></li>
+                    <li><a href="/linux/basic/11.02.0_shell_basic-wild_cards_and_output_redirect.html">11.2.0: shell基础-通配符&重定向</a></li>
+                    <li><a href="/linux/basic/11.03.0_shell_basic-task-management.html">11.3.0: shell基础-任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/basic/11.04.0_shell_basic-variable_check.html">11.4.0: shell基础-变量查看(echo)</a></li>
+                    <li><a href="/linux/basic/11.05.0_shell_basic-variable_set_and_unset.html">11.5.0: shell基础-变量声明&取消</a></li>
+                    <li><a href="/linux/basic/11.06.0_shell_basic-global-variable.html">11.6.0: shell基础-全局变量</a></li>
+                    <li><a href="/linux/basic/11.07.0_shell_basic-bash_env.html">11.7.0: shell基础-环境变量</a></li>
+                    <li><a href="/linux/basic/11.08.0_shell_basic-pipe-related.html">11.8.0: shell基础-管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/basic/11.09.0_shell_basic-and-or-logic.html">11.9.0: shell基础-与或逻辑操作符</a></li>
+                    <li><a href="/linux/basic/11.10.0_shell_basic-array.html">11.10.0: shell基础-数组</a></li>
+                    <li><a href="/linux/basic/12.1.0_regex_basic-expression.html">12.1.0: 正则基础-编码符号含义</a></li>
+                    <li><a href="/linux/basic/12.2.0_regex_basic-grep.html">12.2.0: 正则基础-grep</a></li>
+                    <li><a href="/linux/basic/12.3.0_regex_basic-sed.html">12.3.0: 正则基础-sed</a></li>
+                    <li><a href="/linux/basic/12.3.1_regex_example-sed-delete-n-line-around.html">12.3.1: 正则基础-sed删除前后n行</a></li>
+                    <li><a href="/linux/basic/12.3.2_regex_example-sed-advance.html">12.3.2: 正则基础-sed高级用法</a></li>
+                    <li><a href="/linux/basic/12.4.0_regex_basic-awk.html">12.4.0: 正则基础-awk</a></li>
+                    <li><a href="/linux/basic/13.1.0_shell_script-introduction.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_shell_script-date.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_shell_script-var-and-caculate.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_shell_script-gen-random-number.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/13.5.0_shell_script_logic-basic.html">13.5.0: 脚本逻辑基础-逻辑判断标识含义</a></li>
+                    <li><a href="/linux/basic/14.1.0_shell_script_logic-if-case.html">14.1.0: 脚本逻辑基础-流程控制-条件判断if/case</a></li>
+                    <li><a href="/linux/basic/14.2.0_shell_script_logic-function.html">14.2.0: 脚本逻辑基础-功能抽象-function</a></li>
+                    <li><a href="/linux/basic/14.3.0_shell_script_logic-loop.html">14.3.0: 脚本逻辑基础-流程控制-循环语句</a></li>
+                    <li><a href="/linux/basic/14.4.0_shell_script_logic-example.html">14.4.0: 脚本基础-example</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.3.0_系统管理-top工具.html">17.3.0: 系统管理-top工具</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_tcpdump.html">18.1.0: 网络抓包 - tcpdump</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_wireshark.html">18.1.0: 网络抓包 - wireshark</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP_install.html">LNMP: 安装+配置+启动脚本</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.4.0_samba-smbtree命令.html">28.4.0: samba-smbtree命令</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/29.0.0_tomcat_and_resin.html">29.0.0: tomcat and resin</a></li>
+                    <li><a href="/linux/basic/30.0.0_mysql_master_slave.html">30.0.0: mysql主从同步</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                    <li><a href="/linux/basic/33.0.0_heartbeat.html">33.0: heartbeat</a></li>
+                    <li><a href="/linux/basic/34.0.0_lvs.html">34.0.0: lvs简介</a></li>
+                    <li><a href="/linux/basic/34.1.0_keepalive.html">34.1.0: keepalive</a></li>
+                    <li><a href="/linux/basic/34.2.0_lvs扩展资料.html">34.2.0: lvs扩展资料</a></li>
+                    <li><a href="/linux/basic/37.0.0_monitor_software.html">37.0.0: 监控软件 - nagios,zabbix</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>34.2.0: lvs扩展资料</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>10 Feb 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<p>Linux负载均衡软件LVS之一（概念篇）
+2011-04-25 11:06:18</p>
+
+<p>一、 LVS简介
+LVS是Linux Virtual Server的简称，也就是Linux虚拟服务器, 是一个由章文嵩博士发起的自由软件项目，它的官方站点是www.linuxvirtualserver.org。现在LVS已经是 Linux标准内核的一部分，在Linux2.4内核以前，使用LVS时必须要重新编译内核以支持LVS功能模块，但是从Linux2.4内核以后，已经完全内置了LVS的各个功能模块，无需给内核打任何补丁，可以直接使用LVS提供的各种功能。
+使用LVS技术要达到的目标是：通过LVS提供的负载均衡技术和Linux操作系统实现一个高性能、高可用的服务器群集，它具有良好可靠性、可扩展性和可操作性。从而以低廉的成本实现最优的服务性能。
+LVS自从1998年开始，发展到现在已经是一个比较成熟的技术项目了。可以利用LVS技术实现高可伸缩的、高可用的网络服务，例如WWW服务、Cache服务、DNS服务、FTP服务、MAIL服务、视频/音频点播服务等等，有许多比较著名网站和组织都在使用LVS架设的集群系统，例如：Linux的门户网站（www.linux.com）、向RealPlayer提供音频视频服务而闻名的Real公司（www.real.com）、全球最大的开源网站（sourceforge.net）等。
+二、 LVS体系结构
+使用LVS架设的服务器集群系统有三个部分组成：最前端的负载均衡层，用Load Balancer表示，中间的服务器群组层，用Server Array表示，最底端的数据共享存储层，用Shared Storage表示，在用户看来，所有的内部应用都是透明的，用户只是在使用一个虚拟服务器提供的高性能服务。
+LVS体系结构如图1所示：</p>
+
+<p>图1 LVS的体系结构</p>
+
+<p>下面对LVS的各个组成部分进行详细介绍：
+l Load Balancer层：位于整个集群系统的最前端，有一台或者多台负载调度器（Director Server）组成，LVS模块就安装在Director Server上，而Director的主要作用类似于一个路由器，它含有完成LVS功能所设定的路由表，通过这些路由表把用户的请求分发给Server Array层的应用服务器（Real Server）上。同时，在Director Server上还要安装对Real Server服务的监控模块Ldirectord，此模块用于监测各个Real Server服务的健康状况。在Real Server不可用时把它从LVS路由表中剔除，恢复时重新加入。
+l Server Array层：由一组实际运行应用服务的机器组成，Real Server可以是WEB服务器、MAIL服务器、FTP服务器、DNS服务器、视频服务器中的一个或者多个，每个Real Server之间通过高速的LAN或分布在各地的WAN相连接。在实际的应用中，Director Server也可以同时兼任Real Server的角色。
+l Shared Storage层：是为所有Real Server提供共享存储空间和内容一致性的存储区域，在物理上，一般有磁盘阵列设备组成，为了提供内容的一致性，一般可以通过NFS网络文件系统共享数据，但是NFS在繁忙的业务系统中，性能并不是很好，此时可以采用集群文件系统，例如Red hat的GFS文件系统，oracle提供的OCFS2文件系统等。
+从整个LVS结构可以看出，Director Server是整个LVS的核心，目前，用于Director Server的操作系统只能是Linux和FreeBSD，linux2.6内核不用任何设置就可以支持LVS功能，而FreeBSD作为Director Server的应用还不是很多，性能也不是很好。
+对于Real Server，几乎可以是所有的系统平台，Linux、windows、Solaris、AIX、BSD系列都能很好的支持。
+三、  LVS集群的特点
+3.1  IP负载均衡与负载调度算法
+1．IP负载均衡技术
+负载均衡技术有很多实现方案，有基于DNS域名轮流解析的方法、有基于客户端调度访问的方法、有基于应用层系统负载的调度方法，还有基于IP地址的调度方法，在这些负载调度算法中，执行效率最高的是IP负载均衡技术。
+LVS的IP负载均衡技术是通过IPVS模块来实现的，IPVS是LVS集群系统的核心软件，它的主要作用是：安装在Director Server上，同时在Director Server上虚拟出一个IP地址，用户必须通过这个虚拟的IP地址访问服务。这个虚拟IP一般称为LVS的VIP，即Virtual IP。访问的请求首先经过VIP到达负载调度器，然后由负载调度器从Real Server列表中选取一个服务节点响应用户的请求。
+当用户的请求到达负载调度器后，调度器如何将请求发送到提供服务的Real Server节点，而Real Server节点如何返回数据给用户，是IPVS实现的重点技术，IPVS实现负载均衡机制有三种，分别是NAT、TUN和DR，详述如下：
+l VS/NAT： 即（Virtual Server via Network Address Translation）
+也就是网络地址翻译技术实现虚拟服务器，当用户请求到达调度器时，调度器将请求报文的目标地址（即虚拟IP地址）改写成选定的Real Server地址，同时报文的目标端口也改成选定的Real Server的相应端口，最后将报文请求发送到选定的Real Server。在服务器端得到数据后，Real Server返回数据给用户时，需要再次经过负载调度器将报文的源地址和源端口改成虚拟IP地址和相应端口，然后把数据发送给用户，完成整个负载调度过程。
+可以看出，在NAT方式下，用户请求和响应报文都必须经过Director Server地址重写，当用户请求越来越多时，调度器的处理能力将称为瓶颈。
+l VS/TUN ：即（Virtual Server via IP Tunneling）
+也就是IP隧道技术实现虚拟服务器。它的连接调度和管理与VS/NAT方式一样，只是它的报文转发方法不同，VS/TUN方式中，调度器采用IP隧道技术将用户请求转发到某个Real Server，而这个Real Server将直接响应用户的请求，不再经过前端调度器，此外，对Real Server的地域位置没有要求，可以和Director Server位于同一个网段，也可以是独立的一个网络。因此，在TUN方式中，调度器将只处理用户的报文请求，集群系统的吞吐量大大提高。
+l VS/DR： 即（Virtual Server via Direct Routing）
+也就是用直接路由技术实现虚拟服务器。它的连接调度和管理与VS/NAT和VS/TUN中的一样，但它的报文转发方法又有不同，VS/DR通过改写请求报文的MAC地址，将请求发送到Real Server，而Real Server将响应直接返回给客户，免去了VS/TUN中的IP隧道开销。这种方式是三种负载调度机制中性能最高最好的，但是必须要求Director Server与Real Server都有一块网卡连在同一物理网段上。
+2．负载调度算法
+上面我们谈到，负载调度器是根据各个服务器的负载情况，动态地选择一台Real Server响应用户请求，那么动态选择是如何实现呢，其实也就是我们这里要说的负载调度算法，根据不同的网络服务需求和服务器配置，IPVS实现了如下八种负载调度算法，这里我们详细讲述最常用的四种调度算法，剩余的四种调度算法请参考其它资料。
+l 轮叫调度（Round Robin）
+&ldquo;轮叫&rdquo;调度也叫1:1调度，调度器通过&rdquo;轮叫&rdquo;调度算法将外部用户请求按顺序1:1的分配到集群中的每个Real Server上，这种算法平等地对待每一台Real Server，而不管服务器上实际的负载状况和连接状态。
+l 加权轮叫调度（Weighted Round Robin）
+&ldquo;加权轮叫&rdquo;调度算法是根据Real Server的不同处理能力来调度访问请求。可以对每台Real Server设置不同的调度权值，对于性能相对较好的Real Server可以设置较高的权值，而对于处理能力较弱的Real Server，可以设置较低的权值，这样保证了处理能力强的服务器处理更多的访问流量。充分合理的利用了服务器资源。同时，调度器还可以自动查询Real Server的负载情况，并动态地调整其权值。
+l 最少链接调度（Least Connections）
+&ldquo;最少连接&rdquo;调度算法动态地将网络请求调度到已建立的链接数最少的服务器上。如果集群系统的真实服务器具有相近的系统性能，采用&rdquo;最小连接&rdquo;调度算法可以较好地均衡负载。
+l 加权最少链接调度（Weighted Least Connections）
+&ldquo;加权最少链接调度&rdquo;是&rdquo;最少连接调度&rdquo;的超集，每个服务节点可以用相应的权值表示其处理能力，而系统管理员可以动态的设置相应的权值，缺省权值为1，加权最小连接调度在分配新连接请求时尽可能使服务节点的已建立连接数和其权值成正比。
+其它四种调度算法分别为：基于局部性的最少链接（Locality-Based Least Connections）、带复制的基于局部性最少链接（Locality-Based Least Connections with Replication）、目标地址散列（Destination Hashing）和源地址散列（Source Hashing），对于这四种调度算法的含义，本文不再讲述，如果想深入了解这其余四种调度策略的话，可以登陆LVS中文站点zh.linuxvirtualserver.org，查阅更详细的信息。
+3.2 高可用性
+LVS是一个基于内核级别的应用软件，因此具有很高的处理性能，用LVS构架的负载均衡集群系统具有优秀的处理能力，每个服务节点的故障不会影响整个系统的正常使用，同时又实现负载的合理均衡，使应用具有超高负荷的服务能力，可支持上百万个并发连接请求。如配置百兆网卡，采用VS/TUN或VS/DR调度技术，整个集群系统的吞吐量可高达1Gbits/s；如配置千兆网卡，则系统的最大吞吐量可接近10Gbits/s。
+3.3 高可靠性
+LVS负载均衡集群软件已经在企业、学校等行业得到了很好的普及应用，国内外很多大型的、关键性的web站点也都采用了LVS集群软件，所以它的可靠性在实践中得到了很好的证实。有很多以LVS做的负载均衡系统，运行很长时间，从未做过重新启动。这些都说明了LVS的高稳定性和高可靠性。
+3.4 适用环境
+LVS对前端Director Server目前仅支持Linux和FreeBSD系统，但是支持大多数的TCP和UDP协议，支持TCP协议的应用有：HTTP，HTTPS ，FTP，SMTP，，POP3，IMAP4，PROXY，LDAP，SSMTP等等。支持UDP协议的应用有：DNS，NTP，ICP，视频、音频流播放协议等。
+LVS对Real Server的操作系统没有任何限制，Real Server可运行在任何支持TCP/IP的操作系统上，包括Linux，各种Unix（如FreeBSD、Sun Solaris、HP Unix等），Mac/OS和Windows等。
+3.5 开源软件
+LVS集群软件是按GPL（GNU Public License）许可证发行的自由软件，因此，使用者可以得到软件的源代码，并且可以根据自己的需要进行各种修改，但是修改必须是以GPL方式发行。</p>
+
+<p>From <a href="http://ixdba.blog.51cto.com/2895551/552947">http://ixdba.blog.51cto.com/2895551/552947</a></p>
+
+<p>Linux负载均衡软件LVS之二（安装篇） - 技术成就梦想 - 51CTO技术博客
+一、  安装LVS软件</p>
+
+<p>1．安装前准备工作
+操作系统：统一采用Centos4.4版本。
+地址规划，如表1所示：</p>
+
+<p>图2中的VIP指的是虚拟IP地址，还可以叫做LVS集群的服务IP，在DR、TUN模式中，数据包是直接返回给用户的，所以，在Director Server上以及集群的每个节点上都需要设置这个地址。此IP在Real Server上一般绑定在回环地址上，例如lo:0，同样，在Director Server上，虚拟IP绑定在真实的网络接口设备上，例如eth0:0。
+ 各个Real Server可以是在同一个网段内，也可以是相互独立的网段，还可以是分布在internet上的多个服务器。
+#省略系统安装过程，自己编写安装过程</p>
+
+<p>4．ipvsadm的用法
+（1）Ipvsadm常用的语法和格式如下：
+ipvsadm -A|E -t|u|f virutal-service-address:port [-s scheduler] [-p [timeout]] [-M netmask]
+ipvsadm -D -t|u|f virtual-service-address
+ipvsadm -C
+ipvsadm -R
+ipvsadm -S [-n]
+ipvsadm -a|e -t|u|f virtual-service-address:port -r real-server-address:port
+[-g|i|m] [-w weight]
+ipvsadm -d -t|u|f virtual-service-address -r real-server-address
+ipvsadm -L|l [options]
+ipvsadm -Z [-t|u|f virtual-service-address]
+ipvsadm &ndash;set tcp tcpfin udp
+ipvsadm -h
+其中：
+l virtual-service-address:是指虚拟服务器的IP地址，本文是192.168.60.200
+l real-service-address:是指Real Server的IP地址，本文是192.168.60.<sup>132</sup>&frasl;<sub>144</sub>
+l scheduler：指定调度算法
+ipvsadm命令选项详细含义如表2所示：
+表2
+命令选项
+含义
+-A (&ndash;add-service) 在内核的虚拟服务器列表中添加一条新的虚拟IP记录。也就是增加一台新的虚拟服务器。虚拟IP也就是虚拟服务器的IP地址。
+-E (&ndash;edit-service) 编辑内核虚拟服务器列表中的一条虚拟服务器记录
+-D (&ndash;delete-service) 删除内核虚拟服务器列表中的一条虚拟服务器记录
+-C (&ndash;clear) 清除内核虚拟服务器列表中的所有记录
+-R (&ndash;restore) 恢复虚拟服务器规则
+-S (&ndash;save) 保存虚拟服务器规则，输出为-R 选项可读的格式
+-a (&ndash;add-server) 在内核虚拟服务器列表的一条记录里添加一条新的Real Server记录。也就是在一个虚拟服务器中增加一台新的Real Server
+-e (&ndash;edit-server) 编辑一条虚拟服务器记录中的某条Real Server记录
+-d (&ndash;delete-server) 删除一条虚拟服务器记录中的某条Real Server记录
+-L|-l -list 显示内核中虚拟服务器列表
+-Z (&ndash;zero) 虚拟服务器列表计数器清零（清空当前的连接数量等）
+&ndash;set tcp tcpfin udp 设置连接超时值
+-t 说明虚拟服务器提供的是tcp服务，此选项后面跟如下格式：
+[virtual-service-address:port] or [real-server-ip:port]
+-u 说明虚拟服务器提供的是udp服务，此选项后面跟如下格式：
+[virtual-service-address:port] or [real-server-ip:port]
+-f  fwmark 说明是经过iptables标记过的服务类型
+-s   此选项后面跟LVS使用的调度算法
+有这样几个选项： rr|wrr|lc|wlc|lblc|lblcr|dh|sh
+默认的调度算法是： wlc
+-p  [timeout] 在某个Real Server上持续的服务时间。也就是说来自同一个用户的多次请求，将被同一个Real Server处理。此参数一般用于有动态请求的操作中，timeout 的默认值为300 秒。例如：-p 600，表示持续服务时间为600秒。
+-r 指定Real Server的IP地址，此选项后面跟如下格式：
+ [real-server-ip:port]
+-g (&ndash;gatewaying) 指定LVS 的工作模式为直接路由模式（此模式是LVS 默认工作模式）
+-i (-ipip) 指定LVS 的工作模式为隧道模式
+-m (&ndash;masquerading) 指定LVS 的工作模式为NAT模式
+-w (&ndash;weight) weight 指定Real Server的权值
+-c (&ndash;connection) 显示LVS目前的连接信息 如：ipvsadm -L -c
+-L &ndash;timeout 显示&rdquo;tcp tcpfin udp&rdquo;的timeout值，如：ipvsadm -L &ndash;timeout
+-L &ndash;daemon 显示同步守护进程状态，例如：ipvsadm -L -daemon
+-L  &ndash;stats 显示统计信息，例如：ipvsadm -L -stats
+-L  &ndash;rate 显示速率信息，例如：ipvsadm -L  &ndash;rate
+-L  &ndash;sort 对虚拟服务器和真实服务器排序输出，例如：ipvsadm -L &ndash;sort</p>
+
+<p>注释：
+ 在表2中，左边括弧中的内容为ipvsadm每个选项的长格式表示形式，linux命令选项中，有长格式和短格式，短格式的选项用的比较多，实际应用中可以用括弧中的长格式替代短格式，例如，可以用&rdquo;ipvsadm &ndash;clear&rdquo;代替&rdquo;ipvsadm -C&rdquo;。</p>
+
+<p>（2）举例
+[root@localhost ~]# ipvsadm -A -t 192.168.60.200:80 -s rr -p 600
+以上表示在内核的虚拟服务器列表中添加一条192.168.60.200的虚拟服务器记录，并且指定此虚拟服务器的服务端口为80，然后指定此虚拟服务器的调度策略为轮询调度，并且在每个real server上的持续服务时间为600秒，即10分钟。
+[root@localhost ~]# ipvsadm -A -t 192.168.60.188:21 -s wlc
+以上表示在内核的虚拟服务器列表中又添加了一条192.168.60.188的虚拟服务器，此虚拟服务器的服务端口为21，即FTP服务。使用的调度策略为wlc，即加权最少链接算法。
+[root@localhost ~]# ipvsadm -a -t 192.168.60.200:80 -r 192.168.60.132:80 -g
+[root@localhost ~]# ipvsadm -a -t 192.168.60.200:80 -r 192.168.60.144:80 -g
+以上两条设置表示在虚拟服务器192.168.60.200中添加两条新的Real Server记录，两个Real Server的IP分别为192.168.60.132和192.168.60.144，参数&rdquo;-g&rdquo;指定了虚拟服务器的工作模式为直接路由模式，即DR模式。
+这样设置完毕后，当用户访问192.168.60.200的80服务时，LVS会根据设置的调度策略和路由模式将请求分配到192.168.60.132以及192.168.60.144的80端口。
+本文出自 &ldquo;技术成就梦想&rdquo; 博客，请务必保留此出处<a href="http://ixdba.blog.51cto.com/2895551/554029">http://ixdba.blog.51cto.com/2895551/554029</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

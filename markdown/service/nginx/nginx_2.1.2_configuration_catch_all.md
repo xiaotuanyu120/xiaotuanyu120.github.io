@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.2 configuration catch_all
+title: nginx: 配置 - catch_all
 date: 2017-02-06 08:58:00
 categories: service/nginx
 tags: [nginx,server_name]

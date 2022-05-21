@@ -1,13 +1,12 @@
 ---
-title: 内核调优: 1.1.2 TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
+title: linux内核: TCP - TIMEWAIT销毁时间是否可以通过tcp_fin_timeout优化？
 date: 2019-08-21 14:56:00
 categories: linux/advance
 tags: [linux,tcp,time_wait,fin_timeout]
 ---
 
 ### 1. 关于TIMEWAIT
-参见[TIMEWAIT优化篇](/linux/advance/optimize_1.1.0_kernel_tcp_time_wait.html)
-
+参见[TIMEWAIT优化篇](/linux/advance/kernel_1.1.1_tcp_time_wait.html)
 
 ### 2. 关于MSL
 优化TIMEWAIT的方法中，有一种论调是在tcp优化时，因为TIMEWAIT的存活时间是2MSL，所以我们需要缩短MSL来达到快速回收TIMEWAIT状态的tcp的目的。  
@@ -15,16 +14,20 @@ tags: [linux,tcp,time_wait,fin_timeout]
 
 #### 1) 关于MSL是否可以调优
 首先，我们的目的是要调优TIMEWAIT，因此，才会关注MSL这个时间。而在linux的内核源码的[tcp.h](https://github.com/torvalds/linux/blob/master/include/net/tcp.h)中，有这样一段
+
 ``` c
 #define TCP_TIMEWAIT_LEN (60*HZ) /* how long to wait to destroy TIME-WAIT
 				  * state, about 60 seconds	*/
 ```
+
 这里可以看出，TIMEWAIT的销毁时间，是由TCP_TIMEWAIT_LEN来控制的，而其是个常量，是60s，是无法被调优的。
 
 
 #### 2) 网上为何流传tcp_fin_timeout是2MSL呢？
 **个人猜测**是两个原因:
+
 - 第一是因为默认情况下，TCP_FIN_TIMEOUT就等于TCP_TIMEWAIT_LEN
+
 ``` c
 #define TCP_FIN_TIMEOUT	TCP_TIMEWAIT_LEN
                                  /* BSD style FIN_WAIT2 deadlock breaker.
@@ -33,6 +36,7 @@ tags: [linux,tcp,time_wait,fin_timeout]
 				  * TIME-WAIT timer.
 				  */
 ```
+
 - 第二是因为，tcp_fin_timeout本身就是设定处于FIN_WAIT2状态下的tcp连接等待最后一个FIN的超时时间，这个超时时间越短，就越快加速等不到FIN的情况下FIN_WAIT2到下一步的过程，也是能一定程度上加快tcp的生命周期，所以才和TIMEWAIT的销毁时间等同来讲。
 
 > 以上两个原因，都是个人猜测，个人猜测，请在未验证之前，不要拿来作为依据。

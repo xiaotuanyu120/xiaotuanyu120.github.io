@@ -1,5 +1,5 @@
 ---
-title: nginx: 2.1.5 configuration proxy_pass with URI
+title: nginx: 配置 - proxy_pass with URI
 date: 2018-11-08 15:15:00
 categories: service/nginx
 tags: [nginx,rewrite]
