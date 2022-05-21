@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/linux/basic/01.1.0_linux简介.html">1.1.0: linux简介</a></li>
+                    <li><a href="/linux/basic/01.2.0_vmware+C6系统安装.html">1.2.0: vmware+C6系统安装</a></li>
+                    <li><a href="/linux/basic/02.1.0_network-config.html">2.1.0: 网络-基本配置</a></li>
+                    <li><a href="/linux/basic/02.1.1_network-C6-check-gateway-info.html">2.1.1: 网络 - 静态路由及网关</a></li>
+                    <li><a href="/linux/basic/02.1.2_network-bonding.html">2.1.2: 网络-bonding</a></li>
+                    <li><a href="/linux/basic/02.1.3_network_resolv.conf.html">2.1.3: 网络-resolv.conf</a></li>
+                    <li><a href="/linux/basic/02.2.0_yum_repo.html">2.2.0: yum源管理</a></li>
+                    <li><a href="/linux/basic/02.3.0_linux-runlevel.html">2.3.0: linux-runlevel</a></li>
+                    <li><a href="/linux/basic/02.4.0_ssh-tool-putty.html">2.4.0: ssh工具-putty</a></li>
+                    <li><a href="/linux/basic/02.5.0_openSSH-密钥登陆.html">2.5.0: openSSH-密钥登陆</a></li>
+                    <li><a href="/linux/basic/02.6.0_修改主机名.html">2.6.0: 修改主机名</a></li>
+                    <li><a href="/linux/basic/03.1.0_单用户及救援模式.html">3.1.0: 单用户及救援模式</a></li>
+                    <li><a href="/linux/basic/03.2.0_启动流程+目录结构.html">3.2.0: 启动流程+目录结构</a></li>
+                    <li><a href="/linux/basic/03.3.0_basic_command-start.html">3.3.0: 基础命令 - 入门</a></li>
+                    <li><a href="/linux/basic/04.1.0_basic_command-about-file.html">4.1.0: 基础命令 - 文件相关</a></li>
+                    <li><a href="/linux/basic/04.2.0_basic_command-about-file-prop-and-perm.html">4.2.0: 基础命令 - 文件属性和权限相关</a></li>
+                    <li><a href="/linux/basic/04.3.0_basic_command-about-shell.html">4.3.0: 基础命令 - shell基础</a></li>
+                    <li><a href="/linux/basic/05.1.0_basic_command-special-perm.html">5.1.0: 基础命令 - 文件特殊权限</a></li>
+                    <li><a href="/linux/basic/05.1.1_basic_command-sbit-practice.html">5.1.1: 基础命令 - 特殊权限sbit实践</a></li>
+                    <li><a href="/linux/basic/05.2.0_basic_command-file-stat-check.html">5.2.0: 基础命令 - 文件类型查看</a></li>
+                    <li><a href="/linux/basic/05.2.1_basic_command-file-locate.html">5.2.1: 基础命令 - 文件定位（find）</a></li>
+                    <li><a href="/linux/basic/05.2.2-basic_command-file-locate-mtimen-study.html">5.2.2: 基础命令 - find中mtime n的实践</a></li>
+                    <li><a href="/linux/basic/05.3.0_basic_command-soft-link-and-hard-link.html">5.3.0: 基础命令 - 软链接 和 硬链接</a></li>
+                    <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
+                    <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
+                    <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
+                    <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
+                    <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
+                    <li><a href="/linux/basic/07.5.0_disk_management-lvm.html">7.5.0: 磁盘管理-lvm</a></li>
+                    <li><a href="/linux/basic/07.6.0_磁盘管理-其他.html">7.6.0: 磁盘管理-其他</a></li>
+                    <li><a href="/linux/basic/08.1.0_编辑工具-vi_vim.html">8.1.0: 编辑工具-vi&vim</a></li>
+                    <li><a href="/linux/basic/09.1.0_archive_compress_command-basic.html">9.1.0: 打包压缩命令 - tar,gzip,bzip2,xz等</a></li>
+                    <li><a href="/linux/basic/09.2.0_archive_compress_command-practice-study.html">9.2.0: 打包压缩命令 - 实践研究</a></li>
+                    <li><a href="/linux/basic/09.2.1_command-dd.html">9.2.1: 命令 - dd</a></li>
+                    <li><a href="/linux/basic/10.1.0_software_install-introduce.html">10.1.0: 软件安装-简介</a></li>
+                    <li><a href="/linux/basic/10.2.0_software_install-sourcecode.html">10.2.0: 软件安装-源码安装</a></li>
+                    <li><a href="/linux/basic/10.2.1_software_install-related-commands.html">10.2.1: 软件安装-相关命令wget</a></li>
+                    <li><a href="/linux/basic/10.2.2_software_install-upgrade-gcc.html">10.2.2: 软件安装-升级gcc</a></li>
+                    <li><a href="/linux/basic/10.3.0_software_install-rpm-tools.html">10.3.0: 软件安装-rpm</a></li>
+                    <li><a href="/linux/basic/10.4.0_software-install-yum-tools.html">10.4.0: 软件安装-yum</a></li>
+                    <li><a href="/linux/basic/11.01.0_shell_basic-bash-basic.html">11.1.0: shell基础-bash basic</a></li>
+                    <li><a href="/linux/basic/11.02.0_shell_basic-wild_cards_and_output_redirect.html">11.2.0: shell基础-通配符&重定向</a></li>
+                    <li><a href="/linux/basic/11.03.0_shell_basic-task-management.html">11.3.0: shell基础-任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/basic/11.04.0_shell_basic-variable_check.html">11.4.0: shell基础-变量查看(echo)</a></li>
+                    <li><a href="/linux/basic/11.05.0_shell_basic-variable_set_and_unset.html">11.5.0: shell基础-变量声明&取消</a></li>
+                    <li><a href="/linux/basic/11.06.0_shell_basic-global-variable.html">11.6.0: shell基础-全局变量</a></li>
+                    <li><a href="/linux/basic/11.07.0_shell_basic-bash_env.html">11.7.0: shell基础-环境变量</a></li>
+                    <li><a href="/linux/basic/11.08.0_shell_basic-pipe-related.html">11.8.0: shell基础-管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/basic/11.09.0_shell_basic-and-or-logic.html">11.9.0: shell基础-与或逻辑操作符</a></li>
+                    <li><a href="/linux/basic/11.10.0_shell_basic-array.html">11.10.0: shell基础-数组</a></li>
+                    <li><a href="/linux/basic/12.1.0_regex_basic-expression.html">12.1.0: 正则基础-编码符号含义</a></li>
+                    <li><a href="/linux/basic/12.2.0_regex_basic-grep.html">12.2.0: 正则基础-grep</a></li>
+                    <li><a href="/linux/basic/12.3.0_regex_basic-sed.html">12.3.0: 正则基础-sed</a></li>
+                    <li><a href="/linux/basic/12.3.1_regex_example-sed-delete-n-line-around.html">12.3.1: 正则基础-sed删除前后n行</a></li>
+                    <li><a href="/linux/basic/12.3.2_regex_example-sed-advance.html">12.3.2: 正则基础-sed高级用法</a></li>
+                    <li><a href="/linux/basic/12.4.0_regex_basic-awk.html">12.4.0: 正则基础-awk</a></li>
+                    <li><a href="/linux/basic/13.1.0_shell_script-introduction.html">13.1.0: 脚本基础-什么是脚本</a></li>
+                    <li><a href="/linux/basic/13.2.0_shell_script-date.html">13.2.0: 脚本基础-date用法</a></li>
+                    <li><a href="/linux/basic/13.3.0_shell_script-var-and-caculate.html">13.3.0: 脚本基础-变量及计算</a></li>
+                    <li><a href="/linux/basic/13.4.0_shell_script-gen-random-number.html">13.4.0: 脚本基础-随机数生成</a></li>
+                    <li><a href="/linux/basic/13.5.0_shell_script_logic-basic.html">13.5.0: 脚本逻辑基础-逻辑判断标识含义</a></li>
+                    <li><a href="/linux/basic/14.1.0_shell_script_logic-if-case.html">14.1.0: 脚本逻辑基础-流程控制-条件判断if/case</a></li>
+                    <li><a href="/linux/basic/14.2.0_shell_script_logic-function.html">14.2.0: 脚本逻辑基础-功能抽象-function</a></li>
+                    <li><a href="/linux/basic/14.3.0_shell_script_logic-loop.html">14.3.0: 脚本逻辑基础-流程控制-循环语句</a></li>
+                    <li><a href="/linux/basic/14.4.0_shell_script_logic-example.html">14.4.0: 脚本基础-example</a></li>
+                    <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
+                    <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
+                    <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
+                    <li><a href="/linux/basic/17.3.0_系统管理-top工具.html">17.3.0: 系统管理-top工具</a></li>
+                    <li><a href="/linux/basic/17.4.0_系统管理-sar.html">17.4.0: 系统管理-sar</a></li>
+                    <li><a href="/linux/basic/17.5.0_系统管理-ps.html">17.5.0: 系统管理-ps</a></li>
+                    <li><a href="/linux/basic/17.6.0_系统管理-netstat.html">17.6.0: 系统管理-netstat</a></li>
+                    <li><a href="/linux/basic/17.7.0_实例-线程资源占用.html">17.7.0: 实例-线程资源占用</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_tcpdump.html">18.1.0: 网络抓包 - tcpdump</a></li>
+                    <li><a href="/linux/basic/18.1.0_package_capture_wireshark.html">18.1.0: 网络抓包 - wireshark</a></li>
+                    <li><a href="/linux/basic/18.2.0_安全管理-selinux.html">18.2.0: 安全管理-selinux</a></li>
+                    <li><a href="/linux/basic/18.3.0_计划任务-crontab.html">18.3.0: 计划任务-crontab</a></li>
+                    <li><a href="/linux/basic/18.4.0_防火墙-iptables.html">18.4.0: 防火墙-iptables</a></li>
+                    <li><a href="/linux/basic/19.1.0_服务管理-服务介绍.html">19.1.0: 服务管理-服务介绍</a></li>
+                    <li><a href="/linux/basic/19.2.0_服务管理-ntsysv.html">19.2.0: 服务管理-ntsysv</a></li>
+                    <li><a href="/linux/basic/19.3.0_服务管理-chkconfig.html">19.3.0: 服务管理-chkconfig</a></li>
+                    <li><a href="/linux/basic/19.4.0_日志管理-日志介绍.html">19.4.0: 日志管理-日志介绍</a></li>
+                    <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
+                    <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
+                    <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
+                    <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
+                    <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
+                    <li><a href="/linux/basic/24.4.0_扩展模块-mysqli.html">24.4.0: 扩展模块-mysqli</a></li>
+                    <li><a href="/linux/basic/24.5.0_扩展模块-pdo-mysql.html">24.5.0: 扩展模块-pdo-mysql</a></li>
+                    <li><a href="/linux/basic/24.6.0_扩展模块-初始化错误.html">24.6.0: 扩展模块-初始化错误</a></li>
+                    <li><a href="/linux/basic/24.7.0_扩展模块_redis.html">24.7.0: 扩展模块-redis</a></li>
+                    <li><a href="/linux/basic/25.1.0_LNMP_install.html">LNMP: 安装+配置+启动脚本</a></li>
+                    <li><a href="/linux/basic/25.2.0_LNMP-PHP安装.html">25.2.0: LNMP-PHP安装</a></li>
+                    <li><a href="/linux/basic/25.3.0_LNMP-nginx安装.html">25.3.0: LNMP-nginx安装</a></li>
+                    <li><a href="/linux/basic/25.5.0_LNMP-nginx启动报错.html">25.5.0: LNMP-nginx启动报错</a></li>
+                    <li><a href="/linux/basic/25.6.0_LNMP-discuz安装.html">25.6.0: LNMP-discuz安装</a></li>
+                    <li><a href="/linux/basic/25.7.0_LNMP-扩展ldd命令.html">25.7.0: LNMP-扩展ldd命令</a></li>
+                    <li><a href="/linux/basic/26.1.0_nginx启动脚本.html">26.1.0: nginx启动脚本</a></li>
+                    <li><a href="/linux/basic/26.10.0_NGINX配置-NGX_PHP状态页面.html">26.10.0: NGINX配置-NGX&PHP状态页面</a></li>
+                    <li><a href="/linux/basic/26.11.0_NGINX配置-limit_req访问限制配置.html">26.11.0: NGINX配置-limit_req访问限制配置</a></li>
+                    <li><a href="/linux/basic/26.2.0_NGINX配置-基本.html">26.2.0: NGINX配置-基本</a></li>
+                    <li><a href="/linux/basic/26.3.0_NGINX配置-虚拟主机.html">26.3.0: NGINX配置-虚拟主机</a></li>
+                    <li><a href="/linux/basic/26.4.0_NGINX配置-auth.html">26.4.0: NGINX配置-auth</a></li>
+                    <li><a href="/linux/basic/26.5.0_NGINX配置-访问控制.html">26.5.0: NGINX配置-访问控制</a></li>
+                    <li><a href="/linux/basic/26.6.0_NGINX配置-重定向_防盗链.html">26.6.0: NGINX配置-重定向&防盗链</a></li>
+                    <li><a href="/linux/basic/26.7.0_NGINX配置-日志_切割脚本.html">26.7.0: NGINX配置-日志&切割脚本</a></li>
+                    <li><a href="/linux/basic/26.8.0_NGINX配置-refer过滤.html">26.8.0: NGINX配置-refer过滤</a></li>
+                    <li><a href="/linux/basic/26.9.0_NGINX配置-原地rewrite.html">26.9.0: NGINX配置-原地rewrite</a></li>
+                    <li><a href="/linux/basic/27.1.0_nfs_intro.html">27.1.0: NFS简介</a></li>
+                    <li><a href="/linux/basic/27.1.1_nfs_installation.html">27.1.1: NFS安装</a></li>
+                    <li><a href="/linux/basic/27.1.2_nfs_command.html">27.1.2: NFS使用命令</a></li>
+                    <li><a href="/linux/basic/28.1.0_samba-简介.html">28.1.0: samba-简介</a></li>
+                    <li><a href="/linux/basic/28.2.0_samba-配置share共享.html">28.2.0: samba-配置share共享</a></li>
+                    <li><a href="/linux/basic/28.3.0_samba-配置user共享.html">28.3.0: samba-配置user共享</a></li>
+                    <li><a href="/linux/basic/28.4.0_samba-smbtree命令.html">28.4.0: samba-smbtree命令</a></li>
+                    <li><a href="/linux/basic/28.5.0_squid_intro.html">28.5.0: squid简介</a></li>
+                    <li><a href="/linux/basic/28.5.1_squid_installation.html">28.5.1: squid 安装</a></li>
+                    <li><a href="/linux/basic/28.5.2_squid_acl.html">28.5.2: squid acl说明</a></li>
+                    <li><a href="/linux/basic/28.5.3_squid_reverse_proxy.html">28.5.3: squid反向代理</a></li>
+                    <li><a href="/linux/basic/28.5.4_squid_transparent_proxy.html">28.5.0: squid</a></li>
+                    <li><a href="/linux/basic/29.0.0_tomcat_and_resin.html">29.0.0: tomcat and resin</a></li>
+                    <li><a href="/linux/basic/30.0.0_mysql_master_slave.html">30.0.0: mysql主从同步</a></li>
+                    <li><a href="/linux/basic/31.1.0_DNS.html">31.1.0: DNS服务</a></li>
+                    <li><a href="/linux/basic/33.0.0_heartbeat.html">33.0: heartbeat</a></li>
+                    <li><a href="/linux/basic/34.0.0_lvs.html">34.0.0: lvs简介</a></li>
+                    <li><a href="/linux/basic/34.1.0_keepalive.html">34.1.0: keepalive</a></li>
+                    <li><a href="/linux/basic/34.2.0_lvs扩展资料.html">34.2.0: lvs扩展资料</a></li>
+                    <li><a href="/linux/basic/37.0.0_monitor_software.html">37.0.0: 监控软件 - nagios,zabbix</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>33.0: heartbeat</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>15 Jun 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>0. 理论</h2>
+
+<p><strong>什么是Linux-HA？</strong></p>
+
+<p>Linux-HA项目为linux、BSD、OS X等系统提供了高可用(集群)的解决方案，它的特点是，R高可靠性、A高可用性和S服务性(RAS)。</p>
+
+<p><strong>什么是heartbeat？</strong></p>
+
+<p>heartbeat是Linux-HA中最主要的一个软件，采用的是GPL-licence，是一个高可用集群的管理软件。</p>
+
+<p><strong>什么是corosync？</strong>
+现在pacemaker默认是使用corosync来代替heartbeat，它也是一个集群消息通信层</p>
+
+<p><strong>heartbeat的特点</strong></p>
+
+<ul>
+<li>没有限制最大nodes数目，可支持大型集群</li>
+<li>资源监控方面，资源可自动重启或失败时自动转换到其他nodes上</li>
+<li>会自动移除失败的nodes</li>
+</ul>
+
+<p><strong>heartbeat发展历史</strong></p>
+
+<p>1997年开始，Linux-HA项目开始收集HA技术，最开始heartbeat，只是两个nodes的互相备份和非常简单的主备自动切换，并没有资源管理。</p>
+
+<p>在2.1.4版本以后，乃至今天的3.0版本，heartbeat中的资源管理功能分裂出来成为了单独的pacemaker，也拆分出来单独的resource agent和&rdquo;glue&rdquo;，heartbeat只是单纯的成为了集群消息通信层</p>
+
+<p><strong>Heartbeat 3.0拆分之后的组成部分：</strong></p>
+
+<ul>
+<li>Heartbeat：将原来的消息通信层独立为heartbeat项目，新的heartbeat只负责维护集群各节点的信息以及它们之前通信；</li>
+<li>Cluster Glue：相当于一个中间层，它用来将heartbeat和pacemaker关联起来，主要包含2个部分，即为LRM和STONITH。</li>
+<li>Resource Agent：用来控制服务启停，监控服务状态的脚本集合，这些脚本将被LRM调用从而实现各种资源启动、停止、监控等等。</li>
+<li>Pacemaker : 也就是Cluster Resource Manager （简称CRM），用来管理整个HA的控制中心，客户端通过pacemaker来配置管理监控整个集群。</li>
+</ul>
+
+<p><strong>heartbeat的配置文件：</strong></p>
+
+<ul>
+<li>/etc/ha.d/ha.cf - the global cluster configuration file</li>
+<li>/etc/ha.d/authkeys - a file containing keys for mutual node authentication</li>
+<li>/etc/haresources - This file specifies the services for the cluster and who the default owner is.</li>
+</ul>
+
+<blockquote>
+<p>heartbeat扩展阅读:</p>
+
+<ul>
+<li><a href="http://www.linux-ha.org/doc/users-guide/users-guide.html">heartbeat的官方文档</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Linux-HA">heartbeat的wiki</a></li>
+<li><a href="http://blog.clusterlabs.org/blog/2010/pacemaker-heartbeat-corosync-wtf">corosync，pacemaker，heartbeat的关系</a></li>
+<li><a href="http://blog.chinaunix.net/uid-20749043-id-1878328.html">heartbeat配置</a></li>
+</ul>
+</blockquote>
+
+<h2>1. 环境准备(所有节点均执行)</h2>
+
+<p><strong>主机配置</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>item name</th>
+<th>node1</th>
+<th>node2</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>主机名称</td>
+<td>master</td>
+<td>cluster1</td>
+</tr>
+
+<tr>
+<td>网卡</td>
+<td>eth0</td>
+<td>eth0</td>
+</tr>
+
+<tr>
+<td>ip</td>
+<td>10.10.180.221</td>
+<td>10.10.180.222</td>
+</tr>
+
+<tr>
+<td>防火墙</td>
+<td>规则临时清空</td>
+<td>规则临时清空</td>
+</tr>
+
+<tr>
+<td>selinux</td>
+<td>关闭</td>
+<td>关闭</td>
+</tr>
+</tbody>
+</table>
+<pre class="chroma"><span class="c1"># 配置/etc/hosts</span>
+vim /etc/hosts
+********************************
+10.10.180.221 master
+10.10.180.222 cluster1
+********************************
+ 
+<span class="c1"># 安装环境包</span>
+yum install -y gcc flex bison net-snmp OpenIPMI
+yum install -y glib2-devel bzip2-devel libtool-ltdl-devel libxml2-devel e2fsprogs-devel libxslt-devel  docbook-dtds docbook-style-xsl libaio-devel
+yum groupinstall base <span class="s2">&#34;Development Tools&#34;</span> -y
+ 
+<span class="c1"># 安装a2x命令</span>
+wget http://jaist.dl.sourceforge.net/project/asciidoc/asciidoc/8.6.9/asciidoc-8.6.9.zip
+unzip asciidoc-8.6.9.zip
+<span class="nb">cd</span> asciidoc-8.6.9
+./configure
+make <span class="o">&amp;&amp;</span> make install
+
+<span class="c1"># 用户准备</span>
+groupadd haclient
+useradd -g haclient hacluster
+</pre>
+<h2>2. 安装heartbeat(所有节点均执行)</h2>
+<pre class="chroma"><span class="c1"># 安装cluster glue</span>
+<span class="c1"># glue（胶水的意思）是用来粘合Heartbeat、Pacemake以及Resource Agent的一系列类库、工具的集合。</span>
+<span class="c1"># 下载并解压glue</span>
+wget http://hg.linux-ha.org/glue/archive/glue-1.0.12.tar.bz2
+tar jxf glue-1.0.12.tar.bz2
+ 
+<span class="c1"># 编译安装glue</span>
+<span class="nb">cd</span> Reusable-Cluster-Components-glue--glue-1.0.12/
+./autogen.sh
+./configure --prefix<span class="o">=</span>/usr/local/heartbeat --sysconfdir<span class="o">=</span>/etc/ha.d --libdir<span class="o">=</span>/usr/local/heartbeat/lib64 --with-daemon-user<span class="o">=</span>hacluster --with-daemon-group<span class="o">=</span>haclient <span class="nv">LIBS</span><span class="o">=</span><span class="s1">&#39;/lib64/libuuid.so.1&#39;</span>
+make
+make install
+  
+<span class="c1"># 安装agent</span>
+<span class="c1"># resource-agents为集群资源的访问提供了一系列标准的接口。</span>
+wget https://github.com/ClusterLabs/resource-agents/archive/v3.9.6.tar.gz
+tar zxf v3.9.6.tar.gz
+<span class="nb">cd</span> resource-agents-3.9.6/
+./autogen.sh
+./configure --prefix<span class="o">=</span>/usr/local/heartbeat --sysconfdir<span class="o">=</span>/etc/ha.d --libdir<span class="o">=</span>/usr/local/heartbeat/lib64 <span class="nv">CFLAGS</span><span class="o">=</span>-I/usr/local/heartbeat/include <span class="nv">LDFLAGS</span><span class="o">=</span>-L/usr/local/heartbeat/lib64 <span class="nv">LIBS</span><span class="o">=</span><span class="s1">&#39;/lib64/libuuid.so.1&#39;</span>
+ 
+<span class="c1"># 将自定义路径下的lib软连接到系统lib目录，避免编译时找不到库文件</span>
+ln -s /usr/local/heartbeat/lib64/* /lib64/
+make
+make install 
+
+<span class="c1"># 安装Heartbeat</span>
+<span class="c1"># 下载解压heartbeat</span>
+wget http://hg.linux-ha.org/dev/archive/STABLE-3.0.6.tar.bz2
+tar jxf STABLE-3.0.6.tar.bz2
+ 
+<span class="c1"># 编译安装</span>
+<span class="nb">cd</span> Heartbeat-3-0-STABLE-3.0.6/
+./bootstrap
+./ConfigureMe configure --prefix<span class="o">=</span>/usr/local/heartbeat --sysconfdir<span class="o">=</span>/etc/ha.d --libdir<span class="o">=</span>/usr/local/heartbeat/lib64 <span class="nv">CFLAGS</span><span class="o">=</span>-I/usr/local/heartbeat/include <span class="nv">LDFLAGS</span><span class="o">=</span>-L/usr/local/heartbeat/lib64 <span class="nv">LIBS</span><span class="o">=</span><span class="s1">&#39;/lib64/libuuid.so.1&#39;</span>
+vim /usr/local/heartbeat/include/heartbeat/glue_config.h
+*******************************************
+<span class="c1"># 删除下面这行</span>
+<span class="c1">#define HA_HBCONF_DIR &#34;/etc/ha.d/ha.d/&#34;</span>
+*******************************************
+make
+make install 
+</pre>
+<h2>3. 配置</h2>
+<pre class="chroma"><span class="c1"># master配置</span>
+<span class="nb">cd</span> /usr/local/heartbeat/share/doc/heartbeat/
+cp authkeys ha.cf haresources /etc/ha.d/ha.d
+chmod <span class="m">600</span> /etc/ha.d/ha.d/authkeys
+
+<span class="nb">cd</span> /etc/ha.d/ha.d
+vim authkeys
+*********************************
+auth <span class="m">3</span>
+<span class="c1">#1 crc</span>
+<span class="c1">#2 sha1 HI!</span>
+<span class="m">3</span> md5 Hello!
+*********************************
+ 
+vim haresources
+*********************************
+master 10.10.180.220/24/eth0:0 nginx
+*********************************
+ 
+cat ha.cf <span class="p">|</span>grep -Ev <span class="s2">&#34;</span><span class="s2">^ ?+</span>$<span class="s2">|^ ?+#</span><span class="s2">&#34;</span>
+*********************************
+debugfile /var/log/ha-debug
+logfile /var/log/ha-log
+logfacility     local0
+keepalive <span class="m">2</span>
+deadtime <span class="m">30</span>
+warntime <span class="m">10</span>
+initdead <span class="m">120</span>
+udpport <span class="m">694</span>
+ucast eth0 10.10.180.222
+auto_failback on
+node master
+node cluster1
+ping 10.10.180.1
+respawn hacluster /usr/local/heartbeat/libexec/heartbeat/ipfail
+*********************************
+<span class="c1"># 配置解释</span>
+<span class="c1"># &#34;ping ping-node&#34;和&#34;respawn user /path/to/ipfail&#34;搭配，ping-node无法ping通的时候，会切换走</span>
+ 
+<span class="c1"># 拷贝配置到cluster1上去</span>
+scp authkeys ha.cf haresources root@cluster1:/etc/ha.d/ha.d 
+<span class="c1"># cluster1配置</span>
+vim /etc/ha.d/ha.cf
+******************************
+ucast eth0 10.10.180.221
+****************************** 
+</pre>
+<h2>4. 服务启动</h2>
+<pre class="chroma"><span class="c1"># 因为我们配置的是做nginx的HA，所以提前安装nginx，并确保/etc/init.d中有nginx的启动脚本，名称为nginx</span>
+yum install epel-release
+yum install nginx -y
+ 
+<span class="c1"># 先启动master</span>
+/etc/init.d/heartbeat start
+<span class="c1"># 再启动cluster1</span>
+/etc/init.d/heartbeat start
+ 
+<span class="c1"># 查看master上的网卡</span>
+ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:6B:32:10
+          inet addr:10.10.180.221  Bcast:10.10.180.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fe6b:3210/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:136017 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:57592 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:119110190 <span class="o">(</span>113.5 MiB<span class="o">)</span>  TX bytes:5460405 <span class="o">(</span>5.2 MiB<span class="o">)</span>
+ 
+eth0:0    Link encap:Ethernet  HWaddr 00:0C:29:6B:32:10
+          inet addr:10.10.180.220  Bcast:10.10.180.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+ 
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:2 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:2 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:168 <span class="o">(</span>168.0 b<span class="o">)</span>  TX bytes:168 <span class="o">(</span>168.0 b<span class="o">)</span>
+ 
+<span class="c1"># master上会自动启动nginx服务</span>
+ps aux <span class="p">|</span>grep nginx
+root      <span class="m">46884</span>  0.0  0.1  <span class="m">96468</span>  <span class="m">1972</span> ?        Ss   09:43   0:00 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+nginx     <span class="m">46885</span>  0.0  0.2  <span class="m">96856</span>  <span class="m">2628</span> ?        S    09:43   0:00 nginx: worker process
+root      <span class="m">46889</span>  0.0  0.0 <span class="m">103248</span>   <span class="m">840</span> pts/2    S+   09:44   0:00 grep nginx 
+</pre>
+<h2>5. 切换效果检测</h2>
+<pre class="chroma"><span class="c1"># 在master和cluster上分别修改index.html文件以便识别</span>
+ 
+<span class="c1"># master上</span>
+<span class="nb">cd</span> /usr/share/nginx/html/
+mv index.html index.html.bak
+<span class="nb">echo</span> <span class="s2">&#34;this is master\!&#34;</span> &gt; index.html
+ 
+<span class="c1"># cluster1上</span>
+<span class="nb">cd</span> /usr/share/nginx/html/
+mv index.html index.html.bak
+<span class="nb">echo</span> <span class="s2">&#34;this is cluster1 \!&#34;</span> &gt; index.html
+</pre>
+<p>访问效果：<img src="/static/images/docs/linux/basic/linux-basic-33.0-01.png" alt="" /></p>
+<pre class="chroma"><span class="c1"># master上停掉heartbeat节点</span>
+/etc/init.d/heartbeat stop
+<span class="c1"># 发现master上的eth0:0停掉，nginx关闭</span>
+<span class="c1"># 而cluster1上的eth0:0启动，nginx启动</span>
+</pre>
+<p>访问效果：<img src="/static/images/docs/linux/basic/linux-basic-33.0-02.png" alt="" /></p>
+
+<p>master启动heartbeat服务，因为我们配置了auto_failback on，所以master会自动接管回来nginx</p>
+
+<p>实验停掉master的network，也会自动切换到cluster</p>
+
+<p>实验用iptables禁ping(&ldquo;iptables -I INPUT -p icmp -j DROP&rdquo;)，也会切换到cluster</p>
+
+<h2>6. 安装中的错误</h2>
+
+<h3>glue make 错误1</h3>
+
+<p>错误信息：</p>
+<pre class="chroma">make
+Making all in include
+...
+gmake<span class="o">[</span>1<span class="o">]</span>: *** No rule to make target <span class="se">\`</span>all<span class="se">\&#39;</span>.  Stop.
+gmake<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="se">\`</span>/usr/local/src/Reusable-Cluster-Components-glue--glue-1.0.12/libltdl<span class="se">\&#39;</span>
+make: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error <span class="m">1</span>
+</pre>
+<p>解决办法：</p>
+<pre class="chroma">yum install libtool-ltdl-devel
+</pre>
+<h3>glue make 错误2</h3>
+
+<p>错误信息：</p>
+<pre class="chroma">./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_parse<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_generate<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_copy<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_is_null<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_unparse<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_clear<span class="se">\&#39;</span>
+./.libs/libplumb.so: undefined reference to <span class="se">\`</span>uuid_compare<span class="se">\&#39;</span>
+collect2: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+gmake<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>ipctest<span class="o">]</span> Error <span class="m">1</span>
+gmake<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="se">\`</span>/usr/local/src/Reusable-Cluster-Components-glue--glue-1.0.12/lib/clplumbing<span class="se">\&#39;</span>
+gmake<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error <span class="m">1</span>
+gmake<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="se">\`</span>/usr/local/src/Reusable-Cluster-Components-glue--glue-1.0.12/lib<span class="se">\&#39;</span>
+make: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error <span class="m">1</span>
+</pre>
+<p>解决办法:</p>
+<pre class="chroma">./configure ... <span class="nv">LIBS</span><span class="o">=</span><span class="s1">&#39;/lib64/libuuid.so.1&#39;</span>
+</pre>
+<h3>glue make 错误3</h3>
+
+<p>错误信息：</p>
+<pre class="chroma">gmake<span class="o">[</span>2<span class="o">]</span>: a2x: Command not found
+gmake<span class="o">[</span>2<span class="o">]</span>: *** <span class="o">[</span>hb_report.8<span class="o">]</span> Error <span class="m">127</span>
+gmake<span class="o">[</span>2<span class="o">]</span>: Leaving directory <span class="se">\`</span>/usr/local/src/Reusable-Cluster-Components-glue--glue-1.0.12/doc<span class="se">\&#39;</span>
+gmake<span class="o">[</span>1<span class="o">]</span>: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error <span class="m">1</span>
+gmake<span class="o">[</span>1<span class="o">]</span>: Leaving directory <span class="se">\`</span>/usr/local/src/Reusable-Cluster-Components-glue--glue-1.0.12/doc<span class="se">\&#39;</span>
+make: *** <span class="o">[</span>all-recursive<span class="o">]</span> Error <span class="m">1</span>
+</pre>
+<p>解决办法：</p>
+<pre class="chroma"><span class="c1"># 下载安装a2x(https://sourceforge.net/projects/asciidoc/?source=dlp)</span>
+wget http://jaist.dl.sourceforge.net/project/asciidoc/asciidoc/8.6.9/asciidoc-8.6.9.zip
+unzip asciidoc-8.6.9.zip
+<span class="nb">cd</span> asciidoc-8.6.9
+./configure
+make <span class="o">&amp;&amp;</span> make install
+</pre>
+<h3>heartbeat make错误</h3>
+
+<p>错误信息：</p>
+<pre class="chroma">glue_config.h:105:1: error: <span class="s2">&#34;HA_HBCONF_DIR&#34;</span> redefined
+</pre>
+<p>解决办法：</p>
+<pre class="chroma"><span class="c1"># 删除/usr/local/heartbeat/include/heartbeat/glue_config.h的最后一行：</span>
+<span class="c1">#define HA_HBCONF_DIR &#34;/usr/local/heartbeat/etc/ha.d/&#34;</span> 
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

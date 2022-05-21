@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                  <ul>
+                    <li><a href="/linux/service/discuz_error_管理中心登录的时候闪退.html">discuz管理中心登录的时候闪退</a></li>
+                    <li><a href="/linux/service/ffmpeg_1.1.0_compile_install.html">ffmpeg 1.1.0 compile install(centos)</a></li>
+                    <li><a href="/linux/service/inotify_1.1.0_intro.html">inotify: 1.1.0 初识inotify</a></li>
+                    <li><a href="/linux/service/inotify_2.1.0_rsync.html">inotify: 2.1.0 inotify+rsync实现实时文件同步</a></li>
+                    <li><a href="/linux/service/inotify_3.1.0_rollback.html">inotify: 3.1.0 inotify实现代码回滚(设想)</a></li>
+                    <li><a href="/linux/service/inotify_4.1.0_sersync.html">inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具</a></li>
+                    <li><a href="/linux/service/ldap_1.1.0_installation.html">ldap 1.0.0: installation</a></li>
+                    <li><a href="/linux/service/pxe_kickstark_install_system.html">PXE+KICKSTART安装系统</a></li>
+                    <li><a href="/linux/service/vnc_1.1.0_installation.html">vnc: 1.1.0 centos 7 安装</a></li>
+                    <li><a href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">WIKI: 1.1.0 nginx+uwsgi部署moinmoin</a></li>
+                    <li><a href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">WIKI: 1.2.0 moinmoin基本设置</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>PXE+KICKSTART安装系统</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>15 Apr 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. PXE</h3>
+
+<p><strong>PREPARE SYSTEM INSTALL FILE FROM CD TO APACHE</strong></p>
+<pre class="chroma"><span class="c1"># 安装web服务器，并把安装光盘内容复制到web服务器的网站目录</span>
+yum install -y httpd
+mount /dev/cdrom /mnt
+cp -rf /mnt/* /var/www/html
+</pre>
+<p><strong>INSTALL &ldquo;TFTP&rdquo; &amp; START SERVICE &ldquo;XINETD&rdquo;</strong></p>
+<pre class="chroma">yum -y install tftp tftp-server
+vi /etc/xinetd.d/tftp
+*****************************************************************
+<span class="c1"># default: off</span>
+<span class="c1"># description: The tftp server serves files using the trivial file transfer \</span>
+<span class="c1">#       protocol.  The tftp protocol is often used to boot diskless \</span>
+<span class="c1">#       workstations, download configuration files to network-aware printers, \</span>
+<span class="c1">#       and to start the installation process for some operating systems.</span>
+service tftp
+<span class="o">{</span>
+        <span class="nv">socket_type</span>             <span class="o">=</span> dgram
+        <span class="nv">protocol</span>                <span class="o">=</span> udp
+        <span class="nb">wait</span>                    <span class="o">=</span> yes
+        <span class="nv">user</span>                    <span class="o">=</span> root
+        <span class="nv">server</span>                  <span class="o">=</span> /usr/sbin/in.tftpd
+        <span class="nv">server_args</span>             <span class="o">=</span> -s /tftpboot          <span class="c1">#change directory to /tftpboot</span>
+        <span class="nv">disable</span>                 <span class="o">=</span> no                              <span class="c1">#change &#34;yes&#34; to &#34;no&#34;</span>
+        <span class="nv">per_source</span>              <span class="o">=</span> <span class="m">11</span>
+        <span class="nv">cps</span>                     <span class="o">=</span> <span class="m">100</span> <span class="m">2</span>
+        <span class="nv">flags</span>                   <span class="o">=</span> IPv4
+<span class="o">}</span>
+*****************************************************************
+
+
+service xinetd restart
+Stopping xinetd:                                           <span class="o">[</span>FAILED<span class="o">]</span>
+Starting xinetd:                                           <span class="o">[</span>  OK  <span class="o">]</span>
+</pre>
+<p><strong>PREPARE PXE BOOT DIRECTORY</strong></p>
+<pre class="chroma"><span class="c1"># install syslinux first</span>
+yum -y install syslinux
+ 
+<span class="c1"># copy file to tftpboot directory</span>
+cp /usr/share/syslinux/pxelinux.0 /tftpboot/
+
+<span class="c1"># 某些教程是/usr/lib/syslinux/pxelinux.0具体情况可以利用find来查询</span>
+cp /data/www/images/pxeboot/<span class="o">{</span>initrd.img,vmlinuz<span class="o">}</span> /tftpboot/
+
+<span class="c1"># 每个版本的pxeboot里的内容可能会有些微的不同，请根据自己实际情况复制</span>
+cp /data/www/isolinux/boot.msg /tftpboot/
+mkdir /tftpboot/pxelinux.cfg
+<span class="nb">cd</span> /tftpboot/pxelinux.cfg/
+cp /data/www/isolinux/isolinux.cfg /tftpboot/pxelinux.cfg/default
+</pre>
+<p><strong>DHCP</strong></p>
+<pre class="chroma">yum -y install dhcp
+cp /usr/share/doc/dhcp-4.1.1/dhcpd.conf.sample /etc/dhcpd.conf
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

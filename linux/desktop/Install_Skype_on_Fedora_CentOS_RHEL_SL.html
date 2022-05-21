@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                  <ul>
+                    <li><a href="/linux/desktop/Install_Skype_on_Fedora_CentOS_RHEL_SL.html">Install Skype 4.3 on Fedora 24/23, CentOS/RHEL/SL 7.2/6.8</a></li>
+                    <li><a href="/linux/desktop/Install_ansible_on_OSX.html">Install Ansible on OS X</a></li>
+                    <li><a href="/linux/desktop/fedora_1.0_input_rime.html">fedora: 1.0 rime输入法</a></li>
+                    <li><a href="/linux/desktop/rdesktop_1.0_basic.html">rdesktop: 1.0 基础用法</a></li>
+                    <li><a href="/linux/desktop/tools_z.html">切换目录-z武器</a></li>
+                    <li><a href="/linux/desktop/word2markdown.html">word2markdown</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>Install Skype 4.3 on Fedora 24/23, CentOS/RHEL/SL 7.2/6.8</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>17 Aug 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<p>LINK: <a href="https://www.if-not-true-then-false.com/2012/install-skype-on-fedora-centos-red-hat-rhel-scientific-linux-sl/">原文章</a></p>
+
+<p>This is guide, howto <strong>install Skype 4.3 on Fedora 24/23/22/21/20/19/18/17/16 on CentOS/Red Hat (RHEL)/Scientific Linux (SL) 7.<sup>2</sup>&frasl;<sub>6</sub>.8</strong>. This is actually easy process, but I won&rsquo;t use Skype own RPM package, which works only with Fedora 16+. Skype package also doesn&rsquo;t care about any needed dependencies on 64-bit (x86_64) systems nor 32-bit (i686) systems. This guide uses Skype dynamic package and all dependencies are installed manually.</p>
+
+<h3>1. Install Skype 4.3 on Fedora 24/23/22/21/20 and CentOS/Red Hat (RHEL) 7.<sup>2</sup>&frasl;<sub>6</sub>.8</h3>
+
+<h4>1.1 Change root user</h4>
+<pre class="chroma">su -
+<span class="c1">## OR ##</span>
+sudo -i
+</pre>
+<h4>1.2 Install needed repositories</h4>
+
+<p>Needed only on CentOS/RHEL/SL</p>
+<pre class="chroma"><span class="c1">## CentOS 7, Red Hat (RHEL) 7 and Scientific Linux 7 ##</span>
+yum localinstall http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-7.noarch.rpm
+yum localinstall http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+ 
+ 
+<span class="c1">## CentOS 6, Red Hat (RHEL) 6 and Scientific Linux 6 ##</span>
+yum localinstall http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+</pre>
+<h4>1.3 Install Needed Dependencies</h4>
+<pre class="chroma"><span class="c1">## Fedora 24/23/22 ##</span>
+dnf install alsa-lib.i686 fontconfig.i686 freetype.i686 glib2.i686 libSM.i686 libXScrnSaver.i686 libXi.i686 libXrandr.i686 libXrender.i686 libXv.i686 libstdc++.i686 pulseaudio-libs.i686 qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686
+ 
+<span class="c1">## Fedora 21/20/19/18/17/16 and CentOS/RHEL 7.2/6.8 ##</span>
+yum install alsa-lib.i686 fontconfig.i686 freetype.i686 glib2.i686 libSM.i686 libXScrnSaver.i686 libXi.i686 libXrandr.i686 libXrender.i686 libXv.i686 libstdc++.i686 pulseaudio-libs.i686 qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686
+</pre>
+<p>Same commands on multiple lines:</p>
+<pre class="chroma"><span class="c1">## Fedora 24/23/22 ##</span>
+dnf install alsa-lib.i686 fontconfig.i686 freetype.i686 <span class="se">\
+</span><span class="se"></span>glib2.i686 libSM.i686 libXScrnSaver.i686 libXi.i686 <span class="se">\
+</span><span class="se"></span>libXrandr.i686 libXrender.i686 libXv.i686 libstdc++.i686 <span class="se">\
+</span><span class="se"></span>pulseaudio-libs.i686 qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686
+ 
+<span class="c1">## Fedora 21/20/19/18/17/16 and CentOS/RHEL 7.2/6.8 ##</span>
+yum install alsa-lib.i686 fontconfig.i686 freetype.i686 <span class="se">\
+</span><span class="se"></span>glib2.i686 libSM.i686 libXScrnSaver.i686 libXi.i686 <span class="se">\
+</span><span class="se"></span>libXrandr.i686 libXrender.i686 libXv.i686 libstdc++.i686 <span class="se">\
+</span><span class="se"></span>pulseaudio-libs.i686 qt.i686 qt-x11.i686 zlib.i686 qtwebkit.i686
+</pre>
+<p>Additional dependencies for CentOS 6 / Red Hat (RHEL) 6 / Scientific Linux (SL) 6</p>
+<pre class="chroma">yum install libcanberra-gtk2.i686 gtk2-engines.i686 PackageKit-gtk-module.i686
+</pre>
+<h4>1.4 Download Skype 4.3 Dynamic</h4>
+<pre class="chroma"><span class="nb">cd</span> /tmp
+ 
+<span class="c1">## Skype 4.3 Dynamic for Fedora/CentOS/RHEL/SL ##</span>
+wget --trust-server-names http://www.skype.com/go/getskype-linux-dynamic
+ 
+</pre>
+<h4>1.5 Extract Skype</h4>
+<pre class="chroma">mkdir /opt/skype
+ 
+<span class="c1">## Extract Skype 4.3 ##</span>
+tar xvf skype-4.3* -C /opt/skype --strip-components<span class="o">=</span><span class="m">1</span>
+</pre>
+<h4>1.6 Create Launcher</h4>
+<pre class="chroma"><span class="c1">## Link skype.desktop ##</span>
+ln -s /opt/skype/skype.desktop /usr/share/applications/skype.desktop
+ 
+<span class="c1">## Link icons (copy and paste all rows at once) ##</span>
+<span class="c1">## Thank you Andrej Podzimek for this code and idea ##</span>
+<span class="k">for</span> icon in /opt/skype/icons/*<span class="p">;</span> <span class="k">do</span>
+<span class="nv">ressuffix</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">icon</span><span class="p">##*_</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="nv">res</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">ressuffix</span><span class="p">%%.*</span><span class="si">}</span><span class="s2">&#34;</span>
+ln -s <span class="s2">&#34;</span><span class="nv">$icon</span><span class="s2">&#34;</span> /usr/share/icons/hicolor/<span class="s2">&#34;</span><span class="nv">$res</span><span class="s2">&#34;</span>/apps/skype.png
+<span class="k">done</span>
+ 
+<span class="c1">## Update gtk icon cache (needed at least Gnome/GTK envorinments) ##</span>
+gtk-update-icon-cache /usr/share/icons/hicolor
+ 
+<span class="c1">## Create empty /usr/bin/skype file and set permissions ##</span>
+touch /usr/bin/skype
+chmod <span class="m">755</span> /usr/bin/skype
+</pre>
+<p>Open /usr/bin/skype with text editor and add following content:
+Fedora 24/23/22/21/20 / CentOS 7 / Red Hat (RHEL) 7 / Scientific Linux (SL) 7</p>
+<pre class="chroma"><span class="cp">#!/bin/sh
+</span><span class="cp"></span><span class="nb">export</span> <span class="nv">SKYPE_HOME</span><span class="o">=</span><span class="s2">&#34;/opt/skype&#34;</span>
+<span class="nv">$SKYPE_HOME</span>/skype --resources<span class="o">=</span><span class="nv">$SKYPE_HOME</span> <span class="nv">$*</span>
+</pre>
+<p>CentOS 6 / Red Hat (RHEL) 6 / Scientific Linux (SL) 6</p>
+<pre class="chroma"><span class="cp">#!/bin/sh
+</span><span class="cp"></span><span class="nb">export</span> <span class="nv">SKYPE_HOME</span><span class="o">=</span><span class="s2">&#34;/opt/skype&#34;</span>
+<span class="nb">export</span> <span class="nv">GTK2_RC_FILES</span><span class="o">=</span><span class="s2">&#34;/etc/gtk-2.0/gtkrc&#34;</span>
+ 
+<span class="nv">$SKYPE_HOME</span>/skype --resources<span class="o">=</span><span class="nv">$SKYPE_HOME</span> <span class="nv">$*</span>
+</pre>
+<p>If you you have problems to use command line editors, like vi/vim, nano, emacs, pico, joe, etc. then copy and paste following lines (exactly) to terminal to create /usr/bin/skype file.
+Fedora 24/23/22/21/20 / CentOS 7 / Red Hat (RHEL) 7 / Scientific Linux (SL) 7</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /usr/bin/skype 
+</span><span class="s">#!/bin/sh 
+</span><span class="s">export SKYPE_HOME=&#34;/opt/skype&#34; 
+</span><span class="s">\$SKYPE_HOME/skype --resources=\$SKYPE_HOME \$*
+</span><span class="s">EOF</span>
+</pre>
+<p>CentOS 6 / Red Hat (RHEL) 6 / Scientific Linux (SL) 6</p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /usr/bin/skype
+</span><span class="s">#!/bin/sh
+</span><span class="s">export SKYPE_HOME=&#34;/opt/skype&#34;
+</span><span class="s">export GTK2_RC_FILES=&#34;/etc/gtk-2.0/gtkrc&#34;
+</span><span class="s"> 
+</span><span class="s">\$SKYPE_HOME/skype --resources=\$SKYPE_HOME \$*
+</span><span class="s">EOF</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

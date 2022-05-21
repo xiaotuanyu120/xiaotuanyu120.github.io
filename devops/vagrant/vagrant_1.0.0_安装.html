@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
               <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
             </li>
             <li>
               <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
-            </li>
-            <li>
-              <a href="/linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
-            </li>
-            <li>
-              <a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit fd: 简明介绍</a>
-            </li>
-            <li>
-              <a href="/service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
             </li>
           </ul>
 
@@ -178,6 +178,18 @@ hdiutil detach /Volumes/Vagrant/
 </pre>
 <blockquote>
 <p>其实也有图形界面的程序下载和安装</p>
+</blockquote>
+
+<h4>1.1 mac m1版本</h4>
+
+<p>mac m1版本上只有parallels可用，但注意要是pro和bussiness版本才可以</p>
+<pre class="chroma"><span class="c1"># 安装parallels provider插件</span>
+vagrant plugin install vagrant-parallels
+</pre>
+<blockquote>
+<p><a href="https://parallels.github.io/vagrant-parallels/docs/">parallels vagrant文档</a></p>
+
+<p>选择镜像的时候到<a href="https://app.vagrantup.com/boxes/search?page=1&amp;provider=parallels&amp;q=arm&amp;sort=downloads&amp;utf8=✓">vagrant boxes</a>搜索parallels的arm镜像即可，我目前使用的是<code>mattburnett/fedora-35-m1-arm64</code></p>
 </blockquote>
 
 <hr />

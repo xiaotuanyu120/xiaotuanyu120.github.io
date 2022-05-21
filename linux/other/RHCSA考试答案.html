@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                  <ul>
+                    <li><a href="/linux/other/RHCE考试答案.html">RHCE考试答案</a></li>
+                    <li><a href="/linux/other/RHCSA考试答案.html">RHCSA考试答案</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>RHCSA考试答案</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>19 Jun 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>第1题：破解root密码</h3>
+
+<ol>
+<li>grub进入系统界面时按下&rdquo;e&rdquo;键编辑</li>
+<li>在&rdquo;linux16&rdquo;行最后加入&rdquo;rd.break console=tty0&rdquo;</li>
+<li>同时按下ctrl和x键启动</li>
+<li>进入switch-root#界面，输入以下命令</li>
+</ol>
+<pre class="chroma">mount -o remount,rw /sysroot      <span class="c1">#重新挂载系统，可读写模式</span>
+chroot /sysroot                   <span class="c1">#将根挂载到/sysroot，进入硬盘系统</span>
+passwd                            <span class="c1">#按考试要求修改密码</span>
+touch /.autorelabel               <span class="c1">#创建此文件来使selinux重新建立索引</span>
+<span class="nb">exit</span>                              <span class="c1">#退出硬盘系统</span>
+<span class="nb">exit</span>                              <span class="c1">#重启</span>
+</pre>
+<ol>
+<li>重启后用root登录即可看到后续题目</li>
+</ol>
+
+<p>设置主机名</p>
+<pre class="chroma">hostnamectl set-hostname hostname
+</pre>
+<p>设置网络</p>
+<pre class="chroma">nm-connection-editor
+</pre>
+<h3>第2题SELINUX配置</h3>
+
+<ol>
+<li><p>修改配置: <code>vi /etc/sysconfig/selinux</code></p></li>
+
+<li><p>修改目前状态: <code>setenforce 0</code></p></li>
+
+<li><p>查看状态: <code>getenforce</code></p></li>
+</ol>
+
+<h3>第3题配置YUM源</h3>
+
+<ol>
+<li><p>添加源链接: <code>yum-config-manager --add-repo=&quot;&quot;</code></p></li>
+
+<li><p>查看源列表: <code>yum repolist</code></p></li>
+
+<li><p>修改配置关闭检查认证</p></li>
+</ol>
+<pre class="chroma">vim /etc/yum.repos.d/classroom.example.com_content_rhel7.0_x86_64_dvd.repo
+**************************************
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>                              <span class="c1">#关闭检查认证</span>
+**************************************
+</pre>
+<h3>第4题：lvm卷管理</h3>
+
+<ol>
+<li>查看lvm卷容量</li>
+</ol>
+<pre class="chroma">lvs
+  LV   VG   Attr       LSize   Pool Origin Data%  Move Log Cpy%Sync Convert
+  lvm1 vg1  -wi-ao---- 256.00m  
+</pre>
+<ol>
+<li>扩展lvm卷容量
+lvextend -L 容量 设备路径
+&ldquo;-L&rdquo;参数指定容量</li>
+</ol>
+<pre class="chroma">vextend -L 770M /dev/vg1/lvm1 
+  Rounding size to boundary between physical extents: 772.00 MiB
+  Extending logical volume lvm1 to 772.00 MiB
+  Insufficient free space: <span class="m">129</span> extents needed, but only <span class="m">63</span> available    <span class="c1">#提示卷组容量不足无法扩容</span>
+</pre>
+<ol>
+<li>查看卷组容量</li>
+</ol>
+<pre class="chroma">vgs
+  VG   <span class="c1">#PV #LV #SN Attr   VSize   VFree</span>  
+  vg1    <span class="m">1</span>   <span class="m">1</span>   <span class="m">0</span> wz--n- 508.00m 252.00m       <span class="c1">#卷组容量只有508M，需要先对卷组扩容</span>
+ 
+<span class="c1"># 查看卷组对应的硬盘分区</span>
+pvs
+  PV         VG   Fmt  Attr PSize   PFree  
+  /dev/sdb1  vg1  lvm2 a--  508.00m 252.00m
+<span class="c1"># 对应此卷组的硬盘分区是sdb1</span>
+</pre>
+<ol>
+<li>在物理硬盘创建分区</li>
+</ol>
+<pre class="chroma">fdisk /dev/sdb
+新建过程略过（n新建-p主分区-起始柱面-尾柱面）
+......
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+......
+ 
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdb1            <span class="m">2048</span>     <span class="m">1050623</span>      <span class="m">524288</span>   8e  Linux LVM
+/dev/sdb2         <span class="m">1050624</span>     <span class="m">2074623</span>      <span class="m">512000</span>   <span class="m">83</span>  Linux
+ 
+注意要把分区类型更改一下
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: t
+Partition number <span class="o">(</span>1,2, default 2<span class="o">)</span>: 
+Hex code <span class="o">(</span><span class="nb">type</span> L to list all codes<span class="o">)</span>: 8e
+Changed <span class="nb">type</span> of partition <span class="s1">&#39;Linux&#39;</span> to <span class="s1">&#39;Linux LVM&#39;</span>
+ 
+最后记得保存
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+The partition table has been altered!
+</pre>
+<ol>
+<li>按照提示同步硬盘信息，使新分区生效</li>
+</ol>
+<pre class="chroma">partx -a /dev/sdb
+partx: /dev/sdb: error adding partition <span class="m">1</span>
+
+ll /dev/sdb2
+brw-rw----. <span class="m">1</span> root disk 8, <span class="m">18</span> Jun <span class="m">22</span> 23:44 /dev/sdb2
+</pre>
+<ol>
+<li>将新建分区加入到卷组</li>
+</ol>
+<pre class="chroma">pvcreate /dev/sdb2
+  Physical volume <span class="s2">&#34;/dev/sdb2&#34;</span> successfully created
+
+pvs
+  PV         VG   Fmt  Attr PSize   PFree  
+  /dev/sdb1  vg1  lvm2 a--  508.00m 252.00m
+  /dev/sdb2          lvm2 a--  500.00m 500.00m
+
+vgextend vg1 /dev/sdb2
+  Volume group <span class="s2">&#34;vg1&#34;</span> successfully extended
+
+vgs
+  VG   <span class="c1">#PV #LV #SN Attr   VSize    VFree</span>  
+  vg1    <span class="m">2</span>   <span class="m">1</span>   <span class="m">0</span> wz--n- 1004.00m 748.00m
+</pre>
+<ol>
+<li>重新扩展卷容量</li>
+</ol>
+<pre class="chroma">lvextend -L 770M /dev/vg1/lvm1 
+  Rounding size to boundary between physical extents: 772.00 MiB
+  Extending logical volume lvm1 to 772.00 MiB
+  Logical volume lvm1 successfully resized
+</pre>
+<p>８. 更新逻辑卷
+查看卷组类型</p>
+<pre class="chroma">blkid
+/dev/sdb1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;cFC3s5-Pz40-oo1o-4URG-ljTe-f2ce-nwIJoW&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;LVM2_member&#34;</span> 
+/dev/sdb2: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;MqYVpJ-cq4R-9VUZ-D8pg-DQ7a-81sr-TY2mJU&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;LVM2_member&#34;</span> 
+/dev/sda1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;9bf6b9f7-92ad-441b-848e-0257cbb883d1&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;xfs&#34;</span> 
+/dev/mapper/vg1-lvm1: <span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;33c82160-c610-47c9-b03c-7974438afd77&#34;</span> <span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;xfs&#34;</span>         <span class="c1">#xfs类型</span>
+</pre>
+<p>查看挂载目录</p>
+<pre class="chroma">df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda1              10G  3.1G  7.0G  31% /
+devtmpfs              475M     <span class="m">0</span>  475M   0% /dev
+tmpfs                 490M  140K  490M   1% /dev/shm
+tmpfs                 490M   14M  477M   3% /run
+tmpfs                 490M     <span class="m">0</span>  490M   0% /sys/fs/cgroup
+/dev/mapper/vg1-lvm1  253M   13M  240M   6% /vg1/lvm1             <span class="c1">#此时容量还是253M</span>
+</pre>
+<p>更新卷组</p>
+<pre class="chroma">xfs_growfs /vg1/lvm1
+meta-data<span class="o">=</span>/dev/mapper/vg1-lvm1   <span class="nv">isize</span><span class="o">=</span><span class="m">256</span>    <span class="nv">agcount</span><span class="o">=</span>4, <span class="nv">agsize</span><span class="o">=</span><span class="m">16384</span> <span class="nv">blks</span>
+         <span class="o">=</span>                       <span class="nv">sectsz</span><span class="o">=</span><span class="m">512</span>   <span class="nv">attr</span><span class="o">=</span>2, <span class="nv">projid32bit</span><span class="o">=</span><span class="nv">1</span>
+         <span class="o">=</span>                       <span class="nv">crc</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">data</span>     <span class="o">=</span>                       <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>65536, <span class="nv">imaxpct</span><span class="o">=</span><span class="nv">25</span>
+         <span class="o">=</span>                       <span class="nv">sunit</span><span class="o">=</span><span class="m">0</span>      <span class="nv">swidth</span><span class="o">=</span><span class="m">0</span> blks
+<span class="nv">naming</span>   <span class="o">=</span>version <span class="m">2</span>              <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   ascii-ci<span class="o">=</span><span class="m">0</span> <span class="nv">ftype</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">log</span>      <span class="o">=</span>internal               <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>853, <span class="nv">version</span><span class="o">=</span><span class="nv">2</span>
+         <span class="o">=</span>                       <span class="nv">sectsz</span><span class="o">=</span><span class="m">512</span>   <span class="nv">sunit</span><span class="o">=</span><span class="m">0</span> blks, lazy-count<span class="o">=</span><span class="m">1</span>
+<span class="nv">realtime</span> <span class="o">=</span>none                   <span class="nv">extsz</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>0, <span class="nv">rtextents</span><span class="o">=</span><span class="m">0</span>
+data blocks changed from <span class="m">65536</span> to <span class="m">197632</span>
+</pre>
+<p>如果卷组类型是ext4的话，执行以下命令</p>
+<pre class="chroma">resize2fs 设备路径
+</pre>
+<p>查新查看卷容量</p>
+<pre class="chroma">lvs
+  LV   VG   Attr       LSize   Pool Origin Data%  Move Log Cpy%Sync Convert
+  lvm1 vg1  -wi-ao---- 772.00m                                             
+
+df -h
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/sda1              10G  3.1G  7.0G  31% /
+devtmpfs              475M     <span class="m">0</span>  475M   0% /dev
+tmpfs                 490M  140K  490M   1% /dev/shm
+tmpfs                 490M   14M  477M   3% /run
+tmpfs                 490M     <span class="m">0</span>  490M   0% /sys/fs/cgroup
+/dev/mapper/vg1-lvm1  769M   14M  756M   2% /vg1/lvm1
+</pre>
+<h3>第5题：用户管理</h3>
+<pre class="chroma">groupadd -g <span class="m">40000</span> adminuser
+useradd -G adminuser natasha
+useradd -G adminuser harry
+useradd -s /sbin/nologin sarah
+
+<span class="nb">echo</span> <span class="s2">&#34;glegunge&#34;</span> <span class="p">|</span> passwd --stdin natasha
+Changing password <span class="k">for</span> user natasha.
+passwd: all authentication tokens updated successfully.
+
+<span class="nb">echo</span> <span class="s2">&#34;glegunge&#34;</span> <span class="p">|</span> passwd --stdin harry
+Changing password <span class="k">for</span> user harry.
+passwd: all authentication tokens updated successfully.
+
+<span class="nb">echo</span> <span class="s2">&#34;glegunge&#34;</span> <span class="p">|</span> passwd --stdin sarah
+Changing password <span class="k">for</span> user sarah.
+passwd: all authentication tokens updated successfully.
+</pre>
+<h3>第6题：权限管理</h3>
+<pre class="chroma">cp /etc/fstab /var/tmp/
+chown root:root /var/tmp/fstab 
+chmod u-x,g-x,o-x /var/tmp/fstab
+setfacl -m user:natasha:rw-,harry:---,other::r-- /var/tmp/fstab
+getfacl /var/tmp/fstab 
+getfacl: Removing leading <span class="s1">&#39;/&#39;</span> from absolute path names
+
+file: var/tmp/fstab
+owner: root
+group: root
+user::rw-
+user:natasha:rw-
+user:harry:---
+group::r--
+mask::rw-
+other::r--
+</pre>
+<h3>第7题：CRONTAB命令创建计划</h3>
+<pre class="chroma">systemctl <span class="nb">enable</span> crond                                <span class="c1"># 开机启动crond服务</span>
+systemctl is-enabled crond                            <span class="c1"># 检查</span>
+enabled
+
+crontab -u natasha -e                                 <span class="c1"># 对natasha用户创建计划</span>
+********************************
+<span class="m">23</span> <span class="m">14</span> * * * /bin/echo <span class="s2">&#34;rhcsa&#34;</span>
+********************************
+no crontab <span class="k">for</span> natasha - using an empty one
+crontab: installing new crontab
+
+
+crontab -u natasha -l                                      <span class="c1">#检查</span>
+<span class="m">23</span> <span class="m">14</span> * * * /bin/echo <span class="s2">&#34;rhcsa&#34;</span>
+</pre>
+<h3>第8题：特殊权限管理</h3>
+<pre class="chroma">mkdir /home/admins
+chown :adminuser /home/admins
+chmod <span class="nv">g</span><span class="o">=</span>rwx,o<span class="o">=</span>--- /home/admins/
+ll -d /home/admins
+drwxrwx---. <span class="m">2</span> root adminuser <span class="m">6</span> Jun <span class="m">23</span> 20:42 /home/admins
+
+chmod g+s /home/admins/
+touch /home/admins/test.txt
+ll /home/admins/test.txt
+-rw-r--r--. <span class="m">1</span> root adminuser <span class="m">0</span> Jun <span class="m">23</span> 20:46 /home/admins/test.txt
+</pre>
+<h3>第9题：内核升级（RPM包安装）</h3>
+
+<p>查看当前内核版本: <code>uname -r</code></p>
+
+<p>安装内核的rpm包: <code>rpm -ivh http://content.example.com/rhel7.0/x86_64/errata/Packages/kernel-3.10.0-123.1.2.el7.x86_64.rpm</code></p>
+
+<h3>第10题：配置LDAP客户端</h3>
+<pre class="chroma"><span class="c1"># 安装客户端</span>
+yum install sssd authconfig-gtk krb5-workstation -y
+
+<span class="c1"># 配置客户端</span>
+authconfig-gtk
+<span class="c1"># 输入此命令后会启动GUI工具来按照题目要求录入信息</span>
+ 
+<span class="c1"># 验证结果（考试时会给验证帐号密码，这里是ldapuser0：kerberos）</span>
+getent passwd ldapuser0
+</pre>
+<h3>第11题：LDAP用户家目录自动挂载</h3>
+
+<ol>
+<li>安装自动挂载服务并设置开机启动</li>
+</ol>
+<pre class="chroma">yum install autofs -y
+systemctl <span class="nb">enable</span> autofs
+systemctl start autofs
+</pre>
+<ol>
+<li>编写配置文件</li>
+</ol>
+<pre class="chroma">vim /etc/auto.master
+*********************************************************
+<span class="c1"># 目标目录 配置文件</span>
+/home/guests /etc/auto.master.d/ldapusers.autofs          <span class="c1"># 文件随意命名</span>
+<span class="c1"># 意味当有用户访问此目录时，会按照配置文件里的内容进行挂载</span>
+*********************************************************
+ 
+vim /etc/auto.master.d/ldapusers.autofs                   <span class="c1"># 文件名跟上面配置文件中一致</span>
+*********************************************************
+ * -rw classroom.example.com:/home/guests/<span class="p">&amp;</span>
+*********************************************************
+</pre>
+<ol>
+<li>创建目标目录与重启autofs服务</li>
+</ol>
+<pre class="chroma">mkdir /home/guests/
+chmod o+w /home/guests
+systemclt restart autofs
+</pre>
+<ol>
+<li>验证</li>
+</ol>
+<pre class="chroma">ssh ldapuser0@localhost
+mount
+</pre>
+<h3>第12题：同步时间</h3>
+
+<ol>
+<li>安装chrony服务并设置其开机启动</li>
+</ol>
+<pre class="chroma">yum install -y chrony
+systemctl <span class="nb">enable</span> chronyd
+systemctl start chronyd
+</pre>
+<ol>
+<li>设置ntp服务器</li>
+</ol>
+<pre class="chroma"><span class="c1"># 设置ntp开启</span>
+timedatectl set-ntp <span class="nb">true</span>
+
+<span class="c1"># 修改配置文件里的ntp服务器地址，并重启chronyd服务</span>
+
+vim /etc/chrony.conf
+*******************************************************
+ server classroom.example.com iburst
+*******************************************************
+
+systemctl restart chronyd
+ 
+<span class="c1"># 使用chronyc工具来手动同步</span>
+chronyc
+&gt;waitsync
+ 
+<span class="c1"># 查看结果</span>
+timedatectl
+</pre>
+<h3>第13题：打包文件</h3>
+<pre class="chroma">tar jcvf /root/sysconfig.tar.bz2 /etc/sysconfig
+</pre>
+<h3>第14题：创建用户</h3>
+<pre class="chroma">useradd -u <span class="m">3456</span> alex
+<span class="nb">echo</span> <span class="s1">&#39;glegunge&#39;</span><span class="p">|</span>passwd --stdin alex
+Changing password <span class="k">for</span> user alex.
+passwd: all authentication tokens updated successfully.
+</pre>
+<h3>第15题：创建swap分区</h3>
+
+<ol>
+<li>创建新分区</li>
+</ol>
+<pre class="chroma">fdisk /dev/sdb
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+Select <span class="o">(</span>default p<span class="o">)</span>: p
+Partition number <span class="o">(</span>3,4, default 3<span class="o">)</span>: 
+First sector <span class="o">(</span>2074624-20971519, default 2074624<span class="o">)</span>: 
+Last sector, +sectors or +size<span class="o">{</span>K,M,G<span class="o">}</span> <span class="o">(</span>2074624-20971519, default 20971519<span class="o">)</span>: +512M
+ 
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: t
+Partition number <span class="o">(</span>1-3, default 3<span class="o">)</span>: <span class="m">3</span>
+Hex code <span class="o">(</span><span class="nb">type</span> L to list all codes<span class="o">)</span>: <span class="m">82</span>
+Changed <span class="nb">type</span> of partition <span class="s1">&#39;Linux&#39;</span> to <span class="s1">&#39;Linux swap / Solaris&#39;</span>
+ 
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+</pre>
+<ol>
+<li>重新map硬盘分区表</li>
+</ol>
+<pre class="chroma">partx -a /dev/sdb
+partx: /dev/sdb: error adding partitions 1-2
+</pre>
+<ol>
+<li>格式化为swap</li>
+</ol>
+<pre class="chroma">mkswap /dev/sdb3
+Setting up swapspace version 1, <span class="nv">size</span> <span class="o">=</span> <span class="m">524284</span> KiB
+no label, <span class="nv">UUID</span><span class="o">=</span>a7a5bf54-ad80-4152-bac5-2f230b75c557
+</pre>
+<ol>
+<li>设置自动挂载</li>
+</ol>
+<pre class="chroma">vi /etc/fstab 
+*******************************************
+<span class="c1"># 增加下面一行</span>
+<span class="nv">UUID</span><span class="o">=</span>a7a5bf54-ad80-4152-bac5-2f230b75c557 swap  swap defaults <span class="m">0</span> <span class="m">0</span> 
+*******************************************
+ 
+<span class="c1"># 刷新swap分区挂载</span>
+swapon -a
+</pre>
+<h3>第16题：查找文件</h3>
+
+<ol>
+<li>创建文件夹</li>
+</ol>
+<pre class="chroma">mkdir findfiles
+</pre>
+<ol>
+<li>查找并复制文件</li>
+</ol>
+<pre class="chroma"><span class="c1"># find / -user ira -exec cp -a {} /root/findfiles/ \;</span>
+find: <span class="s1">&#39;/proc/4434/task/4434/fd/6&#39;</span>: No such file or directory
+find: <span class="s1">&#39;/proc/4434/task/4434/fdinfo/6&#39;</span>: No such file or directory
+find: <span class="s1">&#39;/proc/4434/fd/6&#39;</span>: No such file or directory
+find: <span class="s1">&#39;/proc/4434/fdinfo/6&#39;</span>: No such file or directory
+</pre>
+<ol>
+<li>验证</li>
+</ol>
+<pre class="chroma">ll /root/findfiles/
+total <span class="m">12</span>
+-rw-r--r--. <span class="m">1</span> ira root <span class="m">46</span> Jul <span class="m">26</span> 11:56 abcfile
+-rw-r--r--. <span class="m">1</span> ira root <span class="m">46</span> Jul <span class="m">26</span> 11:56 ifile
+-rw-rw----. <span class="m">1</span> ira mail  <span class="m">0</span> Jul <span class="m">26</span> 11:56 ira
+-rw-r--r--. <span class="m">1</span> ira root <span class="m">46</span> Jul <span class="m">26</span> 11:56 tmpfile
+</pre>
+<h3>第17题：查找文件</h3>
+<pre class="chroma">grep seismic /usr/share/dict/words &gt; /root/wordlist
+</pre>
+<h3>第18题：创建逻辑卷</h3>
+
+<ol>
+<li>查看硬盘情况</li>
+</ol>
+<pre class="chroma">lsblk
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+fd0            2:0    <span class="m">1</span>    4K  <span class="m">0</span> disk 
+sda            8:0    <span class="m">0</span>   10G  <span class="m">0</span> disk 
+└─sda1         8:1    <span class="m">0</span>   10G  <span class="m">0</span> part /
+sdb            8:16   <span class="m">0</span>   10G  <span class="m">0</span> disk 
+├─sdb1         8:17   <span class="m">0</span>  512M  <span class="m">0</span> part 
+│ └─vg1-lvm1 253:0    <span class="m">0</span>  772M  <span class="m">0</span> lvm  /vg1/lvm1
+├─sdb2         8:18   <span class="m">0</span>  500M  <span class="m">0</span> part 
+│ └─vg1-lvm1 253:0    <span class="m">0</span>  772M  <span class="m">0</span> lvm  /vg1/lvm1
+└─sdb3         8:19   <span class="m">0</span>  512M  <span class="m">0</span> part <span class="o">[</span>SWAP<span class="o">]</span>
+sr0           11:0    <span class="m">1</span> 1024M  <span class="m">0</span> rom 
+<span class="c1"># 发现sdb（考试环境为vdb）还有很大空间</span>
+</pre>
+<ol>
+<li>创建新分区</li>
+</ol>
+<pre class="chroma">fdisk /dev/sdb
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: n
+Select <span class="o">(</span>default e<span class="o">)</span>: p
+Selected partition <span class="m">4</span>
+First sector <span class="o">(</span>3123200-20971519, default 3123200<span class="o">)</span>: 
+Using default value <span class="m">3123200</span>
+Last sector, +sectors or +size<span class="o">{</span>K,M,G<span class="o">}</span> <span class="o">(</span>3123200-20971519, default 20971519<span class="o">)</span>: 
+Using default value <span class="m">20971519</span>
+Partition <span class="m">4</span> of <span class="nb">type</span> Linux and of size 8.5 GiB is <span class="nb">set</span>
+ 
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: t
+Partition number <span class="o">(</span>1-4, default 4<span class="o">)</span>: <span class="m">4</span>
+Hex code <span class="o">(</span><span class="nb">type</span> L to list all codes<span class="o">)</span>: 8e
+Changed <span class="nb">type</span> of partition <span class="s1">&#39;Linux&#39;</span> to <span class="s1">&#39;Linux LVM&#39;</span>
+ 
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: w
+ 
+<span class="c1"># 重新map分区表</span>
+partx -a /dev/sdb
+partx: /dev/sdb: error adding partitions 1-3
+</pre>
+<ol>
+<li>创建新pv</li>
+</ol>
+<pre class="chroma">pvcreate /dev/sdb4
+  Physical volume <span class="s2">&#34;/dev/sdb4&#34;</span> successfully created
+pvs
+  PV         VG   Fmt  Attr PSize   PFree  
+  /dev/sdb1  vg1  lvm2 a--  508.00m      <span class="m">0</span> 
+  /dev/sdb2  vg1  lvm2 a--  496.00m 232.00m
+  /dev/sdb4       lvm2 a--    8.51g   8.51g
+</pre>
+<ol>
+<li>创建新vg</li>
+</ol>
+<pre class="chroma">vgcreate -s 16M exam /dev/sdb4
+  Volume group <span class="s2">&#34;exam&#34;</span> successfully created
+
+vgs
+  VG   <span class="c1">#PV #LV #SN Attr   VSize    VFree</span>  
+  exam   <span class="m">1</span>   <span class="m">0</span>   <span class="m">0</span> wz--n-    8.50g   8.50g
+  vg1    <span class="m">2</span>   <span class="m">1</span>   <span class="m">0</span> wz--n- 1004.00m 232.00m
+
+<span class="c1">#检查创建结果</span>
+vgdisplay exam
+  --- Volume group ---
+  VG Name               exam
+  ......
+  PE Size               16.00 MiB
+  ......
+</pre>
+<ol>
+<li>创建新lvm</li>
+</ol>
+<pre class="chroma">lvcreate -l <span class="m">8</span> -n lvm2 exam
+  Logical volume <span class="s2">&#34;lvm2&#34;</span> created
+
+lvs
+  LV   VG   Attr       LSize   Pool Origin Data%  Move Log Cpy%Sync Convert
+  lvm2 exam -wi-a----- 128.00m                                             
+  lvm1 vg1  -wi-ao---- 772.00m 
+
+<span class="c1"># 检查创建结果</span>
+lvdisplay /dev/exam/lvm2
+  --- Logical volume ---
+  LV Path                /dev/exam/lvm2
+  LV Name                lvm2
+  VG Name                exam
+  LV UUID                SQXK4K-Qspm-AU9A-BfTt-cnyT-pvnt-iiK2Ye
+  LV Write Access        read/write
+  LV Creation host, <span class="nb">time</span> server0.example.com, 2015-07-26 15:52:47 +0800
+  LV Status              available
+  <span class="c1"># open                 0</span>
+  LV Size                128.00 MiB
+  Current LE             <span class="m">8</span>
+  Segments               <span class="m">1</span>
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently <span class="nb">set</span> to     <span class="m">8192</span>
+  Block device           253:1
+</pre>
+<ol>
+<li>格式化lvm</li>
+</ol>
+<pre class="chroma">mkfs.xfs /dev/exam/lvm2
+meta-data<span class="o">=</span>/dev/exam/lvm2         <span class="nv">isize</span><span class="o">=</span><span class="m">256</span>    <span class="nv">agcount</span><span class="o">=</span>4, <span class="nv">agsize</span><span class="o">=</span><span class="m">8192</span> <span class="nv">blks</span>
+         <span class="o">=</span>                       <span class="nv">sectsz</span><span class="o">=</span><span class="m">512</span>   <span class="nv">attr</span><span class="o">=</span>2, <span class="nv">projid32bit</span><span class="o">=</span><span class="nv">1</span>
+         <span class="o">=</span>                       <span class="nv">crc</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">data</span>     <span class="o">=</span>                       <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>32768, <span class="nv">imaxpct</span><span class="o">=</span><span class="nv">25</span>
+         <span class="o">=</span>                       <span class="nv">sunit</span><span class="o">=</span><span class="m">0</span>      <span class="nv">swidth</span><span class="o">=</span><span class="m">0</span> blks
+<span class="nv">naming</span>   <span class="o">=</span>version <span class="m">2</span>              <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   ascii-ci<span class="o">=</span><span class="m">0</span> <span class="nv">ftype</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">log</span>      <span class="o">=</span>internal log           <span class="nv">bsize</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>853, <span class="nv">version</span><span class="o">=</span><span class="nv">2</span>
+         <span class="o">=</span>                       <span class="nv">sectsz</span><span class="o">=</span><span class="m">512</span>   <span class="nv">sunit</span><span class="o">=</span><span class="m">0</span> blks, lazy-count<span class="o">=</span><span class="m">1</span>
+<span class="nv">realtime</span> <span class="o">=</span>none                   <span class="nv">extsz</span><span class="o">=</span><span class="m">4096</span>   <span class="nv">blocks</span><span class="o">=</span>0, <span class="nv">rtextents</span><span class="o">=</span><span class="m">0</span>
+</pre>
+<ol>
+<li>设置自动挂载</li>
+</ol>
+<pre class="chroma"><span class="c1"># 创建目录</span>
+mkdir -p /exam/lvm2
+ 
+<span class="c1"># 通过blkid命令查看复制uuid把它设置到fstab里面实现开机自动挂载</span>
+vi /etc/fstab
+*************************************
+<span class="c1">#增加下面一行</span>
+<span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;19695ba0-a322-46b3-9d17-fd782b3295f5&#34;</span> /exam/lvm2 xfs defaults <span class="m">0</span> <span class="m">0</span> 
+*************************************
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
