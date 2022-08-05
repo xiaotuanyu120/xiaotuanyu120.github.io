@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>模块2</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>18 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 两个模块相互引用</h2>
+
+<h3>1.1 循环应用</h3>
+
+<p><code>a.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">b</span> <span class="kn">import</span> <span class="n">p_b</span>                    <span class="c1"># 用from module import func方式</span>
+
+<span class="k">def</span> <span class="nf">p_a</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">this is func in a</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">p_b</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p><code>b.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">a</span> <span class="kn">import</span> <span class="n">p_a</span>                    <span class="c1"># 用from module import func方式</span>
+<span class="k">def</span> <span class="nf">p_b</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">this is func in b</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">p_a</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p>进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">a</span>                         <span class="c1"># import a会报错</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">a.py</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="kn">from</span> <span class="nn">b</span> <span class="kn">import</span> <span class="n">p_b</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">b.py</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="kn">from</span> <span class="nn">a</span> <span class="kn">import</span> <span class="n">p_a</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">cannot</span> <span class="kn">import</span> <span class="nn">name</span> <span class="nn">p_a</span>
+</pre>
+<p><strong>python对module的导入过程是：</strong>
+<code>sys.modules</code>中找寻module入口，有则返回入口，无则创建入口。</p>
+
+<p>上面第一次导入a，首先在sys.modules创建a入口，&rdquo;from b import p_b&rdquo;过程是：在sys.modules中创建一个b入口，然后执行b模块去找p_b</p>
+
+<p>b模块中的第一句&rdquo;from a import p_a&rdquo;过程是：由sys.modules返回a入口，然后执行a模块去找p_a，于是又执行到了&rdquo;from b import p_b&rdquo;</p>
+
+<p>至此形成了一个死循环</p>
+
+<p><strong>解决办法</strong>
+<code>a.py</code></p>
+<pre class="chroma"><span class="kn">import</span> <span class="nn">b</span>
+
+<span class="k">def</span> <span class="nf">p_a</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">this is func in a</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">p_b</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p><code>b.py</code></p>
+<pre class="chroma"><span class="kn">import</span> <span class="nn">a</span>
+<span class="k">def</span> <span class="nf">p_b</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">this is func in b</span><span class="s2">&#34;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="n">p_a</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p>进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">b</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">p_a</span><span class="p">(</span><span class="p">)</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">p_b</span><span class="p">(</span><span class="p">)</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">b</span>
+</pre>
+<p>此时不会再报错，是因为我们只是需要模块入口，并没有继续要求import的过程里就完成模块的初始化，这样就打破了import时产生的死循环</p>
+
+<blockquote>
+<p>扩展阅读</p>
+
+<ul>
+<li><a href="http://blog.sina.com.cn/s/blog_90bc5fc6010159e0.html">http://blog.sina.com.cn/s/blog_90bc5fc6010159e0.html</a></li>
+<li><a href="http://stackoverflow.com/questions/744373/circular-or-cyclic-imports-in-python">http://stackoverflow.com/questions/744373/circular-or-cyclic-imports-in-python</a></li>
+<li><a href="http://wiki.woodpecker.org.cn/moin/MiscItems/2008-11-25">http://wiki.woodpecker.org.cn/moin/MiscItems/2008-11-25</a></li>
+</ul>
+</blockquote>
+
+<h2>2. 关于import和from import，模块可以引入几次？</h2>
+
+<ol>
+<li><code>from module import func</code>会更加准确的引入一个func</li>
+<li>module is import just once(you can use reload() function but not recommend)</li>
+</ol>
+
+<h2>3. pyc vs pyo</h2>
+
+<h3>3.1 什么是pyc</h3>
+
+<p>As an important speed-up of the start-up time for short programs that use a lot of standard modules, if a file called spam.pyc exists in the directory where spam.py is found, this is assumed to contain an already-&ldquo;byte-compiled&rdquo; version of the module spam.
+当你执行程序需要import很多标准modules的时候，pyc就是一个很好的提速方法。</p>
+
+<h3>3.2 什么时候生成pyc</h3>
+
+<p>py程序被编译的时候，比如说import module时会生成</p>
+<pre class="chroma">ls
+a.py  b.py
+</pre><pre class="chroma"><span class="c1"># 进python解释器</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">exit</span><span class="p">(</span><span class="p">)</span>
+</pre><pre class="chroma">ls
+a.py  a.pyc  b.py  b.pyc
+<span class="c1"># 之所以会出现b.pyc是因为我们在a里面import了b</span>
+</pre>
+<p>主动生成方式</p>
+<pre class="chroma">rm -f *.pyc
+ls
+a.py  b.py
+
+python -m py_compile a.py
+
+ls
+a.py  a.pyc  b.py
+<span class="c1"># 这里没有产生b.pyc，因为我们只是手动编译了a.py，module a并没有初始化，所以就没产生b.pyc</span>
+</pre>
+<h3>3.3 pyc的作用是什么</h3>
+
+<ul>
+<li>缓存、提速</li>
+<li>想法：安全交付，不暴露源码</li>
+</ul>
+
+<h3>3.4 什么是pyo  (optimization)</h3>
+
+<p>The optimizer currently doesn&rsquo;t help much; it only removes assert statements.
+优化只是移除了assert 语句，并不能帮助太多</p>
+
+<blockquote>
+<p>扩展（消除pyo）：<a href="https://www.python.org/dev/peps/pep-0488/">https://www.python.org/dev/peps/pep-0488/</a></p>
+</blockquote>
+
+<h3>3.5 什么时候生成pyo</h3>
+
+<p>用python -O 以优化模式进入解释器</p>
+<pre class="chroma">python -O
+&gt;&gt;&gt; import a
+&gt;&gt;&gt; exit<span class="o">(</span><span class="o">)</span>
+ls
+a.py  a.pyc  a.pyo  b.py  b.pyo
+
+<span class="c1"># 手动创建</span>
+<span class="c1"># rm -f *.py?</span>
+<span class="c1"># ls</span>
+a.py  b.py
+<span class="c1"># python -O -m py_compile a.py</span>
+<span class="c1"># ls</span>
+a.py  a.pyo  b.py
+</pre>
+<h3>3.6 pyc和pyo的一些tips</h3>
+
+<ul>
+<li><p>The contents of the spam.pyc file are platform independent, so a Python module directory can be shared by machines of different architectures.
+pyc文件是独立于平台的，所以pyc文件可以在不同的环境中共享</p></li>
+
+<li><p>A program doesn&rsquo;t run any faster when it is read from a .pyc or .pyo file than when it is read from a .py file; the only thing that&rsquo;s faster about .pyc or .pyo files is the speed with which they are loaded.
+.pyc和.pyo并不能加速程序的运行，只是加速了他们的加载过程。</p></li>
+
+<li><p>It is possible to have a file called spam.pyc (or spam.pyo when -O is used) without a file spam.py for the same module. This can be used to distribute a library of Python code in a form that is moderately hard to reverse engineer.
+可以只使用.pyc或.pyo来被调用，这样可以去创建一个难以逆向破解的python代码库</p></li>
+</ul>
+
+<h3>3.7 模块总结</h3>
+
+<ul>
+<li>函数逻辑的复用单元</li>
+<li>代码保存的单元</li>
+<li>代码复用 协作的单元</li>
+<li>注意命名空间的冲突问题</li>
+</ul>
+
+<h2>4. 包（Package）</h2>
+
+<h3>4.1 什么是包?</h3>
+
+<p>Packages are a way of structuring Python&rsquo;s module namespace by using &ldquo;dotted module names&rdquo;</p>
+
+<p>包就是一种管理python module的方式，其命名空间使用&rdquo;.modulenames&rdquo;的方式</p>
+
+<p>通俗理解：就是文件夹，不过文件夹下需要有一个<strong>init</strong>.py的文件</p>
+<pre class="chroma"><span class="c1"># 直接import的方式导入package</span>
+ls sixth_02
+a.py  b.py  __init__.py 
+
+&gt;&gt;&gt; import sixth_02
+&gt;&gt;&gt; sixth_02.a.p_a<span class="o">(</span><span class="o">)</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&#34;&lt;stdin&gt;&#34;</span>, line 1, in &lt;module&gt;
+AttributeError: <span class="s1">&#39;module&#39;</span> object has no attribute <span class="s1">&#39;a&#39;</span>
+
+<span class="c1"># 包也是一个object，导入它并不能直接使用它下面的module，如果希望用直接导入package的方式，那需要在__init__.py下编辑。</span>
+cat sixth_02/__init__.py
+from a import p_a
+
+<span class="c1"># 进入python解释器</span>
+&gt;&gt;&gt; import sixth_02
+&gt;&gt;&gt; sixth_02.a.p_a<span class="o">(</span><span class="o">)</span>
+this is func in a
+&gt;&gt;&gt; a.p_a<span class="o">(</span><span class="o">)</span>              <span class="c1">#虽然我们在包里初始化import a，但是也不可以直接使用</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">&#34;&lt;stdin&gt;&#34;</span>, line 1, in &lt;module&gt;
+NameError: name <span class="s1">&#39;a&#39;</span> is not defined
+
+<span class="c1"># from package.package import module</span>
+&gt;&gt;&gt; from sixth_02 import a
+&gt;&gt;&gt; a.p_a<span class="o">(</span><span class="o">)</span>
+this is func in a
+
+<span class="c1"># from package.module import function</span>
+&gt;&gt;&gt; from sixth_02.a import p_a
+&gt;&gt;&gt; p_a<span class="o">(</span><span class="o">)</span>
+this is func in a
+
+<span class="c1"># import package.module</span>
+&gt;&gt;&gt; import sixth_02.a
+&gt;&gt;&gt; sixth_02.a.p_a<span class="o">(</span><span class="o">)</span>
+this is func in a
+</pre>
+<blockquote>
+<p>扩展:</p>
+
+<p>文件夹的命名必须按照python中变量的命名方式</p>
+<pre class="chroma">ls <span class="m">6</span>
+a.py  b.py  __init__.py
+&gt;&gt;&gt; import <span class="m">6</span>
+  File <span class="s2">&#34;&lt;stdin&gt;&#34;</span>, line <span class="m">1</span>
+    import <span class="m">6</span>
+           ^
+SyntaxError: invalid syntax
+</pre></blockquote>
+
+<h2>5. 补充相对路径和绝对路径</h2>
+<pre class="chroma">ls ./a.py
+./a.py
+
+<span class="c1"># 进入python解释器</span>
+from .a import say_hi
+from .. import b
+</pre>
+<h2>6. 看看内置的Python模块有哪些</h2>
+
+<p>常用的：</p>
+
+<ul>
+<li>sys</li>
+<li>os</li>
+<li>time</li>
+<li>datetime</li>
+</ul>
+
+<blockquote>
+<p>扩展链接: <a href="https://docs.python.org/2.7/library/index.html">https://docs.python.org/2.7/library/index.html</a></p>
+</blockquote>
+
+<h2>7. 要自律</h2>
+
+<p>熟悉flake8的使用，并据此改善之前的代码
+<a href="https://pypi.python.org/pypi/flake8">https://pypi.python.org/pypi/flake8</a></p>
+
+<h2>8.  学习psutil的使用</h2>
+
+<p>安装方法：pip install psutil</p>
+
+<p>作业，自学psutils的使用，完成下面题目</p>
+
+<ol>
+<li>使用psutils收集系统信息：cpu核数，内存大小，系统启动时间，当前用户，然后写入文件：sys_info.log中</li>
+<li>定时（每隔十分钟）收集系统信息：cpu使用率，内存使用率，网卡流量（in和out），包含时间一并写入到文件:monitor_sys_info.log</li>
+</ol>
+
+<p>示例:</p>
+<pre class="chroma">2015/08/14 08:10:00  cpu使用率    内存使用率   网络in流量    网卡out流量
+2015/08/14 08:20:00  cpu使用率    内存使用率   网络in流量    网卡out流量
+</pre>
+<p>提示：</p>
+<pre class="chroma">open(file_name, &#39;a&#39;)
+f.write(line)
+f.close()
+</pre>
+<p>通过a模式打开文件，可以向文件中追加数据。</p>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">collect the sys info like cpu memory and network flow</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">psutil</span>
+
+
+<span class="k">def</span> <span class="nf">get_sys_info</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">cpu_usage</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">cpu_percent</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">mem_usage</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">(</span><span class="p">)</span><span class="o">.</span><span class="n">percent</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">net_in</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">(</span><span class="p">)</span><span class="o">.</span><span class="n">bytes_recv</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">net_out</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">psutil</span><span class="o">.</span><span class="n">net_io_counters</span><span class="p">(</span><span class="p">)</span><span class="o">.</span><span class="n">bytes_sent</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+ 
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">get_sys_info</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">monitor_sys_info.log</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span><span class="p">]</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">+</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</pre>
+<blockquote>
+<p>扩展</p>
+
+<ul>
+<li>os.getlogin, 获取当前用户</li>
+<li>psutil.user() , 获取用户列表</li>
+<li>pip freeze, 查看安装的第三方模块（pip list）</li>
+</ul>
+
+<p>SOURCE DISTRIBUTION： <a href="https://docs.python.org/2/distutils/sourcedist.html">查看文件组成结构可参考</a></p>
+
+<ul>
+<li>sdist命令</li>
+<li>manifest.in文件</li>
+</ul>
+
+<p>还有其他这些文件</p>
+
+<ul>
+<li>author</li>
+<li>contribution-guide</li>
+<li>requirements.txt</li>
+<li>dev-requirements.txt</li>
+</ul>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

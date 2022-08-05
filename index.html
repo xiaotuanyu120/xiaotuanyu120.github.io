@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
               <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
-            </li>
-            <li>
-              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
             </li>
           </ul>
 
@@ -107,6 +107,57 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>01 Aug 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. 进程的常见内存布局(c/c++)</h3>
+
+<p>进程是操作系统分配内存资源的最小单位，每个进程都有自己独立的内存布局（虚拟内存）。包含：</p>
+
+<ul>
+<li>stack: 保存function和local var</li>
+<li>memory mapping: 保存大块的从文件映射的内存空间，用于加载代码库文件、共享内存等</li>
+<li>heap: 程序动态使用的内存</li>
+<li>data: 全局变量，分为初始化的(data segment，实际分配内存)和非初始化的(bss segment，实际未分配内存)</li>
+<li>text: 保存运行的code</li>
+</ul>
+
+<blockquote>
+<p>memory mapping的内存会统计在top命令的SHR字段，所以，这个字段统计的内存并不全是共享内存，也包含其他被映射的文件，例如代码库文件</p>
+</blockquote>
+
+<p>linux内核给每个进程一个独立的虚拟内存地址。这个虚拟内存的地址是连续的，虚拟内存又分为“用户空间”和“内核空间”。当进程在用户态的时候，只能访问“用户空间”，相反地，只有进程在内核态的时候，才能访问“内核空间”。虽然每个进程的内存空间都包含了“内核空间”，但其实它们是同一段物理内存，这样进程在进入内核态时，都能方便的访问内核态空间内存。</p>
+
+<p>关于“用户空间”，它的结构，一般是从低地址开始依次为text、data、heap、memory mapping。然后stack是从高地址往下分配。
+<img src="/static/images/docs/linux/advance/memory_layout.png" alt="" /></p>
+
+<blockquote>
+<p>通常情况下，频繁被执行的程序，其text一般是共享并且是只读的。例如gcc、shell、text editor等</p>
+
+<p><a href="https://courses.engr.illinois.edu/cs225/sp2022/resources/stack-heap/">stack and heap</a></p>
+</blockquote>
+
+<h3>1. heap和stack的区别</h3>
+
+<ul>
+<li>stack由编译器管理，而heap由程序员自己控制，使用方便，但是有泄漏风险。</li>
+<li>stack是由虚拟内存地址的高地址向下分配；而heap是由低地址向上分配。</li>
+<li>stack的容量由系统预先定义，一般比较小；而heap则是受限于操作系统中有效的虚拟内存，一般比较大。</li>
+<li>stack不会产生内存碎片，而heap会产生比较多的碎片。</li>
+</ul>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -802,177 +853,6 @@ cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_RUNTIME_DIR}/haproxy/etc/haproxy.
 
 docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
 </pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/apache/1.1.3_apache_config_make_servername_and_serveralias_an_ip.html">apache: 配置 - 可以把ServerName和ServerAlias配置为IP吗？</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>24 Feb 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. 前言</h2>
-
-<h3>1) 首先铺垫一下apache的virtualhost的理论配置</h3>
-
-<p>apache有两种配置virtualhost的方式，一种是基于IP（ip based），另外一种是基于名称（name based）。</p>
-
-<ul>
-<li>基于IP的就是使用多个ip:port的不同唯一搭配，来使用多个daemon或者单个daemon的形式来提供多个虚拟主机的访问。例如一台机器同时绑定了192.168.1.2和192.168.1.3两个ip，就可以同时提供192.168.1.2:80和192.168.1.3:80两个虚拟主机的访问</li>
-<li>基于名称的可以在同一个ip:port上，通过ServerName和ServerAlias的不同设定，来提供多个虚拟主机的访问。</li>
-</ul>
-
-<blockquote>
-<p>关于apache的virtualhost详细文档，可以参见<a href="https://httpd.apache.org/docs/2.4/vhosts/examples.html">httpd 官方文档</a></p>
-
-<p>基于IP的方式中，多个daemon还是单个daemon的问题，这里不讨论，可以参见上面提供的官方文档查看详细信息</p>
-
-<p>另一个需要注意的点是，使用基于名称的虚拟主机配置时，在httpd的配置文件中，最先加载的virtualhost配置为默认的虚拟主机</p>
-</blockquote>
-
-<p>通常，大部分情况下，我们常用的是使用基于名称的虚拟主机配置方式。</p>
-
-<h3>2) 基于名称的配置中，增加了一个ip访问的需求</h3>
-
-<p>有一天，在某办公室的神秘对话：</p>
-<pre class="chroma">开发：运维同学，我想要用ip访问apache，辛苦您帮我配置一下
-运维：好的
-</pre>
-<blockquote>
-<p>这个场景中，也是使用的更常见的基于名称的虚拟主机的配置方式</p>
-</blockquote>
-
-<p>运维思索了一下，找出了以下方案：</p>
-
-<ol>
-<li>用第一个默认virtualhost来提供需要用ip访问的虚拟主机内容。</li>
-<li>或者是在默认virtualhost之外，增加一个虚拟主机，配置ServerName（如果有多个ip，可以使用ServerAlias补充）。</li>
-</ol>
-
-<p>这两个方案中，第一个方案有明显的缺点，因为生产环境中通常都会给默认虚拟主机设定访问限制，来禁止使用ip或者其他未经授权的域名解析来访问服务器，只有那些明确监听的域名才会被响应。而第二个方案，运维同学心里有点打鼓，不确定同时拥有默认虚拟主机和将ServerName配置为IP的情况下，apache会使用哪个来发起响应。所以运维同学决定来验证一下。</p>
-
-<h2>1. 验证过程</h2>
-
-<h3>1) 准备环境</h3>
-
-<p>配置三个虚拟主机，第一个是默认虚拟主机，访问会返回“from default”；第二个是配置ServerName为ip(127.0.0.1 &amp; 192.168.1.124)的虚拟主机，访问会返回“from ip virtualhost”；第三个是配置了本地测试域名“test.local.net”的虚拟主机，访问会返回“from test.local.net”。三个虚拟主机是按照介绍的顺序依次从上到下排列。</p>
-
-<blockquote>
-<p>虽然我们给ServerName配置了IP，但是使用ServerName本身实际上还是使用的基于名字的虚拟主机配置类型。</p>
-</blockquote>
-<pre class="chroma">mkdir -p <span class="o">{</span>conf/vhosts.d,www/<span class="o">{</span>default,ip,test.local.net<span class="o">}</span><span class="o">}</span>
-sudo <span class="nb">echo</span> <span class="s2">&#34;127.0.0.1 test.local.net&#34;</span> &gt;&gt; /etc/hosts
-
-<span class="c1"># 准备 httpd 配置文件</span>
-cat <span class="s">&lt;&lt; EOF &gt; conf/vhosts.d/00-default.conf
-</span><span class="s">&lt;VirtualHost *:80&gt;
-</span><span class="s">  DocumentRoot &#34;/www/default&#34;  
-</span><span class="s">
-</span><span class="s">  &lt;Directory &#34;/www/default&#34;&gt;
-</span><span class="s">    Require all granted
-</span><span class="s">  &lt;/Directory&gt;
-</span><span class="s">&lt;/VirtualHost&gt;
-</span><span class="s">EOF</span>
-
-cat <span class="s">&lt;&lt; EOF &gt; conf/vhosts.d/01-ip.conf
-</span><span class="s">&lt;VirtualHost *:80&gt;
-</span><span class="s">  DocumentRoot &#34;/www/ip&#34;
-</span><span class="s">  ServerName   127.0.0.1:80
-</span><span class="s">  ServerAlias  192.168.1.124:80
-</span><span class="s">
-</span><span class="s">  &lt;Directory &#34;/www/ip&#34;&gt;
-</span><span class="s">    Require all granted
-</span><span class="s">  &lt;/Directory&gt;
-</span><span class="s">&lt;/VirtualHost&gt;
-</span><span class="s">EOF</span>
-
-cat <span class="s">&lt;&lt; EOF &gt; conf/vhosts.d/02-test.local.net
-</span><span class="s">&lt;VirtualHost *:80&gt;
-</span><span class="s">  DocumentRoot &#34;/www/test.local.net&#34; 
-</span><span class="s">  ServerName   test.local.net:80
-</span><span class="s">
-</span><span class="s">  &lt;Directory &#34;/www/test.local.net&#34;&gt;
-</span><span class="s">    Require all granted
-</span><span class="s">  &lt;/Directory&gt;
-</span><span class="s">&lt;/VirtualHost&gt;
-</span><span class="s">EOF</span>
-
-<span class="c1"># 准备不同虚拟主机的网站文件</span>
-cat <span class="s">&lt;&lt; EOF &gt; www/default/index.html
-</span><span class="s">from default
-</span><span class="s">EOF</span>
-
-cat <span class="s">&lt;&lt; EOF &gt; www/ip/index.html
-</span><span class="s">from ip virtualhost
-</span><span class="s">EOF</span>
-
-cat <span class="s">&lt;&lt; EOF &gt; www/test.local.net/index.html
-</span><span class="s">from test.local.net
-</span><span class="s">EOF</span>
-
-<span class="c1"># httpd:2.4.51使用的网站用户的uid是33，需要正确的授权</span>
-sudo chown -R 33.33 www
-
-<span class="c1"># 准备基于docker的启动脚本</span>
-cat <span class="s">&lt;&lt; EOF &gt; start.sh
-</span><span class="s">docker run -it -d --rm --name httpd \
-</span><span class="s">    -p 80:80 \
-</span><span class="s">    -v $(pwd)/www:/www \
-</span><span class="s">    -v $(pwd)/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf \
-</span><span class="s">    -v $(pwd)/conf/vhosts.d:/usr/local/apache2/conf/vhosts.d \
-</span><span class="s">    httpd:2.4.51
-</span><span class="s">EOF</span>
-</pre>
-<h3>2) 启动httpd</h3>
-<pre class="chroma">sh start.sh
-</pre>
-<h3>3) 验证</h3>
-
-<p>首先，我们简单的使用curl访问一下，看看结果</p>
-<pre class="chroma">curl 127.0.0.1
-from ip virtualhost
-
-curl 192.168.1.124
-from ip virtualhost
-
-curl test.local.net
-from test.local.net
-</pre>
-<p>结果符合预期，每个访问都得到了设想的结果。</p>
-
-<h3>4) 然而，apache是如何来给请求匹配虚拟主机的呢？</h3>
-
-<p>在<a href="https://httpd.apache.org/docs/2.4/vhosts/name-based.html#page-header">《httpd基于名字的虚拟主机文档》</a>中发现了这样的说明。</p>
-
-<p>首先，请求进来后，apache先通过ip:port来筛选。然后，再使用ServerName和ServerAlias来进行进一步匹配。若匹配到了，则响应请求，若未匹配到，就会进一步使用默认虚拟主机来响应。</p>
-
-<p>在这个过程中，ServerName和ServerAlias部分的匹配，使用的是请求中的&rdquo;Host&rdquo;首部。</p>
-
-<p>那么，来手动修改“Host”首部来验证一下</p>
-<pre class="chroma">curl -H <span class="s2">&#34;Host: 127.0.0.1&#34;</span> test.local.net
-from ip virtualhost
-
-curl -H <span class="s2">&#34;Host: test.local.net&#34;</span> 192.168.1.124
-from test.local.net
-
-curl -H <span class="s2">&#34;Host: nonexist.com&#34;</span> 192.168.1.124
-from default
-</pre>
-<p>果然，返回的内容竟然和请求的url无关，而是和“Host”首部强关联。比如访问test.local.net返回的竟然是“from ip virtualhost”，这和&rdquo;Host: 127.0.0.1&rdquo;首部相对应。</p>
-
-<h2>3. 总结</h2>
-
-<ul>
-<li><strong>可以将ServerName和ServerAlias配置为IP</strong>，但这依然是基于名字的虚拟主机配置方式</li>
-<li><strong>基于名字的虚拟主机配置方式中，虚拟主机在ServerName和ServerAlias匹配的过程中，使用的是“Host”首部</strong></li>
-</ul>
-
         </div>
 
     </div>

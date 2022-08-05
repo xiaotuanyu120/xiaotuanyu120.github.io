@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>数据结构: list&tuple</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>30 Jul 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 数据类型内存占用（补充）</h2>
+
+<h3>1.1 可变对象和不可变对象</h3>
+
+<p>简介：python中万物皆对象，变量赋值传递的不是值，而是内存地址。</p>
+
+<p>可变，  就是内容改变，内存地址不变；</p>
+
+<p>不可变，就是内容改变，内存地址肯定会变。</p>
+
+<h4><strong>不可变对象：int，string，float，tuple</strong></h4>
+
+<p>内容改变，内存地址也改变，说明是不可变对象</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">num_a</span><span class="p">)</span>
+<span class="mi">35986320</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_a</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">num_a</span><span class="p">)</span>
+<span class="mi">35986296</span>
+</pre><pre class="chroma">num_a--------&gt; 35986320  10     
+ |
+ +-----------&gt; 35986296  11     
+</pre>
+<p>小整数池（范围[-5,257)之间的数字，为了节省内存）</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_a</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_b</span> <span class="o">=</span> <span class="mi">250</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">num_a</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">num_b</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="mi">250</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">35992512</span><span class="p">,</span> <span class="mi">35992512</span><span class="p">,</span> <span class="mi">35992512</span><span class="p">)</span>
+</pre><pre class="chroma">num_a ----------&gt;35992512   250
+                    ↑
+num_b --------------+
+</pre>
+<p>超出小整数池范围之外后，相同int也会分配不同内存</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_a</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_b</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">num_a</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">num_b</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="mi">260</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">36322176</span><span class="p">,</span> <span class="mi">36322128</span><span class="p">,</span> <span class="mi">36322104</span><span class="p">)</span>
+<span class="n">num_a</span> <span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">&gt;</span>  <span class="mi">36322176</span>   <span class="mi">260</span>   
+<span class="n">num_b</span> <span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">&gt;</span>  <span class="mi">36322128</span>   <span class="mi">260</span>      
+</pre>
+<p>注意这样的变量赋值方式</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_a</span> <span class="o">=</span> <span class="n">num_b</span> <span class="o">=</span> <span class="mi">260</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">num_a</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">num_b</span><span class="p">)</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="mi">260</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">36322104</span><span class="p">,</span> <span class="mi">36322104</span><span class="p">,</span> <span class="mi">36322128</span><span class="p">)</span>
+</pre><pre class="chroma">num_a ----------&gt;36322104   260
+                    ↑
+num_b --------------+
+</pre>
+<blockquote>
+<p>num_a和num_b只是获得了同一个内存地址，并不是num_a指向了num_b的地址。</p>
+
+<p>其实小整数池只是python的对象缓冲池中的一个，在python中万物皆对象，而在python的内存缓冲池设计上，又提供了一个对象缓冲池，其他类似于string、tuple等也都有自己相应的缓冲池</p>
+
+<p>其余string、float、tuple不可变对象不再演示</p>
+</blockquote>
+
+<h3>1.2 可变对象：list，dictionary</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">c</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">list_a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">139949780116744</span><span class="p">,</span> <span class="mi">139949780116784</span><span class="p">,</span> <span class="mi">139949780118304</span><span class="p">]</span>
+</pre><pre class="chroma">list_a--------&gt;  |  0  |  1  |  2  |
+                    ↓      ↓      ↓
+                 |  a  |  b  |  c  |
+</pre><pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span>
+<span class="mi">139949779418720</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list_a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span>
+<span class="mi">139949779418720</span>
+<span class="c1"># list内容改变后，内存地址并未改变</span>
+<span class="c1"># dictionary不再演示</span>
+</pre>
+<h3>1.3 避免低效率的字符串拼接</h3>
+
+<p>string+string的拼接方式</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">g</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">d</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">str_a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_a</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">str_a</span> <span class="o">+</span><span class="o">=</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">str_a</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span>
+<span class="c1"># 因为string是不可变对象，每一次拼接的时候都要分配一次内存。</span>
+</pre>
+<p>推荐使用</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">g</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">d</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">str_a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">str_a</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span>
+</pre>
+<blockquote>
+<p><a href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips">Python性能鸡汤</a></p>
+</blockquote>
+
+<h2>2. 补充各类型内存布局</h2>
+
+<p>所有对象基于同一个结构
+<img src="/static/images/docs/python/basic/python-basic-0401-001.png" alt="" /></p>
+
+<blockquote>
+<p>参考：</p>
+
+<ul>
+<li><a href="https://docs.python.org/2/c-api/memory.html">https://docs.python.org/2/c-api/memory.html</a></li>
+<li><a href="http://stackoverflow.com/questions/14546178/does-python-have-a-stack-heap-and-how-is-memory-managed">http://stackoverflow.com/questions/14546178/does-python-have-a-stack-heap-and-how-is-memory-managed</a></li>
+</ul>
+</blockquote>
+
+<h2>3. 为什么要有数据结构</h2>
+
+<ul>
+<li>提供一种方式把元素组织在一起</li>
+<li>根据不同的需求有了这么四个结构：tuple，list，set，dict</li>
+</ul>
+
+<h2>4. tuple元组</h2>
+
+<h3>4.1 元组的特点</h3>
+
+<p>元组不可变</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">tup_a</span><span class="p">)</span>
+<span class="mi">140262709520176</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">tup_a</span><span class="p">)</span>
+<span class="mi">140262709520336</span>
+<span class="c1"># 为何同样内容，tuple的内存地址却不同？</span>
+<span class="c1"># 同样内容，赋值两次改变内存，是因为tuple没有类似于int和string的缓冲池，而int也只有在小整数池中的重复赋值才会保持内存地址不变。</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="n">tup_a</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">tup_a</span><span class="p">)</span>
+<span class="mi">140262710170064</span>
+</pre>
+<p>元组中元素可重复</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre>
+<p>元组中元素不可更改</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">TypeError</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">tuple</span><span class="s1">&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre>
+<p>元组可用于迭代</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tup_a</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+</pre>
+<h3>4.2 元组的创建及操作</h3>
+
+<p>元组的创建</p>
+<pre class="chroma"><span class="c1"># 用逗号分隔一些值，既可创建元组</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 括号里的值用逗号分隔来创建</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">tup_a</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 空元组的创建</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">(</span><span class="p">)</span>
+
+<span class="c1"># 一个值的元组的创建</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="mi">9</span>
+<span class="c1"># 这只是个数字</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="p">)</span>
+<span class="c1"># 添加逗号就会创建一个值的元组</span>
+</pre>
+<p>元组分片</p>
+<pre class="chroma"><span class="c1"># 获取单个元素</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">1</span>
+
+<span class="c1"># 获取元素区间</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1">#tuple[n,m]n代表想获取元素第一个值的index，m是元素区间后的第一个值的index</span>
+
+<span class="c1"># 获取开始到某个元素，或某个元素到最后</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+
+<span class="c1"># 想取最后几个</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="p">]</span>
+<span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</pre>
+<h3>4.3 函数</h3>
+
+<p>count函数</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">3</span>
+</pre>
+<p>tuple函数</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">tuple</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">abc</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">b</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">c</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">tuple</span><span class="p">(</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre>
+<h3>4.4 元组套元组</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="n">tup_a</span><span class="p">,</span> <span class="n">tup_b</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup</span>
+<span class="p">(</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="p">)</span>
+</pre>
+<h3>4.5 pack 和 unpack</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">too</span> <span class="n">many</span> <span class="n">values</span> <span class="n">to</span> <span class="n">unpack</span>
+<span class="c1"># 变量值和值数量不匹配，无法unpack</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">tup_a</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tup_a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="c1"># 把变量打包成一个元组，然后解包赋值给三个变量。 </span>
+</pre>
+<h3>4.6 高级用法</h3>
+
+<p>问题：<code>t = (i for i in range(10))</code>，t是什么？</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x7f9174f9e910</span><span class="o">&gt;</span>
+<span class="c1"># 生成器对象，生成器的内存地址</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="p">)</span>
+<span class="mi">0</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">2</span>        <span class="o">&lt;</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span> <span class="c1"># 第一个元素不是0，因为我们已经进行过.next()操作，0被拿出来了</span>
+<span class="mi">3</span>                <span class="c1"># 生成器的.next()操作不可逆反</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+</pre>
+<blockquote>
+<p>面试必问，实现生成器的三种方式？</p>
+</blockquote>
+
+<h2>5. list的使用</h2>
+
+<h3>5.1 基础使用</h3>
+
+<ol>
+<li>切片、创建等操作同tuple</li>
+<li>增删改查、排序</li>
+</ol>
+
+<p>增加</p>
+<pre class="chroma"><span class="c1"># append,在最后增加</span>
+<span class="c1"># L.append(object) -- append object to end</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># insert,可插入到特定位置</span>
+<span class="c1"># L.insert(index, object) -- insert object before index</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre>
+<p>删除</p>
+<pre class="chroma"><span class="c1"># remove,按内容删除</span>
+<span class="c1"># L.remove(value) -- remove first occurrence of value.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># pop,按index删除</span>
+<span class="c1"># L.pop([index]) -&gt; item -- remove and return item at index (default last).</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre>
+<p>合并</p>
+<pre class="chroma"><span class="c1"># extend,将list扩展</span>
+<span class="c1"># L.extend(iterable) -- extend list by appending elements from the iterable</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t_ext</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">t_ext</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre>
+<p>查找</p>
+<pre class="chroma"><span class="c1"># index,返回该index的值</span>
+<span class="c1"># L.index(value, [start, [stop]]) -&gt; integer -- return first index of value.</span>
+<span class="c1"># 其实就是切片，不演示</span>
+
+<span class="c1"># count，返回该值的个数</span>
+<span class="c1"># L.count(value) -&gt; integer -- return number of occurrences of value</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">4</span>
+</pre>
+<p>排序</p>
+<pre class="chroma"><span class="c1"># sort，排列</span>
+<span class="c1"># L.sort(cmp=None, key=None, reverse=False) -- stable sort *IN PLACE*;</span>
+<span class="c1"># cmp(x, y) -&gt; -1, 0, 1</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># reverse，逆序排列</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="c1"># 按照index逆序排列</span>
+
+<span class="c1"># 用以上操作方法实现LIFO队列（后进先出队列）</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="o">-</span> <span class="o">&gt;</span> <span class="mi">2</span>
+</pre>
+<h3>5.2 注意事项-这货是引用  ？？？不理解</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140072509314616</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">+</span><span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140072509314616</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140072509314760</span>
+<span class="c1"># 为何t += list等同于t = t + list，却一个换了地址而另一个未换地址？</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>   
+<span class="c1"># 可变对象，内容可以被改变，同时内存地址没变</span>
+</pre>
+<blockquote>
+<p><strong>list内存地址答疑</strong></p>
+
+<p>list使用<code>t += [...]</code>的方法时address不变</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140030583557656</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">+</span><span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140030583557656</span>
+</pre>
+<p>原因是在使用&rdquo;t += [&hellip;]&ldquo;方法时相当于调用了t.extend()方法，而此方法属于原地操作不改变地址。</p>
+
+<p>但是list在正常重新赋值的时候地址会变。</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="mi">140030583576192</span>
+</pre></blockquote>
+
+<h3>5.3 列表推导式</h3>
+
+<p>优点：写起来简便，速度略快（但并不会提高效率）</p>
+
+<p>使用情况：生成不复杂的list时，如果业务复杂尽量不要用，原则是保证可读性</p>
+
+<p>语法example：</p>
+
+<ul>
+<li><code>[x for x in iterable object]</code></li>
+<li><code>[x*y for x in iterable object for y in iterable object]</code></li>
+<li><code>[x for x in iterable object if ......]</code></li>
+</ul>
+
+<p>实例example</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span>
+
+<span class="c1"># 推导式</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">result_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">j</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">==</span> <span class="n">result_2</span>
+<span class="bp">True</span>
+</pre>
+<h3>5.4 笔试题陷阱</h3>
+
+<p>题目: 有个列表t, 去掉偶数位的值</p>
+<pre class="chroma"><span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">t</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">t</span>
+</pre>
+<p>请问t是什么</p>
+
+<p>推断过程</p>
+<pre class="chroma">1)此时i为0，v为5，满足条件，删除5
+此时列表更新为[6, 7, 8, 9, 10, 11, 12, 13]
+2)此时i为1，v为7，不满足条件
+此时列表更新为[6, 7, 8, 9, 10, 11, 12, 13]
+3)此时i为2，v为8，满足判断条件，删除8
+此时列表更新为[6, 7, 9, 10, 11, 12, 13]
+4)此时i为3，v为10，不满足条件
+此时列表更新为[6, 7, 9, 10, 11, 12, 13]
+5)此时i为4，v为11，满足条件，删除11
+此时列表更新为[6, 7, 9, 10, 12, 13]
+6)此时i为5，v为13，不满足条件
+此时列表更新为[6, 7, 9, 10, 12, 13]
+</pre>
+<p>实际过程</p>
+<pre class="chroma">&gt;&gt;&gt; t = [5, 6, 7, 8, 9, 10, 11, 12, 13]
+&gt;&gt;&gt; for i,v in enumerate(t):
+...     if i % 2 == 0:
+...         t.remove(v)
+...     print t
+...
+[6, 7, 8, 9, 10, 11, 12, 13]
+[6, 7, 8, 9, 10, 11, 12, 13]
+[6, 7, 9, 10, 11, 12, 13]
+[6, 7, 9, 10, 11, 12, 13]
+[6, 7, 9, 10, 12, 13]
+[6, 7, 9, 10, 12, 13]
+</pre>
+<h2>6. 扩展: enumerate函数</h2>
+
+<p><code>enumerate(iterable[, start]) -&gt; iterator for index, value of iterable</code>
+迭代返回index和value</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

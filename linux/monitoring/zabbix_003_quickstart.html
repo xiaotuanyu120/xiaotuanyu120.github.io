@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>zabbix: usage - quick start</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>28 Nov 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. web管理端操作</h2>
+
+<h3>1.1 登录</h3>
+
+<p>用admin登录web端<code>http://&lt;zabbix-server-ip&gt;/zabbix</code></p>
+
+<blockquote>
+<p><code>zabbix-ser-ip</code>是你服务器ip</p>
+</blockquote>
+
+<h3>1.2 添加host</h3>
+
+<ul>
+<li>点击<code>Configuration</code> -&gt; <code>Hosts</code></li>
+<li>点击<code>Create</code>
+<img src="/static/images/docs/linux/monitoring/zabbix_003-01.png" alt="" /></li>
+</ul>
+
+<blockquote>
+<p>必填参数:</p>
+
+<ul>
+<li>Host name: 主机名称</li>
+<li>Groups: 选择归属的组。zabbix对于权限的管理是以组为单位</li>
+<li>IP address: ip地址（如果需要填写zabbix server的ip地址，要去zabbix_agent的配置文件中把Server标识后面指定这个ip地址）</li>
+</ul>
+</blockquote>
+
+<p>完成后，点击save</p>
+
+<h3>1.3 添加item</h3>
+
+<ul>
+<li>点击<code>Configuration</code> -&gt; <code>Hosts</code>, 找到我们创建的主机，然后点击items链接</li>
+<li>点击<code>create item</code></li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-02.png" alt="" /></p>
+
+<blockquote>
+<p>必填参数</p>
+
+<ul>
+<li>Name: item的名称，这里我们填写CPU load</li>
+<li>Key: key承担了搜集信息的作用，这里我们填写&rdquo;system.cpu.load&rdquo;</li>
+<li>Type of information: 选择Numeric（float），这指定了搜集数据的格式（这个填写错误，会导致items一直显示not support）</li>
+</ul>
+</blockquote>
+
+<p><strong>查看数据</strong></p>
+
+<p>点击<code>monitor</code> -&gt; <code>Latest data</code>，点开other的+</p>
+
+<blockquote>
+<p>需要注意的几点</p>
+
+<ul>
+<li>数据会有延迟</li>
+<li>确保items的那几个基本参数无误</li>
+<li>server上的zabbix-agent和zabbix-server服务开启</li>
+<li>new host的状态必须是Monitored</li>
+<li>item的状态必须是Enabled</li>
+</ul>
+</blockquote>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-03.png" alt="" /></p>
+
+<h3>1.4 增加新的trigger</h3>
+
+<ul>
+<li>configuration -&gt; hosts，点击trigger链接</li>
+<li>点击create trigger</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-04.png" alt="" /></p>
+
+<blockquote>
+<p>最精华的两个参数</p>
+
+<ul>
+<li>name: 这里我们填写&rdquo;CPU load too high on &lsquo;new host&rsquo; for 3 minutes&rdquo;</li>
+<li>expression
+
+<ul>
+<li>这个表达式按照上图所示，可以选择项目，然后自动生成。</li>
+<li>我们表达式的含义，是用我们做的item去检测cpuload，只要这个值大于2，持续180秒以上，就触发此trigger</li>
+<li>表达式语法：<a href="https://www.zabbix.com/documentation/2.0/manual/config/triggers/expression">https://www.zabbix.com/documentation/2.0/manual/config/triggers/expression</a></li>
+</ul></li>
+</ul>
+</blockquote>
+
+<p><strong>查看trigger状态</strong></p>
+
+<ul>
+<li><code>Monitoring</code> -&gt; <code>Triggers</code></li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-05.png" alt="" /></p>
+
+<h2>2. 用户管理</h2>
+
+<h3>2.1 添加用户组</h3>
+
+<ul>
+<li>选择Administration-&gt;users-&gt;create user group</li>
+<li>选择组中的用户</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-06.png" alt="" /></p>
+
+<ul>
+<li>点击permissions tab编辑组权限</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-07.png" alt="" /></p>
+
+<blockquote>
+<p>zabbix中的权限只针对user group，不针对user</p>
+</blockquote>
+
+<h3>2.2 添加用户</h3>
+
+<ul>
+<li>选择Administration-&gt;users-&gt;user group（下拉选择users）</li>
+<li>选择create user</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-08.png" alt="" /></p>
+
+<ul>
+<li>在user tab选择username和usergroup</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-09.png" alt="" /></p>
+
+<ul>
+<li>在media tab添加email通知模式</li>
+</ul>
+
+<p><img src="/static/images/docs/linux/monitoring/zabbix_003-10.png" alt="" /></p>
+
+<h2>3. 客户端安装</h2>
+
+<h3>3.1 源码安装客户端</h3>
+<pre class="chroma">wget http://netix.dl.sourceforge.net/project/zabbix/ZABBIX%20Release%20Candidates/2.0.15rc1/zabbix-2.0.15rc1.tar.gz
+tar zxvf zabbix-2.0.15rc1.tar.gz
+<span class="nb">cd</span> zabbix-2.0.15rc1
+./configure --prefix<span class="o">=</span>/usr/local/zabbix20/ --enable-agent
+make
+make install
+</pre>
+<h3>3.2 客户端配置</h3>
+<pre class="chroma">vim /usr/local/zabbix20/etc/zabbix_agentd.conf
+*********************************
+<span class="nv">Server</span><span class="o">=</span>172.16.2.26    <span class="c1"># 172.16.2.26是zabbix服务端的地址</span>
+<span class="nv">ServerActive</span><span class="o">=</span>172.16.2.26
+<span class="nv">Hostname</span><span class="o">=</span>nagios.example.com
+*********************************
+</pre>
+<h3>3.3 用户创建</h3>
+<pre class="chroma">groupadd zabbix
+useradd -g zabbix zabbix
+</pre>
+<h3>3.4 启动服务&amp;开机启动</h3>
+<pre class="chroma">/usr/local/zabbix20/sbin/zabbix_agentd
+<span class="nb">echo</span> /usr/local/zabbix20/sbin/zabbix_agentd &gt;&gt; /etc/rc.local
+</pre>
+<blockquote>
+<p>错误</p>
+
+<p>**错误信息: **<code>Starting zabbix_agentd: /usr/local/zabbix/sbin/zabbix_agentd: error while loading shared libraries: libiconv.so.2: cannot open shared object file: No such fileor directory</code></p>
+
+<p>**解决方案: **<code>echo /usr/local/lib/ &gt;&gt; /etc/ld.so.conf; ldconfig</code></p>
+</blockquote>
+
+<h3>3.5 firewalld</h3>
+<pre class="chroma">firewall-cmd --permanent --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&#34;172.16.2.26&#34; port port=10050 protocol=tcp accept&#39;</span>
+firewall-cmd --permanent --add-rich-rule<span class="o">=</span><span class="s1">&#39;rule family=ipv4 source address=&#34;172.16.2.26&#34; port port=10050 protocol=udp accept&#39;</span>
+firewall-cmd --reload
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

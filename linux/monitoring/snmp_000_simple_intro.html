@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>snmp: 简要介绍</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Jan 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. what&rsquo;s snmp?</h2>
+
+<p>Simple Network Management Protocol (SNMP) is a popular protocol for network management. It is used for collecting information from, and configuring, network devices, such as servers, printers, hubs, switches, and routers on an Internet Protocol (IP) network.</p>
+
+<h2>2. the snmp version</h2>
+
+<h3>SNMP version 1:</h3>
+
+<ul>
+<li>the oldest flavor.</li>
+<li>Easy to set up - only requires a plaintext community.</li>
+</ul>
+
+<p><strong>downsides</strong></p>
+
+<ul>
+<li>it does not support 64 bit counters, only 32 bit counters</li>
+<li>it has little security.</li>
+</ul>
+
+<h3>SNMP version 2c:</h3>
+
+<ul>
+<li>v2c is identical to version 1, except it adds support for 64 bit counters.</li>
+<li>Most devices support snmp V2c nowadays, and generally do so automatically.</li>
+</ul>
+
+<p><strong>downsides</strong></p>
+
+<ul>
+<li>no</li>
+</ul>
+
+<h3>SNMP version 3:</h3>
+
+<ul>
+<li>adds security to the 64 bit counters.</li>
+<li>SNMP version 3 adds both encryption and authentication, which can be used together or separately.</li>
+<li>Setup is more complex than just defining a community string</li>
+</ul>
+
+<h2>3. SNMP basic components and their functionalities</h2>
+
+<p>SNMP consists of</p>
+
+<ul>
+<li>SNMP Manager
+
+<ul>
+<li>A manager or management system is a separate entity that is responsible to communicate with the SNMP agent implemented network devices. This is typically a computer that is used to run one or more network management systems.</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>SNMP Manager&rsquo;s key functions</p>
+
+<ul>
+<li>Queries agents</li>
+<li>Gets responses from agents</li>
+<li>Sets variables in agents</li>
+<li>Acknowledges asynchronous events from agents</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>Managed devices
+
+<ul>
+<li>A managed device or the network element is a part of the network that requires some form of monitoring and management e.g. routers, switches, servers, workstations, printers, UPSs, etc&hellip;</li>
+</ul></li>
+<li>SNMP agent
+
+<ul>
+<li>The agent is a program that is packaged within the network element. Enabling the agent allows it to collect the management information database from the device locally and makes it available to the SNMP manager, when it is queried for. These agents could be standard (e.g. Net-SNMP) or specific to a vendor (e.g. HP insight agent)</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>SNMP agent&rsquo;s key functions</p>
+
+<ul>
+<li>Collects management information about its local environment</li>
+<li>Stores and retrieves management information as defined in the MIB.</li>
+<li>Signals an event to the manager.</li>
+<li>Acts as a proxy for some non-SNMP manageable network node.</li>
+</ul>
+</blockquote>
+
+<ul>
+<li><p>Basic SNMP Communication Diagram
+<img src="/static/images/docs/linux/monitoring/snmp_000-01.gif" alt="" /></p></li>
+
+<li><p>Management Information Database Otherwise called as Management Information Base (MIB)</p>
+
+<ul>
+<li>Every SNMP agent maintains an information database describing the managed device parameters. The SNMP manager uses this database to request the agent for specific information and further translates the information as needed for the Network Management System (NMS). This commonly shared database between the Agent and the Manager is called Management Information Base (MIB).
+Typically these MIB contains standard set of statistical and control values defined for hardware nodes on a network. SNMP also allows the extension of these standard values with values specific to a particular agent through the use of private MIBs.
+In short, MIB files are the set of questions that a SNMP Manager can ask the agent. Agent collects these data locally and stores it, as defined in the MIB. So, the SNMP Manager should be aware of these standard and private questions for every type of agent.</li>
+</ul></li>
+</ul>
+
+<h2>4. whats oid and mid</h2>
+
+<p><strong>MIB structure and Object Identifier (Object ID or OID)</strong></p>
+
+<p>Management Information Base (MIB) is a collection of Information for managing network element. The MIBs comprises of managed objects identified by the name Object Identifier (Object ID or OID).</p>
+
+<p>Each Identifier is unique and denotes specific characteristics of a managed device. When queried for, the return value of each identifier could be different e.g. Text, Number, Counter, etc&hellip;</p>
+
+<p>There are two types of Managed Object or Object ID: Scalar and Tabular. They could be better understandable with an example</p>
+
+<p>Scalar: Device&rsquo;s vendor name, the result can be only one. (As definition says: &ldquo;Scalar Object define a single object instance&rdquo;)</p>
+
+<p>Tabular: CPU utilization of a Quad Processor, this would give me a result for each CPU separately, means there will be 4 results for that particular Object ID. (As definition says: &ldquo;Tabular object defines multiple related object instance that are grouped together in MIB tables&rdquo;)</p>
+
+<p>Every Object ID is organized hierarchically in MIB. The MIB hierarchy can be represented in a tree structure with individual variable identifier.</p>
+
+<p>A typical object ID will be a dotted list of integers. For example, the OID in RFC1213 for &ldquo;sysDescr&rdquo; is .1.3.6.1.2.1.1.1</p>
+
+<p><strong>MIB Tree Diagram</strong>
+<img src="/static/images/docs/linux/monitoring/snmp_000-02.jpeg" alt="" /></p>
+
+<h2>5. COMMONDS</h2>
+
+<p><strong>Basic commands of SNMP</strong></p>
+
+<p>The simplicity in information exchange has made the SNMP as widely accepted protocol. The main reason being concise set of commands, here are they listed below:</p>
+
+<ul>
+<li>GET: The GET operation is a request sent by the manager to the managed device. It is performed to retrieve one or more values from the managed device.</li>
+<li>GET NEXT: This operation is similar to the GET. The significant difference is that the GET NEXT operation retrieves the value of the next OID in the MIB tree.</li>
+<li>GET BULK: The GETBULK operation is used to retrieve voluminous data from large MIB table.</li>
+<li>SET: This operation is used by the managers to modify or assign the value of the Managed device.</li>
+<li>TRAPS: Unlike the above commands which are initiated from the SNMP Manager, TRAPS are initiated by the Agents. It is a signal to the SNMP Manager by the Agent on the occurrence of an event.</li>
+<li>INFORM: This command is similar to the TRAP initiated by the Agent, additionally INFORM includes confirmation from the SNMP manager on receiving the message.</li>
+<li>RESPONSE: It is the command used to carry back the value(s) or signal of actions directed by the SNMP Manager.</li>
+</ul>
+
+<p><strong>Typical SNMP communication</strong></p>
+
+<p>Being the part of TCP? IP protocol suite, the SNMP messages are wrapped as User Datagram Protocol (UDP) and intern wrapped and transmitted in the Internet Protocol. The following diagram will illustrate the four-layer model developed by Department of Defense (DoD).</p>
+
+<p><img src="/static/images/docs/linux/monitoring/snmp_000-03.gif" alt="" /></p>
+
+<p><strong>GET? GET NEXT? GET BULK? SET</strong></p>
+
+<p><img src="/static/images/docs/linux/monitoring/snmp_000-04.gif" alt="" /></p>
+
+<p><strong>TRAP</strong></p>
+
+<p><img src="/static/images/docs/linux/monitoring/snmp_000-05.gif" alt="" /></p>
+
+<p><strong>INFORM</strong></p>
+
+<p><img src="/static/images/docs/linux/monitoring/snmp_000-06.gif" alt="" /></p>
+
+<p>By default SNMP uses port 161 and TRAP? INFORM uses port 162 for communication.</p>
+
+<p><strong>SNMP versions</strong></p>
+
+<p>Since the inception SNMP, has gone through significant upgrades. However SNMP v1 and v2c are the most implemented versions of SNMP. Support to SNMP v3 has recently started catching up as it is more secured when compare to its older versions, but still it has not reached considerable market share.</p>
+
+<p><strong>SNMPv1:</strong></p>
+
+<p>This is the first version of the protocol, which is defined in RFCs 1155 and 1157</p>
+
+<p><strong>SNMPv2c:</strong></p>
+
+<p>This is the revised protocol, which includes enhancements of SNMPv1 in the areas of protocol packet types, transport mappings, MIB structure elements but using the existing SNMPv1 administration structure (&ldquo;community based&rdquo; and hence SNMPv2c). It is defined in RFC 1901, RFC 1905, RFC 1906, RFC 2578.</p>
+
+<p><strong>SNMPv3:</strong></p>
+
+<p>SNMPv3 defines the secure version of the SNMP. SNMPv3 also facilitates remote configuration of the SNMP entities. It is defined by RFC 1905, RFC 1906, RFC 3411, RFC 3412, RFC 3414, RFC 3415.</p>
+
+<p>Though each version had matured towards rich functionalities, additional emphasis was given to the security aspect on each upgrade. Here is a small clip on each editions security aspect.</p>
+<pre class="chroma">SNMP v1    Community-based security
+
+SNMP v2c   Community-based security
+
+SNMP v2u   User-based security
+
+SNMP v2    Party-based security
+
+SNMP v3    User-based security
+</pre>
+<p>Other useful links</p>
+
+<ul>
+<li><a href="https://www.manageengine.com/network-monitoring/help/userguide/install_snmp_windows.html">How to Install and configure Windows device for SNMP?</a></li>
+<li><a href="https://www.manageengine.com/network-monitoring/help/userguide/install_snmp_linux.html">How to Install and configure Linux device for SNMP?</a></li>
+<li><a href="https://www.manageengine.com/network-monitoring/help/userguide/install_snmp_solaris.html">How to Install and configure Solaris device for SNMP?</a></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

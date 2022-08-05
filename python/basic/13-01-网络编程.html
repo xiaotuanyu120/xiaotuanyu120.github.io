@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
               <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
-            </li>
-            <li>
-              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
             </li>
           </ul>
 
@@ -96,15 +96,32 @@
                   <a href="/python/advance/index.html">advance</a>
                 </li>
                 <li>
-                  <a href="/python/advanced/index.html">advanced</a>
-                </li>
-                <li>
-                  <a href="/python/advance/index.html">advance</a>
-                </li>
-                <li>
                   <a href="/python/basic/index.html">basic</a>
                   <ul>
-                    <li><a href="/python/basic/13-01-网络编程.html">13-网络编程</a></li>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
                   </ul>
                 </li>
                 <li>
@@ -139,7 +156,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>13-网络编程</h2>
+      <h2>网络编程</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -149,87 +166,73 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>13.1 网络基础</h3>
+<h2>1. 网络基础</h2>
 
-<p>概念：IP, PORT, DOMAIN, URL(uniform resource locator), API(application program interface)
-通讯协议：tcp, udp
-常用协议：http, smtp, ssh, telnet &hellip;</p>
+<p>概念：IP, PORT, DOMAIN, URL(uniform resource locator), API(application program interface)</p>
+
+<p>通讯协议：tcp, udp</p>
+
+<p>常用协议：http, smtp, ssh, telnet &hellip;</p>
 
 <p>参考：<a href="http://blog.csdn.net/jmq_0000/article/details/7091142">http://blog.csdn.net/jmq_0000/article/details/7091142</a></p>
 
-<hr />
+<h2>2. socket编程</h2>
 
-<h3>13.2 socket编程</h3>
+<h3>2.1 client/server</h3>
 
-<h4>13.2.1 client/server</h4>
+<p>文件: <code>server.py</code></p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
 
-<p>文件: <code>server.py</code>
-&ldquo;` python# coding:utf-8</p>
+<span class="kn">import</span> <span class="nn">socket</span>
 
-<p>import socket</p>
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="c1"># 各项参数意义:</span>
+<span class="c1"># socket.socket(family, type)</span>
+<span class="c1"># family:</span>
+<span class="c1">#   - AF_INET, IPV4-Address</span>
+<span class="c1">#   - AF_UNIX, Local communication</span>
+<span class="c1"># type:</span>
+<span class="c1">#   - SOCK_STREAM, TCP</span>
+<span class="c1">#   - SOCK_DGRAM, UDP</span>
+<span class="c1">#   - SOCK_RAW, 原始数据包</span>
 
-<p>s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</p>
+<span class="n">host</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">127.0.0.1</span><span class="s1">&#39;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">8881</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span><span class="p">)</span>
+<span class="c1"># 对于ipv4 socket，bind函数接受一个ip地址和端口组成的tuple</span>
 
-<h1>各项参数意义:</h1>
+<span class="k">print</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># socket.socket.listen([backlog])</span>
+<span class="c1"># backlog用来限定同时处理的连接</span>
+<span class="c1"># backlog最小是0，如果传入的值小于0，则修正为0</span>
 
-<h1>socket.socket(family, type)</h1>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">wait</span><span class="s1">&#39;</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="p">)</span>
+    <span class="c1"># socket.socket.accept()返回(socket object, address info)</span>
+    <span class="c1"># 对于ipv4的socket连接，address info为ip地址和端口的tuple</span>
 
-<h1>family:</h1>
-
-<h1>- AF_INET, IPV4-Address</h1>
-
-<h1>- AF_UNIX, Local communication</h1>
-
-<h1>type:</h1>
-
-<h1>- SOCK_STREAM, TCP</h1>
-
-<h1>- SOCK_DGRAM, UDP</h1>
-
-<h1>- SOCK_RAW, 原始数据包</h1>
-
-<p>host = &lsquo;127.0.0.1&rsquo;
-port = 8881
-s.bind((host, port))</p>
-
-<h1>对于ipv4 socket，bind函数接受一个ip地址和端口组成的tuple</h1>
-
-<p>print (host, port)
-s.listen(5)</p>
-
-<h1>socket.socket.listen([backlog])</h1>
-
-<h1>backlog用来限定同时处理的连接</h1>
-
-<h1>backlog最小是0，如果传入的值小于0，则修正为0</h1>
-
-<p>while True:</p>
-<pre class="chroma">print &#39;wait&#39;
-c, addr = s.accept()
-# socket.socket.accept()返回(socket object, address info)
-# 对于ipv4的socket连接，address info为ip地址和端口的tuple
-
-print &#39;Got connection from&#39;, addr
-c.send(&#39;Thank you for connecting&#39;)
-c.close()
-</pre><pre class="chroma">
-文件: `client.py`
-``` python
-# coding:utf-8
-
-import socket
-
-s = socket.socket()
-
-host = &#39;127.0.0.1&#39;
-port = 8881
-
-s.connect((host, port))
-print s.recv(1024)
-# recv(bufsize[, flags])
-# bufsize指定了一次可以传输数据的最大数量
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Got connection from</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">addr</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Thank you for connecting</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
 </pre>
-<h4>13.2.2 browser/server模式</h4>
+<p>文件: <code>client.py</code></p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">127.0.0.1</span><span class="s1">&#39;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">8881</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="c1"># recv(bufsize[, flags])</span>
+<span class="c1"># bufsize指定了一次可以传输数据的最大数量</span>
+</pre>
+<h3>2.2 browser/server模式</h3>
 
 <p>文件: <code>simple_webserver.py</code></p>
 <pre class="chroma"><span class="c1"># coding:utf-8</span>
@@ -287,9 +290,7 @@ print s.recv(1024)
 <p>和c/s端的主要区别就是返回的内容CONTENT中增加了http的header</p>
 </blockquote>
 
-<hr />
-
-<h3>13.3 使用内置的SocketServer编程</h3>
+<h2>3. 使用内置的SocketServer编程</h2>
 <pre class="chroma"><span class="c1"># coding:utf-8</span>
 
 <span class="kn">from</span> <span class="nn">SocketServer</span> <span class="kn">import</span> <span class="n">TCPServer</span><span class="p">,</span> <span class="n">StreamRequestHandler</span>
@@ -305,9 +306,7 @@ print s.recv(1024)
 <span class="n">server</span> <span class="o">=</span> <span class="n">TCPServer</span><span class="p">(</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">10002</span><span class="p">)</span><span class="p">,</span> <span class="n">Handler</span><span class="p">)</span>
 <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">(</span><span class="p">)</span>
 </pre>
-<hr />
-
-<h3>13.4 urllib的使用</h3>
+<h2>4 urllib的使用</h2>
 
 <p>urllib vs urllib2</p>
 <pre class="chroma"><span class="c1"># coding:utf-8</span>
@@ -318,34 +317,67 @@ print s.recv(1024)
 <span class="n">page</span> <span class="o">=</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">http://m.sohu.com</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">page</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
 </pre>
-<p>url介绍：
-<a href="https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B">https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B</a>
-<a href="http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95">http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95</a></p>
+<p>url介绍：</p>
 
-<p>推荐：requests
-<a href="http://docs.python-requests.org/en/latest/">http://docs.python-requests.org/en/latest/</a></p>
+<ul>
+<li><a href="https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B">https://www.baidu.com/s?wd=python%E6%95%99%E7%A8%8B</a></li>
+<li><a href="http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95">http://news.baidu.com/ns?cl=2&amp;rn=20&amp;tn=news&amp;word=%E6%B5%8B%E8%AF%95</a></li>
+</ul>
 
-<hr />
+<p>推荐：requests</p>
 
-<h3>13.5 处理并发的机制介绍</h3>
+<ul>
+<li><a href="http://docs.python-requests.org/en/latest/">http://docs.python-requests.org/en/latest/</a></li>
+</ul>
 
-<p>三种：多进程（fork），多线程（Thread），异步IO（epoll/select)</p>
+<h2>5. 处理并发的机制介绍</h2>
 
-<p>使用SocketServer提供的Fork， Thread机制</p>
+<p>三种：</p>
+
+<ul>
+<li>多进程（fork）</li>
+<li>多线程（Thread）</li>
+<li>异步IO（epoll/select)</li>
+</ul>
+
+<p>使用SocketServer提供的Fork， Thread机制。</p>
 
 <p>http server:</p>
 
-<p>nginx 多进程模式  epoll
-apache  多线程</p>
+<ul>
+<li>nginx 多进程模式  epoll</li>
+<li>apache  多线程</li>
+</ul>
 
-<hr />
-
-<h3>13.6 手工fork和thread的使用</h3>
+<h2>6. 手工fork和thread的使用</h2>
 
 <p>Python提供多进程的包multiprocessing，可以像写线程一样写多进程代码。</p>
 
-<p>推荐书籍《Python网络编程基础》
-代码：<a href="https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21">https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21</a></p>
+<blockquote>
+<p>推荐书籍《Python网络编程基础》</p>
+</blockquote>
+
+<p>代码：<a href="https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21">https://coding.net/u/the5fire/p/PyCode/git/tree/webserver/21</a></p>
+
+<h2>7. 扩展：socket补充说明</h2>
+
+<h3>7.1 socket几个重要的接口</h3>
+
+<ul>
+<li>socket.bind</li>
+<li>socket.listen</li>
+<li>socket.setblock</li>
+<li>socket.setsockopt</li>
+</ul>
+
+<h3>7.2 thread几个重要的接口</h3>
+
+<ul>
+<li>Thread.start</li>
+<li>Thread.run</li>
+<li>Thread.join(timeout)</li>
+<li>Thread.setDeamon(1)</li>
+</ul>
 
     </div>
 

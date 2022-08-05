@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>zabbix: 实践 - nginx监控</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>01 Dec 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. NGINX开启状态收集</h2>
+
+<h3>1.1 查看nginx编译时是否将状态模块编译</h3>
+<pre class="chroma">/usr/local/nginx/sbin/nginx -V
+nginx: nginx version: nginx/1.0.0
+nginx: TLS SNI support enabled
+nginx: configure arguments: --user<span class="o">=</span>www --group<span class="o">=</span>www --prefix<span class="o">=</span>/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module
+</pre>
+<h3>1.2 配置nginx status访问页面</h3>
+<pre class="chroma">vim /usr/local/nginx/conf/nginx.conf
+************************************
+<span class="c1">## 放在server{}（server_name localhost）块中</span>
+   location ~ /nginx_status <span class="o">{</span>
+            stub_status on<span class="p">;</span>
+            access_log off<span class="p">;</span>
+            allow 127.0.0.1<span class="p">;</span>
+            deny all<span class="p">;</span>
+   <span class="o">}</span>
+***************************************
+<span class="c1"># 重启服务</span>
+/usr/local/nginx/sbin/nginx -s reload
+</pre>
+<h3>1.3 访问监控页面</h3>
+<pre class="chroma">curl http://127.0.0.1/nginx_status
+Active connections: <span class="m">3491</span>
+server accepts handled requests
+ <span class="m">1159391</span> <span class="m">1159391</span> <span class="m">1262564</span>
+Reading: <span class="m">85</span> Writing: <span class="m">3406</span> Waiting: <span class="m">0</span>
+ 
+<span class="c1"># 状态项详解：</span>
+<span class="c1"># Active connections，活跃连接</span>
+<span class="c1"># server accepts handled requests，成功处理的连接数，成功创建的握手数，总共处理的请求数</span>
+<span class="c1"># Reading，读取到客户端的Header数</span>
+<span class="c1"># Writing，返回给客户端的Header数</span>
+<span class="c1"># Waiting，驻留连接（在keep-alive开启时，等于active-(reading+writing)</span>
+</pre>
+<blockquote>
+<p>访问效率很高，请求被很快处理的情况下，waiting数多是正常的，代表了已成功建立起连接，如果reading和writing数比较多，说明并发比较大，正在处理连接请求。</p>
+</blockquote>
+
+<h3>1.4 创建状态收集脚本</h3>
+<pre class="chroma">vim nginx_status.sh
+***********************************
+<span class="c1">#!/bin/bash</span>
+ 
+<span class="k">case</span> <span class="nv">$1</span> in
+  active<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;/Active/ {print $3}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  accepts<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;NR==3 {print $1}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  handled<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;NR==3 {print $2}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  requests<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;NR==3 {print $3}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  reading<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;/Reading/ {print $2}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  writing<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;/Writing/ {print $4}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  waiting<span class="o">)</span>
+    curl -s http://127.0.0.1/nginx_status <span class="p">|</span> awk <span class="s1">&#39;/Waiting/ {print $6}&#39;</span> <span class="p">;</span><span class="p">;</span>
+  *<span class="o">)</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="s2">Usage: </span><span class="nv">$0</span><span class="s2"> { active | accepts | handled | requests | reading | writing | waiting }</span><span class="s2">&#34;</span> <span class="p">;</span><span class="p">;</span>
+<span class="k">esac</span>
+***********************************
+</pre>
+<h2>2. ZABBIX配置</h2>
+
+<h3>2.1 添加自定义的key配置文件</h3>
+<pre class="chroma">vim /usr/local/zabbix20/etc/zabbix_agentd.conf.d/nginx_status.conf
+*****************************************
+<span class="c1">## Nginx_status</span>
+ 
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.active,/root/sh/nginx_status.sh active
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.accepts,/root/sh/nginx_status.sh accepts
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.handled,/root/sh/nginx_status.sh handled
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.requests,/root/sh/nginx_status.sh requests
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.reading,/root/sh/nginx_status.sh reading
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.writing,/root/sh/nginx_status.sh writing
+<span class="nv">UserParameter</span><span class="o">=</span>nginx.waiting,/root/sh/nginx_status.sh waiting
+*****************************************
+
+vim /usr/local/zabbix20/etc/zabbix_agentd.conf
+*****************************************
+<span class="nv">Include</span><span class="o">=</span>/usr/local/zabbix20/etc/zabbix_agentd.conf.d/nginx_status.conf
+*****************************************
+</pre>
+<h3>2.2 重启zabbix_agentd</h3>
+<pre class="chroma">/usr/local/zabbix20/sbin/zabbix_agentd restart
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

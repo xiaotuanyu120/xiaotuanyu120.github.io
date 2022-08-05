@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+            <li>
+              <a href="/linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3-自省.html">函数3</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">13-网络编程</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>函数3</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>14 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 内置函数</h2>
+
+<h3>1.1 常用的内置函数</h3>
+
+<ul>
+<li><code>type(object) -&gt; the object's type</code></li>
+</ul>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">cache</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">dict</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+</pre>
+<ul>
+<li><code>isinstance(object, class-or-type-or-tuple) -&gt; bool</code></li>
+</ul>
+
+<p>Return whether an object is an instance of a class or of a subclass thereof.
+With a type as second argument, return whether that is the object&rsquo;s type.
+The form using a tuple, isinstance(x, (A, B, &hellip;)), is a shortcut for
+isinstance(x, A) or isinstance(x, B) or &hellip; (etc.).</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="nb">dict</span><span class="p">)</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span><span class="nb">list</span><span class="p">)</span>
+<span class="bp">False</span>
+</pre>
+<ul>
+<li><code>callable(object) -&gt; bool</code></li>
+</ul>
+
+<p>Return whether the object is callable (i.e., some kind of function).
+Note that classes are callable, as are instances with a <strong>call</strong>() method.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">abs</span><span class="p">)</span>
+<span class="bp">True</span>
+
+<span class="c1"># 类也是callable的</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">first_class</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">class test</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">i</span> <span class="o">=</span> <span class="mi">123456</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">first_class</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">classobj</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">callable</span><span class="p">(</span><span class="n">first_class</span><span class="p">)</span>
+<span class="bp">True</span>
+</pre>
+<ul>
+<li><code>getattr(object, name[, default]) -&gt; value</code></li>
+</ul>
+
+<p>Get a named attribute from an object; getattr(x, &lsquo;y&rsquo;) is equivalent to x.y.
+When a default argument is given, it is returned when the attribute doesn&rsquo;t
+exist; without it, an exception is raised in that case.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">good morning</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">check_attr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">if</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__</span><span class="s1">&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">result</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">check_attr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">_formatter_field_name_split</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">_formatter_parser</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">capitalize</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">center</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">count</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">decode</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">encode</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">endswith</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">expandtabs</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">find</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">format</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">index</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">isalnum</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">isalpha</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">isdigit</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">islower</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">isspace</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">istitle</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">isupper</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">join</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ljust</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">lower</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">lstrip</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">partition</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">replace</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rfind</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rindex</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rjust</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rpartition</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rsplit</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rstrip</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">split</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">splitlines</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">startswith</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">strip</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">swapcase</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">title</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">translate</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">upper</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">zfill</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="p">)</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">morning</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">split_t</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">split</span><span class="s1">&#39;</span><span class="p">)</span>            <span class="c1">#相当于split_t = t.split</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">split_t</span>
+<span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">split</span> <span class="n">of</span> <span class="nb">str</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f50fdf824c8</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">split_t</span><span class="p">(</span><span class="p">)</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">morning</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="c1"># 获取对象的属性，用于自省（反射）</span>
+</pre>
+<ul>
+<li><p><code>dir([object]) -&gt; list of strings</code></p>
+
+<p>If called without an argument, return the names in the current scope.
+Else, return an alphabetized list of names comprising (some of) the attributes
+of the given object, and of attributes reachable from it.
+If the object supplies a method named <strong>dir</strong>, it will be used; otherwise
+the default dir() logic is used and returns:
+  for a module object: the module&rsquo;s attributes.
+  for a class object:  its attributes, and recursively the attributes of its bases.
+  for any other object: its attributes, its class&rsquo;s attributes, and
+recursively the attributes of its class&rsquo;s base classes.</p></li>
+</ul>
+<pre class="chroma"><span class="c1"># 常用于自省，用于遍历对象的属性</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">check_attr</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="n">method</span>  <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">__</span><span class="s1">&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">callable</span><span class="p">(</span><span class="n">method</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>             <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">check_attr</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">bit_length</span>
+<span class="n">conjugate</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">string</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">check_attr</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">_formatter_field_name_split</span>
+<span class="n">_formatter_parser</span>
+<span class="n">capitalize</span>
+<span class="n">center</span>
+<span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span>
+<span class="n">upper</span>
+<span class="n">zfill</span>
+</pre>
+<blockquote>
+<p>深入学习自省可以先预习一下：
+Inspect 模块的使用 <a href="https://docs.python.org/2/library/inspect.html">https://docs.python.org/2/library/inspect.html</a></p>
+</blockquote>
+
+<ul>
+<li><code>sum(sequence[, start]) -&gt; value</code></li>
+</ul>
+
+<p>Returns the sum of a sequence of numbers (NOT strings) plus the value
+of parameter &lsquo;start&rsquo; (which defaults to 0).  When the sequence is
+empty, returns start.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">)</span>
+<span class="mi">190</span>
+</pre>
+<ul>
+<li><code>max(iterable[, key=func]) -&gt; value</code></li>
+</ul>
+
+<p>max(a, b, c, &hellip;[, key=func]) -&gt; value</p>
+
+<p>With a single iterable argument, return its largest item.
+With two or more arguments, return the largest argument.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">max</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">)</span>
+<span class="mi">9</span>
+</pre>
+<ul>
+<li>min(iterable[, key=func]) -&gt; value
+min(a, b, c, &hellip;[, key=func]) -&gt; value</li>
+</ul>
+
+<p>With a single iterable argument, return its smallest item.
+With two or more arguments, return the smallest argument.</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>min(range(10))
+0</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<p>关键内置函数</p>
+
+<ul>
+<li><p>filter(function or None, sequence) -&gt; list, tuple, or string
+Return those items of sequence for which function(item) is true.<br />
+If function is None, return the items that are true.<br />
+If sequence is a tuple or string, return the same type, else return a list.</p>
+
+<h2>返回类型</h2>
+
+<h1>tuple返回tuple</h1>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>t = (1, 2, 3, 4, 0)
+filter(None,t)
+(1, 2, 3, 4)
+#string返回string
+t = &lsquo;test string&rsquo;
+filter(None,t)
+&lsquo;test string&rsquo;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+
+<p>#其他均返回list</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>t = {1, 2, &rsquo;s&rsquo;, &lsquo;b&rsquo;}
+filter(None,t)
+[1, &rsquo;s&rsquo;, &lsquo;b&rsquo;, 2]</p>
+
+<p>t = {1:2, &rsquo;s&rsquo;: &lsquo;b&rsquo;}
+filter(None,t)
+[1, &rsquo;s&rsquo;]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<h2>INSTANCE</h2>
+
+<h1>function处可以用lambda函数</h1>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>t = range(15)
+filter(lambda x: x &lt; 10, t)                      #获取小于10的
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+filter(lambda x: x % 2 == 0, t)                  #获取偶数
+[0, 2, 4, 6, 8, 10, 12, 14]</p>
+
+<h1>url分析</h1>
+
+<p>url = [&lsquo;www.baidu.com&rsquo;, &lsquo;<a href="http://www.sina.com'">http://www.sina.com&rsquo;</a>, &lsquo;<a href="https://www.apple.com'">https://www.apple.com&rsquo;</a>]
+filter(lambda x: x.startswith(&lsquo;http&rsquo;), url)
+[&rsquo;<a href="http://www.sina.com'">http://www.sina.com&rsquo;</a>, &lsquo;<a href="https://www.apple.com'">https://www.apple.com&rsquo;</a>]
+filter(lambda x: &lsquo;www&rsquo; in x, url)
+[&lsquo;www.baidu.com&rsquo;, &lsquo;<a href="http://www.sina.com'">http://www.sina.com&rsquo;</a>, &lsquo;<a href="https://www.apple.com'">https://www.apple.com&rsquo;</a>]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<ul>
+<li><p>zip(seq1 [, seq2 [&hellip;]]) -&gt; [(seq1[0], seq2[0] &hellip;), (&hellip;)]
+Return a list of tuples, where each tuple contains the i-th element
+from each of the argument sequences.  The returned list is truncated
+in length to the length of the shortest argument sequence.</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>zip(range(1, 10), range(11, 20), range(21, 30), range(31, 40))
+[(1, 11, 21, 31), (2, 12, 22, 32), (3, 13, 23, 33), (4, 14, 24, 34), (5, 15, 25, 35), (6, 16, 26, 36), (7, 17, 27, 37), (8, 18, 28, 38), (9, 19, 29, 39)]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+
+<li><p>map(function, sequence[, sequence, &hellip;]) -&gt; list
+Return a list of the results of applying the function to the items of
+the argument sequence(s).  If more than one sequence is given, the
+function is called with an argument list consisting of the corresponding
+item of each sequence, substituting None for missing values when not all
+sequences have the same length.  If the function is None, return a list of
+the items of the sequence (or a list of tuples if more than one sequence).</p>
+
+<h1>1个参数</h1>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>map(lambda x:x*10, range(10))
+[0, 10, 20, 30, 40, 50, 60, 70, 80, 90]</p>
+
+<h1>多个参数</h1>
+
+<p>map(lambda x,y:x*y, range(10), range(10, 20))  #两个sequence的元素数必须一致
+[0, 11, 24, 39, 56, 75, 96, 119, 144, 171]
+map(lambda x,y,z:x*y*z, range(10), range(10, 20), range(20, 30))
+[0, 231, 528, 897, 1344, 1875, 2496, 3213, 4032, 4959]
+map(lambda x,y:(x,y), range(-10,0), range(-5,5))
+[(-10, -5), (-9, -4), (-8, -3), (-7, -2), (-6, -1), (-5, 0), (-4, 1), (-3, 2), (-2, 3), (-1, 4)]
+#可以通过多进行库，实现并行（后续会讲到）</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+
+<li><p>reduce(function, sequence[, initial]) -&gt; value
+Apply a function of two arguments cumulatively to the items of a sequence,
+from left to right, so as to reduce the sequence to a single value.
+For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5]) calculates
+((((1+2)+3)+4)+5).  If initial is present, it is placed before the items
+of the sequence in the calculation, and serves as a default when the
+sequence is empty.</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>reduce(lambda x,y: x+y ,range(5))               # 求累加
+10
+reduce(lambda x,y: x+y<strong>2 ,range(5))            # 求平方和
+30
+reduce(lambda x,y: x+y</strong>2 ,[2, 3, 4])           # 平方和不对，因为2没有平方<br />
+27
+reduce(lambda x,y: x+y**2 ,[2, 3, 4],0)                    # 可以赋初始值给函数
+29
+参考：
+<a href="https://github.com/StevenSLXie/Tutorials-for-Web-Developers/blob/master/Python%E7%9A%84map%7Cfilter%7Creduce%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%BE%8B%E4%B8%BE.md">https://github.com/StevenSLXie/Tutorials-for-Web-Developers/blob/master/Python%E7%9A%84map%7Cfilter%7Creduce%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E4%BE%8B%E4%B8%BE.md</a></p>
+</blockquote>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+
+<h2>2. 如何实现python语言的威力：</h2>
+
+<p>=================================</p>
+
+<ul>
+<li>1. 对内置函数掌握多少。</li>
+<li>2. 优秀的库</li>
+</ul>
+
+<h2>3. 函数装饰器(DECORATOR)</h2>
+
+<p>===================================</p>
+
+<h2>准备知识</h2>
+
+<p>1、函数是一个对象，可以赋值给一个变量</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>def shout(word=&lsquo;yes&rsquo;):
+&hellip;     return word.capitalize()+&lsquo;!&rsquo;
+&hellip;
+loudly = shout                     # function 是一个object，可以被引用
+del shout                          # 删掉原function &lsquo;shout&rsquo;
+loudly                             # loudly 依然可以使用
+<function shout at 0x7f50fdefdde8>
+loudly()
+&lsquo;Yes!&rsquo;</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<p>2、函数可以在另外一个函数内部被定义，而且可以传参数进去，可以被返回</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>def wrapper():
+&hellip;     a = 1
+&hellip;     def inner(x=1):
+&hellip;         result = x * a
+&hellip;         return result
+&hellip;     return inner
+&hellip;
+var = wrapper()
+var
+<function inner at 0x7f50fdf058c0>
+var(12)
+12
+inner(5)                      #里面的function不可以直接调用
+Traceback (most recent call last):
+  File &ldquo;<stdin>&rdquo;, line 1, in <module>
+NameError: name &lsquo;inner&rsquo; is not defined</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<p>3、function可以作为一个参数传入另外一个function使用</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>def wrapper(func):
+&hellip;     def inner(x_new):
+&hellip;         func(x_new)
+&hellip;         return x_new * 2
+&hellip;     return inner
+&hellip;
+def multiplication(x):
+&hellip;     print &ldquo;number is :%s&rdquo; % x
+&hellip;     print &ldquo;double it, result is:&rdquo;
+&hellip;
+multiplication = wrapper(multiplication)
+multiplication(20)
+number is :20
+double it, result is:
+40
+现在准备知识我们已经回顾完毕；
+其实，decorator就是一个wrapper,这意味着，你可以在不改变一个function本身的同时可以在它之前或之后添加代码。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<h2>DECORATOR</h2>
+
+<h2>上面的函数我们可以修改为</h2>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>def wrapper(func):
+&hellip;     def inner(x_new):
+&hellip;         func(x_new)
+&hellip;         return x_new * 2
+&hellip;     return inner
+&hellip;
+@wrapper                       #相当于new_multi = wrapper(new_multi)
+&hellip; def new_multi(x):
+&hellip;     print &ldquo;number is :%s&rdquo; % x
+&hellip;     print &ldquo;double it, result is:&rdquo;
+&hellip;
+new_multi(20)
+number is :20
+double it, result is:
+40</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<h2>为了方便接收参数，innner()的形参可以设定为inner(*args, **kwargs)，然后再把*args转给func的参数</h2>
+
+<p>课外参考
+ <a href="http://blog.xiayf.cn/2013/01/04/Decorators-and-Functional-Python/">http://blog.xiayf.cn/2013/01/04/Decorators-and-Functional-Python/</a></p>
+
+<h2>4. 递归和尾递归</h2>
+
+<p>===================================
+5.7.1 概念
+递归：程序（函数）自己调用自己
+尾递归：如果一个函数中所有递归形式的调用都出现在函数的末尾，我们称这个递归函数是尾递归的。</p>
+
+<p>5.7.2 实例体验
+斐波那契数列：
+1， 1， 2， 3， 5， 8， 13， 21 ..
+当前值等于前两个值的和
+def fib(n):
+if n&lt;=2:
+return 1
+else:
+return fib(n-1)+fib(n-2);
+扩展阅读： <a href="http://www.cnblogs.com/figure9/archive/2010/08/30/1812927.html">http://www.cnblogs.com/figure9/archive/2010/08/30/1812927.html</a></p>
+
+<h2>5. 课后练习：</h2>
+
+<ol>
+<li><p>课堂练习：使用装饰器检测函数执行时间</p></li>
+
+<li><p>课后练习：使用装饰器实现对以下函数的缓存,以减少重复内容的重复运算。
+def multiple(number):
+result = 1
+for i in range(1, number):
+result = result * i
+return result
+提示： dict实现缓存</p></li>
+</ol>
+
+<p>3、课堂练习：如何查看该函数执行次数：比如fib(20) 会执行多少次fib函数？</p>
+
+<p>4、课后练习：如何使用装饰器缓存来优化代码，减少fib执行的次数。</p>
+
+<p>#!/usr/bin/python</p>
+
+<p>&rdquo;&lsquo;decorator and recurision&rdquo;&rsquo;</p>
+
+<p>import time</p>
+
+<p>def process_time(func):</p>
+<pre class="chroma">def inner(args):
+    start = time.time()
+    result = func(args)
+    time_spent = time.time() - start
+    print &#34;\ttime spent is: %.4f&#34; % time_spent
+return inner
+</pre>
+<p>def cache(func):</p>
+<pre class="chroma">cache_dic = dict()
+def inner(args):
+    if args not in cache_dic:
+        cache_dic.update({args:func(args)})
+    else:
+        print &#34;\thit cache&#34;
+    print &#39;\tthe result is: %d&#39; % cache_dic[args]
+    return cache_dic[args]
+return inner
+</pre>
+<p>@process_time
+@cache
+def multiple(number):</p>
+<pre class="chroma">result = 1
+for i in range(1, number):
+    result = result * i
+return result
+</pre>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
+<pre class="chroma">while True:
+    number = raw_input(&#34;input a number pls:&#34;)
+    if number == &#39;quit&#39;:
+        break
+    try:
+        number = int(number)
+    except ValueError as e:
+        print &#34;pls input a number or quit&#34;
+        continue
+    multiple(number)
+</pre>
+<p>#!/usr/bin/python</p>
+
+<p>&rdquo;&lsquo;decorator and recurision&rdquo;&rsquo;</p>
+
+<p>def cache(func):</p>
+<pre class="chroma">cache_dic = dict()
+def inner(args):
+    if args not in cache_dic:
+        cache_dic.update({args:func(args)})
+    else:
+        print &#39;\thit cache&#39;
+    return cache_dic[args]
+return inner
+</pre>
+<p>def count(func):</p>
+<pre class="chroma">def inner(new_n):
+    global count_fib
+    count_fib += 1
+    result = func(new_n)
+    return result
+return inner
+</pre>
+<p>@count
+@cache
+def fib(n):</p>
+<pre class="chroma">if n &lt;= 2:
+    return 1
+else:
+    return fib(n-1) + fib(n-2)
+</pre>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;:</p>
+<pre class="chroma">while True:
+    number = raw_input(&#34;input a number pls:&#34;)
+    if number == &#39;quit&#39;:
+        break
+    try:
+        number = int(number)
+    except ValueError as e:
+        print e
+    count_fib = 0
+    print &#34;\t======================\n\tthe %dth fib is %r&#34; %(number, fib(number))
+    print &#34;\tthe process times is %d&#34; % count_fib
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

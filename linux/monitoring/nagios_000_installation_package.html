@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>nagios: 一键安装包</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>03 Mar 2016</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>一键安装包安装教程</h2>
+
+<h3>1. 下载链接</h3>
+
+<p>链接: <a href="http://pan.baidu.com/s/1dEuq6GD">http://pan.baidu.com/s/1dEuq6GD</a> 密码: nz83</p>
+
+<h3>2. 安装包中内容</h3>
+<pre class="chroma">ll nagiosinstall
+total <span class="m">2524</span>
+-rw-r--r--.  <span class="m">1</span> root   root       <span class="m">692</span> Oct <span class="m">21</span>  <span class="m">2010</span> check_conntrack
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">7116</span> Sep  <span class="m">1</span>  <span class="m">2010</span> check_iftraffic_nrpe.pl
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">1206</span> Oct <span class="m">21</span>  <span class="m">2010</span> check_io
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">2872</span> Sep <span class="m">16</span>  <span class="m">2010</span> check_iostat
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">8282</span> Sep  <span class="m">1</span>  <span class="m">2010</span> check_mem.pl
+-rw-r--r--.  <span class="m">1</span> root   root       <span class="m">672</span> Sep <span class="m">27</span>  <span class="m">2010</span> check_openfile
+-rw-r--r--.  <span class="m">1</span> root   root     <span class="m">17427</span> Sep  <span class="m">1</span>  <span class="m">2010</span> check_traffic.sh
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">1128</span> Jul  <span class="m">4</span>  <span class="m">2012</span> install.sh
+-rw-r--r--.  <span class="m">1</span> root   root       <span class="m">420</span> Sep <span class="m">25</span>  <span class="m">2010</span> ip_conn
+drwxrwxrwx. <span class="m">16</span> nagios root      <span class="m">4096</span> Sep <span class="m">22</span> 14:29 nagios-plugins-1.4.15
+-rw-r--r--.  <span class="m">1</span> root   root   <span class="m">2095419</span> Jul <span class="m">28</span>  <span class="m">2010</span> nagios-plugins-1.4.15.tar.gz
+drwxrwxr-x.  <span class="m">7</span> nagios nagios    <span class="m">4096</span> Sep <span class="m">22</span> 14:29 nrpe-2.12
+-rw-r--r--.  <span class="m">1</span> root   root    <span class="m">405725</span> Mar <span class="m">11</span>  <span class="m">2008</span> nrpe-2.12.tar.gz
+-rw-r--r--.  <span class="m">1</span> root   root      <span class="m">1972</span> May <span class="m">20</span>  <span class="m">2015</span> nrpe.cfg
+<span class="c1">## 内容详解</span>
+<span class="c1"># 1、check开头的，都是命令</span>
+<span class="c1"># 2、install.sh是安装脚本</span>
+<span class="c1"># 3、tar.gz结尾的是nagios的安装包，同名的是解压出来的目录</span>
+<span class="c1"># 4、cfg结尾的，是配置文件</span>
+</pre>
+<h3>3. 安装</h3>
+<pre class="chroma"><span class="c1"># 解压安装包</span>
+tar zxvf nagiosinstall.tar.gz
+ 
+<span class="c1"># 执行安装脚本</span>
+<span class="nb">cd</span> nagiosinstall
+sh install.sh
+ 
+<span class="c1"># 配置nagios监控服务端ip</span>
+vim /usr/local/nagios/etc/nrpe.cfg
+*******************************
+<span class="c1"># 修改下面一项为监控服务端的ip</span>
+<span class="nv">allowed_hosts</span><span class="o">=</span>***.***.***.***
+*******************************
+ 
+<span class="c1"># 重启服务</span>
+ps aux <span class="p">|</span>grep nrpe <span class="p">|</span>grep nagios<span class="p">|</span>sed -r <span class="s1">&#39;s/ +/ /g&#39;</span><span class="p">|</span>cut -d <span class="s1">&#39; &#39;</span> -f 2<span class="p">|</span> xargs -i <span class="nb">kill</span> -HUP <span class="o">{</span><span class="o">}</span>
+ 
+<span class="c1"># 配置iptables</span>
+vim /etc/sysconfig/iptables
+********************************
+<span class="c1"># 在合适的位置增加下面内容</span>
+-A INPUT -s 监控服务端ip/掩码 -p tcp -m state --state NEW -m tcp --dport 端口  -j ACCEPT
+********************************
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

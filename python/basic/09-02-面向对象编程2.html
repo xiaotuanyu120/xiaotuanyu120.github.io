@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>面向对象编程2</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>29 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 类和对象</h2>
+
+<p>类，就是class定义的东西</p>
+
+<p>对象分两种，</p>
+
+<ul>
+<li>一种是实际运行中实例化之后的东西</li>
+<li>一种是讨论某个概念时的东西</li>
+</ul>
+
+<p>类名称: 类名称用驼峰，类方法用下划线方式</p>
+
+<h2>2.  Python的作用域和命名空间</h2>
+
+<p>类变量，实例变量，私有变量（公开）</p>
+<pre class="chroma"><span class="c1"># 类变量可以直接被程序引用</span>
+<span class="k">class</span> <span class="nc">Var</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">class_var</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">class variable</span><span class="s1">&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">ins</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">instance</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">ins</span><span class="o">.</span><span class="n">class_var</span>
+
+<span class="c1"># 执行结果</span>
+<span class="c1"># class variable</span>
+
+
+<span class="c1"># 实例变量的引用，需要self.var这种形式</span>
+<span class="k">class</span> <span class="nc">Var</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">class_var</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">class variable</span><span class="s1">&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="n">var</span>
+    <span class="k">def</span> <span class="nf">print_var</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span>                  <span class="c1"># print var会报错         </span>
+        <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_var</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">ins</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">instance</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">ins</span><span class="o">.</span><span class="n">print_var</span><span class="p">(</span><span class="p">)</span>
+
+<span class="c1"># 执行结果</span>
+<span class="c1"># instance</span>
+<span class="c1"># class variable</span>
+</pre>
+<h2>3.  继承</h2>
+
+<h3>3.1 继承</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">attr</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">pass</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">b</span><span class="o">.</span><span class="n">attr</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span>
+</pre>
+<h3>3.2 多重继承</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">attr</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">attr</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">B</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">pass</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">attr</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span>
+<span class="c1"># 继承优先级，从左到右，从上到下</span>
+</pre>
+<h3>3.3 class.mro()继承顺序</h3>
+<pre class="chroma"><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>         <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">A</span><span class="s1">&#39;</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>         <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">B</span><span class="s1">&#39;</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">pass</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">:</span> <span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">A</span>
+<span class="c1"># 如何查看say函数的执行顺序</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="p">:</span> <span class="k">print</span> <span class="n">C</span><span class="o">.</span><span class="n">mro</span><span class="p">(</span><span class="p">)</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">&#39;</span><span class="nc">__main__</span><span class="o">.</span><span class="n">C</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;, &lt;class </span><span class="s1">&#39;</span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;, &lt;class </span><span class="s1">&#39;</span><span class="n">__main__</span><span class="o">.</span><span class="sa">B</span><span class="s1">&#39;</span><span class="s1">&gt;, &lt;type </span><span class="s1">&#39;</span><span class="nb">object</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&gt;]</span>
+</pre>
+<h3>3.4 如何初始化父类的内容？如何调用父类的函数？</h3>
+<pre class="chroma"><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>         <span class="nb">super</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>         <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">D</span><span class="s1">&#39;</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="p">:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">A</span>
+<span class="n">D</span>
+
+<span class="c1"># 也可以不用super()，super()只能作用于新式类</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="p">:</span> <span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">D</span><span class="s1">&#39;</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="p">:</span> <span class="n">d</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">A</span>
+<span class="n">D</span>
+</pre>
+<blockquote>
+<p>说下Mixin这个东西: Mixin</p>
+</blockquote>
+
+<h2>4. 私有变量和类内引用</h2>
+
+<h3>4.1 self这个东西</h3>
+
+<p>__var</p>
+
+<h3>4.2 类变量何时被初始化</h3>
+
+<p>实例方法
+实例传入方法，只有生成实例才可以使用的方法</p>
+
+<p>静态方法
+无需传入实例本身，无需传入类，无需实例化即可使用的方法</p>
+
+<p>类方法
+类不需要实例化，便可调用，但需要传入类到方法中</p>
+
+<h2>5. 动态添加类属性</h2>
+<pre class="chroma"><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+     <span class="k">pass</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">huyang</span><span class="s1">&#39;</span>
+</pre>
+<h2>6. 类之间关系：</h2>
+
+<h3>6.1 UML （统一建模语言）</h3>
+
+<p>具体定义
+日常使用</p>
+
+<h3>6.2 如何表示</h3>
+
+<h3>6.3 模型表示</h3>
+
+<p>你去做一个数据库模型来，怎么做？</p>
+
+<h3>6.4 常见得几种关系</h3>
+
+<ul>
+<li>继承</li>
+<li>依赖</li>
+<li>组合</li>
+<li>聚合</li>
+</ul>
+
+<h2>7. 接口的概念（抽象类）</h2>
+
+<p>参考Java中的概念
+在Python中实现</p>
+
+<p>可参考：<a href="https://docs.python.org/2/library/abc.html">https://docs.python.org/2/library/abc.html</a>  很少用</p>
+
+<h2>8. 实现Python中的几种数据类型</h2>
+
+<ul>
+<li>int  特性</li>
+<li>str 特性</li>
+<li>dict 实现</li>
+</ul>
+
+<h2>9  高级&ndash;迭代器和生成器</h2>
+
+<h3>9.1 <code>t = (i for i in range(10))</code></h3>
+<pre class="chroma"><span class="c1"># tuple生成器</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">t</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x7fd6e63107d0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">generator</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+</pre><pre class="chroma"><span class="c1"># 列表推导式</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">t</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">list</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+</pre>
+<h3>9.2. yield expression</h3>
+
+<p>简单例子</p>
+<pre class="chroma"><span class="c1"># 把yield放进func内部，那这个func被调用的时候就会传回一个生成器</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">yield_expression</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">yield</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+
+<span class="c1"># num_list现在是个生成器</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_list</span> <span class="o">=</span> <span class="n">yield_expression</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">num_list</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">num_list</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">yield_expression</span> <span class="n">at</span> <span class="mh">0x7fd6e63107d0</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">generator</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+
+<span class="c1"># 生成器可以用迭代的方式取出内容</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+</pre>
+<p>如果有两个yield呢（两个yield放进一个for循环中）</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">yield_expression</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">yield</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">yield</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">yield 2</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_list</span> <span class="o">=</span> <span class="n">yield_exppression</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">0</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">1</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">2</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">3</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">4</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">5</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">6</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">7</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">8</span>
+<span class="k">yield</span> <span class="mi">2</span>
+<span class="mi">9</span>
+<span class="k">yield</span> <span class="mi">2</span>
+</pre>
+<p>如果有多个yield，但在不同的for循环中呢</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">yield_exp</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">yield</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">yield</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">-----------split line------------</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">yield</span> <span class="n">j</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">num_list</span> <span class="o">=</span> <span class="n">yield_exp</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">num_list</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="n">split</span> <span class="n">line</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+</pre>
+<h3>9.3 给对象添加&rsquo;<strong>iter</strong>&rsquo;/&lsquo;next&rsquo;方法</h3>
+
+<p>官方解释：<a href="https://docs.python.org/3/reference/expressions.html#yieldexpr">https://docs.python.org/3/reference/expressions.html#yieldexpr</a></p>
+
+<p>生成器是特殊的迭代器，生成器符合具有迭代器协议</p>
+
+<blockquote>
+<p>补充知识：<a href="https://docs.python.org/2/library/collections.html">https://docs.python.org/2/library/collections.html</a></p>
+</blockquote>
+
+<h2>10. 作业</h2>
+
+<ol>
+<li>使用面向对象的方式完成学生信息管理系统。</li>
+<li>《Python基础教程》上的项目1：即时标记</li>
+<li>时间充裕的话：熟悉coding.net，把代码传上去。</li>
+</ol>
+
+<h2>扩展</h2>
+
+<p>纯记录下</p>
+
+<blockquote>
+<p>globals()[&lsquo;string&rsquo;]用来取方法名，变量名，很牛逼。研究数据类型的自带方法</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

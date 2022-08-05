@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>xml&html</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>18 Sep 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. xml介绍</h2>
+
+<ul>
+<li>含义：XML stands for EXtensible Markup Language.</li>
+<li>存储和传输：XML was designed to store and transport data.</li>
+<li>人机皆友好：XML was designed to be both human- and machine-readable.</li>
+</ul>
+<pre class="chroma"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;note</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;to</span><span class="nt">&gt;</span>Tove<span class="nt">&lt;/to&gt;</span>
+ <span class="nt">&lt;from</span><span class="nt">&gt;</span>Jani<span class="nt">&lt;/from&gt;</span>
+ <span class="nt">&lt;heading</span><span class="nt">&gt;</span>Reminder<span class="nt">&lt;/heading&gt;</span>
+ <span class="nt">&lt;body</span><span class="nt">&gt;</span>Don&#39;t forget me this weekend!<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/note&gt;</span>
+</pre>
+<p>特点：结构化、自描述、可扩展和浏览器自适应</p>
+
+<p>From <a href="http://www.cidu.net/jc/homepage/zhanwang/xml/xml2.htm">http://www.cidu.net/jc/homepage/zhanwang/xml/xml2.htm</a></p>
+
+<h2>2. html</h2>
+
+<h3>2.1 介绍</h3>
+
+<p>HTML is a markup language for describing web documents (web pages).
+HTML stands for Hyper Text Markup Language</p>
+
+<h3>2.2 发展</h3>
+
+<p><a href="http://zhidao.baidu.com/link?url=Vi_Rmj4-aX3L8eenZtZHzrZU4YdC02Ha9H-Xs_p7cbUbncCXIIt8AsT1I4qtYbsCrRRV6A7y1u_l4ZmtpiG3oK">http://zhidao.baidu.com/link?url=Vi_Rmj4-aX3L8eenZtZHzrZU4YdC02Ha9H-Xs_p7cbUbncCXIIt8AsT1I4qtYbsCrRRV6A7y1u_l4ZmtpiG3oK</a></p>
+
+<h3>2.3 怎么使用html</h3>
+
+<p>simple example</p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>My First Heading<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>My first paragraph.<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre>
+<h3>2.4 HTML标签列表</h3>
+
+<p><a href="http://www.w3school.com.cn/tags/index.asp">http://www.w3school.com.cn/tags/index.asp</a></p>
+
+<h4>2.4.1 标签属性</h4>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://m.sohu.com&#34;</span><span class="p"></span><span class="p">&gt;</span>链接<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span>
+</pre>
+<h3>2.5  h标签</h3>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
+..
+..
+<span class="p">&lt;</span><span class="nt">h6</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h6</span><span class="p">&gt;</span>
+</pre>
+<h3>2.6 段落标签</h3>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>这是一个段落<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre>
+<h3>2.7 格式化标签</h3>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">b</span><span class="p"></span><span class="p">&gt;</span>加粗<span class="p">&lt;</span><span class="p">/</span><span class="nt">b</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">big</span><span class="p"></span><span class="p">&gt;</span>加大<span class="p">&lt;</span><span class="p">/</span><span class="nt">big</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">i</span><span class="p"></span><span class="p">&gt;</span>斜体<span class="p">&lt;</span><span class="p">/</span><span class="nt">i</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">strong</span><span class="p"></span><span class="p">&gt;</span>着重<span class="p">&lt;</span><span class="p">/</span><span class="nt">strong</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">del</span><span class="p"></span><span class="p">&gt;</span>删除<span class="p">&lt;</span><span class="p">/</span><span class="nt">del</span><span class="p">&gt;</span>
+</pre>
+<p>参考：<a href="http://www.w3school.com.cn/html/html_formatting.asp">http://www.w3school.com.cn/html/html_formatting.asp</a></p>
+
+<h3>2.8 样式css</h3>
+
+<p>两种方式：</p>
+
+<ol>
+<li>外联样式
+<code>html
+&lt;head&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;
+&lt;/head&gt;
+</code>
+2. 内嵌
+<code>html
+&lt;head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+body {background-color: red}
+p {margin-left: 20px}
+&lt;/style&gt;
+&lt;/head&gt;
+</code></li>
+</ol>
+
+<h3>2.9 表格和列表</h3>
+
+<p><strong>表格</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">table</span> <span class="na">border</span><span class="o">=</span><span class="s">&#34;1&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span><span class="p"></span><span class="p">&gt;</span>row 1, cell 1<span class="p">&lt;</span><span class="p">/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span><span class="p"></span><span class="p">&gt;</span>row 1, cell 2<span class="p">&lt;</span><span class="p">/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">tr</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span><span class="p"></span><span class="p">&gt;</span>row 2, cell 1<span class="p">&lt;</span><span class="p">/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">td</span><span class="p"></span><span class="p">&gt;</span>row 2, cell 2<span class="p">&lt;</span><span class="p">/</span><span class="nt">td</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre>
+<p><strong>无序列表</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">ul</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p"></span><span class="p">&gt;</span>Coffee<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p"></span><span class="p">&gt;</span>Milk<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre>
+<p><strong>有序列表</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">ol</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p"></span><span class="p">&gt;</span>Coffee<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">li</span><span class="p"></span><span class="p">&gt;</span>Milk<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">ol</span><span class="p">&gt;</span>
+</pre>
+<h3>2.10 块元素和内联元素</h3>
+
+<p><strong>块元素</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre>
+<p><strong>内联元素</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">span</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">b</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">b</span><span class="p">&gt;</span>
+</pre>
+<h3>2.11 表单Form</h3>
+
+<p><strong>普通表单</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">form</span><span class="p"></span><span class="p">&gt;</span>
+First name:
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;firstname&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span> <span class="p">/</span><span class="p">&gt;</span>
+Last name:
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;lastname&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+<p><strong>单选表单</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">form</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;radio&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;sex&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;male&#34;</span> <span class="p">/</span><span class="p">&gt;</span> Male
+<span class="p">&lt;</span><span class="nt">br</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;radio&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;sex&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;female&#34;</span> <span class="p">/</span><span class="p">&gt;</span> Female
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+<p><strong>提交表单</strong></p>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;input&#34;</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;html_form_action.asp&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;get&#34;</span><span class="p"></span><span class="p">&gt;</span>
+Username:
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;user&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+Password：
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;password&#34;</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;password&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;Submit&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre>
+<p>参考：<a href="http://www.w3school.com.cn/html/html_forms.asp">http://www.w3school.com.cn/html/html_forms.asp</a></p>
+
+<h3>2.12 框架frameset</h3>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">frameset</span> <span class="na">cols</span><span class="o">=</span><span class="s">&#34;25%,75%&#34;</span><span class="p"></span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">frame</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;frame_a.htm&#34;</span><span class="p"></span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">frame</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;frame_b.htm&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">frameset</span><span class="p">&gt;</span>
+</pre>
+<h3>2.13 内联框架iframe</h3>
+<pre class="chroma"><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://m.sohu.com&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;360&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;800&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre>
+<h3>2.14 头部定义</h3>
+<pre class="chroma"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
+<span class="c">&lt;!--</span><span class="c">head</span><span class="c">--&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Content-Type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;text/html; charset=utf-8&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Cache-Control&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;no-cache&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;IE=edge,chrome=1&#34;</span><span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;MobileOptimized&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;320&#34;</span><span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;手机搜狐网，懂手机，更懂你！手机搜狐是国内最大的移动门户之一，利用搜狐门户矩阵资源，内容覆盖新闻、财经、体育、娱乐、女人、图库、视频等资讯，为7亿手机用户打造随时随地的掌上资讯生活。手机搜狐网，手机搜狐触版- m.sohu.com&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;keywords&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;手机搜狐,手机搜狐网,搜狐手机版,搜狐新闻,搜狐,搜狐网,资讯,娱乐,女人,神吐槽,热辣评,狐揭秘&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>手机搜狐网<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

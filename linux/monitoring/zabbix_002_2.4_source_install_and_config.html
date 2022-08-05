@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>zabbix: 安装 - source(2.4)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>27 Nov 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. preparation</h2>
+<pre class="chroma"><span class="c1"># 准备工具</span>
+yum groupinstall -y base
+<span class="c1"># 安装httpd、mysql、php</span>
+yum install -y httpd  mysql-server mysql mysql-libs mysql-devel php php-mysql php-bcmath php-gd php-mbstring
+<span class="c1"># 安装编译器等依赖</span>
+yum install -y gcc gcc-c++ libxml2-devel net-snmp-devel libcurl-devel php-xml
+</pre>
+<h2>2. zabbix user</h2>
+<pre class="chroma">groupadd zabbix
+useradd -g zabbix zabbix
+</pre>
+<h2>3. service start &amp; checking ports</h2>
+<pre class="chroma"><span class="c1"># 启动httpd、mysqld、zabbix服务</span>
+service mysqld start
+service zabbix-server start
+service zabbix-agent start
+service httpd start
+ 
+<span class="c1"># 设置服务开机启动</span>
+chkconfig --add mysqld
+chkconfig --add zabbix-server
+chkconfig --add zabbix-agent 
+chkconfig --add httpd
+
+chkconfig mysqld on
+chkconfig zabbix-server on
+chkconfig zabbix-agent on
+chkconfig httpd on
+ 
+<span class="c1"># 检查端口是否监听</span>
+netstat -lnpt <span class="p">|</span>grep -E <span class="s1">&#39;zabbix|mysqld|httpd&#39;</span>
+</pre>
+<h2>4. MySQL preparation</h2>
+<pre class="chroma"><span class="c1"># set root password</span>
+mysqladmin -u root password <span class="s1">&#39;new-password&#39;</span>
+ 
+<span class="c1"># create database</span>
+mysql -uroot -p -e <span class="s1">&#39;create database zabbix&#39;</span>
+mysql -uroot -p --default-character-set<span class="o">=</span>utf8 zabbix &lt; /tmp/zabbix-2.4.7/database/mysql/schema.sql
+mysql -uroot -p --default-character-set<span class="o">=</span>utf8 zabbix &lt; /tmp/zabbix-2.4.7/database/mysql/images.sql
+mysql -uroot -p --default-character-set<span class="o">=</span>utf8  zabbix &lt; /tmp/zabbix-2.4.7/database/mysql/data.sql
+ 
+<span class="c1"># create mysql user for zabbix</span>
+mysql -uroot -p -e <span class="s2">&#34;grant all on zabbix.* to &#39;zabbix&#39;@&#39;localhost&#39; identified by &#39;yourpassword&#39;&#34;</span>
+</pre>
+<h2>5. 源码安装zabbix2.4</h2>
+<pre class="chroma"><span class="c1"># 安装zabbix服务</span>
+wget http://jaist.dl.sourceforge.net/project/zabbix/ZABBIX%20Latest%20Stable/2.4.7/zabbix-2.4.7.tar.gz
+tar zxvf zabbix-2.4.7.tar.gz
+<span class="nb">cd</span> zabbix-2.4.7
+./configure --prefix<span class="o">=</span>/usr/local/zabbix24 --enable-server --enable-agent --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2
+make install
+</pre>
+<h2>6. selinux &amp; iptables</h2>
+<pre class="chroma"><span class="c1"># 暂时关闭iptables和selinux</span>
+service iptables stop
+chkconfig iptables off
+setenforce <span class="m">0</span>
+vim /etc/selinux/config
+*******************************
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+**********************************
+</pre>
+<h2>7. 配置zabbix的server、agentd和web目录</h2>
+<pre class="chroma"><span class="c1"># 1. server 配置数据库</span>
+vim /etc/zabbix/zabbix_server.conf
+***********************************************************
+<span class="nv">DBHost</span><span class="o">=</span>localhost
+<span class="nv">DBName</span><span class="o">=</span>zabbix
+<span class="nv">DBUser</span><span class="o">=</span>zabbix
+<span class="nv">DBPassword</span><span class="o">=</span>yourpassword
+***********************************************************
+
+<span class="c1"># 2. 启动server服务和agentd服务</span>
+/usr/local/zabbix24/sbin/zabbix_server
+/usr/local/zabbix24/sbin/zabbix_agentd
+
+<span class="c1"># 3. 准备web目录</span>
+<span class="nb">cd</span> /var/www/html/
+mkdir zabbix
+<span class="c1"># frontsend目录在下载的zabbix包里</span>
+<span class="nb">cd</span> /tmp/zabbix-2.4.7/frontends/php/
+<span class="c1"># 拷贝frontsend里的php文件到web目录中</span>
+cp -a . /var/www/html/zabbix/
+</pre>
+<h2>8. web端安装引导</h2>
+
+<h3>8.1. 局域网内，用浏览器访问<a href="http://zabbix-server-ip/zabbix">http://zabbix-server-ip/zabbix</a></h3>
+
+<p>按照错误提示修改timezone，也有可能不报这个错</p>
+<pre class="chroma">date(): It is not safe to rely on the system&#39;s timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected &#39;Asia/Chongqing&#39; for &#39;CST/8.0/no DST&#39; instead [include/page_header.php:186]
+</pre><pre class="chroma">vim /etc/php.ini
+***************************************
+date.timezone <span class="o">=</span> Asia/Shanghai
+***************************************
+
+service httpd restart
+</pre>
+<h3>8.2. 刷新访问页面<a href="http://zabbix-server-ip/zabbix">http://zabbix-server-ip/zabbix</a></h3>
+
+<p>点击next，进入check of pre-requisites页面，按照错误提示修改相应项</p>
+<pre class="chroma">                                 Current value        Required
+PHP option post_max_size                8M           16M                    Fail
+PHP option max_execution_time           30           300             Fail
+PHP option max_input_time               60           300             Fail
+</pre><pre class="chroma">vim /etc/php.ini
+***************************************
+<span class="nv">post_max_size</span> <span class="o">=</span> 16M
+<span class="nv">max_execution_time</span> <span class="o">=</span> <span class="m">300</span>
+<span class="nv">max_input_time</span> <span class="o">=</span> <span class="m">300</span>
+***************************************
+
+service httpd restart
+</pre>
+<p>如果错误提示中有</p>
+<pre class="chroma">PHP xmlwriter                off                 Fail
+PHP xmlreader                off                 Fail
+</pre><pre class="chroma">yum install php-xml -y
+service httpd restart
+</pre>
+<h3>8.3. 刷新页面，当全部项显示ok状态的时候，点击next</h3>
+
+<p>输入user和password，记得最后test一下，查看是否返回ok，保证信息输入正确
+<img src="/static/images/docs/linux/monitoring/zabbix_002-001.png" alt="" /></p>
+
+<p>host填写127.0.0.1
+<img src="/static/images/docs/linux/monitoring/zabbix_002-002.png" alt="" /></p>
+
+<p>接下来是输入信息的汇总展示
+<img src="/static/images/docs/linux/monitoring/zabbix_002-003.png" alt="" /></p>
+
+<p>最后是安装完成，但提示安装的配置文件未创建在&rdquo;/etc/zabbix/web/zabbix.conf.php&rdquo;，但可以手动下载</p>
+
+<p>手动下载后，拷贝到提示的目录中去，点击retry，当状态变成ok后，点击下一步（我是用samba+rsync传的）</p>
+
+<p>登录界面，用默认的username:admin, password：zabbix登录
+<img src="/static/images/docs/linux/monitoring/zabbix_002-004.png" alt="" /></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
