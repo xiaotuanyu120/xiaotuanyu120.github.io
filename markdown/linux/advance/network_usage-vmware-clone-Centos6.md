@@ -1,5 +1,5 @@
 ---
-title: 网络应用: vmware克隆VM后的网络设置(Centos6)
+title: 网络: 应用 - vmware克隆VM后的网络设置(Centos6)
 date: 2015-11-06 10:28:00
 categories: linux/advance
 tags: [vmware,network]

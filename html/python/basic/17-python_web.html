@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>django</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>25 Sep 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1.  PythonWeb开发介绍</h2>
+
+<ul>
+<li>静态资源：HTML Javascript  CSS （ Bootstrap搞定）</li>
+<li>http server： nginx</li>
+<li>PythonWeb框架：
+
+<ul>
+<li>Django（大而全，CMS）</li>
+<li>flask(自己造轮子，+n*插件）</li>
+<li>Tornado（epoll， 异步，单线程）</li>
+<li>web.py</li>
+<li>bottle（单文件）</li>
+</ul></li>
+</ul>
+
+<p>框架跟http交互方式两种方式：</p>
+
+<ul>
+<li>端口（反向代理）</li>
+<li>协议（PEP333 wsgi，fastcgi）</li>
+</ul>
+
+<p>框架解决的问题：</p>
+
+<ul>
+<li>http 协议的封装（http request， http response）</li>
+<li>重复的web数据流程</li>
+<li>通用的数据库访问操作（关于数据库访问的ORM：Django自带ORM，SQLAlchemy，Peewee，等）</li>
+</ul>
+
+<p>session &amp; cookie</p>
+<pre class="chroma">jsp?sessionid=xxsd12sdfsfds
+asp?sessionid=112321
+</pre>
+<blockquote>
+<p><a href="http://www.the5fire.com/session-cookie.html">http://www.the5fire.com/session-cookie.html</a></p>
+</blockquote>
+
+<h2>2. Django快速一览</h2>
+<pre class="chroma">pip install Django
+mkdir AutoOps
+<span class="nb">cd</span> AutoOps
+django-admin startproject autoops
+</pre>
+<p>我们先运行它</p>
+<pre class="chroma">python manage.py runserver
+</pre>
+<p>根据提示创建app</p>
+<pre class="chroma">python manage startapp asset
+</pre>
+<p>完成第一个页面：</p>
+<pre class="chroma"><span class="c1"># 先配置settings</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.admin</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.auth</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.contenttypes</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.sessions</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.messages</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">django.contrib.staticfiles</span><span class="s1">&#39;</span><span class="p">,</span>
+
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">asset</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre>
+<p>编写views.py, vim asset/views.py:</p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello world</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre>
+<p>配置urls.py vim autoops/urls.py:</p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">django.conf.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">^$</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">asset.views.index</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">^admin/</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)</span><span class="p">)</span><span class="p">,</span>
+<span class="p">]</span>
+</pre>
+<p>启动：python manage.py runserver 0.0.0.0:8000</p>
+
+<p>so easy！</p>
+
+<p>再来看下Model和Admin的使用：</p>
+
+<p><code>asset/models.py</code></p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">Host</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">STATUS_ITEMS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">空闲</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">,</span>
+        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">使用中</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">,</span>
+        <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">报废</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ip</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">GenericIPAddressField</span><span class="p">(</span><span class="n">verbose_name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主机IP</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">open_port</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">开放端口</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">STATUS_ITEMS</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">主机状态</span><span class="s2">&#34;</span><span class="p">)</span>
+
+    <span class="n">created_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now_add</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">创建时间</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="n">update_time</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">auto_now</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">更新时间</span><span class="s2">&#34;</span><span class="p">)</span>
+     
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">主机</span><span class="s2">&#34;</span>
+</pre>
+<p><code>asset/admin.py</code></p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Host</span>
+<span class="c1"># or from asset.models import Host</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Host</span><span class="p">)</span>
+</pre>
+<p>启动：<code>python manage.py runserver</code>, 注意提示：</p>
+<pre class="chroma">You have unapplied migrations; your app may not work properly until they are applied.
+Run &#39;python manage.py migrate&#39; to apply them.
+</pre>
+<p>运行: <code>python manage.py migrate</code></p>
+
+<p>访问:<code>http://localhost:8000/admin</code></p>
+
+<p>然后创建用户:</p>
+<pre class="chroma">python manage.py createsuperuser
+
+admin
+admin
+</pre>
+<p>登录一下看看，一个完整的cms系统有了</p>
+
+<h2>3. Django介绍</h2>
+
+<p>为快速开发Web应用而生</p>
+
+<h3>3.1 Model驱动</h3>
+
+<p>Django中的重点是Model，围绕Model有很多成熟可用的功能</p>
+
+<h3>3.2 view</h3>
+
+<p>配置url dispatch</p>
+
+<p>接受request，处理业务，返回response</p>
+
+<p>两种方式：def  vs  class，初期使用def即可，middleware使用</p>
+
+<h3>3.3 模板</h3>
+
+<p>类似于字符串的模板，使用Django内置的语法</p>
+
+<h3>3.4 form</h3>
+
+<p>处理页面表单</p>
+
+<h3>3.5 admin</h3>
+
+<p>根据model直接生成对应界面</p>
+
+<h2>4. 数据流程</h2>
+
+<h2>5. 详细介绍代码每一个模块</h2>
+
+<h2>6. ORM大体思路</h2>
+
+<p>把对象映射成表</p>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span><span class="p">:</span>
+     <span class="n">name</span> <span class="o">=</span> <span class="n">char</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+     <span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="p">)</span>
+<span class="n">student</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">huyang</span><span class="s1">&#39;</span>
+<span class="n">student</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">student</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">insert</span> <span class="n">into</span> <span class="n">Student</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span> <span class="n">values</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">huyang</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+
+<span class="n">Student</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span>  <span class="n">select</span> <span class="o">*</span> <span class="kn">from</span> <span class="nn">Student</span><span class="p">;</span>
+</pre>
+<blockquote>
+<p>文档：<a href="https://docs.djangoproject.com/en/1.8/topics/db/models/">https://docs.djangoproject.com/en/1.8/topics/db/models/</a></p>
+</blockquote>
+
+<h2>7. views和url</h2>
+
+<p><a href="https://docs.djangoproject.com/en/1.8/#the-view-layer">https://docs.djangoproject.com/en/1.8/#the-view-layer</a></p>
+
+<h2>8. templates</h2>
+
+<p><a href="https://docs.djangoproject.com/en/1.8/ref/templates/language/">https://docs.djangoproject.com/en/1.8/ref/templates/language/</a></p>
+
+<h2>9. 作业</h2>
+
+<p>根据Django1.8的入门文档，以及本课件实现一个简单管理系统：内容包括：主机管理，机房管理，服务管理。</p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

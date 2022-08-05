@@ -1,5 +1,5 @@
 ---
-title: linux中的内存是如何工作的？
+title: 内存: linux中的内存是如何工作的？
 date: 2022-01-29 22:11:00
 categories: linux/advance
 tags: [linux, memory]

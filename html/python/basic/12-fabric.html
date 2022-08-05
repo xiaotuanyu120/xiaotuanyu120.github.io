@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>fabric</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>14 Sep 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. fabric</h2>
+
+<p>Fabric is a Python (2.5-2.7) library and command-line tool for streamlining the use of SSH for application deployment or systems administration tasks.</p>
+
+<h3>1.1 安装方法</h3>
+<pre class="chroma">yum install python-devel -y
+pip install fabric
+</pre>
+<h2>2. Example</h2>
+
+<p>创建fabfile文件<code>fab.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span>
+
+<span class="k">def</span> <span class="nf">os_version</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">uname -r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre>
+<p>fabric默认使用文件名称为fabfile.py</p>
+<pre class="chroma">fab -l
+
+Fatal error: Couldn<span class="err">&#39;</span>t find any fabfiles!
+
+Remember that -f can be used to specify fabfile path, and use -h <span class="k">for</span> help.
+
+Aborting.
+
+mv fab.py fabfile.py
+fab -l
+Available commands:
+
+    os_version
+</pre>
+<p>fab tools</p>
+<pre class="chroma">fab -H root@localhost os_version
+ Executing task <span class="s1">&#39;os_version&#39;</span>
+ run: uname -r
+ out: 3.10.0-123.el7.x86_64
+ out:
+
+
+Done.
+Disconnecting from localhost... <span class="k">done</span>.
+<span class="c1"># -H 指定host</span>
+<span class="c1"># fab -H user@hostname command</span>
+</pre>
+<p>可以自己传要执行哪些命令吗?
+<code>fabfile2.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span>
+
+
+<span class="k">def</span> <span class="nf">command</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</pre><pre class="chroma">fab -f fabfile2.py -l
+Available commands:
+
+    <span class="nb">command</span>
+
+fab -f fabfile2.py -H root@localhost command:pwd
+ Executing task <span class="s1">&#39;command&#39;</span>
+ run: <span class="nb">pwd</span>
+ out: /root
+ out:
+
+
+Done.
+Disconnecting from localhost... <span class="k">done</span>.
+</pre>
+<h2>3. roles&amp;hosts</h2>
+
+<h3>3.1 HOSTS</h3>
+
+<p><code>fabfile.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">roles</span><span class="p">,</span> <span class="n">hosts</span>
+
+
+<span class="nd">@hosts</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">root@192.168.0.96</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">host_type</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">uname -s</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre><pre class="chroma">fab -l
+Available commands:
+
+    host_type
+
+fab host_type
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> Executing task <span class="s1">&#39;host_type&#39;</span>
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> run: uname -s
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> out: Linux
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> out:
+
+
+Done.
+Disconnecting from 192.168.0.96... <span class="k">done</span>.
+</pre>
+<h3>3.2 ROLE</h3>
+
+<p><code>fabfile.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">run</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">roles</span><span class="p">,</span> <span class="n">hosts</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">roledefs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">selfdefine</span><span class="s1">&#39;</span><span class="p">:</span><span class="p">[</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">root@192.168.0.96</span><span class="s1">&#39;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+
+<span class="nd">@roles</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">selfdefine</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">host_type</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">uname -r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre><pre class="chroma">fab -l
+Available commands:
+
+    host_type
+
+fab host_type
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> Executing task <span class="s1">&#39;host_type&#39;</span>
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> run: uname -r
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> out: 3.10.0-123.el7.x86_64
+<span class="o">[</span>root@192.168.0.96<span class="o">]</span> out:
+
+
+Done.
+Disconnecting from 192.168.0.96... <span class="k">done</span>.
+</pre>
+<h2>4. local</h2>
+
+<p>在远程机器上执行命令，主要用到的函数<code>run</code>，如果涉及到本地命令，可使用<code>local</code>
+<code>fabfile.py</code></p>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.api</span> <span class="kn">import</span> <span class="n">local</span>
+
+
+<span class="k">def</span> <span class="nf">localhost_type</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">local</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">uname -r</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre><pre class="chroma">fab -l
+Available commands:
+
+    localhost_type
+
+fab localhost_type
+<span class="o">[</span>localhost<span class="o">]</span> local: uname -r
+3.10.0-123.el7.x86_64
+
+Done.
+</pre>
+<h2>5. 看下常用的函数</h2>
+<pre class="chroma"><span class="kn">from</span> <span class="nn">fabric.colors</span> <span class="kn">import</span> <span class="n">red</span><span class="p">,</span> <span class="n">green</span>
+
+<span class="n">fabric</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">exists</span>
+
+<span class="k">with</span> <span class="n">cd</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">/path/to/app</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+
+<span class="k">with</span> <span class="n">prefix</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">workon myvenv</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+
+<span class="n">fabric</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">get</span>
+<span class="c1"># 下载文件</span>
+<span class="c1"># http://docs.fabfile.org/en/latest/api/core/operations.html</span>
+
+<span class="n">fabric</span><span class="o">.</span><span class="n">operations</span><span class="o">.</span><span class="n">put</span>
+</pre>
+<h2>6.  实战一下</h2>
+
+<p>来看一个需求：写一个部署程序，流程是先把本地代码文件打成tar包，然后批量上传到多台服务器上解压缩并执行。</p>
+
+<blockquote>
+<p>fabric官网：</p>
+
+<ul>
+<li><a href="http://docs.fabfile.org/en/latest/tutorial.html">http://docs.fabfile.org/en/latest/tutorial.html</a></li>
+<li><a href="http://fabric-chs.readthedocs.org/zh_CN/chs/">http://fabric-chs.readthedocs.org/zh_CN/chs/</a></li>
+</ul>
+</blockquote>
+
+<p>ansible使用，自学即可：</p>
+
+<ul>
+<li><a href="http://www.the5fire.com/ansible-guide-cn.html">http://www.the5fire.com/ansible-guide-cn.html</a> 入门指南</li>
+<li><a href="http://www.the5fire.com/explore-the-ansible.html">http://www.the5fire.com/explore-the-ansible.html</a>  执行原理</li>
+</ul>
+
+<h2>7. 作业</h2>
+
+<ol>
+<li>写一个fabfile实现可批量在任意多台已配置ssh key的机器上完成ipython的安装，要求检测是否已经安装，如果没有则安装。</li>
+</ol>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

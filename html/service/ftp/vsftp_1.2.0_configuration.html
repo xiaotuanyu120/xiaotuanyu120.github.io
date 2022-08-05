@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                  <ul>
+                    <li><a href="/service/ftp/ftp_1.0.0_whats_ftp.html">ftp: 1.0.0 ftp是什么？</a></li>
+                    <li><a href="/service/ftp/ftp_1.1.0_client.html">ftp: 1.1.0 客户端lftp</a></li>
+                    <li><a href="/service/ftp/pureftp_1.1.0_docker_compose.html">pure-ftpd: 1.1.0 docker-compose with nginx</a></li>
+                    <li><a href="/service/ftp/pureftp_1.1.1_installation.html">pureftpd: 1.1.1 安装 - 1.0.36</a></li>
+                    <li><a href="/service/ftp/pureftp_1.1.2_installation_new.html">pureftpd: 1.1.2 安装(2020新版) - 1.0.49</a></li>
+                    <li><a href="/service/ftp/vsftp_1.1.0_installation.html">vsftp 1.1.0: vsftp 安装</a></li>
+                    <li><a href="/service/ftp/vsftp_1.1.1_installation_centos6.html">vsftp: 1.1.1 安装(centos6)</a></li>
+                    <li><a href="/service/ftp/vsftp_1.1.2_installation_centos7_and_special_policy.html">vsftp: 1.1.2 搭建&特殊需求配置(centos7)</a></li>
+                    <li><a href="/service/ftp/vsftp_1.2.0_configuration.html">vsftp: 1.2.0 vsftp配置说明</a></li>
+                    <li><a href="/service/ftp/vsftp_error_1.1.0_530_login_incorrect.html">vsftp error: 1.1.0 530 login incorrect</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/haproxy/index.html">haproxy</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>vsftp: 1.2.0 vsftp配置说明</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>04 Nov 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 配置研究(/etc/vsftpd/vsftpd.conf)</h2>
+
+<h3>1.1 daemon配置说明</h3>
+
+<h4>1.1.1 <strong>配置项listen=YES/NO说明</strong></h4>
+<pre class="chroma"># When &#34;listen&#34; directive is enabled, vsftpd runs in standalone mode and
+# listens on IPv4 sockets. This directive cannot be used in conjunction
+# with the listen_ipv6 directive.
+</pre>
+<p>当使用&rdquo;YES&rdquo;配置时，listen=YES</p>
+<pre class="chroma">ps aux<span class="p">|</span>grep vsftpd
+root       <span class="m">3392</span>  0.0  0.0  <span class="m">52112</span>   <span class="m">796</span> ?        Ss   17:31   0:00 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
+<span class="c1"># 现在是运行的standalone模式（独立运行模式）</span>
+</pre>
+<p>当使用&rdquo;NO&rdquo;配置时，listen=NO</p>
+<pre class="chroma"><span class="c1"># 此时以standalone启动服务报错</span>
+service vsftpd restart
+Shutting down vsftpd:                                      <span class="o">[</span>  OK  <span class="o">]</span>
+Starting vsftpd <span class="k">for</span> vsftpd: <span class="m">500</span> OOPS: vsftpd: not configured <span class="k">for</span> standalone, must be started from inetd
+                                                           <span class="o">[</span>FAILED<span class="o">]</span>
+</pre>
+<h4>1.1.2 <strong>安装xinetd来接管vsftpd服务</strong></h4>
+<pre class="chroma">yum install xinetd -y
+vim /etc/xinetd.conf
+<span class="c1">## 最后添加以下内容</span>
+<span class="c1"># service ftp</span>
+<span class="c1"># {</span>
+<span class="c1">#         socket_type             = stream</span>
+<span class="c1">#         wait                    = no</span>
+<span class="c1">#         user                    = root</span>
+<span class="c1">#         server                  = /usr/sbin/vsftpd      # 指定程序主命令</span>
+<span class="c1">#         log_on_success          += DURATION USERID</span>
+<span class="c1">#         log_on_failure          += USERID</span>
+<span class="c1">#         nice                    = 10</span>
+<span class="c1">#         disable                 = no</span>
+<span class="c1"># }</span>
+ 
+<span class="c1"># 启动xinetd服务并检查vsftpd状态</span>
+service xinetd start
+service vsftpd status
+<span class="c1"># vsftpd is stopped</span>
+service xinetd status
+<span class="c1"># xinetd (pid  3710) is running...</span>
+
+
+netstat -nltp <span class="p">|</span>grep <span class="m">21</span>
+<span class="c1"># tcp    0   0 :::21                 :::*                    LISTEN      3710/xinetd</span>
+<span class="c1"># 说明xinetd已经接替vsftpd这个daemon来监听21端口，可以测试下访问ftp，成功</span>
+</pre>
+<h3>1.2 访问控制</h3>
+
+<h4>1.2.1 <strong>配置项tcp_wrappers=YES/NO说明</strong></h4>
+<pre class="chroma">If enabled, and vsftpd was compiled with tcp_wrappers support, incoming connections will be fed through tcp_wrappers access control. Furthermore, there is a mechanism for per-IP based configuration. If tcp_wrappers sets the VSFTPD_LOAD_CONF environment variable, then the vsftpd session will try and load the vsftpd configuration file specified in this variable.
+</pre>
+<p>是否启动tcp_wrappers来帮助vsftpd过滤IP，<code>Default: NO</code></p>
+
+<h4>1.2.2 <strong>开启tcp_wrappers</strong></h4>
+
+<p><strong>首先开启配置:</strong> <code>tcp_wrappers=YES</code></p>
+<pre class="chroma"><span class="c1"># 配置hosts.deny和hosts.allow</span>
+vim /etc/hosts.deny
+****************************
+vsftpd: All
+<span class="c1">## 拒绝所有</span>
+****************************
+</pre><pre class="chroma">vim /etc/hosts.allow
+****************************
+vsftpd:172.16.2.128
+<span class="c1">## 只允许172.16.2.128的ip访问</span>
+****************************
+</pre>
+<p><img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-01.png" alt="" /></p>
+<pre class="chroma"><span class="c1"># 试试让172.16.2.28ip通过</span>
+vim /etc/hosts.allow
+****************************
+vsftpd:172.16.2.28
+<span class="c1"># 只允许172.16.2.28的ip访问</span>
+****************************
+</pre>
+<p><img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-02.png" alt="" />
+<img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-03.png" alt="" /></p>
+
+<p>成功登录，而且，hosts.allow还可以设置多个ip，用空格隔开即可。</p>
+
+<blockquote>
+<p>让我们设想一下，如果可以将ip和机器的mac地址绑定（switch设备可以将mac地址和网口绑定），然后用ip来控制访问，这样就可以达到，只允许同一个网段不同ip访问vsftp的效果。再往深层次考虑，我们设置两台vsftp服务器，用了上面的mac绑定ip控制以后，一台vsftp只能写入，一台只能读取，然后做个shell脚本用root用户从写vsftp-&gt;读vsftp，这样就形成了一种内外网机制，软件或文档只可以内流。当然首先你要先部署内外网隔离和其他安全项。</p>
+</blockquote>
+
+<h3>1.3 操作命令控制</h3>
+
+<h4>1.3.1 <strong>配置cmds_allowed或cmds_denied</strong></h4>
+
+<p>cmds_allowed</p>
+<pre class="chroma">This options specifies a comma separated list of allowed FTP commands (post login. USER, PASS and QUIT and others are always allowed pre-login). Other commands are rejected. This is a powerful method of really locking down an FTP server. Example: cmds_allowed=PASV,RETR,QUIT
+Default: (none)
+</pre>
+<p>cmds_denied</p>
+<pre class="chroma">This options specifies a comma separated list of denied FTP commands (post login. USER, PASS, QUIT and others are always allowed pre-login). If a command appears on both this and cmds_allowed then the denial takes precedence. (Added in v2.1.0).
+Default: (none)
+</pre>
+<h4>1.3.2 配置cmds_denied=&hellip;&hellip;保留cmds_allowed为默认</h4>
+<pre class="chroma">vim /etc/vsftpd/vsftpd.conf
+*************************************
+<span class="nv">cmds_denied</span><span class="o">=</span>DELE,RMD,RNFR,RNTO
+<span class="c1"># cmd说明，见最后ftp命令表，此处限制了ftp用户无法实行删除文件、删除目录和重命名操作</span>
+*************************************
+service xinetd restart
+</pre>
+<p>无法删除文件和目录
+<img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-04.png" alt="" /></p>
+
+<p>无法重命名文档
+<img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-05.png" alt="" /></p>
+
+<p>例外，cmd上ftp可以删除空目录
+<img src="/static/images/docs/service/ftp/service-ftp-vsftp-configuration-06.png" alt="" /></p>
+
+<h3>1.4 操作命令限制2 - 可写和可下载</h3>
+
+<h4>1.4.1 <strong>配置write_enable和download_enable</strong></h4>
+
+<p>write_enable</p>
+<pre class="chroma">This controls whether any FTP commands which change the filesystem are allowed or not. These commands are: STOR, DELE, RNFR, RNTO, MKD, RMD, APPE and SITE.
+Default: NO
+</pre>
+<p>download_enable</p>
+<pre class="chroma">If set to NO, all download requests will give permission denied.
+Default: YES
+</pre>
+<blockquote>
+<p>ps:配置很简单，不演示</p>
+</blockquote>
+
+<h3>附：网摘所有cmds_allowd和cmds_denied相关的ftp命令缩写</h3>
+<pre class="chroma">List of raw FTP commands
+(Warning: this is a technical document, not necessary for most FTP use.)
+Note that commands marked with a * are not implemented in a number of FTP servers.
+Common commands
+* ABOR - abort a file transfer
+* CWD - change working directory
+* DELE - delete a remote file
+* LIST - list remote files
+* MDTM - return the modification time of a file
+* MKD - make a remote directory
+* NLST - name list of remote directory
+* PASS - send password
+* PASV - enter passive mode
+* PORT - open a data port
+* PWD - print working directory
+* QUIT - terminate the connection
+* RETR - retrieve a remote file
+* RMD - remove a remote directory
+* RNFR - rename from
+* RNTO - rename to
+* SITE - site-specific commands
+* SIZE - return the size of a file
+* STOR - store a file on the remote host
+* TYPE - set transfer type
+* USER - send username
+Less common commands
+* ACCT* - send account information
+* APPE - append to a remote file
+* CDUP - CWD to the parent of the current directory
+* HELP - return help on using the server
+* MODE - set transfer mode
+* NOOP - do nothing
+* REIN* - reinitialize the connection
+* STAT - return server status
+* STOU - store a file uniquely
+* STRU - set file transfer structure
+* SYST - return system type
+ 
+ABOR
+Syntax: ABOR
+Aborts a file transfer currently in progress.
+ACCT*
+Syntax: ACCT account-info
+This command is used to send account information on systems that require it. Typically sent after a PASS command.
+ALLO
+Syntax: ALLO size [R max-record-size]
+Allocates sufficient storage space to receive a file. If the maximum size of a record also needs to be known, that is sent as a second numeric parameter following a space, the capital letter &#34;R&#34;, and another space.
+APPE
+Syntax: APPE remote-filename
+Append data to the end of a file on the remote host. If the file does not already exist, it is created. This command must be preceded by a PORT orPASV command so that the server knows where to receive data from.
+CDUP
+Syntax: CDUP
+Makes the parent of the current directory be the current directory.
+CWD
+Syntax: CWD remote-directory
+Makes the given directory be the current directory on the remote host.
+DELE
+Syntax: DELE remote-filename
+Deletes the given file on the remote host.
+HELP
+Syntax: HELP [command]
+If a command is given, returns help on that command; otherwise, returns general help for the FTP server (usually a list of supported commands).
+LIST
+Syntax: LIST [remote-filespec]
+If remote-filespec refers to a file, sends information about that file. If remote-filespec refers to a directory, sends information about each file in that directory. remote-filespec defaults to the current directory. This command must be preceded by a PORT or PASV command.
+MDTM
+Syntax: MDTM remote-filename
+Returns the last-modified time of the given file on the remote host in the format &#34;YYYYMMDDhhmmss&#34;: YYYY is the four-digit year, MM is the month from 01 to 12, DD is the day of the month from 01 to 31, hh is the hour from 00 to 23, mm is the minute from 00 to 59, and ss is the second from 00 to 59.
+MKD
+Syntax: MKD remote-directory
+Creates the named directory on the remote host.
+MODE
+Syntax: MODE mode-character
+Sets the transfer mode to one of:
+* S - Stream
+* B - Block
+* C - Compressed
+The default mode is Stream.
+NLST
+Syntax: NLST [remote-directory]
+Returns a list of filenames in the given directory (defaulting to the current directory), with no other information. Must be preceded by a PORT or PASVcommand.
+NOOP
+Syntax: NOOP
+Does nothing except return a response.
+PASS
+Syntax: PASS password
+After sending the USER command, send this command to complete the login process. (Note, however, that an ACCT command may have to be used on some systems.)
+PASV
+Syntax: PASV
+Tells the server to enter &#34;passive mode&#34;. In passive mode, the server will wait for the client to establish a connection with it rather than attempting to connect to a client-specified port. The server will respond with the address of the port it is listening on, with a message like:
+227 Entering Passive Mode (a1,a2,a3,a4,p1,p2)
+where a1.a2.a3.a4 is the IP address and p1*256+p2 is the port number.
+PORT
+Syntax: PORT a1,a2,a3,a4,p1,p2
+Specifies the host and port to which the server should connect for the next file transfer. This is interpreted as IP address a1.a2.a3.a4, portp1*256+p2.
+PWD
+Syntax: PWD
+Returns the name of the current directory on the remote host.
+QUIT
+Syntax: QUIT
+Terminates the command connection.
+REIN*
+Syntax: REIN
+Reinitializes the command connection - cancels the current user/password/account information. Should be followed by a USER command for another login.
+REST
+Syntax: REST position
+Sets the point at which a file transfer should start; useful for resuming interrupted transfers. For nonstructured files, this is simply a decimal number. This command must immediately precede a data transfer command (RETR or STOR only); i.e. it must come after any PORT or PASV command.
+RETR
+Syntax: RETR remote-filename
+Begins transmission of a file from the remote host. Must be preceded by either a PORT command or a PASV command to indicate where the server should send data.
+RMD
+Syntax: RMD remote-directory
+Deletes the named directory on the remote host.
+RNFR
+Syntax: RNFR from-filename
+Used when renaming a file. Use this command to specify the file to be renamed; follow it with an RNTO command to specify the new name for the file.
+RNTO
+Syntax: RNTO to-filename
+Used when renaming a file. After sending an RNFR command to specify the file to rename, send this command to specify the new name for the file.
+SITE*
+Syntax: SITE site-specific-command
+Executes a site-specific command.
+SIZE
+Syntax: SIZE remote-filename
+Returns the size of the remote file as a decimal number.
+STAT
+Syntax: STAT [remote-filespec]
+If invoked without parameters, returns general status information about the FTP server process. If a parameter is given, acts like the LIST command, except that data is sent over the control connection (no PORT or PASV command is required).
+STOR
+Syntax: STOR remote-filename
+Begins transmission of a file to the remote site. Must be preceded by either a PORT command or a PASV command so the server knows where to accept data from.
+STOU
+Syntax: STOU
+Begins transmission of a file to the remote site; the remote filename will be unique in the current directory. The response from the server will include the filename.
+STRU
+Syntax: STRU structure-character
+Sets the file structure for transfer to one of:
+* F - File (no structure)
+* R - Record structure
+* P - Page structure
+The default structure is File.
+SYST
+Syntax: SYST
+Returns a word identifying the system, the word &#34;Type:&#34;, and the default transfer type (as would be set by the TYPE command). For example: UNIX Type: L8
+TYPE
+Syntax: TYPE type-character [second-type-character]
+Sets the type of file to be transferred. type-character can be any of:
+* A - ASCII text
+* E - EBCDIC text
+* I - image (binary data)
+* L - local format
+For A and E, the second-type-character specifies how the text should be interpreted. It can be:
+* N - Non-print (not destined for printing). This is the default if second-type-character is omitted.
+* T - Telnet format control (&lt;CR&gt;, &lt;FF&gt;, etc.)
+* C - ASA Carriage Control
+For L, the second-type-character specifies the number of bits per byte on the local system, and may not be omitted.
+USER
+Syntax: USER username
+Send this command to begin the login process. username should be a valid username on the system, or &#34;anonymous&#34; to initiate an anonymous login.
+</pre>
+<blockquote>
+<p>来自 <a href="http://www.nsftools.com/tips/RawFTP.htm">http://www.nsftools.com/tips/RawFTP.htm</a></p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

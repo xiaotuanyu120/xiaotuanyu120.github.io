@@ -2,7 +2,7 @@
 title: ftp: 1.1.0 客户端lftp
 date: 2015-01-22 02:54:00
 categories: service/ftp
-tags:
+tags: [ftp]
 ---
 
 ### 1. lftp客户端使用

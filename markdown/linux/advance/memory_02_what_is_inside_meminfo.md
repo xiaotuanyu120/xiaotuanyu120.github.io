@@ -1,5 +1,5 @@
 ---
-title: /proc/meminfo里面有什么？
+title: 内存: /proc/meminfo里面有什么？
 date: 2022-02-17 20:36:00
 categories: linux/advance
 tags: [linux, memory, /proc/meminfo]

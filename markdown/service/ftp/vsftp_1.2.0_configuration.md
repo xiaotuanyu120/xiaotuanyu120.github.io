@@ -1,29 +1,40 @@
 ---
-title: vsftp: 1.2.0 xinetd托管和配置说明
+title: vsftp: 1.2.0 vsftp配置说明
 date: 2015-11-04 14:24:00
+categories: service/ftp
+tags: [ftp,xinetd]
 ---
 
-### 1. 配置研究(/etc/vsftpd/vsftpd.conf)
-配置：listen
-配置项listen=YES/NO说明
+## 1. 配置研究(/etc/vsftpd/vsftpd.conf)
+### 1.1 daemon配置说明
+
+#### 1.1.1 **配置项listen=YES/NO说明**
+
+```
 # When "listen" directive is enabled, vsftpd runs in standalone mode and
 # listens on IPv4 sockets. This directive cannot be used in conjunction
 # with the listen_ipv6 directive.
- 
-当使用"YES"配置时
-listen=YES
-# ps aux|grep vsftpd
+```
+
+当使用"YES"配置时，listen=YES
+
+``` bash
+ps aux|grep vsftpd
 root       3392  0.0  0.0  52112   796 ?        Ss   17:31   0:00 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
-## 现在是运行的standalone模式（独立运行模式）
+# 现在是运行的standalone模式（独立运行模式）
+```
  
-当使用"NO"配置时
-listen=NO
-## 此时以standalone启动服务报错
-# service vsftpd restart
+当使用"NO"配置时，listen=NO
+
+``` bash
+# 此时以standalone启动服务报错
+service vsftpd restart
 Shutting down vsftpd:                                      [  OK  ]
 Starting vsftpd for vsftpd: 500 OOPS: vsftpd: not configured for standalone, must be started from inetd
                                                            [FAILED]
-## 安装xinetd来接管vsftpd服务
+```
+
+#### 1.1.2 **安装xinetd来接管vsftpd服务**
 ``` bash
 yum install xinetd -y
 vim /etc/xinetd.conf
@@ -46,89 +57,115 @@ service vsftpd status
 # vsftpd is stopped
 service xinetd status
 # xinetd (pid  3710) is running...
+
+
 netstat -nltp |grep 21
 # tcp    0   0 :::21                 :::*                    LISTEN      3710/xinetd
 # 说明xinetd已经接替vsftpd这个daemon来监听21端口，可以测试下访问ftp，成功
 ```
 
-配置tcp_wrappers
-配置项tcp_wrappers=YES/NO说明
+### 1.2 访问控制
+
+#### 1.2.1 **配置项tcp_wrappers=YES/NO说明**
+
+```
 If enabled, and vsftpd was compiled with tcp_wrappers support, incoming connections will be fed through tcp_wrappers access control. Furthermore, there is a mechanism for per-IP based configuration. If tcp_wrappers sets the VSFTPD_LOAD_CONF environment variable, then the vsftpd session will try and load the vsftpd configuration file specified in this variable.
-# 是否启动tcp_wrappers来帮助vsftpd过滤IP
-Default: NO
+```
+
+是否启动tcp_wrappers来帮助vsftpd过滤IP，`Default: NO`
  
-开启tcp_wrappers
-tcp_wrappers=YES
-## 配置hosts.deny和hosts.allow
-# vim /etc/hosts.deny
+#### 1.2.2 **开启tcp_wrappers**
+
+**首先开启配置:** `tcp_wrappers=YES`
+
+``` bash
+# 配置hosts.deny和hosts.allow
+vim /etc/hosts.deny
 ****************************
 vsftpd: All
 ## 拒绝所有
 ****************************
-# vim /etc/hosts.allow
+```
+``` bash
+vim /etc/hosts.allow
 ****************************
 vsftpd:172.16.2.128
 ## 只允许172.16.2.128的ip访问
 ****************************
+```
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-01.png)
 
- 
-## 试试让172.16.2.28ip通过
-# vim /etc/hosts.allow
+``` bash
+# 试试让172.16.2.28ip通过
+vim /etc/hosts.allow
 ****************************
 vsftpd:172.16.2.28
-## 只允许172.16.2.28的ip访问
+# 只允许172.16.2.28的ip访问
 ****************************
+```
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-02.png)
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-03.png)
 
+成功登录，而且，hosts.allow还可以设置多个ip，用空格隔开即可。
  
+> 让我们设想一下，如果可以将ip和机器的mac地址绑定（switch设备可以将mac地址和网口绑定），然后用ip来控制访问，这样就可以达到，只允许同一个网段不同ip访问vsftp的效果。再往深层次考虑，我们设置两台vsftp服务器，用了上面的mac绑定ip控制以后，一台vsftp只能写入，一台只能读取，然后做个shell脚本用root用户从写vsftp->读vsftp，这样就形成了一种内外网机制，软件或文档只可以内流。当然首先你要先部署内外网隔离和其他安全项。
 
-## 成功登录，而且，hosts.allow还可以设置多个ip，用空格隔开即可。
- 
-## 让我们设想以下，如果可以将ip和机器的mac地址绑定，然后用ip来控制访问，这样就可以
-## 达到，只允许同一个网段不同ip访问vsftp的效果；
-## 再往深层次考虑，我们设置两台vsftp服务器，用了上面的mac绑定ip控制以后，一台vsftp
-## 只能写入，一台只能读取，然后做个shell脚本用root用户从写vsftp->读vsftp，这样就形成
-## 了一种内外网机制，软件或文档只可以内流。当然首先你要先部署内外网隔离和其他安全项
- 
-配置cmds_allowed或cmds_denied
-配置项说明
+### 1.3 操作命令控制
+#### 1.3.1 **配置cmds_allowed或cmds_denied**
 cmds_allowed
+
+```
 This options specifies a comma separated list of allowed FTP commands (post login. USER, PASS and QUIT and others are always allowed pre-login). Other commands are rejected. This is a powerful method of really locking down an FTP server. Example: cmds_allowed=PASV,RETR,QUIT
 Default: (none)
- 
+```
+
 cmds_denied
+```
 This options specifies a comma separated list of denied FTP commands (post login. USER, PASS, QUIT and others are always allowed pre-login). If a command appears on both this and cmds_allowed then the denial takes precedence. (Added in v2.1.0).
 Default: (none)
- 
-配置cmds_denied=......保留cmds_allowed为默认
-# vim /etc/vsftpd/vsftpd.conf
+```
+
+#### 1.3.2 配置cmds_denied=......保留cmds_allowed为默认
+``` bash
+vim /etc/vsftpd/vsftpd.conf
 *************************************
 cmds_denied=DELE,RMD,RNFR,RNTO
-##cmd说明，见最后ftp命令表，此处限制了ftp用户无法实行删除文件、删除目录和重命名操作
+# cmd说明，见最后ftp命令表，此处限制了ftp用户无法实行删除文件、删除目录和重命名操作
 *************************************
-# service xinetd restart
+service xinetd restart
+```
+
+无法删除文件和目录
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-04.png)
  
-## 无法删除文件和目录
+无法重命名文档
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-05.png)
 
  
-## 无法重命名文档
-
- 
-## 例外，cmd上ftp可以删除空目录
-
+例外，cmd上ftp可以删除空目录
+![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-06.png)
  
  
-配置write_enable和download_enable
-配置说明：
+### 1.4 操作命令限制2 - 可写和可下载
+#### 1.4.1 **配置write_enable和download_enable**
 write_enable
+
+```
 This controls whether any FTP commands which change the filesystem are allowed or not. These commands are: STOR, DELE, RNFR, RNTO, MKD, RMD, APPE and SITE.
 Default: NO
- 
+```
+
 download_enable
+
+```
 If set to NO, all download requests will give permission denied.
 Default: YES
-ps:配置很简单，不演示
- 
-网摘所有cmds_allowd和cmds_denied相关的ftp命令缩写
+```
+> ps:配置很简单，不演示
+
+### 附：网摘所有cmds_allowd和cmds_denied相关的ftp命令缩写
+
+```
 List of raw FTP commands
 (Warning: this is a technical document, not necessary for most FTP use.)
 Note that commands marked with a * are not implemented in a number of FTP servers.
@@ -288,6 +325,5 @@ For L, the second-type-character specifies the number of bits per byte on the lo
 USER
 Syntax: USER username
 Send this command to begin the login process. username should be a valid username on the system, or "anonymous" to initiate an anonymous login.
- 
-来自 <http://www.nsftools.com/tips/RawFTP.htm> 
- 
+```
+> 来自 <http://www.nsftools.com/tips/RawFTP.htm> 

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>函数2</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>08 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>简洁写法</h2>
+<pre class="chroma"><span class="c1"># 用关键字来传递功能开关</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">test1</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">button</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">lower</span> <span class="k">if</span> <span class="n">button</span> <span class="k">else</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">pass</span>
+<span class="c1"># 这样你就可以用关键字来控制函数内部的流程了</span>
+</pre>
+<h2>1. 函数的补充</h2>
+
+<h3>1.1 docstring(函数的注释，专业的象征)</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">doc_example</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">This is an example for __doc__ show</span><span class="s1">
+</span><span class="s1"></span><span class="s1">...     you must put the </span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1"> at the end of doc</span><span class="s1">
+</span><span class="s1"></span><span class="s1">...     </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">doc_example</span><span class="o">.</span><span class="vm">__doc__</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is an example for __doc__ show</span><span class="se">\n</span><span class="s1">    you must put the </span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1"> at the end of doc</span><span class="se">\n</span><span class="s1">    </span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">help</span><span class="p">(</span><span class="n">doc_example</span><span class="p">)</span>
+<span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">doc_example</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+
+<span class="n">doc_example</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">This</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">example</span> <span class="k">for</span> <span class="vm">__doc__</span> <span class="n">show</span>
+    <span class="n">you</span> <span class="n">must</span> <span class="n">put</span> <span class="n">the</span> <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2"> at the end of doc</span><span class="s2">
+</span><span class="s2"></span><span class="s2"># 只有多行docstring的时候才需要把最后的</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">放在单独一行</span><span class="s2">
+</span><span class="s2"></span><span class="s2">
+</span><span class="s2"></span><span class="s2"># 扩展方法</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&gt;&gt;&gt; doc_example.func_doc</span><span class="s2">
+</span><span class="s2"></span><span class="s2">&#39;</span><span class="s2">This is an example for __doc__ show</span><span class="se">\n</span><span class="s2">    you must put the </span><span class="s2">&#34;&#34;&#34;</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">doc</span>\<span class="n">n</span>    <span class="sa"></span><span class="s1">&#39;</span>
+</pre>
+<h3>1.2 介绍如何对输入进行验证 assert使用</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">int_to_float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">assert</span> <span class="n">num</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">the num must is integer</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">int_to_float</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">int_to_float</span>
+<span class="ne">AssertionError</span><span class="p">:</span> <span class="n">the</span> <span class="n">num</span> <span class="n">must</span> <span class="ow">is</span> <span class="n">integer</span>
+<span class="c1"># 个人理解：可用户返回一些并不是系统错误的&#34;逻辑错误&#34;</span>
+</pre>
+<h3>1.3 open的使用</h3>
+<pre class="chroma">* open(name[, mode[, buffering]])
+
+Open a file, returning an object of the file type described in section File Objects. If the file cannot be opened, IOError is raised. When opening a file, it&#39;s preferable to use open() instead of invoking the file constructor directly.
+
+     MODE:
+r (read);w (write);a (append);b (block)
+</pre><pre class="chroma"><span class="c1"># open()函数打开文件，并返回文件对象</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span>
+<span class="o">&lt;</span><span class="nb">open</span> <span class="nb">file</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">mode</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span> <span class="n">at</span> <span class="mh">0x7f15335c85d0</span><span class="o">&gt;</span>  <span class="c1">#默认模式是read</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="p">)</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">#!/usr/bin/python</span><span class="se">\n</span><span class="s1">#Filename:is_prime_def.py</span><span class="se">\n</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="s1"> aim to find all prime from 0 to the number user give. </span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\n</span><span class="s1">def is_num(x):</span><span class="se">\n</span><span class="s1">    try:</span><span class="se">\n</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="k">print</span> \<span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========Done========</span><span class="se">\&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+<span class="c1"># 读完以后文件seek值到最后，再次读取的时候就读不到东西了</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="p">)</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+<span class="c1"># 用obj.seek(0)方法把seek恢复到0位置，也就是文件开头字符位置</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># readline()方法可以单独读行，从seek指针处往后读一整行，若指定size，则读出指定数量字符</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="p">)</span>             
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">#!/usr/bin/python</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#39;</span><span class="s2"> aim</span><span class="s2">&#34;</span>
+
+<span class="c1"># readlines()方法，本质就是重复调用readline()，返回一个list</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">print_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">print</span> <span class="n">line</span><span class="p">,</span>              <span class="c1">#最后的逗号保证输出时不会多出一个空行</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">print_file</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="c1">#!/usr/bin/python</span>
+<span class="c1">#Filename:is_prime_def.py=</span>
+<span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span>
+
+<span class="c1"># 文件本身就是可以迭代的对象</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="c1">#!/usr/bin/python</span>
+<span class="c1">#Filename:is_prime_def.py</span>
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"> aim to find all prime from 0 to the number user give. </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span>
+
+<span class="c1"># .close() 文件关闭方法</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span>
+<span class="o">&lt;</span><span class="n">closed</span> <span class="nb">file</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">mode</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span> <span class="n">at</span> <span class="mh">0x7f15335c85d0</span><span class="o">&gt;</span>
+
+<span class="c1"># 用with自动关闭文件</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">print</span> <span class="n">line</span><span class="p">,</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="c1">#!/usr/bin/python</span>
+<span class="c1">#Filename:is_prime_def.py</span>
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"> aim to find all prime from 0 to the number user give. </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span><span class="err">。</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">f</span>
+<span class="o">&lt;</span><span class="n">closed</span> <span class="nb">file</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">is_prime_def.py</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">mode</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">r</span><span class="s1">&#39;</span> <span class="n">at</span> <span class="mh">0x7f4a9dc3c5d0</span><span class="o">&gt;</span>
+<span class="c1"># 当with代码块执行完毕以后，文件自动被关闭</span>
+</pre>
+<h3>1.4 总结一下函数：</h3>
+
+<ul>
+<li>本质：输入，输出</li>
+<li>内部逻辑: 要求高内聚</li>
+<li>本地作用域： 注意可变对象和不可变对象</li>
+<li>如何使用全局作用域：（不推荐使用global）</li>
+<li>函数签名： 通过函数名称+参数就能够唯一确认函数，用help(函数)查看</li>
+</ul>
+
+<h2>2. lambda 匿名函数，闭包</h2>
+
+<h3>2.1 什么是闭包？</h3>
+
+<p>A function defined inside another function is called a nested function. Nested functions can access variables of the enclosing scope. In Python, these non-local variables are read only by default and we must declare them explicitly as non-local (using nonlocal keyword) in order to modify them. Following is an example of a nested function accessing a non-local variable.</p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">print_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">This is the outer enclosing function</span><span class="s2">&#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">This is the nested function</span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+     
+    <span class="n">printer</span><span class="p">(</span><span class="p">)</span>
+
+<span class="n">We</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">function</span> <span class="k">as</span> <span class="n">follows</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">print_msg</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Hello</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">Hello</span>
+</pre>
+<p>We can see that the nested function printer() was able to access the non-local variable msg of the enclosing function. In the example above, what would happen if the last line of the function print_msg() returned the printer() function instead of calling it? This means the function was defined as follows.</p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">print_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">This is the outer enclosing function</span><span class="s2">&#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">This is the nested function</span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+     
+    <span class="k">return</span> <span class="n">printer</span>  <span class="c1"># this got changed</span>
+</pre>
+<p>Now let&rsquo;s try calling this function.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">another</span> <span class="o">=</span> <span class="n">print_msg</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Hello</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">another</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Hello</span>
+</pre>
+<p>That&rsquo;s unusual. The print_msg() function was called with the string &ldquo;Hello&rdquo; and the returned function was bound to the name another. On calling another(), the message was still remembered although we had already finished executing the print_msg() function. This technique by which some data (&ldquo;Hello&rdquo;) gets attached to the code is called closure in Python.</p>
+
+<p>This value in the enclosing scope is remembered even when the variable goes out of scope or the function itself is removed from the current namespace.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">del</span> <span class="n">print_msg</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">another</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Hello</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">print_msg</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Hello</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">print_msg</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre>
+<h3>2.2 怎么定义闭包？</h3>
+
+<p>As seen from the above example, we have a closure in Python when a nested function references a value in its enclosing scope. The criteria that must be met to create closure in Python are summarized in the following points.</p>
+
+<ul>
+<li>We must have a nested function (function inside a function). 必须是一个函数（封闭函数）内嵌了一个函数（内嵌函数）</li>
+<li>The nested function must refer to a value defined in the enclosing function. 内嵌函数指向了一个封闭函数空间内的变量</li>
+<li>The enclosing function must return the nested function. 封闭函数必须返回了内嵌函数</li>
+</ul>
+<pre class="chroma"><span class="k">def</span> <span class="nf">closure</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>                        <span class="c1"># 1、在封闭环境中的变量</span>
+      <span class="k">def</span> <span class="nf">bibao</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>                 <span class="c1"># 2、函数中的函数</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">a</span>
+      <span class="k">return</span> <span class="n">bibao</span>                 <span class="c1"># 3、上层函数返回下层函数</span>
+</pre>
+<h3>2.3 使用闭包的示例</h3>
+<pre class="chroma"><span class="k">def</span> <span class="nf">counter_closure</span><span class="p">(</span><span class="n">start_at</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">:</span>  
+      <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_at</span><span class="p">]</span>
+      <span class="k">def</span> <span class="nf">incr</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>  
+            <span class="n">count</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>  
+            <span class="k">return</span> <span class="n">count</span>
+      <span class="k">return</span> <span class="n">incr</span>
+</pre>
+<h3>2.4 When To Use Closures?</h3>
+
+<p>So what are closures good for? Closures can avoid the use of global values and provides some form of data hiding. It can also provide an object oriented solution to the problem. When there are few methods (one method in most cases) to be implemented in a class, closures can provide an alternate and more elegant solutions. But when the number of attributes and methods get larger, better implement a class.</p>
+
+<p>Here is a simple example where a closure might be more preferable than defining a class and making objects. But the preference is all yours.</p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">make_multiplier_of</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">multiplier</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">multiplier</span>
+</pre>
+<p>Here is how we can use it.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times3</span> <span class="o">=</span> <span class="n">make_multiplier_of</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times5</span> <span class="o">=</span> <span class="n">make_multiplier_of</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times3</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="mi">27</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times5</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">15</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times5</span><span class="p">(</span><span class="n">times3</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+<span class="mi">30</span>
+</pre>
+<p>Decorators in Python make an extensive use of closures as well.</p>
+
+<p>On a concluding note, it is good to point out that the values that get enclosed in the closure function can be found out. All function objects have a <strong>closure</strong> attribute that returns a tuple of cell objects if it is a closure function. Referring to the example above, we know times3 and times5 are closure functions.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">make_multiplier_of</span><span class="o">.</span><span class="vm">__closure__</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times3</span><span class="o">.</span><span class="vm">__closure__</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="n">cell</span> <span class="n">at</span> <span class="mh">0x0000000002D155B8</span><span class="p">:</span> <span class="nb">int</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x000000001E39B6E0</span><span class="o">&gt;</span><span class="p">,</span><span class="p">)</span>
+</pre>
+<p>The cell object has the attribute cell_contents which stores the closed value.</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times3</span><span class="o">.</span><span class="vm">__closure__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cell_contents</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">times5</span><span class="o">.</span><span class="vm">__closure__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cell_contents</span>
+<span class="mi">5</span>
+</pre>
+<h3>2.5 闭包使用的陷阱</h3>
+<pre class="chroma"><span class="k">def</span> <span class="nf">create_multipliers</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+         <span class="k">return</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">x</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="p">]</span>
+
+<span class="c1"># 推导式生成一个匿名函数列表</span>
+
+<span class="k">for</span> <span class="n">multiplier</span> <span class="ow">in</span> <span class="n">create_multipliers</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">multiplier</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 你猜会输出什么结果？</span>
+<span class="c1">#  这里牵扯到late binding closure，当i * x 的时候，i的循环已经结束，i=4</span>
+</pre>
+<blockquote>
+<p>参考： <a href="http://docs.python-guide.org/en/latest/writing/gotchas/">http://docs.python-guide.org/en/latest/writing/gotchas/</a></p>
+</blockquote>
+
+<h2>3. 课后题</h2>
+
+<p>现有一nginx日志文件nginx.log格式如下:</p>
+<pre class="chroma">$remote_addr - $remote_user [$time_local] &#34;$request&#34; $status $body_bytes_sent &#34;$http_referer&#34; &#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34; &#34;$request_time&#34;ms
+</pre>
+<p>nginx日志文件
+链接: <a href="http://pan.baidu.com/s/1o6kTHlK">http://pan.baidu.com/s/1o6kTHlK</a> 密码: esmw</p>
+
+<p>实例：</p>
+<pre class="chroma">127.0.0.1 - - [06/Aug/2015:00:00:09 +0000] &#34;GET /favicon.ico.js HTTP/1.0&#34; 200 88991 &#34;-&#34; &#34;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)&#34; &#34;112.26.66.147&#34; &#34;0.688&#34;ms
+</pre>
+<p>问题1：求出耗时最久的url，列出top100，并输出各url耗时。比如:</p>
+<pre class="chroma">url            time
+/favicon.ico   0.688
+...            ...
+</pre>
+<p>问题2：求出访问量最高的url，列出top50，并给出访问次数。比如:</p>
+<pre class="chroma">url              times
+/favicon.ico       12
+</pre>
+<p>问题3：统计每小时的访问量，按时段分布。比如:</p>
+<pre class="chroma">0点:  500
+1点:  20
+...   ...
+</pre>
+<p>问题4: 分别统计各url的访问量占比</p>
+<pre class="chroma">.js文件
+.css文件
+.html文件
+.png文件
+</pre>
+<p>精简后代码</p>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># coding=utf-8</span>
+
+
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">aim to analysis nginx access log, print the result</span><span class="s1">&#39;&#39;&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">split_to_list</span><span class="p">(</span><span class="n">filein</span><span class="p">,</span><span class="n">separator</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1"> </span><span class="s1">&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">split file by separator and collect data which the index directed into a list</span><span class="s1">&#39;&#39;&#39;</span>
+    <span class="n">list_scan</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filein</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="n">list_scan</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">list_scan</span>
+
+<span class="k">def</span> <span class="nf">count_to_list</span><span class="p">(</span><span class="n">count_data</span><span class="p">,</span><span class="n">source_data</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">count_data is the list used in for loop; source_data is the list where counted from</span><span class="s1">&#39;&#39;&#39;</span>
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">count_data</span><span class="p">:</span>
+        <span class="n">count_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">source_data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+    <span class="n">count_list</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">count_list</span>
+
+<span class="k">def</span> <span class="nf">print_result</span><span class="p">(</span><span class="n">source_list</span><span class="p">,</span><span class="n">print_format</span><span class="p">,</span><span class="n">print_title</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_list</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">length</span> <span class="k">else</span> <span class="n">length</span>
+    <span class="k">print</span> <span class="n">print_format</span> <span class="o">%</span><span class="n">print_title</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">format_str</span> <span class="o">%</span><span class="p">(</span><span class="n">source_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span><span class="n">source_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+<span class="c1">## PATH OF INPUT FILE</span>
+<span class="n">path_log</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/root/py/05_2/access.log</span><span class="s1">&#39;</span>
+
+<span class="c1">## select which question</span>
+<span class="k">print</span> <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">1: Top 100 of highest request time to url</span><span class="s1">
+</span><span class="s1"></span><span class="s1">2: Top 50 of most requested url</span><span class="s1">
+</span><span class="s1"></span><span class="s1">3: Count request times each clock</span><span class="s1">
+</span><span class="s1"></span><span class="s1">4: Count filetype requested percentage</span><span class="s1">
+</span><span class="s1"></span><span class="s1">======================================</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">select</span> <span class="o">=</span> <span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">which question you want to select? (</span><span class="s1">&#34;</span><span class="s1">1</span><span class="s1">&#34;</span><span class="s1">,</span><span class="s1">&#34;</span><span class="s1">2</span><span class="s1">&#34;</span><span class="s1">,</span><span class="s1">&#34;</span><span class="s1">3</span><span class="s1">&#34;</span><span class="s1"> or </span><span class="s1">&#34;</span><span class="s1">4</span><span class="s1">&#34;</span><span class="s1">:)</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">select</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">1</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="c1">## QUESTION 1</span>
+        <span class="c1">## CONVERT LOG FILE TO LIST</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">split_to_list</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">request_time</span> <span class="o">=</span> <span class="n">split_to_list</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span><span class="n">separator</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+        <span class="n">url_request_time</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">url_request_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">url</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">,</span><span class="n">request_time</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">url_request_time</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">url_request_time</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="c1">## PRINT RESULT</span>
+        <span class="n">format_str</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-45s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">URL</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">REQUEST TIME</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">print_result</span><span class="p">(</span><span class="n">url_request_time</span><span class="p">,</span><span class="n">format_str</span><span class="p">,</span><span class="n">title_str</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">break</span>
+     
+    <span class="k">elif</span> <span class="n">select</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">2</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="c1">## QUESTION 2</span>
+        <span class="c1">## COUNT URL , RETURN A LIST</span>
+        <span class="n">url_split</span> <span class="o">=</span> <span class="n">split_to_list</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">url_dereplication</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">url_split</span><span class="p">)</span>
+        <span class="n">url_times</span> <span class="o">=</span> <span class="n">count_to_list</span><span class="p">(</span><span class="n">url_dereplication</span><span class="p">,</span><span class="n">url_split</span><span class="p">)</span>
+        <span class="n">url_times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">url_times</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+     
+        <span class="c1">## PRINT RESULT</span>
+        <span class="n">format_str</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-60s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">URL</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">TIMES</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">print_result</span><span class="p">(</span><span class="n">url_times</span><span class="p">,</span><span class="n">format_str</span><span class="p">,</span><span class="n">title_str</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="k">break</span>
+     
+    <span class="k">elif</span> <span class="n">select</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">3</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="c1">## QUESTION 3</span>
+        <span class="c1">## COUNT REQUEST EACH CLOCK, RETURN A LIST</span>
+        <span class="n">clock_split</span> <span class="o">=</span> <span class="n">split_to_list</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span><span class="n">separator</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">:</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">clock_dereplication</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">clock_split</span><span class="p">)</span>
+        <span class="n">clock_times</span> <span class="o">=</span> <span class="n">count_to_list</span><span class="p">(</span><span class="n">clock_dereplication</span><span class="p">,</span><span class="n">clock_split</span><span class="p">)</span>
+     
+        <span class="c1">## PRINT RESULT</span>
+        <span class="n">format_str</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-20s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span>
+        <span class="n">title_str</span> <span class="o">=</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">CLOCK</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">TIMES</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">print_result</span><span class="p">(</span><span class="n">clock_times</span><span class="p">,</span><span class="n">format_str</span><span class="p">,</span><span class="n">title_str</span><span class="p">)</span>
+        <span class="k">break</span>
+     
+    <span class="k">elif</span> <span class="n">select</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">4</span><span class="s1">&#39;</span><span class="p">:</span>
+        <span class="c1">## QUESTION 4</span>
+        <span class="c1">## COUNT REQUEST EACH FILETYPE, RETURN A LIST</span>
+        <span class="n">filetype_split</span> <span class="o">=</span> <span class="n">split_to_list</span><span class="p">(</span><span class="n">path_log</span><span class="p">,</span><span class="n">separator</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">filetype</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">.js</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.css</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.html</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.png</span><span class="s1">&#39;</span><span class="p">]</span>
+        <span class="n">filetype_count</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="n">percent_div</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filetype_split</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">filetype</span><span class="p">:</span>
+            <span class="n">count_i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">filetype_split</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">j</span><span class="p">:</span>
+                    <span class="n">count_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="n">percentage</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">count_i</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">percent_div</span>
+            <span class="n">filetype_count</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">percentage</span><span class="p">]</span><span class="p">)</span>
+     
+        <span class="c1">## PRINT RESULT</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-20s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">FILETYPE</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">PERCENTAGE</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">filetype_count</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-20s</span><span class="s1"> </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">filetype_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span><span class="n">filetype_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+        <span class="k">break</span>
+     
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">you must select a question in the list before!</span><span class="s2">&#34;</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

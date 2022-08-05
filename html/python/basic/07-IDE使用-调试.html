@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>IDE使用-调试</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>20 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 常用IDE</h2>
+
+<ul>
+<li>PyCharm</li>
+<li>Sublime Text</li>
+<li>Vim:
+&gt; <a href="https://github.com/amix/vimrc">https://github.com/amix/vimrc</a>
+&gt; 配置pep8插件即可</li>
+</ul>
+
+<h2>2. 调试程序</h2>
+
+<p>IDE中这么做：图形界面，此处不赘述</p>
+
+<h2>3. 在终端怎么处理？</h2>
+
+<p>pdb：详细安装和操作见后面ipdb，ipdb就是一个pdb的&rsquo;ipython&rsquo;版本</p>
+
+<blockquote>
+<p><a href="https://docs.python.org/2.7/library/pdb.html">https://docs.python.org/2.7/library/pdb.html</a></p>
+</blockquote>
+
+<h2>4. ipdb的使用</h2>
+
+<h3>4.1 ipdb是什么？</h3>
+
+<p>ipdb exports functions to access the IPython debugger, which features tab completion, syntax highlighting, better tracebacks, better introspection with the same interface as the pdb module.</p>
+
+<h3>4.2 安装方法</h3>
+
+<ol>
+<li><p>pip安装方法，<code>pip install ipdb</code></p></li>
+
+<li><p>源码安装方法
+下载<a href="https://pypi.python.org/packages/source/i/ipdb/ipdb-0.8.1.zip">ipdb 源码</a></p>
+<pre class="chroma">python setup.py
+</pre></li>
+</ol>
+
+<h3>4.3 使用方法</h3>
+
+<ol>
+<li><code>python -m ipdb module.py</code></li>
+<li>解释器中使用
+<code>python
+&gt;&gt;&gt; import ipdb
+&gt;&gt;&gt; ipdb.run(statement)
+</code>
+3. 程序中增加断点
+<code>python
+# python get_tree_dir.py
+&gt; /root/python/homework/_7th_1/get_tree_dir.py(26)&lt;module&gt;()
+ 25     import ipdb;ipdb.set_trace()
+---&gt; 26     system('rm -f filepath_info.txt')
+ 27     with open('filepath_info.txt', 'a') as f:
+ipdb&gt; where
+&gt; /root/python/homework/_7th_1/get_tree_dir.py(26)&lt;module&gt;()
+ 24     data = sorted(data, cmp=lambda x, y: cmp(len(x[0]), len(y[0])))
+ 25     import ipdb;ipdb.set_trace()
+---&gt; 26     system('rm -f filepath_info.txt')
+ 27     with open('filepath_info.txt', 'a') as f:
+ 28         f.write('/root/python/homework\n')
+## 'import ipdb;ipdb.set_trace()'来制作人为断点
+</code></li>
+</ol>
+
+<h3>4.5 调试过程命令（跟pdb一样）</h3>
+<pre class="chroma">h -&gt; help    #help来查看所有操作
+
+s --&gt; step in
+n  -&gt; next
+c -&gt; continue
+r -&gt; return   继续执行直到函数返回
+w  -&gt; where 展示当前位置，调用栈
+l -&gt; list   l 50  显示某一行前后的代码
+u  -&gt; up  跳到上一层调用
+
+q  -&gt; quit 退出
+</pre>
+<h2>5. 扩展链接</h2>
+
+<p><a href="https://docs.python.org/2/library/pdb.html">https://docs.python.org/2/library/pdb.html</a></p>
+
+<h2>6. 课后练习</h2>
+
+<ol>
+<li>写一个程序，给一个路径，把目录结构写到一个文件中，保持层级关系。</li>
+<li>同ipython一样，有一个工具叫做ipdb，学会使用它，然后写一个简单的教程，贴到论坛。</li>
+<li>补充习题：
+写一个程序统计代码行数,可以统计信息包括:代码行数,注释行数(代码尾部的注释也算)
+使用方法:  python collection.py  .  (指当前文件夹下所有的py文件）</li>
+</ol>
+
+<p>1、解法1</p>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># coding=utf-8</span>
+
+
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">get the path info and put it into a file</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+
+<span class="k">def</span> <span class="nf">cmd</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+        <span class="n">args</span><span class="o">=</span><span class="n">command</span><span class="p">,</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="n">shell</span><span class="o">=</span><span class="bp">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">process</span><span class="o">.</span><span class="n">communicate</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/root/python/homework</span><span class="s1">&#39;</span>
+    <span class="n">cmdline</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">tree </span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">path</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">(</span><span class="n">cmdline</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">rm -f filepath_info_2.txt</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">filepath_info_2.txt</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre>
+<p>1、解法2</p>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+
+
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">get the path info and put it into a file</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">walk</span><span class="p">,</span> <span class="n">system</span>
+
+
+<span class="k">def</span> <span class="nf">path_structure</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">dirname</span><span class="p">,</span> <span class="n">subdirs</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">dirname</span><span class="p">]</span> <span class="o">=</span> <span class="n">filenames</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">dirname</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">subdirs</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">subdir</span> <span class="ow">in</span> <span class="n">subdirs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="n">subdir</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="p">]</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="n">subdir</span><span class="p">]</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="n">subdir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">/root/python/homework</span><span class="s2">&#34;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">path_structure</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">cmp</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">cmp</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">ipdb</span><span class="p">;</span><span class="n">ipdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">system</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">rm -f filepath_info.txt</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">filepath_info.txt</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">/root/python/homework</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">|-- </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">|</span><span class="se">\t</span><span class="s1">|-- </span><span class="si">%s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span>
+</pre>
+<p>3、答案</p>
+<pre class="chroma"><span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">Analysis the number of code lines and</span><span class="s1">
+</span><span class="s1"></span><span class="s1">annotation lines of *.py file in current folder</span><span class="s1">
+</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">get_file_list</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">file_result</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+    <span class="n">all_file</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">all_file</span><span class="p">:</span>
+        <span class="n">fname</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ext</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.py</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="n">file_result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_result</span>
+
+
+<span class="k">def</span> <span class="nf">get_analysis_info</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">analysis_result</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Annotation</span><span class="s2">&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Code</span><span class="s2">&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Total</span><span class="s2">&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Spaces</span><span class="s2">&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">^</span><span class="s1">\</span><span class="s1">s*$</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                    <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Spaces</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">^</span><span class="s1">\</span><span class="s1">s*(</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">|</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="s1">)</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">^</span><span class="s1">\</span><span class="s1">s*(</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">|</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="s1">).*(</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">|</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="s1">)$</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                        <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Annotation</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">\</span><span class="s1">s+#</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                    <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Annotation</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">^</span><span class="s1">\</span><span class="s1">s*#</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                        <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Code</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Code</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">^.*(</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">|</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="se">\&#39;</span><span class="s1">)</span><span class="s1">\</span><span class="s1">s*$</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Annotation</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">flag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="n">analysis_result</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Total</span><span class="s2">&#34;</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">analysis_result</span>
+
+
+<span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Error: you must assign a PATH!</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">e</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">dir_path</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="n">get_file_list</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">a_result</span> <span class="o">=</span> <span class="n">get_analysis_info</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">p_result</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="si">%10s</span><span class="s1"> : </span><span class="si">%-d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">a_result</span><span class="p">]</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">----------------------------</span><span class="s1">&#39;</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="si">%10s</span><span class="s1"> : </span><span class="si">%-s</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Filename</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">p_result</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">i</span>
+</pre>
+<p>阳哥答案</p>
+<pre class="chroma"><span class="c1"># coding:utf-8</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">statistics the number of lines of code</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-p</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--path</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">.</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">dirpath</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">设定路径</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-l</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--language</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">python</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">lang</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">输入你想统计的语言，支持: python, ruby, c, java, 注：可以输入多个用英文逗号分隔</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">-d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">--depth</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">depth</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">想要遍历的深度, 默认是1</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="n">LANG_POSTFIX</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">python</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.py</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">java</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.java</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ruby</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.rb</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="sa"></span><span class="s1">&#39;</span><span class="s1">c</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">.c</span><span class="s1">&#39;</span>
+<span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">collect_files</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    收集所有的文件，包含路径</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">list_files</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">recurse_dir</span><span class="p">(</span><span class="n">_path</span><span class="p">,</span> <span class="n">_depth</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">_depth</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+     
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">_path</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_path</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">list_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">recurse_dir</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">_depth</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+     
+    <span class="n">recurse_dir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">depth</span><span class="p">)</span>
+     
+    <span class="k">return</span> <span class="n">list_files</span>
+
+ 
+
+
+<span class="k">def</span> <span class="nf">statics_by_lang</span><span class="p">(</span><span class="n">lang</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+    <span class="n">postfix</span> <span class="o">=</span> <span class="n">LANG_POSTFIX</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">postfix</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="n">real_files</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">postfix</span><span class="p">)</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">real_files</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">file_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">parse_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+     
+    <span class="k">return</span> <span class="n">result</span>
+
+ 
+
+
+<span class="k">def</span> <span class="nf">parse_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">comment_count</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 测试注释</span>
+    <span class="n">code_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">blank_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">####</span><span class="s2">&#34;</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">multi_flag</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">multi_count</span> <span class="o">=</span> <span class="mi">0</span>
+     
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="p">)</span>
+     
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">multi_flag</span> <span class="ow">and</span> <span class="n">is_comment</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">comment_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+     
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">multi_flag</span> <span class="ow">and</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">&#34;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">multi_flag</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">multi_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+     
+            <span class="k">elif</span> <span class="n">multi_flag</span> <span class="ow">and</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">&#39;</span><span class="s2">&#34;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#34;</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">multi_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+     
+                <span class="n">multi_flag</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="n">comment_count</span> <span class="o">+</span><span class="o">=</span> <span class="n">multi_count</span>
+                <span class="n">multi_count</span> <span class="o">=</span> <span class="mi">0</span>
+     
+            <span class="k">elif</span> <span class="n">multi_flag</span> <span class="ow">and</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">multi_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+     
+            <span class="k">elif</span> <span class="n">line</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="c1"># 处理空行</span>
+                <span class="n">blank_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 剩余的就是有效代码</span>
+                <span class="n">code_count</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+     
+    <span class="k">return</span> <span class="n">comment_count</span><span class="p">,</span> <span class="n">blank_count</span><span class="p">,</span> <span class="n">code_count</span>
+
+ 
+
+
+<span class="k">def</span> <span class="nf">is_comment</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    判断是否为注释行:</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    规则：</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        1. 以#开头</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        2. 结尾注释有 # ，并且不是被写在字符串中的</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">#</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">#</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\&#34;</span><span class="s1">&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+     
+    <span class="k">return</span> <span class="bp">False</span>
+
+ 
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+
+    <span class="n">files</span> <span class="o">=</span> <span class="n">collect_files</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">depth</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">statics_by_lang</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">file_name</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">注释: </span><span class="si">%s</span><span class="s1">, 空行:</span><span class="si">%s</span><span class="s1">, 代码行数:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">value</span>
+     
+    <span class="n">sum_values</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">results</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">总计:</span><span class="s1">&#39;</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">注释:</span><span class="si">%s</span><span class="s1">, 空行:</span><span class="si">%s</span><span class="s1">, 代码行数:</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span> <span class="n">sum_values</span><span class="p">)</span><span class="p">)</span>
+
+ 
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<h3>课后习题讲解</h3>
+
+<h4><strong>注意点</strong></h4>
+
+<ol>
+<li>参数传递时，要根据它的功能去明确名称。example：当我们传递一个文件object时，&rsquo;fobj&rsquo;优于&rsquo;arg&rsquo;</li>
+<li>参数及变量的命名要避开keywordsexample：当你希望创建一个list去临时储存数据时，不要直接使用list这个keyword</li>
+<li>实现简单功能时，尽量少用正则，优先使用python模块及函数。这样可以确保程序的可读性</li>
+<li>函数模块不要过长，注意抽象的使用</li>
+</ol>
+
+<h4><strong><code>MODULE: 'argparse' - CLASS: 'ArgumentParser'</code></strong></h4>
+
+<blockquote>
+<p><a href="https://docs.python.org/2/howto/argparse.html#id1">文档信息</a></p>
+</blockquote>
+<pre class="chroma"><span class="n">vi</span> <span class="n">argp</span><span class="o">.</span><span class="n">py</span>
+<span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square</span><span class="s2">&#34;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">square an int</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">args</span><span class="o">.</span><span class="n">square</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span>
+<span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span><span class="o">*</span>
+
+<span class="n">python</span> <span class="n">argp</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
+<span class="n">usage</span><span class="p">:</span> <span class="n">argp</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="n">spuare</span>
+
+<span class="n">positional</span> <span class="n">arguments</span><span class="p">:</span>
+  <span class="n">spuare</span>      <span class="n">square</span> <span class="n">an</span> <span class="nb">int</span>
+
+<span class="n">python</span> <span class="n">argp</span><span class="o">.</span><span class="n">py</span> <span class="mi">4</span>
+<span class="mi">16</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

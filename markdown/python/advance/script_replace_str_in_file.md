@@ -2,7 +2,7 @@
 title: 脚本: 替换字符串
 date: 2016-08-16 10:52:00
 categories: python/advance
-tags: python
+tags: [python]
 ---
 
 ### 0. 脚本目标及使用函数
@@ -14,8 +14,6 @@ tags: python
 - `os.path.isfile` 判断文件是否存在
 - `os.remove` 删除文件
 - `str.replace` 替换字符串内容
-
----
 
 ### 1. 脚本内容
 ``` python
@@ -30,8 +28,6 @@ with open('a.txt', 'r') as f:
                 line = line.replace('hello', 'byebye')
             f_r.write(line)
 ```
-
----
 
 ### 2. 脚本效果
 ``` bash

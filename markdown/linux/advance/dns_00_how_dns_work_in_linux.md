@@ -1,5 +1,5 @@
 ---
-title: Linux中的DNS解析是如何工作的
+title: DNS: Linux中的DNS解析是如何工作的
 date: 2022-02-10 11:49:00
 categories: linux/advance
 tags: [dns,resolv.conf,hosts,dnsmasq]

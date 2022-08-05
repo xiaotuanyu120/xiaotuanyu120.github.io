@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>基础(变量&操作符)</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>28 Jul 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 变量</h2>
+
+<p>命名规则：变量名必须是大小写英文、数字和_的组合，且不能用数字开头。避免使用keywords，以下是keywords列表</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">keyword</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">keyword</span><span class="o">.</span><span class="n">kwlist</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">and</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">as</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">assert</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">break</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">class</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">continue</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">def</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">del</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">elif</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">else</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">except</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">exec</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">finally</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">for</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">from</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">global</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">if</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">import</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">in</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">is</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">lambda</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">not</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">or</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">pass</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">print</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">raise</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">return</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">try</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">while</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">with</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">yield</span><span class="s1">&#39;</span><span class="p">]</span>
+</pre>
+<blockquote>
+<p>PS：不能使用数字开头是为了避免系统混淆（和int型的混淆）</p>
+</blockquote>
+
+<p>变量实质：变量其实就是内存地址</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">various a</span><span class="s2">&#34;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a address:</span><span class="s1">&#39;</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1"> b address</span><span class="s1">&#39;</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="p">)</span>
+<span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">a address:</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">140651413012032</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1"> b address</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">140651413012032</span><span class="p">)</span>
+</pre>
+<p>变量赋值：赋值号&rdquo;=&rdquo;</p>
+<pre class="chroma"><span class="c1"># 普通变量</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">twelve</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">thirtyfour</span> <span class="o">=</span> <span class="mi">34</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">twelve:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">twelve</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">thirtyfour:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">thirtyfour</span>
+<span class="n">twelve</span><span class="p">:</span> <span class="mi">12</span> <span class="n">thirtyfour</span><span class="p">:</span> <span class="mi">34</span>
+
+<span class="c1"># 变量赋值</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">one</span><span class="p">,</span><span class="n">two</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">one:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">one</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">two:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">two</span>
+<span class="n">one</span><span class="p">:</span> <span class="mi">1</span> <span class="n">two</span><span class="p">:</span> <span class="mi">2</span>
+
+<span class="c1"># 变量交换</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">one</span><span class="p">,</span><span class="n">two</span> <span class="o">=</span> <span class="n">two</span><span class="p">,</span><span class="n">one</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">one:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">one</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">two:</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">two</span>
+<span class="n">one</span><span class="p">:</span> <span class="mi">2</span> <span class="n">two</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="c1"># 赋值空变量</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">job</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">job</span>
+<span class="bp">None</span>
+</pre>
+<h2>2. 数据类型</h2>
+
+<p>基本类型：整数、浮点数、字符串、布尔值、空值</p>
+
+<blockquote>
+<p>PS：python还可以创建列表、数组和字典等多种数据类型，还可以自定义数据类型</p>
+</blockquote>
+
+<h3>2.1 数字number</h3>
+
+<h4><strong>2.1.1 整数integer</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="mi">10</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">int</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre>
+<h4>** 2.1.2 浮点数float**</h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="mf">10.0</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">float</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre>
+<h4><strong>2.1.3 强制转换整数int()</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mf">10.1</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">int</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre>
+<h4><strong>2.1.4 强制转换浮点数float()</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="p">(</span><span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">float</span><span class="s1">&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+</pre>
+<h4><strong>2.1.5 int的范围</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">int_max</span><span class="p">)</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">int_max:</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">int_max</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">int_more</span><span class="p">)</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">int_more:</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">int_more</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">int</span><span class="s1">&#39;</span><span class="o">&gt;</span> <span class="n">int_max</span><span class="p">:</span> <span class="mi">9223372036854775807</span>
+<span class="o">&lt;</span><span class="nb">type</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">long</span><span class="s1">&#39;</span><span class="o">&gt;</span> <span class="n">int_more</span><span class="p">:</span> <span class="mi">9223372036854775808</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">int_more</span>
+<span class="il">9223372036854775808L</span>        <span class="c1"># &lt;-----  L是长整型的标识</span>
+</pre>
+<h4><strong>2.1.6float的范围</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="mf">1.7976931348623157e+308</span><span class="p">,</span> <span class="n">max_exp</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">max_10_exp</span><span class="o">=</span><span class="mi">308</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">2.2250738585072014e-308</span><span class="p">,</span> <span class="n">min_exp</span><span class="o">=</span><span class="o">-</span><span class="mi">1021</span><span class="p">,</span> <span class="n">min_10_exp</span><span class="o">=</span><span class="o">-</span><span class="mi">307</span><span class="p">,</span> <span class="n">dig</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">mant_dig</span><span class="o">=</span><span class="mi">53</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">2.220446049250313e-16</span><span class="p">,</span> <span class="n">radix</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rounds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># 科学计数法解释</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mf">2e+3</span>
+<span class="mf">2000.0</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mf">1e-1</span>
+<span class="mf">0.1</span>
+</pre>
+<h3>2.2 字符串string</h3>
+
+<h4><strong>2.2.1 单双引号字符串</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is a string</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">string</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">This is a string</span><span class="s2">&#34;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">string</span>
+</pre>
+<h4><strong>2.2.2 三引号字符串（可换行）</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... This</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... is</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... A string</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                             <span class="o">&lt;</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span>        <span class="c1">#这是一个空行</span>
+<span class="n">This</span>
+<span class="ow">is</span>
+<span class="n">A</span> <span class="n">string</span>
+</pre>
+<h4><strong>2.2.3 三引号字符串（用\来转义换行符，使第一行空行消失）</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="se">\
+</span><span class="se"></span><span class="s1">... This</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... is</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... A string</span><span class="s1">
+</span><span class="s1"></span><span class="s1">... </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span>                             <span class="o">&lt;</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span>        <span class="c1">#空行没有了</span>
+<span class="ow">is</span>
+<span class="n">A</span> <span class="n">string</span>
+</pre>
+<h4><strong>2.2.4 换行符\n</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is </span><span class="se">\n</span><span class="s1">a string</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span>
+<span class="n">a</span> <span class="n">string</span>
+</pre>
+<h4><strong>2.2.5 如何转义\n</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is </span><span class="se">\\</span><span class="s1">na string</span><span class="s1">&#39;</span>   <span class="o">&lt;</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span>   <span class="c1">#用&#39;\&#39;来转义</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> \<span class="n">na</span> <span class="n">string</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;</span><span class="s1">This is </span><span class="s1">\</span><span class="s1">na string</span><span class="s1">&#39;</span> <span class="o">&lt;</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span><span class="o">-</span>   <span class="c1">#用&#39;r&#39;来转义整个字符串的特殊符号</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> \<span class="n">na</span> <span class="n">string</span>
+</pre>
+<h4><strong>2.2.6 占位符\s</strong></h4>
+
+<p>老方式</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Hello</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">b</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is a string,</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="n">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">string</span><span class="p">,</span><span class="n">Hello</span>
+</pre>
+<p>新方式</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Hello</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">This is a string,{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">string</span><span class="p">,</span><span class="n">Hello</span>
+</pre>
+<h4><strong>2.2.7 编码</strong></h4>
+<pre class="chroma"><span class="c1">#Python默认采用ascii编码，而中文编码不再ascii编码能够表示的范围之内</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">getdefaultencoding</span><span class="p">(</span><span class="p">)</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">ascii</span><span class="s1">&#39;</span>
+</pre>
+<h2>3. 布尔值</h2>
+
+<h3>3.1 赋值</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">running</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">while</span> <span class="n">running</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">good</span><span class="s2">&#34;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">break</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="n">good</span>
+</pre>
+<h3>3.2 判断</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mf">1.0</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="bp">False</span>
+</pre>
+<h2>4. 空值</h2>
+
+<h3>4.1 赋值</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">job</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">print</span> <span class="n">job</span>
+<span class="bp">None</span>
+</pre>
+<blockquote>
+<ul>
+<li>PS:区分数据类型，会节省内存的使用（不同的数据类型分配不同的内存容量）</li>
+<li>PS:区分数据类型，会分离不同的针对数据类型的操作</li>
+</ul>
+</blockquote>
+
+<h2>5. 各类型操作方法</h2>
+
+<h3>5.1  number操作符号</h3>
+
+<p>加<code>+</code> 减<code>-</code> 乘<code>*</code> 除<code>/</code> 地板除<code>//</code> 模<code>%</code></p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">5</span>           <span class="c1"># 运算顺序，除法是优先于加减的</span>
+<span class="mi">8</span> 
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="mi">5</span>         <span class="c1"># 用()来使运算过程清晰化</span>
+<span class="mi">1</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">5</span><span class="o">/</span><span class="mi">6</span>                     <span class="c1"># v2.x版本里整形之间除法得到的结果也是整形，python3里面会改善这个</span>
+<span class="mi">0</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mf">5.0</span> <span class="o">/</span> <span class="mi">6</span>                 <span class="c1"># 浮点型与整形计算会得到浮点型</span>
+<span class="mf">0.8333333333333334</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>            <span class="c1"># float函数</span>
+<span class="mf">0.8333333333333334</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">5</span> <span class="o">%</span> <span class="mi">6</span>                   <span class="c1"># 模也是取余数，余数是5</span>
+<span class="mi">5</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">6</span> <span class="o">%</span> <span class="mi">5</span>
+<span class="mi">1</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mf">5.0</span> <span class="o">/</span> <span class="mi">2</span>                 <span class="c1"># 来看下除法和地板除的区别</span>
+<span class="mf">2.5</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mf">5.0</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span>
+<span class="mf">2.0</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">math</span>             <span class="c1"># math模块里的floor函数和//是同样的功效</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="mf">5.0</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="mf">2.0</span>
+</pre>
+<h3>5.2 位操作</h3>
+
+<p><code>&amp;</code>：按位与； <code>|</code>：按位或；<code>^</code>：按位异或；<code>~</code>：取反；<code>&lt;&lt;</code>：左移；<code>&gt;&gt;</code>：右移作</p>
+
+<h4><strong>&lsquo;3&rsquo;的二进制是0011； &lsquo;6&rsquo;的二进制是0110</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">3</span> <span class="o">&amp;</span> <span class="mi">6</span>
+<span class="mi">2</span>             <span class="c1"># &#39;&amp;&#39;与操作结果：&#39;2&#39;的二进制是0010（同时为1，则为1，其他为0）</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">3</span> <span class="o">|</span> <span class="mi">6</span>
+<span class="mi">7</span>             <span class="c1"># &#39;|&#39;或操作结果：&#39;7&#39;的二进制是0111（只要有一个是1，则为1，其他为0）</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="mi">3</span> <span class="o">^</span> <span class="mi">6</span>
+<span class="mi">5</span>             <span class="c1"># &#39;^&#39;异或操作结果：&#39;5&#39;的二进制是0101（只有一个是1，才为1，其他为0）</span>
+</pre>
+<h4><strong>取反</strong></h4>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="o">~</span><span class="mi">6</span>
+<span class="o">-</span><span class="mi">7</span>
+<span class="c1"># [十进制6 &gt; 二进制0110 &gt; 补码00110&gt;] 取反11001 [补码10111 &gt; 二进制-0111 &gt; 十进制-7]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="o">~</span><span class="mi">3</span>
+<span class="o">-</span><span class="mi">4</span>
+<span class="c1"># [十进制3 &gt; 二进制0011 &gt; 补码00011&gt;] 取反11100 [补码10100 &gt; 二进制-0100 &gt; 十进制-4]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="o">~</span><span class="o">-</span><span class="mi">8</span>
+<span class="mi">7</span>
+<span class="c1"># [十进制-8 &gt; 二进制1000 &gt; 补码11000&gt;] 取反00111 [补码00111 &gt; 二进制0111 &gt; 十进制7]</span>
+<span class="c1"># 内存中数字以补码的形式保存</span>
+<span class="c1"># 正数的补码和反码都是本身</span>
+<span class="c1"># 负数的补码是符号位不变，其余各位取反，末尾加1；反码是符号位不变，其余各位取反</span>
+</pre>
+<h4><strong>字符位移</strong></h4>
+<pre class="chroma"><span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">abcd</span><span class="s1">&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="p">:</span> <span class="n">r</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="n">r</span> <span class="o">+</span><span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span> <span class="k">print</span> <span class="n">r</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+<span class="err">?</span><span class="err">?</span><span class="err">?</span><span class="err">?</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="p">:</span> <span class="n">new_t</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>     <span class="n">new_t</span> <span class="o">+</span><span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span> <span class="k">print</span> <span class="n">new_t</span>
+   <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">:</span>
+<span class="n">abcd</span>
+</pre>
+<h3>5.3 string操作</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">string</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="p">)</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">STRING</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">STRING</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">string</span><span class="s1">&#39;</span>
+</pre>
+<h2>6. 变量泄漏</h2>
+
+<h3>6.1 for的变量泄漏</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">i</span>
+<span class="mi">9</span>        <span class="c1"># i变成了9</span>
+</pre>
+<h3>6.2 while的变量泄漏</h3>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">while</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">i</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="mi">10</span>
+<span class="mi">11</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">i</span>
+<span class="mi">11</span>
+</pre>
+<h2>7. 课后练习</h2>
+
+<h3>7.1 写个程序，接受用户输入数字，并进行校验，非数字给出错误提示，然后重新等待用户输入。</h3>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+<span class="c1">#Filename:2907_if_num.py</span>
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"> aim to check user</span><span class="s1">&#39;</span><span class="s1">s input, if num yes, else no, retry pls. </span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_user</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Input a number : </span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">the number is </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span> <span class="n">input_user</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">what you input is not a number!</span><span class="s1">&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Done</span><span class="s1">&#39;</span>
+</pre>
+<h3>7.2  根据用户输入数字，输出从0到该数字之间所有的素数。(只能被1和自身整除的数为素数）</h3>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+<span class="c1">#Filename:2907_if_prime.py</span>
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"> aim to find all prime from 0 to the number user give. </span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_user</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Input a number : </span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========start========</span><span class="s1">&#39;</span>
+        <span class="n">num_div</span> <span class="o">=</span> <span class="n">input_user</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">num_find</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">input_user</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="n">count_div</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">num_div</span><span class="p">)</span><span class="p">:</span>
+                <span class="n">result_div</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num_find</span><span class="p">)</span> <span class="o">/</span> <span class="n">i</span>
+                <span class="n">result_div_int</span> <span class="o">=</span> <span class="n">num_find</span> <span class="o">/</span> <span class="n">i</span>
+                <span class="c1">#print &#34;num:&#34;,num_find,&#39;-&#39;,i,&#39;-&#39;,result_div,&#39;-&#39;,result_div_int</span>
+                <span class="k">if</span> <span class="n">result_div</span> <span class="o">==</span> <span class="n">result_div_int</span> <span class="ow">and</span> <span class="n">num_find</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">count_div</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">count_div</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="c1">#print count_div</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">num_div</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span> <span class="n">count_div</span><span class="p">:</span>
+                <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">prime : </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">num_find</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">what you input is not a number!</span><span class="s1">&#39;</span>
+<span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========Done========</span><span class="s1">&#39;</span>
+</pre>
+<h3>7.3  回顾</h3>
+
+<p>课后题:</p>
+
+<ol>
+<li>写个程序，接受用户输入数字，并进行校验，非数字给出错误提示，然后重新等待用户输入。</li>
+<li>根据用户输入数字，输出从0到该数字之间所有的素数。(只能被1和自身整除的数为素数）</li>
+</ol>
+<pre class="chroma"><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">input_user</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Input a number : </span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">what you input is not a number!</span><span class="s1">&#39;</span>
+        <span class="k">continue</span>
+
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========start========</span><span class="s1">&#39;</span>
+    <span class="n">num_div</span> <span class="o">=</span> <span class="n">input_user</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">num_find</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">input_user</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">is_prime</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">num_div</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num_find</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">num_find</span> <span class="o">!=</span> <span class="n">i</span><span class="p">:</span>
+                <span class="n">is_prime</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">is_prime</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">:</span>
+            <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">prime : </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">num_find</span>
+    <span class="k">break</span>
+<span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========Done========</span><span class="s1">&#39;</span>
+</pre>
+<blockquote>
+<p>变量命名规则主流方式:</p>
+
+<ul>
+<li>匈牙利命名：开头用变量类型的缩写，其余用变量的英文或缩写，单词第一个字母大写
+For example: long lSum = 0;      #&ldquo;l&rdquo;是类型的缩写；</li>
+<li>小驼峰式：(little camel-case) 第一个单词首字母小写，后面其他单词首字母大写
+For example: string firstName = string.Empty;</li>
+<li>大驼峰式：(big camel-case) 每个单词的第一个字母都大写
+For example：string FirstName = string.Empty;</li>
+</ul>
+
+<p>但是，python倾向于下划线分割的方式来命名变量（For example：is_prime = True）</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

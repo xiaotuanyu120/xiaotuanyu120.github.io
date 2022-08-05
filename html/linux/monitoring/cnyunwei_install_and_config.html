@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+              <ul>
+                <li>
+                  <a href="/linux/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/linux/basic/index.html">basic</a>
+                </li>
+                <li>
+                  <a href="/linux/desktop/index.html">desktop</a>
+                </li>
+                <li>
+                  <a href="/linux/monitoring/index.html">monitoring</a>
+                  <ul>
+                    <li><a href="/linux/monitoring/cnyunwei_install_and_config.html">cnyunwei: 安装和配置</a></li>
+                    <li><a href="/linux/monitoring/nagios_000_installation_package.html">nagios: 一键安装包</a></li>
+                    <li><a href="/linux/monitoring/nagios_001_install_and_config.html">nagios: 安装、配置和使用</a></li>
+                    <li><a href="/linux/monitoring/snmp_000_simple_intro.html">snmp: 简要介绍</a></li>
+                    <li><a href="/linux/monitoring/zabbix_001_2.0_yum_install_and_config.html">zabbix: 安装 - yum(2.0)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_002_2.4_source_install_and_config.html">zabbix: 安装 - source(2.4)</a></li>
+                    <li><a href="/linux/monitoring/zabbix_003_quickstart.html">zabbix: usage - quick start</a></li>
+                    <li><a href="/linux/monitoring/zabbix_004_nginx_monitor.html">zabbix: 实践 - nginx监控</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/linux/other/index.html">other</a>
+                </li>
+                <li>
+                  <a href="/linux/service/index.html">service</a>
+                </li>
+                <li>
+                  <a href="/linux/shell/index.html">shell</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>cnyunwei: 安装和配置</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>28 Dec 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. cnyunwei下载及系统安装</h2>
+
+<p>ISO文件下载连接：<a href="http://pan.baidu.com/s/1eRcnfYa">http://pan.baidu.com/s/1eRcnfYa</a> 提取密码：nz5v</p>
+
+<h3>1.1 安装过程</h3>
+
+<ul>
+<li>引导</li>
+<li>选择安装版本（我选的cati+nagios+nconf-x64中文版本）</li>
+<li>重启</li>
+</ul>
+
+<h2>2. 安装后配置</h2>
+
+<h3>2.1 修改密码</h3>
+
+<p>修改root密码（默认root：www.cnyunwei.com）</p>
+<pre class="chroma">passwd root
+</pre>
+<p>修改cati密码（默认admin：www.cnyunwei.com）</p>
+
+<ul>
+<li>访问<a href="http://system_ip/">http://system_ip/</a></li>
+<li>输入默认帐号密码登录</li>
+<li>console &gt;user management &gt;点击admin &gt;修改密码
+&gt; 访问的时候提示连接不上mysql，去机器上启动一下mysql就可以了</li>
+</ul>
+
+<p>修改nagios密码（默认nagiosadmin：www.cnyunwei.com）</p>
+<pre class="chroma">/usr/bin/htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+</pre>
+<p>修改nconf密码（默认admin：www.cnyunwei.com）</p>
+<pre class="chroma">vi /var/www/nconf/config/.file_accounts.php 
+**********************************
+admin::your_password::admin::Administrator::
+**********************************
+</pre>
+<p>mysql的帐号密码（root：www.cnyunwei.com）</p>
+<pre class="chroma">mysql&gt; <span class="k">select</span> host,user from mysql.user<span class="p">;</span>
++-----------------------+-----------+
+<span class="p">|</span> host                  <span class="p">|</span> user      <span class="p">|</span>
++-----------------------+-----------+
+<span class="p">|</span> 127.0.0.1             <span class="p">|</span> root      <span class="p">|</span>
+<span class="p">|</span> localhost             <span class="p">|</span>           <span class="p">|</span>
+<span class="p">|</span> localhost             <span class="p">|</span> cactiuser <span class="p">|</span>
+<span class="p">|</span> localhost             <span class="p">|</span> nconfuser <span class="p">|</span>
+<span class="p">|</span> localhost             <span class="p">|</span> root      <span class="p">|</span>
+<span class="p">|</span> localhost.localdomain <span class="p">|</span>           <span class="p">|</span>
+<span class="p">|</span> localhost.localdomain <span class="p">|</span> root      <span class="p">|</span>
++-----------------------+-----------+
+<span class="c1">## cacti和nconf都有自己的数据库帐号</span>
+</pre>
+<h3>2.2 配置selinux</h3>
+<pre class="chroma">setenforce <span class="m">0</span>
+vi /etc/selinux/config
+************************************
+<span class="c1">## 修改下行为</span>
+<span class="nv">SELINUX</span><span class="o">=</span>disabled
+************************************
+</pre>
+<h2>3. CACTI配置及使用</h2>
+
+<h3>监控服务端SNMP配置</h3>
+
+<h3><strong>snmp配置</strong></h3>
+<pre class="chroma">vim /etc/snmp/snmpd.conf
+**********************************
+<span class="c1">## 修改下面一行为新的内容</span>
+<span class="c1">##view    systemview    included   .1.3.6.1.2.1.1</span>
+view    systemview    included   .1.3.6.1.2.1
+<span class="c1">## 修改下面一行为新的内容</span>
+<span class="c1">## com2sec notConfigUser  127.0.0.1        public</span>
+com2sec notConfigUser 58.64.214.61        public
+**********************************
+</pre>
+<h4><strong>测试一下snmp的连接</strong></h4>
+<pre class="chroma">snmpnetstat -v 2c -c public -Ca -Cp tcp localhost
+Active Internet <span class="o">(</span>tcp<span class="o">)</span> Connections <span class="o">(</span>including servers<span class="o">)</span>
+Proto Local Address          Remote Address         <span class="o">(</span>state<span class="o">)</span>
+tcp   *.ssh                  *.*                   LISTEN
+tcp   *.mysql                *.*                   LISTEN
+tcp   *.5668                 *.*                   LISTEN
+tcp   58.64.214.61.ssh       61.14.162.11.60403    ESTABLISHED
+tcp   localhost.smtp         *.*                   LISTEN
+tcp   localhost.smux         *.*                   LISTEN
+tcp   localhost.5668         localhost.45809       ESTABLISHED
+tcp   localhost.45809        localhost.5668        ESTABLISHED
+</pre>
+<h4><strong>验证收集数据的php</strong></h4>
+<pre class="chroma">php /var/www/html/poller.php 
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+OK u:0.01 s:0.00 r:2.06
+。。。。。。
+</pre>
+<p>poller.php是主要的信息收集程序</p>
+
+<h2>4. 添加监控</h2>
+
+<h3>4.1 监控本机</h3>
+
+<p>console &gt; device &gt; localhost(或127.0.0.1)</p>
+
+<p>点击后保证下面几个设置</p>
+
+<p>snmp version： version2</p>
+
+<p>如果希望添加监控的图形，可以点击右上角的&rdquo;为这个主机添加图形&rdquo;</p>
+
+<p>然后把图形添加进图形树</p>
+
+<h3>4.2 监控远程主机（被监控端配置）</h3>
+
+<h4><strong>安装snmp</strong></h4>
+<pre class="chroma">yum install -y net-snmp net-snmp-utils net-snmp-libs
+</pre>
+<h4><strong>修改配置文件</strong></h4>
+<pre class="chroma">vim /etc/snmp/snmpd.conf 
+******************************************
+<span class="c1">## 修改下面两行</span>
+com2sec notConfigUser 58.64.214.61        public
+view    systemview    included   .1.3.6.1.2.1
+******************************************
+</pre>
+<h4><strong>启动snmp服务</strong></h4>
+<pre class="chroma">chkconfig snmpd on
+service snmpd start
+Starting snmpd:                                            <span class="o">[</span>  OK  <span class="o">]</span>
+</pre>
+<h4><strong>开放防火墙端口</strong></h4>
+<pre class="chroma">vim /etc/sysconfig/iptables
+****************************************
+<span class="c1">## 注意是udp</span>
+-A INPUT -p udp -m udp --dport <span class="m">161</span> -j ACCEPT
+****************************************
+
+service iptables restart
+</pre>
+<h3>4.3 监控服务端测试</h3>
+<pre class="chroma">snmpnetstat -v 2c -c public -Can -Cp tcp 59.188.30.50
+Active Internet <span class="o">(</span>tcp<span class="o">)</span> Connections <span class="o">(</span>including servers<span class="o">)</span>
+Proto Local Address          Remote Address         <span class="o">(</span>state<span class="o">)</span>
+tcp   *.22                   *.*                   LISTEN
+tcp   *.80                   *.*                   LISTEN
+tcp   *.3306                 *.*                   LISTEN
+tcp   59.188.30.50.22        61.14.162.7.61106     ESTABLISHED
+tcp   59.188.30.50.22        61.14.162.11.51034    ESTABLISHED
+tcp   127.0.0.1.25           *.*                   LISTEN
+tcp   127.0.0.1.199          *.*                   LISTEN
+tcp   127.0.0.1.9000         *.*                   LISTEN
+You have new mail in /var/spool/mail/root
+</pre>
+<h3>4.4 web页面设定</h3>
+
+<h4><strong>添加主机</strong></h4>
+
+<p>console &gt; device &gt; add</p>
+
+<h4><strong>填写以下字段</strong></h4>
+
+<ul>
+<li>description： 主机名称</li>
+<li>hostname： ip地址</li>
+<li>host template： 主机模版</li>
+<li>是否监控：勾选</li>
+<li>然后保存，成功以后你会发现下面会出现snmp采集数据正在进行</li>
+<li>添加图形</li>
+<li>添加阀值</li>
+<li>把主机添加到图形树</li>
+</ul>
+
+<h2>5. 邮件报警配置</h2>
+
+<h3>5.1 修改主机名</h3>
+
+<p>将主机名修改为cnyunwei.com，修改/etc/sysconfig/network</p>
+
+<h3>5.2 安装sendmail，关闭postfix</h3>
+<pre class="chroma">service postfix stop
+chkconfig postfix off
+yum install sendmail -y
+service sendmail start
+chkconfig sendmail on
+</pre>
+<h3>5.3 cacti 管理界面修改</h3>
+
+<p>在设置-邮件/域名解析选项卡中，如图
+<img src="/static/images/docs/linux/monitoring/cnyunwei-01.png" alt="" /></p>
+
+<blockquote>
+<p>备注：</p>
+
+<ul>
+<li>测试邮件：相当于收件人，就是写一个邮件地址，将邮件发送到此邮箱，建议使用163邮箱，其他邮箱可能会被屏蔽掉，</li>
+<li>邮件服务 : 需要选smtp，不知道为什么sendmail 会报错，但是我们真正发邮件还是走的sendmail，只不过这里选择smtp</li>
+<li>发件人地址：一般就是root@主机名,我们上边设置的主机名是cnyunwei.com，所以这里写root@cnyunwei.com</li>
+<li>smtp 服务器主机名：127.0.0.1 端口 25 dns 8.8.8.8 202.106.0.20</li>
+<li>最后发送一封测试邮件，以确保邮件配置正确。</li>
+</ul>
+</blockquote>
+
+<h3>5.4 报警/阀值的设置,如图所示</h3>
+
+<p><img src="/static/images/docs/linux/monitoring/cnyunwei-02.png" alt="" /></p>
+
+<h3>5.5 设置完毕后只是宕机可以收到短信，但是图形报警还是不可以，需要为图形添加阀值</h3>
+
+<p>阀值的话可以通过阀值模板统一部署，也可以自己一条一条定义，这里就不在介绍</p>
+
+<blockquote>
+<p>注意：监控端口流量图形可以用基线监控，硬盘分区可以用百分比数值来监控</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

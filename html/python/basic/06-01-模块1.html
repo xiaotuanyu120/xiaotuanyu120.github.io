@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>模块1</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>17 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. MODULE</h2>
+
+<h3>1.1 模块是什么</h3>
+
+<p>模块就是python程序</p>
+
+<p>官方解释：</p>
+<pre class="chroma">If you quit from the Python interpreter and enter it again, the definitions you have made (functions and variables) are lost. Therefore, if you want to write a somewhat longer program, you are better off using a text editor to prepare the input for the interpreter and running it with that file as input instead. This is known as creating a script. As your program gets longer, you may want to split it into several files for easier maintenance. You may also want to use a handy function that you&#39;ve written in several programs without copying its definition into each program.
+
+To support this, Python has a way to put definitions in a file and use them in a script or in an interactive instance of the interpreter. Such a file is called a module; definitions from a module can be imported into other modules or into the main module (the collection of variables that you have access to in a script executed at the top level and in calculator mode).
+
+A module is a file containing Python definitions and statements. The file name is the module name with the suffix .py appended. Within a module, the module&#39;s name (as a string) is available as the value of the global variable __name__.
+</pre>
+<h3>1.2 怎么使用模块</h3>
+
+<ul>
+<li>导入方式1：<code>import module_name</code></li>
+</ul>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">math</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="mf">4.0</span>
+<span class="c1"># 不可以直接使用math中的函数或变量</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">sqrt</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre>
+<ul>
+<li>导入方式2：<code>from module_name import function</code></li>
+</ul>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="mf">4.0</span>
+<span class="c1"># 不可以用math.sqrt()的方式</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">math</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</pre>
+<blockquote>
+<p>少用<code>from module import *</code>，会污染命名空间</p>
+</blockquote>
+
+<h3>1.3 怎么定义模块</h3>
+
+<h4><strong>1.3.1 一个文件就是一个模块</strong></h4>
+<pre class="chroma"><span class="c1"># 不要跟内置模块重名</span>
+<span class="c1"># vi os.py</span>
+*****************************
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s1">&#39;hi&#39;</span>
+*****************************
+</pre>
+<p>python解释器默认会寻找当前目录下的py文件，但会忽略和内置模块重名的文件</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="c1"># 报错是因为现在的os是builtin的os模块，没有say()</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>              
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">module</span><span class="s1">&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">say</span><span class="s1">&#39;</span>
+</pre>
+<p>让我们把此文件换个名字</p>
+<pre class="chroma">mv os.py module_test.py
+</pre>
+<p>然后再尝试</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">module_test</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">module_test</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">hi</span>
+</pre>
+<h4><strong>1.3.2 Python查找模块的过程: <code>built in module --&gt; sys.path（当前目录包含在sys.path中）</code></strong></h4>
+<pre class="chroma"><span class="c1"># 导入sys module，把/root/py加入到python环境变量里</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span>     <span class="c1"># sys.path是sys模块中的一个list，用于储存python路径变量</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python27.zip</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7/plat-linux2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7/lib-tk</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7/lib-old</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7/lib-dynload</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib64/python2.7/site-packages</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/usr/lib/python2.7/site-packages</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/root/py</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">/root/py</span><span class="s1">&#39;</span>
+</pre><pre class="chroma"><span class="c1"># 在python环境变量path中/root/py和当前目录/root中放入统一名称的py文件os.py</span>
+<span class="c1"># 当前目录下的os.py</span>
+cat /root/os.py
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s1">&#39;hi,this is /root/ !&#39;</span>
+
+<span class="c1"># path环境变量/root/py/中的os.py</span>
+cat /root/py/os.py
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s1">&#39;hi,this is /root/py !&#39;</span>
+</pre>
+<p>进入python解释器验证</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/root/py</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">os</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">AttributeError</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">module</span><span class="s1">&#39;</span> <span class="nb">object</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">say</span><span class="s1">&#39;</span>
+</pre>
+<p><strong>结论1：说明首先调用的是built in的module</strong></p>
+
+<p>接下来我们改掉os.py的名称</p>
+<pre class="chroma">mv /root/os.py /root/so.py
+mv /root/py/os.py /root/py/so.py
+</pre>
+<p>重新进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/root/py</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">so</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">so</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">hi</span><span class="p">,</span><span class="n">this</span> <span class="ow">is</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span> <span class="err">!</span>
+</pre>
+<p><strong>结论2：说明第二调用的是当前目录的module</strong></p>
+
+<p>删掉当前目录下的py编译文件so.pyc和把当前目录下的so.py改名</p>
+<pre class="chroma">mv /root/so.py /root/current_so.py
+rm -f so.pyc
+</pre>
+<p>进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">/root/py</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">so</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">so</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">hi</span><span class="p">,</span><span class="n">this</span> <span class="ow">is</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">py</span> <span class="err">!</span>
+</pre>
+<p><strong>结论3：由此说明，python调用模块的优先级是bulit in &ndash;》 当前目录 &ndash;》 sys.path</strong></p>
+
+<blockquote>
+<p><strong>后来经老师指正：<code>sys.path[0] = ''</code>，这个<code>''</code>就是当前目录</strong></p>
+</blockquote>
+
+<h4><strong>1.3.3 模块导入初始化 import only once</strong></h4>
+<pre class="chroma">vi inital.py
+******************************
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s1">&#39;hi,this is /root/ !&#39;</span>
+
+say<span class="o">(</span><span class="o">)</span>
+******************************
+</pre><pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">inital</span>
+<span class="n">hi</span><span class="p">,</span><span class="n">this</span> <span class="ow">is</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span> <span class="err">!</span>                           <span class="c1"># 初次导入时输出了say()</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">inital</span>                             <span class="c1"># 再次导入时并未执行say()</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">reload</span><span class="p">(</span><span class="n">inital</span><span class="p">)</span>
+<span class="n">hi</span><span class="p">,</span><span class="n">this</span> <span class="ow">is</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span> <span class="err">!</span>                           <span class="c1"># reload时会再次say()</span>
+<span class="o">&lt;</span><span class="n">module</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">inital</span><span class="s1">&#39;</span> <span class="kn">from</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">inital.pyc</span><span class="s1">&#39;</span><span class="o">&gt;</span>
+<span class="c1"># 模块的导入其实主要是初始化，用于定义一些变量、函数、类等，而且是import only once，如果再次import并不会再次初始化变量等信息</span>
+</pre>
+<h4><strong>1.3.4 扩展、如何让模块导入的时候不执行say()？</strong></h4>
+<pre class="chroma">cat inital.py
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s1">&#39;hi,this is /root/ !&#39;</span>
+
+<span class="k">if</span> <span class="nv">__name__</span> <span class="o">=</span><span class="o">=</span> <span class="s1">&#39;__main__&#39;</span>:
+    say<span class="o">(</span><span class="o">)</span>
+</pre>
+<p>进入到python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">inital</span>            <span class="c1"># 再次导入，不会再输出say()的执行结果了</span>
+</pre>
+<p><code>if __name__ == '__main__':</code>这是用来判断<strong>name</strong>是不是主函数，如果不是直接执行此模块，此if代码块不会执行</p>
+
+<h3>1.4 使用dir查看模块内容</h3>
+
+<p>已多次演示，不再赘述</p>
+
+<h3>1.5 控制模块对外接口</h3>
+
+<ul>
+<li>如果用户采用&rdquo;import module&rdquo;或&rdquo;from module import func_name&rdquo;这两种导入模式时，无法控制</li>
+<li>只能用<strong>all</strong>语法来控制&rdquo;from module import *&ldquo;来控制用户导入的模块包含内容</li>
+</ul>
+
+<p><code>__all__</code></p>
+<pre class="chroma">vi exam1.py
+*************************************
+<span class="nv">__all__</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&#34;print_func&#34;</span><span class="o">]</span>
+
+def print_func<span class="o">(</span><span class="o">)</span>:
+    print <span class="s2">&#34;function 1 print() in module&#34;</span>
+
+def say<span class="o">(</span><span class="o">)</span>:
+    print <span class="s2">&#34;function 2 say() in module&#34;</span>
+***************************************
+</pre>
+<p>进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">from</span> <span class="nn">exam1</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">say</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">print_func</span><span class="p">(</span><span class="p">)</span>
+<span class="n">function</span> <span class="mi">1</span> <span class="k">print</span><span class="p">(</span><span class="p">)</span> <span class="ow">in</span> <span class="n">module</span>
+</pre>
+<p>重新进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">import</span> <span class="nn">exam1</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">exam1</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">function</span> <span class="mi">2</span> <span class="n">say</span><span class="p">(</span><span class="p">)</span> <span class="ow">in</span> <span class="n">module</span>
+</pre>
+<p>重新进入python解释器</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="kn">from</span> <span class="nn">exam1</span> <span class="kn">import</span> <span class="n">say</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">function</span> <span class="mi">2</span> <span class="n">say</span><span class="p">(</span><span class="p">)</span> <span class="ow">in</span> <span class="n">module</span>
+</pre>
+<h3>1.6 扩展、optparse使用</h3>
+
+<p>预留位置</p>
+
+<h2>2. 课后作业：</h2>
+
+<ol>
+<li>自己实现下炒菜的例子， 如果A这时想让B帮她买菜怎么办？
+2.使用模块改造之前的缓存装饰器，把缓存装饰器放到一个模块中，另外的fib放在主模块中，主模块需要引入缓存装饰器，来达到缓存的目的。</li>
+</ol>
+
+<p>1、答案
+<code>chaocai.py</code></p>
+<pre class="chroma"><span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">we provide the service of make food</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">zuocai</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">buy</span><span class="s2">&#34;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">zuocai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">get your </span><span class="si">%s</span><span class="s2">, will finish later</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+    <span class="n">qiecai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+    <span class="n">dianhuo</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">fanchao</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+    <span class="n">zhuangpan</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">buy</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">buy the </span><span class="si">%s</span><span class="s2"> for you, will fire later</span><span class="s2">&#34;</span> <span class="o">%</span><span class="n">cai</span>
+    <span class="n">zuocai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">qiecai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">cut </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+
+<span class="k">def</span> <span class="nf">dianhuo</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">fire is ready</span><span class="s2">&#34;</span>
+
+<span class="k">def</span> <span class="nf">fanchao</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">stir fry </span><span class="si">%s</span><span class="s2"> for 5 minutes</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+
+<span class="k">def</span> <span class="nf">zhuangpan</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">transfer </span><span class="si">%s</span><span class="s2"> to a plate</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+</pre>
+<p><code>hungry.py</code></p>
+<pre class="chroma"><span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">feel hungry? we can make food for you</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">from</span> <span class="nn">chaocai</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">maicai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">bought the </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+    <span class="k">return</span> <span class="n">cai</span>
+
+<span class="k">def</span> <span class="nf">ask_to_buy</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">pls buy </span><span class="si">%s</span><span class="s2"> for me</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">cai</span>
+    <span class="k">return</span> <span class="n">cai</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">do you want buy vege yourself?(yes or no)</span><span class="s2">&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">yes</span><span class="s2">&#34;</span><span class="p">:</span>
+        <span class="n">cai</span> <span class="o">=</span> <span class="n">maicai</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">cabbage</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">zuocai</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cai</span> <span class="o">=</span> <span class="n">ask_to_buy</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">cabbage</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="n">buy</span><span class="p">(</span><span class="n">cai</span><span class="p">)</span>
+</pre>
+<p>2、答案
+<code>fib_cache.py</code></p>
+<pre class="chroma"><span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">decorator</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">cache</span><span class="s2">&#34;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">cache</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">cache_dic</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache_dic</span><span class="p">:</span>
+            <span class="n">cache_dic</span><span class="p">[</span><span class="n">args</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">hit cache</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">cache_dic</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">inner</span>
+</pre>
+<p><code>fib.py</code></p>
+<pre class="chroma"><span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">recurision</span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">fib_cache</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="nd">@cache</span>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span><span class="o">=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">__main__</span><span class="s2">&#34;</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">input a number pls:</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">quit</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">e</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">============================</span><span class="se">\n</span><span class="se">\t</span><span class="s2">the </span><span class="si">%d</span><span class="s2">th fib is </span><span class="si">%r</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">fib</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="p">)</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

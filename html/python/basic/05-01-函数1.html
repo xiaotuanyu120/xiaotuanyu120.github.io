@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
+            </li>
+            <li>
+              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+              <ul>
+                <li>
+                  <a href="/python/advance/index.html">advance</a>
+                </li>
+                <li>
+                  <a href="/python/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/python/basic/01-简介.html">Python简介</a></li>
+                    <li><a href="/python/basic/02-pip安装和编程热身.html">pip安装和编程热身</a></li>
+                    <li><a href="/python/basic/03-基础(变量_操作符).html">基础(变量&操作符)</a></li>
+                    <li><a href="/python/basic/04-01-数据结构_1(list_tuple).html">数据结构: list&tuple</a></li>
+                    <li><a href="/python/basic/04-02-数据结构_2(set_dict).html">数据结构: set&dict</a></li>
+                    <li><a href="/python/basic/05-01-函数1.html">函数1</a></li>
+                    <li><a href="/python/basic/05-02-函数2.html">函数2</a></li>
+                    <li><a href="/python/basic/05-03-函数3.html">函数3</a></li>
+                    <li><a href="/python/basic/05-04-函数总结.html">函数总结</a></li>
+                    <li><a href="/python/basic/06-01-模块1.html">模块1</a></li>
+                    <li><a href="/python/basic/06-02-模块2.html">模块2</a></li>
+                    <li><a href="/python/basic/07-IDE使用-调试.html">IDE使用-调试</a></li>
+                    <li><a href="/python/basic/08-习题讲解收获_输入输出.html">输入输出</a></li>
+                    <li><a href="/python/basic/09-01-面向对象编程1.html">面向对象编程1</a></li>
+                    <li><a href="/python/basic/09-02-面向对象编程2.html">面向对象编程2</a></li>
+                    <li><a href="/python/basic/10-异常.html">异常</a></li>
+                    <li><a href="/python/basic/12-fabric.html">fabric</a></li>
+                    <li><a href="/python/basic/13-01-网络编程.html">网络编程</a></li>
+                    <li><a href="/python/basic/13-02-网络编程作业.html">网络编程作业</a></li>
+                    <li><a href="/python/basic/14-xml_html.html">xml&html</a></li>
+                    <li><a href="/python/basic/16-web.html">web</a></li>
+                    <li><a href="/python/basic/17-python_web.html">django</a></li>
+                    <li><a href="/python/basic/30-python-sorted.html">python sorted函数</a></li>
+                    <li><a href="/python/basic/31-threading基础实例.html">threading基础实例</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/python/codefights/index.html">codefights</a>
+                </li>
+                <li>
+                  <a href="/python/django/index.html">django</a>
+                </li>
+                <li>
+                  <a href="/python/flask/index.html">flask</a>
+                </li>
+                <li>
+                  <a href="/python/fluent_py/index.html">fluent_py</a>
+                </li>
+                <li>
+                  <a href="/python/py_tour/index.html">py_tour</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>函数1</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>05 Aug 2015</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1 函数概念</h2>
+
+<h3>1.1 函数特点</h3>
+
+<ul>
+<li>黑盒模式，接受输入，返回结果（输出）</li>
+<li>代码重用，保持代码简洁。</li>
+<li>分解系统，便于管理。</li>
+</ul>
+
+<h3>1.2 如何定义函数</h3>
+
+<p>语法</p>
+<pre class="chroma"><span class="k">def</span> <span class="nf">func_name</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="k">return</span> <span class="n">result</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">first print.</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">return</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">second print</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="p">)</span>
+<span class="n">first</span> <span class="k">print</span><span class="o">.</span>
+
+<span class="c1"># 第二个print之所以没有输出是因为在return语句处函数已经结束</span>
+</pre>
+<h3>1.3 函数作用域</h3>
+
+<p>作用域影响演示</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">use_a</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">use_a</span><span class="p">(</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span>
+<span class="mi">1</span>
+
+<span class="c1"># 新建函数use_a()中对a的赋值并未改变主程序中的a变量，这就是按代码块区分的作用域</span>
+</pre>
+<p>我们可以通过在函数定义中使用global来使变量全局化来调用</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">use_a</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">use_a</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">use_a</span>
+<span class="ne">UnboundLocalError</span><span class="p">:</span> <span class="n">local</span> <span class="n">variable</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="n">referenced</span> <span class="n">before</span> <span class="n">assignment</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">use_a</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">global</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">use_a</span><span class="p">(</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span>
+<span class="mi">2</span>            <span class="c1"># &lt;-----------改变了主程序中a的值</span>
+<span class="c1"># 不推荐global，原因是会对其他使用此变量的函数造成不可预料的影响</span>
+</pre>
+<p>global：把本地变量或者主程序变量声明成全局变量。</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">main level</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">second level</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">def</span> <span class="nf">test_inside</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">global</span> <span class="n">a</span>          <span class="c1"># &lt;----在第三层级代码块global a变量</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">print</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">test_inside</span><span class="p">(</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">test</span><span class="p">(</span><span class="p">)</span>
+<span class="n">main</span> <span class="n">level</span>   
+<span class="c1"># 说明global可以全局主程序中的变量</span>
+
+<span class="c1"># 继续尝试</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">del</span> <span class="n">a</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">test</span><span class="p">(</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">6</span><span class="p">,</span> <span class="ow">in</span> <span class="n">test</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">5</span><span class="p">,</span> <span class="ow">in</span> <span class="n">test_inside</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="k">global</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="c1"># 说明global不可以声明主程序与本函数之间的变量</span>
+
+<span class="c1"># 继续尝试</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">def</span> <span class="nf">test2</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">this is from test2()</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>         <span class="k">global</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">test2</span><span class="p">(</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">a</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&lt;</span><span class="n">stdin</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span> <span class="ne">SyntaxWarning</span><span class="p">:</span> <span class="n">name</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">a</span><span class="s1">&#39;</span> <span class="ow">is</span> <span class="n">assigned</span> <span class="n">to</span> <span class="n">before</span> <span class="k">global</span> <span class="n">declaration</span>     <span class="c1"># 有报错，写法不推荐，只为演示用</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">test</span><span class="p">(</span><span class="p">)</span>
+<span class="n">this</span> <span class="ow">is</span> <span class="kn">from</span> <span class="nn">test2</span><span class="p">(</span><span class="p">)</span>
+
+<span class="c1"># 说明global只能声明主程序或者本身函数的本地变量</span>
+</pre>
+<h2>2 函数参数</h2>
+
+<p>参数命名不可重复，包括位置参数和关键字参数</p>
+
+<h3>2.1 如何定义和传递参数</h3>
+<pre class="chroma"><span class="c1"># 定义函数、传参数</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">words</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello world!</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">hello</span> <span class="n">world</span><span class="err">!</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">hello world again!</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">hello</span> <span class="n">world</span> <span class="n">again</span><span class="err">!</span>
+
+<span class="c1"># 传多个参数</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">who</span><span class="p">,</span><span class="n">words</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> say </span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span> <span class="p">(</span><span class="n">who</span><span class="p">,</span><span class="n">words</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">wo</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">I WANT GO TO MOON</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">wo</span> <span class="n">say</span> <span class="n">I</span> <span class="n">WANT</span> <span class="n">GO</span> <span class="n">TO</span> <span class="n">MOON</span>
+
+<span class="c1"># 关键字参数的使用</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">who</span><span class="p">,</span><span class="n">words</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">$500W</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> earn </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">who</span><span class="p">,</span><span class="n">words</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">good</span> <span class="n">earn</span> <span class="err">$</span><span class="mi">500</span><span class="n">W</span>
+
+<span class="c1"># 关键字参数必须在位置参数的后面</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">who</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">XiJinping</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">words</span><span class="p">)</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">who</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">XiJinping</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">words</span><span class="p">)</span>
+                                 <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+
+<span class="c1"># 默认参数值不要使用引用</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">append_list</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="p">[</span><span class="p">]</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">to</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">to</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">return</span> <span class="n">to</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="n">append_list</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="n">append_list</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="c1"># 因为函数的关键字参数是在函数被定义的时候初始化的，并不是在被调用的时候</span>
+
+<span class="c1"># 我们可以这样修改去解决</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">append_list</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">to</span> <span class="o">=</span> <span class="n">to</span> <span class="ow">or</span> <span class="p">[</span><span class="p">]</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">to</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">to</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">return</span> <span class="n">to</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list1</span> <span class="o">=</span> <span class="n">append_list</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">list2</span> <span class="o">=</span> <span class="n">append_list</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</pre>
+<blockquote>
+<p>形参和实参</p>
+
+<ul>
+<li>形参：定义函数时使用的参数名称</li>
+<li>实参：使用函数时传递的参数值</li>
+</ul>
+</blockquote>
+
+<h3>2.2 n个参数怎么处理？</h3>
+<pre class="chroma"><span class="c1"># 不确定的多参数传递</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">who</span><span class="p">,</span><span class="o">*</span><span class="n">words</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">who</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">say</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">words</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Mr Mao</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sun</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">rise</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">east</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Mr</span> <span class="n">Mao</span> <span class="n">say</span> <span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">sun</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rise</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">east</span><span class="s1">&#39;</span><span class="p">)</span>            
+<span class="c1"># 结果是一个tuple</span>
+
+<span class="c1"># 参数传递给变量</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">first_word</span><span class="p">,</span> <span class="n">second_word</span> <span class="o">=</span> <span class="n">words</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">first_word</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">second_word</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">morning</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">good</span>
+<span class="n">morning</span>
+<span class="c1"># 但是这样不靠谱，如下</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">morning</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">ah</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span><span class="p">:</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">&lt;stdin&gt;</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">say</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">too</span> <span class="n">many</span> <span class="n">values</span> <span class="n">to</span> <span class="n">unpack</span>
+<span class="c1"># 因为你无法确定输入端会按照你定义的变量数量进行输入</span>
+
+<span class="c1"># 如何接受多元的参数（多元参数位置必须在其他类型参数后面）</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="o">*</span><span class="n">words</span><span class="p">,</span><span class="o">*</span><span class="o">*</span><span class="n">info</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">words</span><span class="p">,</span> <span class="n">info</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">The 5th </span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">team is :</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Jiulong</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">The 5th </span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">team is :</span><span class="s1">&#39;</span><span class="p">)</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">num</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Jiulong</span><span class="s1">&#39;</span><span class="p">}</span>
+<span class="c1"># 多元参数传递过来以后就是个dict</span>
+<span class="c1"># 还可以直接传dict</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">say</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">The 5th </span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">team is :</span><span class="s1">&#39;</span><span class="p">,</span><span class="o">*</span><span class="o">*</span><span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">:</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Jiulong</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">num</span><span class="s1">&#39;</span><span class="p">:</span><span class="mi">250</span><span class="p">}</span><span class="p">)</span>
+<span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">The 5th </span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">team is :</span><span class="s1">&#39;</span><span class="p">)</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">num</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">250</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Jiulong</span><span class="s1">&#39;</span><span class="p">}</span>
+</pre>
+<h3>2.3 可变对象和不可变对象在函数中引用的区别</h3>
+
+<p>函数</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">key</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+</pre>
+<p>不可变对象</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">modify</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">s</span>
+<span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span>              <span class="c1"># 字符串（不可变对象）变量s没有改变。</span>
+</pre>
+<p>可变对象</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">modify</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">l</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">g</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">d</span><span class="s1">&#39;</span><span class="p">]</span>
+</pre>
+<h3>2.4 &ldquo;值传递&rdquo;和&rdquo;引用传递&rdquo;</h3>
+
+<p>2.3 中的函数其实就是引用传递，只是传递了个内存地址，所以会对原变量产生影响，但是如果我们修改它为值传递</p>
+<pre class="chroma"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="p">:</span><span class="p">]</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="n">key</span> <span class="o">+</span><span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">good</span><span class="s1">&#39;</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>     <span class="k">print</span> <span class="n">key</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">modify</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">g</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">o</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">d</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">l</span>
+<span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">bad</span><span class="s1">&#39;</span><span class="p">]</span>
+<span class="c1"># 此时原变量不会更改</span>
+</pre><pre class="chroma"><span class="k">def</span> <span class="nf">change_name</span><span class="p">(</span><span class="n">person</span><span class="p">)</span><span class="p">:</span>
+     <span class="n">person</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">name</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">the5fire</span><span class="s1">&#39;</span>             <span class="c1"># 这样不好,why?</span>
+     <span class="c1"># person.update({&#39;name&#39;: &#39;the5fire&#39;})   # 要这样</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">name</span><span class="s2">&#34;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">huyang</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">age</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="n">change_name</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">t</span>  <span class="c1">#结果是？</span>
+</pre>
+<h2>3. 练习题</h2>
+
+<h3>3.1 修改第三节的习题，实现两个函数，一个用来判断是否为数字（包括浮点型），一个用来判断是否为素数。然后使用这两个函数重构习题代码。</h3>
+<pre class="chroma"><span class="ch">#!/usr/bin/python</span>
+<span class="c1">#Filename:is_prime_def.py</span>
+<span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1"> aim to find all prime from 0 to the number user give. </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">is_num</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">is_num</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">y</span><span class="o">/</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">y</span> <span class="o">%</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="mi">0</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">number must bigger than 1!</span><span class="s2">&#34;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">you must input a number!</span><span class="s2">&#34;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">input_user</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Input a number :</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_num</span><span class="p">(</span><span class="n">input_user</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">input_user</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_user</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">you must input a number</span><span class="s1">&#39;</span>
+        <span class="k">continue</span>
+
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========start========</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">num_prime</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">input_user</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">num_prime</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">print</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">prime : </span><span class="si">%d</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">num_prime</span>
+    <span class="k">break</span>
+<span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">==========Done========</span><span class="s1">&#39;</span>
+
+</pre>
+<h3>3.2 修改上一节统计字符的程序，实现一个函数，接受参数是字符串，输出是字典&ndash;字典key是字母，value是出现频率，使用函数完成功能</h3>
+<pre class="chroma"><span class="c1"># coding=utf-8</span>
+<span class="c1">#!/usr/bin/pythonp</span>
+<span class="c1"># Filename:test_05.py</span>
+<span class="n">s</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;&#39;&#39;</span><span class="s1">
+</span><span class="s1"></span><span class="s1">Have you thought about what you want people to say about you after you</span><span class="s1">&#39;</span><span class="s1">re gone? Can you hear the voice saying, </span><span class="s1">&#34;</span><span class="s1">He was a great man.</span><span class="s1">&#34;</span><span class="s1"> Or </span><span class="s1">&#34;</span><span class="s1">She really will be missed.</span><span class="s1">&#34;</span><span class="s1"> What else do they say?</span><span class="s1">
+</span><span class="s1"></span><span class="s1">One of the strangest phenomena of life is to engage in a work that will last long after death. Isn</span><span class="s1">&#39;</span><span class="s1">t that a lot like investing all your money so that future generations can bare interest on it? Perhaps, yet if you look deep in your own heart, you</span><span class="s1">&#39;</span><span class="s1">ll find something drives you to make this kind of contribution---something drives every human being to find a purpose that lives on after death.</span><span class="s1">
+</span><span class="s1"></span><span class="s1">&#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">str_to_dict</span><span class="p">(</span><span class="n">str_in</span><span class="p">)</span><span class="p">:</span>
+    <span class="c1"># dereplication string</span>
+    <span class="n">str_list_unique</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">str_in</span><span class="p">)</span><span class="p">)</span>
+    <span class="n">str_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">str_in</span><span class="p">)</span>
+    <span class="n">letter_unique</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">str_list_unique</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">isalpha</span><span class="p">(</span><span class="p">)</span><span class="p">]</span>
+    <span class="c1"># make a dict by zip() to store the result of count</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">letter_unique</span><span class="p">,</span><span class="p">[</span><span class="n">str_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">letter_unique</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
+
+<span class="c1"># count how many letters in string s</span>
+<span class="c1">#s=s.lower()</span>
+<span class="n">letter_keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">isalpha</span><span class="p">(</span><span class="p">)</span><span class="p">]</span>
+<span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Total letter : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">letter_keep</span><span class="p">)</span>
+
+<span class="n">letter_dict</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">str_to_dict</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">letter_dict</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span> <span class="sa"></span><span class="s1">&#39;</span><span class="si">%-s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">letter_dict</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span><span class="n">letter_dict</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
