@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
+            </li>
+            <li>
               <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
-            </li>
-            <li>
-              <a href="/linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
             </li>
           </ul>
 
@@ -107,6 +107,324 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>10 Aug 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>0. 环境背景</h2>
+
+<p>apache httpd version 2.4.54</p>
+
+<h2>1. apache HTTP 的MPMs</h2>
+
+<p>apache HTTP被设计为一个可以在不同环境下工作在不同平台的强大且灵活的web服务器。不同环境和不同平台通常需要不同的特性，或者同一个特性需要不同的实现方式。apache HTTP通过模块化的设计特点充分的满足了不同的场景的需求。</p>
+
+<p>apache HTTP 2.0将这个模块化的设计延展到了它本身作为一个web服务器最基础的功能上。它创建了一个特殊模块，MPMs(Multi-Processing Moudles)，其负责网络端口监听、接收请求和分发请求给子进程。</p>
+
+<p>通过在基础功能上的模块化，得到了如下好处</p>
+
+<ul>
+<li>apache HTTP能更优雅，更高效的支持更多不同的操作系统平台。比如说，apache HTTP windows版本的mpm_winnt能使用原生的网络特性。</li>
+<li>apache HTTP能更灵活的被定制。比如说，需要可靠性和兼容性的，可以用prefork；需要更高伸缩性的站点，可以用worker或event。</li>
+</ul>
+
+<p>在用户视角，MPMs和其他的普通模块没有什么不同，但是不同的是，MPMs同时只能加载一个。</p>
+
+<p>在类UNIX系统平台上，只有三种MPM可选，prefork、worker和event。</p>
+
+<blockquote>
+<ul>
+<li>当服务器不支持线程，也支持线程安全时，MPMs默认是prefork</li>
+<li>当服务器支持线程，但不支持线程安全时，MPMs默认是woker</li>
+<li>当服务器支持线程，也支持线程安全时，MPMs默认是event</li>
+</ul>
+</blockquote>
+
+<h3>1.1 <code>prefork</code></h3>
+
+<p><code>prefork</code>使用多个子进程，每个子进程只有一个线程。每个进程在某个确定的时间只能维持一个连接，效率高，但内存占用量比较大。</p>
+
+<p>这个非线程型的、预派生的web服务器，它适合于没有线程安全库，需要避免线程兼容性问题的系统。它是要求将每个请求相互独立的情况下最好的MPM，这种模式下，一个请求出现问题不会影响到其他请求。</p>
+
+<h4><strong>配置重点</strong></h4>
+
+<p><code>prefork</code>这种MPM能很好的自我调节，所以需要很少的配置。重点是<code>MaxRequestWorkers</code>要设置的足够大，可以处理足够多的请求，同时需要设置的足够小，至少保证可以给所有的进程分配足够的物理内存。</p>
+
+<h4><strong>工作原理</strong></h4>
+
+<p>一个控制进程作为父进程来启动多个子进程，每个子进程负责监听请求连接并处理请求。</p>
+
+<p>apache HTTP会通过相关配置(<code>StartServers</code>,<code>MinSpareServers</code>,<code>MaxSpareServers</code>,<code>MaxRequestWorkers</code>)动态调整进程数量，以保留足够的空闲进程来随时响应请求。</p>
+
+<p>当需要同时处理超过256个请求时，可以调大<code>MaxRequestWorkers</code>和<code>ServerLimit</code>来增强请求处理能力；当服务器内存紧张时，可以调小<code>MaxRequestWorkers</code>来节省内存。</p>
+
+<p><code>MaxConnectionsPerChild</code>配置了一个子进程能处理的最大请求数，超过这个数目，该子进程就会停止处理新请求，然后被杀掉，重新创建一个新的子进程（为了有效的避免内存泄漏）。</p>
+
+<h3>1.2 <code>worker</code></h3>
+
+<p><code>worker</code>使用多个子进程，每个子进程有多个线程，每个线程在某个确定的时间只能维持一个连接，内存占用量比较小，适合高流量的http服务器。缺点是假如一个线程崩溃，整个进程就会连同其任何线程一起&rdquo;死掉&rdquo;，所以要保证一个进程在运行时必须被系统识别为&rdquo;每个线程都是安全的&rdquo;。</p>
+
+<p>这个支持混合多线程多进程的web服务器，由于使用线程来处理请求，所以可以处理海量请求，而系统资源的开销小于基于进程的MPM。但是它也使用了多进程，每个进程又有多个线程，以获得基于进程的稳定性。</p>
+
+<h4><strong>配置重点</strong></h4>
+
+<p><code>worker</code> MPM，使用<code>ThreadsPerChild</code>来指定每个子进程的线程数量上限，使用<code>MaxRequestWorkers</code>来指定所有进程的线程数量总和上限。</p>
+
+<h4><strong>工作原理</strong></h4>
+
+<p>一个控制进程作为父进程来启动多个子进程，每个子进程创建固定数量的处理请求的线程以及一个监听线程，监听线程会监听请求连接，并将它们转交给处理请求的线程来处理。</p>
+
+<p>apache HTTP 会通过相关配置(<code>MinSpareThreads</code>,<code>MaxSpareThreads</code>)来动态调整线程和进程数量，以保留足够的空闲线程来随时响应请求。</p>
+
+<p>使用<code>worker</code> MPM时，最大处理的连接请求数量由<code>MaxRequestWorkers</code>限定；最大子进程数量由<code>MaxRequestWorkers</code>除以<code>ThreadsPerChild</code>的值来限定。</p>
+
+<p>另外，有两个单独的配置来决定子进程和子进程中线程的绝对上限，这个配置只能完全停止apache HTTP进程，然后再启动才可以更改。其中<code>ServerLimit</code>是子进程的绝对上限值，必须要大于或等于<code>MaxRequestWorkers</code>除以<code>ThreadsPerChild</code>的值。<code>ThreadLimit</code>是子进程中线程的绝对上限值，必须要大于或者等于<code>ThreadsPerChild</code>。</p>
+
+<blockquote>
+<p>需要额外注意的是，apache HTTP的子进程包含活动进程和正在关闭中的进程，至少会有一个进程来提供服务，至多有<code>MaxRequestWorkers</code>个正在关闭的进程（实际数量肯定少于这个值）。这种行为的产生原因有两种情况，一种是因为<code>MaxConnectionsPerChild</code>配置了一个子进程能处理的最大请求数，超过这个数目，该子进程就会停止处理新请求，然后被杀掉，重新创建一个新的子进程（为了有效的避免内存泄漏）。另外一种是因为空闲线程的数量超过了<code>MaxSpareThreads</code>配置的数目，触发了自动调节机制。如果希望关闭这种行为，可以将<code>MaxConnectionsPerChild</code>设置为0，然后将<code>MaxSpareThreads</code>和<code>MaxRequestWorkers</code>设置为同样的值。</p>
+</blockquote>
+
+<h3>1.3 <code>event</code></h3>
+
+<p><code>event</code> MPM旨在通过将一些处理工作传递给侦听器线程从而释放工作线程以服务新请求的方式，来允许同时处理更多请求。</p>
+
+<h4><strong>与<code>worker</code>的关系</strong></h4>
+
+<p><code>event</code>是基于<code>worker</code>的。一个控制进程作为父进程来启动子进程，每个子进程创建固定数量的处理请求的线程以及一个监听线程，监听线程会监听请求连接，并将它们转交给处理请求的线程来处理。</p>
+
+<h4><strong>配置重点</strong></h4>
+
+<p><code>event</code>与<code>worker</code>配置基本一致，只是多了<code>AsyncRequestWorkerFactor</code>。</p>
+
+<h4><strong>工作原理</strong></h4>
+
+<p><code>event</code> MPM致力于在HTTP中的keepalive问题。</p>
+
+<p>在客户端完成第一次请求后，它可以保留当前的连接而不关闭它，在相同的连接上发送接下来的请求，从而节省了TCP连接的信号交换成本。然而apache HTTP会留出一个完整的进程/线程来等待客户端的请求，这样相当于将其闲置，只为等待。为了解决这个问题，<code>event</code> MPM在每个子进程中使用指定的监听线程来掌控所有的监听sockets、所有处于Keepalive状态的sockets、处理程序和协议过滤器完成工作的sockets和唯一剩下发送给客户端的sockets。</p>
+
+<p>这种新架构，使用了非阻塞sockets和APR提供的现代内核特性（比如linux的epoll）。
+单个进程/线程块可以处理的连接总数由<code>AsyncRequestWorkerFactor</code>配置限定。</p>
+
+<blockquote>
+<p>更多event相关的原理，可详细参照<a href="https://httpd.apache.org/docs/2.4/mod/event.html">apache httpd event</a>。实践总结apahce(event) &lt;= nginx + apache(worker)，<code>event</code>唯一的作用是比<code>worker</code>节省资源，可以用更少的线程处理同样多的请求（超过线程能力的连接被放到队列中）。</p>
+</blockquote>
+
+<h2>2. MPM配置</h2>
+
+<h3>2.1 常用MPM配置</h3>
+<pre class="chroma"><span class="c1"># prefork MPM</span>
+<span class="c1"># StartServers: number of server processes to start</span>
+<span class="c1"># MinSpareServers: minimum number of server processes which are kept spare</span>
+<span class="c1"># MaxSpareServers: maximum number of server processes which are kept spare</span>
+<span class="c1"># MaxRequestWorkers: maximum number of server processes allowed to start</span>
+<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves before terminating</span>
+&lt;IfModule mpm_prefork_module&gt;
+    StartServers             <span class="m">5</span>
+    MinSpareServers          <span class="m">5</span>
+    MaxSpareServers         <span class="m">10</span>
+    MaxRequestWorkers      <span class="m">250</span>
+    MaxConnectionsPerChild   <span class="m">0</span>
+&lt;/IfModule&gt;
+
+<span class="c1"># worker MPM</span>
+<span class="c1"># StartServers: initial number of server processes to start</span>
+<span class="c1"># MinSpareThreads: minimum number of worker threads which are kept spare</span>
+<span class="c1"># MaxSpareThreads: maximum number of worker threads which are kept spare</span>
+<span class="c1"># ThreadsPerChild: constant number of worker threads in each server process</span>
+<span class="c1"># MaxRequestWorkers: maximum number of worker threads</span>
+<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves before terminating</span>
+&lt;IfModule mpm_worker_module&gt;
+    StartServers             <span class="m">3</span>
+    MinSpareThreads         <span class="m">75</span>
+    MaxSpareThreads        <span class="m">250</span> 
+    ThreadsPerChild         <span class="m">25</span>
+    MaxRequestWorkers      <span class="m">400</span>
+    MaxConnectionsPerChild   <span class="m">0</span>
+&lt;/IfModule&gt;
+
+<span class="c1"># event MPM</span>
+<span class="c1"># StartServers: initial number of server processes to start</span>
+<span class="c1"># MinSpareThreads: minimum number of worker threads which are kept spare</span>
+<span class="c1"># MaxSpareThreads: maximum number of worker threads which are kept spare</span>
+<span class="c1"># ThreadsPerChild: constant number of worker threads in each server process</span>
+<span class="c1"># MaxRequestWorkers: maximum number of worker threads</span>
+<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves</span>
+<span class="c1">#                         before terminating</span>
+&lt;IfModule mpm_event_module&gt;
+    StartServers             <span class="m">3</span>
+    MinSpareThreads         <span class="m">75</span>
+    MaxSpareThreads        <span class="m">250</span>
+    ThreadsPerChild         <span class="m">25</span>
+    MaxRequestWorkers      <span class="m">400</span>
+    MaxConnectionsPerChild   <span class="m">0</span>
+&lt;/IfModule&gt;
+</pre>
+<blockquote>
+<p><code>MaxRequestWorkers</code> 在 apache HTTP 2.3.13 之前被称为 <code>MaxClients</code>
+<code>MaxConnectionsPerChild</code> 在apache HTTP 2.3.9 之前被称为<code>MaxRequestsPerChild</code></p>
+</blockquote>
+
+<h3>2.2 配置项详解</h3>
+
+<h4><strong><code>StartServers</code>(event, worker, prefork)</strong></h4>
+
+<p>指定服务器启动时建立的子进程数量。</p>
+
+<p><code>prefork</code>MPM下默认为5。</p>
+
+<p><code>worker</code>和<code>event</code>MPM下默认是3.</p>
+
+<hr />
+
+<h4><strong><code>MinSpareServers</code>(prefork)</strong></h4>
+
+<p>指定空闲子进程的最小数量，默认为5。</p>
+
+<p>如果当前空闲子进程数少于<code>MinSpareServers</code> ，那么Apache将创建一个子进程，一秒后，创建两个，一秒后，创建四个，就这样持续增加，最大一次创建32个。就这样创建进程直到达到<code>MinSpareServers</code>指定的数值。</p>
+
+<hr />
+
+<h4><strong><code>MaxSpareServers</code>(prefork)</strong></h4>
+
+<p>设置空闲子进程的最大数量，默认为10。</p>
+
+<p>如果当前有超过<code>MaxSpareServers</code>数量的空闲子进程，那么父进程将杀死多余的子进程。此参数不要设的太大。如果你将该指令的值设置为等于或小于<code>MinSpareServers</code>，Apache将会自动将其修改成<code>MinSpareServers+1</code>。</p>
+
+<hr />
+
+<h4><strong><code>MinSpareThreads</code>(event, worker)</strong></h4>
+
+<p>指定空闲子线程的最小数量，默认为75。</p>
+
+<p><code>worker</code>和<code>event</code>在服务级别来处理空闲子线程，当空闲子线程小于最小值，Apache会创建子进程，直到空闲子线程大于<code>MaxSpareThreads</code>。</p>
+
+<hr />
+
+<h4><strong><code>MaxSpareThreads</code>(event, worker)</strong></h4>
+
+<p>指定空闲子线程的最大数量，默认为250。</p>
+
+<p><code>worker</code>和<code>event</code>在服务级别来处理空闲子线程，当空闲子线程超过了最大值，Apache会杀死子进程，直到空闲子线程小于<code>MaxSpareThreads</code>。</p>
+
+<hr />
+
+<h4><strong><code>ThreadsPerChild</code>(event, worker)</strong></h4>
+
+<p>指定每个子进程要创建多少个子线程，默认为25。</p>
+
+<p><code>ThreadsPerChild</code>不可以超过<code>ThreadLimit</code>。</p>
+
+<hr />
+
+<h4><strong><code>MaxRequestWorkers</code>(event, worker, prefork)</strong></h4>
+
+<p>指定同一时间客户端最大接入请求的数量。</p>
+
+<p><code>prefork</code>MPM下，默认为256。任何超过<code>MaxRequestWorkers</code>限制的请求都将进入等候队列，一旦一个链接被释放，队列中的请求将得到服务。要增大这个值，你必须同时增大<code>ServerLimit</code>。</p>
+
+<p><code>worker</code>和<code>event</code>MPM下，默认为<code>16(ServerLimit)*25(ThreadsPerChild)</code>。如果<code>MaxRequestWorkers</code>和<code>ThreadsPerChild</code>需要的子进程数超过16，同时应该提高<code>ServerLimit</code>。</p>
+
+<hr />
+
+<h4><strong><code>MaxConnectionsPerChild</code>(event, worker, prefork)</strong></h4>
+
+<p>每个子进程在其生存期内允许处理的最大请求数量，默认为0，即子进程永远不会结束。</p>
+
+<p>到达MaxRequestsPerChild的限制后，子进程将会结束。将MaxRequestsPerChild设置成非零值有两个好处：</p>
+
+<ol>
+<li>可以防止(偶然的)内存泄漏无限进行，从而耗尽内存。</li>
+<li>给进程一个有限寿命，从而有助于当服务器负载减轻的时候减少活动进程的数量。</li>
+</ol>
+
+<hr />
+
+<h4><strong><code>ServerLimit</code>(event, worker, prefork)</strong></h4>
+
+<p>在<code>prefork</code>MPM下，指定Apache httpd 进程声明周期内<code>MaxRequestWorkers</code>可配置的最大值。</p>
+
+<p>在<code>worker</code>和<code>event</code>MPM下，和<code>ThreadLimit</code>组合在一起，指定Apache httpd 进程声明周期内<code>MaxRequestWorkers</code>可配置的最大值。</p>
+
+<p>需要重点关注的是，当设定远超过需要的值时，未使用的额外的共享内存也会被分配占用。如果<code>ServerLimit</code>和<code>MaxRequestWorkers</code>设定为超过系统可以支撑的值时，Apache httpd不会启动或者会不稳定。</p>
+
+<p>在<code>prefork</code>MPM下，只有当<code>MaxRequestWorkers</code>需要设定超过其默认值（256）时，才需要设定<code>ServerLimit</code>。不要将<code>ServerLimit</code>的值设置为高于你可能希望将 <code>MaxRequestWorkers</code> 设置为的值。</p>
+
+<p>在<code>worker</code>和<code>event</code>MPM下，只有当 <code>MaxRequestWorkers</code>/<code>ThreadsPerChild</code>需要大于默认值（16）时，才需要设定<code>ServerLimit</code>。</p>
+
+<blockquote>
+<p><code>ServerLimit</code>(prefork)在编译阶段，默认有个最大配置限制200000。如果希望可以配置的更大，则必须修改mpm源码中的<code>MAX_SERVER_LIMIT</code>，然后重新编译apache。</p>
+</blockquote>
+
+<hr />
+
+<h4><strong><code>ThreadLimit</code>(event, worker)</strong></h4>
+
+<p>指定 <code>ThreadsPerChild</code>可配置的最大值，默认值64。</p>
+
+<p>需要重点关注的是，当设定远超过需要的值时，为使用的额外的共享内存也会被分配占用。如果<code>ThreadLimit</code>和<code>ThreadsPerChild</code>设定为超过系统可以支撑的值时，Apache httpd不会启动或者会不稳定。</p>
+
+<blockquote>
+<p><code>ThreadLimit</code>(worker)在编译阶段，默认有个最大配置限制20000(event 10000)。如果希望可以配置的更大，则必须修改mpm源码中的<code>MAX_THREAD_LIMIT</code>，然后重新编译apache。</p>
+</blockquote>
+
+<h2>3. apache模式的查看</h2>
+
+<h3>3.1 常看当前模式</h3>
+
+<p>如果apache已经安装，我们可以用以下命令查看当前模式。</p>
+<pre class="chroma">httpd -l
+</pre>
+<p>若找到 <code>prefork.c</code> 则表示当前工作在<code>prefork</code>MPM，同理出现 <code>worker.c</code> 则工作在<code>worker</code> MPM。</p>
+
+<p>如果apache还未安装，我们在编译的时候可以加入 <code>--with-pem=(prefork|worker)</code> 选项决定启用什么模式。</p>
+
+<h3>3.2 切换模式</h3>
+<pre class="chroma"><span class="c1"># a. 将当前的prefork模式启动文件改名</span>
+mv httpd httpd.prefork
+
+<span class="c1"># b. 将worker模式的启动文件改名</span>
+mv httpd.worker httpd
+
+<span class="c1"># c. 修改Apache配置文件</span>
+vi /usr/local/apache2/conf/extra/httpd-mpm.conf
+<span class="c1"># 找到里边的如下一段，可适当修改负载等参数：</span>
+<span class="c1">#&lt;IfModule mpm_worker_module&gt;</span>
+<span class="c1">#StartServers</span> 
+<span class="c1">#MaxClients</span> 
+<span class="c1">#MinSpareThreads</span> 
+<span class="c1">#MaxSpareThreads</span> 
+<span class="c1">#ThreadsPerChild</span> 
+<span class="c1">#MaxRequestsPerChild</span> 
+<span class="c1">#&lt;/IfModule&gt;</span>
+
+<span class="c1"># d. 重新启动服务</span>
+/usr/local/apache2/bin/apachectl restart
+</pre>
+<h2>4. 总结</h2>
+
+<h3>4.1 为什么event和nginx都是用了epoll的原理，但是apache性能不如nginx呢？</h3>
+
+<p>这是因为apache(event)的thread依赖kernel进行调度，有线程的上下文切换成本。但是nginx使用event驱动本身作为调度器，没有上下文切换成本。这也就是为什么<code>nginx+apache(worker)</code>比使用<code>apache(event)</code>更优的原因</p>
+
+<h3>4.2 那么apache和nginx该如何选择呢？</h3>
+
+<ul>
+<li>如果是用很重的CGI应用，那么最佳实践是<code>nginx+apache(worker)+CGI</code>；</li>
+<li>如果只是静态文件，那么就是<code>nginx</code>；</li>
+<li>如果只是做一个proxy，那么就是<code>nginx --proxy-to-&gt; backend</code></li>
+</ul>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -798,61 +1116,6 @@ tcp-request content reject
 <p>其他详情见参考文档：<a href="https://www.haproxy.org/download/1.4/doc/configuration.txt">haproxy 7. 部分配置</a></p>
 </blockquote>
 
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/haproxy/haproxy_00_start_up_with_docker_compose.html">haproxy: 使用docker-compose启动haproxy</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>24 Mar 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>1. 使用docker-compose启动haproxy</h2>
-<pre class="chroma"><span class="nv">DOCKER_YML_DIR</span><span class="o">=</span>/data/docker/yml
-<span class="nv">DOCKER_RUNTIME_DIR</span><span class="o">=</span>/data/docker/runtime
-
-mkdir -p <span class="si">${</span><span class="nv">DOCKER_YML_DIR</span><span class="si">}</span>
-cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_YML_DIR}/docker-compose-haproxy.yml
-</span><span class="s">version: &#39;3&#39;
-</span><span class="s">services:
-</span><span class="s">  haproxy:
-</span><span class="s">    container_name: haproxy
-</span><span class="s">    image: haproxy
-</span><span class="s">    ports:
-</span><span class="s">      - 443:6443
-</span><span class="s">    volumes:
-</span><span class="s">      - /data/docker/runtime/haproxy/etc/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-</span><span class="s">EOF</span>
-
-mkdir -p <span class="si">${</span><span class="nv">DOCKER_RUNTIME_DIR</span><span class="si">}</span>/haproxy/etc
-cat <span class="s">&lt;&lt; EOF &gt; ${DOCKER_RUNTIME_DIR}/haproxy/etc/haproxy.cfg
-</span><span class="s">frontend front
-</span><span class="s">  bind 0.0.0.0:6443
-</span><span class="s">  mode tcp
-</span><span class="s">  option tcplog
-</span><span class="s">  timeout client 1h
-</span><span class="s">  default_backend back
-</span><span class="s">
-</span><span class="s">backend back
-</span><span class="s">  mode tcp
-</span><span class="s">  timeout server 1h
-</span><span class="s">  option tcplog
-</span><span class="s">  option tcp-check
-</span><span class="s">  balance roundrobin
-</span><span class="s">  default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
-</span><span class="s">  server RS1 &lt;IP&gt;:&lt;PORT&gt; check
-</span><span class="s">  server RS2 &lt;IP&gt;:&lt;PORT&gt; check
-</span><span class="s">  server RS3 &lt;IP&gt;:&lt;PORT&gt; check
-</span><span class="s">EOF</span>
-
-docker-compose -f /data/docker/yml/docker-compose-haproxy.yml up -d
-</pre>
         </div>
 
     </div>
