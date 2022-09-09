@@ -34,6 +34,12 @@
           <ul>
 
             <li>
+              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+            </li>
+            <li>
               <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
             </li>
             <li>
@@ -41,12 +47,6 @@
             </li>
             <li>
               <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
             </li>
           </ul>
 
@@ -107,6 +107,209 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>09 Sep 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. s_client</h2>
+
+<p>简介：SSL/TLS 客户端程序，用于调试和SSL服务器的连接。</p>
+<pre class="chroma">openssl s_client [-connect host:port] [-servername name] [-verify depth] [-verify_return_error] [-cert filename] [-certform DER|PEM] [-key filename] [-keyform DER|PEM] [-pass arg] [-CApath directory] [-CAfile filename] [-no_alt_chains] [-reconnect] [-pause] [-showcerts] [-debug] [-msg] [-nbio_test] [-state] [-nbio] [-crlf] [-ign_eof] [-no_ign_eof] [-quiet] [-ssl2] [-ssl3] [-tls1] [-no_ssl2] [-no_ssl3] [-no_tls1] [-no_tls1_1] [-no_tls1_2] [-fallback_scsv] [-bugs] [-sigalgs sigalglist] [-curves curvelist] [-cipher cipherlist] [-serverpref] [-starttls protocol] [-engine id] [-tlsextdebug] [-no_ticket] [-sess_out filename] [-sess_in filename] [-rand file(s)] [-serverinfo types] [-status] [-alpn protocols] [-nextprotoneg protocols]
+</pre>
+<p><strong>选项介绍：</strong></p>
+
+<ul>
+<li><code>-connect host:port</code>: 指定连接主机和端口</li>
+<li><code>-servername name</code>: TLS SNI (Server Name Indication)</li>
+<li><code>-cert certname</code>: 客户端证书（如果使用双向认证的话）</li>
+<li><code>-certform format</code>: 客户端证书格式，<code>DER,PEM</code>，默认值<code>PEM</code></li>
+<li><code>-key keyfile</code>: 客户端私钥（如果使用双向认证的话）</li>
+<li><code>-keyform format</code>: 客户端私钥格式，<code>DER,PEM</code>，默认值<code>PEM</code></li>
+<li><code>-pass arg</code>: 客户端私钥密码</li>
+<li><code>-tls1,-tls1_1,-tls1_2,-no_ssl2,-no_ssl3,-no_tls1,-no_tls1_1,-no_tls1_2</code>: 指定<code>ssl protocol</code></li>
+<li><code>-cipher cipherlist</code>: 指定ssl连接的加密算法</li>
+</ul>
+
+<blockquote>
+<p>加密算法详情见：<a href="https://www.openssl.org/docs/man1.0.2/man1/ciphers.html">ciphers</a></p>
+
+<p>openssl ssl debug工具详细用法：<a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-s_client.html">openssl s_client</a></p>
+</blockquote>
+
+<h2>2. s_client示例</h2>
+<pre class="chroma">openssl s_client -cert client.crt -key client.key -tls1_2 -connect 127.0.0.1:80 -servername www.test.com
+</pre>
+<p>常见的使用场景：</p>
+
+<ul>
+<li>debug服务器是否开启了ssl的特定版本；</li>
+<li>debug特定的ssl加密算法；</li>
+</ul>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>18 Aug 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h1>一、概述</h1>
+
+<h2>1. 分层</h2>
+
+<p>网络协议通常针对不同层次分别开发，每一层分别负责不同的通信功能。TCP/IP是一个协议族，是不同层次的协议的组合。TCP/IP通常被认为是一个四层协议系统。</p>
+
+<ul>
+<li>应用层，telnet、ftp、email</li>
+<li>运输层，tcp、udp</li>
+<li>网络层，ip、icmp、igmp</li>
+<li>链路层，设备驱动程序及接口卡</li>
+</ul>
+
+<blockquote>
+<p>通常应用层是运行在linux的用户空间，而其他三层是运行在linux的内核空间。</p>
+
+<p>网桥和路由器</p>
+
+<ul>
+<li>网桥是在链路层上对网络进行互联，网桥使得多个局域网组合在一起，对于上层来说就好像是一个局域网。</li>
+<li>路由器是在网络层上对网络进行互联，TCP/IP倾向于使用路由器而不是网桥来连接网络。</li>
+</ul>
+</blockquote>
+
+<h2>2. 用途</h2>
+
+<p>TCP/IP中，网络层和运输层的区别最为关键：网络层（IP）提供点对点的服务，而运输层（TCP和UDP）提供端对端的服务。</p>
+
+<p>互联网是网络的网络，通过IP把网络连接起来，端口号用来标识互相通信的应用程序。</p>
+
+<h1>二、链路层</h1>
+
+<h2>1. 回环网络</h2>
+
+<p>对于回环网络的实现，并不会省略传输层和网络层的传输过程，大多数的产品还是照样完成传输层和网络层的所有过程，只是当IP数据报离开网络层时把它返回给自己。</p>
+
+<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip.png" alt="" /></p>
+
+<p>上图的关键点：</p>
+
+<ul>
+<li>传给回环网络（127.0.0.1）的任何数据都作为ip输入</li>
+<li>传给广播地址或多播地址的数据报复制一份传给环回接口，然后送到以太网上。这是因为广播传送和多播传送的定义（第12章）包含主机本身。</li>
+<li>任何传给该主机I P地址的数据均送到环回接口。</li>
+</ul>
+
+<p>看上去回环网络的实现中又走了一遍传输层和网络层效率不高。但是这样是简化了设计，相当于把回环网络当成了网络层下面的一个链路层。网络层把一份数据报传送给环回接口，就像传给其他链路层一样，只不过环回接口把它返回到IP的输入队列中。</p>
+
+<blockquote>
+<p>虽然回环网络会走一遍传输层和网络层的过程，但是回环网络的包不会出现在网络中。</p>
+</blockquote>
+
+<h2>2. MTU 最大传输单元</h2>
+
+<p>如果IP层有一个数据报要传，而且数据的长度比链路层的MTU还大，那么IP层就需要进行分片，把数据报分成若干片，这样每一片都小于MTU。</p>
+
+<p><strong>查看linux系统中网卡设备的MTU</strong></p>
+<pre class="chroma">netstat -in
+Kernel Interface table
+Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0             <span class="m">1500</span>     <span class="m">2975</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>          <span class="m">1329</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> BMRU
+lo              <span class="m">65536</span>        <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>             <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> LRU
+</pre>
+<h3>2.1 路径MTU</h3>
+
+<p>在同一个网络中的两台主机进行通信时，该网络的MTU是非常重要的。但是如果是不同网络中的两台主机进行通信时，那么重要的就不在是两台主机各自所在网络的MTU，而是两台主机中间路径上经过的最小MTU。这被称为路径MTU。</p>
+
+<p>但是路径MTU不一定是一个常数，因为这取决于网络路由的路径。而路由的选择不一定是对称的，A到B和B到A不一定是一致的，因此路径MTU在这两个方向上也不一定是一致的。</p>
+
+<p>这里就牵扯到一个重要的问题，路径MTU发现机制，这个机制有点复杂，后面会讨论。</p>
+
+<h1>三、IP: 网际协议</h1>
+
+<h2>1. 引言</h2>
+
+<p>IP是TCP/IP协议族中最核心的协议。所有的TCP、UDP、ICMP和IGMP都以IP数据报格式传输。</p>
+
+<ul>
+<li><strong>不可靠</strong>，意思是不保证IP数据报能成功的到达目的地，如果发生某种错误，例如一个路由器的缓冲区用完了，IP有一个简单的处理算法，丢弃该数据报，然后发送ICMP给信源端。任何<strong>可靠性</strong>的需求必须由上层协议来完成，比如说TCP。</li>
+<li><strong>无连接</strong>，意思是IP不维护任何关于后续数据报的状态信息。每个数据报的传输都是独立的。这代表如果两个连续发送的数据报，有可能因为路由选择不同，导致后发送的数据报先到达。</li>
+</ul>
+
+<h2>2. IP首部</h2>
+
+<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip-01.png" alt="" /></p>
+
+<p>普通的IP首部有20个字节长，除非含有选项字段。</p>
+
+<p>最高位在左边，记为0bit，最低位在右边，记为31bit。4个字节，32个bit的传输顺序为，首先为0-7bit，其次为8-15bit，然后是16-23bit，最后是24-31bit。这种传输方式被称为big endian字节序。由于TCP/IP首部中所有的二进制整数在网络中传输时都要求以这种次序，因此它又称之为网络字节序。以其他形式储存二进制整数的机器，比如little endian格式，则必须在传输数据之前把首部转换成网络字节序。</p>
+
+<p>目前的协议版本号是4，因此IP也被称为IPv4。</p>
+
+<p>首部长度指的是首部占32bit字的数目，包括任何选项。由于它是一个4字节（图中的宽度）字段，因此首部最长为60个字节。普通IP数据报（没有任何选项）字段的值是5。</p>
+
+<p>服务类型（TOS）字段包括</p>
+
+<ul>
+<li>一个3bit的优先权子字段（现在已被忽略）</li>
+<li>4bit的TOS子字段
+
+<ul>
+<li>最小时延</li>
+<li>最大吞吐量</li>
+<li>最高可靠性</li>
+<li>最小费用</li>
+</ul></li>
+<li>1bit的未用位，目前必须设定为0</li>
+</ul>
+
+<blockquote>
+<p>4bit的TOS子字段，如果全部设定为0，那就意味着是一般服务。</p>
+
+<p>RFC <sup>1340</sup>&frasl;<sub>1349</sub> 详细的描述了如何设定TOS和描述了TOS特性。</p>
+</blockquote>
+
+<p>下图列出了对不同应用建议的TOS值。最后一列中给出来的是十六进制值。
+<img src="/static/images/docs/linux/advance/network-theory-tcp-ip-02.png" alt="" /></p>
+
+<p>总长度字段是指整个IP数据报的长度，以字节为单位。利用首部长度字段和总长度字段，就可以知道IP数据报中的数据内容的起始位置和长度。最长是65535字节。</p>
+
+<p>总长度字段是IP首部中必要的内容。因为有一些数据链路（如以太网）需要填充一些数据以达到小长度。以太网的最小帧是46字节。</p>
+
+<p>标识字段唯一的标识主机发送的每一份数据报。通常每发送一份报文，它的数值就会加1。</p>
+
+<p>TTL（time to live）生存时间字段设置了数据报可以经过的最多路由器数。它指定了数据报的生存时间。其初始值由源主机设定（32或64），一旦经过一个处理它的路由器，它的值就减1。当该字段为0时，该报文会被抛弃，并发送ICMP报文通知源主机。</p>
+
+<p>根据协议字段可以判断是哪个协议向IP传送数据。</p>
+
+<p>首部校验和字段是根据IP首部计算的校验和码。</p>
+
+<p>每一份IP数据报文都包含源地址和目的地址。</p>
+
+<p>最后一个字段是任选项，是数据报中可变长的可选信息。这些选项很少被使用，并非所有的主机和路由器支持这些字段。选项字段一直都是以32bit为边界，不足的地方以0补齐。这样就保证了所有的IP首部都是32bit的整数倍。</p>
+
+<h2>3. IP路由选择</h2>
+
+<p>IP的路由非常简单，如果两个主机直接点对点或者在同一个本地网络中（以太网或令牌网），那么IP数据报就直接发送到目的主机上。否则，主机把数据发给默认的路由器上，由路由器来转发该数据报。</p>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -969,152 +1172,6 @@ Segmentation fault
 <h4>3.3.2 podman</h4>
 
 <p>详细配置见<a href="/virtualization/container/podman_config_00_rlimit.html">podman config: 系统资源限制</a></p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">rlimit: fd - 简明介绍</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>11 Apr 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. 什么是fd？</h2>
-
-<p>FD的全称是 file descriptor 文件描述符。在介绍FD之前，我们先来了解几个问题。</p>
-
-<h2>1. 关于fd的几个常见问题</h2>
-
-<ol>
-<li><p>在文件系统中，如果我和你都被允许访问一个文件，我们可以共享文件的数据吗？</p>
-
-<p>答案是：yes。</p></li>
-
-<li><p>如果两个进程在同一个文件上读取和写入，它们使用的是同样的文件偏移量吗？</p>
-
-<p>答案是：no。</p></li>
-
-<li><p>如果一个进程把同一个文件打开两次，它应该有一个fd还是有两个？在这种情况下，这两个打开共享同一个文件偏移量吗？</p>
-
-<p>答案是：two，no，它们各自拥有自己的文件偏移量。</p></li>
-
-<li><p>如果两个线程使用了同一个fd，它们用的是同一个文件偏移量吗？</p>
-
-<p>答案是：yes。</p></li>
-
-<li><p>如果一个父进程创造了一个子进程，子进程会继承父进程的fd吗？它们会不会使用同样的文件偏移量？</p>
-
-<p>答案是：yes，yes</p></li>
-</ol>
-
-<h2>2. linux系管理fd时使用的数据结构</h2>
-
-<p>先来说明几个事实：</p>
-
-<ul>
-<li>当一个进程使用open这个系统调用时，open的返回值是一个小的整数，这个整数被我们称之为fd。</li>
-<li>每一个进程的fd都是以以下三个fd开始的：
-
-<ul>
-<li>标准输入：fd=0</li>
-<li>标准输出：fd=1</li>
-<li>标准错误：fd=2</li>
-</ul></li>
-</ul>
-
-<p>在明确了以上事实后，问题是，我们需要什么样的数据结构（任何人都不会天真的认为仅靠一个小小的整数就可以代表一个fd，它背后肯定是链接着一个文件打开的详细信息）来管理fd？</p>
-
-<h3>2.1 进程的fd表（<code>进程独享</code>）</h3>
-
-<p>每一个进程，拥有一个单独的fd表。举个例子，当一个进程调用open系统调用打开一个文件时，open返回了3这个数字，代表了fd表中的第4个位置（0,1,2,3）。这个fd表同时包含了指向其他数据结构的指针。</p>
-
-<h4>问题：我们可以在这个fd表中储存文件偏移量吗？</h4>
-
-<p><strong>答案</strong>：不可以，因为在*nix系统中，创建进程的方式，是完整的拷贝一个进程的信息成为一个新的进程。如果文件偏移量存在进程的fd表里面，那么意味着新的进程会拥有一个单独的文件偏移量信息，当父进程的文件偏移量变动时，子进程感知不到，因为父子进程是各自独立的fd表。此时，如果我们希望在父子进程中共享文件打开信息时，由于父子进程各自独立的fd表，则无法实现这个目的。所以，更明智的做法是，将文件偏移量储存在另外一个地方，而父子进程的fd表同时来引用同一个文件偏移量，来达到文件信息共享的目的。</p>
-
-<h3>2.2 所以，要如何储存文件偏移量呢？</h3>
-
-<p>首先，每一个文件偏移量对应着一个open系统调用。所以，我们需要一个数据结构来储存每次open系统调用的结果。它就是<strong>文件打开表（file table OR open file table）</strong>（<code>所有进程共享</code>）。</p>
-
-<p><strong>文件打开表</strong>中储存了如下信息：</p>
-
-<ul>
-<li>文件位置（文件偏移量）</li>
-<li>引用数，当我们有两个或者多个fd引用同一个文件打开对象，需要记录这个数字</li>
-<li>实际文件对象的引用，实际文件对象储存在内存中的一个数据结构中</li>
-</ul>
-
-<h3>2.3 最终，表示实际文件的储存在内存中的数据结构</h3>
-
-<p>实际文件对象，我们称之为Vnode（virtual node），是文件在内存中的展现形式。而许许多多的实际文件对象，储存在一个<strong>Vnode table</strong>（<code>所有进程共享</code>）中。</p>
-
-<p><strong>Vnode table</strong>中储存了如下信息：</p>
-
-<ul>
-<li>文件元数据的拷贝</li>
-<li>在磁盘上定位到这个文件的储存块的方式（例如：inode）</li>
-</ul>
-
-<h2>3. 总结</h2>
-
-<p><img src="/static/images/docs/linux/advance/fd-data-structure.jpg" alt="" /></p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/haproxy/haproxy_01_config_log.html">haproxy: 配置和日志</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>24 Mar 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>1. haproxy配置</h2>
-
-<h3>1) 常见的终止标志</h3>
-
-<ul>
-<li>PR，The proxy blocked the client&rsquo;s request, either because of an invalid HTTP syntax, in which case it returned an HTTP 400 error to the client, or because a deny filter matched, in which case it returned an HTTP 403 error.</li>
-</ul>
-
-<blockquote>
-<p>其他的见参考文档：<a href="https://www.haproxy.org/download/1.4/doc/configuration.txt">haproxy 8.5 部分配置</a>，这里只列出我遇到过的</p>
-</blockquote>
-
-<h3>2) ACL配置</h3>
-
-<p>大概的配置流程就是</p>
-
-<ol>
-<li>需要先定义一个测试标准</li>
-<li>然后再根据上面的测试标准来做对应的动作</li>
-</ol>
-
-<p>格式：<code>acl &lt;aclname&gt; &lt;criterion&gt; [flags] [operator] &lt;value&gt; ...</code></p>
-
-<blockquote>
-<p>含义是创建了一个新的aclname(或者替代旧的)，然后可以根据这个aclname来执行对应的action</p>
-</blockquote>
-
-<p><strong>例如根据ip来源的配置</strong></p>
-<pre class="chroma">acl in_src_ip_list src ip1 ip2 ip3 ...
-tcp-request content accept if in_src_ip_list
-tcp-request content reject
-</pre>
-<blockquote>
-<p>其他详情见参考文档：<a href="https://www.haproxy.org/download/1.4/doc/configuration.txt">haproxy 7. 部分配置</a></p>
-</blockquote>
 
         </div>
 

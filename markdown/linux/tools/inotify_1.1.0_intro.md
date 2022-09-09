@@ -1,7 +1,7 @@
 ---
 title: inotify: 1.1.0 初识inotify
 date: 2016-11-08 13:02:00
-categories: linux/service
+categories: linux/tools
 tags: [linux,inotify]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: vnc: 1.1.0 centos 7 安装
 date: 2017-01-18 11:41:00
-categories: linux/service
+categories: linux/tools
 tags: [linux,service,vnc]
 ---
 

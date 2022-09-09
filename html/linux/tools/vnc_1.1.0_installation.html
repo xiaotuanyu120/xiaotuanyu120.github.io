@@ -34,6 +34,12 @@
           <ul>
 
             <li>
+              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+            </li>
+            <li>
               <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
             </li>
             <li>
@@ -41,12 +47,6 @@
             </li>
             <li>
               <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
             </li>
           </ul>
 
@@ -106,22 +106,21 @@
                 </li>
                 <li>
                   <a href="/linux/service/index.html">service</a>
-                  <ul>
-                    <li><a href="/linux/service/discuz_error_管理中心登录的时候闪退.html">discuz管理中心登录的时候闪退</a></li>
-                    <li><a href="/linux/service/ffmpeg_1.1.0_compile_install.html">ffmpeg 1.1.0 compile install(centos)</a></li>
-                    <li><a href="/linux/service/inotify_1.1.0_intro.html">inotify: 1.1.0 初识inotify</a></li>
-                    <li><a href="/linux/service/inotify_2.1.0_rsync.html">inotify: 2.1.0 inotify+rsync实现实时文件同步</a></li>
-                    <li><a href="/linux/service/inotify_3.1.0_rollback.html">inotify: 3.1.0 inotify实现代码回滚(设想)</a></li>
-                    <li><a href="/linux/service/inotify_4.1.0_sersync.html">inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具</a></li>
-                    <li><a href="/linux/service/ldap_1.1.0_installation.html">ldap 1.0.0: installation</a></li>
-                    <li><a href="/linux/service/pxe_kickstark_install_system.html">PXE+KICKSTART安装系统</a></li>
-                    <li><a href="/linux/service/vnc_1.1.0_installation.html">vnc: 1.1.0 centos 7 安装</a></li>
-                    <li><a href="/linux/service/wiki_1.1.0_nginx_uwsgi_moinmoin.html">WIKI: 1.1.0 nginx+uwsgi部署moinmoin</a></li>
-                    <li><a href="/linux/service/wiki_1.2.0_moinmoin基本设置.html">WIKI: 1.2.0 moinmoin基本设置</a></li>
-                  </ul>
                 </li>
                 <li>
                   <a href="/linux/shell/index.html">shell</a>
+                </li>
+                <li>
+                  <a href="/linux/tools/index.html">tools</a>
+                  <ul>
+                    <li><a href="/linux/tools/curl_1.1.0_usage.html">curl: 使用教程</a></li>
+                    <li><a href="/linux/tools/ffmpeg_1.1.0_compile_install.html">ffmpeg 1.1.0 compile install(centos)</a></li>
+                    <li><a href="/linux/tools/inotify_1.1.0_intro.html">inotify: 1.1.0 初识inotify</a></li>
+                    <li><a href="/linux/tools/inotify_2.1.0_rsync.html">inotify: 2.1.0 inotify+rsync实现实时文件同步</a></li>
+                    <li><a href="/linux/tools/inotify_3.1.0_rollback.html">inotify: 3.1.0 inotify实现代码回滚(设想)</a></li>
+                    <li><a href="/linux/tools/inotify_4.1.0_sersync.html">inotify: 4.1.0 sersync 基于inotify和rsync的实时同步工具</a></li>
+                    <li><a href="/linux/tools/vnc_1.1.0_installation.html">vnc: 1.1.0 centos 7 安装</a></li>
+                  </ul>
                 </li>
               </ul>
             </li>
@@ -143,72 +142,53 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>inotify: 3.1.0 inotify实现代码回滚(设想)</h2>
+      <h2>vnc: 1.1.0 centos 7 安装</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>08 Nov 2016</p>
+        <p>18 Jan 2017</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>1. 需求背景</h3>
+<h3>1. 安装过程</h3>
+<pre class="chroma"><span class="c1"># 安装服务</span>
+yum install tigervnc-server
 
-<p>目前公司实际情况：</p>
+<span class="c1"># 准备连接vnc的用户</span>
+useradd &lt;vnc_user&gt;
 
-<ol>
-<li>开发团队更新时段09:00 - 18:00</li>
-<li>更新流程为：
-svn提交 -&gt; svn仓库中基于rsync的shell同步脚本 -&gt; 线上机器(重启tomcat)</li>
-</ol>
+<span class="c1"># centos7 中和centos6(/etc/sysconfig/vncservers)不一样，需要我们手动拷贝配置文件</span>
+cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@:1.service
 
-<p>目前面临的问题：
-开发负责更新流程的svn提交和shell同步脚本的执行，运维只负责重启，所以无法控制备份时间，增加了实现按更新备份策略的难度</p>
+<span class="c1"># 修改配置，主要是将&lt;USER&gt;修改成我们创建的用户</span>
+vim /etc/systemd/system/vncserver@:1.service
+*************************************
+<span class="o">[</span>...<span class="o">]</span>
 
-<p>因为代码回滚的核心就在于是否可以按照更新的频率去提前备份代码，所以基于上面的困难，就产生了此文的需求，如何实现按更新频率备份代码</p>
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>forking
+<span class="c1"># Clean any existing files in /tmp/.X11-unix environment</span>
+<span class="nv">ExecStartPre</span><span class="o">=</span>/bin/sh -c <span class="s1">&#39;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&#39;</span>
+<span class="c1">#ExecStart=/usr/sbin/runuser -l &lt;USER&gt; -c &#34;/usr/bin/vncserver %i&#34;</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/sbin/runuser -l &lt;vnc_user&gt; -c <span class="s2">&#34;/usr/bin/vncserver %i&#34;</span>
+<span class="c1">#PIDFile=/home/&lt;USER&gt;/.vnc/%H%i.pid</span>
+<span class="nv">PIDFile</span><span class="o">=</span>/home/&lt;vnc_user&gt;/.vnc/%H%i.pid
+<span class="nv">ExecStop</span><span class="o">=</span>/bin/sh -c <span class="s1">&#39;/usr/bin/vncserver -kill %i &gt; /dev/null 2&gt;&amp;1 || :&#39;</span>
 
+<span class="o">[</span>...<span class="o">]</span>
+*************************************
+</pre>
 <hr />
 
-<h3>2. 设想解决方案</h3>
+<h3>2. 启动过程</h3>
+<pre class="chroma"><span class="c1"># 切换到vnc用户，然后启动服务</span>
+su - &lt;vnc_user&gt;
+vncserver
 
-<h4>1) 前提</h4>
-
-<p>公司不想使用svn、git等版本控制来控制代码回滚，而我们通常用inotify+rsync来实现实时同步，但那并不能实现按照版本备份代码。</p>
-
-<h4>2) 方案</h4>
-
-<p>但是我们可以转变一下思路：</p>
-
-<ol>
-<li>在每天09:00之前备份一次，作为每日的固定备份</li>
-<li>使用inotify+rsync，在inotify检测到文件系统最后一次更新行为后的一段时间内，若没有更新则代表此次更新结束，做一次更新</li>
-</ol>
-
-<p>这样就可以实现，每日早上一次原始备份，在每次开发的更新行为之后进行一次实时备份，若开发更新频繁，则可控制保留最近的n次更新</p>
-
-<hr />
-
-<h3>3. 备份脚本</h3>
-<pre class="chroma"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-<span class="nv">src</span><span class="o">=</span><span class="s1">&#39;/tmp/src1/&#39;</span>
-<span class="nv">dest</span><span class="o">=</span><span class="s1">&#39;/tmp/dest1&#39;</span>
-<span class="nv">start_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
-
-<span class="k">while</span> <span class="nb">true</span>
-<span class="k">do</span>
-  <span class="nv">changed</span><span class="o">=</span><span class="sb">`</span>inotifywait -rqt <span class="m">10</span> -e modify,attrib,moved_to,moved_from,move,move_self,create,delete,delete_self <span class="nv">$src</span><span class="sb">`</span>
-  <span class="nv">node_time</span><span class="o">=</span><span class="sb">`</span>date +%s<span class="sb">`</span>
-  <span class="nv">process_time</span><span class="o">=</span><span class="k">$((</span><span class="nv">$node_time</span><span class="o">-</span><span class="nv">$start_time</span><span class="k">))</span>
-  <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$changed</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
-    <span class="o">[</span> <span class="nv">$process_time</span> -gt <span class="m">20</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
-      <span class="nv">backdir</span><span class="o">=</span><span class="nv">$dest</span>/<span class="sb">`</span>date +%m%d-%H%M<span class="sb">`</span>
-      mkdir -p <span class="nv">$backdir</span>
-      rsync -av --delete <span class="nv">$src</span> <span class="nv">$backdir</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="k">done</span>
+<span class="c1"># 查看端口</span>
+netstat -lnpt<span class="p">|</span>grep vnc
 </pre>
     </div>
 

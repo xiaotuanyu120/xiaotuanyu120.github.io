@@ -1,7 +1,7 @@
 ---
 title: inotify: 2.1.0 inotify+rsync实现实时文件同步
 date: 2016-11-08 13:52:00
-categories: linux/service
+categories: linux/tools
 tags: [linux,inotify]
 ---
 

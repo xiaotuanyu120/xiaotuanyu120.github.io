@@ -1,7 +1,7 @@
 ---
 title: inotify: 3.1.0 inotify实现代码回滚(设想)
 date: 2016-11-08 14:26:00
-categories: linux/service
+categories: linux/tools
 tags: [linux,inotify]
 ---
 
