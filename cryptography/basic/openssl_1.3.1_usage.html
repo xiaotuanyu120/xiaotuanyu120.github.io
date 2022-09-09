@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+            </li>
+            <li>
+              <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
+            </li>
+            <li>
+              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
+            </li>
+            <li>
+              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+              <ul>
+                <li>
+                  <a href="/cryptography/basic/index.html">basic</a>
+                  <ul>
+                    <li><a href="/cryptography/basic/1.0.0_crytography_intro.html">密码学: 1.0.0 简要介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.1.0_hash_algorithm.html">密码学: 1.1.0 hash算法介绍（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.2.0_algorithm.html">密码学: 1.2.0 加解密算法（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.3.0_signature.html">密码学: 1.3.0 数字签名（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.4.0_certification.html">密码学: 1.4.0 数字证书（转载）</a></li>
+                    <li><a href="/cryptography/basic/1.5.0_pki.html">密码学: 1.5.0 PKI认证体系（转载）</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.1.0_ssl_tls.html">openssl 1.1.0 证书相关名词含义</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.2.0_pem.html">openssl 1.2.0 pem基本操作</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.3.0_retrieve_certificate_info.html">openssl 1.3.0 获取证书</a></li>
+                    <li><a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/cryptography/example/index.html">example</a>
+                </li>
+                <li>
+                  <a href="/cryptography/ssl/index.html">ssl</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>openssl 1.3.1 SSL DEBUG: s_client</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>09 Sep 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. s_client</h2>
+
+<p>简介：SSL/TLS 客户端程序，用于调试和SSL服务器的连接。</p>
+<pre class="chroma">openssl s_client [-connect host:port] [-servername name] [-verify depth] [-verify_return_error] [-cert filename] [-certform DER|PEM] [-key filename] [-keyform DER|PEM] [-pass arg] [-CApath directory] [-CAfile filename] [-no_alt_chains] [-reconnect] [-pause] [-showcerts] [-debug] [-msg] [-nbio_test] [-state] [-nbio] [-crlf] [-ign_eof] [-no_ign_eof] [-quiet] [-ssl2] [-ssl3] [-tls1] [-no_ssl2] [-no_ssl3] [-no_tls1] [-no_tls1_1] [-no_tls1_2] [-fallback_scsv] [-bugs] [-sigalgs sigalglist] [-curves curvelist] [-cipher cipherlist] [-serverpref] [-starttls protocol] [-engine id] [-tlsextdebug] [-no_ticket] [-sess_out filename] [-sess_in filename] [-rand file(s)] [-serverinfo types] [-status] [-alpn protocols] [-nextprotoneg protocols]
+</pre>
+<p><strong>选项介绍：</strong></p>
+
+<ul>
+<li><code>-connect host:port</code>: 指定连接主机和端口</li>
+<li><code>-servername name</code>: TLS SNI (Server Name Indication)</li>
+<li><code>-cert certname</code>: 客户端证书（如果使用双向认证的话）</li>
+<li><code>-certform format</code>: 客户端证书格式，<code>DER,PEM</code>，默认值<code>PEM</code></li>
+<li><code>-key keyfile</code>: 客户端私钥（如果使用双向认证的话）</li>
+<li><code>-keyform format</code>: 客户端私钥格式，<code>DER,PEM</code>，默认值<code>PEM</code></li>
+<li><code>-pass arg</code>: 客户端私钥密码</li>
+<li><code>-tls1,-tls1_1,-tls1_2,-no_ssl2,-no_ssl3,-no_tls1,-no_tls1_1,-no_tls1_2</code>: 指定<code>ssl protocol</code></li>
+<li><code>-cipher cipherlist</code>: 指定ssl连接的加密算法</li>
+</ul>
+
+<blockquote>
+<p>加密算法详情见：<a href="https://www.openssl.org/docs/man1.0.2/man1/ciphers.html">ciphers</a></p>
+
+<p>openssl ssl debug工具详细用法：<a href="https://www.openssl.org/docs/man1.0.2/man1/openssl-s_client.html">openssl s_client</a></p>
+</blockquote>
+
+<h2>2. s_client示例</h2>
+<pre class="chroma">openssl s_client -cert client.crt -key client.key -tls1_2 -connect 127.0.0.1:80 -servername www.test.com
+</pre>
+<p>常见的使用场景：</p>
+
+<ul>
+<li>debug服务器是否开启了ssl的特定版本；</li>
+<li>debug特定的ssl加密算法；</li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
