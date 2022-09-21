@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
+            </li>
+            <li>
               <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
-            </li>
-            <li>
-              <a href="/service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
             </li>
           </ul>
 
@@ -107,6 +107,97 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>21 Sep 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>0. read简介</h3>
+
+<p>read是将标准输入中读取逻辑行，然后将其转换成一个或多个变量的工具。一般是从文件中读取内容，然后赋值给shell脚本的变量。</p>
+
+<h3>1. read变量和选项</h3>
+
+<p>变量：</p>
+
+<ul>
+<li><code>IFS</code>: 逻辑行中用于分隔不同field的分隔符</li>
+</ul>
+
+<blockquote>
+<p>其他变量参见 <a href="https://man7.org/linux/man-pages/man1/read.1p.html">read manual</a></p>
+</blockquote>
+
+<p>选项：</p>
+
+<ul>
+<li><code>-r</code>: 把转义符<code>\</code>当做普通字符。</li>
+</ul>
+
+<h3>2. 实例：读取配置文件</h3>
+
+<p>配置文件内容：<code>var.conf</code></p>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; var.conf
+</span><span class="s">id=01
+</span><span class="s">type=apple
+</span><span class="s">EOF</span>
+</pre>
+<p>读取配置的shell脚本：<code>load_var.sh</code></p>
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="c1"># read content from conf file and transfer it to var value pair in shell script</span>
+#
+<span class="c1"># EXAMPLE:</span>
+#
+<span class="c1"># var.conf&#39;s content</span>
+<span class="c1"># ==================================</span>
+<span class="c1"># id=01</span>
+<span class="c1"># type=apple</span>
+<span class="c1"># ==================================</span>
+#
+<span class="c1"># this script will read one line each time,</span>
+<span class="c1"># for example the first line &#34;id=01&#34;, and</span>
+<span class="c1"># separate it by &#34;=&#34;, load the two part to</span>
+<span class="c1"># var key and value:</span> 
+<span class="c1">#     key=id; value=01</span>
+<span class="c1"># then transfer it to new var pair in script</span>
+<span class="c1">#     id=01</span>
+
+<span class="nb">set</span> -e
+
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;=&#39;</span> <span class="nb">read</span> -r key value
+<span class="k">do</span>
+    <span class="c1"># ensure key and value is not empty</span>
+    <span class="k">if</span> <span class="o">[</span><span class="o">[</span> -z <span class="si">${</span><span class="nv">key</span><span class="si">}</span> <span class="o">]</span><span class="o">]</span> <span class="o">||</span> <span class="o">[</span><span class="o">[</span> -z <span class="si">${</span><span class="nv">value</span><span class="si">}</span> <span class="o">]</span><span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="k">continue</span>
+    <span class="k">fi</span>
+
+    <span class="c1"># assign the content of var value to var which name is the content of var key</span> 
+    <span class="c1"># EXAMPLE:</span>
+    <span class="c1">#     orinal vars: key=foo; value=bar</span>
+    <span class="c1">#     new var:     foo=bar</span>
+    <span class="k">if</span> <span class="o">[</span><span class="o">[</span> <span class="si">${</span><span class="nv">key</span><span class="si">}</span> <span class="o">=</span><span class="o">=</span> <span class="s2">&#34;id&#34;</span> <span class="o">]</span><span class="o">]</span> <span class="o">||</span> <span class="o">[</span><span class="o">[</span> <span class="si">${</span><span class="nv">key</span><span class="si">}</span> <span class="o">=</span><span class="o">=</span> <span class="s2">&#34;type&#34;</span> <span class="o">]</span><span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">eval</span> <span class="s2">&#34;</span><span class="nv">$key</span><span class="s2">=</span><span class="nv">$value</span><span class="s2">&#34;</span>
+    <span class="k">fi</span>
+<span class="k">done</span> &lt; ./var.conf
+
+<span class="nb">printf</span> <span class="s2">&#34;  id = %s\ntype = %s\n&#34;</span> <span class="si">${</span><span class="nv">id</span><span class="si">}</span> <span class="si">${</span><span class="nv">type</span><span class="si">}</span>
+</pre>
+<p>执行后的输出演示</p>
+<pre class="chroma">sh load_var.sh
+  <span class="nv">id</span> <span class="o">=</span> <span class="m">01</span>
+<span class="nb">type</span> <span class="o">=</span> apple
+</pre>
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -990,189 +1081,6 @@ cat /proc/sys/fs/file-nr
 <pre class="chroma">cat /proc/397/limits <span class="p">|</span> grep <span class="s2">&#34;open files&#34;</span>
 Max open files            <span class="m">2048</span>                 <span class="m">2048</span>                 files
 </pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/rlimit_fd_03_how_linux_limit_fd.html">rlimit fd: linux中如何管理fd</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>30 Apr 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. 总览</h2>
-
-<p>上一篇<a href="/linux/advance/rlimit_fd_01_file_descriptor_brief_introduction.html">文件描述符简明介绍</a>中有介绍fd是什么，那么linux中是如何管理它的呢？</p>
-
-<p>根据上篇文章，我们可知，fd的实际使用是绑定到每个进程上的。</p>
-
-<p>因为linux上创建进程，其实是通过拷贝的方式来实现的，区别只是在于PID、PPID、某些资源和统计量（例如挂起的信号量），大部分的task_struct(fd表所在的数据结构)中的数据没有变化，相当于是直接继承了，<strong>所以fd的限制理论上，是直接继承的父进程的fd的限制</strong>。</p>
-
-<p>但是也会有其他的管理工具或者方法可以让子进程改变继承的fd限制。总结来讲有以下几种方式：</p>
-
-<ol>
-<li>login-shell通过ulimit来设定登录用户或登录用户组的fd限制（或non-login-shell通过在启动脚本中显式调用ulimit命令）</li>
-<li>container通过container management来设定fd限制</li>
-<li>systemd管理的service通过systemd的配置来设定fd限制</li>
-<li>程序本身调用系统调用来修改fd限制</li>
-</ol>
-
-<p>除了默认的从父进程继承的形式之外，其他所有改变fd限制的方式底层都是通过相关的几个系统调用（后面细讲）来实现的。</p>
-
-<blockquote>
-<p>只有root才可以调高hard limit，其他的用户只可以调整soft limit（不可以超过hard limit）</p>
-</blockquote>
-<pre class="chroma">┌────────────┐ ┌────────┐ ┌─────┐     ┌────┐ ┌─────┐ ┌─────┐     ┌─────────┐
-│init/systemd│ │services│ │shell│     │sshd│ │crond│ │login│     │container│
-└────────┬───┘ └────┬───┘ └───┬─┘     └──┬─┘ └──┬──┘ └───┬─┘     └────┬────┘
-         │          │    (opti│onal)     └──────┴────────┤            │ 
-         │          │         └─────────────┐            │            │
-         │          │                       │           PAM           │
-         │          ├─sysvinit scripts──────┤            │            │
-         │          │   (optional)          │            │            │
-         │          │                       │            │            │
-         │          ├─systemd units─┐       │            │            │
-         │          │               │       │            │            │
-         │       ┌──▼───┐   ┌───────▼─┐ ┌───▼──┐ ┌───────▼──────┐ ┌───▼────────┐
-         │       │ hard │   │ systemd │ │ulimit│ │ limits.conf  │ │ container  │
-         └──────►│ code │   │         │ │(cmd) │ │ pam_limit.so │ │ management │
-                 └──┬───┘   └────┬────┘ └───┬──┘ └───────┬──────┘ └──────┬─────┘
-                    │            │          │            │               │
-                    └────────────┴──────────┴───┬────────┴───────────────┘
-                                          SYSTEM│CALL
-            DEFAULT                             │
-   ┌─────────────────────────┬──────────────────▼──────┐
-   │                         │                         │
-   │     inherit from        │    getrlimit prlimit    │
-   │     parent process      │    setrlimit rlimit     │
-   │                         │                         │
-   ├─────────────────────────┴─────────────────────────┤
-   │                                                   │
-   │                      KERNEL                       │
-   │                                                   │
-   └───────────────────────────────────────────────────┘
-</pre>
-<h2>1. 资源限制(rlimit)的系统调用：getrlimit, setrlimit, prlimit</h2>
-
-<ul>
-<li><p>和资源限制（包含fd）系统调用相关的数据结构：<code>rlimit</code>（resource limit）</p></li>
-
-<li><p>和资源限制（包含fd）相关的系统调用</p></li>
-</ul>
-<pre class="chroma"><span class="c1">// 获取rlimit
-</span><span class="c1"></span><span class="kt">int</span> <span class="nf">getrlimit</span><span class="p">(</span><span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">rlim</span><span class="p">)</span><span class="p">;</span>
-
-<span class="c1">// 设定rlimit
-</span><span class="c1"></span><span class="kt">int</span> <span class="nf">setrlimit</span><span class="p">(</span><span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">rlim</span><span class="p">)</span><span class="p">;</span>
-
-<span class="c1">// 设定其他进程的rlimit
-</span><span class="c1"></span><span class="kt">int</span> <span class="nf">prlimit</span><span class="p">(</span><span class="n">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">resource</span><span class="p">,</span> <span class="k">const</span> <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">new_limit</span><span class="p">,</span>
-                   <span class="k">struct</span> <span class="n">rlimit</span> <span class="o">*</span><span class="n">old_limit</span><span class="p">)</span><span class="p">;</span>
-</pre>
-<h2>2. 子进程继承父进程的fd限制</h2>
-
-<h3>2.1 简单fork进程，继承测试和hard code硬编程fd限制测试</h3>
-
-<p>准备一个简单的测试c程序<code>limit.c</code>，为排除ulimit的影响，修改父进程的rlimit值为和ulimit不同的值，看子进程是否继承</p>
-<pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;sys/resource.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;errno.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span><span class="cpf">&lt;sys/wait.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">pid_t</span> <span class="n">c_pid</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="n">rlimit</span> <span class="n">p_rlim</span><span class="p">,</span> <span class="n">c_rlim</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">fork</span><span class="p">(</span><span class="p">)</span><span class="o">=</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">fork done</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">else</span>
-        <span class="n">c_pid</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="n">c_pid</span> <span class="o">!</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// change parent pid&#39;s rlimit
-</span><span class="c1"></span>        <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_cur</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
-        <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_max</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">setrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-
-        <span class="k">if</span><span class="p">(</span> <span class="n">getrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Parent limits -&gt; soft limit= %ld </span><span class="se">\t</span><span class="s"> hard limit= %ld </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
-                <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_cur</span><span class="p">,</span> 
-                <span class="n">p_rlim</span><span class="p">.</span><span class="n">rlim_max</span><span class="p">)</span><span class="p">;</span>
-            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Parent pid = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span> <span class="n">getrlimit</span><span class="p">(</span><span class="n">RLIMIT_NOFILE</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">c_rlim</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Child limits -&gt; soft limit= %ld </span><span class="se">\t</span><span class="s"> hard limit= %ld </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
-                <span class="n">c_rlim</span><span class="p">.</span><span class="n">rlim_cur</span><span class="p">,</span> 
-                <span class="n">c_rlim</span><span class="p">.</span><span class="n">rlim_max</span><span class="p">)</span><span class="p">;</span>
-            <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Child pid = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre><pre class="chroma"><span class="c1"># 为排除ulimit的影响，我们先设定ulimit的限制为和父进程的rlimit不同的值</span>
-<span class="nb">ulimit</span> -n <span class="m">1024</span>
-
-<span class="c1"># compile测试程序并运行</span>
-gcc limit.c -o limit
-
-./limit
-fork <span class="k">done</span>
-Child limits -&gt; soft <span class="nv">limit</span><span class="o">=</span> <span class="m">1024</span>    hard <span class="nv">limit</span><span class="o">=</span> <span class="m">1024</span> 
-Child <span class="nv">pid</span> <span class="o">=</span> <span class="m">246</span>
-Parent limits -&gt; soft <span class="nv">limit</span><span class="o">=</span> <span class="m">512</span>    hard <span class="nv">limit</span><span class="o">=</span> <span class="m">512</span> 
-Parent <span class="nv">pid</span> <span class="o">=</span> <span class="m">245</span>
-</pre>
-<p>可以看出，limit（子）的fd限制继承自limit（父），然后limit（父）可以通过hard code把fd限制手动修改</p>
-
-<blockquote>
-<p><strong>注意：</strong>程序设定的值不可以超过父进程bash的值，也就是ulimit命令设定的hard limit的值，否则会有如下报错</p>
-<pre class="chroma">strace ./limit
-
-......
-
-setrlimit<span class="o">(</span>RLIMIT_NOFILE, <span class="o">{</span><span class="nv">rlim_cur</span><span class="o">=</span>1025, <span class="nv">rlim_max</span><span class="o">=</span>1025<span class="o">}</span><span class="o">)</span> <span class="o">=</span> -1 EPERM <span class="o">(</span>Operation not permitted<span class="o">)</span>
---- SIGSEGV <span class="o">{</span><span class="nv">si_signo</span><span class="o">=</span>SIGSEGV, <span class="nv">si_code</span><span class="o">=</span>SEGV_MAPERR, <span class="nv">si_addr</span><span class="o">=</span>0x80cde390<span class="o">}</span> ---
-+++ killed by SIGSEGV +++
-Segmentation fault
-</pre></blockquote>
-
-<h2>3. 通过其他管理工具或者系统调用来修改fd限制</h2>
-
-<h3>3.1 ulimit</h3>
-
-<p>详细内容见：<a href="/linux/advance/rlimit_ulimit_01_introduce.html">ulimit工具简明介绍：2.3</a></p>
-
-<ul>
-<li>sysvinit script是否受ulimit中的配置限制；答案：（未验证，猜测是否）</li>
-<li>手动创建子shell(login shell 和 non-login shell)，是配置文件生效，还是继承的父进程的值？答案：继承父进程的值</li>
-<li>crontab中的任务是否受ulimit中的配置限制；答案：收到<code>/etc/security/limits.conf</code>中的配置限制，前提是在pam中针对crond配置了pam_limits.so模块的对应配置</li>
-</ul>
-
-<h3>3.2 systemd</h3>
-
-<p>详细内容见：<a href="/linux/advance/systemd_00_00_rlimit_settings.html">systemd 系统资源限制</a></p>
-
-<h3>3.3 container management</h3>
-
-<h4>3.3.1 docker</h4>
-
-<h4>3.3.2 podman</h4>
-
-<p>详细配置见<a href="/virtualization/container/podman_config_00_rlimit.html">podman config: 系统资源限制</a></p>
-
         </div>
 
     </div>

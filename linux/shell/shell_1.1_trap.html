@@ -155,7 +155,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>SHELL: 1.0.1 变量：内置变量</h2>
+      <h2>SHELL: 1.1 trap</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -165,47 +165,69 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. 内置变量简介</h3>
+<h3>0. trap简介</h3>
 
-<h4>1) 变量$?</h4>
-<pre class="chroma"><span class="c1"># $? 上个命令的执行结果</span>
-<span class="c1"># 执行成功返回0值</span>
-rm -rf test.sh
+<p>trap是类unix操作系统上内置的一个shell命令，用来响应硬件信号或者其他事件的命令</p>
 
-<span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">0</span>
+<p>语法：<code>trap [-lp] [[ARG] SIGNAL_SPEC...]</code>，意思是当收到<code>SIGNAL_SPEC</code>后，执行<code>ARG</code>指定的命令或者动作</p>
 
-<span class="c1"># 执行失败返回非0值</span>
-ls test.sh
-ls: test.sh: No such file or directory
+<h3>1. 信号含义</h3>
 
-<span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">1</span>
-
-ll
--bash: ll: <span class="nb">command</span> not found
-<span class="nb">echo</span> <span class="nv">$?</span>
-<span class="m">127</span>
+<p><code>trap -l</code>会列出所有的信号</p>
+<pre class="chroma"><span class="nb">trap</span> -l
+ 1<span class="o">)</span> SIGHUP	 2<span class="o">)</span> SIGINT	 3<span class="o">)</span> SIGQUIT	 4<span class="o">)</span> SIGILL
+ 5<span class="o">)</span> SIGTRAP	 6<span class="o">)</span> SIGABRT	 7<span class="o">)</span> SIGEMT	 8<span class="o">)</span> SIGFPE
+ 9<span class="o">)</span> SIGKILL	10<span class="o">)</span> SIGBUS	11<span class="o">)</span> SIGSEGV	12<span class="o">)</span> SIGSYS
+13<span class="o">)</span> SIGPIPE	14<span class="o">)</span> SIGALRM	15<span class="o">)</span> SIGTERM	16<span class="o">)</span> SIGURG
+17<span class="o">)</span> SIGSTOP	18<span class="o">)</span> SIGTSTP	19<span class="o">)</span> SIGCONT	20<span class="o">)</span> SIGCHLD
+21<span class="o">)</span> SIGTTIN	22<span class="o">)</span> SIGTTOU	23<span class="o">)</span> SIGIO	24<span class="o">)</span> SIGXCPU
+25<span class="o">)</span> SIGXFSZ	26<span class="o">)</span> SIGVTALRM	27<span class="o">)</span> SIGPROF	28<span class="o">)</span> SIGWINCH
+29<span class="o">)</span> SIGINFO	30<span class="o">)</span> SIGUSR1	31<span class="o">)</span> SIGUSR2	
 </pre>
-<h4>2) 变量$$</h4>
+<h3>2. 实际应用</h3>
+
+<h4>1) 删除临时文件：</h4>
 <pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /tmp/test.sh
 </span><span class="s">#!/bin/bash
 </span><span class="s">
-</span><span class="s">echo $$
+</span><span class="s">trap &#34;rm -rf /tmp/test&#34; EXIT
 </span><span class="s">
-</span><span class="s">while :; do
-</span><span class="s">    echo test
-</span><span class="s">    sleep 60
+</span><span class="s">touch /tmp/test
+</span><span class="s">echo &#34;good&#34; &gt; /tmp/test
+</span><span class="s">ls -l /tmp/test
+</span><span class="s">cat /tmp/test
+</span><span class="s">EOF</span>
+
+sh /tmp/test.sh 
+-rw-r--r--  <span class="m">1</span> user  wheel  <span class="m">5</span> Oct <span class="m">11</span> 13:38 /tmp/test
+good
+
+<span class="c1"># 在上面脚本进入EXIT信号，即执行完毕退出时，会执行删除&#34;/tmp/test&#34;文件的action</span>
+ls -l /tmp/test
+ls: cannot access /tmp/test: No such file or directory
+</pre>
+<h4>2) 禁止用户ctrl+c</h4>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /tmp/test.sh
+</span><span class="s">#!/bin/bash
+</span><span class="s">
+</span><span class="s">trap &#34;echo \&#34;don&#39;t ctrl+c\&#34;&#34; SIGINT
+</span><span class="s">
+</span><span class="s">while true
+</span><span class="s">do
+</span><span class="s">    echo Sleeping
+</span><span class="s">    sleep 10
 </span><span class="s">done
 </span><span class="s">EOF</span>
 
+
 sh test.sh 
-<span class="m">13920</span>
-<span class="nb">test</span>
-^Z
-<span class="o">[</span>1<span class="o">]</span>+  Stopped                 sh test.sh
-ps aux <span class="p">|</span>grep test.sh<span class="p">|</span>grep -v grep
-user             <span class="m">13920</span>   0.0  0.0  <span class="m">4268636</span>   <span class="m">1156</span> s000  T     1:52PM   0:00.00 sh test.sh
+Sleeping
+^Cdon<span class="s1">&#39;t ctrl+c
+</span><span class="s1">Sleeping
+</span><span class="s1">^Cdon&#39;</span>t ctrl+c
+Sleeping
+^Cdon<span class="err">&#39;</span>t ctrl+c
+Sleeping
 </pre>
     </div>
 
