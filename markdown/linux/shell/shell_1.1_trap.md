@@ -1,5 +1,5 @@
 ---
-title: SHELL: 1.1 命令：trap
+title: SHELL: 1.1 trap
 date: 2019-10-10 13:22:00
 categories: linux/shell
 tags: [shell,command]
@@ -41,6 +41,10 @@ EOF
 sh /tmp/test.sh 
 -rw-r--r--  1 user  wheel  5 Oct 11 13:38 /tmp/test
 good
+
+# 在上面脚本进入EXIT信号，即执行完毕退出时，会执行删除"/tmp/test"文件的action
+ls -l /tmp/test
+ls: cannot access /tmp/test: No such file or directory
 ```
 
 #### 2) 禁止用户ctrl+c
