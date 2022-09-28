@@ -164,7 +164,7 @@
                     <li><a href="/linux/basic/14.4.0_shell_script_logic-example.html">14.4.0: 脚本基础-example</a></li>
                     <li><a href="/linux/basic/15.1.0_脚本示例-报警系统.html">15.1.0: 脚本示例-报警系统</a></li>
                     <li><a href="/linux/basic/15.1.1_脚本示例-报警系统py.html">15.1.0: 脚本示例-报警系统py</a></li>
-                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发-expect+rsync</a></li>
+                    <li><a href="/linux/basic/16.1.0_文件分发-expect+rsync.html">16.1.0: 文件分发 expect & rsync</a></li>
                     <li><a href="/linux/basic/17.1.0_系统管理-系统负载.html">17.1.0: 系统管理-系统负载</a></li>
                     <li><a href="/linux/basic/17.2.0_系统管理-内存管理.html">17.2.0: 系统管理-内存管理</a></li>
                     <li><a href="/linux/basic/17.3.0_系统管理-top工具.html">17.3.0: 系统管理-top工具</a></li>
@@ -184,7 +184,7 @@
                     <li><a href="/linux/basic/19.5.0_虚拟终端-screen.html">19.5.0: 虚拟终端-screen</a></li>
                     <li><a href="/linux/basic/19.6.0_网络工具-基本介绍.html">19.6.0: 网络工具-基本介绍</a></li>
                     <li><a href="/linux/basic/20.1.0_网络管理-_etc_hosts.html">20.1.0: 网络管理-/etc/hosts</a></li>
-                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具-rsync</a></li>
+                    <li><a href="/linux/basic/20.2.0_同步工具-rsync.html">20.2.0: 同步工具 rsync</a></li>
                     <li><a href="/linux/basic/24.1.0_扩展模块-基础介绍.html">24.1.0: 扩展模块-基础介绍</a></li>
                     <li><a href="/linux/basic/24.2.0_扩展模块-bz2.html">24.2.0: 扩展模块-bz2</a></li>
                     <li><a href="/linux/basic/24.3.0_扩展模块-memcache.html">24.3.0: 扩展模块-memcache</a></li>
@@ -270,7 +270,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>20.2.0: 同步工具-rsync</h2>
+      <h2>20.2.0: 同步工具 rsync</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -280,7 +280,7 @@
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>1. 工具：rsync</h3>
+<h1>1. 工具：rsync</h1>
 
 <p>作用：一个快速、万能、可远程的文件复制工具<br />
 语法：</p>
@@ -328,15 +328,18 @@ Push: rsync [OPTION...] SRC... [USER@]HOST::DEST
 <li><code>-u</code> update，DST中比SRC时间还新的文件将被保留，不会覆盖，即使文件内容不一致</li>
 <li><code>--port</code> 指定端口（daemon模式下）</li>
 <li><code>-z</code> 复制的同时压缩文件</li>
+<li><code>--bwlimit=KBPS</code> 限制传输速度。例如限制5MB/PS <code>--bwlimit=5000</code></li>
 </ul>
 
 <blockquote>
 <p>rsync是增量备份，默认-av参数时在目标目录已经存在且内容无更改的文件不会被重新拷贝</p>
 </blockquote>
 
-<p>基本用法演示：<br />
-<strong>1. rsync本地同步文件</strong><br />
-自动创建并不存在的/tmp/111目录，只能创建1层目录</p>
+<h2>1.1 基本用法演示：</h2>
+
+<h3><strong>1. rsync本地同步文件</strong></h3>
+
+<p>自动创建并不存在的/tmp/111目录，只能创建1层目录</p>
 <pre class="chroma"><span class="c1"># 如果是2层及以上就会报错该目录不存在了</span>
 rsync -av perm/ /tmp/111
 sending incremental file list
@@ -365,8 +368,9 @@ perm/777.log
 sent <span class="m">810</span> bytes  received <span class="m">263</span> bytes  2146.00 bytes/sec
 total size is <span class="m">0</span>  speedup is 0.00
 </pre>
-<p><strong>2. rsync远程同步文件</strong><br />
-以ssh的方式用rsync与web02远程同步文件</p>
+<h3><strong>2. rsync远程同步文件</strong></h3>
+
+<p>以ssh的方式用rsync与web02远程同步文件</p>
 <pre class="chroma"><span class="c1"># 如果ssh端口不是22，那么需要写成：</span>
 <span class="c1"># rsync -av --rsh=&#34;ssh -p &lt;port&gt;&#34; perm/ 192.168.0.27:/tmp/rsyncdir/</span>
 <span class="c1"># 或rsync -av -e &#34;ssh -p &lt;port&gt;&#34; perm/ 192.168.0.27:/tmp/rsyncdir/</span>
@@ -400,7 +404,7 @@ rsyncdir/testu
 sent <span class="m">281</span> bytes  received <span class="m">888</span> bytes  155.87 bytes/sec
 total size is <span class="m">5</span>  speedup is 0.00
 </pre>
-<p><strong>3. 软连接拷贝相关参数&rdquo;-L&rdquo;和&rdquo;-l&rdquo;</strong></p>
+<h3><strong>3. 软连接拷贝相关参数&rdquo;-L&rdquo;和&rdquo;-l&rdquo;</strong></h3>
 <pre class="chroma"><span class="c1"># -l会将软连接以软连接的形式拷贝过去</span>
 ll perm/ps.soft
 lrwxrwxrwx <span class="m">1</span> root root <span class="m">11</span> Jan  <span class="m">6</span> 17:18 perm/ps.soft -&gt; /etc/passwd     
@@ -445,7 +449,7 @@ ll /tmp/111/ps.soft /etc/passwd
 -rw-r--r-- <span class="m">1</span> root root <span class="m">1639</span> Dec <span class="m">29</span> 20:23 /etc/passwd
 -rw-r--r-- <span class="m">1</span> root root <span class="m">1639</span> Dec <span class="m">29</span> 20:23 /tmp/111/ps.soft
 </pre>
-<p><strong>4. &ndash;no-OPTION参数用来指定不使用的参数</strong></p>
+<h3><strong>4. &ndash;no-OPTION参数用来指定不使用的参数</strong></h3>
 <pre class="chroma"><span class="c1"># -a含-l，我们用--no-l把-l规避掉</span>
 <span class="c1"># 因为规避了-l参数，所以并不处理软连接文件</span>
 rsync -av --no-l perm/ /tmp/111
@@ -459,7 +463,7 @@ skipping non-regular file <span class="s2">&#34;ps.soft&#34;</span>
 sent <span class="m">813</span> bytes  received <span class="m">262</span> bytes  2150.00 bytes/sec
 total size is <span class="m">11</span>  speedup is 0.01
 </pre>
-<p><strong>5. &ldquo;-u&rdquo;参数，当目标机器上文件时间比源文件时间新时不覆盖重传，即使文件内容不一致</strong></p>
+<h3><strong>5. &ldquo;-u&rdquo;参数，当目标机器上文件时间比源文件时间新时不覆盖重传，即使文件内容不一致</strong></h3>
 <pre class="chroma"><span class="c1"># 创建测试环境</span>
 mkdir src
 mkdir dest
@@ -491,7 +495,7 @@ test01
 sent <span class="m">93</span> bytes  received <span class="m">31</span> bytes  248.00 bytes/sec
 total size is <span class="m">5</span>  speedup is 0.04
 </pre>
-<p><strong>6. &lsquo;&ndash;delete&rsquo;参数可删除SRC没有，DEST有的文件</strong></p>
+<h3><strong>6. &lsquo;&ndash;delete&rsquo;参数可删除SRC没有，DEST有的文件</strong></h3>
 <pre class="chroma"># 先在SRC删除ps.soft,用--delete实现另一端自动删除
 rm -f perm/ps.soft
 rsync -av --delete perm/ /tmp/111/
@@ -503,7 +507,7 @@ testu
 sent 352 bytes  received 34 bytes  772.00 bytes/sec
 total size is 5  speedup is 0.01
 </pre>
-<p><strong>7. &ldquo;&ndash;exclude&rdquo;参数可指定排除复制的文件</strong></p>
+<h3><strong>7. &ldquo;&ndash;exclude&rdquo;参数可指定排除复制的文件</strong></h3>
 <pre class="chroma"><span class="c1">#把以.log结尾的文件排除在复制目标之外</span>
 <span class="c1"># rm -rf /tmp/111/*</span>
 <span class="c1"># rsync -av --exclude=&#39;*.log&#39; perm/ /tmp/111/</span>
@@ -521,7 +525,7 @@ testu
 sent <span class="m">503</span> bytes  received <span class="m">167</span> bytes  1340.00 bytes/sec
 total size is <span class="m">5</span>  speedup is 0.01
 </pre>
-<p><strong>8. &ldquo;-c&rdquo;强制使用checksum来代替size和mtime的检测机制</strong></p>
+<h3><strong>8. &ldquo;-c&rdquo;强制使用checksum来代替size和mtime的检测机制</strong></h3>
 <pre class="chroma"><span class="c1">## 传统av参数会在size改变和mtime修改条件改变时同步文件</span>
 <span class="nb">echo</span> <span class="s2">&#34;good&#34;</span> &gt;&gt; test1/file1
 rsync -av test1/* test2/
@@ -566,11 +570,9 @@ sending incremental file list
 sent <span class="m">99</span> bytes  received <span class="m">19</span> bytes  236.00 bytes/sec
 total size is <span class="m">124</span>  speedup is 1.05
 </pre>
-<hr />
+<h1>2. rsync daemon模式:</h1>
 
-<h4>rsync daemon模式:</h4>
-
-<p><strong>服务器配置文件/etc/rsyncd.conf(需要手动创建)</strong></p>
+<h2>2.1 服务器配置文件/etc/rsyncd.conf(需要手动创建)</h2>
 <pre class="chroma">vi /etc/rsyncd.conf
 *************************************************
 <span class="nv">uid</span><span class="o">=</span>www
@@ -615,38 +617,46 @@ hosts <span class="nv">allow</span><span class="o">=</span>192.168.0.1/24
 <span class="c1">#指定允许的ip网段及子网掩码（有子网掩码即为一个网段）</span>
 *************************************************
 </pre>
-<p><strong>服务端密码文件/etc/rsyncd.passwd</strong></p>
+<h2>2.2 服务端密码文件/etc/rsyncd.passwd</h2>
 <pre class="chroma"><span class="c1"># vi /etc/rsyncd.passwd</span>
 *************************************************
 <span class="c1">#可通过多行定义多个用户</span>
 用户名：密码
 *************************************************
 </pre>
-<p><strong>启动rsync守护进程（pid文件保存的内容是守护进程的pid）</strong></p>
+<h2>2.3 启动rsync守护进程（pid文件保存的内容是守护进程的pid）</h2>
 <pre class="chroma"><span class="c1"># 用--daemon启动rsync服务</span>
 <span class="c1"># 默认/etc/rsyncd.conf，也可手动指定--config=/.../rsyncd.conf</span>
 rsync --daemon
 
 <span class="c1">## 若pid文件已存在会报错</span>
 <span class="c1"># failed to create pid file /var/run/rsyncd.pid: File exists</span>
-
-<span class="c1"># port不是默认873，远程客户端需要用--port指定端口</span>
-
-rsync -av --port<span class="o">=</span><span class="m">8700</span> testguy@192.168.0.5::test1 /tmp/222
-Password:
-receiving incremental file list
-./
-001.txt
-002.txt
-......
-377.log
-777.log
-testu
-
-sent <span class="m">327</span> bytes  received <span class="m">927</span> bytes  167.20 bytes/sec
-total size is <span class="m">5</span>  speedup is 0.00
 </pre>
-<p><strong>&ldquo;use chroot=yes&rdquo;产生的效果</strong></p>
+<h2>2.4 传输示例</h2>
+
+<h3>2.4.1 服务端和客户端的密码文件（用&ndash;password-file指定客户端密码文件）</h3>
+<pre class="chroma"><span class="c1"># 客户端配置密码文件</span>
+vi /etc/rsyncd.d/rsyncd.pass
+*************************************************
+testguy:password
+*************************************************
+
+<span class="c1"># 必须要修改权限为600，否则报错</span>
+chmod <span class="m">600</span> /etc/rsyncd.d/rsyncd.pass
+
+<span class="c1">#指定客户端密码文件后不需要输入密码</span>
+rsync -avL --port<span class="o">=</span><span class="m">8700</span> --password-file<span class="o">=</span>/etc/rsyncd.d/rsyncd.pass testguy@192.168.0.5::test1 /tmp/222
+</pre>
+<h3>2.4.2 常规语法格式</h3>
+<pre class="chroma"><span class="c1"># port不是默认873，远程客户端需要用--port指定端口</span>
+rsync -av --password-file<span class="o">=</span>/path/to/password_file --port<span class="o">=</span><span class="m">8700</span> testguy@192.168.0.5::test1 /tmp/222
+</pre>
+<h3>2.4.3 rsync协议语法格式</h3>
+<pre class="chroma">rsync -av --password-file<span class="o">=</span>/path/to/password_file rsync://testguy@192.168.0.5:8700/test1 /tmp/222
+</pre>
+<h2>2.5 daemon模式下的配置</h2>
+
+<h3>2.5.1 &ldquo;use chroot=yes&rdquo;产生的效果</h3>
 <pre class="chroma"><span class="c1">## 现在服务端创建一个软连接</span>
 <span class="c1"># ll /root/perm/rc.soft</span>
 lrwxrwxrwx <span class="m">1</span> root root <span class="m">18</span> Jan  <span class="m">7</span> 10:49 /root/perm/rc.soft -&gt; /etc/rc.d/rc.local
@@ -673,46 +683,29 @@ rc.soft
 sent <span class="m">77</span> bytes  received <span class="m">652</span> bytes  162.00 bytes/sec
 total size is <span class="m">225</span>  speedup is 0.31
 </pre>
-<p><strong>服务端和客户端的密码文件（用&ndash;password-file指定客户端密码文件）</strong></p>
-<pre class="chroma"><span class="c1"># 客户端配置密码文件</span>
-vi /etc/rsyncd.d/rsyncd.pass
-*************************************************
-testguy:password
-*************************************************
-
-<span class="c1"># 必须要修改权限为600，否则报错</span>
-chmod <span class="m">600</span> /etc/rsyncd.d/rsyncd.pass
-
-<span class="c1">#指定客户端密码文件后不需要输入密码</span>
-rsync -avL --port<span class="o">=</span><span class="m">8700</span> --password-file<span class="o">=</span>/etc/rsyncd.d/rsyncd.pass testguy@192.168.0.5::test1 /tmp/222
-receiving incremental file list
-
-sent <span class="m">58</span> bytes  received <span class="m">389</span> bytes  894.00 bytes/sec
-total size is <span class="m">225</span>  speedup is 0.50
-</pre>
-<p><strong>配置hosts allow</strong></p>
+<h3>2.5.2 配置hosts allow</h3>
 <pre class="chroma"><span class="c1"># &#34;hosts allow=192.168.0.1/24&#34;若没有/24则仅为192.168.0.1可以访问</span>
 <span class="c1"># 修改服务端配置文件&#34;hosts allow=192.168.0.1&#34;，客户端同步</span>
 rsync -avL --port<span class="o">=</span><span class="m">8700</span> --password-file<span class="o">=</span>/etc/rsyncd.d/rsyncd.pass testguy@192.168.0.5::test1 /tmp/222
 @ERROR: Unknown module <span class="s1">&#39;test1&#39;</span>
 rsync error: error starting client-server protocol <span class="o">(</span>code 5<span class="o">)</span> at main.c<span class="o">(</span>1503<span class="o">)</span> <span class="o">[</span><span class="nv">receiver</span><span class="o">=</span>3.0.6<span class="o">]</span>
 
-<span class="c1">## 服务端查看log信息，用于排错</span>
-<span class="c1"># cat /var/log/rsync.log</span>
+<span class="c1"># 服务端查看log信息，用于排错</span>
+cat /var/log/rsync.log
 ......
 2015/01/07 11:16:17 <span class="o">[</span>21454<span class="o">]</span> building file list
 2015/01/07 11:16:17 <span class="o">[</span>21454<span class="o">]</span> sent <span class="m">404</span> bytes  received <span class="m">59</span> bytes  total size <span class="m">225</span>
 2015/01/07 11:26:14 <span class="o">[</span>21468<span class="o">]</span> connect from Unknown_00-0c-29-24-9e-dd.gateway.2wire.net <span class="o">(</span>192.168.0.27<span class="o">)</span>
 2015/01/07 11:26:14 <span class="o">[</span>21468<span class="o">]</span> rsync denied on module test1 from unknown_00-0c-29-24-9e-dd.gateway.2wire.net <span class="o">(</span>192.168.0.27<span class="o">)</span>
-<span class="c1">## 将hosts段增加为&#34;hosts allow=192.168.0.1/24&#34;后即正常，</span>
-<span class="c1">## 那/24代表什么含义呢，如下面所示</span>
+<span class="c1"># 将hosts段增加为&#34;hosts allow=192.168.0.1/24&#34;后即正常，</span>
+<span class="c1"># 那/24代表什么含义呢，如下面所示</span>
 <span class="c1">#/8=255.0.0.0</span>
 <span class="c1">#/16=255.255.0.0</span>
 <span class="c1">#/24=255.255.255.0</span>
 <span class="c1">#/32=255.255.255.255</span>
 <span class="c1">## /24代表了255.255.255.0的子网掩码，而子网掩码的作用是和传来的封包ip地址进行&#34;与&#34;计算，如果结果和本机网段一致，则可通信。</span>
 </pre>
-<p><strong>配置list=yes or no</strong></p>
+<h3>2.5.3 配置list=yes or no</h3>
 <pre class="chroma"><span class="c1"># &#34;list=no&#34;用来设定服务端模块是否可被列出（推荐设为no）</span>
 <span class="c1"># 客户端尝试list</span>
 rsync --port<span class="o">=</span><span class="m">8700</span> --list-only 192.168.0.5::
@@ -725,29 +718,27 @@ test1
 rsync --port<span class="o">=</span><span class="m">8700</span>  192.168.0.5::
 test1
 </pre>
-<hr />
+<h1>3. rsync报错</h1>
 
-<h4>rsync报错解决:</h4>
+<h2>3.1 报错1</h2>
 
-<p>报错1<br />
-错误信息：</p>
+<h3>错误信息</h3>
 <pre class="chroma">rsync -av /root/ root@192.168.0.5:/root/
 rsync: Failed to <span class="nb">exec</span> ssh: No such file or directory <span class="o">(</span>2<span class="o">)</span>
 rsync error: error in IPC code <span class="o">(</span>code 14<span class="o">)</span> at pipe.c<span class="o">(</span>84<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
 rsync: connection unexpectedly closed <span class="o">(</span><span class="m">0</span> bytes received so far<span class="o">)</span> <span class="o">[</span>sender<span class="o">]</span>
 rsync error: error in rsync protocol data stream <span class="o">(</span>code 12<span class="o">)</span> at io.c<span class="o">(</span>600<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
 </pre>
-<p>解决办法</p>
+<h3>解决办法</h3>
 <pre class="chroma"><span class="c1"># 检查ssh命令是否存在</span>
 which ssh
 /usr/bin/which: no ssh in......
 <span class="c1"># 安装ssh命令</span>
 yum install openssh-clients
 </pre>
-<hr />
+<h2>3.2 报错2</h2>
 
-<p>报错2<br />
-错误信息</p>
+<h3>错误信息</h3>
 <pre class="chroma">rsync -av /data/tongchiang/ root@124.6.62.13:/data/www/
 root@124.6.62.13<span class="se">\&#39;</span>s password:
 sending incremental file list
@@ -758,20 +749,21 @@ eighth/eighth.html
 rsync: connection unexpectedly closed <span class="o">(</span><span class="m">70</span> bytes received so far<span class="o">)</span> <span class="o">[</span>sender<span class="o">]</span>
 rsync error: error in rsync protocol data stream <span class="o">(</span>code 12<span class="o">)</span> at io.c<span class="o">(</span>600<span class="o">)</span> <span class="o">[</span><span class="nv">sender</span><span class="o">=</span>3.0.6<span class="o">]</span>
 </pre>
-<p>解决过程：</p>
-<pre class="chroma"><span class="c1">## 查看目标主机的硬盘，发现硬盘满了，没空间了</span>
-<span class="c1"># df -h</span>
+<h3>解决过程：</h3>
+<pre class="chroma"><span class="c1"># 查看目标主机的硬盘，发现硬盘满了，没空间了</span>
+df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/vzfs        80G   80G     <span class="m">0</span> 100% /
 none            512M  4.0K  512M   1% /dev
 none            512M     <span class="m">0</span>  512M   0% /dev/shm
-<span class="c1">## 利用&#34;du -sh ./*&#34;来逐步排查，终于找到了罪魁祸首</span>
-<span class="c1"># du -sh error_log</span>
+
+<span class="c1"># 利用&#34;du -sh ./*&#34;来逐步排查，终于找到了罪魁祸首</span>
+du -sh error_log
 79G     error_log
 </pre>
-<p>解决方案：</p>
-<pre class="chroma"><span class="c1">#解决方案:创建日志分割与删除脚本，并制定计划定期执行</span>
-<span class="c1"># vim /root/sh/error_log_del.sh</span>
+<h3>解决方案：</h3>
+<pre class="chroma"><span class="c1"># 解决方案:创建日志分割与删除脚本，并制定计划定期执行</span>
+vim /root/sh/error_log_del.sh
 **********************************************************
 <span class="c1">#!/bin/bash</span>
 #
@@ -802,8 +794,39 @@ crontab -e
 *********************************************************
 */20 * * * * sh /root/sh/error_log_del.sh
 *********************************************************
-<span class="c1">#此脚本可让日志每20分钟把大于100M的日志分割，然后当日志大于4个的时候只保留最新的两个</span>
+<span class="c1"># 此脚本可让日志每20分钟把大于100M的日志分割，然后当日志大于4个的时候只保留最新的两个</span>
 </pre>
+<h2>3.3 报错3</h2>
+
+<h3>3.3.0 理论</h3>
+
+<p><a href="https://download.samba.org/pub/rsync/rsyncd.conf.html">rsync man 文档</a></p>
+
+<blockquote>
+<p>max connections
+This parameter allows you to specify the maximum number of simultaneous connections you will allow. Any clients connecting when the maximum has been reached will receive a message telling them to try later. The default is 0, which means no limit. A negative value disables the module. See also the &ldquo;lock file&rdquo; parameter.<br />
+lock file
+This parameter specifies the file to use to support the &ldquo;max connections&rdquo; parameter. The rsync daemon uses record locking on this file to ensure that the max connections limit is not exceeded for the modules sharing the lock file. The default is /var/run/rsyncd.lock.</p>
+</blockquote>
+
+<h3>3.3.1 错误信息</h3>
+<pre class="chroma">@ERROR: max connections <span class="o">(</span>1<span class="o">)</span> reached - try again later
+</pre>
+<h3>3.3.2 解决办法</h3>
+
+<p>按照官方文档上的介绍，这个错误是因为有最大连接数的限制造成的，那干脆就将其设置为0，意为无限制</p>
+<pre class="chroma">max <span class="nv">connections</span> <span class="o">=</span> <span class="m">0</span>
+</pre>
+<h2>3.4 报错4</h2>
+
+<h3>3.4.1 属主和权限问题</h3>
+
+<p>我们常用<code>-a</code>参数的archive模式来使用rsync命令，但是<code>-a</code>参数中的<code>-o,-p,-g</code>这三个保持属主属组和权限的参数有时候会造成属主属组和权限混乱的结果，为了明确目标文件的属主属组和权限，我们就需要这两个好用的参数<code>--chmod</code>和<code>--chown</code>了，使用这两个参数可以手动指定目标文件的属主属组和权限。</p>
+
+<blockquote>
+<p><code>--chown</code>只在rsync3.1及之后的版本中有</p>
+</blockquote>
+
     </div>
 
   </div>

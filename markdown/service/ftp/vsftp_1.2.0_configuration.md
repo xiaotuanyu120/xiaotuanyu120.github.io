@@ -23,7 +23,7 @@ ps aux|grep vsftpd
 root       3392  0.0  0.0  52112   796 ?        Ss   17:31   0:00 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
 # 现在是运行的standalone模式（独立运行模式）
 ```
- 
+
 当使用"NO"配置时，listen=NO
 
 ``` bash
@@ -64,6 +64,40 @@ netstat -nltp |grep 21
 # 说明xinetd已经接替vsftpd这个daemon来监听21端口，可以测试下访问ftp，成功
 ```
 
+#### 1.1.3 **配置项local_enable**
+控制本地用户是否可用于登录vsftp，默认是NO。如果启用（YES），则/etc/passwd文件（或者PAM配置中其他的文件）中定义的用户可用于登录vsftp。
+非匿名登录，包含虚拟用户登录，必须将这个选项配置为YES。
+
+
+
+#### 1.1.4 **日志相关配置**
+```
+## 日志开启控制配置
+# 默认为NO，当启用此选项时，所有对FTP的请求和响应都会被记录到日志中，前提是不能启用xferlog_std_format。适用于DEBUG
+log_ftp_protocol=YES
+
+# 默认为NO，当启用此选项时，会把日志格式转换为标准的xferlog格式，适用于wu-ftpd。默认日志会储存到/var/log/xferlog。
+xferlog_std_format=NO
+
+# 默认为NO，当启用此选项时，文件的上传和下载会被记录到日志。默认日志会储存到/var/log/vsftpd.log。
+xferlog_enable=YES
+
+# 默认为NO，当启用此选项时，vsftpd格式和wu-ftpd格式的日志会并行分别记录到/var/log/vsftpd.log和/var/log/xferlog中。
+dual_log_enable=NO
+
+## 日志储存位置配置
+# 默认为NO，当启用此选项时，原本记录到/var/log/vsftpd.log的日志会存到系统日志中。
+syslog_enable=NO
+
+# 默认为/var/log/vsftpd.log，用于配置vsftpd格式的日志的储存位置。生效前提是xferlog_enable为YES，而xferlog_std_format为NO，或者dual_log_enable为YES。如果syslog_enable为YES，vsftpd的输出会输出到系统日志，此选项配置的日志路径不会生效。
+vsftpd_log_file=/var/log/vsftpd.log
+
+# 默认为/var/log/xferlog，用于配置wu-ftpd格式的日志的储存位置。生效前提是xferlog_enable为YES，同时xferlog_std_format也为YES，或者dual_log_enable为YES。
+xferlog_file=/var/log/xferlog
+```
+> 日志文件不是在进程启动时创建，而是在有请求时才会创建。
+
+
 ### 1.2 访问控制
 
 #### 1.2.1 **配置项tcp_wrappers=YES/NO说明**
@@ -73,7 +107,7 @@ If enabled, and vsftpd was compiled with tcp_wrappers support, incoming connecti
 ```
 
 是否启动tcp_wrappers来帮助vsftpd过滤IP，`Default: NO`
- 
+
 #### 1.2.2 **开启tcp_wrappers**
 
 **首先开启配置:** `tcp_wrappers=YES`
@@ -107,7 +141,7 @@ vsftpd:172.16.2.28
 ![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-03.png)
 
 成功登录，而且，hosts.allow还可以设置多个ip，用空格隔开即可。
- 
+
 > 让我们设想一下，如果可以将ip和机器的mac地址绑定（switch设备可以将mac地址和网口绑定），然后用ip来控制访问，这样就可以达到，只允许同一个网段不同ip访问vsftp的效果。再往深层次考虑，我们设置两台vsftp服务器，用了上面的mac绑定ip控制以后，一台vsftp只能写入，一台只能读取，然后做个shell脚本用root用户从写vsftp->读vsftp，这样就形成了一种内外网机制，软件或文档只可以内流。当然首先你要先部署内外网隔离和其他安全项。
 
 ### 1.3 操作命令控制
@@ -137,15 +171,15 @@ service xinetd restart
 
 无法删除文件和目录
 ![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-04.png)
- 
+
 无法重命名文档
 ![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-05.png)
 
- 
+
 例外，cmd上ftp可以删除空目录
 ![](/static/images/docs/service/ftp/service-ftp-vsftp-configuration-06.png)
- 
- 
+
+
 ### 1.4 操作命令限制2 - 可写和可下载
 #### 1.4.1 **配置write_enable和download_enable**
 write_enable

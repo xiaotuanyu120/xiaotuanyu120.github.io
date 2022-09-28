@@ -234,6 +234,39 @@ netstat -nltp <span class="p">|</span>grep <span class="m">21</span>
 <span class="c1"># tcp    0   0 :::21                 :::*                    LISTEN      3710/xinetd</span>
 <span class="c1"># 说明xinetd已经接替vsftpd这个daemon来监听21端口，可以测试下访问ftp，成功</span>
 </pre>
+<h4>1.1.3 <strong>配置项local_enable</strong></h4>
+
+<p>控制本地用户是否可用于登录vsftp，默认是NO。如果启用（YES），则/etc/passwd文件（或者PAM配置中其他的文件）中定义的用户可用于登录vsftp。
+非匿名登录，包含虚拟用户登录，必须将这个选项配置为YES。</p>
+
+<h4>1.1.4 <strong>日志相关配置</strong></h4>
+<pre class="chroma">## 日志开启控制配置
+# 默认为NO，当启用此选项时，所有对FTP的请求和响应都会被记录到日志中，前提是不能启用xferlog_std_format。适用于DEBUG
+log_ftp_protocol=YES
+
+# 默认为NO，当启用此选项时，会把日志格式转换为标准的xferlog格式，适用于wu-ftpd。默认日志会储存到/var/log/xferlog。
+xferlog_std_format=NO
+
+# 默认为NO，当启用此选项时，文件的上传和下载会被记录到日志。默认日志会储存到/var/log/vsftpd.log。
+xferlog_enable=YES
+
+# 默认为NO，当启用此选项时，vsftpd格式和wu-ftpd格式的日志会并行分别记录到/var/log/vsftpd.log和/var/log/xferlog中。
+dual_log_enable=NO
+
+## 日志储存位置配置
+# 默认为NO，当启用此选项时，原本记录到/var/log/vsftpd.log的日志会存到系统日志中。
+syslog_enable=NO
+
+# 默认为/var/log/vsftpd.log，用于配置vsftpd格式的日志的储存位置。生效前提是xferlog_enable为YES，而xferlog_std_format为NO，或者dual_log_enable为YES。如果syslog_enable为YES，vsftpd的输出会输出到系统日志，此选项配置的日志路径不会生效。
+vsftpd_log_file=/var/log/vsftpd.log
+
+# 默认为/var/log/xferlog，用于配置wu-ftpd格式的日志的储存位置。生效前提是xferlog_enable为YES，同时xferlog_std_format也为YES，或者dual_log_enable为YES。
+xferlog_file=/var/log/xferlog
+</pre>
+<blockquote>
+<p>日志文件不是在进程启动时创建，而是在有请求时才会创建。</p>
+</blockquote>
+
 <h3>1.2 访问控制</h3>
 
 <h4>1.2.1 <strong>配置项tcp_wrappers=YES/NO说明</strong></h4>

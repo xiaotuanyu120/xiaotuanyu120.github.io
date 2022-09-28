@@ -16,10 +16,12 @@ tags: [network,tcp]
 ### 1.2 IP地址格式
 其中IPV4从1983年1月1日开始使用，直至今日依然被广泛使用。IPV4的格式是用"."分隔开的四段数字，每段数字的取值范围从0-255，于是IPV4的地址范围从0.0.0.0到255.255.255.255。
 
-而IPV6是从1999年开始部署，IPV6的地址是128位数字，通常使用十六进制字符表示，例如“2001:db8::abc:587”
+而IPV6是从1999年开始部署，IPV6的地址是128位数字，通常使用十六进制字符表示，例如`2001:db8::abc:587`
 
 ### 1.3 IP地址分配
 IP地址的分配和管理，是以Internet Assigned Numbers Authority (IANA)为中心，其与5个Regional Internet Registries (RIRs)合作来管理。
+
+> InterNIC(域名注册)和IANA(DNS root, IP address)都归于ICANNA运营。
 
 RIR：
 - AfriNIC (Africa and parts of the Indian Ocean)
