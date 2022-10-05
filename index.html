@@ -34,6 +34,9 @@
           <ul>
 
             <li>
+              <a href="/service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">tomcat 1.0.0 什么是tomcat</a>
+            </li>
+            <li>
               <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
             </li>
             <li>
@@ -44,9 +47,6 @@
             </li>
             <li>
               <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
-            </li>
-            <li>
-              <a href="/linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
             </li>
           </ul>
 
@@ -107,6 +107,52 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">tomcat 1.0.0 什么是tomcat</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>05 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>0. 什么是Jakarta EE？</h2>
+
+<p>Jakarta EE是用于开发云原生 Java 应用程序的开源框架。</p>
+
+<p>其历史发展为，sun公司的JAVA EE（Enterprise Edition），到oracle收购sun，然后捐JAVA EE给eclipse。eclipse将JAVA EE更名为EE4J（Eclipse Enterprise for Java）。因eclipse在javax和java商标上无法与oracle达成一致，oracle将JAVA EE更名为Jakarta EE。</p>
+
+<h2>1. 什么是Tomcat？</h2>
+
+<p>Apache Tomcat 是 Jakarta Servlet、Jakarta Server Pages、Jakarta Expression Language、Jakarta WebSocket、Jakarta Annotations 和 Jakarta Authentication 规范的开源实现。</p>
+
+<p>Jakarta EE平台由JAVA EE进化而来。Tomcat 10和之后的版本实现的Jakarta EE。而Tomcat 9和之前的版本实现的是JAVA EE。</p>
+
+<blockquote>
+<ul>
+<li>Jakarta Servlet: 虽然Servlet可以响应多种请求，但最常见的用途是作为Web容器，用以托管web应用。</li>
+<li>Jakarta Server Pages: JSP，是帮助软件开发人员根据HTML、XML、SOAP或其他文档类型创建动态生成网页的技术集合。</li>
+<li>Jakarta Expression Language: 是一种特殊目的编程语言，主要用于在Jakarta EE Web应用程序的网页中嵌入和评估表达式。</li>
+<li>Jakarta WebSocket: 顾名思义，是web socket。</li>
+<li>Jakarta Annotations: 顾名思义，是java 注解。</li>
+<li>Jakarta Authentication: 顾名思义，是java 授权。</li>
+</ul>
+</blockquote>
+
+<h2>2. Tomcat版本</h2>
+
+<p>不同的tomcat版本支持的JAVA语言和Jakarta EE组件的版本不同。</p>
+
+<blockquote>
+<p><a href="https://tomcat.apache.org/whichversion.html">选择tomcat版本</a></p>
+</blockquote>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -1118,53 +1164,6 @@ Login shell
 <p><a href="https://unix.stackexchange.com/questions/324359/why-a-login-shell-over-a-non-login-shell">stackexchange answer</a></p>
 </blockquote>
 
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/rlimit_fd_02_commands_to_check_current_status.html">rlimit fd: 状态查看命令</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>01 May 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>0. fd(文件描述符)限制的项目说明</h3>
-
-<ul>
-<li><strong><code>/proc/sys/fs/file-max</code></strong>是linux内核级别的设定，影响的是linux系统上所有进程可以打开的文件数上限</li>
-<li><strong><a href="/linux/advance/rlimit_ulimit_01_introduce.html"><code>ulimit</code></a></strong>是用户或用户组级别，通过PAM登录的login shell，fork出的进程可以打开的文件数上限；</li>
-<li><strong><code>/proc/sys/fs/file-nr</code></strong>是系统级别当前打开文件状态</li>
-<li><strong><code>/proc/$pid/limits</code></strong>是指定进程的资源限制上限</li>
-</ul>
-
-<blockquote>
-<p>参考文档:<br />
-<a href="https://unix.stackexchange.com/questions/55319/are-limits-conf-values-applied-on-a-per-process-basis">ulimit设定的是每个进程的属性，而不是该用户所有进程的总限制</a><br />
-<a href="https://unix.stackexchange.com/questions/447583/ulimit-vs-file-max">ulimit vs file-max</a><br />
-<a href="https://stackoverflow.com/questions/6180569/need-to-calculate-optimum-ulimit-and-fs-file-max-values-according-to-my-own-se">如何计算最大文件打开数应该设定多少</a></p>
-</blockquote>
-
-<h3>1. 系统级别，文件打开数状态查看</h3>
-<pre class="chroma"><span class="c1"># 查看linux内核级别的文件描述符上限</span>
-cat /proc/sys/fs/file-max
-<span class="m">97984</span>
-
-<span class="c1"># 查看目前系统使用的文件描述符数量</span>
-cat /proc/sys/fs/file-nr
-<span class="m">512</span> <span class="m">0</span> <span class="m">97984</span>
-<span class="c1"># 512   -&gt; 分配并使用的文件描述符数量</span>
-<span class="c1"># 0     -&gt; 分配却未使用的文件描述符数量</span>
-<span class="c1"># 97984 -&gt; 内核级别的最大文件描述符数量</span>
-</pre>
-<h3>2. 查看特定进程的最大文件打开数状态</h3>
-<pre class="chroma">cat /proc/397/limits <span class="p">|</span> grep <span class="s2">&#34;open files&#34;</span>
-Max open files            <span class="m">2048</span>                 <span class="m">2048</span>                 files
-</pre>
         </div>
 
     </div>
