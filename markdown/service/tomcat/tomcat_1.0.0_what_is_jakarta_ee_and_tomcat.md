@@ -1,5 +1,5 @@
 ---
-title: tomcat 1.0.0 什么是tomcat
+title: tomcat 1.0.0 Jakarta EE 和 Tomcat
 date: 2022-10-05 10:44:00
 categories: service/tomcat
 tags: [tomcat,linux]

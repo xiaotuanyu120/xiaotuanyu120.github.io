@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
+            </li>
+            <li>
+              <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
+            </li>
+            <li>
+              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
+            </li>
+            <li>
+              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+            </li>
+            <li>
+              <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+              <ul>
+                <li>
+                  <a href="/service/apache/index.html">apache</a>
+                </li>
+                <li>
+                  <a href="/service/dnsmasq/index.html">dnsmasq</a>
+                </li>
+                <li>
+                  <a href="/service/fluentd/index.html">fluentd</a>
+                </li>
+                <li>
+                  <a href="/service/ftp/index.html">ftp</a>
+                </li>
+                <li>
+                  <a href="/service/haproxy/index.html">haproxy</a>
+                </li>
+                <li>
+                  <a href="/service/jira/index.html">jira</a>
+                </li>
+                <li>
+                  <a href="/service/jitsi-meet/index.html">jitsi-meet</a>
+                </li>
+                <li>
+                  <a href="/service/jumpserver/index.html">jumpserver</a>
+                </li>
+                <li>
+                  <a href="/service/kafka/index.html">kafka</a>
+                </li>
+                <li>
+                  <a href="/service/keepalived/index.html">keepalived</a>
+                </li>
+                <li>
+                  <a href="/service/nginx/index.html">nginx</a>
+                </li>
+                <li>
+                  <a href="/service/php/index.html">php</a>
+                </li>
+                <li>
+                  <a href="/service/proxy/index.html">proxy</a>
+                </li>
+                <li>
+                  <a href="/service/squid/index.html">squid</a>
+                </li>
+                <li>
+                  <a href="/service/svn/index.html">svn</a>
+                </li>
+                <li>
+                  <a href="/service/tomcat/index.html">tomcat</a>
+                  <ul>
+                    <li><a href="/service/tomcat/tomcat_00_error_startup.html">tomcat: 错误 - 启动问题</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.1.1_config_server_xml.html">tomcat 1.1.1 配置 server.xml 和 context</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.1.2_config_sercurity.html">tomcat 1.1.2 安全 - 隐藏版本号</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">tomcat 1.2.0 日志-cronolog日志切割</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.2.1_log_log4j.html">tomcat 1.2.1 日志-log4j配置相对路径</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.2.2_log_juli_loglevel.html">tomcat 1.2.2 日志-JULI日志级别</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.3.0_optimize_apr_mode.html">tomcat 1.3.0 优化-apr模式</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.3.1_optimize_server_xml.html">tomcat 1.3.1 优化-server.xml</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.3.2_optimize_test_concurrent_more_than_10000.html">tomcat 1.3.2 优化-如何承载上万并发</a></li>
+                    <li><a href="/service/tomcat/tomcat_2.1.0_problem_startup_slow_tomcat7.html">tomcat 2.1.0 问题-tomcat7启动速度慢</a></li>
+                    <li><a href="/service/tomcat/tomcat_2.1.1_entropy_source.html">tomcat 2.1.1 问题-tomcat7启动安全-熵池</a></li>
+                    <li><a href="/service/tomcat/tomcat_2.1.2_error_shutdown_connection_refuse.html">tomcat 2.1.2 问题-tomcat7 shutdown 提示 connection refused</a></li>
+                    <li><a href="/service/tomcat/tomcat_2.2.0_java.lang.ClassCastException.html">tomcat 2.2.0 问题-java.lang.ClassCastException</a></li>
+                    <li><a href="/service/tomcat/tomcat_2.2.1_tomcat7_classloader_howto_translate.html">tomcat 2.2.1 tomcat7类加载器HOWTO-中文翻译</a></li>
+                    <li><a href="/service/tomcat/tomcat_3.1.0_manage_check_version.html">tomcat 3.1.0 管理-查看tomcat版本</a></li>
+                    <li><a href="/service/tomcat/tomcat_3.2.0_tomcat_manager.html">tomcat 3.2.0 tomcat manager</a></li>
+                    <li><a href="/service/tomcat/tomcat_4.1.0_application_session_keep_with_memcached.html">tomcat 4.1.0 应用-memcached会话保持</a></li>
+                    <li><a href="/service/tomcat/tomcat_5.1.0_redis_session_gradle_compile_jar.html">tomcat 5.1.0 gradle编译tomcat-redis-session-manager</a></li>
+                    <li><a href="/service/tomcat/tomcat_5.1.1_redis_session_gradle_compile_jar_tomcat8.5_and_jdk8.html">tomcat 5.1.0 gradle编译tomcat-redis-session-manager - tomcat8.5</a></li>
+                    <li><a href="/service/tomcat/tomcat_5.1.2_session_sharing_by_using_redis.html">tomcat: 5.1.2 tomcat-session sharing</a></li>
+                    <li><a href="/service/tomcat/tomcat_6.1.0_tomcat6_vs_tomcat7.html">tomcat 6.1.0 tomcat6 和 tomcat7的简要区别</a></li>
+                    <li><a href="/service/tomcat/tomcat_7.1.0_running_as_daemon_by_nonroot_jsvc.html">tomcat 7.1.0 使用非root用户用daemon运行tomcat - (jsvc)</a></li>
+                    <li><a href="/service/tomcat/tomcat_7.1.1_running_as_daemon_by_nonroot_systemd.html">tomcat 7.1.1 使用非root用户用daemon运行tomcat - (systemd) - 推荐</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/service/vpn/index.html">vpn</a>
+                </li>
+                <li>
+                  <a href="/service/zabbix/index.html">zabbix</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>tomcat 1.1.1 配置 server.xml 和 context</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>16 Feb 2017</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h1>1. <code>server.xml</code></h1>
+
+<h2>1.1 结构说明</h2>
+
+<p><code>$CATALINA_HOME/conf/server.xml</code>是tomcat的主要配置文件。</p>
+
+<ul>
+<li><code>Server</code>，顶层元素</li>
+<li><code>Service</code>，包含<code>Engine</code>和<code>Connector</code>
+
+<ul>
+<li><code>Connector</code>，一个或者多个，用于接收请求</li>
+<li><code>Engine</code></li>
+<li><code>Host</code>，一个或者多个，虚拟主机（_类似于nginx中的Server - 虚拟主机_）
+
+<ul>
+<li><code>Context</code>， 一个或者多个，用于给虚拟主机指定不同web应用 （_类似于nginx中的location，针对不同的url，路由到不同的web应用来处理_）</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>tomcat 10.0.26中默认的<code>server.xml</code></p>
+<pre class="chroma"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="c">&lt;!--</span><span class="c">
+</span><span class="c">  Licensed to the Apache Software Foundation (ASF) under one or more
+</span><span class="c">  contributor license agreements.  See the NOTICE file distributed with
+</span><span class="c">  this work for additional information regarding copyright ownership.
+</span><span class="c">  The ASF licenses this file to You under the Apache License, Version 2.0
+</span><span class="c">  (the &#34;License&#34;); you may not use this file except in compliance with
+</span><span class="c">  the License.  You may obtain a copy of the License at
+</span><span class="c">
+</span><span class="c">      http://www.apache.org/licenses/LICENSE</span><span class="c">-</span><span class="c">2.0
+</span><span class="c">
+</span><span class="c">  Unless required by applicable law or agreed to in writing, software
+</span><span class="c">  distributed under the License is distributed on an &#34;AS IS&#34; BASIS,
+</span><span class="c">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+</span><span class="c">  See the License for the specific language governing permissions and
+</span><span class="c">  limitations under the License.
+</span><span class="c"></span><span class="c">--&gt;</span>
+<span class="c">&lt;!--</span><span class="c"> Note:  A &#34;Server&#34; is not itself a &#34;Container&#34;, so you may not
+</span><span class="c">     define subcomponents such as &#34;Valves&#34; at this level.
+</span><span class="c">     Documentation at /docs/config/server.html
+</span><span class="c"> </span><span class="c">--&gt;</span>
+<span class="nt">&lt;Server</span> <span class="na">port=</span><span class="s">&#34;8005&#34;</span> <span class="na">shutdown=</span><span class="s">&#34;SHUTDOWN&#34;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;Listener</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.startup.VersionLoggerListener&#34;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!--</span><span class="c"> Security listener. Documentation at /docs/config/listeners.html
+</span><span class="c">  &lt;Listener className=&#34;org.apache.catalina.security.SecurityListener&#34; /&gt;
+</span><span class="c">  </span><span class="c">--&gt;</span>
+  <span class="c">&lt;!--</span><span class="c"> APR library loader. Documentation at /docs/apr.html </span><span class="c">--&gt;</span>
+  <span class="nt">&lt;Listener</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.core.AprLifecycleListener&#34;</span> <span class="na">SSLEngine=</span><span class="s">&#34;on&#34;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!--</span><span class="c"> Prevent memory leaks due to use of particular java/javax APIs</span><span class="c">--&gt;</span>
+  <span class="nt">&lt;Listener</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.core.JreMemoryLeakPreventionListener&#34;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;Listener</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&#34;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;Listener</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.core.ThreadLocalLeakPreventionListener&#34;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!--</span><span class="c"> Global JNDI resources
+</span><span class="c">       Documentation at /docs/jndi</span><span class="c">-</span><span class="c">resources</span><span class="c">-</span><span class="c">howto.html
+</span><span class="c">  </span><span class="c">--&gt;</span>
+  <span class="nt">&lt;GlobalNamingResources</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--</span><span class="c"> Editable user database that can also be used by
+</span><span class="c">         UserDatabaseRealm to authenticate users
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="nt">&lt;Resource</span> <span class="na">name=</span><span class="s">&#34;UserDatabase&#34;</span> <span class="na">auth=</span><span class="s">&#34;Container&#34;</span>
+              <span class="na">type=</span><span class="s">&#34;org.apache.catalina.UserDatabase&#34;</span>
+              <span class="na">description=</span><span class="s">&#34;User database that can be updated and saved&#34;</span>
+              <span class="na">factory=</span><span class="s">&#34;org.apache.catalina.users.MemoryUserDatabaseFactory&#34;</span>
+              <span class="na">pathname=</span><span class="s">&#34;conf/tomcat-users.xml&#34;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/GlobalNamingResources&gt;</span>
+
+  <span class="c">&lt;!--</span><span class="c"> A &#34;Service&#34; is a collection of one or more &#34;Connectors&#34; that share
+</span><span class="c">       a single &#34;Container&#34; Note:  A &#34;Service&#34; is not itself a &#34;Container&#34;,
+</span><span class="c">       so you may not define subcomponents such as &#34;Valves&#34; at this level.
+</span><span class="c">       Documentation at /docs/config/service.html
+</span><span class="c">   </span><span class="c">--&gt;</span>
+  <span class="nt">&lt;Service</span> <span class="na">name=</span><span class="s">&#34;Catalina&#34;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!--</span><span class="c">The connectors can use a shared executor, you can define one or more named thread pools</span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">    &lt;Executor name=&#34;tomcatThreadPool&#34; namePrefix=&#34;catalina</span><span class="c">-</span><span class="c">exec</span><span class="c">-</span><span class="c">&#34;
+</span><span class="c">        maxThreads=&#34;150&#34; minSpareThreads=&#34;4&#34;/&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+
+
+    <span class="c">&lt;!--</span><span class="c"> A &#34;Connector&#34; represents an endpoint by which requests are received
+</span><span class="c">         and responses are returned. Documentation at :
+</span><span class="c">         HTTP Connector: /docs/config/http.html
+</span><span class="c">         AJP  Connector: /docs/config/ajp.html
+</span><span class="c">         Define a non</span><span class="c">-</span><span class="c">SSL/TLS HTTP/1.1 Connector on port 8080
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;8080&#34;</span> <span class="na">protocol=</span><span class="s">&#34;HTTP/1.1&#34;</span>
+               <span class="na">connectionTimeout=</span><span class="s">&#34;20000&#34;</span>
+               <span class="na">redirectPort=</span><span class="s">&#34;8443&#34;</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!--</span><span class="c"> A &#34;Connector&#34; using the shared thread pool</span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">    &lt;Connector executor=&#34;tomcatThreadPool&#34;
+</span><span class="c">               port=&#34;8080&#34; protocol=&#34;HTTP/1.1&#34;
+</span><span class="c">               connectionTimeout=&#34;20000&#34;
+</span><span class="c">               redirectPort=&#34;8443&#34; /&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--</span><span class="c"> Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
+</span><span class="c">         This connector uses the NIO implementation. The default
+</span><span class="c">         SSLImplementation will depend on the presence of the APR/native
+</span><span class="c">         library and the useOpenSSL attribute of the AprLifecycleListener.
+</span><span class="c">         Either JSSE or OpenSSL style configuration may be used regardless of
+</span><span class="c">         the SSLImplementation selected. JSSE style configuration is used below.
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">    &lt;Connector port=&#34;8443&#34; protocol=&#34;org.apache.coyote.http11.Http11NioProtocol&#34;
+</span><span class="c">               maxThreads=&#34;150&#34; SSLEnabled=&#34;true&#34;&gt;
+</span><span class="c">        &lt;UpgradeProtocol className=&#34;org.apache.coyote.http2.Http2Protocol&#34; /&gt;
+</span><span class="c">        &lt;SSLHostConfig&gt;
+</span><span class="c">            &lt;Certificate certificateKeystoreFile=&#34;conf/localhost</span><span class="c">-</span><span class="c">rsa.jks&#34;
+</span><span class="c">                         type=&#34;RSA&#34; /&gt;
+</span><span class="c">        &lt;/SSLHostConfig&gt;
+</span><span class="c">    &lt;/Connector&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+
+    <span class="c">&lt;!--</span><span class="c"> Define an AJP 1.3 Connector on port 8009 </span><span class="c">--&gt;</span>
+    <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">    &lt;Connector protocol=&#34;AJP/1.3&#34;
+</span><span class="c">               address=&#34;::1&#34;
+</span><span class="c">               port=&#34;8009&#34;
+</span><span class="c">               redirectPort=&#34;8443&#34; /&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+
+    <span class="c">&lt;!--</span><span class="c"> An Engine represents the entry point (within Catalina) that processes
+</span><span class="c">         every request.  The Engine implementation for Tomcat stand alone
+</span><span class="c">         analyzes the HTTP headers included with the request, and passes them
+</span><span class="c">         on to the appropriate Host (virtual host).
+</span><span class="c">         Documentation at /docs/config/engine.html </span><span class="c">--&gt;</span>
+
+    <span class="c">&lt;!--</span><span class="c"> You should set jvmRoute to support load</span><span class="c">-</span><span class="c">balancing via AJP ie :
+</span><span class="c">    &lt;Engine name=&#34;Catalina&#34; defaultHost=&#34;localhost&#34; jvmRoute=&#34;jvm1&#34;&gt;
+</span><span class="c">    </span><span class="c">--&gt;</span>
+    <span class="nt">&lt;Engine</span> <span class="na">name=</span><span class="s">&#34;Catalina&#34;</span> <span class="na">defaultHost=</span><span class="s">&#34;localhost&#34;</span><span class="nt">&gt;</span>
+
+      <span class="c">&lt;!--</span><span class="c">For clustering, please take a look at documentation at:
+</span><span class="c">          /docs/cluster</span><span class="c">-</span><span class="c">howto.html  (simple how to)
+</span><span class="c">          /docs/config/cluster.html (reference documentation) </span><span class="c">--&gt;</span>
+      <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">      &lt;Cluster className=&#34;org.apache.catalina.ha.tcp.SimpleTcpCluster&#34;/&gt;
+</span><span class="c">      </span><span class="c">--&gt;</span>
+
+      <span class="c">&lt;!--</span><span class="c"> Use the LockOutRealm to prevent attempts to guess user passwords
+</span><span class="c">           via a brute</span><span class="c">-</span><span class="c">force attack </span><span class="c">--&gt;</span>
+      <span class="nt">&lt;Realm</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.realm.LockOutRealm&#34;</span><span class="nt">&gt;</span>
+        <span class="c">&lt;!--</span><span class="c"> This Realm uses the UserDatabase configured in the global JNDI
+</span><span class="c">             resources under the key &#34;UserDatabase&#34;.  Any edits
+</span><span class="c">             that are performed against this UserDatabase are immediately
+</span><span class="c">             available for use by the Realm.  </span><span class="c">--&gt;</span>
+        <span class="nt">&lt;Realm</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.realm.UserDatabaseRealm&#34;</span>
+               <span class="na">resourceName=</span><span class="s">&#34;UserDatabase&#34;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/Realm&gt;</span>
+
+      <span class="nt">&lt;Host</span> <span class="na">name=</span><span class="s">&#34;localhost&#34;</span>  <span class="na">appBase=</span><span class="s">&#34;webapps&#34;</span>
+            <span class="na">unpackWARs=</span><span class="s">&#34;true&#34;</span> <span class="na">autoDeploy=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+
+        <span class="c">&lt;!--</span><span class="c"> SingleSignOn valve, share authentication between web applications
+</span><span class="c">             Documentation at: /docs/config/valve.html </span><span class="c">--&gt;</span>
+        <span class="c">&lt;!--</span><span class="c">
+</span><span class="c">        &lt;Valve className=&#34;org.apache.catalina.authenticator.SingleSignOn&#34; /&gt;
+</span><span class="c">        </span><span class="c">--&gt;</span>
+
+        <span class="c">&lt;!--</span><span class="c"> Access log processes all example.
+</span><span class="c">             Documentation at: /docs/config/valve.html
+</span><span class="c">             Note: The pattern used is equivalent to using pattern=&#34;common&#34; </span><span class="c">--&gt;</span>
+        <span class="nt">&lt;Valve</span> <span class="na">className=</span><span class="s">&#34;org.apache.catalina.valves.AccessLogValve&#34;</span> <span class="na">directory=</span><span class="s">&#34;logs&#34;</span>
+               <span class="na">prefix=</span><span class="s">&#34;localhost_access_log&#34;</span> <span class="na">suffix=</span><span class="s">&#34;.txt&#34;</span>
+               <span class="na">pattern=</span><span class="s">&#34;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&#34;</span> <span class="nt">/&gt;</span>
+
+      <span class="nt">&lt;/Host&gt;</span>
+    <span class="nt">&lt;/Engine&gt;</span>
+  <span class="nt">&lt;/Service&gt;</span>
+<span class="nt">&lt;/Server&gt;</span>
+</pre>
+<h2>1.2 不同配置介绍</h2>
+
+<h3>1.2.1 Connector</h3>
+
+<h4><strong>SSL配置</strong></h4>
+
+<blockquote>
+<p>一般情况下，在公网请求的处理方面，在请求到达java应用程序之前，已经在接入层做了SSL卸载的动作；而对内部的java组件之间的交互，一般是将它们部署在同一个内网，网络边界有防火墙防护；对于第三方java api组件，则有可能需要启用ssl加密。</p>
+
+<p>基于上面的应用范围分析，目的是要说明，一般情况下，并不需要在tomcat上配置SSL。</p>
+</blockquote>
+
+<p><strong>tomcat6和7在ssl的配置上大同小异，后面使用tomcat同时代指这两个版本进行说明。</strong></p>
+
+<p>在HOWTO文档中可得到信息，tomcat对ssl有两种实现方式：</p>
+
+<ul>
+<li>the JSSE implementation provided as part of the Java runtime (since 1.4)</li>
+<li>the APR implementation, which uses the OpenSSL engine by default.</li>
+</ul>
+
+<p>由于APR提供了更好的IO性能，生产环境一般启用APR，所以这里仅对apr对ssl的配置进行说明</p>
+
+<p>在Connector配置中启用APR</p>
+<pre class="chroma"><span class="c">&lt;!--</span><span class="c"> Define a HTTP/1.1 Connector on port 8443, APR implementation </span><span class="c">--&gt;</span>
+<span class="nt">&lt;Connector</span> <span class="na">protocol=</span><span class="s">&#34;org.apache.coyote.http11.Http11AprProtocol&#34;</span>
+           <span class="na">port=</span><span class="s">&#34;8443&#34;</span> <span class="err">.</span><span class="err">.</span><span class="err">.</span><span class="nt">/&gt;</span>
+</pre>
+<p>如果不手动制定apr的protocol，tomcat会自动在两种实现方式中选择，但推荐明确的指定apr的protocol。</p>
+
+<p>在APR模式下，需要使用<code>SSLCertificateFile</code>和<code>SSLCertificateKeyFile</code></p>
+<pre class="chroma"><span class="c">&lt;!--</span><span class="c"> Define a SSL Coyote HTTP/1.1 Connector on port 8443 </span><span class="c">--&gt;</span>
+<span class="nt">&lt;Connector</span>
+           <span class="na">protocol=</span><span class="s">&#34;org.apache.coyote.http11.Http11AprProtocol&#34;</span>
+           <span class="na">port=</span><span class="s">&#34;8443&#34;</span> <span class="na">maxThreads=</span><span class="s">&#34;200&#34;</span>
+           <span class="na">scheme=</span><span class="s">&#34;https&#34;</span> <span class="na">secure=</span><span class="s">&#34;true&#34;</span> <span class="na">SSLEnabled=</span><span class="s">&#34;true&#34;</span>
+           <span class="na">SSLCertificateFile=</span><span class="s">&#34;/usr/local/ssl/server.crt&#34;</span>
+           <span class="na">SSLCertificateKeyFile=</span><span class="s">&#34;/usr/local/ssl/server.pem&#34;</span>
+           <span class="na">SSLVerifyClient=</span><span class="s">&#34;optional&#34;</span> <span class="na">SSLProtocol=</span><span class="s">&#34;TLSv1+TLSv1.1+TLSv1.2&#34;</span><span class="nt">/&gt;</span>
+</pre>
+<blockquote>
+<p><strong>JSSE SSL配置选项</strong></p>
+
+<p>对于证书文件，如果使用JSSE，需要使用keystoreFile和keystorPass，感兴趣的可以查看howto连接</p>
+
+<p><strong>SSLCertificateKeyFile的文件后缀名</strong></p>
+
+<p>虽然在HOWTO文档中，我们看到key文件使用的是pem后缀，但是参照apr文档中对于https配置的介绍，我们也可以使用server.key。</p>
+
+<p><strong>参考链接</strong></p>
+
+<ul>
+<li><a href="https://tomcat.apache.org/tomcat-6.0-doc/ssl-howto.html">tomcat6 ssl howto文档</a></li>
+<li><a href="https://tomcat.apache.org/tomcat-7.0-doc/ssl-howto.html">tomcat7 ssl howto文档</a></li>
+<li><a href="http://tomcat.apache.org/tomcat-7.0-doc/apr.html">tomcat7 apr文档</a></li>
+</ul>
+</blockquote>
+
+<h4>SSL生产样例</h4>
+
+<p>综合上述文档，实际使用格式如下</p>
+<pre class="chroma"><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">&#34;443&#34;</span> <span class="na">protocol=</span><span class="s">&#34;org.apache.coyote.http11.Http11AprProtocol&#34;</span>
+     <span class="na">maxThreads=</span><span class="s">&#34;32000&#34;</span> <span class="na">SSLEnabled=</span><span class="s">&#34;true&#34;</span> <span class="na">scheme=</span><span class="s">&#34;https&#34;</span> <span class="na">secure=</span><span class="s">&#34;true&#34;</span>
+     <span class="na">SSLCertificateFile=</span><span class="s">&#34;${catalina.base}/conf/server.crt&#34;</span>
+     <span class="na">SSLCertificateKeyFile=</span><span class="s">&#34;${catalina.base}/conf/server.key&#34;</span> <span class="nt">/&gt;</span>
+</pre>
+<blockquote>
+<p>对于crt，key，pem，jks等证书格式，HOWTO文档中均有介绍，详细生成和获得方式也可以google出很多教程，这里不再涉及</p>
+</blockquote>
+
+<h3>1.2.2 Host</h3>
+
+<ul>
+<li><code>appBase</code>，指定部署app的base目录，默认是webapps。</li>
+<li><code>deployOnStart</code>，设定为true时，在tomcat启动时去启动appBase目录下的app，默认是true。</li>
+<li><code>autoDeploy</code>，设定为true时，会定期检查app中文件是否被更新过或有新文件，若有更新和新增，则部署它们。用于热部署，默认是true。</li>
+<li><code>deployXML</code>，设定为true时，会加载应用中的/META-INF/context.xml文件。为了安全，推荐设定为false。当设定为false时，tomcat会去xmlBase下加载独立在app之外的上下文xml文件。默认为true</li>
+<li><code>xmlBase</code>，上下文xml文件所在目录，默认为conf/<engine_name>/<host_name>。</li>
+<li><code>deployIgnore</code>，<code>appBase</code>中忽略启动的app，支持正则匹配。</li>
+</ul>
+<pre class="chroma"><span class="nt">&lt;Host</span> <span class="na">deployIgnore=</span><span class="s">&#34;.*ROOT.*|.*host.*|.*manager.*|.*docs.*|.*example.*&#34;</span> <span class="nt">/&gt;</span>
+</pre>
+<blockquote>
+<p><strong>推荐配置 - 禁用全部热部署或禁用部分热部署</strong></p>
+
+<ul>
+<li>常规情况下，我们可以将<code>autoDeploy</code>、<code>deployXML</code>、<code>deployOnStart</code>全部设置为false，然后通过配置单独的<code>context</code>文件来手动指定我们需要启动的app路径。</li>
+<li>也可以开启<code>deployOnStart=true</code>，然后用<code>deployIgnore</code>排除掉我们不希望启动的app</li>
+</ul>
+</blockquote>
+
+<h1>2. context</h1>
+
+<p>线上的工程，一直在server.xml里面配置context来指定工程目录，不是特别清楚里面配置的含义，结果就系统性的查询了一下，结果真就发现，直接在server.xml里面配置context是不推荐的(<code>&lt;Context path=&quot;&quot; docBase=&quot;/root/webfile/web&quot; debug=“0” reloadable=&quot;false&quot;/&gt;</code>)，当然，也不是不可以这样，详细请查看后面说明。</p>
+
+<blockquote>
+<p>主要参考了<a href="https://tomcat.apache.org/tomcat-7.0-doc/config/context.html">tomcat 7.0.90的context说明文档</a></p>
+</blockquote>
+
+<h2>2.1 context</h2>
+
+<h3>2.1.1 配置说明</h3>
+
+<p>context元素表示在特定虚拟主机中运行的Web应用程序。每个Web应用程序都基于Web应用程序归档（WAR）文件或包含相应解压缩内容的相应目录。web应用程序通过http请求的URI与context path变量的最长匹配来处理http请求。当context被匹配中后，它会通过<code>WEB-INF/web.xml</code>中配置的servlet来处理http请求。</p>
+
+<p>context元素可以配置多个，每个context的名称必须是唯一的。context path不需要唯一，见<a href="https://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Parallel_deployment">多版本并行部署</a>。每个虚拟主机中至少要配置一个context path为空的context，这个context作为默认的web应用程序，会处理所有匹配不到其他context的http请求。</p>
+
+<h3>2.1.2 名称</h3>
+
+<p>当虚拟主机执行<code>autoDeploy</code>或<code>deployOnStartup</code>操作时，Web应用程序的context name和context path是从定义Web应用程序的文件的名称派生的。因此，context path可能未在应用程序中嵌入的<code>META-INF/context.xml</code>中定义，并且context name，context path，context version和base filename（名称减去任何.war或.xml扩展名）之间存在密切关系。</p>
+
+<p>如果没有version指定的话，context name和context path是一致的。如果context path是空（默认context），则context name是ROOT，否则，base filename就是context path去掉开头的<code>/</code>然后替换其他的<code>/</code>为<code>#</code>。</p>
+
+<p>如果指定了version，context path不变，context name和base filename会在结尾增加<code>##version</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Context Path</th>
+<th>Context Version</th>
+<th>Context Name</th>
+<th>Base File Name</th>
+<th>Example File Names (.xml, .war &amp; directory)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>/foo</td>
+<td>None</td>
+<td>/foo</td>
+<td>foo</td>
+<td>foo.xml, foo.war, foo</td>
+</tr>
+
+<tr>
+<td>/foo/bar</td>
+<td>None</td>
+<td>/foo/bar</td>
+<td>foo#bar</td>
+<td>foo#bar.xml, foo#bar.war, foo#bar</td>
+</tr>
+
+<tr>
+<td>Empty String</td>
+<td>None</td>
+<td>Empty String</td>
+<td>ROOT</td>
+<td>ROOT.xml, ROOT.war, ROOT</td>
+</tr>
+
+<tr>
+<td>/foo</td>
+<td>42</td>
+<td>/foo##42</td>
+<td>foo##42</td>
+<td>foo##42.xml, foo##42.war, foo##42</td>
+</tr>
+
+<tr>
+<td>/foo/bar</td>
+<td>42</td>
+<td>/foo/bar##42</td>
+<td>foo#bar##42</td>
+<td>foo#bar##42.xml, foo#bar##42.war, foo#bar##42</td>
+</tr>
+
+<tr>
+<td>Empty String</td>
+<td>42</td>
+<td>##42</td>
+<td>ROOT##42</td>
+<td>ROOT##42.xml, ROOT##42.war, ROOT##42</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>version是一个字符串，没有version指定的时候是空字符串，tomcat根据字符串排序来判定不同的version的先后顺序，&rdquo;001&rdquo;比&rdquo;002&rdquo;早，空字符串比&rdquo;11&rdquo;早。</p>
+</blockquote>
+
+<p>虽然有上面的规则将context path和base filename关联在了一起，但是，我们还是有办法让base filename不再根据context path派生。</p>
+
+<p>下面说明两种方法：</p>
+
+<ul>
+<li>disable <code>autoDeploy</code>和<code>deployOnStartup</code>，然后将所有context在server.xml中配置。</li>
+<li>将war包或者工程目录放在appBase定义的目录之外，然后配置一个context.xml，在里面定义docBase</li>
+</ul>
+
+<h3>2.1.3 定义context</h3>
+
+<p>不建议将<code>Context</code>直接配置在<code>server.xml</code>中，一个原因是<code>server.xml</code>不重启是无法重新被加载的；另一个原因是，<code>server.xml</code>中的<code>Context</code>配置会被默认<code>Context</code>覆盖掉。</p>
+
+<p>可以按照如下方式定义context：</p>
+
+<ul>
+<li>在web应用程序<code>META-INF/context.xml</code>中配置。可选，若host配置了copyXML（此属性仅在deployXML为true时生效），则会拷贝此context文件到$CATALINA_BASE/conf/[enginename]/[hostname]/中，并重命名为应用程序的base filename加上.xml后缀。</li>
+<li>在$CATALINA_BASE/conf/[enginename]/[hostname]/目录中，根据base filename派生出context path和version。这个文件也会取代<code>META-INF/context.xml</code>的优先权。</li>
+<li>在server.xml的HOST元素中配置context</li>
+</ul>
+
+<p>默认的context配置会多个web应用程序应用。web应用程序单独配置的context会覆盖任意的默认配置的context。</p>
+
+<ul>
+<li>$CATALINA_BASE/conf/context.xml中，context配置会被所有的web应用程序加载</li>
+<li>$CATALINA_BASE/conf/[enginename]/[hostname]/context.xml.default中，会被指定的hostname的host中的所有web应用程序加载</li>
+</ul>
+
+<h3>2.1.4 属性</h3>
+
+<p>有很多context种的具体属性，可参照<a href="https://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Attributes">tomcat 7.0.90 context文档 - atrributes</a></p>
+
+<blockquote>
+<p>其他更多详细信息，可以查看<a href="https://tomcat.apache.org/tomcat-7.0-doc/config/context.html">tomcat 7.0.90 官方context文档</a></p>
+</blockquote>
+
+<h2>2.2 context 配置实践</h2>
+
+<h3>2.2.1 理论推荐实践</h3>
+
+<p>目的：</p>
+
+<ul>
+<li>webapps下面的默认程序不自动启动</li>
+<li>不在server.xml中配置context，实现独立文件配置context</li>
+</ul>
+
+<p><code>$CATALINA_HOME/conf/server.xml</code></p>
+<pre class="chroma">      <span class="nt">&lt;Host</span> <span class="na">name=</span><span class="s">&#34;localhost&#34;</span>  <span class="na">appBase=</span><span class="s">&#34;&#34;</span>
+            <span class="na">unpackWARs=</span><span class="s">&#34;true&#34;</span> <span class="na">autoDeploy=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
+</pre>
+<ol>
+<li>修改<code>appBase</code>的值为空，或者其他目录。目的是避免加载tomcat默认的应用程序。</li>
+<li>修改<code>autoDeploy</code>为<code>false</code>，避免热加载</li>
+</ol>
+
+<p><code>$CATALINA_BASE/conf/Catalina/localhost/ROOT.xml</code></p>
+<pre class="chroma"><span class="nt">&lt;Context</span> <span class="na">path=</span><span class="s">&#34;&#34;</span> <span class="na">docBase=</span><span class="s">&#34;/root/webfile/web&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;false&#34;</span><span class="nt">/&gt;</span>
+</pre>
+<ol>
+<li><code>path</code>为空，代表是默认的context。</li>
+<li><code>docBase</code>指向需要的工程路径。</li>
+<li><code>debug</code>为0，按需开启</li>
+<li><code>reloadable</code>默认即为false，代表修改工程目录中文件时，不去自动重载context，仅在重启tomcat时生效。有需要的话，可以配置为true</li>
+</ol>
+
+<h3>2.2.2 管理方便的实践</h3>
+
+<p>当然，还有另外一种官方不推荐，但是相当简便的方法，就是直接在server.xml中配置context</p>
+
+<ul>
+<li>host中将autoDeploy、deployOnStartup、deployXML配置为false</li>
+<li>context中path为空，docBase设置为真正的war包或者目录路径
+&gt; 代价仅仅为不可以热更新而已，对某些不在乎服务重启导致的中断的项目可以这样配置，便于管理</li>
+</ul>
+
+<h2>2.3 context 配置 sessionCookieName</h2>
+
+<h3>2.3.1 sessionCookieName</h3>
+
+<p>The name to be used for all session cookies created for this context. If set, this overrides any name set by the web application. If not set, the value specified by the web application, if any, will be used, or the name JSESSIONID if the web application does not explicitly set one.</p>
+
+<p>大意就是这个参数的设定会影响cookie的名称</p>
+
+<h3>2. 3.2 配置示例</h3>
+
+<p><code>$CATALINA_BASE/conf/server.xml</code></p>
+<pre class="chroma"><span class="nt">&lt;Context</span> <span class="na">path=</span><span class="s">&#34;&#34;</span> <span class="na">docBase=</span><span class="s">&#34;/path/to/yourprojectfolder&#34;</span> <span class="na">debug=</span><span class="s">&#34;0&#34;</span> <span class="na">reloadable=</span><span class="s">&#34;false&#34;</span> <span class="na">sessionCookieName=</span><span class="s">&#34;yourcookieName&#34;</span> <span class="nt">/&gt;</span>
+</pre>
+<blockquote>
+<p>这样当你在客户端访问时，cookie的名称就会你设定的名称</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
