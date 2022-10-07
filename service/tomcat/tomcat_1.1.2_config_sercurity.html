@@ -34,7 +34,7 @@
           <ul>
 
             <li>
-              <a href="/service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">tomcat 1.0.0 什么是tomcat</a>
+              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
             </li>
             <li>
               <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
@@ -144,12 +144,9 @@
                   <a href="/service/tomcat/index.html">tomcat</a>
                   <ul>
                     <li><a href="/service/tomcat/tomcat_00_error_startup.html">tomcat: 错误 - 启动问题</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.0.0_what_is_tomcat.html">tomcat 1.1.0 配置-sessionCookieName</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.1.0_config_args_sessionCookieName.html">tomcat 1.0.0 什么是tomcat</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.1.1_config_ssl_tomcat7.html">tomcat 1.1.1 配置-SSL</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.1.2_config_server_xml.html">tomcat 1.1.2 server.xml 配置</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.1.3_config_context.html">tomcat 1.1.3 配置-context</a></li>
-                    <li><a href="/service/tomcat/tomcat_1.1.3_d_config_hide_version.html">tomcat: 安全 - 隐藏版本号</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.1.1_config_server_xml.html">tomcat 1.1.1 配置 server.xml 和 context</a></li>
+                    <li><a href="/service/tomcat/tomcat_1.1.2_config_sercurity.html">tomcat 1.1.2 安全 - 隐藏版本号</a></li>
                     <li><a href="/service/tomcat/tomcat_1.2.0_log_cronolog_logrotate.html">tomcat 1.2.0 日志-cronolog日志切割</a></li>
                     <li><a href="/service/tomcat/tomcat_1.2.1_log_log4j.html">tomcat 1.2.1 日志-log4j配置相对路径</a></li>
                     <li><a href="/service/tomcat/tomcat_1.2.2_log_juli_loglevel.html">tomcat 1.2.2 日志-JULI日志级别</a></li>
@@ -192,47 +189,34 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>tomcat 1.0.0 什么是tomcat</h2>
+      <h2>tomcat 1.1.2 安全 - 隐藏版本号</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>05 Oct 2022</p>
+        <p>03 Jun 2016</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h2>0. 什么是Jakarta EE？</h2>
+<h3>背景</h3>
 
-<p>Jakarta EE是用于开发云原生 Java 应用程序的开源框架。</p>
+<p>出于安全，一般会隐藏掉服务器信息和对应的版本,避免攻击者通过当前版本的服务器软件的漏洞进行攻击</p>
 
-<p>其历史发展为，sun公司的JAVA EE（Enterprise Edition），到oracle收购sun，然后捐JAVA EE给eclipse。eclipse将JAVA EE更名为EE4J（Eclipse Enterprise for Java）。因eclipse在javax和java商标上无法与oracle达成一致，oracle将JAVA EE更名为Jakarta EE。</p>
+<h3>隐藏TOMCAT信息及版本号</h3>
+<pre class="chroma"><span class="nb">cd</span> apache-tomcat-7.0.59/lib
+mkdir <span class="nb">test</span>
+<span class="nb">cd</span> <span class="nb">test</span>
 
-<h2>1. 什么是Tomcat？</h2>
+jar xf ../catalina.jar
+vi org/apache/catalina/util/ServerInfo.properties
+server.info<span class="o">=</span>Tomcat
+server.number<span class="o">=</span><span class="m">6</span>
+server.built<span class="o">=</span>Jan <span class="m">18</span> <span class="m">2013</span> 14:51:10 UTC
 
-<p>Apache Tomcat 是 Jakarta Servlet、Jakarta Server Pages、Jakarta Expression Language、Jakarta WebSocket、Jakarta Annotations 和 Jakarta Authentication 规范的开源实现。</p>
-
-<p>Jakarta EE平台由JAVA EE进化而来。Tomcat 10和之后的版本实现的Jakarta EE。而Tomcat 9和之前的版本实现的是JAVA EE。</p>
-
-<blockquote>
-<ul>
-<li>Jakarta Servlet: 虽然Servlet可以响应多种请求，但最常见的用途是作为Web容器，用以托管web应用。</li>
-<li>Jakarta Server Pages: JSP，是帮助软件开发人员根据HTML、XML、SOAP或其他文档类型创建动态生成网页的技术集合。</li>
-<li>Jakarta Expression Language: 是一种特殊目的编程语言，主要用于在Jakarta EE Web应用程序的网页中嵌入和评估表达式。</li>
-<li>Jakarta WebSocket: 顾名思义，是web socket。</li>
-<li>Jakarta Annotations: 顾名思义，是java 注解。</li>
-<li>Jakarta Authentication: 顾名思义，是java 授权。</li>
-</ul>
-</blockquote>
-
-<h2>2. Tomcat版本</h2>
-
-<p>不同的tomcat版本支持的JAVA语言和Jakarta EE组件的版本不同。</p>
-
-<blockquote>
-<p><a href="https://tomcat.apache.org/whichversion.html">选择tomcat版本</a></p>
-</blockquote>
-
+jar cf ../catalina.jar ./*
+rm -rf <span class="nb">test</span>
+</pre>
     </div>
 
   </div>
