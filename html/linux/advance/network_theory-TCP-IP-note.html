@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
+            </li>
+            <li>
               <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
-            </li>
-            <li>
-              <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
-            </li>
-            <li>
-              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
-            </li>
-            <li>
-              <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
             </li>
           </ul>
 
@@ -423,6 +423,10 @@ lo              <span class="m">65536</span>        <span class="m">0</span>    
 <p>现在所有的主机都要求支持子网编址（RFC950），不是把IP地址看成单纯的一个网络号和主机号组成，而是把主机号再分成一个子网号和主机号。</p>
 
 <p>这样做的原因是因为A类和B类地址为主机号分配了太多的空间，可分别容纳的主机数为2^24-2和2^16-2。事实上，在一个网络中人们并不安排这么多的主机。由于全0和全1的主机号都是无效的，所以我们总是把总数减去2.</p>
+
+<p>在InterNIC获得某类IP网络号之后，就可以进行子网划分。例如获得一个B类网络号140.252，在其下面划分成多个子网，可以将B类网络号剩下的16位地址中，前8位作为子网号，后8位作为主机号。用一个B类网络号然后分子网的方式，和直接采取同样数量的C类地址的区别在于，同一个B类地址，外部网络只需要知道一个路由表目即可，而使用C类却需要多个路由表目。因此，子网划分缩减了路由表的规模。</p>
+
+<h2>5. 子网掩码</h2>
 
     </div>
 

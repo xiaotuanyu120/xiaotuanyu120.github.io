@@ -1,5 +1,5 @@
 ---
-title: tomcat: 安全 - 隐藏版本号
+title: tomcat 1.1.2 安全 - 隐藏版本号
 date: 2016-06-03 14:45:00
 categories: service/tomcat
 tags: [tomcat,security]

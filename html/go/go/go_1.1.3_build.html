@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
+            </li>
+            <li>
+              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+              <ul>
+                <li>
+                  <a href="/go/go/index.html">go</a>
+                  <ul>
+                    <li><a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a></li>
+                    <li><a href="/go/go/go_1.1.0_install.html">GO 1.1.0 安装</a></li>
+                    <li><a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a></li>
+                    <li><a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a></li>
+                    <li><a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a></li>
+                    <li><a href="/go/go/go_1.2.0_gb.html">GO 1.2.0 build tools-gb</a></li>
+                    <li><a href="/go/go/go_1.3.0_tools.html">GO 1.3.0 原生工具</a></li>
+                    <li><a href="/go/go/go_1.4.0_error_Scan_for_time.Time.html">GO 1.4.0 error Scan() 支持time.Time</a></li>
+                    <li><a href="/go/go/go_1.4.1_error_ld_cannot_find_lstdc++.html">GO 1.4.1 error 编译错误 - ld: cannot find -lstdc++</a></li>
+                    <li><a href="/go/go/go_1.5.0_iterate_field_of_struct.html">GO 1.5.0 遍历struct的fields</a></li>
+                    <li><a href="/go/go/go_1.6.0_reflect_get_struct_tag_name.html">GO 1.6.0 reflect获取struct的tag值</a></li>
+                    <li><a href="/go/go/go_1.7.0_string_to_byte.html">GO 1.7.0 string转换成byte</a></li>
+                    <li><a href="/go/go/go_2.1.0_slice_append_extend.html">GO 2.1.0 slice append元素和extend新slice</a></li>
+                    <li><a href="/go/go/go_2.2.0_typeof_object.html">GO 2.2.0 查看object的type的三种方法</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>GO 1.1.3 构建应用</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>26 Oct 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>1. 构建应用演进历史</h2>
+
+<p>Go 语言的构建模式历经了三个迭代和演化过程，分别是最早期的GOPATH、1.5版本的 Vendor 机制，以及现在的 Go Module。</p>
+
+<h3>1.1 GOPATH</h3>
+
+<p>GOPATH 构建模式下，Go 语言通过环境变量 GOPATH 配置的路径下，搜寻第三方依赖包来构建应用。</p>
+
+<p>在 GOPATH 构建模式下，解决依赖不存在的命令是 <code>go get ...</code>。不过这样只能获取执行命令当下时间依赖包的最新主线版本，而依赖包可能是不断演进的，因此，这种构建模式无法保证应用的可重现构建。</p>
+
+<h3>1.2 Vendor</h3>
+
+<p>Go 1.5 版本中引入了 Vendor 机制。本质就是在一个指定的 Vendor 目录中，将依赖包的特定版本拷贝进来。Go 编译器在编译时，优先查找 Vendor 目录中的依赖包，而不是直接去 GOPATH中寻找。</p>
+
+<p>使用 Vendor 构建模式的最佳实践就是，将 Vendor 目录一起提交到应用代码库中。这样别人 clone 你的项目代码后，就可以实现可重现构建。</p>
+
+<blockquote>
+<p>需要注意的是，若希望使用 Vendor 模式，需要将 Go 项目置于 GOPATH 路径中的 src 目录中。否则 Go 编译器不会理会 Go 项目目录下的 Vendor 目录的。</p>
+</blockquote>
+
+<h3>1.3 Go Module</h3>
+
+<p>Go 1.11 版本引入了 Go Module 机制，一个 Go Module 是一个 Go 包的集合，它是有版本的。</p>
+
+<p>在 Go Module 机制下，通常一个 git 库就是一个 Go Module。每个 Go Module 项目根目录下会存在一个 go.mod 文件，Go Module 和 go.mod 是一一对应的关系。go.mod 文件所在的目录为 Go Module 的根目录，根目录和它的子目录的所有 Go 包都属于这个 Go Module。</p>
+
+<blockquote>
+<p>同时还有另外一个文件 go.sum，这个文件记录的是 Go Module 当前版本内容的哈希值。这是 Go Module 的一个安全机制，当下载一个 Go Module 后，go 会使用 go.sum 和下载内容的哈希值对比，通过验证其一致性来保证下载的内容不被恶意篡改。</p>
+</blockquote>
+
+<h2>2. 了解 Go Module</h2>
+
+<h3>2.1 创建 Go Module 的步骤</h3>
+<pre class="chroma"><span class="c1"># step 1. create Go Module</span>
+<span class="c1"># syntax: &#34;go mod init [path/to/module]&#34;</span>
+go mod init github.com/someuser/somemodule
+<span class="c1"># OR &#34;go mod init myproject/service/module01&#34;</span>
+
+<span class="c1"># step 2. auto anylysis dependencies</span>
+<span class="c1"># syntax: &#34;go mod tidy&#34;</span>
+go mod tidy
+<span class="c1"># this command would auto download denpendency packages AND update go.mod</span>
+<span class="c1"># default download dir is &#34;$GOPATH/pkg/mod&#34;, but it can been customized by modifying GOMODCACHE env var.</span>
+
+<span class="c1"># step 3. build app</span>
+<span class="c1"># syntax: &#34;go build&#34;</span>
+go build
+</pre>
+<h3>2.2 深入 Go Module 机制</h3>
+
+<h4><strong>2.2.1 Go Module 的语义导入版本机制</strong></h4>
+
+<p>在 Go Module 构建模式下，一个符合 Go Module 要求的版本号，需满足语义版本规范的格式</p>
+<pre class="chroma">v[major].[minor].[patch]
+</pre>
+<p>借助于语义版本规范格式，可以区分不同版本的先后顺序，以及它们的兼容性。</p>
+
+<p>按照语义版本规范，主版本号不同的版本，是互不兼容的。而在主版本号相同的情况下，次版本号大都兼容之前的此版本号。补丁版本号不影响兼容性。</p>
+
+<p>而且，Go Module 规定，如果一个包的新旧版本是兼容的，那么它们的包导入路径应该是相同的。</p>
+
+<p>例如： v1.7.8 和 v1.8.1 的主版本号相同，那么它们的导入路径也相同；而 v1.8.1 和 v2.0.0 的主版本号不同，那么导入路径就可以按照如下处理</p>
+<pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;github.com/someuser/somemodule&#34;</span>
+    <span class="nx">smv2</span> <span class="s">&#34;github.com/someuser/somemodule/v2&#34;</span>
+<span class="p">)</span>
+</pre>
+<blockquote>
+<p>因为v0.y.z一般情况下是在初期开发阶段的不稳定阶段，Go Module 将 v0.y.z 和 v1.y.z 做同等对待，它们具有同样的导入路径。</p>
+</blockquote>
+
+<h4><strong>2.2.2 Go Module 的最小版本选择原则</strong></h4>
+
+<p>一般情况下，Go Module 只会依赖同一个版本的第三方包。但也存在 Go Module 下不同的包对同一个第三方包的不同版本存在依赖的情况，例如</p>
+<pre class="chroma">main.go
+go.mod
+go.sum
+internal
+pkg1 // 依赖 3rd-module v1.1.0 [3rd-module latest version is v1.6.0]
+pkg2 // 依赖 3rd-module v1.3.0
+</pre>
+<p>这种情况下，Go 会选择哪个版本的 <code>3rd-module</code> 来编译应用呢？</p>
+
+<p>答案是 <code>v1.3.0</code> ，当前存在的许多主流编程语言，会通常会选择最新的版本，即上例中的 <code>v1.6.0</code>，依据是最新的版本通常情况下被认为更稳定和更安全。而 Go 的设计者认为，在考虑稳定和安全的基础上，也要尊重各个 Module 的诉求，<code>pkg1</code> 明确的要求依赖 <code>v1.1.0</code>，而 <code>pkg2</code> 明确的要求依赖 <code>v1.3.0</code>。<strong>Go 会在该项目依赖项的所有版本中，选择符合项目要求的“最小版本”</strong>。</p>
+
+<p>拿前面的例子举例，符合项目要求的 <code>3rd-module</code> 的版本范围是 <code>v1.3.0 - v1.6.0</code>，所以最终 Go 的选择是 <code>v1.3.0</code>。</p>
+
+<h2>3. Go Module 的常见操作</h2>
+
+<h3>3.1 为当前 Go Module 增加一个依赖项</h3>
+<pre class="chroma"><span class="c1"># step 1. add dependency to your code</span>
+
+<span class="c1"># step 2. add dependency to go.mod</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule
+<span class="c1"># method two</span>
+go mod tidy
+</pre>
+<h3>3.2 为已存在的依赖项升降级</h3>
+<pre class="chroma"><span class="c1"># How to check module&#39;s version list?</span>
+go list -m github.com/someuser/somemodule
+
+<span class="c1"># How to downgrade from v1.8.0 to v1.7.0?</span>
+<span class="c1"># update your code first !!!</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule@v1.7.0
+<span class="c1"># method two</span>
+go mod edit -require<span class="o">=</span>github.com/someuser/somemodule@v1.7.0
+go mod tidy
+
+<span class="c1"># How to upgrade from v1.8.0 to v2.0.0?</span>
+<span class="c1"># update your code first !!!</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule/v2
+</pre>
+<h3>3.3 移除一个依赖</h3>
+<pre class="chroma"><span class="c1"># Update your code first !!!</span>
+<span class="c1"># delete &#34;import github.com/someuser/somemodule/v2&#34;</span>
+
+<span class="c1"># Is it gone already? Check all modules</span>
+go list -m all
+...
+github.com/someuser/somemodule/v2
+...
+<span class="c1"># its still there</span>
+
+<span class="c1"># How to remove a dependency?</span>
+go mod tidy
+</pre>
+<h3>3.4 特殊情况：如何使用 Vendor？</h3>
+
+<p>在某些特殊场景，例如无法访问互联网的环境，或者一些内部的CI/CD中，可能会用到 Vendor 模式</p>
+<pre class="chroma"><span class="c1"># How to Generate Vendor?</span>
+go mod vendor
+<span class="c1"># This command would</span>
+<span class="c1"># - copy dependencies to vendor directory</span>
+<span class="c1"># - maintain a file modules.txt in vendor directory</span>
+
+<span class="c1"># How to Build in vendor mode?</span>
+go build -mod<span class="o">=</span>vendor
+</pre>
+<blockquote>
+<p>Go 1.14 及其以后的版本中，若 Go 项目中存在 vendor 目录，则会优先使用 vendor 模式来构建。除非使用 <code>go build -mod=mod</code>来指定 Go Module 构建模式。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
