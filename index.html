@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
+            </li>
+            <li>
               <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
-            </li>
-            <li>
-              <a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a>
-            </li>
-            <li>
-              <a href="/cryptography/basic/openssl_1.3.1_usage.html">openssl 1.3.1 SSL DEBUG: s_client</a>
-            </li>
-            <li>
-              <a href="/linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
-            </li>
-            <li>
-              <a href="/service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
             </li>
           </ul>
 
@@ -107,6 +107,405 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>26 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. 构建应用演进历史</h2>
+
+<p>Go 语言的构建模式历经了三个迭代和演化过程，分别是最早期的GOPATH、1.5版本的 Vendor 机制，以及现在的 Go Module。</p>
+
+<h3>1.1 GOPATH</h3>
+
+<p>GOPATH 构建模式下，Go 语言通过环境变量 GOPATH 配置的路径下，搜寻第三方依赖包来构建应用。</p>
+
+<p>在 GOPATH 构建模式下，解决依赖不存在的命令是 <code>go get ...</code>。不过这样只能获取执行命令当下时间依赖包的最新主线版本，而依赖包可能是不断演进的，因此，这种构建模式无法保证应用的可重现构建。</p>
+
+<h3>1.2 Vendor</h3>
+
+<p>Go 1.5 版本中引入了 Vendor 机制。本质就是在一个指定的 Vendor 目录中，将依赖包的特定版本拷贝进来。Go 编译器在编译时，优先查找 Vendor 目录中的依赖包，而不是直接去 GOPATH中寻找。</p>
+
+<p>使用 Vendor 构建模式的最佳实践就是，将 Vendor 目录一起提交到应用代码库中。这样别人 clone 你的项目代码后，就可以实现可重现构建。</p>
+
+<blockquote>
+<p>需要注意的是，若希望使用 Vendor 模式，需要将 Go 项目置于 GOPATH 路径中的 src 目录中。否则 Go 编译器不会理会 Go 项目目录下的 Vendor 目录的。</p>
+</blockquote>
+
+<h3>1.3 Go Module</h3>
+
+<p>Go 1.11 版本引入了 Go Module 机制，一个 Go Module 是一个 Go 包的集合，它是有版本的。</p>
+
+<p>在 Go Module 机制下，通常一个 git 库就是一个 Go Module。每个 Go Module 项目根目录下会存在一个 go.mod 文件，Go Module 和 go.mod 是一一对应的关系。go.mod 文件所在的目录为 Go Module 的根目录，根目录和它的子目录的所有 Go 包都属于这个 Go Module。</p>
+
+<blockquote>
+<p>同时还有另外一个文件 go.sum，这个文件记录的是 Go Module 当前版本内容的哈希值。这是 Go Module 的一个安全机制，当下载一个 Go Module 后，go 会使用 go.sum 和下载内容的哈希值对比，通过验证其一致性来保证下载的内容不被恶意篡改。</p>
+</blockquote>
+
+<h2>2. 了解 Go Module</h2>
+
+<h3>2.1 创建 Go Module 的步骤</h3>
+<pre class="chroma"><span class="c1"># step 1. create Go Module</span>
+<span class="c1"># syntax: &#34;go mod init [path/to/module]&#34;</span>
+go mod init github.com/someuser/somemodule
+<span class="c1"># OR &#34;go mod init myproject/service/module01&#34;</span>
+
+<span class="c1"># step 2. auto anylysis dependencies</span>
+<span class="c1"># syntax: &#34;go mod tidy&#34;</span>
+go mod tidy
+<span class="c1"># this command would auto download denpendency packages AND update go.mod</span>
+<span class="c1"># default download dir is &#34;$GOPATH/pkg/mod&#34;, but it can been customized by modifying GOMODCACHE env var.</span>
+
+<span class="c1"># step 3. build app</span>
+<span class="c1"># syntax: &#34;go build&#34;</span>
+go build
+</pre>
+<h3>2.2 深入 Go Module 机制</h3>
+
+<h4><strong>2.2.1 Go Module 的语义导入版本机制</strong></h4>
+
+<p>在 Go Module 构建模式下，一个符合 Go Module 要求的版本号，需满足语义版本规范的格式</p>
+<pre class="chroma">v[major].[minor].[patch]
+</pre>
+<p>借助于语义版本规范格式，可以区分不同版本的先后顺序，以及它们的兼容性。</p>
+
+<p>按照语义版本规范，主版本号不同的版本，是互不兼容的。而在主版本号相同的情况下，次版本号大都兼容之前的此版本号。补丁版本号不影响兼容性。</p>
+
+<p>而且，Go Module 规定，如果一个包的新旧版本是兼容的，那么它们的包导入路径应该是相同的。</p>
+
+<p>例如： v1.7.8 和 v1.8.1 的主版本号相同，那么它们的导入路径也相同；而 v1.8.1 和 v2.0.0 的主版本号不同，那么导入路径就可以按照如下处理</p>
+<pre class="chroma"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;github.com/someuser/somemodule&#34;</span>
+    <span class="nx">smv2</span> <span class="s">&#34;github.com/someuser/somemodule/v2&#34;</span>
+<span class="p">)</span>
+</pre>
+<blockquote>
+<p>因为v0.y.z一般情况下是在初期开发阶段的不稳定阶段，Go Module 将 v0.y.z 和 v1.y.z 做同等对待，它们具有同样的导入路径。</p>
+</blockquote>
+
+<h4><strong>2.2.2 Go Module 的最小版本选择原则</strong></h4>
+
+<p>一般情况下，Go Module 只会依赖同一个版本的第三方包。但也存在 Go Module 下不同的包对同一个第三方包的不同版本存在依赖的情况，例如</p>
+<pre class="chroma">main.go
+go.mod
+go.sum
+internal
+pkg1 // 依赖 3rd-module v1.1.0 [3rd-module latest version is v1.6.0]
+pkg2 // 依赖 3rd-module v1.3.0
+</pre>
+<p>这种情况下，Go 会选择哪个版本的 <code>3rd-module</code> 来编译应用呢？</p>
+
+<p>答案是 <code>v1.3.0</code> ，当前存在的许多主流编程语言，会通常会选择最新的版本，即上例中的 <code>v1.6.0</code>，依据是最新的版本通常情况下被认为更稳定和更安全。而 Go 的设计者认为，在考虑稳定和安全的基础上，也要尊重各个 Module 的诉求，<code>pkg1</code> 明确的要求依赖 <code>v1.1.0</code>，而 <code>pkg2</code> 明确的要求依赖 <code>v1.3.0</code>。<strong>Go 会在该项目依赖项的所有版本中，选择符合项目要求的“最小版本”</strong>。</p>
+
+<p>拿前面的例子举例，符合项目要求的 <code>3rd-module</code> 的版本范围是 <code>v1.3.0 - v1.6.0</code>，所以最终 Go 的选择是 <code>v1.3.0</code>。</p>
+
+<h2>3. Go Module 的常见操作</h2>
+
+<h3>3.1 为当前 Go Module 增加一个依赖项</h3>
+<pre class="chroma"><span class="c1"># step 1. add dependency to your code</span>
+
+<span class="c1"># step 2. add dependency to go.mod</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule
+<span class="c1"># method two</span>
+go mod tidy
+</pre>
+<h3>3.2 为已存在的依赖项升降级</h3>
+<pre class="chroma"><span class="c1"># How to check module&#39;s version list?</span>
+go list -m github.com/someuser/somemodule
+
+<span class="c1"># How to downgrade from v1.8.0 to v1.7.0?</span>
+<span class="c1"># update your code first !!!</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule@v1.7.0
+<span class="c1"># method two</span>
+go mod edit -require<span class="o">=</span>github.com/someuser/somemodule@v1.7.0
+go mod tidy
+
+<span class="c1"># How to upgrade from v1.8.0 to v2.0.0?</span>
+<span class="c1"># update your code first !!!</span>
+<span class="c1"># method one</span>
+go get github.com/someuser/somemodule/v2
+</pre>
+<h3>3.3 移除一个依赖</h3>
+<pre class="chroma"><span class="c1"># Update your code first !!!</span>
+<span class="c1"># delete &#34;import github.com/someuser/somemodule/v2&#34;</span>
+
+<span class="c1"># Is it gone already? Check all modules</span>
+go list -m all
+...
+github.com/someuser/somemodule/v2
+...
+<span class="c1"># its still there</span>
+
+<span class="c1"># How to remove a dependency?</span>
+go mod tidy
+</pre>
+<h3>3.4 特殊情况：如何使用 Vendor？</h3>
+
+<p>在某些特殊场景，例如无法访问互联网的环境，或者一些内部的CI/CD中，可能会用到 Vendor 模式</p>
+<pre class="chroma"><span class="c1"># How to Generate Vendor?</span>
+go mod vendor
+<span class="c1"># This command would</span>
+<span class="c1"># - copy dependencies to vendor directory</span>
+<span class="c1"># - maintain a file modules.txt in vendor directory</span>
+
+<span class="c1"># How to Build in vendor mode?</span>
+go build -mod<span class="o">=</span>vendor
+</pre>
+<blockquote>
+<p>Go 1.14 及其以后的版本中，若 Go 项目中存在 vendor 目录，则会优先使用 vendor 模式来构建。除非使用 <code>go build -mod=mod</code>来指定 Go Module 构建模式。</p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>25 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. 几次目录结构的演进</h2>
+
+<h3>1.1 Go 1.4 版本中，移除 pkg 和引入 internal</h3>
+
+<p>Go 1.4 版本中删除了 pkg 这一中间层目录，并引入了 internal 目录。</p>
+
+<p>出于简化层次的目的，原本<code>src/pkg/xxx</code>改为<code>src/xxx</code>。</p>
+
+<p>出于分类和清晰用途的目的，引入了 internal 目录，在 internal 下的包只能被本项目的包导入，而不能被外部的包导入。</p>
+
+<h3>1.2 Go 1.6 版本中，增加 vendor 目录</h3>
+
+<p>为了解决版本依赖问题，Go 允许源码不在 GOPATH 中寻找依赖包，而是在 vendor 目录下面寻找依赖包。这样开发者就可以在 vendor 中自己管理依赖包的版本，从而解决不同开发环境依赖包版本不一致的问题。</p>
+
+<p>vendor 机制和目录的引入，让 Go 第一次拥有了可重现构建的能力</p>
+
+<h3>1.3 Go 1.13 版本中，增加了 go.sum 和 go.mod</h3>
+
+<p>依旧是为了解决版本依赖的问题，vendor 机制有很多缺点，例如，需要手工管理依赖包版本，另外会给代码审核带来干扰等。于是 go module 出现了，引入了 go.mod 来明确了第三方包及其版本，可以实现精准构建。</p>
+
+<h2>2. 典型结构布局</h2>
+<pre class="chroma">- exe-layout
+  - cmd/
+    - app1/
+      - main.go
+    - app2/
+      - main.go
+  - go.mod
+  - go.sum
+  - internal
+    - pkga/
+      - pkga.go
+    - pkgb/
+      - pkgb.go
+  - pkg1/
+    - pkg1.go
+  - pkg2/
+    - pkg2.go 
+  - vendor/
+</pre>
+<blockquote>
+<p>vendor 目录是可选的，在某些没有公网访问的场景可用，使用vendor模式构建：<code>go build -mod=vendor</code></p>
+
+<p>Go 1.14 版本及其后续版本，当项目根目录存在 vendor 目录时，默认采用 vendor 模式来构建应用。可以使用 <code>go build -mod=mod</code> 来切换到 Go Module 模式。详细说明参见<a href="https://go.dev/doc/go1.14">Go 1.14 changelog</a></p>
+</blockquote>
+
+<p>上面提到的例子有多个app构建，其实更建议使用下面app互相隔离的方式</p>
+<pre class="chroma">- single-exe-layout
+  - main.go
+  - go.mod
+  - go.sum
+  - internal
+    - pkga/
+      - pkga.go
+    - pkgb/
+      - pkgb.go
+  - pkg1/
+    - pkg1.go
+  - pkg2/
+    - pkg2.go 
+  - vendor/
+</pre>
+<p><strong>总结：虽然上面有提到了多种目录结构，但是 Go 官方并没有给出一个固定的目录结构范式。而且目前主流的开源项目的目录结构也都有着些许的差别，所以并不需要完全一对一的参照本文的模板来创建项目。</strong></p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>25 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. hello world</h2>
+<pre class="chroma"><span class="c1"># 在任意位置创建工程目录</span>
+mkdir -p <span class="nv">$HOME</span>/goproj/helloworld
+<span class="nb">cd</span> <span class="nv">$HOME</span>/goproj/helloworld
+
+<span class="c1"># 创建第一个go文件main.go</span>
+touch main.go
+</pre>
+<p><code>main.go</code></p>
+<pre class="chroma"><span class="c1">// 包名称，整个go程序，只允许有一个main包
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="c1">// 引入标准库中的fmt目录下的所有包
+</span><span class="c1"></span><span class="c1">// 这里的&#34;fmt&#34;指的是路径
+</span><span class="c1"></span><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="c1">// main包中的main函数，这是整个程序的入口函数
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// 这里的&#34;fmt&#34;指的是包名称
+</span><span class="c1"></span>    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;hello, world&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p>编译执行</p>
+<pre class="chroma"><span class="c1"># 编译</span>
+go build main.go
+
+<span class="c1"># 执行</span>
+./main
+<span class="c1"># 在开发环境中，可以直接执行go run main.go来调试</span>
+</pre>
+<h2>2. 复杂项目</h2>
+
+<p>正常的项目不止有一个go源文件，通常是多个包，每个包都有自己的第三方依赖。这种情况下编译过程如下</p>
+<pre class="chroma"><span class="c1"># 1. 初始化mod</span>
+go mod init github.com/xiaotuanyu120/goproj01
+<span class="c1"># &#34;github.com/xiaotuanyu120/goproj01&#34; 代表的是&#34;模块路径&#34;</span>
+<span class="c1"># 如果希望把project传到公网，就必须给一个可互联网访问的路径。</span>
+<span class="c1"># 如果只是本地使用，可以用本地路径，比如&#34;projectA&#34;、&#34;somthing/a/project&#34;</span>
+
+<span class="c1"># 最后一段为模块名称，&#34;.../mod_name&#34;</span>
+
+<span class="c1"># 2. 维护mod文件</span>
+go mod tidy
+<span class="c1"># 这个命令会自动分析第三方依赖，下载第三方依赖包和它的依赖包到本地的$GOMODCACHE目录中，默认值是$HOME/go/pkg/mod</span>
+<span class="c1"># 并会维护当前模块的go.mod和go.sum文件</span>
+
+<span class="c1"># 3. 编译项目</span>
+go build main.go
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>25 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>0. go语言的诞生</h2>
+
+<p>计算机领域中的任何事物的诞生，都是要解决一些老旧的无法忍受的问题而产生的。go语言也不例外，谷歌的三位大佬在等待C++数以小时计的编译期间做了一场普通的讨论。大白话就是，C和C++虽然性能够强，但是编译速度太慢、过于复杂、对并发支持度不高，python等动态语言虽然易于上手，但是性能太弱。于是他们想搞一个新语言，这就是go。</p>
+
+<blockquote>
+<p>三位谷歌大佬</p>
+
+<ul>
+<li>图灵奖获得者、C 语法联合发明人、Unix 之父肯·汤普森（Ken Thompson）</li>
+<li>Plan 9 操作系统领导者、UTF-8 编码的最初设计者罗伯·派克（Rob Pike）</li>
+<li>Java 的 HotSpot 虚拟机和 Chrome 浏览器的 JavaScript V8 引擎的设计者之一罗伯特·格瑞史莫（Robert Griesemer）</li>
+</ul>
+</blockquote>
+
+<p>之后，他们使用一封邮件开始正式讨论这个设想</p>
+<pre class="chroma">Date: Sun, 23 Sep 2007 23:33:41 -0700
+From: &#34;Robert Griesemer&#34; &lt;gri@google.com&gt;
+To: &#34;Rob &#39;Commander&#39; Pike&#34; &lt;r@google.com&gt;, ken@google.com
+Subject: prog lang discussion
+...
+*** General:
+Starting point: C, fix some obvious flaws, remove crud, add a few missing features
+  - no includes, instead: import
+  - no macros (do we need something instead?)
+  - ideally only one file instead of a .h and .c file, module interface
+should be extracted automatically
+  - statements: like in C, though should fix &#39;switch&#39; statement
+  - expressions: like in C, though with caveats (do we need &#39;,&#39; expressions?)
+  - essentially strongly typed, but probably w/ support for runtime types
+  - want arrays with bounds checking on always (except perhaps in &#39;unsafe mode&#39;-see section on GC)
+  - mechanism to hook up GC (I think that most code can live w/ GC, but for a true systems
+    programming language there should be mode w/ full control over memory allocation)
+  - support for interfaces (differentiate between concrete, or implementation types, and abstract,
+    or interface types)
+  - support for nested and anonymous functions/closures (don&#39;t pay if not used)
+  - a simple compiler should be able to generate decent code
+  - the various language mechanisms should result in predictable code
+</pre>
+<blockquote>
+<p>几个事实：</p>
+
+<ul>
+<li>go语言的名字，就是go，不是Golang。Golang只是go官方网站的名称，因为go.com已经被使用了。</li>
+<li>go语言虽然在谷歌内部始于2007年9月20日，但是公布于众是在2009年10月30日，10天后的2009年11月10日，谷歌官宣Go语言项目开源，这一天被官方确定为Go语言的诞生日。</li>
+<li>go语言使用gopher（地鼠）代指go语言开发者。</li>
+</ul>
+</blockquote>
+
+<h2>1. go语言的发展</h2>
+
+<p>2012 年 3 月 28 日，Go 1.0 版本正式发布，同时 Go 官方发布了“Go 1 兼容性”承诺：<strong>只要符合 Go 1 语言规范的源代码，Go 编译器将保证向后兼容（backwards compatible），也就是说我们使用新版编译器也可以正确编译用老版本语法编写的代码。</strong></p>
+
+<h3><strong>go语言的杀手级项目</strong></h3>
+
+<p><code>Docker</code>, <code>Kubernetes</code>, <code>Prometheus</code>, <code>Ethereum</code>, <code>Istio</code>, <code>CockroachDB</code>, <code>InfluxDB</code>, <code>Terraform</code>, <code>Etcd</code>, <code>Consul</code> 等</p>
+
+<h3><strong>go语言大事记</strong></h3>
+
+<ul>
+<li>2012：Go 1.0 发布，同时承诺“Go 1 兼容性”</li>
+<li>2014：Go 1.4 发布，最后一个由C语言实现编译器和运行时的版本</li>
+<li>2015：Go 1.5 发布，实现自举，大幅降低GC延迟</li>
+<li>2018：Go 1.11 发布，引入新的Go包管理机制 go module</li>
+<li>2021：Go 1.16 发布，Go module成为默认包管理机制</li>
+<li>2022：Go 1.18 发布，支持泛型</li>
+</ul>
+
+<h2>2. go语言的设计哲学</h2>
+
+<p>现代的编程语言有很多，每个语言都根据自己的设计哲学做了不同的取舍。</p>
+
+<p>而go语言的设计哲学，可以做以下归类</p>
+
+<ul>
+<li>简单，不做特性缝合怪，致力于做减法，保持简单</li>
+<li>显式，明确优于模糊</li>
+<li>组合，没有选择面向对象（落笔之初对这里理解不深，留白，不误导他人）</li>
+<li>并发，使用用户空间的goroutine来取代cpu中的线程调度，以达到轻量级调度，面向多核cpu的大规模并发的效果。并且增加了channel和select的辅助并发的原语。</li>
+<li>面向工程，提供完善的工程支持工具，来解决程序构建慢、依赖管理失控、代码难于理解、跨语言构建难等问题</li>
+</ul>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -526,6 +925,10 @@ lo              <span class="m">65536</span>        <span class="m">0</span>    
 
 <p>这样做的原因是因为A类和B类地址为主机号分配了太多的空间，可分别容纳的主机数为2^24-2和2^16-2。事实上，在一个网络中人们并不安排这么多的主机。由于全0和全1的主机号都是无效的，所以我们总是把总数减去2.</p>
 
+<p>在InterNIC获得某类IP网络号之后，就可以进行子网划分。例如获得一个B类网络号140.252，在其下面划分成多个子网，可以将B类网络号剩下的16位地址中，前8位作为子网号，后8位作为主机号。用一个B类网络号然后分子网的方式，和直接采取同样数量的C类地址的区别在于，同一个B类地址，外部网络只需要知道一个路由表目即可，而使用C类却需要多个路由表目。因此，子网划分缩减了路由表的规模。</p>
+
+<h2>5. 子网掩码</h2>
+
         </div>
 
         <div class="article-summary">
@@ -894,275 +1297,6 @@ vi /usr/local/apache2/conf/extra/httpd-mpm.conf
 <li>stack的容量由系统预先定义，一般比较小；而heap则是受限于操作系统中有效的虚拟内存，一般比较大。</li>
 <li>stack不会产生内存碎片，而heap会产生比较多的碎片。</li>
 </ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/nginx/nginx_2.1.9.03_configuration_log.html">nginx: 配置 - 日志</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>16 May 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>1. 常用的log_format</h2>
-
-<h3>1.1 记录post data</h3>
-
-<p>简单说明就是，在proxy_pass,fastcgi_pass,uwsgi_pass和scgi_pass配置块中，可以使用<code>reqeust_body</code>这个内置变量来获取POST请求的post数据。</p>
-<pre class="chroma">log_format logpost &#34;$request_body&#34;;
-</pre>
-<blockquote>
-<p>其他限制见官方文档：<a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body">built in var: request_body</a></p>
-
-<p>注意：当nginx作为web tunnel，客户端使用CONNECT来访问时，使用这个配置无法获取预期值。</p>
-</blockquote>
-
-<h3>1.2 记录upstream的响应请求的server地址</h3>
-<pre class="chroma">log_format logupstream &#34;$upstream_addr&#34;;
-</pre>
-<blockquote>
-<p><a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr">module ngx_http_upstream_module var: upstream_addr</a></p>
-
-<p>注意：当nginx作为web tunnel，客户端使用CONNECT来访问时，使用这个配置无法获取预期值。</p>
-</blockquote>
-
-<h2>2. 问题</h2>
-
-<h3>2.1 内置的log_format格式</h3>
-
-<p>在nginx.conf中添加如下配置</p>
-<pre class="chroma">log_format  combined  &#39;$remote_addr - $remote_user [$time_local] &#39;
-                       &#39;&#34;$request&#34; $status $body_bytes_sent &#39;
-                       &#39;&#34;$http_referer&#34; &#34;$http_user_agent&#34;&#39;;
-</pre>
-<p><strong>报错信息</strong></p>
-<pre class="chroma">nginx -t
-2008/05/26 18:45:16 <span class="o">[</span>emerg<span class="o">]</span> 19875#0: <span class="s2">&#34;log_format&#34;</span> directive duplicate <span class="s2">&#34;log_format&#34;</span> name in /usr/local/nginx/conf/nginx.conf:26
-</pre>
-<p>大意是，我们重复定义了combined日志格式，但是我仔细检查了整个nginx.conf，以及所有include的配置文件，都没有找到其他的combined这个log_format配置项。</p>
-
-<p><strong>原因解析</strong>
-<a href="http://mailman.nginx.org/pipermail/nginx/2008-May/005214.html">nginx邮件列表关于此问题的参考链接</a><br />
-原来&rdquo;combined&rdquo; log_format 是在nginx的源码中已经定义过的，我重新去再次定义，实属画蛇添足，当然软件会提示我重复定义了。</p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/network_tunnel-ipip.html">网络: 隧道 - IPIP</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>12 May 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. 隧道技术</h2>
-
-<p>隧道技术是一种通过使用互联网络的基础设施在网络之间传递数据的方式。 使用隧道传递的数据(或负载)可以是不同协议的数据帧或包。 隧道协议将这些其他协议的数据帧或包重新封装在新的包头中发送。 新的包头提供了路由信息，从而使封装的负载数据能够通过互联网络传递。</p>
-
-<h2>1. IPIP</h2>
-
-<h3>1.1 简介</h3>
-
-<p>IPIP是隧道技术中的一种，适合只负载一个IP流的情况。</p>
-
-<h2>2. IPIP实操</h2>
-
-<h3>2.1 环境介绍</h3>
-
-<ul>
-<li>系统：fedora 36 aarch64</li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/network_ip-address.html">网络: IP - IP地址简介</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>11 May 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>1. IP地址简介</h2>
-
-<ul>
-<li><a href="https://www.iana.org/help/abuse-answers">IANA: Private Use IP</a></li>
-<li><a href="https://www.avast.com/c-ip-address-public-vs-private">avast: public ip vs private ip</a></li>
-</ul>
-
-<h3>1.1 IP地址类型</h3>
-
-<p>目前有两种IP网段类型，IPV4和IPV6。</p>
-
-<h3>1.2 IP地址格式</h3>
-
-<p>其中IPV4从1983年1月1日开始使用，直至今日依然被广泛使用。IPV4的格式是用&rdquo;.&ldquo;分隔开的四段数字，每段数字的取值范围从0-255，于是IPV4的地址范围从0.0.0.0到255.255.255.255。</p>
-
-<p>而IPV6是从1999年开始部署，IPV6的地址是128位数字，通常使用十六进制字符表示，例如<code>2001:db8::abc:587</code></p>
-
-<h3>1.3 IP地址分配</h3>
-
-<p>IP地址的分配和管理，是以Internet Assigned Numbers Authority (IANA)为中心，其与5个Regional Internet Registries (RIRs)合作来管理。</p>
-
-<blockquote>
-<p>InterNIC(域名注册)和IANA(DNS root, IP address)都归于ICANNA运营。</p>
-</blockquote>
-
-<p>RIR：</p>
-
-<ul>
-<li>AfriNIC (Africa and parts of the Indian Ocean)</li>
-<li>APNIC (Asia/Pacific Region)</li>
-<li>ARIN (North America and parts of the Caribbean)</li>
-<li>LACNIC (Latin America and parts of the Caribbean)</li>
-<li>RIPE NCC (Europe, the Middle East and Central Asia)</li>
-</ul>
-
-<p>RIR是实际的ip分配机构，它们将ip网段分配给不同的ISP。而IANA则作为一个顶层的注册机构，例如下面这条注册信息</p>
-<pre class="chroma">123/8   APNIC   2006-01 whois.apnic.net ALLOCATED
-</pre>
-<p>这代表了 123.0.0.0 - 123.255.255.255 在2006年1月分配给了APNIC。如果希望知道这个网段中的一段子网段分配给了谁，需要在whois.apnic.net中查询。</p>
-
-<p>IANA只记录以下信息：</p>
-
-<ul>
-<li>已分配给 RIR 或其他用户的IP地址</li>
-<li>保留用于特殊用途的那些IP地址</li>
-<li>那些还没有被分配，留作以后分配和使用的</li>
-</ul>
-
-<blockquote>
-<ul>
-<li>特殊用途的ip地址在IANA显式已经被注册</li>
-<li>IANA保留了192.0.32.0 - 192.0.47.255自用</li>
-</ul>
-</blockquote>
-
-<h2>2. 特殊用途的地址</h2>
-
-<h3>2.1 私有IP地址</h3>
-
-<p>这些私有IP地址，可以被任何人使用，无需任何其他人授权。同时，这些地址也永远不可能在互联网上可见。</p>
-<pre class="chroma">10.0.0.0 - 10.255.255.255     (10.0.0.0/8)
-172.16.0.0 - 172.31.255.255   (172.16.0.0/12)
-192.168.0.0 - 192.168.255.255 (192.168.0.0/16)
-</pre>
-<blockquote>
-<p>由上至下，也被成为ABC三类私有网段。详情见<a href="https://www.rfc-editor.org/rfc/rfc1918.html">RFC1918</a></p>
-</blockquote>
-
-<h3>2.2 自动配置的IP地址</h3>
-<pre class="chroma">169.254.0.0 - 169.254.255.255
-</pre>
-<p>用于一个联网设备需要ip地址，却没有被分配静态ip，且无法通过dhcp获取到ip时，自动给这个联网设备分配的一个地址。避免出现网络设备没有ip的情况，但需要注意，这个ip的流量会被限制在本地网络。</p>
-
-<h3>2.3 回环网络IP地址</h3>
-<pre class="chroma">127.0.0.0 - 127.255.255.255 (127.0.0.0/8)
-</pre>
-<p>用于代表设备本身的网络地址，最常用的是127.0.0.1。</p>
-
-<h3>2.4 多播地址</h3>
-<pre class="chroma">224.0.0.0 - 239.255.255.255
-</pre>
-<p>被预留用于在 Internet 中提供多播服务的特殊目的</p>
-
-<h3>2.5 共享地址段</h3>
-<pre class="chroma">100.64.0.0/10
-</pre>
-<p>用于运营商给用户提供的NAT解决方案</p>
-
-<p>其他的还有IANA预留给美国政府机构的地址，详细内容可以查阅<a href="https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xml#note1">iana ipv4 ip address space registry</a></p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/bash_02_00_login_shell_vs_non_login_shell.html">bash: login shell vs non-login shell</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>02 May 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>1. login shell和non-login shell是什么？</h3>
-
-<p>login shell是<code>参数0</code>以<code>&quot;-&quot;</code>开头，或者使用<code>--login(-l)</code>选项启动的shell。</p>
-
-<p>non-login shell是除了login shell之外的shell。</p>
-
-<blockquote>
-<ul>
-<li><a href="https://help.gnome.org/users/gnome-terminal/stable/pref-login-shell.html.en">gnome pages</a></li>
-<li><a href="https://linux.die.net/man/1/bash">bash manual docs</a> 查看Invocation部分</li>
-</ul>
-</blockquote>
-
-<h3>2. 如何区分login shell和non-login shell？</h3>
-
-<p>根据login shell的介绍说明可知，我们可以查看login shell的<code>参数0</code>或根据启动选项中是否包含<code>login</code>来判断</p>
-<pre class="chroma"><span class="c1"># METHOD 1，根据参数0是否以&#34;-&#34;开头来判断</span>
-<span class="nb">echo</span> <span class="nv">$0</span>
--bash
-
-<span class="c1"># METHOD 2，使用SHELLOPT来判断（这个一定准确，推荐）</span>
-<span class="nb">shopt</span> login_shell
-login_shell       on
-
-<span class="nb">shopt</span> -q login_shell <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s1">&#39;Login shell&#39;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;Not login shell&#39;</span>
-Login shell
-</pre>
-<blockquote>
-<p>方法1中，参数0不以&rdquo;-&ldquo;开头时，也不一定不是login shell，是因为还有部分是通过&rdquo;&ndash;login&rdquo;选项来启动的。所以推荐用方法2。</p>
-</blockquote>
-
-<h3>3. 如何创建login shell和non-login shell？</h3>
-
-<p><strong>创建login shell</strong></p>
-
-<ul>
-<li>通过本地或者远程的连接，使用用户名和密码登录获得的第一个shell</li>
-<li>通过<code>bash</code>或<code>sh</code>加上<code>--login(-l)</code>参数启动shell</li>
-<li>使用<code>sudo -i</code>或<code>su -</code></li>
-</ul>
-
-<p><strong>创建non-login shell</strong></p>
-
-<ul>
-<li>未使用账号密码登录，直接使用<code>bash</code>或<code>sh</code>命令，无<code>--login(-l)</code>参数启动shell</li>
-<li>crond中创建任务，默认是non-login shell，但是可以通过显式使用<code>bash</code>或<code>sh</code>命令加上<code>--login(-l)</code>参数，例如<code>bash(or sh) -l -c &quot;command&quot;</code>来创建login-shell。</li>
-</ul>
-
-<blockquote>
-<p>这里暂时不讨论图形界面</p>
-</blockquote>
-
-<h3>4. 为什么需要有login shell和non-login shell？</h3>
-
-<p>没有找到确切的原因，但是根据网上的讨论，一个相对靠谱的说法是，因为login shell和non-login shell加载的start up文件不同（详细的看man文档），有些登录时需要执行的任务，如果在每次执行其他子shell的时候都执行一遍，这样任务太重。所以才创建了这种non-login shell，避免每次创建子shell环境都会执行一遍那些任务。</p>
-
-<blockquote>
-<p><a href="https://unix.stackexchange.com/questions/324359/why-a-login-shell-over-a-non-login-shell">stackexchange answer</a></p>
-</blockquote>
 
         </div>
 
