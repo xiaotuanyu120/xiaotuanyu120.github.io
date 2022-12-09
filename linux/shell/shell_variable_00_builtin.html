@@ -37,9 +37,6 @@
               <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
             </li>
             <li>
-              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
-            </li>
-            <li>
               <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
             </li>
             <li>
@@ -47,6 +44,9 @@
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
             </li>
           </ul>
 
@@ -119,10 +119,7 @@
                     <li><a href="/linux/shell/example_5.2_auto_bak_and_delete_old_file.html">EXAMPLE: 定期备份及删除备份文件</a></li>
                     <li><a href="/linux/shell/example_5.3_auto_bak_and_delete_old_file_array_version.html">EXAMPLE: 定期备份和删除备份-数组版</a></li>
                     <li><a href="/linux/shell/example_5.4_get_bak_dir_and_delete.html">EXAMPLE: 获取备份目录，定时删除</a></li>
-                    <li><a href="/linux/shell/shell_1.0.1_variable_builtin.html">SHELL: 1.0.1 变量：内置变量</a></li>
-                    <li><a href="/linux/shell/shell_1.0.2_variable_caculate.html">SHELL: 1.0.2 变量：计算</a></li>
-                    <li><a href="/linux/shell/shell_1.0.3_variable_dict.html">SHELL: 1.0.3 变量：字典</a></li>
-                    <li><a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a></li>
+                    <li><a href="/linux/shell/shell_1.0.2_variable_caculate.html">数字计算</a></li>
                     <li><a href="/linux/shell/shell_1.0_variable_advance_process.html">SHELL: 1.0 变量的简单处理(${})</a></li>
                     <li><a href="/linux/shell/shell_1.1_trap.html">SHELL: 1.1 trap</a></li>
                     <li><a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a></li>
@@ -131,6 +128,18 @@
                     <li><a href="/linux/shell/shell_2.2_if_statement_check_user_exist.html">SHELL: 2.2 判断用户是否存在</a></li>
                     <li><a href="/linux/shell/shell_3.0_get_abspath.html">SHELL: 3.0 如何获取脚本绝对路径</a></li>
                     <li><a href="/linux/shell/shell_3.1_function_with_xargs.html">SHELL: 3.1 function with xargs</a></li>
+                    <li><a href="/linux/shell/shell_basic-01-bash-basic.html">SHELL 基础: BASH基础环境命令</a></li>
+                    <li><a href="/linux/shell/shell_basic-02-wild_cards_and_output_redirect.html">SHELL 基础: 通配符&重定向</a></li>
+                    <li><a href="/linux/shell/shell_basic-03-task-management.html">SHELL 基础: 任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/shell/shell_basic-04-variable_check.html">SHELL 基础: 变量查看(echo)</a></li>
+                    <li><a href="/linux/shell/shell_basic-05-variable_set_and_unset.html">SHELL 基础: 变量声明&取消</a></li>
+                    <li><a href="/linux/shell/shell_basic-06-global-variable.html">SHELL 基础: 全局变量</a></li>
+                    <li><a href="/linux/shell/shell_basic-07-bash_env.html">SHELL 基础: BASH环境变量文件</a></li>
+                    <li><a href="/linux/shell/shell_basic-08-pipe-related.html">SHELL 基础: 管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/shell/shell_basic-09-and-or-logic.html">SHELL 基础: 与或逻辑操作符</a></li>
+                    <li><a href="/linux/shell/shell_datastruct_array.html">数据结构: 数组</a></li>
+                    <li><a href="/linux/shell/shell_datastruct_dict.html">数据结构：字典</a></li>
+                    <li><a href="/linux/shell/shell_variable_00_builtin.html">SHELL: 1.0.1 变量：内置变量</a></li>
                   </ul>
                 </li>
                 <li>
@@ -156,43 +165,57 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>SHELL: 1.0.3 变量：字典</h2>
+      <h2>SHELL: 1.0.1 变量：内置变量</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>10 Oct 2019</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h3>0. 内置变量简介</h3>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+<h4>1) 变量$?</h4>
+<pre class="chroma"><span class="c1"># $? 上个命令的执行结果</span>
+<span class="c1"># 执行成功返回0值</span>
+rm -rf test.sh
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
+<span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">0</span>
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<span class="c1"># 执行失败返回非0值</span>
+ls test.sh
+ls: test.sh: No such file or directory
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
+<span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">1</span>
 
+ll
+-bash: ll: <span class="nb">command</span> not found
+<span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">127</span>
+</pre>
+<h4>2) 变量$$</h4>
+<pre class="chroma">cat <span class="s">&lt;&lt; EOF &gt; /tmp/test.sh
+</span><span class="s">#!/bin/bash
+</span><span class="s">
+</span><span class="s">echo $$
+</span><span class="s">
+</span><span class="s">while :; do
+</span><span class="s">    echo test
+</span><span class="s">    sleep 60
+</span><span class="s">done
+</span><span class="s">EOF</span>
+
+sh test.sh 
+<span class="m">13920</span>
+<span class="nb">test</span>
+^Z
+<span class="o">[</span>1<span class="o">]</span>+  Stopped                 sh test.sh
+ps aux <span class="p">|</span>grep test.sh<span class="p">|</span>grep -v grep
+user             <span class="m">13920</span>   0.0  0.0  <span class="m">4268636</span>   <span class="m">1156</span> s000  T     1:52PM   0:00.00 sh test.sh
 </pre>
     </div>
 

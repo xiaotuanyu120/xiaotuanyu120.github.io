@@ -37,9 +37,6 @@
               <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
             </li>
             <li>
-              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
-            </li>
-            <li>
               <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
             </li>
             <li>
@@ -47,6 +44,9 @@
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
             </li>
           </ul>
 
@@ -119,10 +119,7 @@
                     <li><a href="/linux/shell/example_5.2_auto_bak_and_delete_old_file.html">EXAMPLE: 定期备份及删除备份文件</a></li>
                     <li><a href="/linux/shell/example_5.3_auto_bak_and_delete_old_file_array_version.html">EXAMPLE: 定期备份和删除备份-数组版</a></li>
                     <li><a href="/linux/shell/example_5.4_get_bak_dir_and_delete.html">EXAMPLE: 获取备份目录，定时删除</a></li>
-                    <li><a href="/linux/shell/shell_1.0.1_variable_builtin.html">SHELL: 1.0.1 变量：内置变量</a></li>
-                    <li><a href="/linux/shell/shell_1.0.2_variable_caculate.html">SHELL: 1.0.2 变量：计算</a></li>
-                    <li><a href="/linux/shell/shell_1.0.3_variable_dict.html">SHELL: 1.0.3 变量：字典</a></li>
-                    <li><a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a></li>
+                    <li><a href="/linux/shell/shell_1.0.2_variable_caculate.html">数字计算</a></li>
                     <li><a href="/linux/shell/shell_1.0_variable_advance_process.html">SHELL: 1.0 变量的简单处理(${})</a></li>
                     <li><a href="/linux/shell/shell_1.1_trap.html">SHELL: 1.1 trap</a></li>
                     <li><a href="/linux/shell/shell_1.2_read.html">SHELL: 1.2 read</a></li>
@@ -131,6 +128,18 @@
                     <li><a href="/linux/shell/shell_2.2_if_statement_check_user_exist.html">SHELL: 2.2 判断用户是否存在</a></li>
                     <li><a href="/linux/shell/shell_3.0_get_abspath.html">SHELL: 3.0 如何获取脚本绝对路径</a></li>
                     <li><a href="/linux/shell/shell_3.1_function_with_xargs.html">SHELL: 3.1 function with xargs</a></li>
+                    <li><a href="/linux/shell/shell_basic-01-bash-basic.html">SHELL 基础: BASH基础环境命令</a></li>
+                    <li><a href="/linux/shell/shell_basic-02-wild_cards_and_output_redirect.html">SHELL 基础: 通配符&重定向</a></li>
+                    <li><a href="/linux/shell/shell_basic-03-task-management.html">SHELL 基础: 任务管理(kill/ps)</a></li>
+                    <li><a href="/linux/shell/shell_basic-04-variable_check.html">SHELL 基础: 变量查看(echo)</a></li>
+                    <li><a href="/linux/shell/shell_basic-05-variable_set_and_unset.html">SHELL 基础: 变量声明&取消</a></li>
+                    <li><a href="/linux/shell/shell_basic-06-global-variable.html">SHELL 基础: 全局变量</a></li>
+                    <li><a href="/linux/shell/shell_basic-07-bash_env.html">SHELL 基础: BASH环境变量文件</a></li>
+                    <li><a href="/linux/shell/shell_basic-08-pipe-related.html">SHELL 基础: 管道相关命令(cut/sort/uniq/tee/split/xargs)</a></li>
+                    <li><a href="/linux/shell/shell_basic-09-and-or-logic.html">SHELL 基础: 与或逻辑操作符</a></li>
+                    <li><a href="/linux/shell/shell_datastruct_array.html">数据结构: 数组</a></li>
+                    <li><a href="/linux/shell/shell_datastruct_dict.html">数据结构：字典</a></li>
+                    <li><a href="/linux/shell/shell_variable_00_builtin.html">SHELL: 1.0.1 变量：内置变量</a></li>
                   </ul>
                 </li>
                 <li>
@@ -156,31 +165,65 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>SHELL: 1.0.4 变量：字符串及字符串切片</h2>
+      <h2>SHELL 基础: 变量声明&取消</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>09 Dec 2022</p>
+        <p>08 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h2>0. shell中的字符串</h2>
-<pre class="chroma"><span class="c1"># 创建一个字符串变量</span>
-<span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;a string&#34;</span>
-</pre>
-<h2>1. 实际应用</h2>
+<h2>1. 定义变量</h2>
 
-<h3>1.1 获取字符串中的最后一位</h3>
-<pre class="chroma"><span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;abcd/&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">str01</span><span class="p">:</span><span class="p"> -1</span><span class="si">}</span><span class="s2">&#34;</span> 
-<span class="c1"># 注意&#34;:&#34;后面的&#34; &#34;，是为了在length为负数时避免和&#34;:-&#34;混淆</span>
-</pre>
-<blockquote>
-<p>参照<a href="https://linux.die.net/man/1/bash">bash man docs</a>的<code>Parameter Expansion</code>中的<code>${parameter:offset:length}</code></p>
-</blockquote>
+<p>变量命名方式：
+&ldquo;=&ldquo;两边不能有空格</p>
 
+<ul>
+<li>变量名称只能是数字和字母</li>
+<li>变量名称不能以数字起头</li>
+<li>变量值如果有空格，需加单引号或双引号</li>
+</ul>
+
+<p>用法举例：</p>
+<pre class="chroma"><span class="c1"># 双引号和单引号有区别，一个是强引用，一个是弱引用，双引变量，单引字符</span>
+
+<span class="c1"># 单引号认为，$a是字符，只关心字符</span>
+<span class="nv">b</span><span class="o">=</span><span class="s1">&#39;$a is singapore&#39;</span> <span class="p">;</span> <span class="nb">echo</span> <span class="nv">$b</span>
+<span class="nv">$a</span> is singapore
+<span class="c1"># 双引号认为，$a是变量，关心变量内容</span>
+<span class="nv">b</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$a</span><span class="s2"> is singapore</span><span class="s2">&#34;</span> <span class="p">;</span> <span class="nb">echo</span> <span class="nv">$b</span>
+SG is singapore
+
+
+<span class="c1"># 变量连接字符串</span>
+
+<span class="c1"># 系统会将ayes识别成一个变量</span>
+<span class="nv">a</span><span class="o">=</span><span class="nv">$ayes</span>
+<span class="c1"># 用｛｝处理一下</span>
+<span class="nv">a</span><span class="o">=</span><span class="si">${</span><span class="nv">a</span><span class="si">}</span>yes
+<span class="nb">echo</span> <span class="nv">$a</span>
+SGyes
+
+
+<span class="c1"># 反引号内如果有命令，返回命令执行结果，反引号执行命令</span>
+
+which yum
+/usr/bin/yum
+rpm -qf /usr/bin/yum
+yum-3.2.29-40.el6.centos.noarch
+<span class="c1"># 用反引号返回which命令的执行结果</span>
+rpm -qf <span class="sb">`</span>which yum<span class="sb">`</span>
+yum-3.2.29-40.el6.centos.noarch
+</pre>
+<h2>2. 取消变量</h2>
+
+<p><code>unset 变量名称（取消掉变量值）</code></p>
+<pre class="chroma"><span class="c1"># unset了quanju，重新查看，quanju已经不存在了</span>
+<span class="nb">unset</span> quanju
+<span class="nb">echo</span> <span class="nv">$quanju</span>
+</pre>
     </div>
 
   </div>
