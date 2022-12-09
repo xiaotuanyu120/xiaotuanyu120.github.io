@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
+            </li>
+            <li>
+              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
+            </li>
+            <li>
               <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
-            </li>
-            <li>
-              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
             </li>
           </ul>
 
@@ -330,12 +330,14 @@ RewriteRule .* - <span class="o">[</span>F<span class="o">]</span>
 </pre>
 <h3>扩展2 - 用rewrite匹配特定useragent，并禁止访问</h3>
 
-<p><strong>user_agent是什么？</strong><br />
-user_agent就是访问网络的工具（浏览器），因为user是通过浏览器和server沟通的，所以浏览器就是user的agent<br />
-目前，一方面浏览器基本都通过给server发送一条user agent字符串，来告诉server自己的访问信息；另外一方面，搜索引擎（google、baidu）在放出网络爬虫来收集网站link时，网络爬虫也会发送user agent字符串来表明自己的身份。</p>
+<p><strong>user_agent是什么？</strong></p>
 
-<p><strong>user_agent string</strong><br />
-此图来自网络<a href="http://whatsmyuseragent.com/WhatsAUserAgent">http://whatsmyuseragent.com/WhatsAUserAgent</a><br />
+<p>user_agent就是访问网络的工具（浏览器），因为user是通过浏览器和server沟通的，所以浏览器就是user的agent</p>
+
+<p>目前，一方面浏览器基本都通过给server发送一条user agent字符串，来告诉server自己的访问信息；另外一方面，搜索引擎（google、baidu）在放出网络爬虫来收集网站link时，网络爬虫也会发送user agent字符串来表明自己的身份。</p>
+
+<p><strong>user_agent string</strong>
+此图来自网络<a href="http://whatsmyuseragent.com/WhatsAUserAgent">http://whatsmyuseragent.com/WhatsAUserAgent</a>
 <img src="/static/images/docs/linux/basiclinux-basic-22.3-04.png" alt="" /></p>
 <pre class="chroma"><span class="c1"># rewrite写法</span>
 &lt;IfModule mod_rewrite.c&gt;
@@ -383,6 +385,39 @@ Server: Apache/2.4.20 <span class="o">(</span>Unix<span class="o">)</span> PHP/5
 Location: http://bbs.example.com/f
 Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>iso-8859-1
 </pre>
+<h3>扩展6 - 配置禁止的HTTP METHOD，并配置自定义的返回码</h3>
+
+<p>某些场景下，为了安全，只会开放特定的HTTP请求方法，其余的全部禁用掉。</p>
+
+<p>下面的配置示例，禁用了除GET和POST之外的所有请求方法，并返回405状态码</p>
+<pre class="chroma">RewriteEngine On
+RewriteCond %<span class="o">{</span>REQUEST_METHOD<span class="o">}</span> !^<span class="o">(</span>GET<span class="p">|</span>POST<span class="o">)</span>
+RewriteRule .* - <span class="o">[</span><span class="nv">R</span><span class="o">=</span>405<span class="o">]</span>
+</pre>
+<h3>扩展7 - rewrite但不改变浏览器中的url</h3>
+
+<p>在一些安全类的认证中，比如PCI-DSS，对网站加载资源的来源要求是十分严格的。比如说，a.com的站点加载了b.com的资源，那么就必须要求a.com所属的组织，对b.com加载的资源要有可控性。这种可控性可以使用两种方式实现，1是把资源文件拿到a.com的服务器上，使用自己的域名来提供响应，那么就做到了完全可控；2是在a.com上对b.com的资源进行加载时，对其版本进行校验，确保这个资源的版本是经过审核无篡改的，防止b.com通过更新夹杂一些私货。</p>
+
+<p>上面的安全措施是完全可以理解的，但一般如果考虑到a.com和b.com背后的组织之间的协调性，#2这个方案是更加合适的。但是实现#2的时候需要等开发排期，那么临时是否可以在基于对b.com提供的资源的基本信任的前提下，临时让访问a.com的时候，假装看不到b.com的资源了呢？</p>
+
+<p>其实是有方案的，就是相当于之前客户访问a.com的时候，返回的资源中告诉用户，你还需要去b.com拿一个资源。改造为，客户访问a.com的时候，a.com所属的服务器充当一个代理服务器，帮用户请求b.com来把资源请求到，然后转发给客户，以造成一种客户只访问了a.com资源的假象。</p>
+
+<p>落实到具体的实现上来说，就是需要配置apache，来通过rewrite实现浏览器中url不变的一个效果。这里就可以通过rewrite中的P这个flag来实现了，P的含义是，rewrite时，将服务器转进proxy模式，来代理客户拿到资源，再通过本机返回给用户。这就是为什么需要同时引入rewrite和proxy_http两个包的原因。</p>
+<pre class="chroma"><span class="c1"># 主配置中，加载rewrite和proxy相关的模块</span>
+LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+LoadModule proxy_http2_module modules/mod_proxy_http2.so
+
+<span class="c1"># 虚拟主机配置中，使用&#34;P&#34;Flag来将rewrite通过proxy的方式请求回来</span>
+  RewriteEngine On
+  RewriteCond %<span class="o">{</span>REQUEST_URI<span class="o">}</span> ^/path/to/some.js$
+  RewriteRule <span class="s2">&#34;</span><span class="s2">^(.*)</span>$<span class="s2">&#34;</span> <span class="s2">&#34;http://www.bbb.com/path/to/some.js&#34;</span> <span class="o">[</span>P<span class="o">]</span>
+</pre>
+<blockquote>
+<p>详情可以参照<a href="https://httpd.apache.org/docs/2.4/rewrite/flags.html#flag_p">apache httpd rewrite flag P docs</a></p>
+</blockquote>
+
     </div>
 
   </div>
