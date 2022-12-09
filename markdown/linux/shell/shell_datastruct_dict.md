@@ -1,5 +1,5 @@
 ---
-title: SHELL: 1.0.3 变量：字典
+title: 数据结构：字典
 date: 2019-12-31 17:16:00
 categories: linux/shell
 tags: [shell,variable]

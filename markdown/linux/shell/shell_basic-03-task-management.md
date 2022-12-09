@@ -1,7 +1,7 @@
 ---
-title: 11.3.0: shell基础-任务管理(kill/ps)
+title: SHELL 基础: 任务管理(kill/ps)
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

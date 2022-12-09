@@ -1,7 +1,7 @@
 ---
-title: 11.9.0: shell基础-与或逻辑操作符
+title: SHELL 基础: 与或逻辑操作符
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

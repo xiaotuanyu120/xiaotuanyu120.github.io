@@ -37,9 +37,6 @@
               <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
             </li>
             <li>
-              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
-            </li>
-            <li>
               <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
             </li>
             <li>
@@ -47,6 +44,9 @@
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
             </li>
           </ul>
 
@@ -144,36 +144,6 @@
 <h3>1.3 其他RST需要注意的地方</h3>
 
 <p><a href="https://www.ietf.org/rfc/rfc3360.html">不恰当的RST是有害的</a>中还详细介绍了RST的历史，特别值得去看，会加深对RST的理解。</p>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>09 Dec 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. shell中的字符串</h2>
-<pre class="chroma"><span class="c1"># 创建一个字符串变量</span>
-<span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;a string&#34;</span>
-</pre>
-<h2>1. 实际应用</h2>
-
-<h3>1.1 获取字符串中的最后一位</h3>
-<pre class="chroma"><span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;abcd/&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">str01</span><span class="p">:</span><span class="p"> -1</span><span class="si">}</span><span class="s2">&#34;</span> 
-<span class="c1"># 注意&#34;:&#34;后面的&#34; &#34;，是为了在length为负数时避免和&#34;:-&#34;混淆</span>
-</pre>
-<blockquote>
-<p>参照<a href="https://linux.die.net/man/1/bash">bash man docs</a>的<code>Parameter Expansion</code>中的<code>${parameter:offset:length}</code></p>
-</blockquote>
 
         </div>
 
@@ -1016,6 +986,243 @@ should be extracted automatically
 <li>debug服务器是否开启了ssl的特定版本；</li>
 <li>debug特定的ssl加密算法；</li>
 </ul>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>18 Aug 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h1>一、概述</h1>
+
+<h2>1. 分层</h2>
+
+<p>网络协议通常针对不同层次分别开发，每一层分别负责不同的通信功能。TCP/IP是一个协议族，是不同层次的协议的组合。TCP/IP通常被认为是一个四层协议系统。</p>
+
+<ul>
+<li>应用层，telnet、ftp、email</li>
+<li>运输层，tcp、udp</li>
+<li>网络层，ip、icmp、igmp</li>
+<li>链路层，设备驱动程序及接口卡</li>
+</ul>
+
+<blockquote>
+<p>通常应用层是运行在linux的用户空间，而其他三层是运行在linux的内核空间。</p>
+
+<p>网桥和路由器</p>
+
+<ul>
+<li>网桥是在链路层上对网络进行互联，网桥使得多个局域网组合在一起，对于上层来说就好像是一个局域网。</li>
+<li>路由器是在网络层上对网络进行互联，TCP/IP倾向于使用路由器而不是网桥来连接网络。</li>
+</ul>
+</blockquote>
+
+<h2>2. 互联网地址</h2>
+
+<p>如下图，<code>net-id</code>代表网络号；<code>host-id</code>代表主机号</p>
+<pre class="chroma">CLASS A
+IP RANGE: 1.0.0.0 - 126.255.255.255
+MASK: 255.0.0.0
+    7 bits        24 bits
+┌─┬───────┬────────────────────────┐
+│0│net-id │        host-id         │
+└─┴───────┴────────────────────────┘
+
+CLASS B
+IP RANGE: 128.0.0.0 - 191.255.255.255
+MASK: 255.255.0.0
+        14 bits        16 bits
+┌──┬──────────────┬────────────────┐
+│10│   net-id     │   host-id      │
+└──┴──────────────┴────────────────┘
+
+CLASS C
+IP RANGE: 192.0.1.0 - 223.255.255.255
+MASK: 255.255.255.0
+         21 bits            8 bits
+┌───┬─────────────────────┬────────┐
+│110│       net-id        │host-id │
+└───┴─────────────────────┴────────┘
+
+CLASS D
+IP RANGE: 224.0.0.0 - 239.255.255.255
+               28 bits
+┌────┬─────────────────────────────┐
+│1110│        multi-broadcast      │
+└────┴─────────────────────────────┘
+
+CLASS E: 240.0.0.0 - 255.255.255.254
+               27 bits
+┌─────┬────────────────────────────┐
+│11110│        reserved            │
+└─────┴────────────────────────────┘
+</pre>
+<h2>3. 用途</h2>
+
+<p>TCP/IP中，网络层和运输层的区别最为关键：网络层（IP）提供点对点的服务，而运输层（TCP和UDP）提供端对端的服务。</p>
+
+<p>互联网是网络的网络，通过IP把网络连接起来，端口号用来标识互相通信的应用程序。</p>
+
+<h1>二、链路层</h1>
+
+<h2>1. 回环网络</h2>
+
+<p>对于回环网络的实现，并不会省略传输层和网络层的传输过程，大多数的产品还是照样完成传输层和网络层的所有过程，只是当IP数据报离开网络层时把它返回给自己。</p>
+
+<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip.png" alt="" /></p>
+
+<p>上图的关键点：</p>
+
+<ul>
+<li>传给回环网络（127.0.0.1）的任何数据都作为ip输入</li>
+<li>传给广播地址或多播地址的数据报复制一份传给环回接口，然后送到以太网上。这是因为广播传送和多播传送的定义（第12章）包含主机本身。</li>
+<li>任何传给该主机I P地址的数据均送到环回接口。</li>
+</ul>
+
+<p>看上去回环网络的实现中又走了一遍传输层和网络层效率不高。但是这样是简化了设计，相当于把回环网络当成了网络层下面的一个链路层。网络层把一份数据报传送给环回接口，就像传给其他链路层一样，只不过环回接口把它返回到IP的输入队列中。</p>
+
+<blockquote>
+<p>虽然回环网络会走一遍传输层和网络层的过程，但是回环网络的包不会出现在网络中。</p>
+</blockquote>
+
+<h2>2. MTU 最大传输单元</h2>
+
+<p>如果IP层有一个数据报要传，而且数据的长度比链路层的MTU还大，那么IP层就需要进行分片，把数据报分成若干片，这样每一片都小于MTU。</p>
+
+<p><strong>查看linux系统中网卡设备的MTU</strong></p>
+<pre class="chroma">netstat -in
+Kernel Interface table
+Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0             <span class="m">1500</span>     <span class="m">2975</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>          <span class="m">1329</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> BMRU
+lo              <span class="m">65536</span>        <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>             <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> LRU
+</pre>
+<h3>2.1 路径MTU</h3>
+
+<p>在同一个网络中的两台主机进行通信时，该网络的MTU是非常重要的。但是如果是不同网络中的两台主机进行通信时，那么重要的就不在是两台主机各自所在网络的MTU，而是两台主机中间路径上经过的最小MTU。这被称为路径MTU。</p>
+
+<p>但是路径MTU不一定是一个常数，因为这取决于网络路由的路径。而路由的选择不一定是对称的，A到B和B到A不一定是一致的，因此路径MTU在这两个方向上也不一定是一致的。</p>
+
+<p>这里就牵扯到一个重要的问题，路径MTU发现机制，这个机制有点复杂，后面会讨论。</p>
+
+<h1>三、IP: 网际协议</h1>
+
+<h2>1. 引言</h2>
+
+<p>IP是TCP/IP协议族中最核心的协议。所有的TCP、UDP、ICMP和IGMP都以IP数据报格式传输。</p>
+
+<ul>
+<li><strong>不可靠</strong>，意思是不保证IP数据报能成功的到达目的地，如果发生某种错误，例如一个路由器的缓冲区用完了，IP有一个简单的处理算法，丢弃该数据报，然后发送ICMP给信源端。任何<strong>可靠性</strong>的需求必须由上层协议来完成，比如说TCP。</li>
+<li><strong>无连接</strong>，意思是IP不维护任何关于后续数据报的状态信息。每个数据报的传输都是独立的。这代表如果两个连续发送的数据报，有可能因为路由选择不同，导致后发送的数据报先到达。</li>
+</ul>
+
+<h2>2. IP首部</h2>
+
+<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip-01.png" alt="" /></p>
+
+<p>普通的IP首部有20个字节长，除非含有选项字段。</p>
+
+<p>最高位在左边，记为0bit，最低位在右边，记为31bit。4个字节，32个bit的传输顺序为，首先为0-7bit，其次为8-15bit，然后是16-23bit，最后是24-31bit。这种传输方式被称为big endian字节序。由于TCP/IP首部中所有的二进制整数在网络中传输时都要求以这种次序，因此它又称之为网络字节序。以其他形式储存二进制整数的机器，比如little endian格式，则必须在传输数据之前把首部转换成网络字节序。</p>
+
+<p>目前的协议版本号是4，因此IP也被称为IPv4。</p>
+
+<p>首部长度指的是首部占32bit字的数目，包括任何选项。由于它是一个4字节（图中的宽度）字段，因此首部最长为60个字节。普通IP数据报（没有任何选项）字段的值是5。</p>
+
+<p>服务类型（TOS）字段包括</p>
+
+<ul>
+<li>一个3bit的优先权子字段（现在已被忽略）</li>
+<li>4bit的TOS子字段
+
+<ul>
+<li>最小时延</li>
+<li>最大吞吐量</li>
+<li>最高可靠性</li>
+<li>最小费用</li>
+</ul></li>
+<li>1bit的未用位，目前必须设定为0</li>
+</ul>
+
+<blockquote>
+<p>4bit的TOS子字段，如果全部设定为0，那就意味着是一般服务。</p>
+
+<p>RFC <sup>1340</sup>&frasl;<sub>1349</sub> 详细的描述了如何设定TOS和描述了TOS特性。</p>
+</blockquote>
+
+<p>下图列出了对不同应用建议的TOS值。最后一列中给出来的是十六进制值。
+<img src="/static/images/docs/linux/advance/network-theory-tcp-ip-02.png" alt="" /></p>
+
+<p>总长度字段是指整个IP数据报的长度，以字节为单位。利用首部长度字段和总长度字段，就可以知道IP数据报中的数据内容的起始位置和长度。最长是65535字节。</p>
+
+<p>总长度字段是IP首部中必要的内容。因为有一些数据链路（如以太网）需要填充一些数据以达到小长度。以太网的最小帧是46字节。</p>
+
+<p>标识字段唯一的标识主机发送的每一份数据报。通常每发送一份报文，它的数值就会加1。</p>
+
+<p>TTL（time to live）生存时间字段设置了数据报可以经过的最多路由器数。它指定了数据报的生存时间。其初始值由源主机设定（32或64），一旦经过一个处理它的路由器，它的值就减1。当该字段为0时，该报文会被抛弃，并发送ICMP报文通知源主机。</p>
+
+<p>根据协议字段可以判断是哪个协议向IP传送数据。</p>
+
+<p>首部校验和字段是根据IP首部计算的校验和码。</p>
+
+<p>每一份IP数据报文都包含源地址和目的地址。</p>
+
+<p>最后一个字段是任选项，是数据报中可变长的可选信息。这些选项很少被使用，并非所有的主机和路由器支持这些字段。选项字段一直都是以32bit为边界，不足的地方以0补齐。这样就保证了所有的IP首部都是32bit的整数倍。</p>
+
+<h2>3. IP路由选择</h2>
+
+<p>IP的路由非常简单，如果两个主机直接点对点或者在同一个本地网络中（以太网或令牌网），那么IP数据报就直接发送到目的主机上。否则，主机把数据发给默认的路由器上，由路由器来转发该数据报。</p>
+
+<p>在一般的体制中，IP可以从TCP、UDP、ICMP和IGMP接收数据报（本地生成）并进行发送，或者从一个网络接口接收数据报（待转发的数据报）并进行发送。IP层在内存中存有一个路由表。当收到一个数据报并进行发送时，它都要对该表搜索一次。当数据报来自某个网络接口时，IP首先检查目的IP地址是否为本机的IP地址之一或者IP广播地址。如果确实是这样的，数据报就会被送到由IP首部协议字段所指定的协议模块进行处理。如果数据报的目的地址不是这些地址，那么如果IP层被设置为路由器的功能，那么就对数据报进行转发（转发过程如下）；如果IP层没有被设置为路由器的功能，数据报将会被丢弃。</p>
+
+<p>路由表中的每一项都包含以下信息：</p>
+
+<ul>
+<li>目的IP地址。</li>
+<li>下一跳路由器的IP地址，或者有直接连接的网络IP地址。下一跳路由器是指一个直接相连网络上的路由器，通过它可以转发数据报。</li>
+<li>标志。其中一个标志指明目的IP地址是一个网络地址还是一个主机地址，另外一个标志指明下一跳路由器是否为真正的下一站路由器，还是一个直接相连的接口。</li>
+<li>为数据报的传输指定一个网络接口</li>
+</ul>
+
+<p>IP路由选择是逐跳地进行的。IP并不知道到达任何目的的完整路径，所有IP路由选择只为数据报传输指定下一跳路由器的IP地址。它假定下一跳路由器比发送数据报的主机更接近目的地，而且下一跳路由器与该主机是直接相连的。</p>
+
+<p>IP路由主要完成以下功能：</p>
+
+<ol>
+<li>搜索路由表，寻找能与目的IP地址完全匹配的表目（网络号和主机号都要匹配）。如果找到，则把数据报发送给该表目指定的下一跳路由器或直接相连的网络接口（取决于标志字段的值）。</li>
+<li>搜索路由表，寻找能与目的IP地址完全匹配的表目。如果找到，则把数据报发送给该表目指定的下一跳路由器或直接相连的网络接口（取决于标志字段的值）。目的网络上的所有主机都可以通过这个表目来处置。例如，一个以太网上的所有主机都是通过这种表目进行寻径的。这种搜索网络的匹配方法必须考虑到可能的子网掩码。</li>
+<li>搜索路由表，寻找标为“默认（default）”的表目。如果找到，则把报文发送给该表目指定的下一站路由器。</li>
+</ol>
+
+<p>如果上述的这些步骤都没有成功，那么该数据报就不能发送。如果不能传送的数据报来自于本机，那么一般会向生成数据报的应用程序返回一个“主机不可达”或“网络不可达”的错误。</p>
+
+<p>完整主机地址匹配在网络号匹配之前执行。只有当它们都失败后，才会选择默认路由。</p>
+
+<blockquote>
+<p>几个额外的知识点：</p>
+
+<ul>
+<li>数据报中的目的IP地址始终不会发生任何变化，所有的路由选择决策都是基于这个目的IP地址。</li>
+<li>每个链路层可能具有不同的数据帧首部，而且链路层的目的地址（如果有的话）始终指向的是下一跳的链路层地址。以太网的链路层目的地址一般通过ARP获得，而SLIP这种点对点的链路就不需要链路层首部（因为它是点对点的）。</li>
+</ul>
+</blockquote>
+
+<h2>4. 子网寻址</h2>
+
+<p>现在所有的主机都要求支持子网编址（RFC950），不是把IP地址看成单纯的一个网络号和主机号组成，而是把主机号再分成一个子网号和主机号。</p>
+
+<p>这样做的原因是因为A类和B类地址为主机号分配了太多的空间，可分别容纳的主机数为2^24-2和2^16-2。事实上，在一个网络中人们并不安排这么多的主机。由于全0和全1的主机号都是无效的，所以我们总是把总数减去2.</p>
+
+<p>在InterNIC获得某类IP网络号之后，就可以进行子网划分。例如获得一个B类网络号140.252，在其下面划分成多个子网，可以将B类网络号剩下的16位地址中，前8位作为子网号，后8位作为主机号。用一个B类网络号然后分子网的方式，和直接采取同样数量的C类地址的区别在于，同一个B类地址，外部网络只需要知道一个路由表目即可，而使用C类却需要多个路由表目。因此，子网划分缩减了路由表的规模。</p>
+
+<h2>5. 子网掩码</h2>
 
         </div>
 

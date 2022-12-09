@@ -1,7 +1,7 @@
 ---
-title: 11.7.0: shell基础-环境变量
+title: SHELL 基础: BASH环境变量文件
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

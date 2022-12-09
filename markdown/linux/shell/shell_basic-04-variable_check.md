@@ -1,7 +1,7 @@
 ---
-title: 11.4.0: shell基础-变量查看(echo)
+title: SHELL 基础: 变量查看(echo)
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

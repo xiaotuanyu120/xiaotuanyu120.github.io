@@ -1,7 +1,7 @@
 ---
-title: 11.6.0: shell基础-全局变量
+title: SHELL 基础: 全局变量
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

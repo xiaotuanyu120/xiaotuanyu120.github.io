@@ -1,7 +1,7 @@
 ---
-title: 11.8.0: shell基础-管道相关命令(cut/sort/uniq/tee/split/xargs)
+title: SHELL 基础: 管道相关命令(cut/sort/uniq/tee/split/xargs)
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

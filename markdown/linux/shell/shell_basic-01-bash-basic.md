@@ -1,7 +1,7 @@
 ---
-title: 11.1.0: shell基础-bash basic
+title: SHELL 基础: BASH基础环境命令
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 

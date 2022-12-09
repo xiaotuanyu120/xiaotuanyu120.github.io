@@ -1,7 +1,7 @@
 ---
-title: 11.2.0: shell基础-通配符&重定向
+title: SHELL 基础: 通配符&重定向
 date: 2014-12-08 20:01:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 
@@ -34,7 +34,7 @@ ls 1? 1*
 1  12  12  124.log  13.log
 ls 1? #1*
 12
-```  
+```
 
 ### 2. 重定向功能
 作用：把标准输出、标准输入、错误输出重定向至文件或设备  

@@ -1,5 +1,5 @@
 ---
-title: SHELL: 1.0.2 变量：计算
+title: 数字计算
 date: 2019-10-10 13:56:00
 categories: linux/shell
 tags: [shell,variable]

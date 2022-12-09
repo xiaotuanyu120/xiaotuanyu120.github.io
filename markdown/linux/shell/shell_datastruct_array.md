@@ -1,7 +1,7 @@
 ---
-title: 11.10.0: shell基础-数组
+title: 数据结构: 数组
 date: 2016-06-06 09:58:00
-categories: linux/basic
+categories: linux/shell
 tags: [linux,shell]
 ---
 
