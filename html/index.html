@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
+            </li>
+            <li>
+              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
+            </li>
+            <li>
               <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
-            </li>
-            <li>
-              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
             </li>
           </ul>
 
@@ -107,6 +107,331 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>09 Dec 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<blockquote>
+<p>主要参考资料：<a href="https://www.ietf.org/rfc/rfc3360.html">不恰当的RST是有害的</a></p>
+</blockquote>
+
+<h2>0. 前提</h2>
+
+<p>探究TCP的RST状态之前，确保你对TCP的三次握手和四次挥手有一个基本的了解。<a href="/linux/advance/network_tcp-handshake-and-close.html">linux的三次握手和四次挥手浅谈</a></p>
+
+<h2>1. TCP状态RST</h2>
+
+<h3>1.1 RST是什么？以及它的用途是什么？</h3>
+
+<p>RST(reset)是TCP头部中的一个标记位，用于重置一个tcp连接。恰当的做法是，接收端收到了一个对不存在的tcp连接的请求，tcp返回RST给请求方，告诉对方取消这次访问。</p>
+
+<p>所以基本上的理解是，如果收到或者发送了一个RST，代表的基本上是，一个tcp连接已经关闭了，但是双方有一端因网络问题未同步到tcp连接已经关闭的状态，或者这个tcp连接关闭前的一个tcp包在tcp连接后延迟收到，为了快速同步状态，有一端主动回应RST告诉对方，之前的连接已经关闭了，如果还想通话，那么请开启一个新的请求。</p>
+
+<h3>1.2 RST的实际应用情况</h3>
+
+<p>根据<a href="https://www.ietf.org/rfc/rfc3360.html">不恰当的RST是有害的</a>中的说法，若抓包时，发现SYN的返回是一个RST，有时候可能是因为防火墙或者负载均衡使用了不恰当的RST的实现。大白话的意思就是，本来RST只是用于收到一个对不存在的tcp连接的请求的一个恰当回应用途，但是有些实现曲解了它的用途，将它用于对SYN握手的拒绝用途使用。所以实际RST的原因，需要抓包来观察。</p>
+
+<h3>1.3 其他RST需要注意的地方</h3>
+
+<p><a href="https://www.ietf.org/rfc/rfc3360.html">不恰当的RST是有害的</a>中还详细介绍了RST的历史，特别值得去看，会加深对RST的理解。</p>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>09 Dec 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>0. shell中的字符串</h2>
+<pre class="chroma"><span class="c1"># 创建一个字符串变量</span>
+<span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;a string&#34;</span>
+</pre>
+<h2>1. 实际应用</h2>
+
+<h3>1.1 获取字符串中的最后一位</h3>
+<pre class="chroma"><span class="nv">str01</span><span class="o">=</span><span class="s2">&#34;abcd/&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">str01</span><span class="p">:</span><span class="p"> -1</span><span class="si">}</span><span class="s2">&#34;</span> 
+<span class="c1"># 注意&#34;:&#34;后面的&#34; &#34;，是为了在length为负数时避免和&#34;:-&#34;混淆</span>
+</pre>
+<blockquote>
+<p>参照<a href="https://linux.die.net/man/1/bash">bash man docs</a>的<code>Parameter Expansion</code>中的<code>${parameter:offset:length}</code></p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>27 Oct 2022</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>1. 背景</h2>
+
+<p>一个 Go 项目中有多个包，一个包有多个文件，同时每个包中又有多个常量、变量、各种函数和方法，那 Go 代码是使用什么顺序加载它们，又是从哪里开始执行的呢？</p>
+
+<h2>2. <code>main.main</code> 函数：Go 应用的入口函数</h2>
+
+<p>Go 语言中有一个特殊的函数 <code>main.main</code>，它是所有 Go 可执行应用的用户层执行逻辑的入口函数。</p>
+
+<p><code>main.main</code> 函数没有参数，也没有返回值</p>
+<pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p>Go 语言要求，可执行程序的main包，必须要包含main函数，否则 Go 编译器会报错</p>
+<pre class="chroma">go build main.go 
+<span class="c1"># command-line-arguments</span>
+runtime.main_main·f: <span class="k">function</span> main is undeclared in the main package
+</pre>
+<p>另外值得注意的是，其他的包也可以拥有自己的main函数，但是不同包中的main函数只能在自己的包内部使用。</p>
+<pre class="chroma"><span class="c1">// main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;github.com/fakeuser/mod/pkg1&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">)</span>
+	<span class="nx">pkg1</span><span class="p">.</span><span class="nf">Main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span>
+</pre><pre class="chroma"><span class="c1">// pkg1/pkg1.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">pkg1</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">Main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;main from pkg1&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p><code>pkg1</code> 包中的 <code>main</code> 函数，只能在 <code>pkg1</code> 包内部使用，这个例子就是在 <code>pkg1.Main</code> 这个函数中执行了它</p>
+<pre class="chroma"><span class="c1"># What is the output?</span>
+go run main.go
+Hello world
+main from pkg1
+</pre>
+<h2>3.  <code>init()</code> 函数：包初始化函数</h2>
+
+<p><code>main.main</code> 虽然是用户层执行逻辑的入口函数，但是它并不是用户层被执行的第一个函数，<code>init</code> 函数才是。如果 <code>main</code> 包依赖的包中有 <code>init</code> 函数，或者 <code>main</code> 包自身有包含 <code>init</code> 函数，那么 Go 在这个程序初始化的时候，会自动调用它的 <code>init</code> 函数，因此，这些 <code>init</code> 函数的执行会在 <code>main.main</code> 函数之前。</p>
+
+<p><code>init</code> 函数也是一个无参数无返回值的函数</p>
+<pre class="chroma"><span class="kd">func</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;print from init&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p>用户无法显式的调用 <code>init</code> 函数</p>
+<pre class="chroma"><span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nf">init</span><span class="p">(</span><span class="p">)</span>
+<span class="p">}</span>
+</pre>
+<p>执行后会发生编译错误</p>
+<pre class="chroma">go run main.go  
+<span class="c1"># command-line-arguments</span>
+./main.go:14:2: undefined: init
+</pre>
+<p>实际上，每一个 Go 包，或者每一个 Go 包中的源文件，都可以声明多个 <code>init</code> 函数。Go 编译器会特别对待 <code>init</code> 函数，因此不会发生函数名称重复的报错。</p>
+
+<p>在初始化时，Go 会按照一定的次序，顺序并逐一的执行每个 <code>init</code> 函数。一般情况下，先传递给 Go 编译器的源文件中的 <code>init</code> 函数会被先执行；同一个源文件中的不同 <code>init</code> 函数，会根据声明的先后顺序依次执行。</p>
+
+<h2>4. Go 包的初始化次序</h2>
+
+<p>从程序逻辑结构角度来看，Go 包是程序逻辑封装的基本单元，每个包都可以理解为一个“自治”的、封装良好的、对外暴露有限接口的基本单元。一个 Go 程序就是一组包组成的，程序的初始化就是这些包的初始化。每个 Go 包还会有自己的依赖包、常量、变量、init函数等。</p>
+
+<p>Go 包的初始化次序流程图
+<img src="/static/images/docs/go/go_1.1.4_01.jpg" alt="" /></p>
+
+<p>初始化次序注意点：</p>
+
+<ul>
+<li>每一个 Go 包的初始化内容都遵循 “常量 -&gt; 变量 -&gt; init 函数”的顺序</li>
+<li>Go 包的初始化会采用“深度优先”原则</li>
+<li>包内多个 <code>init()</code> 函数按照声明顺序初始化</li>
+</ul>
+
+<h3>4.1 Go 包初始化次序示例</h3>
+
+<p>包之间的依赖关系如下</p>
+<pre class="chroma"><span class="c1"># 依赖关系</span>
+main &gt; pkg1 &gt; pkg3
+     &gt; pkg2 &gt; pkg3
+</pre>
+<p><code>main.go</code></p>
+<pre class="chroma"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="nx">_</span> <span class="s">&#34;github.com/fakeuser/mod/pkg1&#34;</span>
+	<span class="nx">_</span> <span class="s">&#34;github.com/fakeuser/mod/pkg2&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">c</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">_</span>        <span class="p">=</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;main init()&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;main var init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;main const init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+</pre>
+<p><code>pkg1/pkg1.go</code></p>
+<pre class="chroma"><span class="kn">package</span> <span class="nx">pkg1</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="nx">_</span> <span class="s">&#34;github.com/fakeuser/mod/pkg3&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">c</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">_</span>        <span class="p">=</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg1 init()&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg1 var init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg1 const init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+</pre>
+<p><code>pkg2/pkg2.go</code></p>
+<pre class="chroma"><span class="kn">package</span> <span class="nx">pkg2</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="nx">_</span> <span class="s">&#34;github.com/fakeuser/mod/pkg3&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">c</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">_</span>        <span class="p">=</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg2 init()&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg2 var init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg2 const init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+</pre>
+<p><code>pkg3/pkg3.go</code></p>
+<pre class="chroma"><span class="kn">package</span> <span class="nx">pkg3</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">const</span> <span class="nx">c</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="kd">var</span> <span class="p">(</span>
+	<span class="nx">_</span>        <span class="p">=</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span>
+	<span class="nx">s</span> <span class="kt">string</span> <span class="p">=</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg3 init()&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">varInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg3 var init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">constInit</span><span class="p">(</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;pkg3 const init&#34;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="s">&#34;&#34;</span>
+<span class="p">}</span>
+</pre>
+<p>执行查看各个包的初始化顺序</p>
+<pre class="chroma">go run main.go
+pkg3 const init
+pkg3 var init
+pkg3 init<span class="o">(</span><span class="o">)</span>
+pkg1 const init
+pkg1 var init
+pkg1 init<span class="o">(</span><span class="o">)</span>
+pkg2 const init
+pkg2 var init
+pkg2 init<span class="o">(</span><span class="o">)</span>
+main const init
+main var init
+main init<span class="o">(</span><span class="o">)</span>
+Hello world
+</pre>
+<h2>5. init() 函数的用途</h2>
+
+<h3>5.1 重置包级变量值</h3>
+
+<h3>5.2 实现对包级变量的复杂初始化</h3>
+
+<h3>5.3 在 init() 函数中实现注册模式</h3>
+
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -690,612 +1015,6 @@ should be extracted automatically
 <ul>
 <li>debug服务器是否开启了ssl的特定版本；</li>
 <li>debug特定的ssl加密算法；</li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/network_theory-TCP-IP-note.html">网络: 理论 - TCP/IP详解读书笔记</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>18 Aug 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h1>一、概述</h1>
-
-<h2>1. 分层</h2>
-
-<p>网络协议通常针对不同层次分别开发，每一层分别负责不同的通信功能。TCP/IP是一个协议族，是不同层次的协议的组合。TCP/IP通常被认为是一个四层协议系统。</p>
-
-<ul>
-<li>应用层，telnet、ftp、email</li>
-<li>运输层，tcp、udp</li>
-<li>网络层，ip、icmp、igmp</li>
-<li>链路层，设备驱动程序及接口卡</li>
-</ul>
-
-<blockquote>
-<p>通常应用层是运行在linux的用户空间，而其他三层是运行在linux的内核空间。</p>
-
-<p>网桥和路由器</p>
-
-<ul>
-<li>网桥是在链路层上对网络进行互联，网桥使得多个局域网组合在一起，对于上层来说就好像是一个局域网。</li>
-<li>路由器是在网络层上对网络进行互联，TCP/IP倾向于使用路由器而不是网桥来连接网络。</li>
-</ul>
-</blockquote>
-
-<h2>2. 互联网地址</h2>
-
-<p>如下图，<code>net-id</code>代表网络号；<code>host-id</code>代表主机号</p>
-<pre class="chroma">CLASS A
-IP RANGE: 1.0.0.0 - 126.255.255.255
-MASK: 255.0.0.0
-    7 bits        24 bits
-┌─┬───────┬────────────────────────┐
-│0│net-id │        host-id         │
-└─┴───────┴────────────────────────┘
-
-CLASS B
-IP RANGE: 128.0.0.0 - 191.255.255.255
-MASK: 255.255.0.0
-        14 bits        16 bits
-┌──┬──────────────┬────────────────┐
-│10│   net-id     │   host-id      │
-└──┴──────────────┴────────────────┘
-
-CLASS C
-IP RANGE: 192.0.1.0 - 223.255.255.255
-MASK: 255.255.255.0
-         21 bits            8 bits
-┌───┬─────────────────────┬────────┐
-│110│       net-id        │host-id │
-└───┴─────────────────────┴────────┘
-
-CLASS D
-IP RANGE: 224.0.0.0 - 239.255.255.255
-               28 bits
-┌────┬─────────────────────────────┐
-│1110│        multi-broadcast      │
-└────┴─────────────────────────────┘
-
-CLASS E: 240.0.0.0 - 255.255.255.254
-               27 bits
-┌─────┬────────────────────────────┐
-│11110│        reserved            │
-└─────┴────────────────────────────┘
-</pre>
-<h2>3. 用途</h2>
-
-<p>TCP/IP中，网络层和运输层的区别最为关键：网络层（IP）提供点对点的服务，而运输层（TCP和UDP）提供端对端的服务。</p>
-
-<p>互联网是网络的网络，通过IP把网络连接起来，端口号用来标识互相通信的应用程序。</p>
-
-<h1>二、链路层</h1>
-
-<h2>1. 回环网络</h2>
-
-<p>对于回环网络的实现，并不会省略传输层和网络层的传输过程，大多数的产品还是照样完成传输层和网络层的所有过程，只是当IP数据报离开网络层时把它返回给自己。</p>
-
-<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip.png" alt="" /></p>
-
-<p>上图的关键点：</p>
-
-<ul>
-<li>传给回环网络（127.0.0.1）的任何数据都作为ip输入</li>
-<li>传给广播地址或多播地址的数据报复制一份传给环回接口，然后送到以太网上。这是因为广播传送和多播传送的定义（第12章）包含主机本身。</li>
-<li>任何传给该主机I P地址的数据均送到环回接口。</li>
-</ul>
-
-<p>看上去回环网络的实现中又走了一遍传输层和网络层效率不高。但是这样是简化了设计，相当于把回环网络当成了网络层下面的一个链路层。网络层把一份数据报传送给环回接口，就像传给其他链路层一样，只不过环回接口把它返回到IP的输入队列中。</p>
-
-<blockquote>
-<p>虽然回环网络会走一遍传输层和网络层的过程，但是回环网络的包不会出现在网络中。</p>
-</blockquote>
-
-<h2>2. MTU 最大传输单元</h2>
-
-<p>如果IP层有一个数据报要传，而且数据的长度比链路层的MTU还大，那么IP层就需要进行分片，把数据报分成若干片，这样每一片都小于MTU。</p>
-
-<p><strong>查看linux系统中网卡设备的MTU</strong></p>
-<pre class="chroma">netstat -in
-Kernel Interface table
-Iface             MTU    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
-eth0             <span class="m">1500</span>     <span class="m">2975</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>          <span class="m">1329</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> BMRU
-lo              <span class="m">65536</span>        <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> <span class="m">0</span>             <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span>      <span class="m">0</span> LRU
-</pre>
-<h3>2.1 路径MTU</h3>
-
-<p>在同一个网络中的两台主机进行通信时，该网络的MTU是非常重要的。但是如果是不同网络中的两台主机进行通信时，那么重要的就不在是两台主机各自所在网络的MTU，而是两台主机中间路径上经过的最小MTU。这被称为路径MTU。</p>
-
-<p>但是路径MTU不一定是一个常数，因为这取决于网络路由的路径。而路由的选择不一定是对称的，A到B和B到A不一定是一致的，因此路径MTU在这两个方向上也不一定是一致的。</p>
-
-<p>这里就牵扯到一个重要的问题，路径MTU发现机制，这个机制有点复杂，后面会讨论。</p>
-
-<h1>三、IP: 网际协议</h1>
-
-<h2>1. 引言</h2>
-
-<p>IP是TCP/IP协议族中最核心的协议。所有的TCP、UDP、ICMP和IGMP都以IP数据报格式传输。</p>
-
-<ul>
-<li><strong>不可靠</strong>，意思是不保证IP数据报能成功的到达目的地，如果发生某种错误，例如一个路由器的缓冲区用完了，IP有一个简单的处理算法，丢弃该数据报，然后发送ICMP给信源端。任何<strong>可靠性</strong>的需求必须由上层协议来完成，比如说TCP。</li>
-<li><strong>无连接</strong>，意思是IP不维护任何关于后续数据报的状态信息。每个数据报的传输都是独立的。这代表如果两个连续发送的数据报，有可能因为路由选择不同，导致后发送的数据报先到达。</li>
-</ul>
-
-<h2>2. IP首部</h2>
-
-<p><img src="/static/images/docs/linux/advance/network-theory-tcp-ip-01.png" alt="" /></p>
-
-<p>普通的IP首部有20个字节长，除非含有选项字段。</p>
-
-<p>最高位在左边，记为0bit，最低位在右边，记为31bit。4个字节，32个bit的传输顺序为，首先为0-7bit，其次为8-15bit，然后是16-23bit，最后是24-31bit。这种传输方式被称为big endian字节序。由于TCP/IP首部中所有的二进制整数在网络中传输时都要求以这种次序，因此它又称之为网络字节序。以其他形式储存二进制整数的机器，比如little endian格式，则必须在传输数据之前把首部转换成网络字节序。</p>
-
-<p>目前的协议版本号是4，因此IP也被称为IPv4。</p>
-
-<p>首部长度指的是首部占32bit字的数目，包括任何选项。由于它是一个4字节（图中的宽度）字段，因此首部最长为60个字节。普通IP数据报（没有任何选项）字段的值是5。</p>
-
-<p>服务类型（TOS）字段包括</p>
-
-<ul>
-<li>一个3bit的优先权子字段（现在已被忽略）</li>
-<li>4bit的TOS子字段
-
-<ul>
-<li>最小时延</li>
-<li>最大吞吐量</li>
-<li>最高可靠性</li>
-<li>最小费用</li>
-</ul></li>
-<li>1bit的未用位，目前必须设定为0</li>
-</ul>
-
-<blockquote>
-<p>4bit的TOS子字段，如果全部设定为0，那就意味着是一般服务。</p>
-
-<p>RFC <sup>1340</sup>&frasl;<sub>1349</sub> 详细的描述了如何设定TOS和描述了TOS特性。</p>
-</blockquote>
-
-<p>下图列出了对不同应用建议的TOS值。最后一列中给出来的是十六进制值。
-<img src="/static/images/docs/linux/advance/network-theory-tcp-ip-02.png" alt="" /></p>
-
-<p>总长度字段是指整个IP数据报的长度，以字节为单位。利用首部长度字段和总长度字段，就可以知道IP数据报中的数据内容的起始位置和长度。最长是65535字节。</p>
-
-<p>总长度字段是IP首部中必要的内容。因为有一些数据链路（如以太网）需要填充一些数据以达到小长度。以太网的最小帧是46字节。</p>
-
-<p>标识字段唯一的标识主机发送的每一份数据报。通常每发送一份报文，它的数值就会加1。</p>
-
-<p>TTL（time to live）生存时间字段设置了数据报可以经过的最多路由器数。它指定了数据报的生存时间。其初始值由源主机设定（32或64），一旦经过一个处理它的路由器，它的值就减1。当该字段为0时，该报文会被抛弃，并发送ICMP报文通知源主机。</p>
-
-<p>根据协议字段可以判断是哪个协议向IP传送数据。</p>
-
-<p>首部校验和字段是根据IP首部计算的校验和码。</p>
-
-<p>每一份IP数据报文都包含源地址和目的地址。</p>
-
-<p>最后一个字段是任选项，是数据报中可变长的可选信息。这些选项很少被使用，并非所有的主机和路由器支持这些字段。选项字段一直都是以32bit为边界，不足的地方以0补齐。这样就保证了所有的IP首部都是32bit的整数倍。</p>
-
-<h2>3. IP路由选择</h2>
-
-<p>IP的路由非常简单，如果两个主机直接点对点或者在同一个本地网络中（以太网或令牌网），那么IP数据报就直接发送到目的主机上。否则，主机把数据发给默认的路由器上，由路由器来转发该数据报。</p>
-
-<p>在一般的体制中，IP可以从TCP、UDP、ICMP和IGMP接收数据报（本地生成）并进行发送，或者从一个网络接口接收数据报（待转发的数据报）并进行发送。IP层在内存中存有一个路由表。当收到一个数据报并进行发送时，它都要对该表搜索一次。当数据报来自某个网络接口时，IP首先检查目的IP地址是否为本机的IP地址之一或者IP广播地址。如果确实是这样的，数据报就会被送到由IP首部协议字段所指定的协议模块进行处理。如果数据报的目的地址不是这些地址，那么如果IP层被设置为路由器的功能，那么就对数据报进行转发（转发过程如下）；如果IP层没有被设置为路由器的功能，数据报将会被丢弃。</p>
-
-<p>路由表中的每一项都包含以下信息：</p>
-
-<ul>
-<li>目的IP地址。</li>
-<li>下一跳路由器的IP地址，或者有直接连接的网络IP地址。下一跳路由器是指一个直接相连网络上的路由器，通过它可以转发数据报。</li>
-<li>标志。其中一个标志指明目的IP地址是一个网络地址还是一个主机地址，另外一个标志指明下一跳路由器是否为真正的下一站路由器，还是一个直接相连的接口。</li>
-<li>为数据报的传输指定一个网络接口</li>
-</ul>
-
-<p>IP路由选择是逐跳地进行的。IP并不知道到达任何目的的完整路径，所有IP路由选择只为数据报传输指定下一跳路由器的IP地址。它假定下一跳路由器比发送数据报的主机更接近目的地，而且下一跳路由器与该主机是直接相连的。</p>
-
-<p>IP路由主要完成以下功能：</p>
-
-<ol>
-<li>搜索路由表，寻找能与目的IP地址完全匹配的表目（网络号和主机号都要匹配）。如果找到，则把数据报发送给该表目指定的下一跳路由器或直接相连的网络接口（取决于标志字段的值）。</li>
-<li>搜索路由表，寻找能与目的IP地址完全匹配的表目。如果找到，则把数据报发送给该表目指定的下一跳路由器或直接相连的网络接口（取决于标志字段的值）。目的网络上的所有主机都可以通过这个表目来处置。例如，一个以太网上的所有主机都是通过这种表目进行寻径的。这种搜索网络的匹配方法必须考虑到可能的子网掩码。</li>
-<li>搜索路由表，寻找标为“默认（default）”的表目。如果找到，则把报文发送给该表目指定的下一站路由器。</li>
-</ol>
-
-<p>如果上述的这些步骤都没有成功，那么该数据报就不能发送。如果不能传送的数据报来自于本机，那么一般会向生成数据报的应用程序返回一个“主机不可达”或“网络不可达”的错误。</p>
-
-<p>完整主机地址匹配在网络号匹配之前执行。只有当它们都失败后，才会选择默认路由。</p>
-
-<blockquote>
-<p>几个额外的知识点：</p>
-
-<ul>
-<li>数据报中的目的IP地址始终不会发生任何变化，所有的路由选择决策都是基于这个目的IP地址。</li>
-<li>每个链路层可能具有不同的数据帧首部，而且链路层的目的地址（如果有的话）始终指向的是下一跳的链路层地址。以太网的链路层目的地址一般通过ARP获得，而SLIP这种点对点的链路就不需要链路层首部（因为它是点对点的）。</li>
-</ul>
-</blockquote>
-
-<h2>4. 子网寻址</h2>
-
-<p>现在所有的主机都要求支持子网编址（RFC950），不是把IP地址看成单纯的一个网络号和主机号组成，而是把主机号再分成一个子网号和主机号。</p>
-
-<p>这样做的原因是因为A类和B类地址为主机号分配了太多的空间，可分别容纳的主机数为2^24-2和2^16-2。事实上，在一个网络中人们并不安排这么多的主机。由于全0和全1的主机号都是无效的，所以我们总是把总数减去2.</p>
-
-<p>在InterNIC获得某类IP网络号之后，就可以进行子网划分。例如获得一个B类网络号140.252，在其下面划分成多个子网，可以将B类网络号剩下的16位地址中，前8位作为子网号，后8位作为主机号。用一个B类网络号然后分子网的方式，和直接采取同样数量的C类地址的区别在于，同一个B类地址，外部网络只需要知道一个路由表目即可，而使用C类却需要多个路由表目。因此，子网划分缩减了路由表的规模。</p>
-
-<h2>5. 子网掩码</h2>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="service/apache/1.0.1_apache_work_mode.html">apache: 理论 - 工作模式</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>10 Aug 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>0. 环境背景</h2>
-
-<p>apache httpd version 2.4.54</p>
-
-<h2>1. apache HTTP 的MPMs</h2>
-
-<p>apache HTTP被设计为一个可以在不同环境下工作在不同平台的强大且灵活的web服务器。不同环境和不同平台通常需要不同的特性，或者同一个特性需要不同的实现方式。apache HTTP通过模块化的设计特点充分的满足了不同的场景的需求。</p>
-
-<p>apache HTTP 2.0将这个模块化的设计延展到了它本身作为一个web服务器最基础的功能上。它创建了一个特殊模块，MPMs(Multi-Processing Moudles)，其负责网络端口监听、接收请求和分发请求给子进程。</p>
-
-<p>通过在基础功能上的模块化，得到了如下好处</p>
-
-<ul>
-<li>apache HTTP能更优雅，更高效的支持更多不同的操作系统平台。比如说，apache HTTP windows版本的mpm_winnt能使用原生的网络特性。</li>
-<li>apache HTTP能更灵活的被定制。比如说，需要可靠性和兼容性的，可以用prefork；需要更高伸缩性的站点，可以用worker或event。</li>
-</ul>
-
-<p>在用户视角，MPMs和其他的普通模块没有什么不同，但是不同的是，MPMs同时只能加载一个。</p>
-
-<p>在类UNIX系统平台上，只有三种MPM可选，prefork、worker和event。</p>
-
-<blockquote>
-<ul>
-<li>当服务器不支持线程，也支持线程安全时，MPMs默认是prefork</li>
-<li>当服务器支持线程，但不支持线程安全时，MPMs默认是woker</li>
-<li>当服务器支持线程，也支持线程安全时，MPMs默认是event</li>
-</ul>
-</blockquote>
-
-<h3>1.1 <code>prefork</code></h3>
-
-<p><code>prefork</code>使用多个子进程，每个子进程只有一个线程。每个进程在某个确定的时间只能维持一个连接，效率高，但内存占用量比较大。</p>
-
-<p>这个非线程型的、预派生的web服务器，它适合于没有线程安全库，需要避免线程兼容性问题的系统。它是要求将每个请求相互独立的情况下最好的MPM，这种模式下，一个请求出现问题不会影响到其他请求。</p>
-
-<h4><strong>配置重点</strong></h4>
-
-<p><code>prefork</code>这种MPM能很好的自我调节，所以需要很少的配置。重点是<code>MaxRequestWorkers</code>要设置的足够大，可以处理足够多的请求，同时需要设置的足够小，至少保证可以给所有的进程分配足够的物理内存。</p>
-
-<h4><strong>工作原理</strong></h4>
-
-<p>一个控制进程作为父进程来启动多个子进程，每个子进程负责监听请求连接并处理请求。</p>
-
-<p>apache HTTP会通过相关配置(<code>StartServers</code>,<code>MinSpareServers</code>,<code>MaxSpareServers</code>,<code>MaxRequestWorkers</code>)动态调整进程数量，以保留足够的空闲进程来随时响应请求。</p>
-
-<p>当需要同时处理超过256个请求时，可以调大<code>MaxRequestWorkers</code>和<code>ServerLimit</code>来增强请求处理能力；当服务器内存紧张时，可以调小<code>MaxRequestWorkers</code>来节省内存。</p>
-
-<p><code>MaxConnectionsPerChild</code>配置了一个子进程能处理的最大请求数，超过这个数目，该子进程就会停止处理新请求，然后被杀掉，重新创建一个新的子进程（为了有效的避免内存泄漏）。</p>
-
-<h3>1.2 <code>worker</code></h3>
-
-<p><code>worker</code>使用多个子进程，每个子进程有多个线程，每个线程在某个确定的时间只能维持一个连接，内存占用量比较小，适合高流量的http服务器。缺点是假如一个线程崩溃，整个进程就会连同其任何线程一起&rdquo;死掉&rdquo;，所以要保证一个进程在运行时必须被系统识别为&rdquo;每个线程都是安全的&rdquo;。</p>
-
-<p>这个支持混合多线程多进程的web服务器，由于使用线程来处理请求，所以可以处理海量请求，而系统资源的开销小于基于进程的MPM。但是它也使用了多进程，每个进程又有多个线程，以获得基于进程的稳定性。</p>
-
-<h4><strong>配置重点</strong></h4>
-
-<p><code>worker</code> MPM，使用<code>ThreadsPerChild</code>来指定每个子进程的线程数量上限，使用<code>MaxRequestWorkers</code>来指定所有进程的线程数量总和上限。</p>
-
-<h4><strong>工作原理</strong></h4>
-
-<p>一个控制进程作为父进程来启动多个子进程，每个子进程创建固定数量的处理请求的线程以及一个监听线程，监听线程会监听请求连接，并将它们转交给处理请求的线程来处理。</p>
-
-<p>apache HTTP 会通过相关配置(<code>MinSpareThreads</code>,<code>MaxSpareThreads</code>)来动态调整线程和进程数量，以保留足够的空闲线程来随时响应请求。</p>
-
-<p>使用<code>worker</code> MPM时，最大处理的连接请求数量由<code>MaxRequestWorkers</code>限定；最大子进程数量由<code>MaxRequestWorkers</code>除以<code>ThreadsPerChild</code>的值来限定。</p>
-
-<p>另外，有两个单独的配置来决定子进程和子进程中线程的绝对上限，这个配置只能完全停止apache HTTP进程，然后再启动才可以更改。其中<code>ServerLimit</code>是子进程的绝对上限值，必须要大于或等于<code>MaxRequestWorkers</code>除以<code>ThreadsPerChild</code>的值。<code>ThreadLimit</code>是子进程中线程的绝对上限值，必须要大于或者等于<code>ThreadsPerChild</code>。</p>
-
-<blockquote>
-<p>需要额外注意的是，apache HTTP的子进程包含活动进程和正在关闭中的进程，至少会有一个进程来提供服务，至多有<code>MaxRequestWorkers</code>个正在关闭的进程（实际数量肯定少于这个值）。这种行为的产生原因有两种情况，一种是因为<code>MaxConnectionsPerChild</code>配置了一个子进程能处理的最大请求数，超过这个数目，该子进程就会停止处理新请求，然后被杀掉，重新创建一个新的子进程（为了有效的避免内存泄漏）。另外一种是因为空闲线程的数量超过了<code>MaxSpareThreads</code>配置的数目，触发了自动调节机制。如果希望关闭这种行为，可以将<code>MaxConnectionsPerChild</code>设置为0，然后将<code>MaxSpareThreads</code>和<code>MaxRequestWorkers</code>设置为同样的值。</p>
-</blockquote>
-
-<h3>1.3 <code>event</code></h3>
-
-<p><code>event</code> MPM旨在通过将一些处理工作传递给侦听器线程从而释放工作线程以服务新请求的方式，来允许同时处理更多请求。</p>
-
-<h4><strong>与<code>worker</code>的关系</strong></h4>
-
-<p><code>event</code>是基于<code>worker</code>的。一个控制进程作为父进程来启动子进程，每个子进程创建固定数量的处理请求的线程以及一个监听线程，监听线程会监听请求连接，并将它们转交给处理请求的线程来处理。</p>
-
-<h4><strong>配置重点</strong></h4>
-
-<p><code>event</code>与<code>worker</code>配置基本一致，只是多了<code>AsyncRequestWorkerFactor</code>。</p>
-
-<h4><strong>工作原理</strong></h4>
-
-<p><code>event</code> MPM致力于在HTTP中的keepalive问题。</p>
-
-<p>在客户端完成第一次请求后，它可以保留当前的连接而不关闭它，在相同的连接上发送接下来的请求，从而节省了TCP连接的信号交换成本。然而apache HTTP会留出一个完整的进程/线程来等待客户端的请求，这样相当于将其闲置，只为等待。为了解决这个问题，<code>event</code> MPM在每个子进程中使用指定的监听线程来掌控所有的监听sockets、所有处于Keepalive状态的sockets、处理程序和协议过滤器完成工作的sockets和唯一剩下发送给客户端的sockets。</p>
-
-<p>这种新架构，使用了非阻塞sockets和APR提供的现代内核特性（比如linux的epoll）。
-单个进程/线程块可以处理的连接总数由<code>AsyncRequestWorkerFactor</code>配置限定。</p>
-
-<blockquote>
-<p>更多event相关的原理，可详细参照<a href="https://httpd.apache.org/docs/2.4/mod/event.html">apache httpd event</a>。实践总结apahce(event) &lt;= nginx + apache(worker)，<code>event</code>唯一的作用是比<code>worker</code>节省资源，可以用更少的线程处理同样多的请求（超过线程能力的连接被放到队列中）。</p>
-</blockquote>
-
-<h2>2. MPM配置</h2>
-
-<h3>2.1 常用MPM配置</h3>
-<pre class="chroma"><span class="c1"># prefork MPM</span>
-<span class="c1"># StartServers: number of server processes to start</span>
-<span class="c1"># MinSpareServers: minimum number of server processes which are kept spare</span>
-<span class="c1"># MaxSpareServers: maximum number of server processes which are kept spare</span>
-<span class="c1"># MaxRequestWorkers: maximum number of server processes allowed to start</span>
-<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves before terminating</span>
-&lt;IfModule mpm_prefork_module&gt;
-    StartServers             <span class="m">5</span>
-    MinSpareServers          <span class="m">5</span>
-    MaxSpareServers         <span class="m">10</span>
-    MaxRequestWorkers      <span class="m">250</span>
-    MaxConnectionsPerChild   <span class="m">0</span>
-&lt;/IfModule&gt;
-
-<span class="c1"># worker MPM</span>
-<span class="c1"># StartServers: initial number of server processes to start</span>
-<span class="c1"># MinSpareThreads: minimum number of worker threads which are kept spare</span>
-<span class="c1"># MaxSpareThreads: maximum number of worker threads which are kept spare</span>
-<span class="c1"># ThreadsPerChild: constant number of worker threads in each server process</span>
-<span class="c1"># MaxRequestWorkers: maximum number of worker threads</span>
-<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves before terminating</span>
-&lt;IfModule mpm_worker_module&gt;
-    StartServers             <span class="m">3</span>
-    MinSpareThreads         <span class="m">75</span>
-    MaxSpareThreads        <span class="m">250</span> 
-    ThreadsPerChild         <span class="m">25</span>
-    MaxRequestWorkers      <span class="m">400</span>
-    MaxConnectionsPerChild   <span class="m">0</span>
-&lt;/IfModule&gt;
-
-<span class="c1"># event MPM</span>
-<span class="c1"># StartServers: initial number of server processes to start</span>
-<span class="c1"># MinSpareThreads: minimum number of worker threads which are kept spare</span>
-<span class="c1"># MaxSpareThreads: maximum number of worker threads which are kept spare</span>
-<span class="c1"># ThreadsPerChild: constant number of worker threads in each server process</span>
-<span class="c1"># MaxRequestWorkers: maximum number of worker threads</span>
-<span class="c1"># MaxConnectionsPerChild: maximum number of connections a server process serves</span>
-<span class="c1">#                         before terminating</span>
-&lt;IfModule mpm_event_module&gt;
-    StartServers             <span class="m">3</span>
-    MinSpareThreads         <span class="m">75</span>
-    MaxSpareThreads        <span class="m">250</span>
-    ThreadsPerChild         <span class="m">25</span>
-    MaxRequestWorkers      <span class="m">400</span>
-    MaxConnectionsPerChild   <span class="m">0</span>
-&lt;/IfModule&gt;
-</pre>
-<blockquote>
-<p><code>MaxRequestWorkers</code> 在 apache HTTP 2.3.13 之前被称为 <code>MaxClients</code>
-<code>MaxConnectionsPerChild</code> 在apache HTTP 2.3.9 之前被称为<code>MaxRequestsPerChild</code></p>
-</blockquote>
-
-<h3>2.2 配置项详解</h3>
-
-<h4><strong><code>StartServers</code>(event, worker, prefork)</strong></h4>
-
-<p>指定服务器启动时建立的子进程数量。</p>
-
-<p><code>prefork</code>MPM下默认为5。</p>
-
-<p><code>worker</code>和<code>event</code>MPM下默认是3.</p>
-
-<hr />
-
-<h4><strong><code>MinSpareServers</code>(prefork)</strong></h4>
-
-<p>指定空闲子进程的最小数量，默认为5。</p>
-
-<p>如果当前空闲子进程数少于<code>MinSpareServers</code> ，那么Apache将创建一个子进程，一秒后，创建两个，一秒后，创建四个，就这样持续增加，最大一次创建32个。就这样创建进程直到达到<code>MinSpareServers</code>指定的数值。</p>
-
-<hr />
-
-<h4><strong><code>MaxSpareServers</code>(prefork)</strong></h4>
-
-<p>设置空闲子进程的最大数量，默认为10。</p>
-
-<p>如果当前有超过<code>MaxSpareServers</code>数量的空闲子进程，那么父进程将杀死多余的子进程。此参数不要设的太大。如果你将该指令的值设置为等于或小于<code>MinSpareServers</code>，Apache将会自动将其修改成<code>MinSpareServers+1</code>。</p>
-
-<hr />
-
-<h4><strong><code>MinSpareThreads</code>(event, worker)</strong></h4>
-
-<p>指定空闲子线程的最小数量，默认为75。</p>
-
-<p><code>worker</code>和<code>event</code>在服务级别来处理空闲子线程，当空闲子线程小于最小值，Apache会创建子进程，直到空闲子线程大于<code>MaxSpareThreads</code>。</p>
-
-<hr />
-
-<h4><strong><code>MaxSpareThreads</code>(event, worker)</strong></h4>
-
-<p>指定空闲子线程的最大数量，默认为250。</p>
-
-<p><code>worker</code>和<code>event</code>在服务级别来处理空闲子线程，当空闲子线程超过了最大值，Apache会杀死子进程，直到空闲子线程小于<code>MaxSpareThreads</code>。</p>
-
-<hr />
-
-<h4><strong><code>ThreadsPerChild</code>(event, worker)</strong></h4>
-
-<p>指定每个子进程要创建多少个子线程，默认为25。</p>
-
-<p><code>ThreadsPerChild</code>不可以超过<code>ThreadLimit</code>。</p>
-
-<hr />
-
-<h4><strong><code>MaxRequestWorkers</code>(event, worker, prefork)</strong></h4>
-
-<p>指定同一时间客户端最大接入请求的数量。</p>
-
-<p><code>prefork</code>MPM下，默认为256。任何超过<code>MaxRequestWorkers</code>限制的请求都将进入等候队列，一旦一个链接被释放，队列中的请求将得到服务。要增大这个值，你必须同时增大<code>ServerLimit</code>。</p>
-
-<p><code>worker</code>和<code>event</code>MPM下，默认为<code>16(ServerLimit)*25(ThreadsPerChild)</code>。如果<code>MaxRequestWorkers</code>和<code>ThreadsPerChild</code>需要的子进程数超过16，同时应该提高<code>ServerLimit</code>。</p>
-
-<hr />
-
-<h4><strong><code>MaxConnectionsPerChild</code>(event, worker, prefork)</strong></h4>
-
-<p>每个子进程在其生存期内允许处理的最大请求数量，默认为0，即子进程永远不会结束。</p>
-
-<p>到达MaxRequestsPerChild的限制后，子进程将会结束。将MaxRequestsPerChild设置成非零值有两个好处：</p>
-
-<ol>
-<li>可以防止(偶然的)内存泄漏无限进行，从而耗尽内存。</li>
-<li>给进程一个有限寿命，从而有助于当服务器负载减轻的时候减少活动进程的数量。</li>
-</ol>
-
-<hr />
-
-<h4><strong><code>ServerLimit</code>(event, worker, prefork)</strong></h4>
-
-<p>在<code>prefork</code>MPM下，指定Apache httpd 进程声明周期内<code>MaxRequestWorkers</code>可配置的最大值。</p>
-
-<p>在<code>worker</code>和<code>event</code>MPM下，和<code>ThreadLimit</code>组合在一起，指定Apache httpd 进程声明周期内<code>MaxRequestWorkers</code>可配置的最大值。</p>
-
-<p>需要重点关注的是，当设定远超过需要的值时，未使用的额外的共享内存也会被分配占用。如果<code>ServerLimit</code>和<code>MaxRequestWorkers</code>设定为超过系统可以支撑的值时，Apache httpd不会启动或者会不稳定。</p>
-
-<p>在<code>prefork</code>MPM下，只有当<code>MaxRequestWorkers</code>需要设定超过其默认值（256）时，才需要设定<code>ServerLimit</code>。不要将<code>ServerLimit</code>的值设置为高于你可能希望将 <code>MaxRequestWorkers</code> 设置为的值。</p>
-
-<p>在<code>worker</code>和<code>event</code>MPM下，只有当 <code>MaxRequestWorkers</code>/<code>ThreadsPerChild</code>需要大于默认值（16）时，才需要设定<code>ServerLimit</code>。</p>
-
-<blockquote>
-<p><code>ServerLimit</code>(prefork)在编译阶段，默认有个最大配置限制200000。如果希望可以配置的更大，则必须修改mpm源码中的<code>MAX_SERVER_LIMIT</code>，然后重新编译apache。</p>
-</blockquote>
-
-<hr />
-
-<h4><strong><code>ThreadLimit</code>(event, worker)</strong></h4>
-
-<p>指定 <code>ThreadsPerChild</code>可配置的最大值，默认值64。</p>
-
-<p>需要重点关注的是，当设定远超过需要的值时，为使用的额外的共享内存也会被分配占用。如果<code>ThreadLimit</code>和<code>ThreadsPerChild</code>设定为超过系统可以支撑的值时，Apache httpd不会启动或者会不稳定。</p>
-
-<blockquote>
-<p><code>ThreadLimit</code>(worker)在编译阶段，默认有个最大配置限制20000(event 10000)。如果希望可以配置的更大，则必须修改mpm源码中的<code>MAX_THREAD_LIMIT</code>，然后重新编译apache。</p>
-</blockquote>
-
-<h2>3. apache模式的查看</h2>
-
-<h3>3.1 常看当前模式</h3>
-
-<p>如果apache已经安装，我们可以用以下命令查看当前模式。</p>
-<pre class="chroma">httpd -l
-</pre>
-<p>若找到 <code>prefork.c</code> 则表示当前工作在<code>prefork</code>MPM，同理出现 <code>worker.c</code> 则工作在<code>worker</code> MPM。</p>
-
-<p>如果apache还未安装，我们在编译的时候可以加入 <code>--with-pem=(prefork|worker)</code> 选项决定启用什么模式。</p>
-
-<h3>3.2 切换模式</h3>
-<pre class="chroma"><span class="c1"># a. 将当前的prefork模式启动文件改名</span>
-mv httpd httpd.prefork
-
-<span class="c1"># b. 将worker模式的启动文件改名</span>
-mv httpd.worker httpd
-
-<span class="c1"># c. 修改Apache配置文件</span>
-vi /usr/local/apache2/conf/extra/httpd-mpm.conf
-<span class="c1"># 找到里边的如下一段，可适当修改负载等参数：</span>
-<span class="c1">#&lt;IfModule mpm_worker_module&gt;</span>
-<span class="c1">#StartServers</span> 
-<span class="c1">#MaxClients</span> 
-<span class="c1">#MinSpareThreads</span> 
-<span class="c1">#MaxSpareThreads</span> 
-<span class="c1">#ThreadsPerChild</span> 
-<span class="c1">#MaxRequestsPerChild</span> 
-<span class="c1">#&lt;/IfModule&gt;</span>
-
-<span class="c1"># d. 重新启动服务</span>
-/usr/local/apache2/bin/apachectl restart
-</pre>
-<h2>4. 总结</h2>
-
-<h3>4.1 为什么event和nginx都是用了epoll的原理，但是apache性能不如nginx呢？</h3>
-
-<p>这是因为apache(event)的thread依赖kernel进行调度，有线程的上下文切换成本。但是nginx使用event驱动本身作为调度器，没有上下文切换成本。这也就是为什么<code>nginx+apache(worker)</code>比使用<code>apache(event)</code>更优的原因</p>
-
-<h3>4.2 那么apache和nginx该如何选择呢？</h3>
-
-<ul>
-<li>如果是用很重的CGI应用，那么最佳实践是<code>nginx+apache(worker)+CGI</code>；</li>
-<li>如果只是静态文件，那么就是<code>nginx</code>；</li>
-<li>如果只是做一个proxy，那么就是<code>nginx --proxy-to-&gt; backend</code></li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="linux/advance/memory_03_general_memory_layout.html">内存: 进程内存布局 - 堆栈</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>01 Aug 2022</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>0. 进程的常见内存布局(c/c++)</h3>
-
-<p>进程是操作系统分配内存资源的最小单位，每个进程都有自己独立的内存布局（虚拟内存）。包含：</p>
-
-<ul>
-<li>stack: 保存function和local var</li>
-<li>memory mapping: 保存大块的从文件映射的内存空间，用于加载代码库文件、共享内存等</li>
-<li>heap: 程序动态使用的内存</li>
-<li>data: 全局变量，分为初始化的(data segment，实际分配内存)和非初始化的(bss segment，实际未分配内存)</li>
-<li>text: 保存运行的code</li>
-</ul>
-
-<blockquote>
-<p>memory mapping的内存会统计在top命令的SHR字段，所以，这个字段统计的内存并不全是共享内存，也包含其他被映射的文件，例如代码库文件</p>
-</blockquote>
-
-<p>linux内核给每个进程一个独立的虚拟内存地址。这个虚拟内存的地址是连续的，虚拟内存又分为“用户空间”和“内核空间”。当进程在用户态的时候，只能访问“用户空间”，相反地，只有进程在内核态的时候，才能访问“内核空间”。虽然每个进程的内存空间都包含了“内核空间”，但其实它们是同一段物理内存，这样进程在进入内核态时，都能方便的访问内核态空间内存。</p>
-
-<p>关于“用户空间”，它的结构，一般是从低地址开始依次为text、data、heap、memory mapping。然后stack是从高地址往下分配。
-<img src="/static/images/docs/linux/advance/memory_layout.png" alt="" /></p>
-
-<blockquote>
-<p>通常情况下，频繁被执行的程序，其text一般是共享并且是只读的。例如gcc、shell、text editor等</p>
-
-<p><a href="https://courses.engr.illinois.edu/cs225/sp2022/resources/stack-heap/">stack and heap</a></p>
-</blockquote>
-
-<h3>1. heap和stack的区别</h3>
-
-<ul>
-<li>stack由编译器管理，而heap由程序员自己控制，使用方便，但是有泄漏风险。</li>
-<li>stack是由虚拟内存地址的高地址向下分配；而heap是由低地址向上分配。</li>
-<li>stack的容量由系统预先定义，一般比较小；而heap则是受限于操作系统中有效的虚拟内存，一般比较大。</li>
-<li>stack不会产生内存碎片，而heap会产生比较多的碎片。</li>
 </ul>
 
         </div>

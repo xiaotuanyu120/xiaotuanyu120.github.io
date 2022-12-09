@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/linux/advance/network_tcp-reset.html">网络: TCP - RST简介</a>
+            </li>
+            <li>
+              <a href="/linux/shell/shell_1.0.4_variable_string.html">SHELL: 1.0.4 变量：字符串及字符串切片</a>
+            </li>
+            <li>
+              <a href="/go/go/go_1.1.4_start_init.html">GO 1.1.4 入口函数和包初始化</a>
+            </li>
+            <li>
               <a href="/go/go/go_1.1.3_build.html">GO 1.1.3 构建应用</a>
             </li>
             <li>
               <a href="/go/go/go_1.1.2_proj_struct.html">GO 1.1.2 目录结构</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.1.1_code_struct.html">GO 1.1.1 程序结构和编译</a>
-            </li>
-            <li>
-              <a href="/go/go/go_1.0.0_introduction.html">GO 1.0.0 go语言</a>
-            </li>
-            <li>
-              <a href="/service/tomcat/tomcat_1.0.0_what_is_jakarta_ee_and_tomcat.html">tomcat 1.0.0 Jakarta EE 和 Tomcat</a>
             </li>
           </ul>
 
@@ -121,7 +121,7 @@
                     <li><a href="/linux/basic/06.1.0_用户-配置文件.html">6.1.0: 用户-配置文件</a></li>
                     <li><a href="/linux/basic/06.2.0_用户-相关命令.html">6.2.0: 用户-相关命令</a></li>
                     <li><a href="/linux/basic/06.3.0_用户-su_sudo.html">6.3.0: 用户-su/sudo</a></li>
-                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和命令</a></li>
+                    <li><a href="/linux/basic/07.1.0_disk_management-basic-info-and-command.html">7.1.0: 磁盘管理 - 基本知识和常用命令</a></li>
                     <li><a href="/linux/basic/07.2.0_disk_management-partition-command.html">7.2.0: 磁盘管理 - 分区工具 fdisk,parted</a></li>
                     <li><a href="/linux/basic/07.3.0_磁盘管理-格式化.html">7.3.0: 磁盘管理-格式化</a></li>
                     <li><a href="/linux/basic/07.4.0_磁盘管理-挂载.html">7.4.0: 磁盘管理-挂载</a></li>
@@ -270,7 +270,7 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>7.1.0: 磁盘管理 - 基本知识和命令</h2>
+      <h2>7.1.0: 磁盘管理 - 基本知识和常用命令</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
@@ -408,6 +408,11 @@ Filesystem     Inodes IUsed IFree IUse% Mounted on
 tmpfs            123K     <span class="m">1</span>  123K    1% /dev/shm
 /dev/sda1         50K    <span class="m">38</span>   50K    1% /boot
 /dev/sda5        581K    <span class="m">11</span>  581K    1% /data
+<span class="c1"># 发现某个磁盘inode占用过大之后，如何定位到具体是什么文件占用了过多的inode</span>
+<span class="c1"># 查看某个目录下，哪个子目录占用了过多的inode</span>
+<span class="o">{</span> find /data -xdev -printf <span class="s1">&#39;%h\n&#39;</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -k <span class="m">1</span> -n<span class="p">;</span> <span class="o">}</span> 2&gt;/dev/null
+<span class="c1"># 查看某个目录下，哪些文件或目录占用了过多的inode</span>
+find . -xdev -type f <span class="p">|</span> cut -d <span class="s2">&#34;/&#34;</span> -f <span class="m">2</span> <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
 </pre>
 <h3>2.2 du</h3>
 

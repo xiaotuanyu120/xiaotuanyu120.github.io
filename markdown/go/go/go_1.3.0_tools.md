@@ -8,7 +8,10 @@ tags: [godoc,gofmt,goimport]
 ### 1. goimport
 ``` bash
 # 安装goimport
-go get golang.org/x/tools/cmd/goimports
+go install golang.org/x/tools/cmd/goimports@latest
+
+# 然后将go的bin环境目录增加到PATH变量中
+# 默认是“$HOME/go/bin”
 ```
 > 用于自动添加使用的包和自动删除未使用的包
 
