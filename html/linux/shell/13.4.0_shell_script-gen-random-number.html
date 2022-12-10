@@ -174,43 +174,32 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>13.4.0: 脚本基础-随机数生成</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>15 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h2>1. 随机数生成方法</h2>
+<pre class="chroma"><span class="c1"># 使用mkpasswd和sed配合</span>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+mkpasswd -l <span class="m">20</span> -d 15<span class="p">|</span>sed <span class="s1">&#39;s/[^[:digit:]]//g&#39;</span>
+<span class="m">428207710258917</span>
+<span class="c1"># mkpasswd至少需要一个特殊字符和分别两个大小写字母</span>
+<span class="c1"># 所以要配合sed将非数字字符转换成空</span>
+<span class="c1"># 随机数位数可自定义</span>
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<span class="c1">## 使用RANDOM变量</span>
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
-
+<span class="nb">echo</span> <span class="nv">$RANDOM</span><span class="nv">$RANDOM</span>
+<span class="m">982320983</span>
+<span class="c1"># man bash查看RANDOM部分内容,RANDOM每次会产生一个0-32767的数字</span>
+<span class="c1"># 随机数位数是随机的</span>
 </pre>
     </div>
 

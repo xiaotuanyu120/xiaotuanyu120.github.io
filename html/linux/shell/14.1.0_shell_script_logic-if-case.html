@@ -174,43 +174,73 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>14.1.0: 脚本逻辑基础-流程控制-条件判断if/case</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>18 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h3>1. if判断语句</h3>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+<h4>1) 标准if&hellip;elfi&hellip;else&hellip;fi结构</h4>
+<pre class="chroma"><span class="k">if</span> <span class="o">[</span> 判断表达式1 <span class="o">]</span> <span class="p">;</span>
+<span class="k">then</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">elif</span> <span class="o">[</span> 判断表达式2 <span class="o">]</span><span class="p">;</span>   
+<span class="k">then</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">else</span>                                       
+<span class="c1">#当判断表达式1和2都为假时才执行else后面的语句</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">fi</span>
+<span class="c1">## 判断表达式1和判断表达式1之间是独立的关系</span>
+</pre>
+<h4>2) elfi和else可酌情省略，省略后相关语法可省略成如下形式</h4>
+<pre class="chroma"><span class="c1">## if [ 判断表达式1 ] ；then 执行语句1；执行语句2; fi 可简写为</span>
+<span class="o">[</span><span class="o">[</span> 判断表达式1 <span class="o">]</span><span class="o">]</span> <span class="o">&amp;&amp;</span> 执行语句1；执行语句2
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
+<span class="c1">## if [ 判断表达式1 ] ；then 执行语句1；else 执行语句2; fi可简写为</span>
+<span class="o">[</span><span class="o">[</span> 判断表达式1 <span class="o">]</span><span class="o">]</span> <span class="o">&amp;&amp;</span> 执行语句1 <span class="o">||</span> 执行语句2
+</pre>
+<h4>3) 扩展：grep -q参数在if语句中的应用</h4>
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<p>基本用法：<code>if grep -q '关键字' file</code></p>
+<pre class="chroma"><span class="c1"># if grep -q &#39;^root&#39; /etc/passwd;then echo &#34;good&#34;;fi</span>
+good
+</pre>
+<hr />
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
+<h3>2. case语句</h3>
 
+<h4>1) case语句基本语法结构</h4>
+<pre class="chroma"><span class="k">case</span> $变量 in
+条件1<span class="o">)</span>
+执行语句1；
+执行语句2；
+...
+<span class="p">;</span><span class="p">;</span>
+条件2<span class="o">)</span>
+执行语句1；
+执行语句2；
+...
+<span class="p">;</span><span class="p">;</span>
+*<span class="o">)</span>
+执行语句1；
+执行语句2；
+...
+<span class="p">;</span><span class="p">;</span>
+<span class="k">esac</span>
+<span class="c1">## case判断语句多用于服务的启动脚本中</span>
 </pre>
     </div>
 

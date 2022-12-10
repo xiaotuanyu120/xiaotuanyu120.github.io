@@ -174,43 +174,141 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>14.3.0: 脚本逻辑基础-流程控制-循环语句</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>18 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h3>1. while循环语句</h3>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+<h4>1) 基本语法结构：</h4>
+<pre class="chroma"><span class="k">while</span> <span class="o">[</span> 判断表达式 <span class="o">]</span>
+<span class="k">do</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">done</span>
+<span class="c1">## 若不确定循环次数，常用while</span>
+</pre>
+<h4>2) done 处可以重定向输入文件内容</h4>
+<pre class="chroma">*****************************************
+<span class="c1">#!/bin/bash</span>
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
+<span class="c1">## 这里用read来读取输入文件的每一行，这里也可以写&#34;while read string&#34;</span>
+<span class="k">while</span> <span class="nb">read</span>
+<span class="k">do</span>
+        <span class="nb">echo</span> good；
+<span class="c1"># 这里把$1的内容按照行传进循环</span>
+<span class="k">done</span> &lt; <span class="nv">$1</span>                
+*****************************************
+<span class="c1"># cat while.txt</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="c1"># sh while.sh</span>
+good
+good
+good
+good
+good
+good
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<span class="c1">## 修改 while read 为 while read number</span>
+*****************************************
+<span class="c1">#!/bin/bash</span>
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
+<span class="k">while</span> <span class="nb">read</span> string
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$string</span>；
+<span class="k">done</span> &lt; <span class="nv">$1</span>
+*****************************************
+<span class="c1"># sh while.sh while.txt</span>
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+</pre>
+<hr />
 
+<h3>2. for循环语句（用在确定会有几次循环的情况下）</h3>
+
+<h4>1) 基本语法结构：</h4>
+<pre class="chroma"><span class="c1">## 语法1</span>
+<span class="k">for</span> <span class="o">(</span><span class="o">(</span> 赋初值；条件判断；初值的变化 <span class="o">)</span><span class="o">)</span>  
+<span class="k">do</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">done</span>
+
+<span class="c1">## 语法2</span>
+<span class="k">for</span> 变量 in a b c ...
+<span class="k">do</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">done</span>
+
+
+<span class="c1">## 可以使用``来将命令的执行结果传递给for循环中的循环变量里</span>
+<span class="c1">## 语法3</span>
+<span class="k">for</span> 变量 in <span class="sb">`</span>cmd<span class="sb">`</span>
+<span class="k">do</span>
+执行语句1；
+执行语句2；
+...
+<span class="k">done</span>
+</pre>
+<h4>2) 扩展-&rdquo;</h4>
+<pre class="chroma"><span class="c1">##########</span>
+<span class="c1"># 语法举例</span>
+<span class="c1">#########</span>
+<span class="c1">## 从1-10，步长默认为1</span>
+<span class="c1"># for 变量 in `seq 1 10`</span>
+
+<span class="c1">## 从10-1，步长为1</span>
+<span class="c1"># for 变量 in `seq 10 -1 1`</span>
+
+<span class="c1">## 从0-100，步长为20，但数字宽度需要一致</span>
+<span class="c1">## -w会让所有数字都适配数字的最大宽度</span>
+<span class="c1"># for 变量 in `seq -w 1 100`</span>
+
+<span class="c1">##########</span>
+<span class="c1"># 用法举例</span>
+<span class="c1">##########</span>
+seq -w <span class="m">0</span> <span class="m">20</span> <span class="m">100</span>
+<span class="m">000</span>
+<span class="m">020</span>
+<span class="m">040</span>
+<span class="m">060</span>
+<span class="m">080</span>
+<span class="m">100</span>
+
+<span class="c1"># 扩展-ls</span>
+<span class="k">for</span> i in <span class="sb">`</span>ls<span class="sb">`</span><span class="p">;</span><span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+12.log
+1.log
+1.txt
+
+<span class="c1"># 扩展-find</span>
+<span class="k">for</span> i in <span class="sb">`</span>find . -type d<span class="sb">`</span><span class="p">;</span><span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>
+.
+./perm
+./.ssh
+./fugai
+
+<span class="c1"># 在执行语句只有一句时，for 变量 in `cmd`也可以用管道代替</span>
+cmd <span class="p">|</span> xargs -i 执行语句1
 </pre>
     </div>
 

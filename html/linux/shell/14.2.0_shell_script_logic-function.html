@@ -174,44 +174,67 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>14.2.0: 脚本逻辑基础-功能抽象-function</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>18 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h3>1. function语句</h3>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
-
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
-
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
-
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
-
+<p>基本结构：</p>
+<pre class="chroma"><span class="k">function</span> fun_name<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+执行语句1；
+执行语句2；
+...
+<span class="o">}</span>
+<span class="c1">## function里面调用的$1是fname()后面跟的第一个参数，需要和shell脚本的$1区分</span>
 </pre>
+<p>用途：<br />
+fuction主要是用来代码复用，减少重复代码量</p>
+
+<hr />
+
+<h3>2. function中的返回值</h3>
+
+<p>如果我们创建一个function，有时需要把function执行的$?返回，可用以下方式</p>
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="k">function</span> test<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    ls /NOT/EXIST/FOLDER
+    <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+    <span class="k">return</span> <span class="nv">$RETVAL</span>
+<span class="o">}</span>
+
+<span class="c1"># 执行function</span>
+<span class="nb">test</span>
+
+<span class="c1"># 以function的返回值退出</span>
+<span class="nb">exit</span> <span class="nv">$RETVAL</span>
+</pre>
+<blockquote>
+<p>其中return代表了返回整个function的返回值</p>
+</blockquote>
+
+<h3>3. function要使用外部变量</h3>
+<pre class="chroma"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">global_var1</span><span class="o">=</span><span class="nb">test</span>
+
+<span class="k">function</span> test<span class="o">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">global_var1</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="o">}</span>
+
+<span class="c1"># 执行function</span>
+<span class="nb">export</span> <span class="nb">test</span>
+<span class="nb">test</span>
+</pre>
+<p>function内部使用外部变量的时候，必须要先export变量为全局变量才可使用</p>
+
     </div>
 
   </div>

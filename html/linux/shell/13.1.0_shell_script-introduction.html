@@ -174,43 +174,99 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>13.1.0: 脚本基础-什么是脚本</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>15 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h2>1. shell脚本是什么</h2>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+<p>概念：shell(壳)，是用户与linux系统沟通的工具界面，scripts(脚本)，文本程序。<br />
+搭配功能：系统命令（含外部命令）、正规表示法、重定向、管道符号。<br />
+用途：自动化运维，提高工作效率<br />
+特点：</p>
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
+<ul>
+<li>它是一种脚本语言，并非编程语言</li>
+<li>可以使用一些逻辑判断、循环等语法</li>
+<li>可以自定义子函数</li>
+</ul>
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<h2>2. shell脚本结构</h2>
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
+<p>基本结构：</p>
 
+<ul>
+<li>声明bash路径</li>
+<li>程序简要描述（功能、目地等）</li>
+<li>作者、时间</li>
+<li>程序代码</li>
+</ul>
+
+<p>基本结构示例：</p>
+<pre class="chroma"><span class="c1">## 声明bash路径</span>
+<span class="c1">#!/bin/bash</span>
+<span class="c1"># 程序简介，其实就是个注释</span>
+<span class="c1"># This is a hello world programe</span>
+<span class="c1"># 作者及脚本时间</span>
+<span class="c1"># Created by Zhao Peiwu on 15/12/2014</span>
+
+<span class="c1"># 程序主体，程序的执行顺序是从左向右，从上至下</span>
+<span class="nb">echo</span> <span class="s2">&#34;Hello World!&#34;</span>
+</pre>
+<h2>3. shell脚本执行方式</h2>
+
+<p>执行方式：</p>
+
+<ul>
+<li>&ldquo;文件路径/xx.sh&rdquo; 前提是执行此脚本的用户对此文件拥有x权限<code>chmod +x xx.sh</code></li>
+<li>&ldquo;bash/sh xx.sh&rdquo; bash或者sh都可以直接执行脚本文件(<code>sh xx.sh</code>)</li>
+</ul>
+
+<p>参数：</p>
+
+<ul>
+<li>&rdquo;-x&rdquo; - 查看脚本执行过程</li>
+</ul>
+
+<blockquote>
+<p>PS:sh是bash的软连接</p>
+</blockquote>
+
+<p>执行示例：</p>
+<pre class="chroma"><span class="c1">## 用路径打开shell脚本</span>
+
+<span class="c1"># 给脚本文件增加可执行权限</span>
+chmod u+x /usr/local/sbin/hw.sh
+/usr/local/sbin/hw.sh
+Hello World!
+<span class="c1">## 限制：普通用户必须对脚本文件同时拥有读取和执行权限才可以运行</span>
+
+
+
+<span class="c1">## 用bash或sh打开shell脚本</span>
+
+<span class="c1"># 将脚本移动到PATH变量包含的目录中执行</span>
+bash hw.sh
+bash: hw.sh: No such file or directory
+mv /tmp/hw.sh /usr/local/sbin/hw.sh
+bash hw.sh
+Hello World!
+sh hw.sh
+Hello World!
+<span class="c1">## 限制：bash和sh命令执行脚本时，并不需要脚本拥有执行权限，只要可读即可</span>
+
+
+<span class="c1">## sh和bash之间的关系</span>
+
+<span class="c1"># sh是bash的软连接</span>
+ll /bin/sh
+lrwxrwxrwx. <span class="m">1</span> root root <span class="m">4</span> Sep <span class="m">20</span> 19:33 /bin/sh -&gt; bash
 </pre>
     </div>
 
