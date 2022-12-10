@@ -234,6 +234,10 @@ ServerTokens Prod
 </span><span class="se"></span>    -e <span class="s1">&#39;s|AP_SERVER_BASEPRODUCT &#34;Apache&#34;|AP_SERVER_BASEPRODUCT &#34;Security Server&#34;|g&#39;</span> <span class="se">\
 </span><span class="se"></span>    ./include/ap_release.h
 </pre>
+<h3>3. 禁用不常用的HTTP方法</h3>
+
+<p>禁用掉<code>GET</code>和<code>POST</code>之外的HTTP方法，详细配置见<a href="/service/apache/1.1.0_b_apache_config_rewrite.html">apache rewrite: 扩展6 - 配置禁止的HTTP METHOD，并配置自定义的返回码</a></p>
+
     </div>
 
   </div>

@@ -249,6 +249,14 @@
 <p>不要混淆<code>$server_name</code>和<code>$host</code>，server_name就是我们配置的该server块的变量</p>
 </blockquote>
 
+<h3>3. 严格要求HTTP请求方法</h3>
+
+<p>仅允许常用的<code>GET, POST</code></p>
+<pre class="chroma">add_header Allow <span class="s2">&#34;GET, POST&#34;</span> always<span class="p">;</span>
+<span class="k">if</span> <span class="o">(</span> <span class="nv">$request_method</span> !~ ^<span class="o">(</span>GET<span class="p">|</span>POST<span class="o">)</span>$ <span class="o">)</span> <span class="o">{</span>
+	<span class="k">return</span> 405<span class="p">;</span>
+<span class="o">}</span>
+</pre>
     </div>
 
   </div>
