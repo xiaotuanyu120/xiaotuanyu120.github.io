@@ -174,43 +174,234 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
-      <h2>数据结构：字典</h2>
+      <h2>13.5.0: 脚本逻辑基础-逻辑判断标识含义</h2>
       <div>
         <hr style="border: 0; border-top: 1px dashed #a2a9b6">
       </div>
       <div class="postDate">
-        <p>31 Dec 2019</p>
+        <p>15 Dec 2014</p>
       </div>
       <div>
         <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
       </div>
-<h3>0. shell中的字典</h3>
-<pre class="chroma"><span class="c1"># 创建一个dict变量</span>
-<span class="nb">declare</span> -A animals
-<span class="c1"># 或者</span>
-<span class="c1"># declare -A animals=( [&#34;moo&#34;]=&#34;cow&#34; [&#34;woof&#34;]=&#34;dog&#34;)</span>
+<h3>1. shell中的逻辑判断</h3>
 
-<span class="c1"># 给dict变量赋值</span>
-<span class="nv">animals</span><span class="o">=</span><span class="o">(</span> <span class="o">[</span><span class="s2">&#34;moo&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;cow&#34;</span> <span class="o">[</span><span class="s2">&#34;woof&#34;</span><span class="o">]</span><span class="o">=</span><span class="s2">&#34;dog&#34;</span><span class="o">)</span>
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( [a]=&#34;2&#34; [b]=&#34;4&#34; )</span>
+<h4>1) 逻辑判断表达式用法:</h4>
 
-<span class="c1"># 或者</span>
-<span class="c1"># animals=( \</span>
-<span class="c1"># &gt; [a]=&#34;2&#34; \</span>
-<span class="c1"># &gt; [b]=&#34;4&#34; \</span>
-<span class="c1"># &gt; )</span>
+<ul>
+<li><p>常规用法，用在if语句中<br />
+<code>if [空格$a空格-gt空格$b空格]</code></p></li>
 
-<span class="c1"># 轮询所有的值</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">animals</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-cow
-dog
+<li><p>简洁用法<br />
+<code>[[空格$a空格-gt空格$b空格]]</code></p></li>
+</ul>
 
-<span class="c1"># 轮询所有的key</span>
-<span class="k">for</span> animal in <span class="s2">&#34;</span><span class="si">${</span><span class="p">!animals[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">animal</span><span class="si">}</span><span class="p">;</span> <span class="k">done</span>
-moo
-woof
+<h4>2) 判断标识及其含义：</h4>
 
+<table>
+<thead>
+<tr>
+<th>判断标识</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>关于某个文件的类型判断</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-e</td>
+<td>该文件是否存在</td>
+</tr>
+
+<tr>
+<td>-f</td>
+<td>该文件是否存在，并是普通文件</td>
+</tr>
+
+<tr>
+<td>-d</td>
+<td>该文件是否存在，并是目录文件</td>
+</tr>
+
+<tr>
+<td>-b</td>
+<td>该文件是否存在，并是块文件</td>
+</tr>
+
+<tr>
+<td>-c</td>
+<td>该文件是否存在，并是 character device</td>
+</tr>
+
+<tr>
+<td>-S</td>
+<td>该文件是否存在，并是 Socket 文件</td>
+</tr>
+
+<tr>
+<td>-p</td>
+<td>该文件是否存在，并是 FIFO (pipe) 文件</td>
+</tr>
+
+<tr>
+<td>-L</td>
+<td>该文件是否存在，并是连接文件</td>
+</tr>
+
+<tr>
+<td>检测文件权限，如 -r file 表示是否可读 但root常有例外</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-r</td>
+<td>检查文件是否存在并具有读取权限</td>
+</tr>
+
+<tr>
+<td>-w</td>
+<td>检查文件是否存在并具有写入权限</td>
+</tr>
+
+<tr>
+<td>-x</td>
+<td>检查文件是否存在并具有执行权限</td>
+</tr>
+
+<tr>
+<td>-u</td>
+<td>检查文件是否存在并具有SUID的权限</td>
+</tr>
+
+<tr>
+<td>-g</td>
+<td>检查文件是否存在并具有SGID的权限</td>
+</tr>
+
+<tr>
+<td>-k</td>
+<td>检查文件是否存在并具有STID的权限</td>
+</tr>
+
+<tr>
+<td>-s</td>
+<td>检查文件是否存在并为非空文件</td>
+</tr>
+
+<tr>
+<td>文件之间的比较，如：file1 -nt file2，file1是否比file2新</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-nt</td>
+<td>(newer than)判断 file1 是否比 file2 新</td>
+</tr>
+
+<tr>
+<td>-ot</td>
+<td>(older than)判断 file1 是否比 file2 旧</td>
+</tr>
+
+<tr>
+<td>-ef</td>
+<td>判断是否为同一文件，可用在判断 hard link 的判定上。 主要意义在判定，兩個文件是否均指向同一個 inode ！</td>
+</tr>
+
+<tr>
+<td>关于两个整数之间的判断，例如 test n1 -eq n2</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-eq</td>
+<td>两数值相等 (equal)</td>
+</tr>
+
+<tr>
+<td>-ne</td>
+<td>两数值不等 (not equal)</td>
+</tr>
+
+<tr>
+<td>-gt</td>
+<td>n1 大于 n2 (greater than)</td>
+</tr>
+
+<tr>
+<td>-lt</td>
+<td>n1 小于 n2 (less than)</td>
+</tr>
+
+<tr>
+<td>-ge</td>
+<td>n1 大于等于 n2 (greater than or equal)</td>
+</tr>
+
+<tr>
+<td>-le</td>
+<td>n1 小于等于 n2 (less than or equal)</td>
+</tr>
+
+<tr>
+<td>判定字符串</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-z string</td>
+<td>判定字串是否为 0 ？若 string 为空字串，则为true</td>
+</tr>
+
+<tr>
+<td>-n string</td>
+<td>判定字串是否非 0 ？若 string 为空字串，则为 false。</td>
+</tr>
+
+<tr>
+<td>test str1 = str2</td>
+<td>判定 str1 是否等于 str2 ，若相等，则为 true</td>
+</tr>
+
+<tr>
+<td>test str1 != str2</td>
+<td>判定 str1 是否不等于 str2 ，若相等，则为 false</td>
+</tr>
+
+<tr>
+<td>多重条件判定，例如： test -r filename -a -x filename</td>
+<td></td>
+</tr>
+
+<tr>
+<td>-a</td>
+<td>(and)两条件同时成立！例如 test -r file -a -x file，则file同時具有r与x权限时，才返回 true。</td>
+</tr>
+
+<tr>
+<td>-o</td>
+<td>(or)两条件任何一个成立！例如 test -r file -o -x file，则file 具有 r 或 x权限时，就可返回 true。</td>
+</tr>
+
+<tr>
+<td>!</td>
+<td>判断条件取反，如 test ! -x file ，当 file 不具有 x 时，返回 true</td>
+</tr>
+</tbody>
+</table>
+
+<h4>3) 特殊情况</h4>
+<pre class="chroma"><span class="c1"># 检测文件权限时，如果执行命令的为root，常有不准确的情况</span>
+ll para.sh
+--wx------ <span class="m">1</span> root root <span class="m">377</span> May  <span class="m">7</span> 20:46 para.sh
+
+<span class="o">[</span><span class="o">[</span> -r para.sh <span class="o">]</span><span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;done&#34;</span>
+<span class="k">done</span>
+<span class="c1"># para.sh无读权限，但由于root的超高权限，导致判断失误</span>
 </pre>
     </div>
 
