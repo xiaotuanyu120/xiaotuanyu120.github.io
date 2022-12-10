@@ -44,3 +44,12 @@ server {
 - [$request_uri变量说明](http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_uri)
 
 > 不要混淆`$server_name`和`$host`，server_name就是我们配置的该server块的变量
+
+### 3. 严格要求HTTP请求方法
+仅允许常用的`GET, POST`
+``` bash
+add_header Allow "GET, POST" always;
+if ( $request_method !~ ^(GET|POST)$ ) {
+	return 405;
+}
+```
