@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a>
+            </li>
+            <li>
+              <a href="/leetcode/dynamic_program/dynamic_program.html">Dynamic Program</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                  <ul>
+                    <li><a href="/leetcode/array/array.html">Array</a></li>
+                    <li><a href="/leetcode/array/easy_283_move_zeroes.html">283. Move Zeroes</a></li>
+                    <li><a href="/leetcode/array/easy_485_max_consecutive_ones.html">485. Max Consecutive Ones</a></li>
+                    <li><a href="/leetcode/array/easy_645_set_mismatch.html">645. Set Mismatch</a></li>
+                    <li><a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a></li>
+                    <li><a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a></li>
+                    <li><a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>645. Set Mismatch</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>16 Jun 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>645. Set Mismatch (easy) 错误的集合</h2>
+
+<h3>题干</h3>
+
+<p>You have a set of integers <code>s</code>, which originally contains all the numbers from <code>1</code> to <code>n</code>. Unfortunately, due to some error, one of the numbers in <code>s</code> got duplicated to another number in the set, which results in <strong>repetition of one</strong> number and <strong>loss of another</strong> number.</p>
+
+<p>You are given an integer array <code>nums</code> representing the data status of this set after the error.</p>
+
+<p>Find the number that occurs twice and the number that is missing and return them in the form of an array.</p>
+
+<p>Example 1:</p>
+<pre class="chroma">Input: nums = [1,2,2,4]
+Output: [2,3]
+</pre>
+<p>Example 2:</p>
+<pre class="chroma">Input: nums = [1,1]
+Output: [1,2]
+</pre>
+<p>Constraints:</p>
+
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 104</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 104</code></li>
+</ul>
+
+<h3>解题思路</h3>
+
+<h4>暴力解法</h4>
+
+<p>重复的值可以用多一个数据结构来记录是否已经存在过；缺失的值，可以通过循环1-n来查找值是否存在。</p>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+
+<h4>技巧解法</h4>
+
+<p>时间复杂度基本上无法优化了，只能优化空间复杂度了。</p>
+
+<p>上面我们是使用了额外的空间记录，来找到重复的值。因为期望的数组是1-n，有问题的数组只是其中一个数字错了，所以还是有数学规律在里面的。</p>
+
+<p>首先，我们先计算三个数值</p>
+
+<ul>
+<li>sum_expected，将1-n相加，计为(1+n)n/2</li>
+<li>sum_nums，将错误的数组相加</li>
+<li>sum_set，将错误的数组转换成set后相加</li>
+</ul>
+
+<p>获取重复的数值，可以通过sum_nums - sum_set得到</p>
+
+<p>获取缺失的数值，可以通过sum_expected - sum_set得到</p>
+
+<blockquote>
+<p>时间复杂度无法继续优化，是因为sum()求和函数也是O(n)</p>
+</blockquote>
+
+<h3>我的答案</h3>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findErrorNums</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">checked_nums</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="n">dup_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">checked_nums</span><span class="p">:</span>
+                <span class="n">dup_num</span> <span class="o">=</span> <span class="n">num</span>
+                <span class="k">break</span>
+            <span class="n">checked_nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+        <span class="n">lost_num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+                <span class="n">lost_num</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="k">break</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">dup_num</span><span class="p">,</span> <span class="n">lost_num</span><span class="p">]</span>
+</pre>
+<h3>技巧答案</h3>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findErrorNums</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">checked_nums</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">sum_expected</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span>
+        <span class="n">sum_nums</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="n">sum_set</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span>
+
+        <span class="n">dup_num</span> <span class="o">=</span> <span class="n">sum_nums</span> <span class="o">-</span> <span class="n">sum_set</span>
+        <span class="n">lost_num</span> <span class="o">=</span> <span class="n">sum_expected</span> <span class="o">-</span> <span class="n">sum_set</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">dup_num</span><span class="p">,</span> <span class="n">lost_num</span><span class="p">]</span>
+</pre>
+<blockquote>
+<p>虽然都是O(n)，但是还是建议sum()的方式。源码是C实现，实测性能更好。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

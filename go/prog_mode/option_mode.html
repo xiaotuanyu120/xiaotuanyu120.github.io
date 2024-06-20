@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a>
+            </li>
+            <li>
+              <a href="/leetcode/dynamic_program/dynamic_program.html">Dynamic Program</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+              <ul>
+                <li>
+                  <a href="/go/go/index.html">go</a>
+                </li>
+                <li>
+                  <a href="/go/prog_mode/index.html">prog_mode</a>
+                  <ul>
+                    <li><a href="/go/prog_mode/option_mode.html">Functional Options</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>Functional Options</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>13 Dec 2022</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>可变字段结构体问题</h2>
+
+<p>想象我们有一个结构体</p>
+<pre class="chroma"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Name</span>     <span class="kt">string</span>
+	<span class="nx">Age</span>      <span class="kt">int</span>
+	<span class="nx">Job</span>      <span class="kt">string</span>
+	<span class="nx">Title</span>    <span class="kt">string</span>
+	<span class="nx">Religion</span> <span class="kt">string</span>
+	<span class="nx">Hobby</span>    <span class="kt">string</span>
+<span class="p">}</span>
+</pre>
+<p>其中：</p>
+
+<ul>
+<li><code>Name</code>和<code>Age</code>是必传的参数</li>
+<li><code>Job</code>和<code>Title</code>是工作相关的选填参数，<code>Religion</code>是宗教信息相关的选填参数，<code>Hobby</code>是可有可无的选填参数。这些选填参数都会有默认值。</li>
+</ul>
+
+<p>在这种情况下，当我们创建一个新的对象时，根据不同的情况，我们需要使用不同的参数来创建</p>
+<pre class="chroma"><span class="kd">func</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span> <span class="kt">int8</span><span class="p">)</span> <span class="o">*</span><span class="nx">Person</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">Age</span><span class="p">:</span> <span class="nx">age</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">NewBoss</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span> <span class="kt">int8</span><span class="p">,</span> <span class="nx">hobby</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">Person</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">Age</span><span class="p">:</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">Hobby</span><span class="p">:</span> <span class="nx">hobby</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">NewWorker</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span> <span class="kt">int8</span><span class="p">,</span> <span class="nx">job</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">religion</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">Person</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">Age</span><span class="p">:</span> <span class="nx">age</span><span class="p">,</span> <span class="nx">Job</span><span class="p">:</span> <span class="nx">job</span><span class="p">,</span> <span class="nx">Religion</span><span class="p">:</span> <span class="nx">religion</span><span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<h2>Builder模式</h2>
+
+<p>为了解决上面的问题，我们可以使用builder模式</p>
+<pre class="chroma"><span class="kd">type</span> <span class="nx">Person</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Name</span>     <span class="kt">string</span>
+	<span class="nx">Age</span>      <span class="kt">int8</span>
+	<span class="nx">Job</span>      <span class="kt">string</span>
+	<span class="nx">Title</span>    <span class="kt">string</span>
+	<span class="nx">Religion</span> <span class="kt">string</span>
+	<span class="nx">Hobby</span>    <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">PersonBuilder</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Person</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pb</span> <span class="o">*</span><span class="nx">PersonBuilder</span><span class="p">)</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span> <span class="kt">int8</span><span class="p">)</span> <span class="o">*</span><span class="nx">PersonBuilder</span> <span class="p">{</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Name</span> <span class="p">=</span> <span class="nx">name</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Age</span> <span class="p">=</span> <span class="nx">age</span>
+	<span class="k">return</span> <span class="nx">pb</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pb</span> <span class="o">*</span><span class="nx">PersonBuilder</span><span class="p">)</span> <span class="nf">WithJob</span><span class="p">(</span><span class="nx">job</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">title</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">PersonBuilder</span> <span class="p">{</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Job</span> <span class="p">=</span> <span class="nx">job</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Title</span> <span class="p">=</span> <span class="nx">title</span>
+	<span class="k">return</span> <span class="nx">pb</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pb</span> <span class="o">*</span><span class="nx">PersonBuilder</span><span class="p">)</span> <span class="nf">WithReligion</span><span class="p">(</span><span class="nx">religion</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">PersonBuilder</span> <span class="p">{</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Religion</span> <span class="p">=</span> <span class="nx">religion</span>
+	<span class="k">return</span> <span class="nx">pb</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pb</span> <span class="o">*</span><span class="nx">PersonBuilder</span><span class="p">)</span> <span class="nf">WithHobby</span><span class="p">(</span><span class="nx">hobby</span> <span class="kt">string</span><span class="p">)</span> <span class="o">*</span><span class="nx">PersonBuilder</span> <span class="p">{</span>
+	<span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span><span class="p">.</span><span class="nx">Hobby</span> <span class="p">=</span> <span class="nx">hobby</span>
+	<span class="k">return</span> <span class="nx">pb</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">pb</span> <span class="o">*</span><span class="nx">PersonBuilder</span><span class="p">)</span> <span class="nf">Build</span><span class="p">(</span><span class="p">)</span> <span class="nx">Person</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="nx">pb</span><span class="p">.</span><span class="nx">Person</span>
+<span class="p">}</span>
+</pre>
+<p>这样，我们就可以这样使用。</p>
+<pre class="chroma">	<span class="nx">pb</span> <span class="o">:=</span> <span class="nx">PersonBuilder</span><span class="p">{</span><span class="p">}</span>
+	<span class="nx">person</span> <span class="o">:=</span> <span class="nx">pb</span><span class="p">.</span><span class="nf">NewPerson</span><span class="p">(</span><span class="s">&#34;Tom&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span><span class="p">.</span>
+		<span class="nf">WithJob</span><span class="p">(</span><span class="s">&#34;boss&#34;</span><span class="p">,</span> <span class="s">&#34;CEO&#34;</span><span class="p">)</span><span class="p">.</span>
+		<span class="nf">Build</span><span class="p">(</span><span class="p">)</span>
+</pre>
+<p>但是这里多了一个Builder类，只是为了解决一个参数的问题，好像有点大材小用了。在纯解决参数传入问题的场景下，如果我们想省掉这个Builder类，就可以使用Functional Options了</p>
+
+<h2>Functional Options</h2>
+
+<p>我们可以定义一个函数类型，这个函数只接收struct的指针。</p>
+<pre class="chroma"><span class="kd">type</span> <span class="nx">PersonOption</span> <span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">Person</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">WithJob</span><span class="p">(</span><span class="nx">job</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">title</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">PersonOption</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">person</span> <span class="o">*</span><span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">person</span><span class="p">.</span><span class="nx">Job</span> <span class="p">=</span> <span class="nx">job</span>
+		<span class="nx">person</span><span class="p">.</span><span class="nx">Title</span> <span class="p">=</span> <span class="nx">title</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">WithReligion</span><span class="p">(</span><span class="nx">religion</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">PersonOption</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">person</span> <span class="o">*</span><span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">person</span><span class="p">.</span><span class="nx">Religion</span> <span class="p">=</span> <span class="nx">religion</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">WithHobby</span><span class="p">(</span><span class="nx">hobby</span> <span class="kt">string</span><span class="p">)</span> <span class="nx">PersonOption</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kd">func</span><span class="p">(</span><span class="nx">person</span> <span class="o">*</span><span class="nx">Person</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">person</span><span class="p">.</span><span class="nx">Hobby</span> <span class="p">=</span> <span class="nx">hobby</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>然后我们改造创建struct的函数</p>
+<pre class="chroma"><span class="kd">func</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">age</span> <span class="kt">int8</span><span class="p">,</span> <span class="nx">opts</span> <span class="o">...</span><span class="nx">PersonOption</span><span class="p">)</span> <span class="o">*</span><span class="nx">Person</span> <span class="p">{</span>
+	<span class="nx">p</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span>
+		<span class="nx">Name</span><span class="p">:</span> <span class="nx">name</span><span class="p">,</span>
+		<span class="nx">Age</span><span class="p">:</span>  <span class="nx">age</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">opt</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">opts</span> <span class="p">{</span>
+		<span class="nf">opt</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">p</span>
+<span class="p">}</span>
+</pre>
+<p>后面我们就可以使用这种方式来创建struct</p>
+<pre class="chroma"><span class="nx">nobody</span> <span class="o">:=</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="s">&#34;Tom&#34;</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+<span class="nx">boss</span> <span class="o">:=</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="s">&#34;Bill&#34;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="nf">WithJob</span><span class="p">(</span><span class="s">&#34;boss&#34;</span><span class="p">,</span> <span class="s">&#34;CEO&#34;</span><span class="p">)</span><span class="p">,</span> <span class="nf">WithHobby</span><span class="p">(</span><span class="s">&#34;beauty&#34;</span><span class="p">)</span><span class="p">)</span>
+<span class="nx">woker</span> <span class="o">:=</span> <span class="nf">NewPerson</span><span class="p">(</span><span class="s">&#34;John&#34;</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="nf">WithJob</span><span class="p">(</span><span class="s">&#34;farmer&#34;</span><span class="p">,</span> <span class="s">&#34;senior&#34;</span><span class="p">)</span><span class="p">,</span> <span class="nf">WithHobby</span><span class="p">(</span><span class="s">&#34;study&#34;</span><span class="p">)</span><span class="p">,</span><span class="nf">WithReligion</span><span class="p">(</span><span class="s">&#34;Money&#34;</span><span class="p">)</span><span class="p">)</span>
+</pre>
+<p>这样的方式，简洁明了，高内聚，符合直觉，理解简单</p>
+
+<h2>参考文档</h2>
+
+<p><a href="https://coolshell.cn/articles/21146.html">陈皓 GO 编程模式：FUNCTIONAL OPTIONS</a></p>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

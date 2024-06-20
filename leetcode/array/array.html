@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a>
+            </li>
+            <li>
+              <a href="/leetcode/dynamic_program/dynamic_program.html">Dynamic Program</a>
+            </li>
+            <li>
+              <a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                  <ul>
+                    <li><a href="/leetcode/array/array.html">Array</a></li>
+                    <li><a href="/leetcode/array/easy_283_move_zeroes.html">283. Move Zeroes</a></li>
+                    <li><a href="/leetcode/array/easy_485_max_consecutive_ones.html">485. Max Consecutive Ones</a></li>
+                    <li><a href="/leetcode/array/easy_645_set_mismatch.html">645. Set Mismatch</a></li>
+                    <li><a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a></li>
+                    <li><a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a></li>
+                    <li><a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>Array</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>14 Jun 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>1. 数组的定义</h3>
+
+<p>数组是元素的顺序集合，通常这些元素具有相同的类型。</p>
+
+<blockquote>
+<p>大部分编程语言实现的数组元素都是相同类型</p>
+
+<ul>
+<li>C：数组中的元素必须是相同数据类型</li>
+<li>C++/GO/JAVA：数组中的元素必须是相同数据类型（可以变相通过特定的对象类型实现）</li>
+<li>Python/JavaScript：数组中的元素可以是不同数据类型</li>
+</ul>
+</blockquote>
+
+<h3>2. 数组在内存中如何储存？</h3>
+
+<p>不同编程语言对数组的实现不同，基本上分为两类，一类是相信程序员，分配的内存只负责储存元素，其他的程序员自己负责；另外一类是帮你掩盖底层细节，给程序员减负，程序员开箱即用，分配的内存除了储存数组的元素，还包含储存数组的元数据。</p>
+
+<blockquote>
+<ul>
+<li>以C举例：仅分配数据空间，分配好内存空间后，元素按照顺序依次储存在内存空间中。数组的元数据（例如长度）需要程序员自己维护</li>
+<li>以python举例：列表是一个对象，它包含一个指向实际数据存储的数组的指针、数组的长度、以及其他管理数据。</li>
+</ul>
+</blockquote>
+
+<p>示例：
+数组arr，容量为4，赋值<code>{1, 2, 3, 4}</code></p>
+
+<blockquote>
+<p>假设 int 类型在你的系统中占用4个字节（32位），并假设使用小端序（Little Endian）存储格式（在内存中低位字节在低地址，高位字节在高地址）</p>
+</blockquote>
+
+<p>在c中，需要分配4*4=16字节的内存，假设地址是0x1000到0x100F，共16个字节</p>
+
+<blockquote>
+<p>16进制中1位等于二进制4位，所以16进制中的1，相当于1个字节</p>
+</blockquote>
+
+<p>此种情况下，数组在内存中储存的值如下</p>
+<pre class="chroma">地址       内存内容（以十六进制表示）                               每个字节的二进制表示
+0x1000    +------------+------------+------------+------------+
+          |    01      |    00      |    00      |    00      | 00000001 00000000 00000000 00000000
+          +------------+------------+------------+------------+
+
+0x1004    +------------+------------+------------+------------+
+          |    02      |    00      |    00      |    00      | 00000010 00000000 00000000 00000000
+          +------------+------------+------------+------------+
+
+0x1008    +------------+------------+------------+------------+
+          |    03      |    00      |    00      |    00      | 00000011 00000000 00000000 00000000
+          +------------+------------+------------+------------+
+
+0x100C    +------------+------------+------------+------------+
+          |    04      |    00      |    00      |    00      | 00000100 00000000 00000000 00000000
+          +------------+------------+------------+------------+
+
+</pre>
+<h3>2. 数组的特点</h3>
+
+<h4>2.1 数组各个操作的时间复杂度</h4>
+
+<ul>
+<li>访问元素：O(1)</li>
+<li>增加和删除元素：O(n)</li>
+<li>查找元素：O(n)，如果是有序数组，用二分查找可以是O(log n)</li>
+<li>排序：对数组进行排序的常见算法如快速排序、归并排序等，时间复杂度通常为 O(n log n)。某些特殊情况下，如使用计数排序或桶排序等线性时间复杂度的排序算法，时间复杂度可以达到 O(n)</li>
+</ul>
+
+<h3>3. 热题100相关题目</h3>
+
+<ul>
+<li><a href="https://leetcode.cn/problems/maximum-subarray/">53. 最大子数组和 - Medium</a></li>
+<li><a href="https://leetcode.cn/problems/merge-intervals/">56. 合并区间 - Medium</a></li>
+<li><a href="https://leetcode.cn/problems/rotate-array/">189. 轮转数组 - Medium</a></li>
+<li><a href="https://leetcode.cn/problems/product-of-array-except-self/">238. 除自身以外数组的乘积 - Medium</a></li>
+<li><a href="https://leetcode.cn/problems/first-missing-positive/">41. 缺失的第一个正数 - Difficult</a></li>
+</ul>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
