@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
+            </li>
+            <li>
+              <a href="/leetcode/two_pointers/medium_11_container_with_most_water.html">11. Container With Most Water</a>
+            </li>
+            <li>
+              <a href="/leetcode/two_pointers/easy_283_move_zeroes.html">283. Move Zeroes</a>
+            </li>
+            <li>
+              <a href="/leetcode/hash_table/medium_128_longest_consecutive_sequence.html">128. Longest Consecutive Sequence</a>
+            </li>
+            <li>
+              <a href="/leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                </li>
+                <li>
+                  <a href="/leetcode/two_pointers/index.html">two_pointers</a>
+                  <ul>
+                    <li><a href="/leetcode/two_pointers/easy_283_move_zeroes.html">283. Move Zeroes</a></li>
+                    <li><a href="/leetcode/two_pointers/medium_11_container_with_most_water.html">11. Container With Most Water</a></li>
+                    <li><a href="/leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>15. 3Sum</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>22 Jun 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>15. 3Sum (Medium) 三数之和</h2>
+
+<h3>题干</h3>
+
+<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
+
+<p>Notice that the solution set must not contain duplicate triplets.</p>
+
+<p><strong>Example 1:</strong></p>
+<pre class="chroma">Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Explanation: 
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+The distinct triplets are [-1,0,1] and [-1,-1,2].
+Notice that the order of the output and the order of the triplets does not matter.
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: nums = [0,1,1]
+Output: []
+Explanation: The only possible triplet does not sum up to 0.
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: nums = [0,0,0]
+Output: [[0,0,0]]
+Explanation: The only possible triplet sums up to 0.
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li><code>3 &lt;= nums.length &lt;= 3000</code></li>
+<li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+
+<h3>解题思路</h3>
+
+<h4>我的歪思路</h4>
+
+<ul>
+<li>首先必须要排序（O(nlogn)），不然需要暴力枚举，那样代价太大（O(n^3)）</li>
+<li>左右两个指针，相加之和取负，从相同符号数指针开始循环，直到找到元素或绝对值小于该元素O(n^2)</li>
+</ul>
+
+<blockquote>
+<p>时间复杂度太高</p>
+
+<p>另外犯了一个错误，三个不确定元素时，要先确定一个元素，把模型复杂度降低，然后再考虑其他不确定元素</p>
+</blockquote>
+
+<h4>可行思路</h4>
+
+<ul>
+<li>逐个元素循环，剩下的就是找到另外两个元素</li>
+<li>使用双指针，从剩下的区间左右逐个寻找</li>
+<li>双指针变动的规则：left指针向右数字会变大；right指针向左数字会变小；</li>
+</ul>
+
+<blockquote>
+<p>注意去重：</p>
+
+<ol>
+<li>第一个循环元素，不能重复</li>
+<li>left元素，不能重复</li>
+</ol>
+</blockquote>
+
+<ul>
+<li>时间复杂度：O(n^2)，排序O(nlogn)，循环是O(n^2)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+
+<h4>优化思路</h4>
+
+<p>因为是三个元素，无法继续优化时间复杂度，只能优化一下边界，减少计算时间</p>
+
+<ul>
+<li><p>如果<code>nums[i]&gt;0</code>，可以终止循环，因为数组已经排序，第一个数是负数才有可能找到三数之和为0.</p></li>
+
+<li><p>循环元素为<code>nums[i]</code>时，我们需要的目标是<code>-nums[i]</code>，而事实上可选的值的范围在<code>nums[left]+nums[left+1]</code> - <code>nums[right-1]+nums[right]</code>之间，超出这个区间的话，没必要遍历。</p></li>
+</ul>
+
+<blockquote>
+<p>优化边界产生的效果，强依赖样本。最差的情况下可能毫无优化。</p>
+</blockquote>
+
+<h3>答案</h3>
+
+<h4>我的错误答案（耗时不可接受）</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="n">left_i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right_i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">left_i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">right_i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">middle_v</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">)</span>
+
+            <span class="c1"># 左绝对值大</span>
+            <span class="k">if</span> <span class="n">middle_v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">right_i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
+                        <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                            <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+                        <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">break</span>
+                    <span class="c1"># 左绝对值大，找不到</span>
+                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">middle_v</span><span class="p">:</span>
+                        <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">break</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># 右绝对值大</span>
+            <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left_i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right_i</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
+                    <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                        <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+                    <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+                <span class="c1"># 右绝对值大，找不到</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">middle_v</span><span class="p">:</span>
+                    <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+<h4>可行答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+<h4>优化答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
+            <span class="c1"># 优化边界</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            
+            <span class="c1"># 跳过重复</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="c1"># 优化边界</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">max_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+            <span class="n">min_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">max_match</span> <span class="ow">or</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">min_match</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                    <span class="c1"># 优化边界</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

@@ -34,19 +34,19 @@
           <ul>
 
             <li>
+              <a href="/leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
+            </li>
+            <li>
+              <a href="/leetcode/two_pointers/medium_11_container_with_most_water.html">11. Container With Most Water</a>
+            </li>
+            <li>
+              <a href="/leetcode/two_pointers/easy_283_move_zeroes.html">283. Move Zeroes</a>
+            </li>
+            <li>
+              <a href="/leetcode/hash_table/medium_128_longest_consecutive_sequence.html">128. Longest Consecutive Sequence</a>
+            </li>
+            <li>
               <a href="/leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
-            </li>
-            <li>
-              <a href="/leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a>
-            </li>
-            <li>
-              <a href="/leetcode/array/medium_189_rotate_array.html">189. Rotate Array</a>
-            </li>
-            <li>
-              <a href="/leetcode/dynamic_program/dynamic_program.html">Dynamic Program</a>
-            </li>
-            <li>
-              <a href="/leetcode/array/medium_53_maximum_subarray.html">53. Maximum Subarray (Medium)</a>
             </li>
           </ul>
 
@@ -110,6 +110,481 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>22 Jun 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>15. 3Sum (Medium) 三数之和</h2>
+
+<h3>题干</h3>
+
+<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
+
+<p>Notice that the solution set must not contain duplicate triplets.</p>
+
+<p><strong>Example 1:</strong></p>
+<pre class="chroma">Input: nums = [-1,0,1,2,-1,-4]
+Output: [[-1,-1,2],[-1,0,1]]
+Explanation: 
+nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+The distinct triplets are [-1,0,1] and [-1,-1,2].
+Notice that the order of the output and the order of the triplets does not matter.
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: nums = [0,1,1]
+Output: []
+Explanation: The only possible triplet does not sum up to 0.
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: nums = [0,0,0]
+Output: [[0,0,0]]
+Explanation: The only possible triplet sums up to 0.
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li><code>3 &lt;= nums.length &lt;= 3000</code></li>
+<li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+
+<h3>解题思路</h3>
+
+<h4>我的歪思路</h4>
+
+<ul>
+<li>首先必须要排序（O(nlogn)），不然需要暴力枚举，那样代价太大（O(n^3)）</li>
+<li>左右两个指针，相加之和取负，从相同符号数指针开始循环，直到找到元素或绝对值小于该元素O(n^2)</li>
+</ul>
+
+<blockquote>
+<p>时间复杂度太高</p>
+
+<p>另外犯了一个错误，三个不确定元素时，要先确定一个元素，把模型复杂度降低，然后再考虑其他不确定元素</p>
+</blockquote>
+
+<h4>可行思路</h4>
+
+<ul>
+<li>逐个元素循环，剩下的就是找到另外两个元素</li>
+<li>使用双指针，从剩下的区间左右逐个寻找</li>
+<li>双指针变动的规则：left指针向右数字会变大；right指针向左数字会变小；</li>
+</ul>
+
+<blockquote>
+<p>注意去重：</p>
+
+<ol>
+<li>第一个循环元素，不能重复</li>
+<li>left元素，不能重复</li>
+</ol>
+</blockquote>
+
+<ul>
+<li>时间复杂度：O(n^2)，排序O(nlogn)，循环是O(n^2)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+
+<h4>优化思路</h4>
+
+<p>因为是三个元素，无法继续优化时间复杂度，只能优化一下边界，减少计算时间</p>
+
+<ul>
+<li><p>如果<code>nums[i]&gt;0</code>，可以终止循环，因为数组已经排序，第一个数是负数才有可能找到三数之和为0.</p></li>
+
+<li><p>循环元素为<code>nums[i]</code>时，我们需要的目标是<code>-nums[i]</code>，而事实上可选的值的范围在<code>nums[left]+nums[left+1]</code> - <code>nums[right-1]+nums[right]</code>之间，超出这个区间的话，没必要遍历。</p></li>
+</ul>
+
+<blockquote>
+<p>优化边界产生的效果，强依赖样本。最差的情况下可能毫无优化。</p>
+</blockquote>
+
+<h3>答案</h3>
+
+<h4>我的错误答案（耗时不可接受）</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="n">left_i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right_i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">left_i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">right_i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">middle_v</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">)</span>
+
+            <span class="c1"># 左绝对值大</span>
+            <span class="k">if</span> <span class="n">middle_v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">right_i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
+                        <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                            <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+                        <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">break</span>
+                    <span class="c1"># 左绝对值大，找不到</span>
+                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">middle_v</span><span class="p">:</span>
+                        <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                        <span class="k">break</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># 右绝对值大</span>
+            <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left_i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right_i</span><span class="p">)</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
+                    <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                        <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+                    <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+                <span class="c1"># 右绝对值大，找不到</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">middle_v</span><span class="p">:</span>
+                    <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+<h4>可行答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+<h4>优化答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
+            <span class="c1"># 优化边界</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            
+            <span class="c1"># 跳过重复</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
+                <span class="k">continue</span>
+            
+            <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="c1"># 优化边界</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">max_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+            <span class="n">min_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">max_match</span> <span class="ow">or</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">min_match</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+                    <span class="c1"># 优化边界</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
+                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/two_pointers/medium_11_container_with_most_water.html">11. Container With Most Water</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>22 Jun 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>11. Container With Most Water (Medium) 盛最多水的容器</h2>
+
+<h3>题干</h3>
+
+<p>You are given an integer array <code>height</code> of length <code>n</code>. There are <code>n</code>vertical lines drawn such that the two endpoints of the <code>ith</code> line are <code>(i, 0)</code> and <code>(i, height[i])</code>.</p>
+
+<p>Find two lines that together with the x-axis form a container, such that the container contains the most water.</p>
+
+<p>Return <em>the maximum amount of water a container can store</em>.</p>
+
+<p><strong>Notice</strong> that you may not slant the container.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/two_pinters/medium_11_01.jpg" alt="img" /></p>
+<pre class="chroma">Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: height = [1,1]
+Output: 1
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li><code>n == height.length</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= height[i] &lt;= 104</code></li>
+</ul>
+
+<h3>解法思路</h3>
+
+<h4>我的解法</h4>
+
+<p>双指针，指向左右两根柱子，移动较短的那根柱子。</p>
+
+<blockquote>
+<p>面积等于index之差*短柱子，index从大到小循环，那只有移动较短的那根柱子，才有可能面积更大；</p>
+
+<p>假设移动的不是短柱子，是长柱子，假设下一个元素大于短柱子，那么对面积增加毫无帮助。假设下一个元素小于短柱子，那么对面积增加毫无帮助。</p>
+</blockquote>
+
+<h4>优化解法</h4>
+
+<p>移动短柱子时，因为index减少，所以只有下一个元素大于短柱子，才需要计算。理论上在计算之前对比新旧柱子高度即可节省计算。</p>
+
+<h3>答案</h3>
+
+<h4>我的答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">cur_area</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">max_area</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+            <span class="n">cur_area</span> <span class="o">=</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">)</span>
+            <span class="n">max_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cur_area</span><span class="p">,</span> <span class="n">max_area</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">:</span>
+                <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">max_area</span>
+</pre>
+<h4>优化后答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">max_area</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        
+        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+            <span class="c1"># 计算当前容器的水量</span>
+            <span class="n">current_area</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
+            <span class="c1"># 更新最大水量</span>
+            <span class="n">max_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_area</span><span class="p">,</span> <span class="n">current_area</span><span class="p">)</span>
+            
+            <span class="c1"># 移动较短的那根柱子对应的指针</span>
+            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">:</span>
+                <span class="n">current_left</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
+                <span class="c1"># 跳过计算，直到找到一个更高的柱子</span>
+                <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">current_left</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">current_right</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+                <span class="c1"># 跳过计算，直到找到一个更高的柱子</span>
+                <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">current_right</span><span class="p">:</span>
+                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
+                    
+        <span class="k">return</span> <span class="n">max_area</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/two_pointers/easy_283_move_zeroes.html">283. Move Zeroes</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>22 Jun 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>238. Move Zeroes (Easy) 移动零</h2>
+
+<h3>题干</h3>
+
+<p>Given an integer array nums, move all 0&rsquo;s to the end of it while maintaining the relative order of the non-zero elements.</p>
+
+<p>Note that you must do this in-place without making a copy of the array.</p>
+
+<p>Example 1:</p>
+
+<blockquote>
+<p>Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]</p>
+</blockquote>
+
+<p>Example 2:</p>
+
+<blockquote>
+<p>Input: nums = [0]
+Output: [0]</p>
+</blockquote>
+
+<p>Constraints:</p>
+
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+</ul>
+
+<blockquote>
+<p>Follow up: Could you minimize the total number of operations done?</p>
+</blockquote>
+
+<h3>解题思路</h3>
+
+<h4>我的思路</h4>
+
+<p>快慢指针，慢指针遇零则停，非零自增；快指针每次自增；当快慢指针一个是0，一个非0时，交换值</p>
+
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+
+<h3>答案</h3>
+
+<h4>我的答案</h4>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        Do not return anything, modify nums in-place instead.</span><span class="s2">
+</span><span class="s2"></span><span class="s2">        </span><span class="s2">&#34;&#34;&#34;</span>
+        <span class="n">zero_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">zero_idx</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/hash_table/medium_128_longest_consecutive_sequence.html">128. Longest Consecutive Sequence</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>22 Jun 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>128. Longest Consecutive Sequence (Medium) 最长连续序列</h2>
+
+<h3>题干</h3>
+
+<p>Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.</p>
+
+<p>You must write an algorithm that runs in O(n) time.</p>
+
+<p>Example 1:</p>
+
+<blockquote>
+<p>Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</p>
+</blockquote>
+
+<p>Example 2:</p>
+
+<blockquote>
+<p>Input: nums = [0,3,7,2,5,8,4,6,0,1]
+Output: 9</p>
+</blockquote>
+
+<p>Constraints:</p>
+
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+
+<h3>解题思路</h3>
+
+<h4>独立思考解法</h4>
+
+<ol>
+<li>对数组进行去重，然后排序</li>
+<li>循环数组，找到最大长度值（注意重叠问题）</li>
+</ol>
+
+<ul>
+<li>时间复杂度：O(n)（sort一次是O(n)，然后循环一次是O(n)，综合是O(n)）</li>
+<li>空间复杂度：O(n)（去重时不可避免需要空间，重新转换成list已经优化过，避免新空间创建）</li>
+</ul>
+
+<h3>答案</h3>
+
+<h3>我的答案</h3>
+<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">longestConsecutive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">nums</span><span class="p">[</span><span class="p">:</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
+
+        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">cur_len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">cur_len</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">cur_len</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">cur_len</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">max_len</span>
+</pre>
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -660,313 +1135,6 @@ Output: [1,2]
 <blockquote>
 <p>虽然都是O(n)，但是还是建议sum()的方式。源码是C实现，实测性能更好。</p>
 </blockquote>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/array/easy_485_max_consecutive_ones.html">485. Max Consecutive Ones</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>15 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>485. Max Consecutive Ones (easy) 最大连续1的个数</h2>
-
-<h3>题干</h3>
-
-<p>Given a binary array nums, return the maximum number of consecutive 1&rsquo;s in the array.</p>
-
-<p>Example 1:</p>
-<pre class="chroma">Input: nums = [1,1,0,1,1,1]
-Output: 3
-Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
-</pre>
-<p>Example 2:</p>
-<pre class="chroma">Input: nums = [1,0,1,1,0,1]
-Output: 2
-</pre>
-<p>Constraints:</p>
-
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>nums[i] is either 0 or 1.</code></li>
-</ul>
-
-<h3>解法思路</h3>
-
-<p>循环，非零计和，遇零清零。清零前更新最大连续值。</p>
-
-<p>这样应该能做到时间复杂度O(n)，空间复杂度O(1)</p>
-
-<h3>我的解法</h3>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findMaxConsecutiveOnes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">tmp_ret</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">tmp_ret</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">continue</span>
-            <span class="n">tmp_ret</span> <span class="o">+</span><span class="o">=</span> <span class="n">num</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tmp_ret</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/array/easy_283_move_zeroes.html">283. Move Zeroes</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>15 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>283. Move Zeroes (easy) 移动零</h2>
-
-<h3>题干</h3>
-
-<p>Given an integer array nums, move all 0&rsquo;s to the end of it while maintaining the relative order of the non-zero elements.</p>
-
-<p>Note that you must do this in-place without making a copy of the array.</p>
-
-<p>Example 1:</p>
-<pre class="chroma">Input: nums = [0,1,0,3,12]
-Output: [1,3,12,0,0]
-</pre>
-<p>Example 2:</p>
-<pre class="chroma">Input: nums = [0]
-Output: [0]
-</pre>
-<p>Constraints:</p>
-
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 104</code></li>
-<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
-</ul>
-
-<blockquote>
-<p>Follow up: Could you minimize the total number of operations done?</p>
-</blockquote>
-
-<h3>解题思路</h3>
-
-<p>因为不能创建新数组，只能in place替换，所以空间复杂度只能用到O(1)。时间复杂度因为有循环，最低是O(n)。</p>
-
-<p>那弄两个指针，一个遇零则停（非零则自增），一个按循环自增。当两个指针元素，一个为0，一个不为0时，则交换。这样时间复杂度是O(n)。</p>
-
-<h3>我的答案</h3>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        Do not return anything, modify nums in-place instead.</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        </span><span class="s2">&#34;&#34;&#34;</span>
-        <span class="n">zero_idx</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span>
-
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">zero_idx</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/linked_list/linked_list.html">Linked List</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>15 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>1. 链表的定义</h3>
-
-<p>链表是一个数据的集合，其中每个元素包含下 一个元素的地址;即每个元素包含两部分: 数据和链。</p>
-
-<h3>2. 链表在内存中如何存储</h3>
-
-<p>链表的每个节点在内存中储存的地址不一定是相连的。链表的一个特点是每个节点除了包含节点数据外，还包含一个指针，指向下一个节点的位置。这意味着链表的节点可以分散在内存中的不同位置，而不需要是连续的。</p>
-
-<p>示例：
-链表，有三个节点</p>
-
-<ul>
-<li>第一个节点（head）：数据为 1，指针指向地址 0x2008</li>
-<li>第二个节点（second）：数据为 2，指针指向地址 0x300C</li>
-<li>第三个节点（third）：数据为 3，指针为 NULL（表示链表的结束）
-&gt; 假设 int 类型和指针类型在你的系统中占用4个字节（32位），并假设使用小端序（Little Endian）存储格式（在内存中低位字节在低地址，高位字节在高地址）</li>
-</ul>
-
-<p>在这种情况下，链表在内存中的存储示意图如下：</p>
-<pre class="chroma">地址       内容
-0x1000    +----------------------------------------------------------+
-          | data: 00000001 00000000 00000000 00000000                | // 值：1，位模式为小端序
-0x1004    | next: 00001000 00100000 00000000 00000000                | // 地址：0x2008，小端序
-          +----------------------------------------------------------+
-              |
-              v
-0x2008    +----------------------------------------------------------+
-          | data: 00000010 00000000 00000000 00000000                | // 值：2，位模式为小端序
-0x200C    | next: 00001100 00110000 00000000 00000000                | // 地址：0x300C，小端序
-          +----------------------------------------------------------+
-              |
-              v
-0x300C    +----------------------------------------------------------+
-          | data: 00000011 00000000 00000000 00000000                | // 值：3，位模式为小端序
-0x3010    | next: 00000000 00000000 00000000 00000000                | // 地址：NULL，小端序
-          +----------------------------------------------------------+
-</pre>
-<h3>3. 链表的特点</h3>
-
-<h4>3.1 链表的时间和空间复杂度</h4>
-
-<p>链表的所有操作的空间复杂度都是O(1)</p>
-
-<h5>3.1.1 插入操作</h5>
-
-<p>在头部插入：时间复杂度：O(1)
-在尾部插入：时间复杂度：O(n)（若有尾指针，可优化到O(1)）
-在中间插入：时间复杂度：O(n)（需要遍历到指定位置）</p>
-
-<h5>3.1.2 删除操作</h5>
-
-<p>删除头节点：时间复杂度：O(1)
-删除尾节点：时间复杂度：O(n)（若有尾指针，可优化到O(1)）
-删除中间节点：时间复杂度：O(n)（需要遍历到指定位置）</p>
-
-<h5>3.1.3 查找操作</h5>
-
-<p>按值查找：时间复杂度：O(n)（需要遍历整个链表）
-按位置查找：时间复杂度：O(n)（需要遍历到指定位置）</p>
-
-<h5>3.1.4 访问操作</h5>
-
-<p>访问头节点：时间复杂度：O(1)
-访问尾节点：时间复杂度：O(n)（若有尾指针，可优化到O(1)）
-访问中间节点：时间复杂度：O(n)（需要遍历到指定位置）</p>
-
-<h5>3.1.5 更新操作</h5>
-
-<p>更新指定位置的节点：时间复杂度：O(n)（需要遍历到指定位置）</p>
-
-<h3>4. 链表的类型</h3>
-
-<p>前面只介绍了经典的单链表类型，其实链表还有很多其他类型：</p>
-
-<ul>
-<li>单链表：每个节点包含数据和一个指向下一个节点的指针。</li>
-<li>双链表：每个节点包含数据、一个指向下一个节点的指针和一个指向前一个节点的指针。双链表可以双向遍历，插入和删除操作更加灵活。</li>
-<li>循环链表：最后一个节点指向第一个节点，形成一个环。循环链表可以用于需要循环访问数据的场景。</li>
-<li>双向循环链表：结合了双链表和循环链表的特点，既可以双向遍历，又可以循环访问。</li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/array/array.html">Array</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>14 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h3>1. 数组的定义</h3>
-
-<p>数组是元素的顺序集合，通常这些元素具有相同的类型。</p>
-
-<blockquote>
-<p>大部分编程语言实现的数组元素都是相同类型</p>
-
-<ul>
-<li>C：数组中的元素必须是相同数据类型</li>
-<li>C++/GO/JAVA：数组中的元素必须是相同数据类型（可以变相通过特定的对象类型实现）</li>
-<li>Python/JavaScript：数组中的元素可以是不同数据类型</li>
-</ul>
-</blockquote>
-
-<h3>2. 数组在内存中如何储存？</h3>
-
-<p>不同编程语言对数组的实现不同，基本上分为两类，一类是相信程序员，分配的内存只负责储存元素，其他的程序员自己负责；另外一类是帮你掩盖底层细节，给程序员减负，程序员开箱即用，分配的内存除了储存数组的元素，还包含储存数组的元数据。</p>
-
-<blockquote>
-<ul>
-<li>以C举例：仅分配数据空间，分配好内存空间后，元素按照顺序依次储存在内存空间中。数组的元数据（例如长度）需要程序员自己维护</li>
-<li>以python举例：列表是一个对象，它包含一个指向实际数据存储的数组的指针、数组的长度、以及其他管理数据。</li>
-</ul>
-</blockquote>
-
-<p>示例：
-数组arr，容量为4，赋值<code>{1, 2, 3, 4}</code></p>
-
-<blockquote>
-<p>假设 int 类型在你的系统中占用4个字节（32位），并假设使用小端序（Little Endian）存储格式（在内存中低位字节在低地址，高位字节在高地址）</p>
-</blockquote>
-
-<p>在c中，需要分配4*4=16字节的内存，假设地址是0x1000到0x100F，共16个字节</p>
-
-<blockquote>
-<p>16进制中1位等于二进制4位，所以16进制中的1，相当于1个字节</p>
-</blockquote>
-
-<p>此种情况下，数组在内存中储存的值如下</p>
-<pre class="chroma">地址       内存内容（以十六进制表示）                               每个字节的二进制表示
-0x1000    +------------+------------+------------+------------+
-          |    01      |    00      |    00      |    00      | 00000001 00000000 00000000 00000000
-          +------------+------------+------------+------------+
-
-0x1004    +------------+------------+------------+------------+
-          |    02      |    00      |    00      |    00      | 00000010 00000000 00000000 00000000
-          +------------+------------+------------+------------+
-
-0x1008    +------------+------------+------------+------------+
-          |    03      |    00      |    00      |    00      | 00000011 00000000 00000000 00000000
-          +------------+------------+------------+------------+
-
-0x100C    +------------+------------+------------+------------+
-          |    04      |    00      |    00      |    00      | 00000100 00000000 00000000 00000000
-          +------------+------------+------------+------------+
-
-</pre>
-<h3>2. 数组的特点</h3>
-
-<h4>2.1 数组各个操作的时间复杂度</h4>
-
-<ul>
-<li>访问元素：O(1)</li>
-<li>增加和删除元素：O(n)</li>
-<li>查找元素：O(n)，如果是有序数组，用二分查找可以是O(log n)</li>
-<li>排序：对数组进行排序的常见算法如快速排序、归并排序等，时间复杂度通常为 O(n log n)。某些特殊情况下，如使用计数排序或桶排序等线性时间复杂度的排序算法，时间复杂度可以达到 O(n)</li>
-</ul>
-
-<h3>3. 热题100相关题目</h3>
-
-<ul>
-<li><a href="https://leetcode.cn/problems/maximum-subarray/">53. 最大子数组和 - Medium</a></li>
-<li><a href="https://leetcode.cn/problems/merge-intervals/">56. 合并区间 - Medium</a></li>
-<li><a href="https://leetcode.cn/problems/rotate-array/">189. 轮转数组 - Medium</a></li>
-<li><a href="https://leetcode.cn/problems/product-of-array-except-self/">238. 除自身以外数组的乘积 - Medium</a></li>
-<li><a href="https://leetcode.cn/problems/first-missing-positive/">41. 缺失的第一个正数 - Difficult</a></li>
-</ul>
 
         </div>
 
