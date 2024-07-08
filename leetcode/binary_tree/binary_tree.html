@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                </li>
+                <li>
+                  <a href="/leetcode/binary_tree/index.html">binary_tree</a>
+                  <ul>
+                    <li><a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                </li>
+                <li>
+                  <a href="/leetcode/sliding_window/index.html">sliding_window</a>
+                </li>
+                <li>
+                  <a href="/leetcode/two_pointers/index.html">two_pointers</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>Binary Tree</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>06 Jul 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h3>二叉树的定义</h3>
+
+<p>在<a href="https://zh.wikipedia.org/wiki/電腦科學">电脑科学</a>中，<strong>二叉树</strong>（英语：Binary tree）是每个节点最多只有两个分支（即不存在分支度大于2的节点）的<a href="https://zh.wikipedia.org/wiki/树结构">树结构</a>[<a href="https://zh.wikipedia.org/zh-sg/二叉树#cite_note-1">1]</a>。通常分支被称作“左子树”或“右子树”。二叉树的分支具有左右次序，不能随意颠倒。</p>
+
+<p>二叉树的第i层至多拥有2i−1个节点；深度为k的二叉树至多总共有2k+1−1个节点（定义根节点所在深度 k0=0!），而总计拥有节点数符合的，称为“满二叉树”；深度为k有n个节点的二叉树，当且仅当其中的每一节点，都可以和深度k的满二叉树，序号1到n的节点一对一对应时，称为<a href="https://zh.wikipedia.org/wiki/完全二叉树">完全二叉树</a>。对任何一棵非空的二叉树T，如果其叶片（终端节点）数为n0，分支度为2的节点数为n2，则n0=n2+1。</p>
+
+<h3>二叉树的发展历史</h3>
+
+<ol>
+<li><strong>早期背景和数学基础</strong>：
+
+<ul>
+<li>在计算机科学发展之前，树结构的概念已经在数学中存在。数学家和图论专家研究了树的性质和特点。</li>
+<li>计算机科学的发展从20世纪中期开始，数据结构和算法的研究逐渐兴起。</li>
+</ul></li>
+<li><strong>20世纪50年代</strong>：
+
+<ul>
+<li>二叉树在计算机科学中开始被正式研究和应用。1950年代是二叉树概念的形成时期。</li>
+<li>当时的计算机科学家开始研究如何有效地存储和检索数据，二叉树被发现是一种有效的数据结构，尤其是在实现搜索和排序操作时。</li>
+</ul></li>
+<li><strong>二叉搜索树 (BST)</strong>：
+
+<ul>
+<li>二叉搜索树是一种特殊的二叉树，其中左子节点的值总是小于父节点的值，右子节点的值总是大于父节点的值。</li>
+<li>1959年，二叉搜索树的概念被正式提出，成为一种广泛使用的数据结构，用于高效的数据查找和排序。</li>
+</ul></li>
+<li><strong>自平衡二叉树</strong>：
+
+<ul>
+<li>1962年，G.M. Adelson-Velsky 和 E.M. Landis 提出了 AVL树，这是第一种自平衡二叉搜索树。AVL树通过在插入和删除节点时进行旋转操作，保持树的平衡，从而保证了操作的时间复杂度为O(log n)。</li>
+<li>1972年，Rudolf Bayer 发明了红黑树，这是一种自平衡二叉搜索树，进一步提高了效率和稳定性。</li>
+</ul></li>
+<li><strong>其他变体和应用</strong>：
+
+<ul>
+<li>随着计算机科学的发展，二叉树的其他变体（如堆、B树、Trie树等）被广泛研究和应用在不同的领域，如数据库、编译器、网络路由等。</li>
+<li>二叉树在算法设计、数据压缩（如哈夫曼编码）、表达式解析和计算等方面有着广泛的应用。</li>
+</ul></li>
+</ol>
+
+<h3>二叉树的种类</h3>
+
+<p>根据结构和性质的不同，二叉树可以分为许多种类。以下是一些常见的二叉树种类及其特点：</p>
+
+<ol>
+<li><strong>完全二叉树（Complete Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：除了最后一层外，其他每一层的节点数都达到最大，且最后一层的节点都集中在最左边。</li>
+<li><strong>特点</strong>：叶子节点只能出现在最后两层，并且最后一层的叶子节点都靠左排列。</li>
+</ul>
+
+<ol>
+<li><strong>满二叉树（Full Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：每个节点要么有两个子节点，要么没有子节点。</li>
+<li><strong>特点</strong>：叶子节点都在同一层，且每个非叶子节点都有两个子节点。</li>
+</ul>
+
+<ol>
+<li><strong>平衡二叉树（Balanced Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：任意节点的左右子树的高度差不超过1。</li>
+<li><strong>特点</strong>：为了保证查找、插入和删除操作的时间复杂度保持在 O(log n) 级别。</li>
+</ul>
+
+<ol>
+<li><strong>二叉搜索树（Binary Search Tree，BST）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：对任意节点，左子树上所有节点的值都小于该节点的值，右子树上所有节点的值都大于该节点的值。</li>
+<li><strong>特点</strong>：支持高效的查找、插入和删除操作。</li>
+</ul>
+
+<p><strong>总结</strong>
+二叉树还有很多其他种类，每种都有其特定的用途和性质。根据具体应用场景选择合适的二叉树可以提高算法的效率和性能。</p>
+
+<h3>二叉树的重要性</h3>
+
+<ul>
+<li><strong>高效查找</strong>：二叉搜索树允许在平均O(log n)的时间内进行查找操作。</li>
+<li><strong>排序功能</strong>：通过中序遍历二叉搜索树，可以获得有序的数据序列。</li>
+<li><strong>灵活性和扩展性</strong>：二叉树的变体（如AVL树、红黑树、B树等）在保持效率的同时，适应不同的应用场景和需求。</li>
+<li><strong>基础性</strong>：二叉树是很多复杂数据结构和算法的基础，如图的遍历、表达式解析、哈夫曼编码等。</li>
+</ul>
+
+<p>综上所述，二叉树作为一种基础的数据结构，在计算机科学的发展中起到了重要的作用。从最初的数学概念到如今各种复杂的变体和应用，二叉树一直是计算机科学研究和应用的核心部分。</p>
+
+<h3>二叉树在内存中的储存</h3>
+
+<p>二叉树在内存中，使用链式存储。</p>
+
+<blockquote>
+<p>也有线性存储，即使用数组来存储。</p>
+</blockquote>
+
+<p>假设我们在一个32位系统上，<code>int</code> 和指针都占用4个字节（32位）。我们将<code>val</code>设置为42，并假设<code>left</code>和<code>right</code>指针为空（即<code>NULL</code>）。</p>
+
+<p>在二进制位模式下：</p>
+
+<ul>
+<li><code>42</code> 的二进制表示是 <code>00000000 00000000 00000000 00101010</code>。</li>
+<li><code>NULL</code> 的二进制表示是 <code>00000000 00000000 00000000 00000000</code>。</li>
+</ul>
+
+<p>因此，内存布局将是：</p>
+<pre class="chroma">地址:    0x1000   0x1004   0x1008   0x100C
+        +--------+--------+--------+--------+
+值:     |   42   |  NULL  |  NULL  |
+        +--------+--------+--------+--------+
+字段:   |  val   |  left  |  right |
+        +--------+--------+--------+--------+
+</pre>
+<blockquote>
+<p>64位系统中，val值不够长度会进行补齐，保持长度和后面的指针一致。</p>
+</blockquote>
+
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>

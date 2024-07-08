@@ -34,19 +34,19 @@
           <ul>
 
             <li>
-              <a href="/leetcode/linked_list/easy_160_intersection_of_two_linked_list.html">160. Intersection Of Two Linked List</a>
+              <a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
             </li>
             <li>
-              <a href="/leetcode/sliding_window/medium_438_find_all_anagrams_in_a_string.html">438. Find All Anagrams In A String</a>
+              <a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a>
             </li>
             <li>
-              <a href="/leetcode/sliding_window/medium_3_longest_substring_without_repeating_characters.html">3. Longest Substring Without Repeating Characters</a>
+              <a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
             </li>
             <li>
-              <a href="/leetcode/two_pointers/medium_42_trapping_rain_water.html">42. Trapping Rain Water</a>
+              <a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
             </li>
             <li>
-              <a href="/leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
+              <a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
             </li>
           </ul>
 
@@ -75,6 +75,9 @@
                   <a href="/leetcode/array/index.html">array</a>
                 </li>
                 <li>
+                  <a href="/leetcode/binary_tree/index.html">binary_tree</a>
+                </li>
+                <li>
                   <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
                 </li>
                 <li>
@@ -83,7 +86,11 @@
                 <li>
                   <a href="/leetcode/linked_list/index.html">linked_list</a>
                   <ul>
+                    <li><a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a></li>
                     <li><a href="/leetcode/linked_list/easy_160_intersection_of_two_linked_list.html">160. Intersection Of Two Linked List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_234_palindrome_linked_list.html">234. Palindrome Linked List</a></li>
                     <li><a href="/leetcode/linked_list/linked_list.html">Linked List</a></li>
                   </ul>
                 </li>
@@ -212,6 +219,35 @@ Explanation: The two lists do not intersect, so return null.
 
 <p><strong>Follow up:</strong> Could you write a solution that runs in <code>O(m + n)</code> time and use only <code>O(1)</code>memory?</p>
 
+<h3>解法</h3>
+
+<h4>朴素解法</h4>
+
+<p>使用额外的备忘录空间，来记录两个链表每个节点的index和内存地址。然后循环短的那个逐个比对。</p>
+
+<h4>技巧解法</h4>
+
+<p>关键在于补齐路径长度，假设两个链表相交，相交节点之前的长度分别为a和b，相交节点之后的长度为c。</p>
+
+<p>那么最优的情况是a=b，循环一次就能找到相交节点了。但不可能所有的输入都是这种最优的案例，重新思考，我们要的不是a=b，而是在到达相交节点之前，循环的次数是相同的，既然a不是时时等于b，那么循环路径上一定有时时相等的值，比如a+c+b和b+c+a。</p>
+
+<p>所以解法也就出来了，listA的指针，走完ListA本身（a+c）后，继续在ListB上走；ListB的指针，走完ListB本身（b+c）后，继续在ListA上走。如果两者有相交节点的话，两个链表的指针，分别走完b和a个元素后一定会相遇，因为a+c+b等于b+c+a，那么我们就可以在O(m+n)的时间复杂度下找到这个相交节点了</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.next = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">getIntersectionNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headA</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">headB</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">cur_a</span><span class="p">,</span> <span class="n">cur_b</span> <span class="o">=</span> <span class="n">headA</span><span class="p">,</span> <span class="n">headB</span>
+        <span class="k">while</span> <span class="n">cur_a</span> <span class="o">!=</span> <span class="n">cur_b</span><span class="p">:</span>
+            <span class="c1"># cur_a 走完ListA后，再走ListB</span>
+            <span class="n">cur_a</span> <span class="o">=</span> <span class="n">cur_a</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_a</span> <span class="k">else</span> <span class="n">headB</span>
+            <span class="c1"># cur_b 走完ListB后，再走ListA</span>
+            <span class="n">cur_b</span> <span class="o">=</span> <span class="n">cur_b</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_b</span> <span class="k">else</span> <span class="n">headA</span>
+        <span class="k">return</span> <span class="n">cur_a</span>
+</pre>
     </div>
 
   </div>

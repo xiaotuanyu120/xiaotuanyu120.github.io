@@ -34,19 +34,19 @@
           <ul>
 
             <li>
-              <a href="/leetcode/linked_list/easy_160_intersection_of_two_linked_list.html">160. Intersection Of Two Linked List</a>
+              <a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
             </li>
             <li>
-              <a href="/leetcode/sliding_window/medium_438_find_all_anagrams_in_a_string.html">438. Find All Anagrams In A String</a>
+              <a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a>
             </li>
             <li>
-              <a href="/leetcode/sliding_window/medium_3_longest_substring_without_repeating_characters.html">3. Longest Substring Without Repeating Characters</a>
+              <a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
             </li>
             <li>
-              <a href="/leetcode/two_pointers/medium_42_trapping_rain_water.html">42. Trapping Rain Water</a>
+              <a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
             </li>
             <li>
-              <a href="/leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
+              <a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
             </li>
           </ul>
 
@@ -110,6 +110,581 @@
     </div>
 
     <div class="col-lg-7 col-md-7 col-sm-7">
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>06 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>94. Binary Tree Inorder Traversal (Easy) 二叉树的中序遍历</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, return <em>the inorder traversal of its nodes&rsquo; values</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/94_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,null,2,3]
+Output: [1,3,2]
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: root = []
+Output: []
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: root = [1]
+Output: [1]
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[0, 100]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</p>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>中序遍历，就是左中右这种顺序</p>
+
+<ul>
+<li>输入参数：node节点，保存结果的列表</li>
+<li>输出参数：空</li>
+<li>结束条件：当node是None的时候直接返回</li>
+<li>单层关键逻辑：当node不是None的时候，先处理左节点（需递归），将结果加入到结果，然后是中节点（当前节点，无需递归），然后时右节点（需递归）。</li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">inorderTraversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traversal</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+    
+    <span class="k">def</span> <span class="nf">traversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">,</span> <span class="n">res</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">traversal</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">traversal</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/binary_tree.html">Binary Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>06 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h3>二叉树的定义</h3>
+
+<p>在<a href="https://zh.wikipedia.org/wiki/電腦科學">电脑科学</a>中，<strong>二叉树</strong>（英语：Binary tree）是每个节点最多只有两个分支（即不存在分支度大于2的节点）的<a href="https://zh.wikipedia.org/wiki/树结构">树结构</a>[<a href="https://zh.wikipedia.org/zh-sg/二叉树#cite_note-1">1]</a>。通常分支被称作“左子树”或“右子树”。二叉树的分支具有左右次序，不能随意颠倒。</p>
+
+<p>二叉树的第i层至多拥有2i−1个节点；深度为k的二叉树至多总共有2k+1−1个节点（定义根节点所在深度 k0=0!），而总计拥有节点数符合的，称为“满二叉树”；深度为k有n个节点的二叉树，当且仅当其中的每一节点，都可以和深度k的满二叉树，序号1到n的节点一对一对应时，称为<a href="https://zh.wikipedia.org/wiki/完全二叉树">完全二叉树</a>。对任何一棵非空的二叉树T，如果其叶片（终端节点）数为n0，分支度为2的节点数为n2，则n0=n2+1。</p>
+
+<h3>二叉树的发展历史</h3>
+
+<ol>
+<li><strong>早期背景和数学基础</strong>：
+
+<ul>
+<li>在计算机科学发展之前，树结构的概念已经在数学中存在。数学家和图论专家研究了树的性质和特点。</li>
+<li>计算机科学的发展从20世纪中期开始，数据结构和算法的研究逐渐兴起。</li>
+</ul></li>
+<li><strong>20世纪50年代</strong>：
+
+<ul>
+<li>二叉树在计算机科学中开始被正式研究和应用。1950年代是二叉树概念的形成时期。</li>
+<li>当时的计算机科学家开始研究如何有效地存储和检索数据，二叉树被发现是一种有效的数据结构，尤其是在实现搜索和排序操作时。</li>
+</ul></li>
+<li><strong>二叉搜索树 (BST)</strong>：
+
+<ul>
+<li>二叉搜索树是一种特殊的二叉树，其中左子节点的值总是小于父节点的值，右子节点的值总是大于父节点的值。</li>
+<li>1959年，二叉搜索树的概念被正式提出，成为一种广泛使用的数据结构，用于高效的数据查找和排序。</li>
+</ul></li>
+<li><strong>自平衡二叉树</strong>：
+
+<ul>
+<li>1962年，G.M. Adelson-Velsky 和 E.M. Landis 提出了 AVL树，这是第一种自平衡二叉搜索树。AVL树通过在插入和删除节点时进行旋转操作，保持树的平衡，从而保证了操作的时间复杂度为O(log n)。</li>
+<li>1972年，Rudolf Bayer 发明了红黑树，这是一种自平衡二叉搜索树，进一步提高了效率和稳定性。</li>
+</ul></li>
+<li><strong>其他变体和应用</strong>：
+
+<ul>
+<li>随着计算机科学的发展，二叉树的其他变体（如堆、B树、Trie树等）被广泛研究和应用在不同的领域，如数据库、编译器、网络路由等。</li>
+<li>二叉树在算法设计、数据压缩（如哈夫曼编码）、表达式解析和计算等方面有着广泛的应用。</li>
+</ul></li>
+</ol>
+
+<h3>二叉树的种类</h3>
+
+<p>根据结构和性质的不同，二叉树可以分为许多种类。以下是一些常见的二叉树种类及其特点：</p>
+
+<ol>
+<li><strong>完全二叉树（Complete Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：除了最后一层外，其他每一层的节点数都达到最大，且最后一层的节点都集中在最左边。</li>
+<li><strong>特点</strong>：叶子节点只能出现在最后两层，并且最后一层的叶子节点都靠左排列。</li>
+</ul>
+
+<ol>
+<li><strong>满二叉树（Full Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：每个节点要么有两个子节点，要么没有子节点。</li>
+<li><strong>特点</strong>：叶子节点都在同一层，且每个非叶子节点都有两个子节点。</li>
+</ul>
+
+<ol>
+<li><strong>平衡二叉树（Balanced Binary Tree）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：任意节点的左右子树的高度差不超过1。</li>
+<li><strong>特点</strong>：为了保证查找、插入和删除操作的时间复杂度保持在 O(log n) 级别。</li>
+</ul>
+
+<ol>
+<li><strong>二叉搜索树（Binary Search Tree，BST）</strong></li>
+</ol>
+
+<ul>
+<li><strong>定义</strong>：对任意节点，左子树上所有节点的值都小于该节点的值，右子树上所有节点的值都大于该节点的值。</li>
+<li><strong>特点</strong>：支持高效的查找、插入和删除操作。</li>
+</ul>
+
+<p><strong>总结</strong>
+二叉树还有很多其他种类，每种都有其特定的用途和性质。根据具体应用场景选择合适的二叉树可以提高算法的效率和性能。</p>
+
+<h3>二叉树的重要性</h3>
+
+<ul>
+<li><strong>高效查找</strong>：二叉搜索树允许在平均O(log n)的时间内进行查找操作。</li>
+<li><strong>排序功能</strong>：通过中序遍历二叉搜索树，可以获得有序的数据序列。</li>
+<li><strong>灵活性和扩展性</strong>：二叉树的变体（如AVL树、红黑树、B树等）在保持效率的同时，适应不同的应用场景和需求。</li>
+<li><strong>基础性</strong>：二叉树是很多复杂数据结构和算法的基础，如图的遍历、表达式解析、哈夫曼编码等。</li>
+</ul>
+
+<p>综上所述，二叉树作为一种基础的数据结构，在计算机科学的发展中起到了重要的作用。从最初的数学概念到如今各种复杂的变体和应用，二叉树一直是计算机科学研究和应用的核心部分。</p>
+
+<h3>二叉树在内存中的储存</h3>
+
+<p>二叉树在内存中，使用链式存储。</p>
+
+<blockquote>
+<p>也有线性存储，即使用数组来存储。</p>
+</blockquote>
+
+<p>假设我们在一个32位系统上，<code>int</code> 和指针都占用4个字节（32位）。我们将<code>val</code>设置为42，并假设<code>left</code>和<code>right</code>指针为空（即<code>NULL</code>）。</p>
+
+<p>在二进制位模式下：</p>
+
+<ul>
+<li><code>42</code> 的二进制表示是 <code>00000000 00000000 00000000 00101010</code>。</li>
+<li><code>NULL</code> 的二进制表示是 <code>00000000 00000000 00000000 00000000</code>。</li>
+</ul>
+
+<p>因此，内存布局将是：</p>
+<pre class="chroma">地址:    0x1000   0x1004   0x1008   0x100C
+        +--------+--------+--------+--------+
+值:     |   42   |  NULL  |  NULL  |
+        +--------+--------+--------+--------+
+字段:   |  val   |  left  |  right |
+        +--------+--------+--------+--------+
+</pre>
+<blockquote>
+<p>64位系统中，val值不够长度会进行补齐，保持长度和后面的指针一致。</p>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>05 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>21. Merge Two Sorted List (Easy) 合并有序链表</h2>
+
+<h3>题干</h3>
+
+<p>You are given the heads of two sorted linked lists <code>list1</code> and <code>list2</code>.</p>
+
+<p>Merge the two lists into one <strong>sorted</strong> list. The list should be made by splicing together the nodes of the first two lists.</p>
+
+<p>Return <em>the head of the merged linked list</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/21_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: list1 = [], list2 = []
+Output: []
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: list1 = [], list2 = [0]
+Output: [0]
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in both lists is in the range <code>[0, 50]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li>Both <code>list1</code> and <code>list2</code> are sorted in <strong>non-decreasing</strong> order.</li>
+</ul>
+
+<h3>解法</h3>
+
+<h4>朴素解法</h4>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, val=0, next=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.next = next</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">mergeTwoLists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list1</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">,</span> <span class="n">list2</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">pre</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="p">)</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">pre</span>
+
+        <span class="k">while</span> <span class="n">list1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">list2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">list1</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;</span> <span class="n">list2</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="n">tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">list2</span>
+                <span class="n">list2</span> <span class="o">=</span> <span class="n">list2</span><span class="o">.</span><span class="n">next</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span>
+                <span class="n">list1</span> <span class="o">=</span> <span class="n">list1</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">list1</span> <span class="k">if</span> <span class="n">list1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">list2</span>
+        <span class="k">return</span> <span class="n">pre</span><span class="o">.</span><span class="n">next</span>
+</pre>
+<blockquote>
+<ul>
+<li>使用一个pre节点，避免了处理第一个节点的特殊情况</li>
+<li>while循环只处理两个链表都没到尾部的情况，其他一个到尾部时单独处理，这样避免了重复判断None的语句。</li>
+</ul>
+</blockquote>
+
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>04 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>206. Reverse Linked List (Easy) 反转链表</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>head</code> of a singly linked list, reverse the list, and return <em>the reversed list</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/206_examle_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/206_examle_2.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2]
+Output: [2,1]
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: head = []
+Output: []
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
+<li><code>-5000 &lt;= Node.val &lt;= 5000</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> A linked list can be reversed either iteratively or recursively. Could you implement both?</p>
+
+<h3>解法</h3>
+
+<h4>朴素解法（双指针）</h4>
+
+<p>第一个元素指向None，然后后续元素逐个指向前一个元素，完毕</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, val=0, next=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.next = next</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">pre</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+            <span class="n">next_node</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
+            <span class="n">pre</span><span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="p">,</span> <span class="n">next_node</span>
+        <span class="k">return</span> <span class="n">pre</span>
+</pre>
+<ul>
+<li>Time Cost: O(n)</li>
+<li>Space Cost: O(1)</li>
+</ul>
+
+<h4>递归解法</h4>
+
+<p>其实还是双指针，只是换了递归的写法</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, val=0, next=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.next = next</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">reverseList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">,</span> <span class="n">cur</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pre</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>04 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>141. Linked List Cycle (Easy) 环形链表</h2>
+
+<h3>题干</h3>
+
+<p>Given <code>head</code>, the head of a linked list, determine if the linked list has a cycle in it.</p>
+
+<p>There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the <code>next</code> pointer. Internally, <code>pos</code> is used to denote the index of the node that tail&rsquo;s <code>next</code> pointer is connected to. <strong>Note that <code>pos</code> is not passed as a parameter</strong>.</p>
+
+<p>Return <code>true</code> <em>if there is a cycle in the linked list</em>. Otherwise, return <code>false</code>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/141_example_1.png" alt="img" /></p>
+<pre class="chroma">Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/141_example_2.png" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+</pre>
+<p><strong>Example 3:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/141_example_3.png" alt="img" /></p>
+<pre class="chroma">Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of the nodes in the list is in the range <code>[0, 104]</code>.</li>
+<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
+<li><code>pos</code> is <code>-1</code> or a <strong>valid index</strong> in the linked-list.</li>
+</ul>
+
+<p><strong>Follow up:</strong> Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
+
+<h3>解法</h3>
+
+<h4>朴素解法</h4>
+
+<p>使用一个备忘录，记录每个节点，若后面有重复，即节点存入前，节点已经存在。那么就有环形存在</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.next = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">hasCycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">head</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">head</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre>
+<ul>
+<li>Time Cost: O(n^2)</li>
+<li>Space Cost: O(n)</li>
+</ul>
+
+<h4>优化解法</h4>
+
+<p>基于朴素解法，只是数据结构换成了dict</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.next = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">hasCycle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">temp</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ListNode</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+        <span class="k">while</span> <span class="n">head</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">head</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="n">temp</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/linked_list/easy_234_palindrome_linked_list.html">234. Palindrome Linked List</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>03 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>234. Palindrome Linked List (Easy) 回文链表</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>head</code> of a singly linked list, return <code>true</code> <em>if it is a</em> <em>palindrome</em></p>
+
+<p><em>or</em>  <code>false</code> <em>otherwise</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/234_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2,2,1]
+Output: true
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/234_example_2.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2]
+Output: false
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the list is in the range <code>[1, 105]</code>.</li>
+<li><code>0 &lt;= Node.val &lt;= 9</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?</p>
+
+<h3>解法</h3>
+
+<h4>快慢指针解法</h4>
+
+<p>使用快慢指针，一快一慢，当快指针无法继续前进的时候，慢指针正好是中间节点。</p>
+
+<p>反转后半段的链表，和前半段链表一起循环对比，当节点的value相等时，返回真，任意一个节点的value不相等时，返回假。</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, val=0, next=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.next = next</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># 节点范围是[1, 10^5]</span>
+        <span class="k">if</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        
+        <span class="n">first_half_end_node</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_half_node</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="n">second_half_head</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">first_half_end_node</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">second_half_head</span>
+
+        <span class="k">while</span> <span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">left</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    
+    <span class="k">def</span> <span class="nf">get_first_half_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="k">while</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">slow</span>
+    
+    <span class="k">def</span> <span class="nf">reverse_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">,</span> <span class="n">cur</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cur</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pre</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+</pre>
+        </div>
 
         <div class="article-summary">
         <div class="article-title">
@@ -192,6 +767,35 @@ Explanation: The two lists do not intersect, so return null.
 
 <p><strong>Follow up:</strong> Could you write a solution that runs in <code>O(m + n)</code> time and use only <code>O(1)</code>memory?</p>
 
+<h3>解法</h3>
+
+<h4>朴素解法</h4>
+
+<p>使用额外的备忘录空间，来记录两个链表每个节点的index和内存地址。然后循环短的那个逐个比对。</p>
+
+<h4>技巧解法</h4>
+
+<p>关键在于补齐路径长度，假设两个链表相交，相交节点之前的长度分别为a和b，相交节点之后的长度为c。</p>
+
+<p>那么最优的情况是a=b，循环一次就能找到相交节点了。但不可能所有的输入都是这种最优的案例，重新思考，我们要的不是a=b，而是在到达相交节点之前，循环的次数是相同的，既然a不是时时等于b，那么循环路径上一定有时时相等的值，比如a+c+b和b+c+a。</p>
+
+<p>所以解法也就出来了，listA的指针，走完ListA本身（a+c）后，继续在ListB上走；ListB的指针，走完ListB本身（b+c）后，继续在ListA上走。如果两者有相交节点的话，两个链表的指针，分别走完b和a个元素后一定会相遇，因为a+c+b等于b+c+a，那么我们就可以在O(m+n)的时间复杂度下找到这个相交节点了</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, x):</span>
+<span class="c1">#         self.val = x</span>
+<span class="c1">#         self.next = None</span>
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">getIntersectionNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headA</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">headB</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">cur_a</span><span class="p">,</span> <span class="n">cur_b</span> <span class="o">=</span> <span class="n">headA</span><span class="p">,</span> <span class="n">headB</span>
+        <span class="k">while</span> <span class="n">cur_a</span> <span class="o">!=</span> <span class="n">cur_b</span><span class="p">:</span>
+            <span class="c1"># cur_a 走完ListA后，再走ListB</span>
+            <span class="n">cur_a</span> <span class="o">=</span> <span class="n">cur_a</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_a</span> <span class="k">else</span> <span class="n">headB</span>
+            <span class="c1"># cur_b 走完ListB后，再走ListA</span>
+            <span class="n">cur_b</span> <span class="o">=</span> <span class="n">cur_b</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_b</span> <span class="k">else</span> <span class="n">headA</span>
+        <span class="k">return</span> <span class="n">cur_a</span>
+</pre>
         </div>
 
         <div class="article-summary">
@@ -606,666 +1210,6 @@ Output: 9</p>
 <li>空间复杂度：O(m)</li>
 </ul>
 
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/two_pointers/medium_15_3sum.html">15. 3Sum</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>22 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>15. 3Sum (Medium) 三数之和</h2>
-
-<h3>题干</h3>
-
-<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>
-
-<p>Notice that the solution set must not contain duplicate triplets.</p>
-
-<p><strong>Example 1:</strong></p>
-<pre class="chroma">Input: nums = [-1,0,1,2,-1,-4]
-Output: [[-1,-1,2],[-1,0,1]]
-Explanation: 
-nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
-nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
-nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
-The distinct triplets are [-1,0,1] and [-1,-1,2].
-Notice that the order of the output and the order of the triplets does not matter.
-</pre>
-<p><strong>Example 2:</strong></p>
-<pre class="chroma">Input: nums = [0,1,1]
-Output: []
-Explanation: The only possible triplet does not sum up to 0.
-</pre>
-<p><strong>Example 3:</strong></p>
-<pre class="chroma">Input: nums = [0,0,0]
-Output: [[0,0,0]]
-Explanation: The only possible triplet sums up to 0.
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li><code>3 &lt;= nums.length &lt;= 3000</code></li>
-<li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
-</ul>
-
-<h3>解题思路</h3>
-
-<h4>我的歪思路</h4>
-
-<ul>
-<li>首先必须要排序（O(nlogn)），不然需要暴力枚举，那样代价太大（O(n^3)）</li>
-<li>左右两个指针，相加之和取负，从相同符号数指针开始循环，直到找到元素或绝对值小于该元素O(n^2)</li>
-</ul>
-
-<blockquote>
-<p>时间复杂度太高</p>
-
-<p>另外犯了一个错误，三个不确定元素时，要先确定一个元素，把模型复杂度降低，然后再考虑其他不确定元素</p>
-</blockquote>
-
-<h4>可行思路</h4>
-
-<ul>
-<li>逐个元素循环，剩下的就是找到另外两个元素</li>
-<li>使用双指针，从剩下的区间左右逐个寻找</li>
-<li>双指针变动的规则：left指针向右数字会变大；right指针向左数字会变小；</li>
-</ul>
-
-<blockquote>
-<p>注意去重：</p>
-
-<ol>
-<li>第一个循环元素，不能重复</li>
-<li>left元素，不能重复</li>
-</ol>
-</blockquote>
-
-<ul>
-<li>时间复杂度：O(n^2)，排序O(nlogn)，循环是O(n^2)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-
-<h4>优化思路</h4>
-
-<p>因为是三个元素，无法继续优化时间复杂度，只能优化一下边界，减少计算时间</p>
-
-<ul>
-<li><p>如果<code>nums[i]&gt;0</code>，可以终止循环，因为数组已经排序，第一个数是负数才有可能找到三数之和为0.</p></li>
-
-<li><p>循环元素为<code>nums[i]</code>时，我们需要的目标是<code>-nums[i]</code>，而事实上可选的值的范围在<code>nums[left]+nums[left+1]</code> - <code>nums[right-1]+nums[right]</code>之间，超出这个区间的话，没必要遍历。</p></li>
-</ul>
-
-<blockquote>
-<p>优化边界产生的效果，强依赖样本。最差的情况下可能毫无优化。</p>
-</blockquote>
-
-<h3>答案</h3>
-
-<h4>我的错误答案（耗时不可接受）</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-
-        <span class="n">left_i</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">right_i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left_i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">right_i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">middle_v</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">)</span>
-
-            <span class="c1"># 左绝对值大</span>
-            <span class="k">if</span> <span class="n">middle_v</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">right_i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">left_i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
-                        <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
-                        <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
-                            <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
-                        <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                        <span class="k">break</span>
-                    <span class="c1"># 左绝对值大，找不到</span>
-                    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">middle_v</span><span class="p">:</span>
-                        <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                        <span class="k">break</span>
-                <span class="k">continue</span>
-
-            <span class="c1"># 右绝对值大</span>
-            <span class="k">for</span> <span class="n">middle_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left_i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right_i</span><span class="p">)</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">==</span> <span class="n">middle_v</span><span class="p">:</span>
-                    <span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">left_i</span><span class="p">]</span><span class="p">,</span> <span class="n">middle_v</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right_i</span><span class="p">]</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">pair</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
-                        <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
-                    <span class="n">left_i</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="k">break</span>
-                <span class="c1"># 右绝对值大，找不到</span>
-                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">middle_i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">middle_v</span><span class="p">:</span>
-                    <span class="n">right_i</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="k">break</span>
-        
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
-<h4>可行答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
-                <span class="k">continue</span>
-            
-            <span class="n">left</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-        
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
-<h4>优化答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">threeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">:</span>
-            <span class="c1"># 优化边界</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
-            
-            <span class="c1"># 跳过重复</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">:</span>
-                <span class="k">continue</span>
-            
-            <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-
-            <span class="c1"># 优化边界</span>
-            <span class="n">target</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">max_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
-            <span class="n">min_match</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">target</span> <span class="o">&gt;</span> <span class="n">max_match</span> <span class="ow">or</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">min_match</span><span class="p">:</span>
-                <span class="k">continue</span>
-
-            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-                <span class="n">sum_res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">sum_res</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="n">sum_res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
-                    <span class="c1"># 优化边界</span>
-                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                        <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">:</span>
-                        <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-        
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/two_pointers/medium_11_container_with_most_water.html">11. Container With Most Water</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>22 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>11. Container With Most Water (Medium) 盛最多水的容器</h2>
-
-<h3>题干</h3>
-
-<p>You are given an integer array <code>height</code> of length <code>n</code>. There are <code>n</code>vertical lines drawn such that the two endpoints of the <code>ith</code> line are <code>(i, 0)</code> and <code>(i, height[i])</code>.</p>
-
-<p>Find two lines that together with the x-axis form a container, such that the container contains the most water.</p>
-
-<p>Return <em>the maximum amount of water a container can store</em>.</p>
-
-<p><strong>Notice</strong> that you may not slant the container.</p>
-
-<p><strong>Example 1:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/two_pointers/medium_11_01.jpg" alt="img" /></p>
-<pre class="chroma">Input: height = [1,8,6,2,5,4,8,3,7]
-Output: 49
-Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
-</pre>
-<p><strong>Example 2:</strong></p>
-<pre class="chroma">Input: height = [1,1]
-Output: 1
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li><code>n == height.length</code></li>
-<li><code>2 &lt;= n &lt;= 105</code></li>
-<li><code>0 &lt;= height[i] &lt;= 104</code></li>
-</ul>
-
-<h3>解法思路</h3>
-
-<h4>我的解法</h4>
-
-<p>双指针，指向左右两根柱子，移动较短的那根柱子。</p>
-
-<blockquote>
-<p>面积等于index之差*短柱子，index从大到小循环，那只有移动较短的那根柱子，才有可能面积更大；</p>
-
-<p>假设移动的不是短柱子，是长柱子，假设下一个元素大于短柱子，那么对面积增加毫无帮助。假设下一个元素小于短柱子，那么对面积增加毫无帮助。</p>
-</blockquote>
-
-<h4>优化解法</h4>
-
-<p>移动短柱子时，因为index减少，所以只有下一个元素大于短柱子，才需要计算。理论上在计算之前对比新旧柱子高度即可节省计算。</p>
-
-<h3>答案</h3>
-
-<h4>我的答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">cur_area</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">max_area</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">cur_area</span> <span class="o">=</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">max_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cur_area</span><span class="p">,</span> <span class="n">max_area</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">:</span>
-                <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">max_area</span>
-</pre>
-<h4>优化后答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">maxArea</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">max_area</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        
-        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="c1"># 计算当前容器的水量</span>
-            <span class="n">current_area</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span>
-            <span class="c1"># 更新最大水量</span>
-            <span class="n">max_area</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_area</span><span class="p">,</span> <span class="n">current_area</span><span class="p">)</span>
-            
-            <span class="c1"># 移动较短的那根柱子对应的指针</span>
-            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">:</span>
-                <span class="n">current_left</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
-                <span class="c1"># 跳过计算，直到找到一个更高的柱子</span>
-                <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">current_left</span><span class="p">:</span>
-                    <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">current_right</span> <span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
-                <span class="c1"># 跳过计算，直到找到一个更高的柱子</span>
-                <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">current_right</span><span class="p">:</span>
-                    <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-                    
-        <span class="k">return</span> <span class="n">max_area</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/two_pointers/easy_283_move_zeroes.html">283. Move Zeroes</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>22 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>238. Move Zeroes (Easy) 移动零</h2>
-
-<h3>题干</h3>
-
-<p>Given an integer array nums, move all 0&rsquo;s to the end of it while maintaining the relative order of the non-zero elements.</p>
-
-<p>Note that you must do this in-place without making a copy of the array.</p>
-
-<p>Example 1:</p>
-
-<blockquote>
-<p>Input: nums = [0,1,0,3,12]
-Output: [1,3,12,0,0]</p>
-</blockquote>
-
-<p>Example 2:</p>
-
-<blockquote>
-<p>Input: nums = [0]
-Output: [0]</p>
-</blockquote>
-
-<p>Constraints:</p>
-
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 104</code></li>
-<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
-</ul>
-
-<blockquote>
-<p>Follow up: Could you minimize the total number of operations done?</p>
-</blockquote>
-
-<h3>解题思路</h3>
-
-<h4>我的思路</h4>
-
-<p>快慢指针，慢指针遇零则停，非零自增；快指针每次自增；当快慢指针一个是0，一个非0时，交换值</p>
-
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-
-<h3>答案</h3>
-
-<h4>我的答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">moveZeroes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        Do not return anything, modify nums in-place instead.</span><span class="s2">
-</span><span class="s2"></span><span class="s2">        </span><span class="s2">&#34;&#34;&#34;</span>
-        <span class="n">zero_idx</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span>
-
-            <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">zero_idx</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">zero_idx</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/hash_table/medium_128_longest_consecutive_sequence.html">128. Longest Consecutive Sequence</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>22 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>128. Longest Consecutive Sequence (Medium) 最长连续序列</h2>
-
-<h3>题干</h3>
-
-<p>Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.</p>
-
-<p>You must write an algorithm that runs in O(n) time.</p>
-
-<p>Example 1:</p>
-
-<blockquote>
-<p>Input: nums = [100,4,200,1,3,2]
-Output: 4
-Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.</p>
-</blockquote>
-
-<p>Example 2:</p>
-
-<blockquote>
-<p>Input: nums = [0,3,7,2,5,8,4,6,0,1]
-Output: 9</p>
-</blockquote>
-
-<p>Constraints:</p>
-
-<ul>
-<li><code>0 &lt;= nums.length &lt;= 105</code></li>
-<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
-</ul>
-
-<h3>解题思路</h3>
-
-<h4>独立思考解法</h4>
-
-<ol>
-<li>对数组进行去重，然后排序</li>
-<li>循环数组，找到最大长度值（注意重叠问题）</li>
-</ol>
-
-<ul>
-<li>时间复杂度：O(n)（sort一次是O(n)，然后循环一次是O(n)，综合是O(n)）</li>
-<li>空间复杂度：O(n)（去重时不可避免需要空间，重新转换成list已经优化过，避免新空间创建）</li>
-</ul>
-
-<h3>答案</h3>
-
-<h3>我的答案</h3>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">longestConsecutive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="p">)</span>
-        <span class="n">nums</span><span class="p">[</span><span class="p">:</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">x</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">)</span><span class="p">]</span>
-        <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="p">)</span>
-
-        <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">cur_len</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">cur_len</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">cur_len</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">cur_len</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">max_len</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/hash_table/medium_49_group_anagrams.html">49. Group Anagrams</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>20 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>49. Group Anagram (Medium) 字母异位词分组</h2>
-
-<h3>题干</h3>
-
-<p>Given an array of strings <code>strs</code>, group the anagrams together. You can return the answer in any order.</p>
-
-<p>An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p>
-
-<p>Example 1:</p>
-
-<blockquote>
-<p>Input: strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;,&ldquo;ate&rdquo;,&ldquo;nat&rdquo;,&ldquo;bat&rdquo;]
-Output: [[&ldquo;bat&rdquo;],[&ldquo;nat&rdquo;,&ldquo;tan&rdquo;],[&ldquo;ate&rdquo;,&ldquo;eat&rdquo;,&ldquo;tea&rdquo;]]</p>
-</blockquote>
-
-<p>Example 2:</p>
-
-<blockquote>
-<p>Input: strs = [&ldquo;&rdquo;]
-Output: [[&ldquo;&rdquo;]]</p>
-</blockquote>
-
-<p>Example 3:</p>
-
-<blockquote>
-<p>Input: strs = [&ldquo;a&rdquo;]
-Output: [[&ldquo;a&rdquo;]]</p>
-</blockquote>
-
-<p>Constraints:</p>
-
-<ul>
-<li><code>1 &lt;= strs.length &lt;= 104</code></li>
-<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
-<li><code>strs[i]</code> consists of lowercase English letters.</li>
-</ul>
-
-<h3>解题思路</h3>
-
-<h4>朴素解法</h4>
-
-<p>字符串是一个字符组成的数组（可忽略最后的间隔符<code>'\0'</code>），每个字符的<code>ASCII</code>码其实就是数字，是可以排序的，那么字母异位词排序后肯定是相同的，可以用这个值做key，然后把对应的字符串加到后面的列表中。最后循环这个字典，组合最终结果列表即可。</p>
-
-<h3>我的答案</h3>
-
-<h4>朴素解法答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">groupAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">anagrams_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">:</span>
-            <span class="n">sorted_s</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">anagrams_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sorted_s</span><span class="p">)</span><span class="p">:</span>
-                <span class="n">anagrams_dict</span><span class="p">[</span><span class="n">sorted_s</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">anagrams_dict</span><span class="p">[</span><span class="n">sorted_s</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        
-        <span class="n">answer</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">anagrams_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
-<h4>优化答案(语法优化版)</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">groupAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">anagrams</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">:</span>
-            <span class="n">sorted_s</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span>
-            <span class="n">anagrams</span><span class="p">[</span><span class="n">sorted_s</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">anagrams</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/array/medium_238_product_of_array_except_self.html">238. Product Of Array Except Self</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>20 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>238. Product Of Array Except Self (Medium) 除自身以外数组的乘积</h2>
-
-<h3>题干</h3>
-
-<p>Given an integer array <code>nums</code>, return an array answer such that <code>answer[i]</code> is equal to the product of all the elements of nums except <code>nums[i]</code>.</p>
-
-<p>The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.</p>
-
-<p>You must write an algorithm that runs in <code>O(n)</code> time and without using the division operation.</p>
-
-<p>Example 1:</p>
-
-<blockquote>
-<p>Input: nums = [1,2,3,4]
-Output: [24,12,8,6]</p>
-</blockquote>
-
-<p>Example 2:</p>
-
-<blockquote>
-<p>Input: nums = [-1,1,0,-3,3]
-Output: [0,0,9,0,0]</p>
-</blockquote>
-
-<p>Constraints:</p>
-
-<ul>
-<li><code>2 &lt;= nums.length &lt;= 105</code></li>
-<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>
-<li>The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.</li>
-</ul>
-
-<blockquote>
-<p>Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)</p>
-</blockquote>
-
-<h3>解题思路</h3>
-
-<h4>朴素算法</h4>
-
-<p>answer中的元素，为左半部分（前缀）和右半部分（后缀）。其中左半部分，可以通过循环线性逐个算出，而右半部分，可以倒循环的时候逐个算出。那么先正循环一次，把前缀逐个记住；再倒循环一次，把后缀逐个算出，然后和对应的前缀相乘即可得到结果。</p>
-
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(n)</li>
-</ul>
-
-<h4>优化算法</h4>
-
-<p>时间复杂度已经无法优化，那么只能优化空间复杂度到O(1)。由于answer是不计算到空间复杂度中的，所以要它身上下手</p>
-
-<h3>答案</h3>
-
-<h4>朴素答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">productExceptSelf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-        <span class="n">prefix_product_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-        
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">prefix_product_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix_product_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">suffix_product</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">answer</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix_product_list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">suffix_product</span>
-            <span class="n">suffix_product</span> <span class="o">*</span><span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
-<h4>优化答案</h4>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">productExceptSelf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">answer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">answer</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">suffix_product</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">answer</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span><span class="o">=</span> <span class="n">suffix_product</span>
-            <span class="n">suffix_product</span> <span class="o">*</span><span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-
-        <span class="k">return</span> <span class="n">answer</span>
-</pre>
         </div>
 
     </div>

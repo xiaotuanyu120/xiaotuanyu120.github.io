@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
+            </li>
+            <li>
+              <a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                </li>
+                <li>
+                  <a href="/leetcode/binary_tree/index.html">binary_tree</a>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                  <ul>
+                    <li><a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a></li>
+                    <li><a href="/leetcode/linked_list/easy_160_intersection_of_two_linked_list.html">160. Intersection Of Two Linked List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a></li>
+                    <li><a href="/leetcode/linked_list/easy_234_palindrome_linked_list.html">234. Palindrome Linked List</a></li>
+                    <li><a href="/leetcode/linked_list/linked_list.html">Linked List</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/leetcode/sliding_window/index.html">sliding_window</a>
+                </li>
+                <li>
+                  <a href="/leetcode/two_pointers/index.html">two_pointers</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>234. Palindrome Linked List</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>03 Jul 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>234. Palindrome Linked List (Easy) 回文链表</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>head</code> of a singly linked list, return <code>true</code> <em>if it is a</em> <em>palindrome</em></p>
+
+<p><em>or</em>  <code>false</code> <em>otherwise</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/234_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2,2,1]
+Output: true
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/linked_list/234_example_2.jpg" alt="img" /></p>
+<pre class="chroma">Input: head = [1,2]
+Output: false
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the list is in the range <code>[1, 105]</code>.</li>
+<li><code>0 &lt;= Node.val &lt;= 9</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?</p>
+
+<h3>解法</h3>
+
+<h4>快慢指针解法</h4>
+
+<p>使用快慢指针，一快一慢，当快指针无法继续前进的时候，慢指针正好是中间节点。</p>
+
+<p>反转后半段的链表，和前半段链表一起循环对比，当节点的value相等时，返回真，任意一个节点的value不相等时，返回假。</p>
+<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
+<span class="c1"># class ListNode:</span>
+<span class="c1">#     def __init__(self, val=0, next=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.next = next</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># 节点范围是[1, 10^5]</span>
+        <span class="k">if</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        
+        <span class="n">first_half_end_node</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_half_node</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="n">second_half_head</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">first_half_end_node</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+
+        <span class="n">left</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">second_half_head</span>
+
+        <span class="k">while</span> <span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">left</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    
+    <span class="k">def</span> <span class="nf">get_first_half_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="k">while</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">slow</span>
+    
+    <span class="k">def</span> <span class="nf">reverse_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">,</span> <span class="n">cur</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cur</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pre</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
