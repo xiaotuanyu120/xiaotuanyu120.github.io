@@ -185,6 +185,43 @@ Output: [1]
         <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">traversal</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
 </pre>
+<h4>栈解法</h4>
+
+<p>中序遍历，就是左中右顺序。</p>
+
+<ul>
+<li>栈中保存需要后序处理的节点（当前节点的左子树上所有的左节点），直到当前节点为None</li>
+<li>从栈中弹出元素，记录当前元素的值，然后使用当前节点的right节点当作当前节点，进入下次循环</li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">inorderTraversal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">answer</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="n">st_node</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+        <span class="n">cur_node</span> <span class="o">=</span> <span class="n">root</span>
+
+        <span class="c1"># 中序遍历：左中右</span>
+        <span class="c1"># 左子树依序入栈，到底后逐个弹出，处理中和右</span>
+        <span class="k">while</span> <span class="n">cur_node</span> <span class="ow">or</span> <span class="n">st_node</span><span class="p">:</span>
+            <span class="c1"># 先处理当前节点的左子树</span>
+            <span class="k">while</span> <span class="n">cur_node</span><span class="p">:</span>
+                <span class="n">st_node</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_node</span><span class="p">)</span>
+                <span class="n">cur_node</span> <span class="o">=</span> <span class="n">cur_node</span><span class="o">.</span><span class="n">left</span>
+
+            <span class="c1"># 将栈顶元素弹出栈（左节点首先会在栈顶）</span>
+            <span class="n">cur_node</span> <span class="o">=</span> <span class="n">st_node</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span>
+            <span class="n">answer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur_node</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+
+            <span class="c1"># 若无right，cur_node为None，会在下个循环中重新pop一个</span>
+            <span class="n">cur_node</span> <span class="o">=</span> <span class="n">cur_node</span><span class="o">.</span><span class="n">right</span>
+        
+        <span class="k">return</span> <span class="n">answer</span>
+</pre>
         </div>
 
         <div class="article-summary">
