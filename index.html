@@ -34,19 +34,19 @@
           <ul>
 
             <li>
-              <a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
+              <a href="/leetcode/binary_tree/easy_108_convert_sorted_array_to_binary_search_tree.html">108. Convert Sorted Array To Binary Search Tree</a>
             </li>
             <li>
-              <a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a>
+              <a href="/leetcode/binary_tree/easy_543_diameter_of_binary_tree.html">543. Diameter Of Binary Tree</a>
             </li>
             <li>
-              <a href="/leetcode/linked_list/easy_21_merge_two_sorted_list.html">21. Merge Two Sorted List</a>
+              <a href="/leetcode/binary_tree/easy_101_symmetric_binary_tree.html">101. Symmetric Binary Tree</a>
             </li>
             <li>
-              <a href="/leetcode/linked_list/easy_206_reverse_linked_list.html">206. Reverse Linked List</a>
+              <a href="/leetcode/binary_tree/easy_226_revert_binary_tree.html">226. Revert Binary Tree</a>
             </li>
             <li>
-              <a href="/leetcode/linked_list/easy_141_linked_list_cycle.html">141. Linked List Cycle</a>
+              <a href="/leetcode/binary_tree/easy_104_maximum_depth_of_binary_tree.html">104. Maximum Depth Of Binary Tree</a>
             </li>
           </ul>
 
@@ -113,6 +113,464 @@
 
         <div class="article-summary">
         <div class="article-title">
+          <a href="leetcode/binary_tree/easy_108_convert_sorted_array_to_binary_search_tree.html">108. Convert Sorted Array To Binary Search Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>14 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>108. Convert Sorted Array To Binary Search Tree (Easy) 降有序数组转换为二叉搜索树</h2>
+
+<h3>题干</h3>
+
+<p>Given an integer array <code>nums</code> where the elements are sorted in <strong>ascending order</strong>, convert it to a <strong>height-balanced</strong> <em>binary search tree</em>.</p>
+
+<blockquote>
+<p>A <strong>height-balanced</strong> binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.</p>
+</blockquote>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/108_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: nums = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/108_example_2.jpg" alt="img" /></p>
+<pre class="chroma">Input: nums = [1,3]
+Output: [3,1]
+Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>-104 &lt;= nums[i] &lt;= 104</code></li>
+<li><code>nums</code> is sorted in a <strong>strictly increasing</strong> order.</li>
+</ul>
+
+<h3>解法</h3>
+
+<h4>朴素解法</h4>
+
+<p>有序数组，组成高度平衡的二叉搜索树。重点就在于找到中间值，然后左右区间分别构造二叉树的左右子树。</p>
+
+<p>递归解法</p>
+
+<ul>
+<li>输入参数：输入一个数组</li>
+<li>输出参数：输出一个二叉树节点</li>
+<li>终止条件：
+
+<ul>
+<li>当数组长度等于1时，返回二叉树节点，值等于元素，左右子节点等于None</li>
+</ul></li>
+<li>单层核心逻辑：
+
+<ul>
+<li>当前数组长度整除2，结果就是中间值的index</li>
+<li>将当前中间值作为value</li>
+<li>分别把左区间[0:index]和右区间[index+1:]的返回值，当作当前节点的左右子节点</li>
+</ul></li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sortedArrayToBST</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">len_nums</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">len_nums</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">elif</span> <span class="n">len_nums</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">root_i</span> <span class="o">=</span> <span class="n">len_nums</span> <span class="o">/</span><span class="o">/</span> <span class="mi">2</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">root_i</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sortedArrayToBST</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="p">:</span><span class="n">root_i</span><span class="p">]</span><span class="p">)</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sortedArrayToBST</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">root_i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">root</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/easy_543_diameter_of_binary_tree.html">543. Diameter Of Binary Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>14 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>543. Diameter Of Binary Tree [Easy] 二叉树的直径</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, return *the length of the <strong>diameter</strong> of the tree*.</p>
+
+<p>The <strong>diameter</strong> of a binary tree is the <strong>length</strong> of the longest path between any two nodes in a tree. This path may or may not pass through the <code>root</code>.</p>
+
+<p>The <strong>length</strong> of a path between two nodes is represented by the number of edges between them.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/543_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,2,3,4,5]
+Output: 3
+Explanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: root = [1,2]
+Output: 1
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[1, 104]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>核心思路：</p>
+
+<ul>
+<li>将问题转换为求每个节点的左右子树高度之和，后序遍历</li>
+</ul>
+
+<p>递归实现（返回节点高度，同时计算递归过程中各个节点的最长直径；这两者都是后序遍历，所以可以循只遍历一次）：</p>
+
+<ul>
+<li>输入参数：Optional[TreeNode]</li>
+<li>输出参数：int（高度）</li>
+<li>终止条件：None节点的高度为0，返回它</li>
+<li>单层核心逻辑：
+
+<ul>
+<li>返回节点高度</li>
+<li>计算左节点的高度，计算右节点的高度</li>
+<li>取最大值+1，并返回</li>
+<li>更新全局最长直径</li>
+</ul></li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">diameterOfBinaryTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_diameter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_diameter</span>
+    
+    <span class="k">def</span> <span class="nf">getHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 终止条件</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="c1"># 后序遍历</span>
+        <span class="n">left_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="n">right_h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_diameter</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_h</span> <span class="o">+</span> <span class="n">right_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_diameter</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_h</span><span class="p">,</span> <span class="n">right_h</span><span class="p">)</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/easy_101_symmetric_binary_tree.html">101. Symmetric Binary Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>14 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>101. Symmetric Binary Tree (Easy) 对称二叉树</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, <em>check whether it is a mirror of itself</em> (i.e., symmetric around its center).</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,2,2,3,4,4,3]
+Output: true
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree2.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,2,2,null,3,null,3]
+Output: false
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> Could you solve it both recursively and iteratively?</p>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>核心思路：将根节点的左右子树递归对称对比，单个节点的对比包含以下规则：</p>
+
+<ul>
+<li>两个节点都为None的时候，是对称的</li>
+<li>两个节点只有一个是None的时候，不对称</li>
+<li>两个节点都不是None，value不相同的时候，不对称</li>
+<li>两个节点都不是None，节点value相同，并且左右子树递归对称的时候，对称</li>
+</ul>
+
+<p>递归实现：</p>
+
+<ul>
+<li>输入参数：两个Optional[TreeNode]</li>
+<li>输出参数：bool</li>
+<li>终止条件：
+
+<ul>
+<li>两个节点都是None，返回True</li>
+<li>只有一个是None，返回False</li>
+<li>两个节点不为None，value不同，返回False</li>
+</ul></li>
+<li>单层核心逻辑：
+
+<ul>
+<li>节点1的左子树和节点2的右子树对比</li>
+<li>节点1的右子树和节点2的左子树对比</li>
+<li>节点1和节点2的对比</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>两个节点的<code>val</code>对比属于终止条件，并不是中节点的比较，因为节点的比较，除了val之外，还有left和right的对比。</p>
+
+<p>单层核心逻辑，<code>左右中</code>是后序遍历。</p>
+</blockquote>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isSymmetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">isSame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_01</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">,</span> <span class="n">node_02</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># 终止条件</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node_01</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node_02</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node_01</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">node_02</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">node_01</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">node_02</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="c1"># 后序处理，左右中（中隐藏在return的逻辑里面了）</span>
+        <span class="c1"># 注意，中是指中节点，当前节点的val对比并不是中节点完整的逻辑对比，所以不算中</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">node_01</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node_02</span><span class="o">.</span><span class="n">right</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">node_01</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node_02</span><span class="o">.</span><span class="n">left</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/easy_226_revert_binary_tree.html">226. Revert Binary Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>14 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>226. Revert Binary Tree (Easy) 反转二叉树</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, invert the tree, and return <em>its root</em>.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/226_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [4,2,7,1,3,6,9]
+Output: [4,7,2,9,6,3,1]
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/226_example_2.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [2,1,3]
+Output: [2,3,1]
+</pre>
+<p><strong>Example 3:</strong></p>
+<pre class="chroma">Input: root = []
+Output: []
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[0, 100]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>核心思想：使用前序或后序遍历来处理。</p>
+
+<blockquote>
+<p>中序遍历不行的原因是，在左和右子树分别处理完之前，就把中的逻辑（交换左右子树）处理了，相当于左右子树发生了改变，逻辑会比较绕。</p>
+</blockquote>
+
+<p>递归实现：</p>
+
+<ul>
+<li>输入参数：Optional[TreeNode]</li>
+<li>输出参数：空</li>
+<li>终止条件：如果传入参数为None，返回</li>
+<li>单层核心逻辑：按照前序或者后序遍历处理</li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">invertTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invertNode</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">root</span>
+        
+    <span class="k">def</span> <span class="nf">invertNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="c1"># 前序遍历</span>
+        <span class="c1"># 处理`中`，交换左右子树</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+        <span class="c1"># 递归处理左子树</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invertNode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="c1"># 递归处理右子树</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">invertNode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
+          <a href="leetcode/binary_tree/easy_104_maximum_depth_of_binary_tree.html">104. Maximum Depth Of Binary Tree</a>
+        </div>
+        <div>
+          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+        </div>
+        <div class="postDate">
+          <p>14 Jul 2024</p>
+        </div>
+        <div>
+          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+        </div>
+<h2>104. Maximum Depth Of Binary Tree (Easy) 栈的最大深度</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, return <em>its maximum depth</em>.</p>
+
+<p>A binary tree&rsquo;s <strong>maximum depth</strong> is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="/static/images/docs/leetcode/binary_tree/104_example_1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [3,9,20,null,null,15,7]
+Output: 3
+</pre>
+<p><strong>Example 2:</strong></p>
+<pre class="chroma">Input: root = [1,null,2]
+Output: 2
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[0, 104]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>核心思想：求最大深度，其实就是求root的高度。求高度使用的是后序遍历，左右中</p>
+
+<blockquote>
+<p><code>左右中</code>，最后处理<code>中</code>，才能递归把<code>左</code>和<code>右</code>的结果，拿来给<code>中</code>用。</p>
+
+<p>为什么不使用前序遍历，中左右，来直接求深度呢？因为无法让下层节点利用上层节点来递归</p>
+</blockquote>
+
+<p>递归实现：</p>
+
+<ul>
+<li>输入参数：Optional[node]</li>
+<li>输出参数：int(高度)</li>
+<li>结束条件：如果传入的node为空，则返回0（最下层元素的高度是1，那么None的就是0）</li>
+<li>单层核心逻辑：递归求左右子节点的高度，然后将较大的值加上1，就是当前节点的高度</li>
+</ul>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maxDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">getHeight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># 终止条件</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="c1"># 单层核心逻辑</span>
+        <span class="c1"># 以下四条语句，可以合并为最后一条语句</span>
+        <span class="c1"># left_height = self.getHeight(node.left)</span>
+        <span class="c1"># right_height = self.getHeight(node.right)</span>
+        <span class="c1"># cur_height = max(left_height, right_height) + 1</span>
+        <span class="c1"># return cur_height</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHeight</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span><span class="p">)</span>
+
+</pre>
+        </div>
+
+        <div class="article-summary">
+        <div class="article-title">
           <a href="leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a>
         </div>
         <div>
@@ -132,7 +590,7 @@
 
 <p><strong>Example 1:</strong></p>
 
-<p><img src="/static/images/docs/leetcode/linked_list/94_example_1.jpg" alt="img" /></p>
+<p><img src="/static/images/docs/leetcode/binary_tree/94_example_1.jpg" alt="img" /></p>
 <pre class="chroma">Input: root = [1,null,2,3]
 Output: [1,3,2]
 </pre>
@@ -630,623 +1088,6 @@ Explanation: There is no cycle in the linked list.
             <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span>
         <span class="k">return</span> <span class="bp">False</span>
 </pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/linked_list/easy_234_palindrome_linked_list.html">234. Palindrome Linked List</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>03 Jul 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>234. Palindrome Linked List (Easy) 回文链表</h2>
-
-<h3>题干</h3>
-
-<p>Given the <code>head</code> of a singly linked list, return <code>true</code> <em>if it is a</em> <em>palindrome</em></p>
-
-<p><em>or</em>  <code>false</code> <em>otherwise</em>.</p>
-
-<p><strong>Example 1:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/234_example_1.jpg" alt="img" /></p>
-<pre class="chroma">Input: head = [1,2,2,1]
-Output: true
-</pre>
-<p><strong>Example 2:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/234_example_2.jpg" alt="img" /></p>
-<pre class="chroma">Input: head = [1,2]
-Output: false
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li>The number of nodes in the list is in the range <code>[1, 105]</code>.</li>
-<li><code>0 &lt;= Node.val &lt;= 9</code></li>
-</ul>
-
-<p><strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?</p>
-
-<h3>解法</h3>
-
-<h4>快慢指针解法</h4>
-
-<p>使用快慢指针，一快一慢，当快指针无法继续前进的时候，慢指针正好是中间节点。</p>
-
-<p>反转后半段的链表，和前半段链表一起循环对比，当节点的value相等时，返回真，任意一个节点的value不相等时，返回假。</p>
-<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
-<span class="c1"># class ListNode:</span>
-<span class="c1">#     def __init__(self, val=0, next=None):</span>
-<span class="c1">#         self.val = val</span>
-<span class="c1">#         self.next = next</span>
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="c1"># 节点范围是[1, 10^5]</span>
-        <span class="k">if</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">True</span>
-        
-        <span class="n">first_half_end_node</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_first_half_node</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
-        <span class="n">second_half_head</span><span class="p">:</span> <span class="n">ListNode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">first_half_end_node</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
-
-        <span class="n">left</span> <span class="o">=</span> <span class="n">head</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="n">second_half_head</span>
-
-        <span class="k">while</span> <span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">left</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">False</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">next</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="bp">True</span>
-    
-    <span class="k">def</span> <span class="nf">get_first_half_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-        <span class="n">fast</span> <span class="o">=</span> <span class="n">head</span>
-        <span class="n">slow</span> <span class="o">=</span> <span class="n">head</span>
-        <span class="k">while</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">fast</span> <span class="o">=</span> <span class="n">fast</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
-            <span class="n">slow</span> <span class="o">=</span> <span class="n">slow</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="n">slow</span>
-    
-    <span class="k">def</span> <span class="nf">reverse_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">,</span> <span class="n">cur</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">cur</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">pre</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
-        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">pre</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reverse_list</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
-
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/linked_list/easy_160_intersection_of_two_linked_list.html">160. Intersection Of Two Linked List</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>03 Jul 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>160. Intersection Of Two Linked List (Easy) 相交链表</h2>
-
-<h3>题干</h3>
-
-<p>Given the heads of two singly linked-lists <code>headA</code> and <code>headB</code>, return <em>the node at which the two lists intersect</em>. If the two linked lists have no intersection at all, return <code>null</code>.</p>
-
-<p>For example, the following two linked lists begin to intersect at node <code>c1</code>:</p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/160_statement-01.png" alt="" /></p>
-
-<p>The test cases are generated such that there are no cycles anywhere in the entire linked structure.</p>
-
-<p><strong>Note</strong> that the linked lists must <strong>retain their original structure</strong> after the function returns.</p>
-
-<p><strong>Custom Judge:</strong></p>
-
-<p>The inputs to the <strong>judge</strong> are given as follows (your program is <strong>not</strong> given these inputs):</p>
-
-<ul>
-<li><code>intersectVal</code> - The value of the node where the intersection occurs. This is <code>0</code> if there is no intersected node.</li>
-<li><code>listA</code> - The first linked list.</li>
-<li><code>listB</code> - The second linked list.</li>
-<li><code>skipA</code> - The number of nodes to skip ahead in <code>listA</code> (starting from the head) to get to the intersected node.</li>
-<li><code>skipB</code> - The number of nodes to skip ahead in <code>listB</code> (starting from the head) to get to the intersected node.</li>
-</ul>
-
-<p>The judge will then create the linked structure based on these inputs and pass the two heads, <code>headA</code> and <code>headB</code> to your program. If you correctly return the intersected node, then your solution will be <strong>accepted</strong>.</p>
-
-<p><strong>Example 1:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/160_example_1.png" alt="" /></p>
-<pre class="chroma">Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
-Output: Intersected at &#39;8&#39;
-Explanation: The intersected node&#39;s value is 8 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
-- Note that the intersected node&#39;s value is not 1 because the nodes with value 1 in A and B (2nd node in A and 3rd node in B) are different node references. In other words, they point to two different locations in memory, while the nodes with value 8 in A and B (3rd node in A and 4th node in B) point to the same location in memory.
-</pre>
-<p><strong>Example 2:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/160_example_2.png" alt="" /></p>
-<pre class="chroma">Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-Output: Intersected at &#39;2&#39;
-Explanation: The intersected node&#39;s value is 2 (note that this must not be 0 if the two lists intersect).
-From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
-</pre>
-<p><strong>Example 3:</strong></p>
-
-<p><img src="/static/images/docs/leetcode/linked_list/160_example_3.png" alt="" /></p>
-<pre class="chroma">Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-Output: No intersection
-Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
-Explanation: The two lists do not intersect, so return null.
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li>The number of nodes of <code>listA</code> is in the <code>m</code>.</li>
-<li>The number of nodes of <code>listB</code> is in the <code>n</code>.</li>
-<li><code>1 &lt;= m, n &lt;= 3 * 104</code></li>
-<li><code>1 &lt;= Node.val &lt;= 105</code></li>
-<li><code>0 &lt;= skipA &lt; m</code></li>
-<li><code>0 &lt;= skipB &lt; n</code></li>
-<li><code>intersectVal</code> is <code>0</code> if <code>listA</code> and <code>listB</code> do not intersect.</li>
-<li><code>intersectVal == listA[skipA] == listB[skipB]</code> if <code>listA</code> and <code>listB</code> intersect.</li>
-</ul>
-
-<p><strong>Follow up:</strong> Could you write a solution that runs in <code>O(m + n)</code> time and use only <code>O(1)</code>memory?</p>
-
-<h3>解法</h3>
-
-<h4>朴素解法</h4>
-
-<p>使用额外的备忘录空间，来记录两个链表每个节点的index和内存地址。然后循环短的那个逐个比对。</p>
-
-<h4>技巧解法</h4>
-
-<p>关键在于补齐路径长度，假设两个链表相交，相交节点之前的长度分别为a和b，相交节点之后的长度为c。</p>
-
-<p>那么最优的情况是a=b，循环一次就能找到相交节点了。但不可能所有的输入都是这种最优的案例，重新思考，我们要的不是a=b，而是在到达相交节点之前，循环的次数是相同的，既然a不是时时等于b，那么循环路径上一定有时时相等的值，比如a+c+b和b+c+a。</p>
-
-<p>所以解法也就出来了，listA的指针，走完ListA本身（a+c）后，继续在ListB上走；ListB的指针，走完ListB本身（b+c）后，继续在ListA上走。如果两者有相交节点的话，两个链表的指针，分别走完b和a个元素后一定会相遇，因为a+c+b等于b+c+a，那么我们就可以在O(m+n)的时间复杂度下找到这个相交节点了</p>
-<pre class="chroma"><span class="c1"># Definition for singly-linked list.</span>
-<span class="c1"># class ListNode:</span>
-<span class="c1">#     def __init__(self, x):</span>
-<span class="c1">#         self.val = x</span>
-<span class="c1">#         self.next = None</span>
-
-<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">getIntersectionNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headA</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">,</span> <span class="n">headB</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ListNode</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">cur_a</span><span class="p">,</span> <span class="n">cur_b</span> <span class="o">=</span> <span class="n">headA</span><span class="p">,</span> <span class="n">headB</span>
-        <span class="k">while</span> <span class="n">cur_a</span> <span class="o">!=</span> <span class="n">cur_b</span><span class="p">:</span>
-            <span class="c1"># cur_a 走完ListA后，再走ListB</span>
-            <span class="n">cur_a</span> <span class="o">=</span> <span class="n">cur_a</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_a</span> <span class="k">else</span> <span class="n">headB</span>
-            <span class="c1"># cur_b 走完ListB后，再走ListA</span>
-            <span class="n">cur_b</span> <span class="o">=</span> <span class="n">cur_b</span><span class="o">.</span><span class="n">next</span> <span class="k">if</span> <span class="n">cur_b</span> <span class="k">else</span> <span class="n">headA</span>
-        <span class="k">return</span> <span class="n">cur_a</span>
-</pre>
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/sliding_window/medium_438_find_all_anagrams_in_a_string.html">438. Find All Anagrams In A String</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>01 Jul 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>438. Find All Anagrams In A String (Medium) 找到字符串中所有字母的异位词</h2>
-
-<h3>题干</h3>
-
-<p>Given two strings <code>s</code> and <code>p</code>, return <em>an array of all the start indices of</em> <code>p</code><em>&rsquo;s anagrams in</em> <code>s</code>. You may return the answer in <strong>any order</strong>.</p>
-
-<p>An <strong>Anagram</strong> is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p>
-
-<p><strong>Example 1:</strong></p>
-<pre class="chroma">Input: s = &#34;cbaebabacd&#34;, p = &#34;abc&#34;
-Output: [0,6]
-Explanation:
-The substring with start index = 0 is &#34;cba&#34;, which is an anagram of &#34;abc&#34;.
-The substring with start index = 6 is &#34;bac&#34;, which is an anagram of &#34;abc&#34;.
-</pre>
-<p><strong>Example 2:</strong></p>
-<pre class="chroma">Input: s = &#34;abab&#34;, p = &#34;ab&#34;
-Output: [0,1,2]
-Explanation:
-The substring with start index = 0 is &#34;ab&#34;, which is an anagram of &#34;ab&#34;.
-The substring with start index = 1 is &#34;ba&#34;, which is an anagram of &#34;ab&#34;.
-The substring with start index = 2 is &#34;ab&#34;, which is an anagram of &#34;ab&#34;.
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li><code>1 &lt;= s.length, p.length &lt;= 3 * 104</code></li>
-<li><code>s</code> and <code>p</code> consist of lowercase English letters.</li>
-</ul>
-
-<h3>解法</h3>
-
-<h4>朴素解法</h4>
-
-<ul>
-<li>循环字符串，以p的长度为准，找到所有子字符串。</li>
-<li>对这个子字符串和p分别排序，然后比较。若相等则记录当前循环下标</li>
-</ul>
-
-<p>这个解法算是暴力解法了</p>
-
-<ul>
-<li>时间复杂度：外部循环是O(n-m+1)，内部排序是O(mlogm)，两者相乘，综合O(nmlogm)</li>
-<li>空间复杂度：O(m)</li>
-</ul>
-
-<h4>划动窗口解法</h4>
-
-<ul>
-<li>创建两个窗口数据结构（字母为key，次数为value），一个代表p，一个代表s中的len(p)长度的窗口。</li>
-<li>对比这两个窗口值，若一致，记录下标；</li>
-<li>移动窗口：s窗口最左边的字符舍弃（对应次数减一），然后增加新进元素次数</li>
-</ul>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">ans</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-        <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ans</span>
-        
-        <span class="n">sw_s</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="n">sw_p</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">sw_p</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-        <span class="c1"># 校验第一个窗口</span>
-        <span class="k">if</span> <span class="n">sw_s</span> <span class="o">==</span> <span class="n">sw_p</span><span class="p">:</span>
-            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
-            <span class="c1"># 先划动，再记录，保证记录所有可能</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">]</span><span class="p">]</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">sw_s</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">]</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">sw_s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">]</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">sw_s</span> <span class="o">==</span> <span class="n">sw_p</span><span class="p">:</span>
-                <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</pre>
-<p>无dict写法：因为都是小写字母，本身就是有顺序的，所以可以使用list代替dict（<strong>算法无改变，只是数据结构变了</strong>）</p>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">findAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">:</span>
-        <span class="n">ans</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-        <span class="n">n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ans</span>
-        
-        <span class="c1"># 26个英文字母，26个slot，下标就代表字母顺序</span>
-        <span class="n">sw_s</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="p">]</span>
-        <span class="n">sw_p</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span> <span class="p">]</span>
-
-        <span class="c1"># 构建窗口，逐个元素求和字符a的ascii码差值（正好等于上面数据结构下标）</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">sw_p</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">a</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">a</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-        <span class="c1"># 校验第一个窗口</span>
-        <span class="k">if</span> <span class="n">sw_s</span> <span class="o">==</span> <span class="n">sw_p</span><span class="p">:</span>
-            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="p">:</span>
-            <span class="c1"># 先划动，再记录，保证记录所有可能</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">]</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">a</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="n">sw_s</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span><span class="o">-</span><span class="nb">ord</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">a</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">]</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">sw_s</span> <span class="o">==</span> <span class="n">sw_p</span><span class="p">:</span>
-                <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ans</span>
-</pre>
-<ul>
-<li>time cost: O(n)</li>
-<li>space cost: O(m)</li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/sliding_window/medium_3_longest_substring_without_repeating_characters.html">3. Longest Substring Without Repeating Characters</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>30 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>3. Longest Substring Without Repeating Characters (Medium) 无重复字符的最长子字符串</h2>
-
-<h3>题干</h3>
-
-<p>Given a string <code>s</code>, find the length of the <strong>longest substring</strong> without repeating characters.</p>
-
-<p><strong>Example 1:</strong></p>
-<pre class="chroma">Input: s = &#34;abcabcbb&#34;
-Output: 3
-Explanation: The answer is &#34;abc&#34;, with the length of 3.
-</pre>
-<p><strong>Example 2:</strong></p>
-<pre class="chroma">Input: s = &#34;bbbbb&#34;
-Output: 1
-Explanation: The answer is &#34;b&#34;, with the length of 1.
-</pre>
-<p><strong>Example 3:</strong></p>
-<pre class="chroma">Input: s = &#34;pwwkew&#34;
-Output: 3
-Explanation: The answer is &#34;wke&#34;, with the length of 3.
-Notice that the answer must be a substring, &#34;pwke&#34; is a subsequence and not a substring.
-</pre>
-<p><strong>Constraints:</strong></p>
-
-<ul>
-<li><code>0 &lt;= s.length &lt;= 5 * 104</code></li>
-<li><code>s</code> consists of English letters, digits, symbols and spaces.</li>
-</ul>
-
-<h3>解法</h3>
-
-<h4>滑动窗口</h4>
-
-<ul>
-<li><p>使用两个指针，一个指向子字符串的左边界，一个指向子字符串的右边界<code>(需要left和right两个指针，指针的值是字符在字符串中的下标)</code></p></li>
-
-<li><p>新增元素时，判断字符是否在子字符串中<code>(s[right]是否在s[left,right]中)</code></p></li>
-
-<li><p>若存在，需要更新左边界为字符上次出现下标+1<code>(所以需要一个哈希数据结构，以字符为key，以字符在字符串中下标为值;另外，更新左边界时，会跳过合法字符的值，所以还需要对比左边界和存在字符index的大小，比左边界小的可以忽略)</code></p></li>
-
-<li><p>每次循环，无论何种情况，都需要将新增字符在哈希数据结构中的下标更新；也需要更新合法子字符串的长度结果</p>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-<span class="k">def</span> <span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="n">ans</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">sw</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
-
-
-    <span class="n">left</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">right</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-        <span class="n">cur</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">cur</span> <span class="ow">in</span> <span class="n">sw</span> <span class="ow">and</span> <span class="n">sw</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">left</span><span class="p">:</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">sw</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="n">sw</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">right</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ans</span>
-</pre>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(m)</li>
-</ul></li>
-</ul>
-
-        </div>
-
-        <div class="article-summary">
-        <div class="article-title">
-          <a href="leetcode/two_pointers/medium_42_trapping_rain_water.html">42. Trapping Rain Water</a>
-        </div>
-        <div>
-          <hr style="border: 0; border-top: 1px dashed #a2a9b6">
-        </div>
-        <div class="postDate">
-          <p>26 Jun 2024</p>
-        </div>
-        <div>
-          <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
-        </div>
-<h2>42. Trapping Rain Water (Medium) 接雨水</h2>
-
-<h3>题干</h3>
-
-<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</p>
-
-<p>Example 1:
-<img src="/static/images/docs/leetcode/two_pointers/medium_42_01.jpg" alt="" /></p>
-
-<blockquote>
-<p>Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
-Output: 6
-Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.</p>
-</blockquote>
-
-<p>Example 2:</p>
-
-<blockquote>
-<p>Input: height = [4,2,0,3,2,5]
-Output: 9</p>
-</blockquote>
-
-<p>Constraints:</p>
-
-<ul>
-<li><code>n == height.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= height[i] &lt;= 105</code></li>
-</ul>
-
-<h3>思路</h3>
-
-<h4>我的思路</h4>
-
-<p><del>数组元素非负，需要找到三个或多余三个的子数组，头和尾的元素大于所有其他的元素。将中间元素和头尾之间较小元素的差值累加。</del></p>
-
-<p><del>实现：</del></p>
-
-<ul>
-<li><del>循环数组，循环的元素为i</del></li>
-<li><del>i+1的元素小于i的值，记住差值</del></li>
-<li><del>再记录i+2的元素，一样计算，直到找到大于等于i元素值的right</del></li>
-<li><del>若找到，则left+1，right=left+2继续循环；若找不到left，等right到头之后，left+1，right=left+2继续循环</del></li>
-</ul>
-
-<blockquote>
-<p>思路有问题：</p>
-
-<ul>
-<li>拆解成子问题，不能拆成不确定的。子问题拆成一个U型的子数组并没有降低复杂度，应该拆成的是独立的每根柱子</li>
-</ul>
-</blockquote>
-
-<h4>正确思路：暴力解法</h4>
-
-<p>每根柱子能接到的雨水，受其左区间和右区间的最高值决定。</p>
-
-<p>所以只要循环每个柱子，找到每个柱子左右的最高值即可。</p>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">trap_water</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">trap_water</span>
-
-        <span class="n">left_max</span><span class="o">=</span> <span class="n">height</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">right_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">trap_limit</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">left_max</span><span class="p">,</span> <span class="n">right_max</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">trap_limit</span><span class="p">:</span>
-                <span class="n">trap_water</span> <span class="o">+</span><span class="o">=</span> <span class="n">trap_limit</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">left_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_max</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">right_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="p">]</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">trap_water</span>
-</pre>
-<ul>
-<li>时间复杂度：O(n^2)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-
-<h4>优化解法（备忘录）</h4>
-
-<p>暴力解法中，寻找左最大值的时间是O(1)，但是因为循环右边最大值把时间从O(n)增长为O(n^2)。转换思路，可以把左最大值和右最大值分开寻找，一次从左向右，一次从右向左，这样只需要使用一个备忘数据结构，即可将时间复杂度将为O(n)。当然，代价是空间复杂度增长为O(n).</p>
-
-<blockquote>
-<p>算法本质没有变，还是暴力解法</p>
-</blockquote>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">water_trapped</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">water_trapped</span>
-
-        <span class="n">left_max_heights</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="p">)</span> <span class="p">]</span>
-
-        <span class="n">left_max</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">left_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">left_max</span><span class="p">)</span>
-            <span class="n">left_max_heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">left_max</span>
-        <span class="n">right_max</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-            <span class="n">right_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">right_max</span><span class="p">)</span>
-            <span class="n">limit</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">left_max_heights</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">,</span> <span class="n">right_max</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">limit</span><span class="p">:</span>
-                <span class="n">water_trapped</span> <span class="o">+</span><span class="o">=</span> <span class="n">limit</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-        
-        <span class="k">return</span> <span class="n">water_trapped</span>
-</pre>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(n)</li>
-</ul>
-
-<h4>双指针解法</h4>
-
-<p>上面的备忘录解法使用了空间复杂度O(n)，先通过循环（从左到右从右到左两次循环）把所有节点的左最大值和右最大值都找到了才计算。</p>
-
-<p>那么是否可以左右同时循环（双指针），并且边循环边计算呢（节省空间）？</p>
-
-<p>很容易会想到这里的问题的关键是找到左右指针的移动策略。</p>
-
-<p>首先可以通过左右指针分别开始发现left_max和right_max，当然，这里是<code>[0,left]</code>的left_max，是<code>[right,len(height)]</code>的right_max，并不是任意元素i的<code>[0,i]</code>到<code>[i,len(height)]</code>的left_max和right_max。</p>
-
-<p>那这样可以吗？其实是可以的，因为我们关心的其实是两个最大值中的最小值，如果确定一边的最大值，并且比另外一边的任意一个值小，就可以算出来当前柱子的雨量了。</p>
-
-<blockquote>
-<p>想通了这点，其实就想通了这个算法了</p>
-</blockquote>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">water_trapped</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">water_trapped</span>
-        
-        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="n">left_max</span><span class="p">,</span> <span class="n">right_max</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
-            <span class="n">left_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left_max</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="p">)</span>
-            <span class="n">right_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">right_max</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="p">)</span>
-            
-            <span class="k">if</span> <span class="n">left_max</span> <span class="o">&lt;</span> <span class="n">right_max</span><span class="p">:</span>
-                <span class="n">water_trapped</span> <span class="o">+</span><span class="o">=</span> <span class="n">left_max</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">left</span><span class="p">]</span>
-                <span class="n">left</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">water_trapped</span> <span class="o">+</span><span class="o">=</span> <span class="n">right_max</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
-                <span class="n">right</span> <span class="o">-</span><span class="o">=</span> <span class="mi">1</span>
-        
-        <span class="k">return</span> <span class="n">water_trapped</span>
-</pre>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-
-<h4>单调栈解法</h4>
-
-<p>可以使用单调栈的思路</p>
-
-<ul>
-<li>创建一个递增单调栈st，储存的是元素的index</li>
-<li>创建一个water_trapped变量，用来累计雨水总量</li>
-<li>当前循环比栈顶元素大时，<code>(cur_i - st_top_i) * (height[cur_i]-height[st_top_i])</code>
-&gt; 这里的识别是终点，其实是相当于把接雨水的问题，简化成为了，单调递减元素，寻找右侧第一个比自己大的元素。
-&gt; 你可能会问，那第二个比它大的元素，不是还会帮它积雨水吗？答案就是，单调栈的这种解法，并不是计算每根柱子一共能积多少雨水，而是用从下而上的横条来计算一个U型凹槽里面的雨水</li>
-</ul>
-<pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">trap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="n">water_trapped</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">water_trapped</span>
-        
-        <span class="n">st</span><span class="p">:</span> <span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span><span class="p">)</span><span class="p">:</span>
-            <span class="k">while</span> <span class="n">st</span> <span class="ow">and</span> <span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">[</span><span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">:</span>
-                <span class="n">st_popped</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="p">)</span>
-                <span class="c1"># 若弹出当前元素后，单调栈为空，说明左边没有比它大的元素</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">st</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="n">water_trapped</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">height</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">height</span><span class="p">[</span><span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span> <span class="n">height</span><span class="p">[</span><span class="n">st_popped</span><span class="p">]</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">st</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">water_trapped</span>
-</pre>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(m)</li>
-</ul>
-
         </div>
 
     </div>

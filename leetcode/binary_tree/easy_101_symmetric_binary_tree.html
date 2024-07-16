@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+
+<head>
+    <title>XTY Blog | Linux Ops Docs | SRE | DEVOPS</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet" href="/static/css/chroma.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+
+<div class="blog-title">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div>
+					<a class="main-title" href="/">XTY的小站</a>
+                </div>
+                <div>
+                    <a class="small-title" href="/">记录技术笔记和技术博客</a>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<body>
+  <div class="container">
+
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1">
+	  <div id="sidebar">
+
+		<h3>最新文章</h3>
+          <ul>
+
+            <li>
+              <a href="/leetcode/binary_tree/easy_108_convert_sorted_array_to_binary_search_tree.html">108. Convert Sorted Array To Binary Search Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/easy_543_diameter_of_binary_tree.html">543. Diameter Of Binary Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/easy_101_symmetric_binary_tree.html">101. Symmetric Binary Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/easy_226_revert_binary_tree.html">226. Revert Binary Tree</a>
+            </li>
+            <li>
+              <a href="/leetcode/binary_tree/easy_104_maximum_depth_of_binary_tree.html">104. Maximum Depth Of Binary Tree</a>
+            </li>
+          </ul>
+
+		<h3>文章分类</h3>
+		  <ul>
+
+            <li>
+              <a href="/android/index.html">android</a>
+            </li>
+            <li>
+              <a href="/bigdata/index.html">bigdata</a>
+            </li>
+            <li>
+              <a href="/blockchain/index.html">blockchain</a>
+            </li>
+            <li>
+              <a href="/blog/index.html">blog</a>
+            </li>
+            <li>
+              <a href="/cloud/index.html">cloud</a>
+            </li>
+            <li>
+              <a href="/leetcode/index.html">leetcode</a>
+              <ul>
+                <li>
+                  <a href="/leetcode/array/index.html">array</a>
+                </li>
+                <li>
+                  <a href="/leetcode/binary_tree/index.html">binary_tree</a>
+                  <ul>
+                    <li><a href="/leetcode/binary_tree/binary_tree.html">Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_101_symmetric_binary_tree.html">101. Symmetric Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_104_maximum_depth_of_binary_tree.html">104. Maximum Depth Of Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_108_convert_sorted_array_to_binary_search_tree.html">108. Convert Sorted Array To Binary Search Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_226_revert_binary_tree.html">226. Revert Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_543_diameter_of_binary_tree.html">543. Diameter Of Binary Tree</a></li>
+                    <li><a href="/leetcode/binary_tree/easy_94_binary_tree_inorder_traversal.html">94. Binary Tree Inorder Traversal</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/leetcode/dynamic_program/index.html">dynamic_program</a>
+                </li>
+                <li>
+                  <a href="/leetcode/hash_table/index.html">hash_table</a>
+                </li>
+                <li>
+                  <a href="/leetcode/linked_list/index.html">linked_list</a>
+                </li>
+                <li>
+                  <a href="/leetcode/sliding_window/index.html">sliding_window</a>
+                </li>
+                <li>
+                  <a href="/leetcode/two_pointers/index.html">two_pointers</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="/cryptography/index.html">cryptography</a>
+            </li>
+            <li>
+              <a href="/database/index.html">database</a>
+            </li>
+            <li>
+              <a href="/devops/index.html">devops</a>
+            </li>
+            <li>
+              <a href="/go/index.html">go</a>
+            </li>
+            <li>
+              <a href="/ios/index.html">ios</a>
+            </li>
+            <li>
+              <a href="/java/index.html">java</a>
+            </li>
+            <li>
+              <a href="/linux/index.html">linux</a>
+            </li>
+            <li>
+              <a href="/python/index.html">python</a>
+            </li>
+            <li>
+              <a href="/service/index.html">service</a>
+            </li>
+            <li>
+              <a href="/virtualization/index.html">virtualization</a>
+            </li>
+            <li>
+              <a href="/web/index.html">web</a>
+            </li>
+          </ul>
+
+      </div>
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <h2>101. Symmetric Binary Tree</h2>
+      <div>
+        <hr style="border: 0; border-top: 1px dashed #a2a9b6">
+      </div>
+      <div class="postDate">
+        <p>14 Jul 2024</p>
+      </div>
+      <div>
+        <hr style="border: 0; border-bottom: 1px dashed #a2a9b6">
+      </div>
+<h2>101. Symmetric Binary Tree (Easy) 对称二叉树</h2>
+
+<h3>题干</h3>
+
+<p>Given the <code>root</code> of a binary tree, <em>check whether it is a mirror of itself</em> (i.e., symmetric around its center).</p>
+
+<p><strong>Example 1:</strong></p>
+
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree1.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,2,2,3,4,4,3]
+Output: true
+</pre>
+<p><strong>Example 2:</strong></p>
+
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/symtree2.jpg" alt="img" /></p>
+<pre class="chroma">Input: root = [1,2,2,null,3,null,3]
+Output: false
+</pre>
+<p><strong>Constraints:</strong></p>
+
+<ul>
+<li>The number of nodes in the tree is in the range <code>[1, 1000]</code>.</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+
+<p><strong>Follow up:</strong> Could you solve it both recursively and iteratively?</p>
+
+<h3>解法</h3>
+
+<h4>递归解法</h4>
+
+<p>核心思路：将根节点的左右子树递归对称对比，单个节点的对比包含以下规则：</p>
+
+<ul>
+<li>两个节点都为None的时候，是对称的</li>
+<li>两个节点只有一个是None的时候，不对称</li>
+<li>两个节点都不是None，value不相同的时候，不对称</li>
+<li>两个节点都不是None，节点value相同，并且左右子树递归对称的时候，对称</li>
+</ul>
+
+<p>递归实现：</p>
+
+<ul>
+<li>输入参数：两个Optional[TreeNode]</li>
+<li>输出参数：bool</li>
+<li>终止条件：
+
+<ul>
+<li>两个节点都是None，返回True</li>
+<li>只有一个是None，返回False</li>
+<li>两个节点不为None，value不同，返回False</li>
+</ul></li>
+<li>单层核心逻辑：
+
+<ul>
+<li>节点1的左子树和节点2的右子树对比</li>
+<li>节点1的右子树和节点2的左子树对比</li>
+<li>节点1和节点2的对比</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>两个节点的<code>val</code>对比属于终止条件，并不是中节点的比较，因为节点的比较，除了val之外，还有left和right的对比。</p>
+
+<p>单层核心逻辑，<code>左右中</code>是后序遍历。</p>
+</blockquote>
+<pre class="chroma"><span class="c1"># Definition for a binary tree node.</span>
+<span class="c1"># class TreeNode:</span>
+<span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+<span class="c1">#         self.val = val</span>
+<span class="c1">#         self.left = left</span>
+<span class="c1">#         self.right = right</span>
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isSymmetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">isSame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_01</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">,</span> <span class="n">node_02</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="c1"># 终止条件</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node_01</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node_02</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node_01</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">node_02</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">node_01</span><span class="o">.</span><span class="n">val</span> <span class="o">!=</span> <span class="n">node_02</span><span class="o">.</span><span class="n">val</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+        <span class="c1"># 后序处理，左右中（中隐藏在return的逻辑里面了）</span>
+        <span class="c1"># 注意，中是指中节点，当前节点的val对比并不是中节点完整的逻辑对比，所以不算中</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">node_01</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node_02</span><span class="o">.</span><span class="n">right</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isSame</span><span class="p">(</span><span class="n">node_01</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node_02</span><span class="o">.</span><span class="n">left</span><span class="p">)</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</pre>
+    </div>
+
+  </div>
+</body>
+
+<footer>
+    <div class="container">
+        <div class="row footer-links">
+            <div class="col-lg-2 col-sm-2">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="">友链位招租</a></li>
+                    <li><a href="">友链位招租</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>没想好</h3>
+                <ul>
+                    <li><a href="">我爸没想好</a></li>
+                    <li><a href="">我哥说我爸没想好</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>Hooray</h3>
+                <ul>
+                    <li><a href="">Hooray</a></li>
+                    <li><a href="">What are we Hooray For?</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-sm-2">
+                <h3>前面的footer太浪了</h3>
+                <ul>
+                    <li><a href="">就是就是</a></li>
+                    <li><a href="">偷偷的表示羡慕</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-sm-4">
+                <h3>网站信息</h3>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <a class="" href="" target="_blank"></a>
+                <div class="fine-print">
+                    <p>网战由以下技术支撑</p>
+                    <ul>
+                        <li>Markdown Processor: <a href="https://github.com/russross/blackfriday/tree/v2">Blackfriday V2</a></li>
+                        <li>Renderer Engine: <a href="https://github.com/Depado/bfchroma/">bfchroma</a></li>
+                        <li>Syntax Highlighter: <a href="https://github.com/alecthomas/chroma">Chroma</a></li>
+                        <li>Coding Language: <a href="https://go.dev/">Golang</a></li>
+                        <li>Others: Markdown, HTML, CSS</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
